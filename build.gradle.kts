@@ -26,6 +26,7 @@ tasks {
     val createDestinationFolder by creating { doLast { destinationFolder.mkdirs() } }
 
     "listFrameworks" {
+        description = "Lists macOS private frameworks."
         group = taskGroup
         doLast {
             privateFrameworksFolder.listFiles().forEach { folder ->
@@ -38,6 +39,7 @@ tasks {
     }
 
     "classDump"(ShellExec::class) {
+        description = "Dumps headers for a private framework."
         group = taskGroup
         dependsOn(createDestinationFolder)
 
