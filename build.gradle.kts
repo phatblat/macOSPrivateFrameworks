@@ -25,6 +25,18 @@ tasks {
 
     val createDestinationFolder by creating { doLast { destinationFolder.mkdirs() } }
 
+    "listFrameworks" {
+        group = taskGroup
+        doLast {
+            privateFrameworksFolder.listFiles().forEach { folder ->
+                if (folder.name.contains(".framework")) {
+                    val filename = folder.name.substringBeforeLast('.')
+                    println(filename)
+                }
+            }
+        }
+    }
+
     "classDump"(ShellExec::class) {
         group = taskGroup
         dependsOn(createDestinationFolder)
