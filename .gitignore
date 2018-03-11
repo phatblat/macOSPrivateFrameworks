@@ -12,7 +12,6 @@
 .vscode/
 Carthage/
 Pods/
-bin/
 build/
 gradlew.bat
 xcuserdata
