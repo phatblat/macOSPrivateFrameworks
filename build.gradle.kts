@@ -58,6 +58,14 @@ tasks {
         command = "bin/class-dump -Ho $destinationFolder/$framework $privateFrameworksFolder/$framework.framework"
     }
 
+    "dumpHeaders" {
+        description = "Extracts headers from all macOS private frameworks."
+        group = taskGroup
+        frameworks.forEach { frameworkName ->
+            dependsOn("dumpHeaders$frameworkName")
+        }
+    }
+
     addRule("Pattern: dumpHeaders<FrameworkName>: Dumps the class headers for the given private framework name") {
         val taskPrefix = "dumpHeaders"
         if (this.startsWith(taskPrefix)) {
