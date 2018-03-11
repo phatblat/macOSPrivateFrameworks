@@ -73,15 +73,16 @@ tasks {
 open class DumpHeaders: ShellExec() {
     init {
         description = "Dumps headers for a private framework."
-//        dependsOn(tasks.findByPath("createDestinationFolder"))
         command = ""
-        outputs.upToDateWhen { false }
     }
 
     @Input
     lateinit var frameworkName: String
 
-//    @InputDirectory
+    // FIXME: @InputDirectory causes errors with symlinks
+    // Failed to capture snapshot of input files for task ':dumpHeadersDebugSymbols' property 'sourceFolder' during up-to-date check.
+    // > Could not list contents of '/System/Library/PrivateFrameworks/Spotlight.framework/XPCServices'. Couldn't follow symbolic link.
+    @Internal
     lateinit var sourceFolder: File
 
     @OutputDirectory
