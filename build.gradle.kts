@@ -11,8 +11,15 @@ buildscript {
 }
 
 val taskGroup by extra("🍎🕵🏻‍♂️ Private Frameworks")
-val privateFrameworksFolder = file("/System/Library/PrivateFrameworks")
 val destinationFolder = file("PrivateFrameworks")
+val privateFrameworksFolder = file("/System/Library/PrivateFrameworks")
+val frameworks = privateFrameworksFolder.listFiles().map { folder ->
+    if (folder.name.contains(".framework")) {
+        return@map folder.name.substringBeforeLast('.')
+    } else {
+        return@map null
+    }
+}
 
 tasks {
     val removeBatchFile by creating(Delete::class) { delete("gradlew.bat") }
@@ -29,11 +36,8 @@ tasks {
         description = "Lists macOS private frameworks."
         group = taskGroup
         doLast {
-            privateFrameworksFolder.listFiles().forEach { folder ->
-                if (folder.name.contains(".framework")) {
-                    val filename = folder.name.substringBeforeLast('.')
-                    println(filename)
-                }
+            frameworks.forEach { frameworkName ->
+                println(frameworkName)
             }
         }
     }
