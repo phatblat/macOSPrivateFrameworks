@@ -6,12 +6,8 @@
 import at.phatbl.shellexec.ShellExec
 
 buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath("at.phatbl:shellexec:+")
-    }
+    repositories.jcenter()
+    dependencies.classpath("at.phatbl:shellexec:+")
 }
 
 val taskGroup = "🍎🕵🏻‍♂️ Private Frameworks"
