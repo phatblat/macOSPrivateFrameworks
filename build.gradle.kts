@@ -10,7 +10,7 @@ buildscript {
     dependencies.classpath("at.phatbl:shellexec:+")
 }
 
-val taskGroup = "🍎🕵🏻‍♂️ Private Frameworks"
+val taskGroup by extra("🍎🕵🏻‍♂️ Private Frameworks")
 val privateFrameworksFolder = file("/System/Library/PrivateFrameworks")
 val destinationFolder = file("PrivateFrameworks")
 
@@ -52,5 +52,44 @@ tasks {
          *  -o <dir>       output directory used for -H
          */
         command = "bin/class-dump -Ho $destinationFolder/$framework $privateFrameworksFolder/$framework.framework"
+    }
+
+    addRule("Pattern: dumpHeaders<FrameworkName>: Dumps the class headers for the given private framework name") {
+        val taskPrefix = "dumpHeaders"
+        if (this.startsWith(taskPrefix)) {
+            tasks.create(this, DumpHeaders::class.java) {
+                frameworkName = this.name.substringAfter(taskPrefix)
+                sourceFolder = privateFrameworksFolder
+                outputFolder = destinationFolder
+            }
+        }
+    }
+}
+
+open class DumpHeaders: ShellExec() {
+    init {
+        description = "Dumps headers for a private framework."
+//        dependsOn(tasks.findByPath("createDestinationFolder"))
+        command = ""
+        outputs.upToDateWhen { false }
+    }
+
+    @Input
+    lateinit var frameworkName: String
+
+//    @InputDirectory
+    lateinit var sourceFolder: File
+
+    @OutputDirectory
+    lateinit var outputFolder: File
+
+    /** Set command based on input property values  */
+    override fun preExec() {
+        /*
+         * class-dump
+         *  -H             generate header files
+         *  -o <dir>       output directory used for -H
+         */
+        command = "bin/class-dump -Ho $outputFolder/$frameworkName $sourceFolder/$frameworkName.framework"
     }
 }
