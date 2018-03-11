@@ -82,6 +82,13 @@ open class DumpHeaders: ShellExec() {
     init {
         description = "Dumps headers for a private framework."
         command = ""
+        /*
+         * Some frameworks fail, so ignoring exit code.
+         * > Task :dumpHeadersCoreCaptureDaemon
+         * class-dump: Input file (/System/Library/PrivateFrameworks/CoreCaptureDaemon.framework) doesn't contain an executable.
+         * command failed with exit code 1
+         */
+        ignoreExitValue = true
     }
 
     @Input
