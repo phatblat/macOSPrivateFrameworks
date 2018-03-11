@@ -3,4 +3,4 @@
  * macOS Private Frameworks
  */
 
-rootProject.name = "MacOSPrivateFrameworks"
+rootProject.name = "macOSPrivateFrameworks"
