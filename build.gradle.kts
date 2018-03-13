@@ -3,7 +3,11 @@
  * macOS Private Frameworks
  */
 
+import at.phatbl.shellexec.ShellCommand
 import at.phatbl.shellexec.ShellExec
+import java.io.File
+import java.nio.file.Files.delete
+import javax.inject.Inject
 
 buildscript {
     repositories.jcenter()
@@ -53,7 +57,7 @@ tasks {
     addRule("Pattern: dumpHeaders<FrameworkName>: Dumps the class headers for the given private framework name") {
         val taskPrefix = "dumpHeaders"
         if (this.startsWith(taskPrefix)) {
-            tasks.create(this, DumpHeaders::class.java) {
+            tasks.create(this, DumpHeadersTask::class.java) {
                 frameworkName = this.name.substringAfter(taskPrefix)
                 sourceFolder = privateFrameworksFolder
                 outputFolder = destinationFolder
@@ -62,17 +66,31 @@ tasks {
     }
 }
 
-open class DumpHeaders: ShellExec() {
-    init {
-        description = "Dumps headers for a private framework."
-        command = ""
+// Task classes
+
+class Dumper @Inject constructor(
+    val sourceFolder: File,
+    val outputFolder: File
+): Runnable {
+    override fun run() {
+        val command = "bin/class-dump -Ho $outputFolder $sourceFolder"
+        val shellCommand = ShellCommand(project.projectDir, command)
+        shellCommand.start()
+
         /*
          * Some frameworks fail, so ignoring exit code.
          * > Task :dumpHeadersCoreCaptureDaemon
          * class-dump: Input file (/System/Library/PrivateFrameworks/CoreCaptureDaemon.framework) doesn't contain an executable.
          * command failed with exit code 1
          */
-        ignoreExitValue = true
+    }
+}
+
+open class DumpHeadersTask @Inject constructor(
+    val worker: WorkerExecutor
+): DefaultTask() {
+    init {
+        description = "Dumps headers for a private framework."
     }
 
     @Input
@@ -87,13 +105,14 @@ open class DumpHeaders: ShellExec() {
     @OutputDirectory
     lateinit var outputFolder: File
 
-    /** Set command based on input property values  */
-    override fun preExec() {
-        /*
-         * class-dump
-         *  -H             generate header files
-         *  -o <dir>       output directory used for -H
-         */
-        command = "bin/class-dump -Ho $outputFolder/$frameworkName $sourceFolder/$frameworkName.framework"
+    /** Submit work to worker */
+    @TaskAction
+    fun dumpHeaders() {
+        worker.submit(Dumper::class.java) {
+            fun execute(config: WorkerConfiguration) {
+                config.isolationMode = IsolationMode.NONE
+                config.params("$sourceFolder/$frameworkName.framework", "$outputFolder/$frameworkName")
+            }
+        }
     }
 }
