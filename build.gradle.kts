@@ -42,22 +42,6 @@ tasks {
         }
     }
 
-    "classDump"(ShellExec::class) {
-        description = "Dumps headers for a private framework."
-        group = taskGroup
-        dependsOn(createDestinationFolder)
-
-        val framework = "DebugSymbols"
-        inputs.properties(mapOf(framework to "framework"))
-
-        /*
-         * class-dump
-         *  -H             generate header files
-         *  -o <dir>       output directory used for -H
-         */
-        command = "bin/class-dump -Ho $destinationFolder/$framework $privateFrameworksFolder/$framework.framework"
-    }
-
     "dumpHeaders" {
         description = "Extracts headers from all macOS private frameworks."
         group = taskGroup
