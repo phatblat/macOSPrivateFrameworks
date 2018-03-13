@@ -26,8 +26,8 @@ at any time, breaking your app!
 In order to facilitate diffing headers for different macOS versions, branches will be maintained for major releases.
 These branches will be rebased onto each other in order to build up a historical view. Patch level releases will be tagged.
 
-- `master` - No headers, just the Gradle script
-- `10.13` - 🚧 "High Sierra"
+- [`master`](https://github.com/phatblat/macOSPrivateFrameworks/tree/master) - No headers, just the Gradle script
+- [`10.13`](https://github.com/phatblat/macOSPrivateFrameworks/tree/10.13) - "High Sierra"
 - `10.12` - 🚧 "Sierra"
 - `10.11` - 🚧 "El Capitan"
 - `10.10` - 🚧 "Yosemite"
