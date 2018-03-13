@@ -20,3 +20,8 @@ The headers contained in this repo do not serve as documentation because there i
 that they are correct. One can only guess what the API do based on the object and method names.
 Furthermore, using private APIs in a production app is a terrible idea because they could change
 at any time, breaking your app!
+
+## License
+
+This repo is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for rights and limitations.
+
