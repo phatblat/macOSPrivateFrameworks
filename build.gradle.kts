@@ -57,10 +57,11 @@ tasks {
     }
 
     addRule("Pattern: dumpHeaders<FrameworkName>: Dumps the class headers for the given private framework name") {
+        val taskName = this
         val taskPrefix = "dumpHeaders"
-        if (this.startsWith(taskPrefix)) {
-            tasks.create(this, DumpHeadersTask::class.java) {
-                frameworkName = this.name.substringAfter(taskPrefix)
+        if (taskName.startsWith(taskPrefix) && taskName != taskPrefix) {
+            tasks.create(taskName, DumpHeadersTask::class.java) {
+                frameworkName = taskName.substringAfter(taskPrefix)
                 sourceFolder = privateFrameworksFolder
                 outputFolder = destinationFolder
             }
