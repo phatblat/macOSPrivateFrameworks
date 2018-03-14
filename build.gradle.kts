@@ -14,6 +14,8 @@ buildscript {
     dependencies.classpath("at.phatbl:shellexec:+")
 }
 
+plugins.apply(BasePlugin::class.java)
+
 val taskGroup by extra("🍎🕵🏻‍♂️ Private Frameworks")
 val destinationFolder = file("PrivateFrameworks")
 val privateFrameworksFolder = file("/System/Library/PrivateFrameworks")
