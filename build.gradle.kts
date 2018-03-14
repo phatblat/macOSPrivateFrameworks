@@ -79,12 +79,11 @@ class Dumper @Inject constructor(
         val shellCommand = ShellCommand(sourceFolder, command)
         shellCommand.start()
 
-        /*
-         * Some frameworks fail, so ignoring exit code.
-         * > Task :dumpHeadersCoreCaptureDaemon
-         * class-dump: Input file (/System/Library/PrivateFrameworks/CoreCaptureDaemon.framework) doesn't contain an executable.
-         * command failed with exit code 1
-         */
+        if (shellCommand.succeeded) {
+            println(shellCommand.stdout)
+        } else {
+            println(shellCommand.stderr)
+        }
     }
 }
 
