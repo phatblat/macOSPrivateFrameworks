@@ -74,7 +74,7 @@ class Dumper @Inject constructor(
 ): Runnable {
     override fun run() {
         val command = "bin/class-dump -Ho $outputFolder $sourceFolder"
-        val shellCommand = ShellCommand(project.projectDir, command)
+        val shellCommand = ShellCommand(sourceFolder, command)
         shellCommand.start()
 
         /*
