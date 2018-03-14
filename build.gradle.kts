@@ -113,7 +113,10 @@ open class DumpHeadersTask @Inject constructor(
         worker.submit(Dumper::class.java) {
             fun execute(config: WorkerConfiguration) {
                 config.isolationMode = IsolationMode.NONE
-                config.params("$sourceFolder/$frameworkName.framework", "$outputFolder/$frameworkName")
+                config.params(
+                        File(sourceFolder, "$frameworkName.framework"),
+                        File(outputFolder, frameworkName)
+                )
             }
         }
     }
