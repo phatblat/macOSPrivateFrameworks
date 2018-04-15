@@ -78,16 +78,16 @@ tasks {
 // Task classes
 
 class Dumper @Inject constructor(
-    val sourceFolder: File,
-    val outputFolder: File
+        var sourceFolder: File,
+        var outputFolder: File
 ): Runnable {
     override fun run() {
         val command = "bin/class-dump -Ho $outputFolder $sourceFolder"
-        val shellCommand = ShellCommand(sourceFolder, command)
+        val shellCommand = ShellCommand(File("."), command)
         shellCommand.start()
 
         if (shellCommand.succeeded) {
-            println(shellCommand.stdout)
+            println("Dumped $sourceFolder to $outputFolder " + shellCommand.stdout)
         } else {
             println(shellCommand.stderr)
         }
@@ -117,13 +117,11 @@ open class DumpHeadersTask @Inject constructor(
     @TaskAction
     fun dumpHeaders() {
         worker.submit(Dumper::class.java) {
-            fun execute(config: WorkerConfiguration) {
-                config.isolationMode = IsolationMode.NONE
-                config.params(
-                        File(sourceFolder, "$frameworkName.framework"),
-                        File(outputFolder, frameworkName)
-                )
-            }
+            isolationMode = IsolationMode.NONE
+            params(
+                File(sourceFolder, "$frameworkName.framework"),
+                File(outputFolder, frameworkName)
+            )
         }
     }
 }
