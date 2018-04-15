@@ -67,6 +67,12 @@ tasks {
             }
         }
     }
+
+    val dumpHeadersTest by creating(DumpHeadersTask::class) {
+        frameworkName = "LibraryRepair"
+        sourceFolder = privateFrameworksFolder
+        outputFolder = destinationFolder
+    }
 }
 
 // Task classes
