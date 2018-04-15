@@ -3,18 +3,28 @@
  * macOS Private Frameworks
  */
 
+/* -------------------------------------------------------------------------- */
+// 🛃 Imports
+/* -------------------------------------------------------------------------- */
+
 import at.phatbl.shellexec.ShellCommand
 import at.phatbl.shellexec.ShellExec
 import java.io.File
 import java.nio.file.Files.delete
 import javax.inject.Inject
 
-buildscript {
-    repositories.jcenter()
-    dependencies.classpath("at.phatbl:shellexec:+")
-}
+/* -------------------------------------------------------------------------- */
+// 🔌 Plugins
+/* -------------------------------------------------------------------------- */
 
-plugins.apply(BasePlugin::class.java)
+plugins {
+    // Gradle built-in
+    base
+
+    // Gradle plugin portal - https://plugins.gradle.org
+    id("at.phatbl.clamp") version "1.0.0"
+    id("at.phatbl.shellexec") version "1.1.3"
+}
 
 val taskGroup by extra("🍎🕵🏻‍♂️ Private Frameworks")
 val destinationFolder = file("PrivateFrameworks")
@@ -28,14 +38,6 @@ val frameworks = privateFrameworksFolder.listFiles().map { folder ->
 }
 
 tasks {
-    val removeBatchFile by creating(Delete::class) { delete("gradlew.bat") }
-
-    "wrapper"(Wrapper::class) {
-        gradleVersion = "4.6"
-        distributionType = Wrapper.DistributionType.ALL
-        finalizedBy(removeBatchFile)
-    }
-
     val createDestinationFolder by creating { doLast { destinationFolder.mkdirs() } }
 
     "listFrameworks" {
