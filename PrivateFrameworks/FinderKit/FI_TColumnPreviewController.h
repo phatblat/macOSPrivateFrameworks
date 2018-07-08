@@ -54,8 +54,6 @@ __attribute__((visibility("hidden")))
 - (struct CGRect)visibleRectForScrollView:(id)arg1;
 - (void)updateQuickActionsPocketInScrollView:(id)arg1;
 - (void)updateScrollStateForContent;
-- (double)columnViewHorizontalScrollerHeight:(id)arg1;
-- (id)browserScrollViewForScrollView:(id)arg1;
 - (void)updateSubviewContentInsets:(struct NSEdgeInsets)arg1;
 - (void)updateMinHeightConstraintForView:(id)arg1;
 - (void)viewDidMoveToWindow;

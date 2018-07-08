@@ -21,13 +21,14 @@
 @property(copy, nonatomic) CDUnknownBlockType changeHandler; // @synthesize changeHandler=_changeHandler;
 @property(copy, nonatomic) NSString *label; // @synthesize label=_label;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
-@property(copy, nonatomic) UHASAccessibilityInfo *accessibilityInfo; // @synthesize accessibilityInfo=_accessibilityInfo;
 - (void).cxx_destruct;
 - (id)initWithIdentifier:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) const struct __CFString *forwardingInterposableRunLoopMode;
+@property(readonly, nonatomic) double forwardingInterposableRunLoopTimeOut;
 @property(readonly) unsigned long long hash;
 @property(readonly, nonatomic) unsigned long long rock_invocationFlags;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *rock_invocationQueue;

@@ -151,7 +151,6 @@
 - (id)signaturesMenu;
 - (void)applyCurrentCrop;
 - (void)resetToDefaultToolMode;
-- (void)setToolMode:(unsigned long long)arg1;
 - (unsigned long long)toolMode;
 - (BOOL)handleEvent:(id)arg1;
 - (struct CGRect)contentAlignedRectForRect:(struct CGRect)arg1 onPageAtIndex:(unsigned long long)arg2;

@@ -15,8 +15,7 @@
     SUSoftwareUpdateController *_controller;
 }
 
-@property SUSoftwareUpdateController *controller; // @synthesize controller=_controller;
-- (void)dealloc;
+@property(readonly) SUSoftwareUpdateController *controller; // @synthesize controller=_controller;
 - (void)updatesQueuedForLaterDidChange;
 - (void)hiddenUpdatesDidChange;
 - (void)catalogURLDidChange;

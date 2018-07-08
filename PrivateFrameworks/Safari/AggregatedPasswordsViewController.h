@@ -33,7 +33,6 @@ __attribute__((visibility("hidden")))
     PasswordsAuditingPopoverViewController *_passwordsAuditingPopoverViewController;
     NSCache *_savedPasswordIsReusedPassword;
     NSSharingService *_sharingService;
-    id <AggregatedPasswordsViewControllerDelegate> _delegate;
     NSTextField *_emptyTablePlaceholderText;
     NSSearchField *_searchField;
     TableViewPlus *_tableView;
@@ -103,13 +102,10 @@ __attribute__((visibility("hidden")))
 - (void)tableView:(id)arg1 rowSelectionWillChangeFromSelection:(id)arg2 toSelection:(id)arg3;
 - (void)tableViewCopy:(id)arg1;
 - (BOOL)tableViewCanCopy:(id)arg1;
-- (void)sharingServiceWindowDidResignMain:(id)arg1;
-- (void)sharingServiceWindowDidBecomeMain:(id)arg1;
 - (void)sharingService:(id)arg1 didFailToShareItems:(id)arg2 error:(id)arg3;
 - (void)sharingService:(id)arg1 didShareItems:(id)arg2;
 - (id)sharingService:(id)arg1 sourceWindowForShareItems:(id)arg2 sharingContentScope:(long long *)arg3;
 - (void)_sharePassword;
-- (void)willLock;
 - (id)tableView:(id)arg1 menuForEvent:(id)arg2 inRow:(long long)arg3 tableColumn:(id)arg4;
 - (BOOL)tableView:(id)arg1 keyDown:(id)arg2;
 - (BOOL)tableView:(id)arg1 shouldEditTableColumn:(id)arg2 row:(long long)arg3;

@@ -13,11 +13,9 @@
     BOOL _isShowingNoSuggestions;
     ACSHPanelButton *__defaultButton;
     NSArray *__previousActions;
-    unsigned long long __previousSuggestionCount;
 }
 
 + (id)_actionForSuggestion:(id)arg1 defaultAction:(id)arg2;
-@property unsigned long long _previousSuggestionCount; // @synthesize _previousSuggestionCount=__previousSuggestionCount;
 @property(retain) NSArray *_previousActions; // @synthesize _previousActions=__previousActions;
 @property(retain) ACSHPanelButton *_defaultButton; // @synthesize _defaultButton=__defaultButton;
 @property(nonatomic) BOOL isShowingNoSuggestions; // @synthesize isShowingNoSuggestions=_isShowingNoSuggestions;

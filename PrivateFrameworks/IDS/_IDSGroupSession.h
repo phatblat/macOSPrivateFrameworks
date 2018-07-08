@@ -18,6 +18,7 @@
     NSString *_uniqueID;
     NSString *_instanceID;
     NSString *_accountID;
+    NSString *_serviceName;
     NSSet *_destinations;
     NSString *_fromID;
     IDSBaseSocketPairConnection *_unreliableSocketPairConnection;
@@ -85,6 +86,7 @@
 - (void)dealloc;
 - (void)invalidate;
 - (id)initWithAccount:(id)arg1 destinations:(id)arg2 options:(id)arg3 delegateContext:(id)arg4;
+- (long long)maxClientContextDataSize;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

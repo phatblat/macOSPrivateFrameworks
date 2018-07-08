@@ -74,6 +74,7 @@
 - (void)setStatusViewHidden:(BOOL)arg1;
 - (void)siriIdleAndQuietStatusDidChange:(BOOL)arg1;
 - (void)siriDidLaunchApplication:(id)arg1;
+- (void)siriDidLaunchApplicationOrURL;
 - (void)serviceLaunchApplicationWithBundleIdentifier:(id)arg1 withURL:(id)arg2 replyHandler:(CDUnknownBlockType)arg3;
 - (void)performUnlockDependentAction:(CDUnknownBlockType)arg1;
 - (void)askUserToUnlock;

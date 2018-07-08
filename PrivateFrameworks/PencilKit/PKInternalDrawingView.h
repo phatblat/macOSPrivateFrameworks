@@ -24,9 +24,6 @@
     unsigned long long _maxNumPredictionPoints;
     NSMutableOrderedSet *_strokesToErase;
     BOOL _shouldPresentInDidMoveToWindow;
-    CDUnknownBlockType _purgeResourcesBlock;
-    PKDrawing *_drawingAboutToBeSet;
-    unsigned long long _numSkippedDoubleBufferedFrames;
     BOOL _isDrawing;
     BOOL _disableWideGamut;
     BOOL _zooming;

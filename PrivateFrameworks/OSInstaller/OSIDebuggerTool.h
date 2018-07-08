@@ -11,12 +11,12 @@
 @interface OSIDebuggerTool : NSObject
 {
     BOOL _shouldFailAtStart;
-    OSInstallOptions *_options;
+    SKDisk *_target;
     NSString *_opToFail;
 }
 
 @property(retain) NSString *opToFail; // @synthesize opToFail=_opToFail;
-@property(retain) OSInstallOptions *options; // @synthesize options=_options;
+@property(retain) SKDisk *target; // @synthesize target=_target;
 @property BOOL shouldFailAtStart; // @synthesize shouldFailAtStart=_shouldFailAtStart;
 - (void).cxx_destruct;
 - (BOOL)shouldFailAtQueueElement:(id)arg1;

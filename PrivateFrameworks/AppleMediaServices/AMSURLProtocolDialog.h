@@ -8,7 +8,7 @@
 
 #import "AMSURLProtocolDialogHandling.h"
 
-@class ACAccount, NSArray, NSDictionary, NSImage, NSString;
+@class ACAccount, NSDictionary, NSImage, NSString;
 
 @interface AMSURLProtocolDialog : NSObject <AMSURLProtocolDialogHandling>
 {
@@ -22,7 +22,6 @@
     NSString *_proxyBundleId;
 }
 
-@property(readonly) BOOL serverRequestedSilentAuthentication; // @synthesize serverRequestedSilentAuthentication=_serverRequestedSilentAuthentication;
 @property(retain) NSString *proxyBundleId; // @synthesize proxyBundleId=_proxyBundleId;
 @property(retain) NSString *logKey; // @synthesize logKey=_logKey;
 @property(retain) NSImage *icon; // @synthesize icon=_icon;
@@ -32,7 +31,7 @@
 @property(readonly) NSDictionary *dialogDictionary; // @synthesize dialogDictionary=_dialogDictionary;
 - (void).cxx_destruct;
 @property(readonly) NSString *message;
-@property(readonly) NSArray *buttons;
+- (id)buttons;
 @property(readonly) NSString *title;
 - (id)runDialog;
 - (id)initWithDialogDictionary:(id)arg1 dialogOptions:(long long)arg2 account:(id)arg3 bagContract:(id)arg4;

@@ -11,7 +11,7 @@
 }
 
 + (id)sharedController;
-- (id)newBackgroundContext;
+- (void)refreshUsageDataForOrganization:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (id)init;
 
 @end

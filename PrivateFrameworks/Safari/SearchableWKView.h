@@ -44,7 +44,6 @@ __attribute__((visibility("hidden")))
 - (void)keyDown:(id)arg1;
 - (void)viewDidMoveToSuperview;
 - (void)_webViewDidExitFullscreen:(id)arg1;
-- (void)_webViewDidEnterFullscreen:(id)arg1;
 - (void)_webViewWillEnterFullscreen:(id)arg1;
 @property(readonly, nonatomic) _WKRemoteObjectRegistry *remoteObjectRegistry;
 @property(readonly, nonatomic) struct CGRect visibleBounds;

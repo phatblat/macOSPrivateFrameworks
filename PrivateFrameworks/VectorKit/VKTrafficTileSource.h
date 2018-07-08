@@ -8,7 +8,7 @@
 
 #import "VKTileSourceClient.h"
 
-@class NSString, VKRoadTileSource, VKTileCache, VKTileKeyList, VKTrafficDynamicTileSource;
+@class NSString, VKRoadTileSource, VKTileCache, VKTileKeyList, VKTileKeyMap, VKTrafficDynamicTileSource;
 
 __attribute__((visibility("hidden")))
 @interface VKTrafficTileSource : VKTileSetBackedTileSource <VKTileSourceClient>
@@ -17,7 +17,8 @@ __attribute__((visibility("hidden")))
     VKRoadTileSource *_roadTileSource;
     VKTrafficDynamicTileSource *_dynamicTileSource;
     VKTileCache *_recentTrafficTiles;
-    struct map<VKTileKey, IncompleteTileData, bool (*)(const VKTileKey &, const VKTileKey &), std::__1::allocator<std::__1::pair<const VKTileKey, IncompleteTileData>>> *_incompleteTiles;
+    struct map<VKTileKey, geo::_retain_ptr<VKTile *, geo::_retain_objc, geo::_release_objc, geo::_hash_objc, geo::_equal_objc>, bool (*)(const VKTileKey &, const VKTileKey &), std::__1::allocator<std::__1::pair<const VKTileKey, geo::_retain_ptr<VKTile *, geo::_retain_objc, geo::_release_objc, geo::_hash_objc, geo::_equal_objc>>>> *_incompleteTiles;
+    VKTileKeyMap *_dynamicTilesForTrafficTile;
     BOOL _buildTrafficTexture;
 }
 

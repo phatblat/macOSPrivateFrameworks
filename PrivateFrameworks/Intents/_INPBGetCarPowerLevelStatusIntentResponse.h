@@ -10,7 +10,7 @@
 #import "NSSecureCoding.h"
 #import "_INPBGetCarPowerLevelStatusIntentResponse.h"
 
-@class NSString, _INPBDistance, _INPBDouble, _INPBInteger;
+@class INCodableAttribute, NSString, _INPBDistance, _INPBDouble, _INPBInteger;
 
 @interface _INPBGetCarPowerLevelStatusIntentResponse : PBCodable <_INPBGetCarPowerLevelStatusIntentResponse, NSSecureCoding, NSCopying>
 {
@@ -22,8 +22,10 @@
     _INPBDistance *_distanceRemaining;
     _INPBDouble *_fuelPercentRemaining;
     _INPBInteger *_minutesToFull;
+    INCodableAttribute *_associatedCodableAttribute;
 }
 
+@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBInteger *minutesToFull; // @synthesize minutesToFull=_minutesToFull;
 @property(retain, nonatomic) _INPBDouble *fuelPercentRemaining; // @synthesize fuelPercentRemaining=_fuelPercentRemaining;
 @property(retain, nonatomic) _INPBDistance *distanceRemaining; // @synthesize distanceRemaining=_distanceRemaining;

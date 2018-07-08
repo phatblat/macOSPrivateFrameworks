@@ -19,7 +19,7 @@
 }
 
 + (id)buildRequiredOnlyWithIdentifier:(id)arg1;
-+ (id)buildWithIdentifier:(id)arg1 withAllowAssistant:(id)arg2 withAllowDictation:(id)arg3 withAllowAssistantUserGeneratedContent:(id)arg4 withForceAssistantProfanityFilter:(id)arg5;
++ (id)buildWithIdentifier:(id)arg1 withAllowAssistant:(id)arg2 withAllowAssistantUserGeneratedContent:(id)arg3 withForceAssistantProfanityFilter:(id)arg4;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;
 + (id)profileType;

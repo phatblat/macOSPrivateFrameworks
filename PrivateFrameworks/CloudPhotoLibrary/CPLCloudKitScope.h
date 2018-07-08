@@ -36,7 +36,6 @@
 - (id)libraryStateFromCKRecords:(id)arg1 scope:(id)arg2;
 - (id)libraryInfoFromCKRecords:(id)arg1 scope:(id)arg2;
 - (id)_updatedLibraryInfoFromLibraryInfo:(id)arg1 fromCKRecords:(id)arg2 scope:(id)arg3;
-- (id)recordsToUpdateFromLibraryInfo:(id)arg1 inScope:(id)arg2;
 - (id)shareRecordNameToDeleteInScope:(id)arg1;
 - (BOOL)supportsZoneDeleteInScope:(id)arg1;
 - (id)recordNamesForLibraryInfoAndStateInScope:(id)arg1;

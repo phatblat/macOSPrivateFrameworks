@@ -10,6 +10,7 @@
 @class NSObject<OS_dispatch_queue>, NSString, NSURL;
 
 @protocol UHAApplicationInterface <ROCKImpersonateable, ROCKForwardingInterposableWithRunLoop>
+@property(copy, nonatomic) CDUnknownBlockType _preparePasteboardForServiceRequestWithCompletionHandler;
 @property(copy, nonatomic) CDUnknownBlockType readSelectionFromPasteboardWithName;
 @property(copy, nonatomic) CDUnknownBlockType hasValidRequestorForReturnType;
 @property(copy, nonatomic) CDUnknownBlockType objectsForServicesAndSharing;

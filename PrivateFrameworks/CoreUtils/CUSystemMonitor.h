@@ -61,9 +61,6 @@
 @property(readonly) BOOL screenLocked;
 @property(readonly, copy) NSData *rotatingIdentifierData;
 @property(readonly) CDStruct_83abfce7 rotatingIdentifier48;
-@property(readonly, copy, nonatomic) NSString *primaryNetworkSignature;
-@property(readonly, nonatomic) CDUnion_fab80606 primaryIPv6Addr;
-@property(readonly, nonatomic) CDUnion_fab80606 primaryIPv4Addr;
 @property(readonly) BOOL primaryAppleIDIsHSA2;
 @property(readonly) BOOL powerUnlimited;
 @property(readonly) unsigned int netFlags;

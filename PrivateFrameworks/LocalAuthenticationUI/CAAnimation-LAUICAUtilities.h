@@ -8,8 +8,6 @@
 
 @interface CAAnimation (LAUICAUtilities)
 - (void)laui_setDidStopHandler:(CDUnknownBlockType)arg1;
-- (CDUnknownBlockType)laui_didStopHandler;
-- (void)laui_setDidStartHandler:(CDUnknownBlockType)arg1;
-- (CDUnknownBlockType)laui_didStartHandler;
+- (CDUnknownBlockType)pkui_didStopHandler;
 @end
 

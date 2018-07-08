@@ -6,14 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSPointerArray, NSString;
+@class NSPointerArray;
 
 @interface SidecarMenuController : NSObject
 {
-    NSString *_importTitle;
-    long long _importTitleGeneration;
-    NSString *_insertTitle;
-    long long _insertTitleGeneration;
     NSPointerArray *_menuItems;
 }
 
@@ -24,14 +20,10 @@
 - (id)menuWithOptions:(unsigned long long)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (BOOL)_validateImportFromDeviceItem:(id)arg1;
-- (id)insertFromDeviceTitle;
-- (id)importFromDeviceTitle;
-- (BOOL)updateMenu:(id)arg1 withEvent:(id)arg2 withFlags:(unsigned long long)arg3;
 - (BOOL)updateMenu:(id)arg1 withEvent:(id)arg2 withFlags:(unsigned long long)arg3 withResponder:(id)arg4;
 - (void)registerMenuItem:(id)arg1 target:(id)arg2 action:(SEL)arg3 options:(unsigned long long)arg4;
 - (void)importFromDevice:(id)arg1;
 - (void)showPhotosBrowser:(id)arg1;
-- (id)init;
 
 @end
 

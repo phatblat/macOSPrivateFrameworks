@@ -23,7 +23,7 @@
 - (void)endPerfMetrics;
 - (void)startPerfMetrics;
 - (void)endOperation;
-- (void)performSyncDown2;
+- (void)performSyncDownAfterPrewarm;
 - (void)performSyncDown;
 - (void)main;
 - (BOOL)isAsynchronous;

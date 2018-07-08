@@ -6,16 +6,14 @@
 
 #import "NSObject.h"
 
-@class CNContactFormatter, CNContactStore;
+@class CNContactStore;
 
 @interface FMFContactUtility : NSObject
 {
     CNContactStore *_contactStore;
-    CNContactFormatter *_contactFormatter;
 }
 
 + (id)sharedInstance;
-@property(retain, nonatomic) CNContactFormatter *contactFormatter; // @synthesize contactFormatter=_contactFormatter;
 @property(retain, nonatomic) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
 - (void).cxx_destruct;
 - (id)contactKeys;

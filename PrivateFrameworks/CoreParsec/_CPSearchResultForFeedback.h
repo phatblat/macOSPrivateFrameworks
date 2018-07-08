@@ -38,17 +38,8 @@
     NSString *_userInput;
     unsigned long long _blockId;
     unsigned long long _hashedIdentifier;
-    NSString *_resultBundleId;
-    NSString *_sectionBundleIdentifier;
-    NSString *_applicationBundleIdentifier;
-    unsigned long long _whichResultbundleidentifier;
-    unsigned long long _whichSectionbundleid;
-    unsigned long long _whichApplicationbundleid;
 }
 
-@property(readonly, nonatomic) unsigned long long whichApplicationbundleid; // @synthesize whichApplicationbundleid=_whichApplicationbundleid;
-@property(readonly, nonatomic) unsigned long long whichSectionbundleid; // @synthesize whichSectionbundleid=_whichSectionbundleid;
-@property(readonly, nonatomic) unsigned long long whichResultbundleidentifier; // @synthesize whichResultbundleidentifier=_whichResultbundleidentifier;
 @property(nonatomic) unsigned long long hashedIdentifier; // @synthesize hashedIdentifier=_hashedIdentifier;
 @property(nonatomic) unsigned long long blockId; // @synthesize blockId=_blockId;
 @property(nonatomic) BOOL doNotFold; // @synthesize doNotFold=_doNotFold;

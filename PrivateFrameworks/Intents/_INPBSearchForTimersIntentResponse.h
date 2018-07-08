@@ -18,11 +18,13 @@
     NSArray *_matchedTimers;
     NSArray *_timers;
     NSArray *_unmatchedTimers;
+    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)unmatchedTimersType;
 + (Class)timersType;
 + (Class)matchedTimersType;
+@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *unmatchedTimers; // @synthesize unmatchedTimers=_unmatchedTimers;
 @property(copy, nonatomic) NSArray *timers; // @synthesize timers=_timers;
 @property(copy, nonatomic) NSArray *matchedTimers; // @synthesize matchedTimers=_matchedTimers;

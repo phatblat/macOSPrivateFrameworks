@@ -32,7 +32,7 @@
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)_callFixSessionAvailabilityUpdatedDelegate;
+- (void)_callSFDeviceIdentifierUpdatedDelegate:(id)arg1;
 - (void)_callSymptomsUpdatedDelegate:(id)arg1;
 - (BOOL)_mergeWithNewObject:(id)arg1 operations:(id)arg2;
 @property(readonly, nonatomic) NSUUID *uniqueIdentifier; // @synthesize uniqueIdentifier=_uniqueIdentifier;

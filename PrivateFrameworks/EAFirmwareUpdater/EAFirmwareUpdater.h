@@ -61,15 +61,6 @@
 + (id)multiAssetAppProtocolStringWithEAID:(id)arg1;
 + (id)appProtocolStringWithEAID:(id)arg1;
 + (id)bootloaderProtocolStringWithEAID:(id)arg1;
-@property(retain, nonatomic) NSNumber *currentSessionTimeTaken; // @synthesize currentSessionTimeTaken=_currentSessionTimeTaken;
-@property(retain, nonatomic) NSNumber *cumulativeCloak; // @synthesize cumulativeCloak=_cumulativeCloak;
-@property(retain, nonatomic) NSNumber *cumulativeTimeTaken; // @synthesize cumulativeTimeTaken=_cumulativeTimeTaken;
-@property(retain, nonatomic) NSNumber *cumulativeProgressPercent; // @synthesize cumulativeProgressPercent=_cumulativeProgressPercent;
-@property(retain, nonatomic) NSNumber *resumeCount; // @synthesize resumeCount=_resumeCount;
-@property(retain, nonatomic) NSNumber *resumedFromPercentNum; // @synthesize resumedFromPercentNum=_resumedFromPercentNum;
-@property(retain, nonatomic) NSString *transportType; // @synthesize transportType=_transportType;
-@property(retain, nonatomic) NSString *firmwareVersionAvailable; // @synthesize firmwareVersionAvailable=_firmwareVersionAvailable;
-@property(retain, nonatomic) NSString *currentFirmwareVersionOnAcc; // @synthesize currentFirmwareVersionOnAcc=_currentFirmwareVersionOnAcc;
 @property(nonatomic) BOOL isMultiAssetSession; // @synthesize isMultiAssetSession=_isMultiAssetSession;
 @property(nonatomic) BOOL skipDFUMode; // @synthesize skipDFUMode=_skipDFUMode;
 @property(nonatomic) BOOL forceSilentUpdate; // @synthesize forceSilentUpdate=_forceSilentUpdate;

@@ -31,6 +31,7 @@ __attribute__((visibility("hidden")))
     NSView *_topAccessoryContainerView;
     NSLayoutConstraint *_topAccessoryContainerCollapsingConstraint;
     NSView *_topAccessory;
+    struct TNSRef<FILocationPopUp, void> _associatedLocationPopup;
     struct TNSRef<FITopBarTitlebarAccessoryViewController, void> _topBarTitlebarAccessoryViewController;
     FI_TBrowserContentViewController *_contentViewController;
     FIContainerController *_activeContainer;

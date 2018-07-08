@@ -437,6 +437,7 @@
 - (void)_updateOutgoingInviationsWithCompleteUserManagementOperation:(id)arg1;
 - (void)_handleUpdateRequestForHomeInvitationFromInvitee:(id)arg1;
 - (void)_handleUpdateOutgoingInvitationState:(id)arg1;
+- (void)_postOutgoingInvitationStateChangedNotification:(id)arg1 newInvitationState:(long long)arg2;
 - (void)_sendInvitation:(id)arg1 message:(id)arg2;
 - (void)_addOutgoingInvitations:(id)arg1 message:(id)arg2;
 - (void)_handleOutgoingInvitations:(id)arg1;

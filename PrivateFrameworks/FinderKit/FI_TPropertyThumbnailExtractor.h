@@ -19,11 +19,9 @@ __attribute__((visibility("hidden")))
 }
 
 @property(readonly, nonatomic) vector_b67dfe3a randomAnglesForStack; // @synthesize randomAnglesForStack=_randomAnglesForStack;
-@property(nonatomic) struct TFENode thumbnailTargetNode; // @synthesize thumbnailTargetNode=_thumbnailTargetNode;
 @property(nonatomic) NSObject<TPropertyThumbnailExtractorDelegate> *delegate; // @synthesize delegate=_delegate;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) vector_2129316b nodeToImageList;
 - (void)updateImageAngles:(const struct TFENodeVector *)arg1:(const struct TFENodeVector *)arg2;
 - (id)extractValueFromNodes:(const struct TFENodeVector *)arg1 partialOk:(_Bool)arg2;
 - (id)extractValueFromNodes:(const struct TFENodeVector *)arg1;

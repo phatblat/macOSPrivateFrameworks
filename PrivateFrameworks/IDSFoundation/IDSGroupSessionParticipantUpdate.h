@@ -41,7 +41,7 @@
 - (id)description;
 - (id)dictionaryRepresentation;
 - (id)initWithDictionaryRepresentation:(id)arg1;
-- (id)initWithGroupUUID:(id)arg1 isInitiator:(BOOL)arg2 participantIdentifier:(unsigned long long)arg3 participantDestinationID:(id)arg4 participantUpdateType:(unsigned long long)arg5 fromServer:(BOOL)arg6 serverDate:(id)arg7 participantData:(id)arg8 clientContextData:(id)arg9 members:(id)arg10 participantIDs:(id)arg11 relaySessionID:(id)arg12;
+- (id)initWithGroupUUID:(id)arg1 participantIdentifier:(unsigned long long)arg2 participantDestinationID:(id)arg3 participantUpdateType:(unsigned long long)arg4 fromServer:(BOOL)arg5 serverDate:(id)arg6 participantData:(id)arg7 clientContextData:(id)arg8 members:(id)arg9 participantIDs:(id)arg10 relaySessionID:(id)arg11;
 
 @end
 

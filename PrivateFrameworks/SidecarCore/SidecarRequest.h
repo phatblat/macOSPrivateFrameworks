@@ -32,10 +32,6 @@
 }
 
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
-@property(nonatomic) double timeFinish; // @synthesize timeFinish=_timeFinish;
-@property(nonatomic) double timeTransfer; // @synthesize timeTransfer=_timeTransfer;
-@property(nonatomic) double timeAccept; // @synthesize timeAccept=_timeAccept;
-@property(nonatomic) double timeStart; // @synthesize timeStart=_timeStart;
 @property __weak id <SidecarRequestDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)sidecarSession:(id)arg1 invalidatedWithError:(id)arg2;

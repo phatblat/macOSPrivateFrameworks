@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class NSNumber, NSSet, NSString, WDRemoteElement;
+@class NSNumber, NSString, WDRemoteElement;
 
 @interface WDInputSourceState : NSObject <NSCopying>
 {

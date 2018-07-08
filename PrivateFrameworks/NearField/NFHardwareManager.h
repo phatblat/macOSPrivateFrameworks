@@ -25,8 +25,6 @@
 
 + (id)sharedHardwareManager;
 - (void)actOnUserInitiatedSystemShutDown:(unsigned int)arg1 completion:(CDUnknownBlockType)arg2;
-@property(nonatomic) BOOL suspendBackgroundTagReading;
-@property(readonly, nonatomic) BOOL isBackgroundTagReadingAvailable;
 - (void)invalidateConnection;
 - (id)getBoosterInfo;
 - (id)getSecureElementInfo;
@@ -57,8 +55,6 @@
 - (id)secureElementWithIdentifier:(id)arg1;
 - (id)secureElements;
 - (void)secureElementWithIdentifier:(id)arg1 didChangeRestrictedMode:(BOOL)arg2;
-- (id)toggleGPIO:(unsigned short)arg1;
-- (id)enableHeadlessTestMode:(unsigned short)arg1;
 - (BOOL)triggerDelayedWake:(unsigned char)arg1;
 - (BOOL)setFieldDetectEnabled:(BOOL)arg1;
 - (void)unregisterEventListener:(id)arg1;
@@ -69,10 +65,6 @@
 - (unsigned int)setBlessedUser:(id)arg1 keybagUUID:(id)arg2 withAuthorization:(id)arg3;
 - (unsigned int)setBlessedUser:(id)arg1 withAuthorization:(id)arg2;
 - (unsigned int)checkUserBlessing:(id)arg1;
-- (id)disableHeadless;
-- (BOOL)getHeadlessFactoryMode:(id *)arg1;
-- (id)getHeadlessModeFlags:(unsigned int *)arg1;
-- (id)configureHeadlessFactoryMode:(BOOL)arg1;
 - (id)expressTransitIdentifier;
 - (BOOL)expressModesEnabled;
 - (BOOL)isExpressAppletTypeSupported:(unsigned char)arg1;

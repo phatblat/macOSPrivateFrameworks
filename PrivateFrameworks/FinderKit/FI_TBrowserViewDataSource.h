@@ -44,7 +44,6 @@ __attribute__((visibility("hidden")))
 - (void)_modifyChildrenOfContainerAsync:(const struct TFENode *)arg1 withUnlockedFunctor:(const function_7b5bbfa5 *)arg2;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 openChildListUpdated:(const struct TFENode *)arg2;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 openSyncCompleted:(const struct TFENode *)arg2;
-- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 openSyncStarted:(const struct TFENode *)arg2;
 - (void)handleOpenSyncCompletedAndChildListUpdated:(const struct TFENode *)arg1 containerNodeSet:(const unordered_set_931aff12 *)arg2 nodeToChildrenDataMapToModify:(unordered_map_9c9b7b32 *)arg3 groupModeDataToModify:(struct TGroupModeData *)arg4 dataSourceChangedListToModify:(vector_274a36ec *)arg5 isInGroupMode:(_Bool)arg6 checkChildrenForTags:(_Bool)arg7;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 groupDefinitionChanged:(const struct TFENode *)arg2;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesDeleted:(const struct TFENodeVector *)arg2 fromObservedNode:(const struct TFENode *)arg3;

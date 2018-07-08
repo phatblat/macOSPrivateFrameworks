@@ -14,24 +14,18 @@ __attribute__((visibility("hidden")))
 @interface FI_TIconOrGalleryCollectionViewController : FI_TBaseCollectionViewController <TIconOrGalleryCollectionViewDelegateProtocol>
 {
     _Bool _doubleClickOnMouseUp;
-    _Bool _startEditingOnMouseUp;
-    struct TNSRef<NSEvent, void> _mouseDownEventForDrag;
     struct CGPoint _initialClickAt;
+    struct TNSRef<NSEvent, void> _mouseDownEventForDrag;
     struct TNotificationCenterObserver _clipViewBoundsDidChangeObserver;
     struct TFENode _nodeClickedOnMouseDown;
-    struct TNSRef<FI_TBrowserImmediateActionGestureRecognizerDelegate, void> _immediateActionGestureRecognizerDelegate;
-    struct TNSRef<NSImmediateActionGestureRecognizer, void> _quickLookImmediateActionGestureRecognizer;
-    struct TNSRef<NSImmediateActionGestureRecognizer, void> _renameImmediateActionGestureRecognizer;
-    _Bool _immediateActionGestureRecognizerDidRecognize;
+    _Bool _startEditingOnMouseUp;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)_setUpImmediateActionGestureRecognizers;
 - (_Bool)handleMouseUp:(id)arg1;
 - (_Bool)handleMouseDragged:(id)arg1;
 - (_Bool)handleMouseDown:(id)arg1;
-- (_Bool)inlinePreviewMouseDown:(id)arg1;
 - (void)shrinkToFitTextViewAboutToCloseForNode:(const struct TFENode *)arg1;
 - (void)shrinkToFitTextViewEditingComplete:(id)arg1 forNode:(const struct TFENode *)arg2 renameOp:(id)arg3;
 - (_Bool)shrinkToFitTextViewAboutToOpenForNode:(const struct TFENode *)arg1;

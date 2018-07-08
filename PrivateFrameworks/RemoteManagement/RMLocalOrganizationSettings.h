@@ -12,13 +12,10 @@
 {
 }
 
-@property(copy, nonatomic) NSString *passcode; // @dynamic passcode;
-- (id)dictionaryRepresentation;
-- (BOOL)updateWithDictionaryRepresentation:(id)arg1;
-- (id)computeUniqueIdentifier;
 
 // Remaining properties
 @property(retain, nonatomic) RMLocalOrganization *organization; // @dynamic organization;
-
+@property(copy, nonatomic) NSString *passcode; // @dynamic passcode;
+@property(nonatomic) BOOL screenTimeEnabled; // @dynamic screenTimeEnabled;
 @end
 

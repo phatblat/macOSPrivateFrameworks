@@ -68,7 +68,7 @@ __attribute__((visibility("hidden")))
 - (void)setActualBitrateForOptedInStreamID:(id)arg1 withActiveStreamID:(id)arg2 isVideo:(BOOL)arg3;
 - (BOOL)setupVideoStreamFromMediaBlobWithIDSDestination:(id)arg1;
 - (id)newVideoStreamConfigurationWithNegotiationVideoResult:(id)arg1;
-@property(readonly, nonatomic) BOOL isVideoExpected;
+- (BOOL)isVideoExpected;
 @property(nonatomic, getter=isVideoSuspended) BOOL videoSuspended;
 @property(readonly) BOOL isVisible;
 @property(readonly) unsigned int optedInNetworkBitrateAudio;

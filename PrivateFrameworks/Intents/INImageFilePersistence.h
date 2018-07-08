@@ -24,7 +24,7 @@
 @property(readonly, nonatomic) NSString *serviceIdentifier;
 - (void)purgeImageWithIdentifier:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)retrieveImageWithIdentifier:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)storeImage:(id)arg1 scaled:(BOOL)arg2 qualityOfService:(unsigned int)arg3 storeType:(unsigned long long)arg4 completion:(CDUnknownBlockType)arg5;
+- (void)storeImage:(id)arg1 scaled:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
 - (BOOL)canStoreImage:(id)arg1;
 - (void)purgeExpiredImagesInEphemeralStore;
 - (id)init;

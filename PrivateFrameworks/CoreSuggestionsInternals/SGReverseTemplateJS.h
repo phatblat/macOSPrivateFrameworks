@@ -46,7 +46,6 @@
 - (id)formattedDate:(id)arg1 withTimezone:(id)arg2;
 - (id)sfFlightsToDictionnary:(id)arg1;
 - (id)flightInformationWithAirlineCode:(id)arg1 flightNumber:(id)arg2 flightDate:(id)arg3;
-- (id)md5Hash:(id)arg1;
 - (id)mappedArrayBufferForFileName:(id)arg1;
 - (void)initCurrentAsset;
 - (id)loadTrieWithFileName:(id)arg1;

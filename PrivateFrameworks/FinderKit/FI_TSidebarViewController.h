@@ -141,6 +141,8 @@ __attribute__((visibility("hidden")))
 - (id)buttonImage:(id)arg1 forActionKind:(int)arg2 mouseState:(int)arg3;
 - (void)finishUpdatingCellAndAddProgressIfNeeded:(id)arg1 forAction:(int)arg2 progress:(float)arg3;
 - (_Bool)isZoneHidden:(int)arg1;
+- (void)hideZone:(int)arg1;
+- (void)showZone:(int)arg1;
 @property(nonatomic) struct TFENode selectedNode;
 - (void)setHidesSharedItems:(_Bool)arg1;
 - (_Bool)hidesSharedItems;

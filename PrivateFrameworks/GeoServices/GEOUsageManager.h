@@ -12,7 +12,7 @@
 
 + (void)registerConnectedCarInfo:(id)arg1;
 + (id)sharedManager;
-- (void)captureTileCacheMissForRequestReason:(unsigned char)arg1 missType:(int)arg2 tileStyle:(int)arg3 tileZoom:(unsigned int)arg4 missCount:(unsigned int)arg5 missByteCount:(unsigned int)arg6 httpStatus:(unsigned int)arg7 errors:(id)arg8;
+- (void)captureTileCacheMissForRequestReason:(unsigned char)arg1 missType:(int)arg2 tileStyle:(int)arg3 tileZoom:(unsigned int)arg4 missCount:(unsigned int)arg5 missByteCount:(unsigned int)arg6 errors:(id)arg7;
 - (void)captureTileCacheHitForRequestReason:(unsigned char)arg1 tileSource:(unsigned char)arg2 tileStyle:(int)arg3 tileZoom:(unsigned int)arg4 hitCount:(unsigned int)arg5 hitByteCount:(unsigned int)arg6;
 - (int)_originTypeForTileLoadReason:(unsigned char)arg1;
 - (void)captureFailedMsgMetricFromLogFrameworkAdaptor:(BOOL)arg1;
@@ -54,7 +54,7 @@
 - (id)logContextByAddingPlaceCardStateWithPlaceActionDetails:(id)arg1 placeCardType:(int)arg2 mapItemCategory:(id)arg3 availableActions:(id)arg4 unactionableUIElements:(id)arg5 toLogContext:(id)arg6;
 - (id)logContextByAddingPlaceCardStateWithChildPlace:(id)arg1 timestamp:(double)arg2 resultIndex:(int)arg3 toLogContext:(id)arg4;
 - (id)logContextByAddingPlaceCardStateWithMapItem:(id)arg1 timestamp:(double)arg2 resultIndex:(int)arg3 toLogContext:(id)arg4;
-- (void)captureTileCacheMissAnalyticForRequestReason:(int)arg1 missType:(int)arg2 tileStyle:(int)arg3 tileZoom:(unsigned int)arg4 missCount:(unsigned int)arg5 missByteCount:(unsigned int)arg6 httpStatus:(unsigned int)arg7 errors:(id)arg8;
+- (void)captureTileCacheMissAnalyticForRequestReason:(int)arg1 missType:(int)arg2 tileStyle:(int)arg3 tileZoom:(unsigned int)arg4 missCount:(unsigned int)arg5 missByteCount:(unsigned int)arg6 errors:(id)arg7;
 - (void)captureTileCacheHitAnalyticForRequestReason:(int)arg1 tileSource:(int)arg2 tileStyle:(int)arg3 tileZoom:(unsigned int)arg4 hitCount:(unsigned int)arg5 hitByteCount:(unsigned int)arg6;
 - (void)captureParkedCarEventAtLocation:(id)arg1 atTime:(double)arg2 withUncertainty:(double)arg3;
 - (void)captureWiFiConnectionQualityEvent:(id)arg1;

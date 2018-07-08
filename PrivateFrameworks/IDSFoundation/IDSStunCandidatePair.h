@@ -74,7 +74,6 @@
     BOOL _serverIsDegraded;
     double _testStartTime;
     unsigned int _testOptions;
-    BOOL _isDisconnecting;
 }
 
 + (id)candidatePairWithLocalCandidate:(id)arg1 remoteCandidate:(id)arg2 sessionID:(id)arg3 delegate:(id)arg4 sendMsgBlock:(CDUnknownBlockType)arg5;
@@ -103,7 +102,6 @@
 @property(readonly, nonatomic) unsigned char statsIntervalInSeconds; // @synthesize statsIntervalInSeconds=_statsIntervalInSeconds;
 @property(nonatomic) double lastOutgoingPacketTime; // @synthesize lastOutgoingPacketTime=_lastOutgoingPacketTime;
 @property(nonatomic) double lastIncomingPacketTime; // @synthesize lastIncomingPacketTime=_lastIncomingPacketTime;
-@property(nonatomic) BOOL isDisconnecting; // @synthesize isDisconnecting=_isDisconnecting;
 @property(readonly, nonatomic) double testStartTime; // @synthesize testStartTime=_testStartTime;
 @property(copy) NSData *skeData; // @synthesize skeData=_skeData;
 @property(nonatomic) BOOL recvDisconnectedAck; // @synthesize recvDisconnectedAck=_recvDisconnectedAck;
@@ -137,9 +135,8 @@
 - (BOOL)processSessionInfoIndication:(id)arg1 arrivalTime:(double)arg2;
 - (BOOL)processInfoIndication:(id)arg1 arrivalTime:(double)arg2;
 - (BOOL)processTestResponse:(id)arg1 arrivalTime:(double)arg2;
-- (BOOL)processSessionInfoResponse:(id)arg1 packetBuffer:(CDStruct_18fdc6f4 *)arg2 headerOverhead:(unsigned long long)arg3;
-- (BOOL)processInfoResponse:(id)arg1 packetBuffer:(CDStruct_18fdc6f4 *)arg2 headerOverhead:(unsigned long long)arg3;
-- (BOOL)_optionallyCheckEncMarker:(id)arg1;
+- (BOOL)processSessionInfoResponse:(id)arg1 packetBuffer:(CDStruct_e844bd1c *)arg2 headerOverhead:(unsigned long long)arg3;
+- (BOOL)processInfoResponse:(id)arg1 packetBuffer:(CDStruct_e844bd1c *)arg2 headerOverhead:(unsigned long long)arg3;
 - (BOOL)processStatsResponse:(id)arg1 arrivalTime:(double)arg2;
 - (void)sendTestRequest:(id)arg1;
 - (void)sendSessionInfoRequest:(id)arg1 options:(id)arg2;
@@ -152,9 +149,7 @@
 - (void)removeStunRequest:(id)arg1;
 - (void)addStunRequest:(id)arg1;
 - (id)processParticipantsData:(char *)arg1 dataLen:(int)arg2;
-- (void)updateParticipantIDMap:(id)arg1;
 - (void)initParticipantIDMap;
-- (unsigned long long)getParticipantIDHash:(id)arg1;
 - (void)deriveAES128CTRKeys:(id)arg1;
 - (void)setProtocolVersion:(unsigned char)arg1 isInitiator:(BOOL)arg2 enableSKE:(BOOL)arg3;
 - (void)setRelayLinkID:(unsigned short)arg1;

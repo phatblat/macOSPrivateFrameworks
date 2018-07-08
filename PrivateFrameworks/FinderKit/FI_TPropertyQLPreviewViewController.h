@@ -47,7 +47,6 @@ __attribute__((visibility("hidden")))
 - (void)handleNodesGoingAway:(const struct TFENodeVector *)arg1;
 - (void)handleBulkNodesDeleted:(const map_27534541 *)arg1 observedNodes:(const struct TFENodeVector *)arg2;
 - (void)handleBulkNodesChanged:(const map_253f12d2 *)arg1 observedNodes:(const struct TFENodeVector *)arg2;
-@property(nonatomic) struct TFENode browserTargetNode;
 - (void)setValue:(id)arg1;
 - (void)setView:(id)arg1;
 - (struct TFENodeVector)previewNodes;

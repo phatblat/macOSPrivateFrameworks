@@ -6,18 +6,18 @@
 
 #import "NSObject.h"
 
+#import "CSAssetManagerDelegate.h"
 #import "CSAudioRecorderDelegate.h"
 #import "CSAudioServerCrashMonitorGibraltarDelegate.h"
 #import "CSLanguageCodeUpdateMonitorDelegate.h"
 #import "CSSiriEnabledMonitorDelegate.h"
 #import "CSSmartSiriVolumeDelegate.h"
 #import "CSStateMachineDelegate.h"
-#import "CSVoiceTriggerAssetDownloadMonitorDelegate.h"
 #import "CSVoiceTriggerDelegate.h"
 
 @class CSAsset, CSAudioCircularBuffer, CSAudioRecorder, CSContinuousVoiceTrigger, CSKeywordDetector, CSMyriadPHash, CSSelfTriggerDetector, CSSmartSiriVolume, CSStateMachine, CSVoiceTriggerEventNotifier, CSVoiceTriggerFidesClient, CSVoiceTriggerFileLogger, CSVoiceTriggerFirstPass, CSVoiceTriggerSecondPass, NSDictionary, NSHashTable, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, NSUUID;
 
-@interface CSSpeechManager : NSObject <CSAudioRecorderDelegate, CSStateMachineDelegate, CSVoiceTriggerDelegate, CSSiriEnabledMonitorDelegate, CSAudioServerCrashMonitorGibraltarDelegate, CSSmartSiriVolumeDelegate, CSVoiceTriggerAssetDownloadMonitorDelegate, CSLanguageCodeUpdateMonitorDelegate>
+@interface CSSpeechManager : NSObject <CSAudioRecorderDelegate, CSStateMachineDelegate, CSVoiceTriggerDelegate, CSSiriEnabledMonitorDelegate, CSAudioServerCrashMonitorGibraltarDelegate, CSSmartSiriVolumeDelegate, CSAssetManagerDelegate, CSLanguageCodeUpdateMonitorDelegate>
 {
     BOOL _isSiriEnabled;
     BOOL _deviceRoleIsStereo;

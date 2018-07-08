@@ -20,6 +20,7 @@
 
 @optional
 - (id)copyWithZone:(struct _NSZone *)arg1 device:(id <MTLDevice>)arg2;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)updateWithGradientState:(MPSCNNConvolutionGradientState *)arg1 sourceState:(MPSCNNConvolutionWeightsAndBiasesState *)arg2;
 - (MPSCNNConvolutionWeightsAndBiasesState *)updateWithCommandBuffer:(id <MTLCommandBuffer>)arg1 gradientState:(MPSCNNConvolutionGradientState *)arg2 sourceState:(MPSCNNConvolutionWeightsAndBiasesState *)arg3;
 - (unsigned int)weightsQuantizationType;

@@ -35,9 +35,6 @@
 + (id)localizedNameForIdentifier:(id)arg1;
 + (id)primaryLocalizedNameForIdentifier:(id)arg1;
 + (BOOL)supportsSecureCoding;
-+ (id)_newXpcConnection;
-+ (id)_xpcConnection;
-+ (void)initialize;
 @property(copy, nonatomic) NSString *resourceString; // @synthesize resourceString=_resourceString;
 @property(copy, nonatomic) NSString *secondaryIdentifier; // @synthesize secondaryIdentifier=_secondaryIdentifier;
 @property(copy, nonatomic) NSString *primaryWebDomain; // @synthesize primaryWebDomain=_primaryWebDomain;
@@ -45,6 +42,11 @@
 @property(copy, nonatomic) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSString *primaryLocalizedName;
+@property(readonly, copy, nonatomic) NSString *primaryIdentifier;
+- (id)description;
+@property(readonly, copy, nonatomic) NSString *secondaryLocalizedName;
+@property(readonly, copy, nonatomic) NSString *localizedName;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToCategory:(id)arg1;

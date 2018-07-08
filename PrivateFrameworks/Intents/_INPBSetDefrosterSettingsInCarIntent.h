@@ -10,7 +10,7 @@
 #import "NSSecureCoding.h"
 #import "_INPBSetDefrosterSettingsInCarIntent.h"
 
-@class NSString, _INPBDataString, _INPBIntentMetadata;
+@class INCodableAttribute, NSString, _INPBDataString, _INPBIntentMetadata;
 
 @interface _INPBSetDefrosterSettingsInCarIntent : PBCodable <_INPBSetDefrosterSettingsInCarIntent, NSSecureCoding, NSCopying>
 {

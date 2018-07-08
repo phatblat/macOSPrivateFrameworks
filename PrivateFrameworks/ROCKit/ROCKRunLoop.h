@@ -14,8 +14,7 @@ __attribute__((visibility("hidden")))
     CDUnknownBlockType _forwardInvocationHandler;
 }
 
-+ (id)sharedRunLoop;
-+ (const struct __CFString *)sharedRunLoopMode;
++ (id)runLoopWithTimeOut:(double)arg1 runLoopMode:(const struct __CFString *)arg2;
 @property(copy, nonatomic) CDUnknownBlockType forwardInvocationHandler; // @synthesize forwardInvocationHandler=_forwardInvocationHandler;
 @property(retain, nonatomic) const struct __CFString *runLoopMode; // @synthesize runLoopMode=_runLoopMode;
 @property(retain, nonatomic) struct __CFRunLoopSource *runLoopSource; // @synthesize runLoopSource=_runLoopSource;

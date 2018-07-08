@@ -6,21 +6,21 @@
 
 #import "NSObject.h"
 
-@class MSMailDynamicDataAsset, NSObject<OS_dispatch_queue>, NSString, _MSTTLReference;
+@class MSDifferentialPrivacyConfigurationAsset, NSObject<OS_dispatch_queue>, NSString, _MSTTLReference;
 
 @interface MSDifferentialPrivacyReporter : NSObject
 {
     NSString *_recordingKey;
     _MSTTLReference *_userDomains;
     id <MSDifferentialPrivacyDataSource> _dataSource;
-    MSMailDynamicDataAsset *_mailDynamicData;
+    MSDifferentialPrivacyConfigurationAsset *_config;
     CDUnknownBlockType _recordingHandler;
     NSObject<OS_dispatch_queue> *_recordingQueue;
 }
 
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *recordingQueue; // @synthesize recordingQueue=_recordingQueue;
 @property(copy, nonatomic) CDUnknownBlockType recordingHandler; // @synthesize recordingHandler=_recordingHandler;
-@property(retain, nonatomic) MSMailDynamicDataAsset *_mailDynamicData; // @synthesize _mailDynamicData;
+@property(retain, nonatomic) MSDifferentialPrivacyConfigurationAsset *_config; // @synthesize _config;
 @property(nonatomic) __weak id <MSDifferentialPrivacyDataSource> _dataSource; // @synthesize _dataSource;
 @property(retain, nonatomic) _MSTTLReference *_userDomains; // @synthesize _userDomains;
 @property(retain, nonatomic) NSString *_recordingKey; // @synthesize _recordingKey;

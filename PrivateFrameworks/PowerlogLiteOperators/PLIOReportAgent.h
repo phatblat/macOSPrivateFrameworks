@@ -11,22 +11,16 @@
 @interface PLIOReportAgent : PLAgent
 {
     PLEntryNotificationOperatorComposition *_batteryLevelChangedNotifications;
-    PLEntryNotificationOperatorComposition *_screenstateChangedNotifications;
     NSMutableDictionary *_sampleChannelsSignificantBattery;
     NSMutableDictionary *_sampleChannelsHalfHour;
     NSMutableDictionary *_sampleChannelsDaily;
-    NSMutableDictionary *_sampleChannelsAudioEvent;
-    NSMutableDictionary *_sampleChannelsScreenState;
     NSDictionary *_entryTransformation;
     PLIOKitOperatorComposition *_iokitAging;
-    PLIOKitOperatorComposition *_iokitAudio;
 }
 
 + (BOOL)hasAOPSupport;
 + (BOOL)hasLisaCapability;
 + (BOOL)hasPlatinumCapability;
-+ (id)entryEventBackwardDefinitionSpeakerSpeakerEvents;
-+ (BOOL)shouldLogAudioEvent;
 + (id)entryEventBackwardDefinitionMTRAging;
 + (BOOL)shouldLogMTRAging;
 + (id)entryEventBackwardDefinitionWLANPowerConnections;
@@ -38,8 +32,6 @@
 + (id)entryEventBackwardDefinitionNVMeBWLimits;
 + (id)entryEventBackwardDefinitionDisplay;
 + (id)entryEventBackwardDefinitionGPUCStates;
-+ (id)entryEventBackwardDefinitionHapticsStats;
-+ (id)entryEventBackwardDefinitionCarnelianVaxholmStats;
 + (id)entryEventBackwardDefinitionPPMStatsDroopController;
 + (id)entryEventBackwardDefinitionCLPCStatsLimiterControlEffort;
 + (id)entryEventBackwardDefinitionLimiterControlEffort;
@@ -156,31 +148,22 @@
 + (id)entryEventPointDefinitions;
 + (id)defaults;
 + (void)load;
-@property(readonly) PLIOKitOperatorComposition *iokitAudio; // @synthesize iokitAudio=_iokitAudio;
 @property(readonly) PLIOKitOperatorComposition *iokitAging; // @synthesize iokitAging=_iokitAging;
 @property(retain, nonatomic) NSDictionary *entryTransformation; // @synthesize entryTransformation=_entryTransformation;
-@property(retain, nonatomic) NSMutableDictionary *sampleChannelsScreenState; // @synthesize sampleChannelsScreenState=_sampleChannelsScreenState;
-@property(retain, nonatomic) NSMutableDictionary *sampleChannelsAudioEvent; // @synthesize sampleChannelsAudioEvent=_sampleChannelsAudioEvent;
 @property(retain, nonatomic) NSMutableDictionary *sampleChannelsDaily; // @synthesize sampleChannelsDaily=_sampleChannelsDaily;
 @property(retain, nonatomic) NSMutableDictionary *sampleChannelsHalfHour; // @synthesize sampleChannelsHalfHour=_sampleChannelsHalfHour;
 @property(retain, nonatomic) NSMutableDictionary *sampleChannelsSignificantBattery; // @synthesize sampleChannelsSignificantBattery=_sampleChannelsSignificantBattery;
-@property(retain) PLEntryNotificationOperatorComposition *screenstateChangedNotifications; // @synthesize screenstateChangedNotifications=_screenstateChangedNotifications;
 @property(retain) PLEntryNotificationOperatorComposition *batteryLevelChangedNotifications; // @synthesize batteryLevelChangedNotifications=_batteryLevelChangedNotifications;
 - (void).cxx_destruct;
 - (void)logSOCHOT0Snapshot;
 - (void)logIOReportSnapshot;
-- (void)modelPMPAPSocPower:(id)arg1;
+- (void)modelPMPAPSoCPower:(id)arg1;
 - (void)modelAPSoCPower:(id)arg1;
 - (void)logEventBackwardMTRAging;
 - (void)logEventBackwardIOReportWithDelta:(id)arg1 forChannelGroup:(id)arg2;
-- (void)logEventBackwardComplexThermalUPOLimiting:(id)arg1 withChannels:(id)arg2;
-- (id)getBucketName:(int)arg1;
 - (void)logEventBackwardComplexPerformanceStates:(id)arg1;
-- (int)getChannelId:(id)arg1;
 - (void)ioReportLogEntry:(id)arg1;
 - (id)entryKeyForEventWithGroupName:(id)arg1 withSubGroupName:(id)arg2;
-- (void)logEventBackwardIOReportAtScreenStateChange;
-- (void)logEventBackwardIOReportAtAudioEvent;
 - (void)logEventBackwardIOReport;
 - (void)log;
 - (id)entryForReportingGroup:(id)arg1 withKey:(id)arg2 withChannelGroup:(id)arg3 withEntryDate:(id)arg4;
@@ -189,8 +172,6 @@
 - (id)sampleDeltaForChannelGroup:(id)arg1;
 - (void)initOperatorDependancies;
 - (BOOL)processNotificationForChannelGroup:(id)arg1;
-- (id)buildScreenStateSet;
-- (id)buildAudioEventSet;
 - (id)buildDailySet;
 - (id)buildHalfHourSet;
 - (id)buildSignificantBatterySet;

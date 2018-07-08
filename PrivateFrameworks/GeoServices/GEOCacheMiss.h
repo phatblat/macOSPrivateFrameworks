@@ -15,7 +15,6 @@
     unsigned int _bytes;
     unsigned int _count;
     NSMutableArray *_errors;
-    unsigned int _httpStatus;
     int _missType;
     int _requestorType;
     struct {
@@ -28,7 +27,6 @@
 }
 
 + (Class)errorsType;
-@property(nonatomic) unsigned int httpStatus; // @synthesize httpStatus=_httpStatus;
 @property(retain, nonatomic) NSMutableArray *errors; // @synthesize errors=_errors;
 @property(nonatomic) unsigned int bytes; // @synthesize bytes=_bytes;
 @property(nonatomic) unsigned int count; // @synthesize count=_count;
@@ -42,7 +40,6 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-@property(nonatomic) BOOL hasHttpStatus;
 - (id)errorsAtIndex:(unsigned long long)arg1;
 - (unsigned long long)errorsCount;
 - (void)addErrors:(id)arg1;

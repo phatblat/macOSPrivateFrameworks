@@ -96,9 +96,9 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) union tagNTP creationTime; // @synthesize creationTime=_creationTime;
 @property(readonly, nonatomic) NSData *opaqueData; // @synthesize opaqueData=_opaqueData;
 @property(readonly, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
-- (void)sendAudioPowerSpectrumSourceRegistration:(BOOL)arg1;
 - (void)audioPowerSpectrumSinkDidUnregister;
 - (void)audioPowerSpectrumSinkDidRegister;
+- (void)sendAudioPowerSpectrumSourceRegistration:(BOOL)arg1;
 - (void)redundancyController:(id)arg1 redundancyPercentageDidChange:(unsigned int)arg2;
 - (void)redundancyController:(id)arg1 redundancyIntervalDidChange:(double)arg2;
 - (void)handleActiveConnectionChange:(id)arg1;
@@ -106,7 +106,6 @@ __attribute__((visibility("hidden")))
 - (void)pullAudioSamples:(struct opaqueVCAudioBufferList *)arg1;
 - (void)didResumeAudioIO:(id)arg1;
 - (void)didSuspendAudioIO:(id)arg1;
-- (void)resetDecryptionTimeout;
 - (BOOL)handleEncryptionInfoChange:(id)arg1;
 - (void)vcMediaStream:(id)arg1 requestKeyFrameGenerationWithStreamID:(unsigned short)arg2;
 - (void)vcMediaStream:(id)arg1 didResumeStream:(BOOL)arg2 error:(id)arg3;
@@ -132,7 +131,6 @@ __attribute__((visibility("hidden")))
 - (void)dealloc;
 - (id)initWithIDSDestination:(id)arg1 delegate:(id)arg2 processId:(int)arg3 sessionUUID:(id)arg4;
 - (BOOL)configureWithIsContinuity:(BOOL)arg1;
-- (BOOL)updateConfigurationWithIsContinuity:(BOOL)arg1;
 - (BOOL)configureAudioIOWithContinuity:(BOOL)arg1;
 - (void)completeStreamSetup:(id)arg1;
 - (void)setupNetworkAddressesForMediaConfig:(id)arg1;

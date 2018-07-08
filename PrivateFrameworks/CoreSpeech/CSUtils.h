@@ -102,7 +102,6 @@
 + (double)hostTimeToTimeInterval:(unsigned long long)arg1;
 + (float)hostTimeToSeconds:(unsigned long long)arg1;
 + (unsigned long long)secondsToHostTime:(float)arg1;
-+ (BOOL)isRecordContextRaiseToSpeak:(id)arg1;
 + (BOOL)isRecordingContextBTDT:(id)arg1;
 + (BOOL)isRecordingContextHDVC:(id)arg1;
 + (BOOL)isRecordContextSpeakerIdTrainingTrigger:(id)arg1;

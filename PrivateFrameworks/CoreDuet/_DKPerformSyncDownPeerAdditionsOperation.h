@@ -6,7 +6,7 @@
 
 #import <CoreDuet/_DKSyncCompositeOperation.h>
 
-@class NSArray, NSDate, NSString, _CDMutablePerfMetric, _DKSync2Policy, _DKSyncHistory, _DKSyncPeer, _DKSyncType;
+@class NSArray, NSDate, _CDMutablePerfMetric, _DKSync2Policy, _DKSyncHistory, _DKSyncPeer, _DKSyncType;
 
 @interface _DKPerformSyncDownPeerAdditionsOperation : _DKSyncCompositeOperation
 {
@@ -17,23 +17,16 @@
     _DKSyncType *_type;
     _CDMutablePerfMetric *_perfMetric;
     struct _CDPerfEvent _perfEvent;
-    NSDate *_startDate;
-    NSArray *_streamNames;
     BOOL _highPriority;
     _DKSyncHistory *_history;
-    id <_DKKeyValueStore> _keyValueStore;
-    NSString *_hadAdditionsKey;
-    BOOL _hadAdditions;
     NSDate *_highWaterMark;
     unsigned long long _batchNumber;
     NSArray *_overlappingWindows;
-    BOOL _foundAdditions;
 }
 
 + (void)_updateEventStatsWithTotal:(unsigned long long)arg1 streamNameCounts:(id)arg2 transportType:(long long)arg3;
 + (void)_updateEventStatsWithSyncLatencyOfEvent:(id)arg1 ingressDate:(id)arg2 transportType:(long long)arg3;
 + (void)_updateEventStatsWithPreviousSyncDate:(id)arg1 transportType:(long long)arg2;
-+ (void)_updateEventStatsWithIsNewestMissingWindow:(BOOL)arg1;
 - (void).cxx_destruct;
 - (void)endPerfMetrics;
 - (void)startPerfMetrics;

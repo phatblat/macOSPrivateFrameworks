@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-#import "AFNotifyObserverDelegate.h"
+@class NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
 
 @class AFNotifyObserver, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
 
@@ -16,10 +16,7 @@
     NSObject<OS_dispatch_source> *_timer;
     struct __CFNotificationCenter *_center;
     NSObject<OS_dispatch_queue> *_myriadMonitorQueue;
-    NSMutableArray *_completions;
-    AFNotifyObserver *_wonObserver;
-    AFNotifyObserver *_lostObserver;
-    AFNotifyObserver *_beganObserver;
+    NSMutableSet *_completions;
 }
 
 + (void)clear;
@@ -27,7 +24,7 @@
 + (id)sharedMonitor;
 - (void).cxx_destruct;
 - (void)resultSeenWithValue:(BOOL)arg1;
-- (void)_flushCompletions:(BOOL)arg1;
+- (void)_flushCompletions;
 - (void)clear;
 - (void)addCompletion:(CDUnknownBlockType)arg1;
 - (void)setDecisionIsPending;

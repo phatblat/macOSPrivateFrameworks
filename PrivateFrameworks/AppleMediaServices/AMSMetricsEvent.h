@@ -40,7 +40,6 @@
 @property(retain, nonatomic) NSNumber *baseVersion;
 @property(retain, nonatomic) NSString *appVersion;
 - (id)reportingURLFromBaseURL:(id)arg1;
-@property(readonly) NSDictionary *databaseEventBody;
 - (id)initWithTopic:(id)arg1;
 - (id)initWithDatabaseEventBody:(id)arg1;
 

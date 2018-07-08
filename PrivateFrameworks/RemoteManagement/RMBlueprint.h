@@ -4,50 +4,26 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <RemoteManagement/RMUniquedManagedObject.h>
+#import "NSManagedObject.h"
 
-#import "RMUniquelySerializableManagedObject.h"
+@class NSDate, NSSet, NSString, RMBlueprintSchedule, RMBlueprintUsageLimit, RMCoreOrganizationSettings;
 
-@class NSData, NSDate, NSSet, NSString, RMBlueprintSchedule, RMBlueprintUsageLimit, RMCoreOrganization, RMVersionVector;
-
-@interface RMBlueprint : RMUniquedManagedObject <RMUniquelySerializableManagedObject>
+@interface RMBlueprint : NSManagedObject
 {
-    RMVersionVector *_cachedVersionVector;
 }
 
-+ (id)fetchOrCreateWithDictionaryRepresentation:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
-+ (id)fetchResultsRequestsForChangesToBlueprintsForUserWithDSID:(id)arg1;
-+ (id)fetchResultsRequestsForChangesToBlueprints;
-+ (id)fetchRequestMatchingBlueprintsForUserWithDSID:(id)arg1 ofType:(id)arg2 withIdentifier:(id)arg3 fromOrganization:(id)arg4;
-+ (id)fetchRequestMatchingBlueprintsForUserWithDSID:(id)arg1 ofType:(id)arg2 withIdentifier:(id)arg3;
-+ (id)fetchRequestMatchingBlueprintsForUserWithDSID:(id)arg1 ofType:(id)arg2 fromOrganization:(id)arg3;
-+ (id)fetchRequestMatchingBlueprintsForUserWithDSID:(id)arg1 ofType:(id)arg2;
-+ (id)fetchRequestMatchingBlueprintsForUserWithDSID:(id)arg1;
++ (id)fetchRequestMatchingBlueprintsWithIdentifier:(id)arg1;
 + (id)fetchRequestMatchingExpiredBlueprints;
-- (void).cxx_destruct;
-- (void)delete;
-- (id)dictionaryRepresentation;
-- (BOOL)updateWithDictionaryRepresentation:(id)arg1;
-- (id)computeUniqueIdentifier;
-- (void)didChangeValueForKey:(id)arg1;
 - (id)declarationsWithError:(id *)arg1;
-@property(readonly, copy, nonatomic) NSData *unmodeled_versionVector;
-@property(copy, nonatomic) RMVersionVector *versionVector; // @dynamic versionVector;
-- (void)awakeFromInsert;
+- (id)configurationsWithError:(id *)arg1;
 
 // Remaining properties
-@property(retain, nonatomic) NSSet *configurations; // @dynamic configurations;
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(nonatomic) BOOL enabled; // @dynamic enabled;
 @property(copy, nonatomic) NSDate *expiration; // @dynamic expiration;
-@property(readonly) unsigned long long hash;
 @property(copy, nonatomic) NSString *identifier; // @dynamic identifier;
 @property(nonatomic) BOOL invertUsageLimit; // @dynamic invertUsageLimit;
-@property(nonatomic) BOOL isDirty; // @dynamic isDirty;
-@property(retain, nonatomic) RMCoreOrganization *organization; // @dynamic organization;
+@property(retain, nonatomic) RMCoreOrganizationSettings *organizationSettings; // @dynamic organizationSettings;
 @property(retain, nonatomic) RMBlueprintSchedule *schedule; // @dynamic schedule;
-@property(readonly) Class superclass;
 @property(copy, nonatomic) NSString *type; // @dynamic type;
 @property(retain, nonatomic) RMBlueprintUsageLimit *usageLimit; // @dynamic usageLimit;
 @property(retain, nonatomic) NSSet *users; // @dynamic users;

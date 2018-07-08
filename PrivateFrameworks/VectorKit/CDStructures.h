@@ -2659,6 +2659,14 @@ struct optional<float> {
 
 struct optional<gss::IconStyle> {
     _Bool _hasValue;
+    union ValueUnion {
+        unsigned char data[4];
+        float type;
+    } _value;
+};
+
+struct optional<gss::IconStyle> {
+    _Bool _hasValue;
     ValueUnion_42b55164 _value;
 };
 

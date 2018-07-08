@@ -75,7 +75,7 @@ struct jetsam_snapshot_entry {
     unsigned long long _field23;
     unsigned long long _field24;
     unsigned long long _field25;
-    struct timeval64 _field26;
+    struct timeval _field26;
     unsigned long long _field27;
 };
 

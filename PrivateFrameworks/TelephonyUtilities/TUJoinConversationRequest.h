@@ -34,8 +34,6 @@
 + (BOOL)shouldSuppressInCallUIFromURLComponents:(id)arg1;
 + (BOOL)videoEnabledFromURLComponents:(id)arg1;
 + (id)remoteMembersFromURLComponents:(id)arg1;
-@property(nonatomic, getter=isUplinkMuted) BOOL uplinkMuted; // @synthesize uplinkMuted=_uplinkMuted;
-@property(nonatomic) BOOL showUIPrompt; // @synthesize showUIPrompt=_showUIPrompt;
 @property(copy, nonatomic) NSString *messagesGroupName; // @synthesize messagesGroupName=_messagesGroupName;
 @property(copy, nonatomic) NSUUID *messagesGroupUUID; // @synthesize messagesGroupUUID=_messagesGroupUUID;
 @property(retain, nonatomic) TUHandle *callerID; // @synthesize callerID=_callerID;

@@ -10,7 +10,6 @@
 @class NSArray;
 
 @protocol UHAShareSheetControllerInterface <ROCKImpersonateable, ROCKForwardingInterposableWithRunLoop>
-@property(copy, nonatomic) CDUnknownBlockType completionWithItemsHandler;
 - (void)presentShareSheetWithItems:(NSArray *)arg1 atRect:(struct CGRect)arg2;
 @end
 

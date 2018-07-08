@@ -20,6 +20,8 @@ __attribute__((visibility("hidden")))
 }
 
 - (void).cxx_destruct;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)_performRequest:(id)arg1 withPasteboard:(id)arg2;
 @property(readonly, nonatomic) BOOL isWorkflow;
 @property(readonly, nonatomic) BOOL isSpellChecker;
 @property(readonly, nonatomic) BOOL isRestricted;

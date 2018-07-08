@@ -40,7 +40,6 @@
 @property unsigned int pmNotifier; // @synthesize pmNotifier=_pmNotifier;
 @property unsigned int rootDomainConnect; // @synthesize rootDomainConnect=_rootDomainConnect;
 - (void).cxx_destruct;
-- (id)getSleepStatisticsApps;
 - (id)getLastWakeEntry;
 - (id)getLastSleepEntry;
 - (id)wakeTriggersSubclass;

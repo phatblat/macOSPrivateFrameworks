@@ -120,7 +120,7 @@
 - (void)accessory:(id)arg1 didActivateRelayWithError:(id)arg2;
 - (void)accessory:(id)arg1 didUpdateRelayState:(unsigned long long)arg2;
 - (void)accessory:(id)arg1 didUpdateRelayEnabled:(BOOL)arg2;
-- (void)__updateNotifyingCharacteristicStateNumber:(id)arg1;
+- (void)__updateNotifyingCharactersiticStateNumber:(id)arg1;
 - (void)notifyingCharacteristicStateNumberUpdated:(id)arg1;
 - (void)_handleMultipleCharacteristicsUpdated:(id)arg1 message:(id)arg2 completionQueue:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)handleMultipleCharacteristicsUpdated:(id)arg1 message:(id)arg2 completionQueue:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
@@ -351,7 +351,6 @@
 - (BOOL)_resolveAudioAbility:(id)arg1;
 - (void)getSupportedSiriAudioConfiguration:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) BOOL supportsSiri;
-- (void)sendTargetControlWhoAmIWithIdentifier:(unsigned int)arg1;
 - (BOOL)canAcceptBulkSendListeners;
 - (void)removeDataStreamBulkSendListener:(id)arg1;
 - (void)addDataStreamBulkSendListener:(id)arg1 fileType:(id)arg2;

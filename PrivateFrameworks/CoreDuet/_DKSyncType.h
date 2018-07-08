@@ -25,7 +25,6 @@
 }
 
 @property(retain, nonatomic) _CDPeriodicSchedulerJob *periodicJob; // @synthesize periodicJob=_periodicJob;
-@property(nonatomic) BOOL didSetMediumUrgency; // @synthesize didSetMediumUrgency=_didSetMediumUrgency;
 @property(nonatomic) BOOL didDeleteSyncedEvents; // @synthesize didDeleteSyncedEvents=_didDeleteSyncedEvents;
 @property(nonatomic) BOOL didAddSyncedEvents; // @synthesize didAddSyncedEvents=_didAddSyncedEvents;
 @property(nonatomic) BOOL didReceivePush; // @synthesize didReceivePush=_didReceivePush;
@@ -38,7 +37,7 @@
 @property(readonly, nonatomic) BOOL isSingleDevice; // @synthesize isSingleDevice=_isSingleDevice;
 - (void).cxx_destruct;
 - (id)description;
-- (void)mergeType:(id)arg1;
+- (void)unionType:(id)arg1;
 - (id)initWithIsSingleDevice:(BOOL)arg1;
 
 @end

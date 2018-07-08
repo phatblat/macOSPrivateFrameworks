@@ -7,9 +7,6 @@
 #import "SidecarRequest.h"
 
 @interface SidecarRequest (SidecarUI)
-- (id)observerWithCondition:(id)arg1;
-- (long long)runModalWithResponder:(id)arg1;
-- (void)performRunModalWithResponder:(id)arg1 inMode:(id)arg2;
-- (BOOL)invokeWithPasteboard:(id)arg1;
+- (long long)runModal;
 @end
 

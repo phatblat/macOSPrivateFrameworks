@@ -58,7 +58,7 @@
 - (struct WKContextDownloadClientV0)_downloadClient;
 - (id)_infoForDownload:(struct OpaqueWKDownload *)arg1;
 - (void)_doAction:(id)arg1;
-- (BOOL)_dismissIfSheet;
+- (void)_dismissIfSheet;
 - (void)_buttonClicked:(BOOL)arg1 forDialog:(id)arg2;
 - (void)processStorePlistResponse:(id)arg1;
 - (struct WKContextInjectedBundleClientV1)_bundleClient;

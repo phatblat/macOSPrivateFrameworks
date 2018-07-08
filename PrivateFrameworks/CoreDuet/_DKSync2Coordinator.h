@@ -9,7 +9,7 @@
 #import "APSConnectionDelegate.h"
 #import "_DKSyncRemoteKnowledgeStorageFetchDelegate.h"
 
-@class APSConnection, NSMutableArray, NSMutableSet, NSString, NSUUID, _CDMutablePerfMetric, _CDPeriodicSchedulerJob, _DKDataProtectionStateMonitor, _DKKnowledgeStorage, _DKSync2State, _DKSyncToggle, _DKThrottledActivity;
+@class APSConnection, NSMutableArray, NSMutableSet, NSString, _CDMutablePerfMetric, _CDPeriodicSchedulerJob, _DKDataProtectionStateMonitor, _DKKnowledgeStorage, _DKSync2State, _DKSyncToggle, _DKThrottledActivity;
 
 @interface _DKSync2Coordinator : NSObject <APSConnectionDelegate, _DKSyncRemoteKnowledgeStorageFetchDelegate>
 {
@@ -55,7 +55,6 @@
 + (BOOL)isOnPower;
 + (id)streamNamesToTombstone;
 + (void)_updateEventStatsWithSyncElapsedTimeStartDate:(id)arg1 endDate:(id)arg2;
-+ (void)_updateEventStatsWithSyncType:(id)arg1;
 + (BOOL)canPerformSyncOperationWithClass:(Class)arg1 syncType:(id)arg2 history:(id)arg3 transport:(id)arg4 peer:(id)arg5 policy:(id)arg6;
 + (BOOL)shouldDeferSyncOperationWithClass:(Class)arg1 syncType:(id)arg2 transport:(id)arg3 peer:(id)arg4 policy:(id)arg5;
 + (id)keyValueStoreForDomain:(id)arg1;
@@ -118,6 +117,8 @@
 - (void)syncWithReply:(CDUnknownBlockType)arg1;
 - (void)handleFetchedSourceDeviceID:(id)arg1 fromPeer:(id)arg2 error:(id)arg3;
 - (void)fetchSourceDeviceIDFromPeer:(id)arg1;
+- (id)deletedEventIDsSinceDate:(id)arg1 streamNames:(id)arg2 limit:(unsigned long long)arg3 endDate:(id *)arg4 error:(id *)arg5;
+- (id)sortedEventsWithCreationDateBetweenDate:(id)arg1 andDate:(id)arg2 streamNames:(id)arg3 limit:(unsigned long long)arg4 fetchOrder:(long long)arg5 error:(id *)arg6;
 - (void)possiblyUpdateIsBusyProperty;
 - (void)handleStatusChangeForPeer:(id)arg1 previousTransports:(long long)arg2;
 - (id)policyForSyncTransportType:(long long)arg1;

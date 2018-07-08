@@ -34,6 +34,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) int vfdCancel; // @synthesize vfdCancel=_vfdCancel;
 @property(nonatomic) int vfdMessage; // @synthesize vfdMessage=_vfdMessage;
 @property(nonatomic) unsigned int transportSessionID; // @synthesize transportSessionID=_transportSessionID;
+- (BOOL)handleEncryptionInfoChange:(id)arg1;
 - (void)flushReportingStats;
 - (void)flushRealTimeReportingStats;
 - (void)deregisterPeriodicTask;

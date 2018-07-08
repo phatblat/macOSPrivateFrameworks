@@ -35,6 +35,7 @@
 @property(retain, nonatomic) RMOrganization *organization; // @dynamic organization;
 @property(nonatomic) short role; // @dynamic role;
 @property(copy, nonatomic) NSString *uri; // @dynamic uri;
+@property(retain, nonatomic) NSSet *usage; // @dynamic usage;
 @property(retain, nonatomic) RMUsageSettings *usageSettings; // @dynamic usageSettings;
 @property(retain, nonatomic) NSSet *userDevicePairs; // @dynamic userDevicePairs;
 

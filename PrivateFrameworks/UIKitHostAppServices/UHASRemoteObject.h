@@ -8,18 +8,12 @@
 
 #import "ROCKForwardingInterposableWithRunLoop.h"
 
-@class NSObject<OS_dispatch_queue>;
-
 @interface UHASRemoteObject : NSObject <ROCKForwardingInterposableWithRunLoop>
 {
 }
 
-- (struct __CFString *)forwardingInterposableRunLoopMode;
-- (double)forwardingInterposableRunLoopTimeOut;
-
-// Remaining properties
-@property(readonly, nonatomic) unsigned long long rock_invocationFlags;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *rock_invocationQueue;
+@property(readonly, nonatomic) const struct __CFString *forwardingInterposableRunLoopMode;
+@property(readonly, nonatomic) double forwardingInterposableRunLoopTimeOut;
 
 @end
 

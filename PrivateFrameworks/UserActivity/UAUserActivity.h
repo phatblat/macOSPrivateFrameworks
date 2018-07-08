@@ -48,8 +48,6 @@
     BOOL _eligibleForPrediction;
     NSString *_persistentIdentifier;
     id <UAUserActivityDelegate> _delegate;
-    unsigned int _userInfoChangeCount;
-    NSDictionary *_savedUserInfo;
     BOOL _invalidated;
     BOOL _userInfoContainsFileURLs;
     BOOL _canCreateStreams;

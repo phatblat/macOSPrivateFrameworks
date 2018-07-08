@@ -10,7 +10,7 @@
 #import "NSSecureCoding.h"
 #import "_INPBSetSeatSettingsInCarIntent.h"
 
-@class NSString, _INPBDataString, _INPBInteger, _INPBIntentMetadata;
+@class INCodableAttribute, NSString, _INPBDataString, _INPBInteger, _INPBIntentMetadata;
 
 @interface _INPBSetSeatSettingsInCarIntent : PBCodable <_INPBSetSeatSettingsInCarIntent, NSSecureCoding, NSCopying>
 {

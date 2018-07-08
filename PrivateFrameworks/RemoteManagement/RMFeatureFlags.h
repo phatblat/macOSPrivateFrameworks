@@ -10,7 +10,9 @@
 {
 }
 
-+ (BOOL)useValidationContainer;
++ (BOOL)isCloudKitEncryptionEnabled;
++ (void)setIsBlueprintsEnabled:(BOOL)arg1;
++ (BOOL)isBlueprintsEnabled;
 + (void)setIsNewSchemaEnabled:(BOOL)arg1;
 + (BOOL)isNewSchemaEnabled;
 

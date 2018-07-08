@@ -9,9 +9,8 @@
 @class NSData;
 
 @protocol UHAHidManagerInterposingInterface <ROCKImpersonateable>
-@property(readonly) double doubleClickInterval;
 @property(readonly) BOOL forceClickPerformsQuickLook;
-@property(readonly, nonatomic) id <UHAHidSettingsInterface> settings;
+- (void)registerServiceId:(unsigned long long)arg1 dataHandler:(void (^)(NSData *))arg2;
 - (NSData *)pullNextEventDataFromQueue;
 - (void)registerEventPingHandler:(void (^)(void))arg1;
 @end

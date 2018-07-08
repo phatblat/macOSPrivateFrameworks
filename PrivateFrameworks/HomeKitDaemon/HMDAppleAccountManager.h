@@ -15,9 +15,9 @@
 #import "IDSAccountRegistrationDelegate.h"
 #import "IDSServiceDelegate.h"
 
-@class ACAccountStore, APSConnection, HMDAccount, HMDAppleAccountContext, HMDAppleAccountSettings, HMDBackingStore, HMDDevice, HMFExponentialBackoffTimer, HMFTimer, HMFUnfairLock, IDSService, NSObject<OS_dispatch_queue>, NSString, NSUUID;
+@class ACAccountStore, HMDAccount, HMDAppleAccountContext, HMDAppleAccountSettings, HMDBackingStore, HMDDevice, HMFExponentialBackoffTimer, HMFTimer, HMFUnfairLock, IDSService, NSObject<OS_dispatch_queue>, NSString, NSUUID;
 
-@interface HMDAppleAccountManager : HMFObject <APSConnectionDelegate, HMDAccountManager, HMFLogging, HMFMessageReceiver, HMFTimerDelegate, IDSAccountDelegate, IDSAccountRegistrationDelegate, IDSServiceDelegate>
+@interface HMDAppleAccountManager : HMFObject <HMDAccountManager, HMFLogging, HMFMessageReceiver, HMFTimerDelegate, IDSServiceDelegate>
 {
     HMFUnfairLock *_lock;
     BOOL _monitoring;
@@ -25,7 +25,6 @@
     HMDAppleAccountContext *_accountContext;
     ACAccountStore *_accountStore;
     NSObject<OS_dispatch_queue> *_clientQueue;
-    APSConnection *_pushConnection;
     HMFExponentialBackoffTimer *_accountChangeBackoffTimer;
     HMFTimer *_devicesChangeBackoffTimer;
     IDSService *_service;
@@ -39,7 +38,6 @@
 @property(nonatomic, getter=isMonitoring) BOOL monitoring; // @synthesize monitoring=_monitoring;
 @property(readonly, nonatomic) HMFTimer *devicesChangeBackoffTimer; // @synthesize devicesChangeBackoffTimer=_devicesChangeBackoffTimer;
 @property(readonly, nonatomic) HMFExponentialBackoffTimer *accountChangeBackoffTimer; // @synthesize accountChangeBackoffTimer=_accountChangeBackoffTimer;
-@property(readonly, nonatomic) APSConnection *pushConnection; // @synthesize pushConnection=_pushConnection;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *clientQueue; // @synthesize clientQueue=_clientQueue;
 @property(readonly) ACAccountStore *accountStore; // @synthesize accountStore=_accountStore;
 - (void).cxx_destruct;
@@ -50,7 +48,6 @@
 - (void)timerDidFire:(id)arg1;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *messageReceiveQueue;
 @property(readonly, nonatomic) NSUUID *messageTargetUUID;
-- (void)connection:(id)arg1 didReceivePublicToken:(id)arg2;
 @property(readonly, nonatomic) HMDAppleAccountSettings *settings;
 - (void)processAccountModelRemove:(id)arg1 message:(id)arg2;
 - (void)processAccountModel:(id)arg1 message:(id)arg2;
@@ -66,7 +63,6 @@
 - (void)__deviceAddedToCurrentAccount:(id)arg1;
 @property(retain) HMDAccount *account; // @synthesize account=_account;
 @property(readonly) HMDAppleAccountContext *accountContext; // @synthesize accountContext=_accountContext;
-- (void)__handleMigrationUpdated:(id)arg1;
 - (void)__handleUpdatedName:(id)arg1;
 - (void)__handleRemovedAccount:(id)arg1;
 - (void)__handleModifiedAccount:(id)arg1;

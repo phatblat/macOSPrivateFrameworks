@@ -11,7 +11,6 @@
 }
 
 + (void)maintainPrivacyWithKnowledgeStorage:(id)arg1 installedApps:(id)arg2 deleteMaxCount:(unsigned long long)arg3 objectMaxCount:(unsigned long long)arg4 objectMaxLifespan:(double)arg5;
-+ (id)deletionPredicateForBundleID:(id)arg1;
 
 @end
 

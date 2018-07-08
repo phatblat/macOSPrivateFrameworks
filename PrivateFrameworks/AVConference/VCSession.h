@@ -16,7 +16,7 @@
 #import "VCSessionParticipantDelegate.h"
 #import "VCSessionParticipantStreamDelegate.h"
 
-@class AVCRateController, NSArray, NSDictionary, NSError, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, VCControlChannelMultiWay, VCNetworkFeedbackController, VCRateControlMediaController, VCSecurityKeyManager, VCSessionConfiguration, VCSessionDownlinkBandwidthAllocator, VCSessionMessaging, VCSessionParticipant, VCSessionParticipantLocal, VCSessionStatsController, VCTransportSession;
+@class AVCRateController, NSArray, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, VCControlChannelMultiWay, VCNetworkFeedbackController, VCRateControlMediaController, VCSecurityKeyManager, VCSessionConfiguration, VCSessionDownlinkBandwidthAllocator, VCSessionMessaging, VCSessionParticipant, VCSessionParticipantLocal, VCSessionStatsController, VCTransportSession;
 
 __attribute__((visibility("hidden")))
 @interface VCSession : NSObject <VCSessionParticipantStreamDelegate, AVCRateControllerDelegate, VCRateControlMediaControllerDelegate, VCMediaStreamNotification, RTCPReportProvider, VCSecurityEventHandler, VCSessionParticipantDelegate, VCNetworkFeedbackControllerDelegate, VCConnectionChangedHandler>
@@ -96,7 +96,6 @@ __attribute__((visibility("hidden")))
 - (void)reportingSessionParticipantEvent:(unsigned short)arg1 withParticipant:(id)arg2;
 - (void)reportingSessionParticipantEvent:(unsigned short)arg1 withStreamID:(unsigned short)arg2;
 - (struct __CFDictionary *)getClientSpecificUserInfo;
-- (void)resetDecryptionTimeout;
 - (BOOL)handleEncryptionInfoChange:(id)arg1;
 - (BOOL)generateReceptionReportList:(struct _RTCP_RECEPTION_REPORT *)arg1 reportCount:(char *)arg2;
 - (void)mediaStream:(id)arg1 didReceiveNewMasterKeyIndex:(id)arg2;
@@ -144,8 +143,6 @@ __attribute__((visibility("hidden")))
 - (int)flushBasebandWithPayloads:(id)arg1;
 - (void)mediaController:(void *)arg1 mediaSuggestionDidChange:(struct VCRateControlMediaSuggestion)arg2;
 - (void)rateController:(void *)arg1 targetBitrateDidChange:(unsigned int)arg2 rateChangeCounter:(unsigned int)arg3;
-- (void)vcSessionParticipant:(id)arg1 didDetectError:(id)arg2;
-- (void)vcSessionParticipantDidMediaDecryptionTimeOut:(id)arg1;
 - (void)vcSessionParticipantDidChangeReceivingStreams:(id)arg1;
 - (void)vcSessionParticipantDidChangeSendingStreams:(id)arg1;
 - (void)vcSessionParticipant:(id)arg1 didRequestVideoRedundancy:(BOOL)arg2;

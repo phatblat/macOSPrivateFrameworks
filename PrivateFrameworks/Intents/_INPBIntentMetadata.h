@@ -10,7 +10,7 @@
 #import "NSSecureCoding.h"
 #import "_INPBIntentMetadata.h"
 
-@class NSArray, NSString, _INPBImageValue, _INPBString;
+@class INCodableAttribute, NSArray, NSString, _INPBImageValue, _INPBString;
 
 @interface _INPBIntentMetadata : PBCodable <_INPBIntentMetadata, NSSecureCoding, NSCopying>
 {

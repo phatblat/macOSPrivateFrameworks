@@ -10,7 +10,7 @@
 #import "NSSecureCoding.h"
 #import "_INPBSetProfileInCarIntent.h"
 
-@class NSString, _INPBDataString, _INPBInteger, _INPBIntentMetadata, _INPBString;
+@class INCodableAttribute, NSString, _INPBDataString, _INPBInteger, _INPBIntentMetadata, _INPBString;
 
 @interface _INPBSetProfileInCarIntent : PBCodable <_INPBSetProfileInCarIntent, NSSecureCoding, NSCopying>
 {

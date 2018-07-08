@@ -72,11 +72,10 @@
 - (id)description;
 - (double)hoursBetweenSyncsWhenIsSingleDevice:(BOOL)arg1 urgency:(unsigned long long)arg2;
 - (double)hoursBetweenSyncsWhenIsSingleDevice:(BOOL)arg1;
-- (id)queryStartDateWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3 previousHighWaterMark:(id)arg4;
-- (id)queryStartDateWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3;
-- (BOOL)highPriorityForSyncUpWithSyncType:(id)arg1 lastSyncDate:(id)arg2;
-- (BOOL)highPriorityForSyncDownWithSyncType:(id)arg1;
-- (BOOL)canPerformSyncOperationWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3 isCharging:(BOOL)arg4;
+- (id)queryStartDateWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3 isSingleDevice:(BOOL)arg4 previousHighWaterMark:(id)arg5;
+- (id)queryStartDateWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3 isSingleDevice:(BOOL)arg4;
+- (BOOL)highPriorityForSyncType:(id)arg1 lastSyncDate:(id)arg2;
+- (BOOL)canPerformSyncOperationWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3 isSingleDevice:(BOOL)arg4 isCharging:(BOOL)arg5;
 - (BOOL)canDeferSyncOperationWithSyncType:(id)arg1;
 - (id)streamNamesToSyncWithSyncType:(id)arg1 transportType:(long long)arg2;
 - (id)streamNamesToSyncWithDisabledFeatures:(id)arg1;

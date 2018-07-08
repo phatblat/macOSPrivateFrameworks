@@ -143,7 +143,6 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic, getter=isFrontmost) BOOL frontmost;
 @property(readonly, nonatomic) BrowserWindowController *representedTabBrowserWindowController;
 @property(readonly, nonatomic) BrowserViewController *currentBrowserViewController;
-@property(readonly, nonatomic) id <VisualTabPickerThumbnailSnapshotProviding> visualTabPickerThumbnailSnapshotProvider;
 @property(readonly, nonatomic) BrowserViewController *browserViewController;
 @property(readonly, nonatomic) TabContentViewController *representedTabContentViewController;
 - (id)computeTabLabel;

@@ -8,7 +8,7 @@
 
 #import "RMPersistenceControllerProtocol.h"
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSPersistentContainer, NSString;
+@class CATSerialOperationQueue, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSPersistentContainer, NSString;
 
 @interface RMPersistenceController : NSObject <RMPersistenceControllerProtocol>
 {
@@ -16,8 +16,10 @@
     NSPersistentContainer *_persistentContainer;
     NSMutableDictionary *_lastPersistentHistoryTokenByStoreIdentifier;
     NSObject<OS_dispatch_queue> *_coreDataQueue;
+    CATSerialOperationQueue *_operationQueue;
 }
 
+@property(readonly, nonatomic) CATSerialOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *coreDataQueue; // @synthesize coreDataQueue=_coreDataQueue;
 @property(readonly, copy, nonatomic) NSMutableDictionary *lastPersistentHistoryTokenByStoreIdentifier; // @synthesize lastPersistentHistoryTokenByStoreIdentifier=_lastPersistentHistoryTokenByStoreIdentifier;
 @property(retain, nonatomic) NSPersistentContainer *persistentContainer; // @synthesize persistentContainer=_persistentContainer;
@@ -27,7 +29,6 @@
 - (id)descriptionForPersistentStore:(id)arg1;
 - (void)savePersistentHistoryToken:(id)arg1 forStore:(id)arg2;
 - (id)persistentHistoryTokenForStore:(id)arg1;
-- (id)viewContext;
 - (id)newBackgroundContext;
 - (void)performBackgroundTaskAndWait:(CDUnknownBlockType)arg1;
 - (void)performBackgroundTask:(CDUnknownBlockType)arg1;

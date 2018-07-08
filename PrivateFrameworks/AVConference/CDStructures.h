@@ -157,7 +157,6 @@ struct VCRateControlAlgorithmConfig {
     int minTierIndex;
     int lowestNonEmergencyTierIndex;
     int lowestEffectiveBWETierIndex;
-    int lowestTierIndexReactToNoServerActivity;
     int rampUpTierNumber;
     int rampDownTierNumber;
     int rampUpAdditionalTierAtInitial;

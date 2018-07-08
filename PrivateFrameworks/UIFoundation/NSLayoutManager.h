@@ -213,7 +213,7 @@
 - (void)invalidateLayoutForCharacterRange:(struct _NSRange)arg1 actualCharacterRange:(struct _NSRange *)arg2;
 - (void)invalidateGlyphsForCharacterRange:(struct _NSRange)arg1 changeInLength:(long long)arg2 actualCharacterRange:(struct _NSRange *)arg3;
 - (void)_invalidateGlyphsForCharacterRange:(struct _NSRange)arg1 editedCharacterRange:(struct _NSRange)arg2 changeInLength:(long long)arg3 actualCharacterRange:(struct _NSRange *)arg4;
-@property BOOL limitsLayoutForSuspiciousContents;
+@property BOOL allowsSecurityMeasures;
 - (BOOL)backgroundColorProvidesOpaqueSurface;
 - (unsigned long long)layoutOptions;
 @property long long typesetterBehavior;

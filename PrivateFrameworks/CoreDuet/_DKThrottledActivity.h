@@ -17,7 +17,6 @@
 + (id)standardInstance;
 @property(retain, nonatomic) id <_DKSimpleKeyValueStore> store; // @synthesize store=_store;
 - (void).cxx_destruct;
-- (void)setDate:(id)arg1 forName:(id)arg2;
 - (void)clearHistoryForName:(id)arg1;
 - (id)description;
 - (void)performWithDelayInDaysOf:(double)arg1 name:(id)arg2 queue:(id)arg3 activityBlock:(CDUnknownBlockType)arg4;

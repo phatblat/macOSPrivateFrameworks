@@ -225,7 +225,6 @@ struct TBVDSChangedPayload {
     unordered_map_f886f0c5 _field4;
     _Bool _field5;
     _Bool _field6;
-    _Bool _field7;
 };
 
 struct TBaseInstanceCounter {
@@ -236,7 +235,9 @@ struct TBestFitFormatterSelector;
 
 struct TBlockingQueue;
 
-struct TBrowserImmediateActionGestureRecognizerHandlerBase;
+struct TBrowserImmediateActionGestureRecognizerHandlerBase {
+    CDUnknownFunctionPointerType *_field1;
+};
 
 struct TCoalescingNodeObserver {
     CDUnknownFunctionPointerType *_field1;
@@ -1605,11 +1606,6 @@ struct function<NSImage *(bool, bool, bool, NSTableViewRowSizeStyle, double)> {
     struct __base<NSImage *(bool, bool, bool, NSTableViewRowSizeStyle, double)> *__f_;
 };
 
-struct function<TFENodeVector (SEL *)> {
-    struct type _field1;
-    struct __base<TFENodeVector (SEL *)> *_field2;
-};
-
 struct function<TString (const TString &)> {
     struct type __buf_;
     struct __base<TString (const TString &)> *__f_;
@@ -1912,8 +1908,6 @@ struct pair<TFENode, NodeNotificationOptions>;
 struct pair<TFENode, TFENode>;
 
 struct pair<TFENode, TFENodePropertyList>;
-
-struct pair<TFENode, TNSRef<NSImage, void>>;
 
 struct pair<TFENode, unsigned int>;
 
@@ -3098,14 +3092,6 @@ struct vector<std::__1::pair<TFENode, TFENode>, std::__1::allocator<std::__1::pa
     } __end_cap_;
 };
 
-struct vector<std::__1::pair<TFENode, TNSRef<NSImage, void>>, std::__1::allocator<std::__1::pair<TFENode, TNSRef<NSImage, void>>>> {
-    struct pair<TFENode, TNSRef<NSImage, void>> *__begin_;
-    struct pair<TFENode, TNSRef<NSImage, void>> *__end_;
-    struct __compressed_pair<std::__1::pair<TFENode, TNSRef<NSImage, void>>*, std::__1::allocator<std::__1::pair<TFENode, TNSRef<NSImage, void>>>> {
-        struct pair<TFENode, TNSRef<NSImage, void>> *__value_;
-    } __end_cap_;
-};
-
 struct vector<std::__1::pair<TFENode, unsigned int>, std::__1::allocator<std::__1::pair<TFENode, unsigned int>>> {
     struct pair<TFENode, unsigned int> *_field1;
     struct pair<TFENode, unsigned int> *_field2;
@@ -3212,11 +3198,6 @@ typedef struct function<NSImage *(bool, bool, bool, NSTableViewRowSizeStyle, dou
     struct type __buf_;
     struct __base<NSImage *(bool, bool, bool, NSTableViewRowSizeStyle, double)> *__f_;
 } function_3343ca80;
-
-typedef struct function<TFENodeVector (SEL *)> {
-    struct type _field1;
-    struct __base<TFENodeVector (SEL *)> *_field2;
-} function_dc9816ab;
 
 typedef struct function<TString (const TString &)> {
     struct type __buf_;
@@ -3358,18 +3339,6 @@ typedef struct map<TFENode, const std::__1::vector<std::__1::pair<TFENode, unsig
         } _field3;
     } _field1;
 } map_253f12d2;
-
-typedef struct map<long, TFENode, std::__1::less<long>, std::__1::allocator<std::__1::pair<const long, TFENode>>> {
-    struct __tree<std::__1::__value_type<long, TFENode>, std::__1::__map_value_compare<long, std::__1::__value_type<long, TFENode>, std::__1::less<long>, true>, std::__1::allocator<std::__1::__value_type<long, TFENode>>> {
-        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *_field1;
-        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<long, TFENode>, void *>>> {
-            struct __tree_end_node<std::__1::__tree_node_base<void *>*> _field1;
-        } _field2;
-        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<long, std::__1::__value_type<long, TFENode>, std::__1::less<long>, true>> {
-            unsigned long long _field1;
-        } _field3;
-    } _field1;
-} map_a2752b13;
 
 typedef struct pair<NSImage *, TString> {
     id _field1;
@@ -3692,14 +3661,6 @@ typedef struct vector<std::__1::pair<TFENode, NodeNotificationOptions>, std::__1
         struct pair<TFENode, NodeNotificationOptions> *_field1;
     } _field3;
 } vector_c133cd5b;
-
-typedef struct vector<std::__1::pair<TFENode, TNSRef<NSImage, void>>, std::__1::allocator<std::__1::pair<TFENode, TNSRef<NSImage, void>>>> {
-    struct pair<TFENode, TNSRef<NSImage, void>> *__begin_;
-    struct pair<TFENode, TNSRef<NSImage, void>> *__end_;
-    struct __compressed_pair<std::__1::pair<TFENode, TNSRef<NSImage, void>>*, std::__1::allocator<std::__1::pair<TFENode, TNSRef<NSImage, void>>>> {
-        struct pair<TFENode, TNSRef<NSImage, void>> *__value_;
-    } __end_cap_;
-} vector_2129316b;
 
 typedef struct vector<std::__1::pair<TFENode, unsigned int>, std::__1::allocator<std::__1::pair<TFENode, unsigned int>>> {
     struct pair<TFENode, unsigned int> *_field1;

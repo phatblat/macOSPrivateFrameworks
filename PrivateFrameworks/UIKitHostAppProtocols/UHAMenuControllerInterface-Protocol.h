@@ -7,8 +7,6 @@
 #import "ROCKForwardingInterposableWithRunLoop.h"
 #import "ROCKImpersonateable.h"
 
-@class NSArray;
-
 @protocol UHAMenuControllerInterface <ROCKImpersonateable, ROCKForwardingInterposableWithRunLoop>
 @property(copy, nonatomic) CDUnknownBlockType contextMenuDidClose;
 @property(copy, nonatomic) CDUnknownBlockType performItemAction;

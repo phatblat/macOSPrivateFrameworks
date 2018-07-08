@@ -13,7 +13,6 @@
 
 @interface RTLocationOfInterest : NSObject <NSCopying, NSSecureCoding>
 {
-    id <GEOMapItem> _cachedGeoMapItem;
     double _latitude;
     double _longitude;
     double _uncertainty;

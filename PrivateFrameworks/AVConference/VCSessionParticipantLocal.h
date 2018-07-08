@@ -90,10 +90,8 @@ __attribute__((visibility("hidden")))
 - (void)redundancyController:(id)arg1 redundancyIntervalDidChange:(double)arg2;
 - (void)redundancyController:(id)arg1 redundancyPercentageDidChange:(unsigned int)arg2;
 - (void)flushVideoRedundancyEventQueue;
-- (void)processVideoEventQueue;
+- (void)processVideoEventQueueWithSampleBuffer:(struct opaqueCMSampleBuffer *)arg1;
 - (void)enableRedundancy:(BOOL)arg1;
-- (BOOL)checkSubscribedStreamsConsistency:(id)arg1;
-- (void)updateUplinkStreamsForPeerSubscribedStreams:(id)arg1;
 - (void)generateKeyFrameWithStreamID:(unsigned short)arg1;
 - (void)setupEncodingModeWithVideoStreamConfig:(id)arg1;
 - (BOOL)setupVideoStreamWithConfiguration:(id)arg1 idsDestination:(id)arg2;

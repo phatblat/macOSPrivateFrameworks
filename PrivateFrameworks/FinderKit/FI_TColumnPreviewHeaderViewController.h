@@ -24,7 +24,6 @@ __attribute__((visibility("hidden")))
 + (id)keyPathsForValuesAffectingNameFontSize;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-@property(nonatomic) struct TFENode browserTargetNode;
 @property(nonatomic) _Bool showSmallThumbnail; // @dynamic showSmallThumbnail;
 @property(readonly, nonatomic) unsigned long long nameKindTextAlignment; // @dynamic nameKindTextAlignment;
 @property(readonly, nonatomic) double nameFontSize; // @dynamic nameFontSize;

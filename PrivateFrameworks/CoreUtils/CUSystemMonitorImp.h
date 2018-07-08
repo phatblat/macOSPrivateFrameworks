@@ -9,7 +9,7 @@
 #import "CXCallObserverDelegate.h"
 #import "FMFSessionDelegate.h"
 
-@class CUBluetoothClient, CUNetInterfaceMonitor, CUSystemMonitor, CUWiFiManager, CXCallObserver, NSArray, NSData, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
+@class CUBluetoothClient, CUSystemMonitor, CUWiFiManager, CXCallObserver, NSArray, NSData, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CUSystemMonitorImp : NSObject <FMFSessionDelegate, CXCallObserverDelegate>
@@ -24,7 +24,6 @@ __attribute__((visibility("hidden")))
     unsigned int _consoleUserID;
     NSString *_consoleUserName;
     struct __SCDynamicStore *_consoleUserStore;
-    BOOL _familyFailed;
     NSArray *_familyMembers;
     BOOL _familyObserving;
     CUSystemMonitor *_familyPrimaryIPMonitor;

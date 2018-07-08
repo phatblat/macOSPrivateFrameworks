@@ -91,7 +91,7 @@ __attribute__((visibility("hidden")))
     VKNavigationPuck *_navigationPuck;
     struct set<VKPolylineGroupOverlay *, std::__1::less<VKPolylineGroupOverlay *>, std::__1::allocator<VKPolylineGroupOverlay *>> _observedOverlays;
     struct set<geo::_retain_ptr<VKOverlay *, geo::_retain_objc, geo::_release_objc, geo::_hash_objc, geo::_equal_objc>, std::__1::less<geo::_retain_ptr<VKOverlay *, geo::_retain_objc, geo::_release_objc, geo::_hash_objc, geo::_equal_objc>>, std::__1::allocator<geo::_retain_ptr<VKOverlay *, geo::_retain_objc, geo::_release_objc, geo::_hash_objc, geo::_equal_objc>>> _overlays;
-    struct optional<gss::MapZoomLevel> _mapZoomLevel;
+    unsigned char _mapZoomLevel;
     BOOL _isEmphasisSet;
     shared_ptr_e963992e _taskContext;
     BOOL _showsPointsOfInterest;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-#import "APSConnectionDelegate.h"
+@class CKContainer, CKServerChangeToken, NSHashTable, NSMutableDictionary, NSMutableSet, NSOperation, _DKSyncPeerStatusTracker, _DKThrottledActivity;
 
 @class APSConnection, CKContainer, CKServerChangeToken, NSHashTable, NSMutableDictionary, NSMutableSet, NSOperation, NSString, _DKSyncPeerStatusTracker, _DKThrottledActivity;
 
@@ -18,15 +18,10 @@
     _DKSyncPeerStatusTracker *_tracker;
     BOOL _cloudSyncAvailablityObserverRegistered;
     CKContainer *_container;
-    APSConnection *_connection;
     double _updateSyncedDeviceIdentifiersBackoffTimeInterval;
     NSMutableDictionary *_zoneIDsBySourceDeviceID;
-    NSMutableDictionary *_recordZonesByZoneID;
-    BOOL _databaseChangesExist;
-    BOOL _isPrewarmed;
     NSMutableSet *_zoneIDsWithAdditionChanges;
     NSMutableSet *_zoneIDsWithDeletionChanges;
-    NSMutableSet *_zoneIDsWithUnrecoverableDecryptionErrors;
     CKServerChangeToken *_fetchDatabaseChangesServerChangeToken;
     NSOperation *_previousDependentOperation;
     NSHashTable *_outstandingOperations;
@@ -63,14 +58,8 @@
 - (void)fetchEventsFromPeer:(id)arg1 creationDateBetweenDate:(id)arg2 andDate:(id)arg3 streamNames:(id)arg4 limit:(unsigned long long)arg5 fetchOrder:(long long)arg6 highPriority:(BOOL)arg7 completion:(CDUnknownBlockType)arg8;
 - (void)commitFetchDatabaseChangesServerChangeToken;
 - (void)prewarmFetchWithCompletion:(CDUnknownBlockType)arg1;
-- (void)clearPrewarmedFlag;
-- (void)setPrewarmedFlag;
-- (void)setHasDeletionsFlag:(BOOL)arg1 forPeer:(id)arg2;
-- (BOOL)hasDeletionsFlagForPeer:(id)arg1;
-- (void)setHasAdditionsFlag:(BOOL)arg1 forPeer:(id)arg2;
-- (BOOL)hasAdditionsFlagForPeer:(id)arg1;
 - (void)removeSourceDeviceIdentifierWithRecordZoneID:(id)arg1;
-- (void)fastForwardPastDeletionsInNewZone:(id)arg1 sourceDeviceID:(id)arg2;
+- (void)fastForwardPastDeletionsInZoneWithZoneID:(id)arg1;
 - (void)configurePeerWithSourceDeviceID:(id)arg1 zoneID:(id)arg2;
 - (void)addSourceDeviceIdentifierWithRecordZoneID:(id)arg1;
 - (void)fetchChangedZonesWithCompletion:(CDUnknownBlockType)arg1;

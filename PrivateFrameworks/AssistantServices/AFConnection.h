@@ -9,12 +9,11 @@
 #import "AFAccessibilityListening.h"
 #import "AFAudioPowerUpdaterDelegate.h"
 #import "AFDeviceRingerSwitchListening.h"
-#import "AFInterstitialProviderDelegate.h"
 #import "NSXPCListenerDelegate.h"
 
-@class AFAudioPowerUpdater, AFClientConfiguration, AFClockAlarmSnapshot, AFClockTimerSnapshot, AFConnectionLocationManager, AFInterstitialProvider, AFOneArgumentSafetyBlock, NSArray, NSError, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, NSUUID, NSXPCConnection;
+@class AFAudioPowerUpdater, AFClientConfiguration, AFClockAlarmSnapshot, AFClockTimerSnapshot, AFConnectionLocationManager, AFOneArgumentSafetyBlock, NSArray, NSError, NSMutableDictionary, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, NSUUID, NSXPCConnection;
 
-@interface AFConnection : NSObject <NSXPCListenerDelegate, AFAudioPowerUpdaterDelegate, AFAccessibilityListening, AFDeviceRingerSwitchListening, AFInterstitialProviderDelegate>
+@interface AFConnection : NSObject <NSXPCListenerDelegate, AFAudioPowerUpdaterDelegate, AFAccessibilityListening, AFDeviceRingerSwitchListening>
 {
     NSXPCConnection *_connection;
     NSObject<OS_dispatch_queue> *_targetQueue;
@@ -37,8 +36,6 @@
     NSString *_recordRoute;
     AFAudioPowerUpdater *_inputAudioPowerUpdater;
     AFClientConfiguration *_clientConfiguration;
-    AFInterstitialProvider *_interstitialProvider;
-    NSMutableArray *_interstitialCommands;
     unsigned int _clientConfigurationIsInSync:1;
     unsigned int _voiceOverIsActive:1;
     NSError *_lastRetryError;
@@ -133,6 +130,7 @@
 - (void)setIsAccessibilityVoiceOverTouchEnabled:(BOOL)arg1;
 - (void)setCarDNDActive:(BOOL)arg1;
 - (void)setIsDeviceInStarkMode:(BOOL)arg1;
+- (void)setIsStark:(BOOL)arg1;
 - (void)setLockState:(BOOL)arg1 screenLocked:(BOOL)arg2;
 - (void)didDismissUI;
 - (void)willPresentUI;
@@ -161,15 +159,14 @@
 - (void)_updateClientConfiguration;
 - (void)_updateState;
 - (void)_updateStateIfNotInSync;
-- (void)_extendExistingRequestTimeoutForReason:(id)arg1;
-- (void)_extendRequestTimeoutForReason:(id)arg1;
-- (void)_cancelRequestTimeoutForReason:(id)arg1;
-- (void)_invokeRequestTimeoutForReason:(id)arg1;
-- (void)_scheduleRequestTimeoutForReason:(id)arg1;
+- (void)_extendExistingRequestTimeout;
+- (void)_extendRequestTimeout;
+- (void)_cancelRequestTimeout;
+- (void)_invokeRequestTimeout;
+- (void)_scheduleRequestTimeout;
 - (id)_connection;
 - (void)_clearConnection;
 - (void)_connectionFailedWithError:(id)arg1;
-- (void)interstitialProvider:(id)arg1 handlePhase:(long long)arg2 displayText:(id)arg3 speakableText:(id)arg4 context:(id)arg5 completion:(CDUnknownBlockType)arg6;
 - (void)deviceRingerObserver:(id)arg1 didChangeState:(long long)arg2;
 - (void)accessibilityObserver:(id)arg1 didChangeVibrationDisabledPreference:(BOOL)arg2;
 - (void)accessibilityObserver:(id)arg1 didChangeVoiceOverTouchEnabledPreference:(BOOL)arg2;

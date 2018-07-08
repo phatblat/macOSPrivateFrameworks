@@ -25,6 +25,7 @@
 @property(retain, nonatomic) RMDevice *sourceDevice; // @dynamic sourceDevice;
 @property(retain, nonatomic) RMUser *sourceUser; // @dynamic sourceUser;
 @property(retain, nonatomic) RMUsageSettings *usageSettings; // @dynamic usageSettings;
+@property(retain, nonatomic) NSSet *webUsages; // @dynamic webUsages;
 
 @end
 

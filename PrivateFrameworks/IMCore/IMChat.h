@@ -71,6 +71,7 @@
     BOOL _isCurrentlyDownloadingPurgedAssets;
     BOOL _hasSurfRequest;
     NSString *_personCentricID;
+    IMMessage *_lastSentMessage;
     NSDictionary *_bizIntent;
     double _latestTypingIndicatorTimeInterval;
     TUConversation *_conversation;
@@ -95,6 +96,7 @@
 @property(nonatomic) double latestTypingIndicatorTimeInterval; // @synthesize latestTypingIndicatorTimeInterval=_latestTypingIndicatorTimeInterval;
 @property(copy, nonatomic) NSDictionary *bizIntent; // @synthesize bizIntent=_bizIntent;
 @property(readonly, nonatomic) long long lastMessageTimeStampOnLoad; // @synthesize lastMessageTimeStampOnLoad=_lastMessageTimeStampOnLoad;
+@property(readonly, nonatomic) IMMessage *lastSentMessage; // @synthesize lastSentMessage=_lastSentMessage;
 @property(nonatomic) BOOL hasSurfRequest; // @synthesize hasSurfRequest=_hasSurfRequest;
 @property(readonly, nonatomic) NSData *engramID; // @synthesize engramID=_engramID;
 @property(retain, nonatomic) NSString *personCentricID; // @synthesize personCentricID=_personCentricID;
@@ -191,7 +193,7 @@
 @property(readonly, nonatomic) NSString *roomNameWithoutSuffix;
 @property(readonly, nonatomic) NSString *deviceIndependentID;
 @property(readonly, nonatomic) NSString *persistentID;
-- (void)_updateLastAddressedSIMID:(id)arg1;
+- (void)setLastAddressedHandle:(id)arg1;
 - (void)_updateLastAddressedHandleID:(id)arg1;
 - (void)_updateEngramID:(id)arg1;
 - (void)_updateDisplayName:(id)arg1;

@@ -149,7 +149,6 @@ __attribute__((visibility("hidden")))
     NSMutableArray *_blockedPopUpWindowConfigurations;
     WBSMutableOrderedSet *_allowedPopUpWindowDomainCache;
     unsigned long long _clientsWaitingOnSandboxPresentationControllerBeforeFileLoadBegins;
-    _WKRemoteObjectInterface *_extensionGalleryCertificateHandler;
     BOOL _tryingToClose;
     BOOL _webPageIsUnresponsive;
     BOOL _mainDocumentDidFirstLayout;
@@ -729,6 +728,8 @@ __attribute__((visibility("hidden")))
 - (void)autoFillWillStart;
 - (void)autoFill;
 @property(readonly, nonatomic) BOOL canAutoFill;
+- (void)_sendDifferentialPrivacySignal:(id)arg1 forNormalizedHighLevelDomain:(id)arg2;
+- (void)_sendAutoplaySignal:(long long)arg1 forDomain:(id)arg2;
 - (void)handleAutoplayEvent:(unsigned int)arg1 flags:(unsigned int)arg2;
 - (void)_clearCurrentUnsubmittedFormInformation;
 - (void)_didVerifyEditedFormTextStatus;
@@ -859,8 +860,6 @@ __attribute__((visibility("hidden")))
 - (void)_restoreTabIdentifiersWithPersistentTabState:(id)arg1;
 - (void)restorePersistentState:(id)arg1 allowJavaScript:(BOOL)arg2 waitInQueue:(BOOL)arg3;
 - (void)_restorePendingState;
-- (void)enqueuePendingNavigationIfNeeded;
-- (void)_beginPendingNavigation;
 - (void)beginPendingNavigation;
 @property(readonly, nonatomic) BOOL shouldDeferRestorationUntilSelected;
 @property(readonly, nonatomic, getter=isSuppressingDownloads) BOOL suppressingDownloads;

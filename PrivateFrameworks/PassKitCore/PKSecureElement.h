@@ -60,7 +60,6 @@
 @property(copy, nonatomic) CDUnknownBlockType secureElementSessionPrelude;
 - (BOOL)setOwnerUserUUID:(id)arg1 keybagUUID:(id)arg2;
 - (unsigned long long)ownershipStateForUserUUID:(id)arg1;
-- (void)setOwnerUserUUID:(id)arg1 keybagUUID:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
 - (void)ownershipStateForUserUUID:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (BOOL)supportsExpressModeForExpressPassType:(long long)arg1;
 - (void)unregisterObserver:(id)arg1;

@@ -15,17 +15,16 @@
 + (id)fetchRequest;
 @property(readonly, nonatomic) BOOL supportsServiceProvider;
 @property(readonly, nonatomic) BOOL supportsRemoteParticipantHandles;
-@property(readonly, nonatomic) BOOL supportsOutgoingLocalParticipantUUID;
-@property(readonly, nonatomic) BOOL supportsLocalParticipantUUID;
+@property(readonly, nonatomic) BOOL supportsLocalParticipantHandle;
 @property(readonly, nonatomic) BOOL supportsHandleType;
 @property(readonly, nonatomic) BOOL supportsCallCategory;
 - (id)compositeServiceProviderForContext:(id)arg1;
 - (id)compositeRemoteParticipantHandlesForContext:(id)arg1;
-- (id)compositeOutgoingLocalParticipantUUIDForContext:(id)arg1;
-- (id)compositeLocalParticipantUUIDForContext:(id)arg1;
+- (id)compositeLocalParticipantHandleForContext:(id)arg1;
 - (id)compositeHandleTypeForContext:(id)arg1;
 - (id)compositeCallCategoryForContext:(id)arg1;
 @property(readonly, copy, nonatomic) NSSet *chRemoteParticipantHandles;
+@property(readonly, nonatomic) CHHandle *chLocalParticipantHandle;
 @property(readonly, nonatomic) long long chHandleType;
 
 // Remaining properties

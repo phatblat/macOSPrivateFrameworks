@@ -10,10 +10,6 @@
 
 @protocol NFHardwareManagerInterface <NSObject>
 - (oneway void)actOnUserInitiatedSystemShutDown:(unsigned int)arg1 callback:(void (^)(void))arg2;
-- (oneway void)updateBackgroundTagReading:(unsigned int)arg1 callback:(void (^)(NSError *, unsigned int))arg2;
-- (oneway void)disableHeadlessMiniNV:(void (^)(NSError *))arg1;
-- (oneway void)headlessFactoryMode:(void (^)(NSError *, unsigned int))arg1;
-- (oneway void)configureHeadlessFactoryMode:(BOOL)arg1 callback:(void (^)(NSError *))arg2;
 - (oneway void)areNFFeaturesSupported:(unsigned long long)arg1 callback:(void (^)(NSError *))arg2;
 - (oneway void)pushSignedRF:(NSData *)arg1 callback:(void (^)(NSError *))arg2;
 - (oneway void)getUniqueFDRKeyXPC:(void (^)(NSString *, NSError *))arg1;
@@ -29,8 +25,6 @@
 - (oneway void)queueNdefTagSession:(NSObject<NFNdefTagSessionCallbacks> *)arg1 data:(NSData *)arg2 callback:(void (^)(NSObject<NFNdefTagSessionInterface> *, BOOL, NSError *))arg3;
 - (oneway void)queuePeerPaymentSession:(NSObject<NFPeerPaymentSessionCallbacks> *)arg1 callback:(void (^)(NSObject<NFPeerPaymentSessionInterface> *, BOOL, NSError *))arg2;
 - (oneway void)queueReaderSessionInternal:(NSObject<NFReaderSessionCallbacks> *)arg1 callback:(void (^)(NSObject<NFReaderSessionInternalInterface> *, BOOL, NSError *))arg2;
-- (oneway void)toggleGPIO:(unsigned short)arg1 callback:(void (^)(NSError *))arg2;
-- (oneway void)enableHeadlessTestMode:(unsigned short)arg1 callback:(void (^)(NSError *))arg2;
 - (oneway void)triggerDelayedWake:(unsigned char)arg1 callback:(void (^)(NSError *))arg2;
 - (oneway void)queueLoyaltyAndPaymentSession:(NSObject<NFContactlessPaymentSessionCallbacks> *)arg1 callback:(void (^)(NSObject<NFContactlessPaymentSessionInterface> *, BOOL, NSError *))arg2;
 - (oneway void)queueHostCardEmulationSession:(NSObject<NFValueAddedServiceSessionCallbacks> *)arg1 withCards:(NSArray *)arg2 callback:(void (^)(NSObject<NFValueAddedServiceSessionInterface> *, NSError *))arg3;

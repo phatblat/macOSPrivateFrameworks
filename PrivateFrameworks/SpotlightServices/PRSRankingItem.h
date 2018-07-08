@@ -82,8 +82,8 @@
 - (id)moreRecentDateFromDate1:(id)arg1 date2:(id)arg2;
 - (id)interestingDate;
 - (id)dedupeIdentifier;
-- (void)populateTextFeatureValuesForProperty:(id)arg1 updatingBundleFeatureValues:(float (*)[0])arg2 propertyIndex:(unsigned long long)arg3 withEvaluator:(id)arg4 withContext:(struct prs_feature_population_ctx_t *)arg5 featureScoreInfo:(struct PRSL2FeatureScoreInfo *)arg6 propertyCanFuzzyMatch:(BOOL)arg7 keyboardLanguage:(id)arg8 isCJK:(BOOL)arg9;
-- (void)populateFeaturesWithEvaluator:(id)arg1 updatingBundleFeatures:(float *)arg2 withContext:(struct prs_feature_population_ctx_t *)arg3 keyboardLanguage:(id)arg4 isCJK:(BOOL)arg5;
+- (void)populateTextFeatureValuesForProperty:(id)arg1 updatingBundleFeatureValues:(id)arg2 withEvaluator:(id)arg3 withContext:(struct prs_feature_population_ctx_t *)arg4 featureScoreInfo:(struct PRSL2FeatureScoreInfo *)arg5 propertyCanFuzzyMatch:(BOOL)arg6 keyboardLanguage:(id)arg7;
+- (void)populateFeaturesWithEvaluator:(id)arg1 updatingBundleFeatures:(float *)arg2 withContext:(struct prs_feature_population_ctx_t *)arg3 keyboardLanguage:(id)arg4;
 - (void)populateOtherFeatures:(struct PRSL2FeatureScoreInfo *)arg1;
 - (void)inferDateBinsFromDates:(id)arg1 intoBins:(int *)arg2;
 - (void)populateMailFeatures:(struct PRSL2FeatureScoreInfo *)arg1;

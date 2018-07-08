@@ -6,17 +6,12 @@
 
 #import <SidecarCore/SidecarRequest.h>
 
-@class NSString;
-
 __attribute__((visibility("hidden")))
 @interface SidecarRequest_ScanDocument : SidecarRequest
 {
-    NSString *_preferredType;
 }
 
-- (void).cxx_destruct;
 - (void)writeToPasteboard:(id)arg1;
-- (void)readFromPasteboard:(id)arg1;
 
 @end
 

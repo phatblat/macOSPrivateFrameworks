@@ -13,10 +13,8 @@
     int _notificationToken;
     RMAskForTimeClient *_askForTimeClient;
     RMAskForTimeRequest *_request;
-    CDUnknownBlockType _changeHandler;
 }
 
-@property(readonly, nonatomic) CDUnknownBlockType changeHandler; // @synthesize changeHandler=_changeHandler;
 @property(readonly, nonatomic) int notificationToken; // @synthesize notificationToken=_notificationToken;
 @property(readonly, nonatomic) RMAskForTimeRequest *request; // @synthesize request=_request;
 @property(retain, nonatomic) RMAskForTimeClient *askForTimeClient; // @synthesize askForTimeClient=_askForTimeClient;

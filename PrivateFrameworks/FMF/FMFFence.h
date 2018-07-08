@@ -33,7 +33,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
-@property(nonatomic, getter=isPending) BOOL pending; // @synthesize pending=_pending;
+@property(getter=isPending) BOOL pending; // @synthesize pending=_pending;
 @property(retain, nonatomic) NSString *pendingIdentifier; // @synthesize pendingIdentifier=_pendingIdentifier;
 @property(retain, nonatomic) NSString *createdByIdentifier; // @synthesize createdByIdentifier=_createdByIdentifier;
 @property(retain, nonatomic) NSString *friendIdentifier; // @synthesize friendIdentifier=_friendIdentifier;

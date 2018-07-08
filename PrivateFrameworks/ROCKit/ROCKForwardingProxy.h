@@ -15,15 +15,15 @@ __attribute__((visibility("hidden")))
     NSSet *_protocols;
 }
 
-+ (void)forwardingProxyWithInstance:(id)arg1 options:(id)arg2 eventQueue:(id)arg3 eventHandler:(CDUnknownBlockType)arg4;
++ (void)forwardingProxyWithInstance:(id)arg1 eventQueue:(id)arg2 eventHandler:(CDUnknownBlockType)arg3;
 + (id)forwardingProxyWithSessionManager:(id)arg1 instance:(id)arg2 error:(id *)arg3;
 @property(readonly, nonatomic) NSSet *protocols; // @synthesize protocols=_protocols;
 @property(retain, nonatomic) id <NSObject> instance; // @synthesize instance=_instance;
 - (void).cxx_destruct;
 - (id)description;
 - (id)debugDescription;
-- (id)initWithSessionManager:(id)arg1 impersonatableProxyUUID:(id)arg2 instance:(id)arg3 error:(id *)arg4;
-- (id)initWithSessionManager:(id)arg1 impersonatableProxyUUID:(id)arg2 instance:(id)arg3 protocols:(id)arg4 error:(id *)arg5;
+- (id)initWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 instance:(id)arg3 error:(id *)arg4;
+- (id)initWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 instance:(id)arg3 protocols:(id)arg4 error:(id *)arg5;
 - (void)_forwardStackInvocation:(id)arg1;
 - (BOOL)respondsToSelector:(SEL)arg1;
 - (id)forwardingTargetForSelector:(SEL)arg1;

@@ -10,7 +10,6 @@
 {
 }
 
-- (id)macOSThunderboltFirmwareVersion:(id *)arg1;
 - (id)macOSWifiFirmwareVersion:(id *)arg1;
 - (id)macOSWifiSKU:(id *)arg1;
 - (id)macOSBatteryMaxCapacity:(id *)arg1;

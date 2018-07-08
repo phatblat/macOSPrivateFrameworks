@@ -11,14 +11,14 @@
 @interface CSAudioRouteChangeMonitor : CSEventMonitor
 {
     NSObject<OS_dispatch_queue> *_queue;
-    CDUnknownBlockType _pickedRoutesChangedBlock;
 }
 
 + (id)sharedInstance;
 - (void).cxx_destruct;
+- (void)_fetchAudioRouteState;
 - (void)_stopMonitoring;
 - (void)_startMonitoringWithQueue:(id)arg1;
-- (void)preferredExternalRouteDidChange;
+- (void)preferredExternalRouteDidChange:(id)arg1;
 - (id)init;
 
 @end

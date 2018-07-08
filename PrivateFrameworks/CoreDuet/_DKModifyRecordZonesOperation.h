@@ -10,8 +10,5 @@
 {
 }
 
-+ (BOOL)_removesDependenciesAfterFinish;
-- (void)main;
-
 @end
 

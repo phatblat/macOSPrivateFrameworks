@@ -31,7 +31,6 @@ __attribute__((visibility("hidden")))
 @property(readonly) BOOL isLoaded;
 - (void)flushCachedMultiIcon;
 @property(retain) id <QLPreviewItem> previewItem; // @dynamic previewItem;
-@property(readonly, nonatomic) vector_2129316b nodeToImageList;
 @property(readonly, retain) FI_TQLMultiPreviewViewImageStackController *iconController; // @dynamic iconController;
 - (void)aboutToTearDown;
 - (void)configureThumbnailer:(const struct TFENode *)arg1 iconSize:(double)arg2 scaleFactor:(double)arg3;

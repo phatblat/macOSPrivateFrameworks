@@ -159,7 +159,7 @@
 - (BOOL)textView:(id)arg1 clickedOnLink:(id)arg2 atIndex:(unsigned long long)arg3;
 - (id)textView:(id)arg1 willDisplayToolTip:(id)arg2 forCharacterAtIndex:(unsigned long long)arg3;
 - (id)textView:(id)arg1 willChangeSelectionFromCharacterRanges:(id)arg2 toCharacterRanges:(id)arg3;
-- (void)_presentResetAndClaimSecureElementAlert:(unsigned long long)arg1 inWindow:(id)arg2 withErrorStateHandler:(CDUnknownBlockType)arg3;
+- (void)_presentClaimSecureElementAlert:(unsigned long long)arg1 inWindow:(id)arg2 withErrorStateHandler:(CDUnknownBlockType)arg3;
 - (void)_presentDisplayableErrorAlert:(id)arg1 inWindow:(id)arg2 withErrorStateHandler:(CDUnknownBlockType)arg3;
 - (void)_setupWelcomeTextFieldShowsSetupLater:(BOOL)arg1;
 - (void)help:(id)arg1;

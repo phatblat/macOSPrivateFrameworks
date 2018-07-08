@@ -15,7 +15,7 @@ __attribute__((visibility("hidden")))
 {
 }
 
-- (id)initWithSessionManager:(id)arg1 impersonatableProxyUUID:(id)arg2 instance:(id)arg3 protocols:(id)arg4 error:(id *)arg5;
+- (id)initWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 instance:(id)arg3 protocols:(id)arg4 error:(id *)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

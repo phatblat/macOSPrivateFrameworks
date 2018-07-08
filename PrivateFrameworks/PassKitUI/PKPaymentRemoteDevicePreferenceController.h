@@ -21,14 +21,10 @@
 @property(retain, nonatomic) NSMutableDictionary *instrumentToCardEntryMap; // @synthesize instrumentToCardEntryMap=_instrumentToCardEntryMap;
 @property(retain, nonatomic) PKPaymentPreferenceContact *billingPreference; // @synthesize billingPreference=_billingPreference;
 - (void).cxx_destruct;
-- (BOOL)_shouldDisplayPaymentApplicationWithAcceptedApplicationsCount:(long long)arg1 unavailableApplicationsCount:(long long)arg2;
-- (id)_unavailablePaymentApplicationsForRemoteInstrument:(id)arg1;
-- (id)_acceptedPaymentApplicationsForRemoteInstrument:(id)arg1;
-- (BOOL)canSelectPreference:(id)arg1 preferenceIndex:(unsigned long long)arg2 subItemIndex:(unsigned long long)arg3;
+- (BOOL)canSelectPreference:(id)arg1 atIndex:(unsigned long long)arg2;
 - (BOOL)_isPaymentPassApplicationStateDeactivated:(long long)arg1;
 - (id)_unavailableReasonForInstrument:(id)arg1;
-- (id)_cardPreferenceForAcceptedInstrumentsInRemoteDevice:(id)arg1;
-- (id)_cardPreferenceForAllUnavailableInstruments;
+- (id)cardEntriesForInstruments:(id)arg1 accepted:(BOOL)arg2;
 - (void)_setupPreferences;
 - (id)cardEntryForRemotePaymentInstrument:(id)arg1;
 - (BOOL)shouldEnableSubItemInPreference:(id)arg1 preferenceIndex:(long long)arg2 subItemIndex:(long long)arg3;

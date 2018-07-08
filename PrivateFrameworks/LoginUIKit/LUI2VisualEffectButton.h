@@ -28,7 +28,6 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 @property(retain) NSImage *image;
-@property long long blendingMode;
 - (BOOL)accessibilityPerformPress;
 - (void)setAccessibilityLabel:(id)arg1;
 - (id)accessibilityLabel;

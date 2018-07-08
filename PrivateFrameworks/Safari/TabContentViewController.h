@@ -7,18 +7,15 @@
 #import "NSViewController.h"
 
 #import "ReaderInstallationTarget.h"
-#import "VisualTabPickerThumbnailSnapshotProviding.h"
 
-@class BrowserViewController, BrowserWindowController, ContinuousReadingListPageItem, ContinuousReadingListViewController, NSHashTable, NSString, NSView, ReaderContainerViewController, TabContentView, TabDialogInstaller;
+@class BrowserViewController, BrowserWindowController, ContinuousReadingListPageItem, ContinuousReadingListViewController, NSString, NSView, ReaderContainerViewController, TabContentView, TabDialogInstaller;
 
 __attribute__((visibility("hidden")))
-@interface TabContentViewController : NSViewController <ReaderInstallationTarget, VisualTabPickerThumbnailSnapshotProviding>
+@interface TabContentViewController : NSViewController <ReaderInstallationTarget>
 {
     ReaderContainerViewController *_readerContainerViewController;
     TabDialogInstaller *_tabDialogInstaller;
     NSView *_firstResponderViewBeforeDimmingViewPresentation;
-    NSHashTable *_nativeContentViewControllersThatWereShownInWindow;
-    CDUnknownBlockType _updateVisualTabPickerSnapshotBlock;
     BrowserViewController *_browserViewController;
     BrowserViewController *_currentBrowserViewController;
     double _topContentInset;
@@ -32,12 +29,6 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) BrowserViewController *currentBrowserViewController; // @synthesize currentBrowserViewController=_currentBrowserViewController;
 @property(readonly, nonatomic) BrowserViewController *browserViewController; // @synthesize browserViewController=_browserViewController;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) struct CGRect visualTabPickerThumbnailContentViewVisibleBounds;
-@property(readonly, nonatomic) NSView *visualTabPickerThumbnailContentView;
-@property(readonly, nonatomic) long long visualTabPickerThumbnailContentViewType;
-@property(readonly, nonatomic) BOOL visualTabPickerThumbnailContentViewWasShownInWindow;
-- (void)willShowVisualTabPickerThumbnailContentView;
-- (void)_scheduleVisualTabPickerSnapshot;
 - (void)uninstallReaderContainerViewController:(id)arg1 closedByUser:(BOOL)arg2;
 - (void)installReaderContainerViewController:(id)arg1;
 - (void)continuousBrowserPageViewController:(id)arg1 didTransitionToBrowserViewController:(id)arg2;
@@ -66,15 +57,12 @@ __attribute__((visibility("hidden")))
 - (id)_browserTabViewItem;
 - (void)_uninstallCurrentViewController;
 - (void)_installCurrentViewControllerView;
-- (BOOL)_shouldHideBrowserViewForCurrentViewController;
 - (void)installViewController:(id)arg1;
 @property(readonly, nonatomic) BOOL shouldDisableTitlebarBlurringForCurrentContentView;
 @property(readonly, nonatomic) BOOL isActiveWebViewMagnified;
 @property(readonly, nonatomic) NSView *dockedInspectorView;
 @property(readonly, nonatomic) TabContentView *tabContentView;
 @property(readonly, nonatomic) BrowserWindowController *browserWindowController;
-- (void)willClose;
-- (void)viewDidAppear;
 - (void)viewDidLoad;
 - (void)loadView;
 - (void)dealloc;

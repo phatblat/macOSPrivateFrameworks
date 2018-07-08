@@ -18,7 +18,6 @@
     NSMapTable *_delegateToQueue;
 }
 
-+ (BOOL)supportsEffects;
 + (BOOL)allowsVideo;
 + (BOOL)supportsConversations;
 @property(readonly, nonatomic) NSMapTable *delegateToQueue; // @synthesize delegateToQueue=_delegateToQueue;

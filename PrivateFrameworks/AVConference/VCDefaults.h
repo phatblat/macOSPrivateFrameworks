@@ -39,7 +39,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)shouldOverrideEffectsFramerate:(unsigned int *)arg1;
 @property(readonly) BOOL forceDisableMediaStalled;
 @property(readonly) BOOL forceDisableVideoDegraded;
-@property(readonly) float depthFrameRateMultiplier;
 @property(readonly) BOOL forceDynamicEffectsFramerate;
 @property(readonly) BOOL forceDisableFaceZoom;
 @property(readonly) unsigned int multiwayVideoNetworkBitrateCapCellular;
@@ -54,8 +53,6 @@ __attribute__((visibility("hidden")))
 @property(readonly) unsigned char audioPriorityDecayFast;
 @property(readonly) unsigned char audioPriorityDecaySlow;
 @property(readonly) BOOL forceDisableMediaPriority;
-- (BOOL)enableAudioDumpParticipantLocal:(BOOL)arg1;
-- (BOOL)enableAudioDumpParticipantRemote:(BOOL)arg1;
 @property(readonly) BOOL forceFECRepairStream;
 @property(readonly) unsigned int forceVisibilityIndex;
 @property(readonly) unsigned int minParticipantCountSendVoiceActiveOnly;
@@ -117,8 +114,6 @@ __attribute__((visibility("hidden")))
 @property(readonly) BOOL enableVPBLogging;
 @property(readonly) int enable2vuyCapture;
 @property(readonly) BOOL enableBitstreamCapture;
-- (unsigned int)forceThermalLevelFramerate:(unsigned int)arg1;
-@property(readonly) BOOL forceEnablePearlCamera;
 @property(readonly) BOOL forceMirroredCapture;
 @property(readonly) BOOL forceARCapture;
 @property(readonly) int forceKeyFrameInterval;

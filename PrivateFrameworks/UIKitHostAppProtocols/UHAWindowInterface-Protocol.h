@@ -10,7 +10,6 @@
 @class NSArray, NSObject<OS_dispatch_queue>, NSString;
 
 @protocol UHAWindowInterface <ROCKImpersonateable, ROCKForwardingInterposableWithRunLoop>
-@property(copy, nonatomic) CDUnknownBlockType windowNotificationCallback;
 @property(copy, nonatomic) CDUnknownBlockType appearsKeyDidChangeCallback;
 @property(readonly, nonatomic) BOOL appearsKey;
 @property(nonatomic) BOOL wantsDarkChrome;

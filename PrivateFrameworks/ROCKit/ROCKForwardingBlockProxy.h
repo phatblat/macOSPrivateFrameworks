@@ -14,7 +14,7 @@ __attribute__((visibility("hidden")))
 + (id)forwardingProxyWithSessionManager:(id)arg1 block:(id)arg2 error:(id *)arg3;
 - (id)description;
 - (id)debugDescription;
-- (id)initWithSessionManager:(id)arg1 impersonatableProxyUUID:(id)arg2 instance:(id)arg3 error:(id *)arg4;
+- (id)initWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 instance:(id)arg3 error:(id *)arg4;
 
 @end
 

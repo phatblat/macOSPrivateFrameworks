@@ -6,19 +6,9 @@
 
 #import <RemoteManagement/RMCoreOrganizationSettings.h>
 
-@class NSString, RMiCloudOrganization;
-
 @interface RMiCloudOrganizationSettings : RMCoreOrganizationSettings
 {
 }
-
-@property(copy, nonatomic) NSString *passcode; // @dynamic passcode;
-- (id)dictionaryRepresentation;
-- (BOOL)updateWithDictionaryRepresentation:(id)arg1;
-- (id)computeUniqueIdentifier;
-
-// Remaining properties
-@property(retain, nonatomic) RMiCloudOrganization *organization; // @dynamic organization;
 
 @end
 

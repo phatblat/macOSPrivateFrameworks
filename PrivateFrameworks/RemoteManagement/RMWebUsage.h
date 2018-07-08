@@ -6,9 +6,11 @@
 
 #import "NSManagedObject.h"
 
+#import "RMUsageProtocol.h"
+
 @class NSDate, NSNumber, RMUserDevicePairRecord, RMWebDomain;
 
-@interface RMWebUsage : NSManagedObject
+@interface RMWebUsage : NSManagedObject <RMUsageProtocol>
 {
 }
 

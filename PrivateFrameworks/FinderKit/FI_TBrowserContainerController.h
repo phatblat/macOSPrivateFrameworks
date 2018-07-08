@@ -16,9 +16,7 @@ __attribute__((visibility("hidden")))
 @interface FI_TBrowserContainerController : FI_TViewController <TNodeObserverProtocol, TMarkTornDown, TTagColumnTableViewControllerDelegate>
 {
     _Bool _containerIsBeingCreated;
-    _Bool _browserViewIsBeingCreated;
     _Bool _browserViewIsBeingDestroyed;
-    _Bool _switchingViewStyleBeforeRecreatingBrowserView;
     _Bool _isTornDown;
     struct NSObject *_delegate;
     struct TNSRef<FI_TBrowserViewController, void> _browserViewController;

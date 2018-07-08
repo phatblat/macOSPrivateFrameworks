@@ -44,7 +44,6 @@ __attribute__((visibility("hidden")))
     unsigned int _statsResponseCounter;
     unsigned int _numStatsDroppedDueToStatsID;
     unsigned int _numStatsDroppedDueToLinkID;
-    unsigned int _numStatsDroppedDueToTooLate;
     unsigned int _numStatsProcessed;
     unsigned int _numStatsTriggered;
     double _totalStatsTransportStreamQueueTime;

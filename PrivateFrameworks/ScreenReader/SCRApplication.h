@@ -152,6 +152,7 @@ __attribute__((visibility("hidden")))
 - (void)_speakWordUnderMouseForUIElement:(id)arg1;
 - (void)dispatchMouseSummaryForUIElement:(id)arg1;
 - (void)_describeMouseSummaryForUIElement:(id)arg1;
+@property(readonly, nonatomic) BOOL isUIKitHostApp;
 - (BOOL)isPreLoginApp;
 - (BOOL)shouldEchoFocusInto;
 - (BOOL)_isFullscreenInCurrentWorkspace;

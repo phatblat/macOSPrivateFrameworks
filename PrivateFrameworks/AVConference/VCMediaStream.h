@@ -117,7 +117,6 @@ __attribute__((visibility("hidden")))
 - (void)stop;
 - (void)start;
 - (BOOL)setStreamConfig:(id)arg1 withError:(id *)arg2;
-- (void)resetDecryptionTimeout;
 - (BOOL)handleEncryptionInfoChange:(id)arg1;
 - (id)createTransport;
 - (char *)streamStateToString:(int)arg1;

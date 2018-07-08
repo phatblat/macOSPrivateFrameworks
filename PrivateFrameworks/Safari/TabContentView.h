@@ -6,21 +6,26 @@
 
 #import "NSView.h"
 
-@class BrowserWKView, ContinuousPageView, ReaderContainerView, ReaderWKView, TabDialogInstaller;
+#import "VisualTabPickerThumbnailSnapshotProviding.h"
+
+@class BackgroundColorView, BrowserWKView, ContinuousPageView, NSClipView, NSHashTable, NSString, ReaderWKView, TabDialogInstaller;
 
 __attribute__((visibility("hidden")))
-@interface TabContentView : NSView
+@interface TabContentView : NSView <VisualTabPickerThumbnailSnapshotProviding>
 {
     BOOL _isClosing;
     ReaderContainerView *_readerContainerView;
     ReaderWKView *_readerWKView;
     NSView *_responsiveDesignModeView;
-    NSView *_startPageClipView;
+    NSClipView *_startPageClipView;
     BOOL _shouldClipStartPageViewDuringSwipe;
     TabDialogInstaller *_tabDialogInstaller;
     NSView *_firstResponderViewBeforeDimmingViewPresentation;
     ContinuousPageView *_continuousBrowserPageView;
     BOOL _canInvalidateSnapshotImage;
+    NSHashTable *_nativeContentViewsThatWereShownInWindow;
+    CDUnknownBlockType _updateVisualTabPickerSnapshotBlock;
+    BackgroundColorView *_backgroundView;
     BrowserWKView *_browserWKView;
     NSView *_backgroundView;
     NSView *_startPageView;
@@ -35,7 +40,6 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSView *snapshotView; // @synthesize snapshotView=_snapshotView;
 @property(readonly, nonatomic) NSView *bookmarksView; // @synthesize bookmarksView=_bookmarksView;
 @property(readonly, nonatomic) NSView *startPageView; // @synthesize startPageView=_startPageView;
-@property(readonly, nonatomic) NSView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(readonly) BrowserWKView *browserWKView; // @synthesize browserWKView=_browserWKView;
 - (void).cxx_destruct;
 - (id)_browserWindowController;
@@ -49,8 +53,10 @@ __attribute__((visibility("hidden")))
 - (id)accessibilityChildren;
 - (void)uninstallReaderView:(id)arg1;
 - (void)installReaderView:(id)arg1;
+- (void)viewDidMoveToWindow;
 - (void)willRemoveSubview:(id)arg1;
 - (void)didAddSubview:(id)arg1;
+- (void)willClose;
 - (void)_invalidateSnapshotViewImageIfNecessary;
 - (void)installSnapshotViewWithImage:(id)arg1 imageScale:(double)arg2 showWhiteOverlay:(BOOL)arg3;
 - (BOOL)_isShowingStartPage;
@@ -65,7 +71,6 @@ __attribute__((visibility("hidden")))
 - (void)updateCustomSwipeViews;
 - (id)currentDialogOrContentView;
 - (id)currentContentView;
-- (void)willClose;
 - (void)scrollWheel:(id)arg1;
 - (BOOL)isOpaque;
 - (void)resizeSubviewsWithOldSize:(struct CGSize)arg1;

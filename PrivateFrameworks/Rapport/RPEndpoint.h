@@ -31,7 +31,6 @@
 @property(nonatomic) BOOL present; // @synthesize present=_present;
 @property(retain, nonatomic) CUBonjourDevice *bonjourDevice; // @synthesize bonjourDevice=_bonjourDevice;
 @property(retain, nonatomic) SFDevice *bleDevice; // @synthesize bleDevice=_bleDevice;
-@property(copy, nonatomic) NSString *sourceVersion; // @synthesize sourceVersion=_sourceVersion;
 @property(nonatomic) unsigned long long statusFlags; // @synthesize statusFlags=_statusFlags;
 @property(readonly, nonatomic) int proximity; // @synthesize proximity=_proximity;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;

@@ -13,7 +13,6 @@ __attribute__((visibility("hidden")))
 }
 
 @property(nonatomic) unsigned long long browsingMode; // @synthesize browsingMode=_browsingMode;
-- (void)_drawDarkPrivateBrowsingBezel;
 - (void)_finishInitialization;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)allowsVibrancy;

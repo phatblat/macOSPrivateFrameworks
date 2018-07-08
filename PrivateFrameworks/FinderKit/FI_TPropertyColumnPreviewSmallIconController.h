@@ -15,9 +15,11 @@ __attribute__((visibility("hidden")))
 @interface FI_TPropertyColumnPreviewSmallIconController : FI_TPropertyImageViewController <TPropertyThumbnailExtractorDelegate, TThumbnailExtractorDelegate>
 {
     struct TFENodeVector _nodes;
+    struct unordered_map<TFENode, std::__1::unordered_set<TFENode, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<TFENode>>, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, std::__1::unordered_set<TFENode, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<TFENode>>>>> _thumbnailTargetNodesToNodesToThumbnail;
     unordered_set_931aff12 _pendingKeyNodes;
     TNSWeakPtr_a131d41e _pendingKeyNodesToken;
     _Bool _wantsToWaitForThumbnails;
+    struct TNotificationCenterObserver _rotateObserver;
     struct vector<TNotificationCenterObserver, std::__1::allocator<TNotificationCenterObserver>> _viewObservers;
     struct TKeyValueObserver _effectiveAppearanceObserver;
     TNSWeakPtr_a131d41e _updateAfterResizeToken;
@@ -35,12 +37,14 @@ __attribute__((visibility("hidden")))
 - (struct TFENode)thumbnailTargetNodeForNode:(const struct TFENode *)arg1;
 - (void)invalidateThumbnailForKeyNodes:(const struct TFENodeVector *)arg1;
 - (_Bool)fetchIconifiedThumbnails;
-@property(readonly, nonatomic) vector_2129316b nodeToImageList;
-- (void)configureThumbnailer:(const struct TFENode *)arg1 iconSize:(double)arg2 scaleFactor:(double)arg3;
-@property(nonatomic) struct TFENode browserTargetNode;
+- (void)configureThumbnailer:(double)arg1 andScaleFactor:(double)arg2;
 - (void)flushCachedValue;
 - (void)flush;
 - (void)updateWithNodes:(const struct TFENodeVector *)arg1;
+- (void)registerOrUnregisterWithThumbnailCache:(_Bool)arg1;
+- (void)unregisterWithThumbnailCache;
+- (void)registerWithThumbnailCache;
+- (struct TFENodeVector)thumbnailTargetNodes;
 - (id)thumbnailValueExtractor;
 - (void)imageViewEffectiveAppearanceChanged;
 - (void)imageViewBackingPropertiesChanged;

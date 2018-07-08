@@ -30,6 +30,7 @@
     NSString *_publicIdentifier;
     NSString *_roomName;
     NSDictionary *_siriInfo;
+    NSString *_sourceVersion;
     NSString *_role;
     NSUUID *_mediaSystemIdentifierEffective;
     NSUUID *_pairingIdentifier;
@@ -45,6 +46,7 @@
 @property(nonatomic) BOOL changed; // @synthesize changed=_changed;
 @property(nonatomic) BOOL btPipeConnected; // @synthesize btPipeConnected=_btPipeConnected;
 @property(copy, nonatomic) NSString *role; // @synthesize role=_role;
+@property(copy, nonatomic) NSString *sourceVersion; // @synthesize sourceVersion=_sourceVersion;
 @property(copy, nonatomic) NSDictionary *siriInfo; // @synthesize siriInfo=_siriInfo;
 @property(copy, nonatomic) NSString *roomName; // @synthesize roomName=_roomName;
 @property(copy, nonatomic) NSString *publicIdentifier; // @synthesize publicIdentifier=_publicIdentifier;

@@ -6,7 +6,7 @@
 
 #import <CoreDuet/_DKSyncCompositeOperation.h>
 
-@class NSDate, NSString, _CDMutablePerfMetric, _DKSync2Policy, _DKSyncHistory, _DKSyncPeer, _DKSyncType;
+@class NSDate, _CDMutablePerfMetric, _DKSync2Policy, _DKSyncHistory, _DKSyncPeer, _DKSyncType;
 
 @interface _DKPerformSyncDownPeerDeletionsOperation : _DKSyncCompositeOperation
 {
@@ -17,12 +17,8 @@
     _DKSyncType *_type;
     _CDMutablePerfMetric *_perfMetric;
     struct _CDPerfEvent _perfEvent;
-    NSDate *_startDate;
     BOOL _highPriority;
     _DKSyncHistory *_history;
-    id <_DKKeyValueStore> _keyValueStore;
-    NSString *_hadDeletionsKey;
-    BOOL _hadDeletions;
     NSDate *_highWaterMark;
     unsigned long long _batchNumber;
     BOOL _foundDeletions;

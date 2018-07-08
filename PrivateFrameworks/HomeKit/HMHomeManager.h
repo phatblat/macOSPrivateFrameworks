@@ -34,6 +34,7 @@
     unsigned long long _residentProvisioningStatus;
     HMHomeManagerConfiguration *_configuration;
     unsigned long long _options;
+    _HMContext *_context;
     HMMutableArray *_currentHomes;
     HMMutableArray *_homeInvitations;
     NSOperationQueue *_mergeOperationQueue;
@@ -45,14 +46,10 @@
     NSString *_homeCacheDir;
     NSString *_homeDataCache;
     NSString *_metadataCache;
-    NSUUID *_uuid;
-    _HMContext *_context;
 }
 
 + (BOOL)dataSyncInProgressFromDataSyncState:(unsigned long long)arg1;
 @property(nonatomic, getter=isViewServiceActive) BOOL viewServiceActive; // @synthesize viewServiceActive=_viewServiceActive;
-@property(readonly, nonatomic) _HMContext *context; // @synthesize context=_context;
-@property(readonly, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
 @property(retain) NSString *metadataCache; // @synthesize metadataCache=_metadataCache;
 @property(retain) NSString *homeDataCache; // @synthesize homeDataCache=_homeDataCache;
 @property(retain) NSString *homeCacheDir; // @synthesize homeCacheDir=_homeCacheDir;
@@ -68,6 +65,7 @@
 @property(retain, nonatomic) NSOperationQueue *mergeOperationQueue; // @synthesize mergeOperationQueue=_mergeOperationQueue;
 @property(retain, nonatomic) HMMutableArray *homeInvitations; // @synthesize homeInvitations=_homeInvitations;
 @property(retain, nonatomic) HMMutableArray *currentHomes; // @synthesize currentHomes=_currentHomes;
+@property(readonly, nonatomic) _HMContext *context; // @synthesize context=_context;
 - (void).cxx_destruct;
 - (void)_pairingIdentityForAccessoryWithIdentifier:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)pairingIdentityForAccessoryWithIdentifier:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
@@ -113,7 +111,6 @@
 - (void)_determineCacheFiles;
 - (void)_determineCacheDirectory;
 - (void)_processHomeConfigurationRequest:(id)arg1 refreshRequested:(BOOL)arg2;
-- (void)__handleHomeManagerState:(id)arg1;
 - (void)_requestRefresh;
 - (void)_fetchHomeConfigurationWithPrivacyCheckWithCache:(BOOL)arg1 refreshRequested:(BOOL)arg2;
 - (void)_start;

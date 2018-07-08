@@ -44,8 +44,6 @@
 }
 
 + (id)axAttributesForSnapshotAttributes:(id)arg1;
-+ (id)requiredAXAttributesForElementSnapshotHierarchy;
-+ (id)sanitizedElementSnapshotHierarchyAttributesForAttributes:(id)arg1 isMacOS:(BOOL)arg2;
 + (id)axAttributesForElementSnapshotKeyPaths:(id)arg1;
 + (id)elementWithAccessibilityElement:(id)arg1;
 + (BOOL)supportsSecureCoding;

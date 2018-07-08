@@ -6,12 +6,11 @@
 
 #import "NSObject.h"
 
-@class ACAccount, NSArray, NSURL;
+@class NSArray, NSURL;
 
 __attribute__((visibility("hidden")))
 @interface AMSMetricsBatch : NSObject
 {
-    ACAccount *_account;
     NSURL *_reportURL;
     NSArray *_events;
     NSArray *_eventDictionaries;
@@ -20,7 +19,6 @@ __attribute__((visibility("hidden")))
 @property(retain) NSArray *eventDictionaries; // @synthesize eventDictionaries=_eventDictionaries;
 @property(retain) NSArray *events; // @synthesize events=_events;
 @property(retain) NSURL *reportURL; // @synthesize reportURL=_reportURL;
-@property(retain) ACAccount *account; // @synthesize account=_account;
 - (void).cxx_destruct;
 
 @end

@@ -38,7 +38,6 @@
 @property(retain, nonatomic) IMDChatStore *chatStore; // @synthesize chatStore=_chatStore;
 @property(retain, nonatomic) IMDCKUtilities *ckUtilities; // @synthesize ckUtilities=_ckUtilities;
 @property(retain, nonatomic) NSMutableDictionary *idToHandlesMap; // @synthesize idToHandlesMap=_idToHandlesMap;
-- (void)invalidatePersonCentricGroupedChatsCache;
 - (void)simulateMessageReceive:(id)arg1 serviceName:(id)arg2 handles:(id)arg3 sender:(id)arg4;
 - (id)_existingiMessageChatForChatIdentifier:(id)arg1 style:(unsigned char)arg2;
 - (BOOL)isBeingSetup;
@@ -79,7 +78,7 @@
 - (void)_insertChatUsingCKRecord:(id)arg1;
 - (void)updateChatWithGUID:(id)arg1 serverChangeToken:(id)arg2 recordID:(id)arg3;
 - (id)chatsToUploadToCloudKitWithLimit:(unsigned long long)arg1 isUsingStingRay:(BOOL)arg2;
-- (id)personCentricGroupedChatsArrayWithMaximumNumberOfChats:(long long)arg1 skipsLastMessageLoading:(BOOL)arg2;
+- (id)personCentricGroupedChatsArrayWithMaximumNumberOfChats:(long long)arg1;
 - (id)chatIdToLastMessageMapOfOldChats;
 - (id)sortPersonCentricChatGroups:(id)arg1;
 - (id)truncateSortedChatsGroupedByPersonCentricID:(id)arg1 toMaximumNumberOfChats:(long long)arg2;

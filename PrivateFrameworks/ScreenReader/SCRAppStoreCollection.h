@@ -11,8 +11,6 @@ __attribute__((visibility("hidden")))
 {
 }
 
-- (void)handleSelectionChangeForSearchCompletionCollection:(id)arg1;
-- (BOOL)isSearchCompletionCollection;
 - (BOOL)childrenShouldAddIndexToDescription;
 
 @end

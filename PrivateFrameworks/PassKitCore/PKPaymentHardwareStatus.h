@@ -30,8 +30,6 @@
 @property(nonatomic) unsigned long long ownershipState; // @synthesize ownershipState=_ownershipState;
 @property(nonatomic) BOOL hasRemoteDevices; // @synthesize hasRemoteDevices=_hasRemoteDevices;
 @property(nonatomic) BOOL hasSecureElement; // @synthesize hasSecureElement=_hasSecureElement;
-@property(readonly, nonatomic, getter=_isDemoModeActive) BOOL _isDemoModeActive;
-- (BOOL)canAddCardWithError:(id *)arg1;
 @property(readonly, nonatomic) BOOL canMakeLocalPayments;
 @property(readonly, nonatomic) BOOL canMakePayments;
 - (id)copyWithZone:(struct _NSZone *)arg1;

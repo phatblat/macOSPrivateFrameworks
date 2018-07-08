@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSData, NSDictionary, NSString;
+@class NSData, NSDictionary, NSString;
 
 @interface CUKeychainItem : NSObject
 {

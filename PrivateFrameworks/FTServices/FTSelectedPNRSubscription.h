@@ -10,10 +10,8 @@
 {
 }
 
-+ (id)sharedInstance;
++ (id)subscriptionFromAvailableSubscriptions:(id)arg1 matchingSelectedSubscription:(id)arg2;
 + (BOOL)isPhoneNumber:(id)arg1 equivalentToExistingPhoneNumber:(id)arg2;
-- (BOOL)_legacy_isPhoneNumberEmergencyNumber:(id)arg1;
-- (BOOL)isPhoneNumberEmergencyNumber:(id)arg1;
 - (id)_legacy_carrierBundleValueForKey:(id)arg1 ofType:(Class)arg2;
 - (id)selectedPhoneNumberRegistrationRegistrationCarrierBundleValueForKey:(id)arg1 ofType:(Class)arg2 withFallbackValue:(id)arg3;
 - (id)_reevaluateCachedSelectedPhoneNumberWithContext:(id)arg1 error:(id *)arg2;
@@ -31,19 +29,13 @@
 - (id)setSelectedPhoneNumberRegistrationSubscriptionNumber:(id)arg1;
 - (id)selectedRegistrationPhoneNumberWithError:(id *)arg1;
 - (BOOL)isSelectedPhoneNumberRegistrationSubscriptionContext:(id)arg1;
-- (void)persistSelectedPhoneNumberRegistrationSubscriptionIfNeeded;
+- (id)selectedPhoneNumberRegistrationSubscriptionWithError:(id *)arg1 persistUpdateIfNeeded:(BOOL)arg2;
+- (void)reevaluateAndPersistSelectedPhoneNumberRegistrationSubscription;
 - (id)selectedPhoneNumberRegistrationSubscriptionWithError:(id *)arg1;
-- (void)invalidateCache;
-- (void)_protected_invalidateCache;
-- (void)_distributed_invalidateCache;
-- (id)_protected_reevaluateCacheIfNeededAndPersistUpdate:(BOOL)arg1;
-- (void)dualSimCapabilityDidChange;
-- (void)activeSubscriptionsDidChange;
-- (void)phoneNumberAvailable:(id)arg1;
-- (void)phoneNumberChanged:(id)arg1;
-- (void)subscriptionInfoDidChange;
-- (void)dealloc;
-- (id)init;
+- (id)_PNRSubscriptionFromCTSubscriptionContext:(id)arg1;
+- (void)_makeSubscriptionChoiceStickyBasedOnPreviousReference:(id)arg1 newSelection:(id)arg2;
+- (id)_userSelectedReferencePNRSubscription;
+- (BOOL)_PNRSubscription:(id)arg1 doesMatchSubscriptionNumber:(long long)arg2;
 
 @end
 

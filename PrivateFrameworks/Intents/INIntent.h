@@ -41,7 +41,7 @@
 @property(retain, nonatomic, setter=_setParameterCombinations:) NSDictionary *_parameterCombinations; // @synthesize _parameterCombinations;
 - (void).cxx_destruct;
 - (id)_spotlightContentType;
-- (BOOL)configureAttributeSet:(id)arg1 includingData:(BOOL)arg2;
+- (BOOL)configureAttributeSet:(id)arg1;
 - (BOOL)setValue:(id)arg1 forProperty:(id)arg2;
 - (id)valueForProperty:(id)arg1;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
@@ -111,7 +111,6 @@
 - (id)init;
 - (void)_injectProxiesForImages:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_injectProxiesForImagesUsingIntentSlotDescriptionStrategy:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)_injectProxiesForParameterImages:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_injectProxyForDefaultImage:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_injectProxiesForImagesUsingCustomCodableStrategy:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 @property(readonly) long long _intents_toggleState;

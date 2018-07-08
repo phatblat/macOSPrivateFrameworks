@@ -138,7 +138,7 @@
 @property(copy) NSString *chatIdentifier;
 @property(copy) NSString *guid;
 - (void)dealloc;
-- (id)initWithAccountID:(id)arg1 service:(id)arg2 guid:(id)arg3 groupID:(id)arg4 chatIdentifier:(id)arg5 participants:(id)arg6 roomName:(id)arg7 displayName:(id)arg8 lastAddressedLocalHandle:(id)arg9 lastAddressedSIMID:(id)arg10 properties:(id)arg11 state:(long long)arg12 style:(unsigned char)arg13 isFiltered:(BOOL)arg14 hasHadSuccessfulQuery:(BOOL)arg15 engramID:(id)arg16 serverChangeToken:(id)arg17 cloudKitSyncState:(long long)arg18 originalGroupID:(id)arg19 lastReadMessageTimeStamp:(long long)arg20 lastMessageTimeStampOnLoad:(long long)arg21 srServerChangeToken:(id)arg22 srCloudKitSyncState:(long long)arg23 cloudKitRecordID:(id)arg24 srCloudKitRecordID:(id)arg25;
+- (id)initWithAccountID:(id)arg1 service:(id)arg2 guid:(id)arg3 groupID:(id)arg4 chatIdentifier:(id)arg5 participants:(id)arg6 roomName:(id)arg7 displayName:(id)arg8 lastAddressedLocalHandle:(id)arg9 properties:(id)arg10 state:(long long)arg11 style:(unsigned char)arg12 isFiltered:(BOOL)arg13 hasHadSuccessfulQuery:(BOOL)arg14 engramID:(id)arg15 serverChangeToken:(id)arg16 cloudKitSyncState:(long long)arg17 originalGroupID:(id)arg18 lastReadMessageTimeStamp:(long long)arg19 lastMessageTimeStampOnLoad:(long long)arg20 srServerChangeToken:(id)arg21 srCloudKitSyncState:(long long)arg22 cloudKitRecordID:(id)arg23 srCloudKitRecordID:(id)arg24;
 @property(readonly) NSArray *alternativeSpeakableMatches;
 @property(readonly) NSString *vocabularyIdentifier;
 @property(readonly) NSString *pronunciationHint;
@@ -148,6 +148,12 @@
 - (id)copyCKRecordRepresentationWithZoneID:(id)arg1 salt:(id)arg2 isUsingStingRay:(BOOL)arg3;
 - (id)recordName;
 - (id)_copyCKRecordFromExistingCKMetadataIsUsingStringRay:(BOOL)arg1 zoneID:(id)arg2 salt:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) NSString *identifier;
+@property(readonly) Class superclass;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

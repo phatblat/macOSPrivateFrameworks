@@ -23,11 +23,6 @@ __attribute__((visibility("hidden")))
 @property(retain) AMSBag *bag; // @synthesize bag=_bag;
 - (void).cxx_destruct;
 @property(readonly) AMSBagValue *trustedDomains;
-@property(readonly) AMSBagValue *TFOSamplingSessionDuration;
-@property(readonly) AMSBagValue *TFOSamplingPercentage;
-@property(readonly) AMSBagValue *TLSSamplingSessionDuration;
-@property(readonly) AMSBagValue *TLSSamplingPercentage;
-@property(readonly) AMSBagValue *storefrontSuffix;
 @property(readonly) id <AMSMetricsBagContract> metricsContract;
 @property(readonly) id <AMSMescalBagContract> mescalContract;
 @property(readonly) AMSBagValue *guidSchemes;
@@ -42,9 +37,6 @@ __attribute__((visibility("hidden")))
 @property(readonly) AMSBagValue *mescalCertificateURL;
 @property(readonly) AMSBagValue *metricsURL;
 @property(readonly) AMSBagValue *metricsDictionary;
-@property(readonly) AMSBagValue *unpersonalizedLookupURL;
-@property(readonly) AMSBagValue *iCloudDeviceOfferDeepLink;
-@property(readonly) AMSBagValue *appleMusicDeviceOfferDeepLink;
 - (id)init;
 
 // Remaining properties

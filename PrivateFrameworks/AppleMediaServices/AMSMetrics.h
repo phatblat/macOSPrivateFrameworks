@@ -28,12 +28,13 @@
 }
 
 + (id)_sharedTimerQueue;
++ (void)setLastKnownBagContract:(id)arg1;
 + (double)timeIntervalFromServerTime:(id)arg1;
 + (id)serverTimeFromTimeInterval:(double)arg1;
 + (id)serverTimeFromDate:(id)arg1;
 + (void)setFlushTimerEnabled:(BOOL)arg1;
 + (BOOL)flushTimerEnabled;
-+ (id)_sharedInstanceUsingContract:(id)arg1;
++ (id)_sharedInstance;
 @property(retain) AMSURLSession *URLSession; // @synthesize URLSession=_URLSession;
 @property(retain) NSMutableSet *requestPromises; // @synthesize requestPromises=_requestPromises;
 @property(retain) NSObject<OS_dispatch_queue> *propertyQueue; // @synthesize propertyQueue=_propertyQueue;
@@ -51,7 +52,7 @@
 - (BOOL)_shouldClearEventsDespiteError:(id)arg1 result:(id)arg2;
 - (BOOL)_shouldAllowEvent:(id)arg1;
 - (id)_prepareEvent:(id)arg1;
-- (void)_postEvents:(id)arg1 reportURL:(id)arg2 account:(id)arg3 logKey:(id)arg4 completion:(CDUnknownBlockType)arg5;
+- (void)_postEvents:(id)arg1 reportURL:(id)arg2 logKey:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)_openDatabaseIfNeeded;
 - (id)_metricsDictionary;
 - (id)_mescalSignatureWithBodyData:(id)arg1 logKey:(id)arg2;
@@ -59,7 +60,7 @@
 - (void)_flushTimerStart;
 - (void)_flushTimerInvalidate;
 - (void)_handleFlushTimer;
-- (id)_createRequestWithURL:(id)arg1 canary:(id)arg2 account:(id)arg3 body:(id)arg4 signature:(id)arg5 logKey:(id)arg6;
+- (id)_createRequestWithURL:(id)arg1 canary:(id)arg2 body:(id)arg3 signature:(id)arg4 logKey:(id)arg5;
 - (id)_baseMetricsURL;
 - (void)_addCancellablePromise:(id)arg1;
 - (void)_batchEventArray:(id)arg1 batchBlock:(CDUnknownBlockType)arg2;

@@ -24,9 +24,6 @@
     NSMutableOrderedSet *_registeredProfileIDs;
     struct NSMutableDictionary *_requestRegistrations;
     NSXPCConnection *_xpcCnx;
-    unsigned int _pairSetupFlags;
-    unsigned int _pairVerifyFlags;
-    int _passwordType;
     unsigned int _flags;
     NSString *_password;
     CDUnknownBlockType _authCompletionHandler;

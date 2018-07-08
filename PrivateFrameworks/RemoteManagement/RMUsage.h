@@ -6,7 +6,7 @@
 
 #import "NSManagedObject.h"
 
-@class NSDate, NSSet, RMCoreDevice, RMCoreUser;
+@class RMDevice, RMUser;
 
 @interface RMUsage : NSManagedObject
 {
@@ -14,10 +14,7 @@
 
 
 // Remaining properties
-@property(retain, nonatomic) NSSet *blocks; // @dynamic blocks;
-@property(retain, nonatomic) RMCoreDevice *device; // @dynamic device;
-@property(retain, nonatomic) NSDate *lastEventDate; // @dynamic lastEventDate;
-@property(retain, nonatomic) NSDate *lastUpdatedDate; // @dynamic lastUpdatedDate;
-@property(retain, nonatomic) RMCoreUser *user; // @dynamic user;
+@property(retain, nonatomic) RMDevice *device; // @dynamic device;
+@property(retain, nonatomic) RMUser *user; // @dynamic user;
 @end
 

@@ -29,7 +29,6 @@
 + (id)proxyLockStoreOptionsForDatabaseAtUrl:(id)arg1 isReadOnly:(BOOL)arg2;
 + (id)readOnlyStoreOptionsWithBoolValue:(BOOL)arg1;
 + (id)coordinatorWithLastUnconstrainedModel;
-+ (id)os_log;
 @property(copy) NSError *error; // @synthesize error=_error;
 @property(retain) NSPersistentStore *store; // @synthesize store=_store;
 @property(readonly, retain) NSPersistentStoreCoordinator *coordinator; // @synthesize coordinator=_coordinator;
@@ -61,7 +60,6 @@
 - (void)migrateMailRecentsToInMemory;
 - (void)logPersistentStoreTracerFailureWithMessage:(id)arg1 error:(id)arg2;
 - (id)urlByCopyingToTemporaryUrl:(id)arg1;
-- (id)contactStoreForGroupCleanup;
 - (void)migrateToUnconstrainedDatabaseSchemaAndDeDupe;
 - (BOOL)databaseConstraintCleanupNeeded;
 - (void)tryToAddPersistentStore;

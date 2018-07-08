@@ -15,9 +15,6 @@
     NSDictionary *_failIfAsleepOption;
     _DKEventTypeResultStatsCounter *_failIfAsleepStats;
     RPCompanionLinkClient *_client;
-    NSMutableDictionary *_companionLinkClients;
-    unsigned long long _outstandingRequestCount;
-    NSObject<OS_dispatch_source> *_companionLinkClientsCleanupTimer;
     double _retryTimeout;
     unsigned long long _currentChangeSetSequenceNumber;
     BOOL _isAvailable;
@@ -54,11 +51,6 @@
 - (void)handleFetchEventsWithResponse:(id)arg1 options:(id)arg2 error:(id)arg3 peer:(id)arg4 completion:(CDUnknownBlockType)arg5;
 - (void)handleFetchEventsWithRequest:(id)arg1 options:(id)arg2 responseHandler:(CDUnknownBlockType)arg3;
 - (void)fetchEventsFromPeer:(id)arg1 creationDateBetweenDate:(id)arg2 andDate:(id)arg3 streamNames:(id)arg4 limit:(unsigned long long)arg5 fetchOrder:(long long)arg6 highPriority:(BOOL)arg7 completion:(CDUnknownBlockType)arg8;
-- (void)clearPrewarmedFlag;
-- (void)setHasDeletionsFlag:(BOOL)arg1 forPeer:(id)arg2;
-- (BOOL)hasDeletionsFlagForPeer:(id)arg1;
-- (void)setHasAdditionsFlag:(BOOL)arg1 forPeer:(id)arg2;
-- (BOOL)hasAdditionsFlagForPeer:(id)arg1;
 - (void)prewarmFetchWithCompletion:(CDUnknownBlockType)arg1;
 - (void)handleBeaconWithResponse:(id)arg1 options:(id)arg2 error:(id)arg3 peer:(id)arg4 completion:(CDUnknownBlockType)arg5;
 - (void)handleBeaconWithRequest:(id)arg1 options:(id)arg2 responseHandler:(CDUnknownBlockType)arg3;
@@ -74,7 +66,7 @@
 - (void)handleActivateWithError:(id)arg1;
 - (void)handleDeviceLost:(id)arg1;
 - (void)handleDeviceChanged:(id)arg1 changes:(unsigned int)arg2;
-- (void)handshakeWithDuetSyncPeer:(id)arg1 orError:(id)arg2;
+- (void)handshakeWithDuetSyncPeer:(id)arg1;
 - (void)handleDeviceFound:(id)arg1;
 - (void)handleInvalidation;
 - (void)registerRequestIDsWithClient:(id)arg1;

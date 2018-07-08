@@ -62,12 +62,6 @@
 @property(readonly, nonatomic) unsigned int SSVEnergyBufferSize;
 @property(readonly, nonatomic) unsigned long long SSVLKFSChannelBitset;
 @property(readonly, nonatomic) unsigned long long SSVNoiseLevelChannelBitset;
-@property(readonly, nonatomic) unsigned long long VTFirstPassProcessingChannelsBitset;
-@property(readonly, nonatomic) float VTFirstPassProcessingChunkSeconds;
-@property(readonly, nonatomic) float VTFirstPassMasterChannelScoreBoost;
-@property(readonly, nonatomic) float VTFirstPassDelaySecondsForChannelSelection;
-@property(readonly, nonatomic) float VTFirstPassThreshold;
-@property(readonly, nonatomic) NSString *VTFirstPassConfigPathNDAPI;
 - (id)_sha256:(id)arg1;
 - (id)_sha1:(id)arg1;
 - (id)RTModel;

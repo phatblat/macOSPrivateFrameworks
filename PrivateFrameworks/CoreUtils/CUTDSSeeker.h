@@ -17,7 +17,6 @@
     BOOL _invalidateCalled;
     BOOL _invalidateDone;
     struct LogCategory *_ucat;
-    NSXPCConnection *_xpcCnx;
     BOOL _directedOnly;
     BOOL _passive;
     int _dataLinkType;

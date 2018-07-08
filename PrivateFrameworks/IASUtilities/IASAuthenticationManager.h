@@ -22,6 +22,10 @@
 - (id)getSSOServiceTicketForUser:(id)arg1 password:(id)arg2 serviceID:(id)arg3 outUsername:(id *)arg4 error:(id *)arg5;
 - (id)getSSOServiceTicketAsOnConsoleUserWithUI:(BOOL)arg1 serviceID:(id)arg2 outUsername:(id *)arg3 error:(id *)arg4;
 - (id)getSSOServiceTicketWithUI:(BOOL)arg1 serviceID:(id)arg2 outUsername:(id *)arg3 error:(id *)arg4;
+- (id)getSSOServiceTicketWithUI:(BOOL)arg1 username:(id)arg2 password:(id)arg3 error:(id *)arg4;
+- (id)getSSOServiceTicketAsOnConsoleUserWithUI:(BOOL)arg1 error:(id *)arg2;
+- (id)getSSOServiceTicketForUser:(id)arg1 password:(id)arg2 error:(id *)arg3;
+- (id)getSSOServiceTicketWithUI:(BOOL)arg1 error:(id *)arg2;
 - (BOOL)_loadSSOFramework;
 - (id)_locateSSOFramework;
 

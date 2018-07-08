@@ -20,7 +20,6 @@
 @property(copy, nonatomic) NSDictionary *activeApplicationEvents; // @synthesize activeApplicationEvents=_activeApplicationEvents;
 @property(nonatomic) void *notificationID; // @synthesize notificationID=_notificationID;
 - (void).cxx_destruct;
-- (void)invalidateInstantState;
 - (void)synchronouslyReflectCurrentValue;
 - (void)stop;
 - (void)start;

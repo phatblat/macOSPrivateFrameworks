@@ -15,7 +15,7 @@
 }
 
 - (id)_spotlightContentType;
-- (BOOL)configureAttributeSet:(id)arg1 includingData:(BOOL)arg2;
+- (BOOL)configureAttributeSet:(id)arg1;
 - (void)setParametersByName:(id)arg1;
 - (id)parametersByName;
 - (void)setVerb:(id)arg1;

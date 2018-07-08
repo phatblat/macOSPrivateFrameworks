@@ -29,7 +29,6 @@
 - (void)disableMailAddressListeners;
 - (void)enableMailAddressListeners;
 - (void)_showClientFailureSheet:(id)arg1 enabling:(BOOL)arg2;
-- (BOOL)hasDataToMerge;
 - (BOOL)shouldEnableOnLogin;
 - (void)setEnabled:(BOOL)arg1 creating:(BOOL)arg2 withWindow:(id)arg3;
 - (id)icon;

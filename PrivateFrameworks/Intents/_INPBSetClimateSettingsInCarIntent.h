@@ -10,7 +10,7 @@
 #import "NSSecureCoding.h"
 #import "_INPBSetClimateSettingsInCarIntent.h"
 
-@class NSString, _INPBDataString, _INPBDouble, _INPBInteger, _INPBIntentMetadata, _INPBTemperature;
+@class INCodableAttribute, NSString, _INPBDataString, _INPBDouble, _INPBInteger, _INPBIntentMetadata, _INPBTemperature;
 
 @interface _INPBSetClimateSettingsInCarIntent : PBCodable <_INPBSetClimateSettingsInCarIntent, NSSecureCoding, NSCopying>
 {

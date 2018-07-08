@@ -24,7 +24,6 @@
     NSString *_payloadImageMountPoint;
     SKDisk *_target;
     long long _installType;
-    NSString *_volumeUUIDToErase;
     NSURL *_distributionURL;
     NSURL *_choiceChangesURL;
     NSURL *_baseSystemURL;
@@ -38,8 +37,6 @@
 @property(retain) NSURL *baseSystemURL; // @synthesize baseSystemURL=_baseSystemURL;
 @property(retain) NSURL *choiceChangesURL; // @synthesize choiceChangesURL=_choiceChangesURL;
 @property(retain) NSURL *distributionURL; // @synthesize distributionURL=_distributionURL;
-@property(retain) NSString *volumeUUIDToErase; // @synthesize volumeUUIDToErase=_volumeUUIDToErase;
-@property BOOL isAppleInternal; // @synthesize isAppleInternal=_isAppleInternal;
 @property BOOL didRequestEraseInstall; // @synthesize didRequestEraseInstall=_didRequestEraseInstall;
 @property BOOL enableSUFLO; // @synthesize enableSUFLO=_enableSUFLO;
 @property BOOL shouldConvertToAPFS; // @synthesize shouldConvertToAPFS=_shouldConvertToAPFS;

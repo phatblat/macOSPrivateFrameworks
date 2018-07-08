@@ -6,6 +6,8 @@
 
 #import "ROCKInvocationCustomization.h"
 
-@protocol ROCKForwardingInterposableWithRunLoop <ROCKInvocationCustomization>
+@optional
+@property(readonly, nonatomic) const struct __CFString *forwardingInterposableRunLoopMode;
+@property(readonly, nonatomic) double forwardingInterposableRunLoopTimeOut;
 @end
 

@@ -29,7 +29,6 @@
 - (void)__handleRemovedRemoteAccount:(id)arg1;
 - (void)__handleAddedRemoteAccount:(id)arg1;
 - (void)__handleAppleAccountDeviceAdded:(id)arg1;
-- (void)__handleAppleAccountHandlesUpdated:(id)arg1;
 - (void)__handleAppleAccountUpdate:(id)arg1;
 - (id)deviceForDevice:(id)arg1 exists:(char *)arg2;
 - (id)deviceForDevice:(id)arg1;

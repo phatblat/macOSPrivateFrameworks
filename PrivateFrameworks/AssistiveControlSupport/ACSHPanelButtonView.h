@@ -11,6 +11,7 @@
 @interface ACSHPanelButtonView : ACSHPanelElementView
 {
     BOOL _depressed;
+    BOOL _alternateDepressed;
     BOOL _locked;
     BOOL _toggleOn;
     BOOL __hasExtraRect;
@@ -52,6 +53,7 @@
 @property(retain, nonatomic) NSColor *displayColor; // @synthesize displayColor=_displayColor;
 @property(nonatomic) BOOL toggleOn; // @synthesize toggleOn=_toggleOn;
 @property(nonatomic) BOOL locked; // @synthesize locked=_locked;
+@property(nonatomic) BOOL alternateDepressed; // @synthesize alternateDepressed=_alternateDepressed;
 @property(nonatomic) BOOL depressed; // @synthesize depressed=_depressed;
 @property(nonatomic) __weak ACSHPanelButton *button; // @synthesize button=_button;
 - (void).cxx_destruct;

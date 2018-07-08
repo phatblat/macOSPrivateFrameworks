@@ -8,7 +8,7 @@
 
 #import "PARClientXPC.h"
 
-@class NSMutableArray, NSObject<OS_dispatch_queue>, NSString, NSXPCConnection, NSXPCListenerEndpoint, PARImageLoader, PARSessionConfiguration, QueryIdMapper;
+@class NSMutableArray, NSObject<OS_dispatch_queue>, NSString, NSXPCConnection, NSXPCListenerEndpoint, PARFeedbackFilterController, PARImageLoader, PARSessionConfiguration, QueryIdMapper;
 
 @interface PARSearchClient : NSObject <PARClientXPC>
 {
@@ -18,6 +18,7 @@
     // Error parsing type: AB, name: _configured
     NSObject<OS_dispatch_queue> *_idQueue;
     QueryIdMapper *_idMapper;
+    PARFeedbackFilterController *_filterController;
     PARSessionConfiguration *_configuration;
     NSXPCConnection *_connection;
     PARImageLoader *_imageLoader;
@@ -47,6 +48,7 @@
 - (void)_invalidateConnection;
 - (id)initWithConnection:(id)arg1;
 - (id)init;
+- (void)sessionDidChange:(id)arg1;
 - (void)didDeleteResource:(id)arg1;
 - (void)didDownloadResource:(id)arg1;
 - (void)bagDidLoad:(id)arg1 error:(id)arg2;

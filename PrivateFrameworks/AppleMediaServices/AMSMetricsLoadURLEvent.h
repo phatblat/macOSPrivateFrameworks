@@ -16,6 +16,7 @@
 + (id)_resolvedIPAddressFromTask:(id)arg1;
 + (double)_randomDouble;
 + (id)_metricsDictionaryFromConfig:(id)arg1;
++ (unsigned long long)_messageSizeFromConfig:(id)arg1 forRequest:(BOOL)arg2;
 + (id)_fetchNetworkQualityReports;
 + (id)_DNSServerIPAddresses;
 + (BOOL)shouldCollectMetricsForContext:(id)arg1;
@@ -24,10 +25,8 @@
 @property double xpSamplingPercentageUsers;
 @property BOOL xpSamplingForced;
 @property double xpSessionDuration;
-@property(retain) NSString *wt;
 @property BOOL TLSSessionTickets;
 @property(retain) NSString *TIDState;
-@property BOOL TFOEnabled;
 @property long long statusCode;
 @property double secureConnectionStartTime;
 @property double responseStartTime;
@@ -41,12 +40,10 @@
 @property double redirectStartTime;
 @property double redirectEndTime;
 @property unsigned long long redirectCount;
-@property(retain) NSString *radioType;
 @property(retain) NSString *radioTechnology;
 @property(retain) NSString *originalApp;
 @property(retain) NSArray *networkQualityReports;
 @property double fetchStartTime;
-@property(retain) NSString *environmentDataCenter;
 @property(retain) NSString *edgeNodeCacheStatus;
 @property double domainLookupStartTime;
 @property double domainLookupEndTime;
