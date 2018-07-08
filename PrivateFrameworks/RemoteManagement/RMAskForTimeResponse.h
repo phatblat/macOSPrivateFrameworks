@@ -14,6 +14,7 @@
 {
     NSUUID *_associatedRequestIdentifier;
     long long _answer;
+    NSNumber *_respondingUserDSID;
     NSNumber *_amountGranted;
     NSDate *_timeStamp;
 }
@@ -21,6 +22,7 @@
 + (BOOL)supportsSecureCoding;
 @property(retain, nonatomic) NSDate *timeStamp; // @synthesize timeStamp=_timeStamp;
 @property(retain, nonatomic) NSNumber *amountGranted; // @synthesize amountGranted=_amountGranted;
+@property(retain, nonatomic) NSNumber *respondingUserDSID; // @synthesize respondingUserDSID=_respondingUserDSID;
 @property(nonatomic) long long answer; // @synthesize answer=_answer;
 @property(retain, nonatomic) NSUUID *associatedRequestIdentifier; // @synthesize associatedRequestIdentifier=_associatedRequestIdentifier;
 - (void).cxx_destruct;

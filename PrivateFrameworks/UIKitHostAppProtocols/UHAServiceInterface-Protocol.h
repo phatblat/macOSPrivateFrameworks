@@ -4,9 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "ROCKForwardingInterposableWithRunLoop.h"
 #import "ROCKImpersonateable.h"
 
-@protocol UHAServiceInterface <ROCKImpersonateable>
+@protocol UHAServiceInterface <ROCKImpersonateable, ROCKForwardingInterposableWithRunLoop>
 @property(readonly, nonatomic) id <UHATextInputInterface> textInput;
 @property(readonly, nonatomic) id <UHAHidManagerInterface> hidManager;
 @property(readonly, nonatomic) id <UHAProcessInfoInterface> processInfo;

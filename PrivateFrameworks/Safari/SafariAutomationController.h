@@ -27,6 +27,7 @@ __attribute__((visibility("hidden")))
 - (void)_automationSession:(id)arg1 acceptCurrentJavaScriptDialogOnPage:(struct OpaqueWKPage *)arg2;
 - (void)_automationSession:(id)arg1 dismissCurrentJavaScriptDialogOnPage:(struct OpaqueWKPage *)arg2;
 - (BOOL)_automationSession:(id)arg1 isShowingJavaScriptDialogOnPage:(struct OpaqueWKPage *)arg2;
+- (void)_automationSession:(id)arg1 requestMaximizeWindowOfPage:(struct OpaqueWKPage *)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)_automationSession:(id)arg1 requestRestoreWindowOfPage:(struct OpaqueWKPage *)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)_automationSession:(id)arg1 requestHideWindowOfPage:(struct OpaqueWKPage *)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)_automationSession:(id)arg1 requestSwitchToPage:(const struct OpaqueWKPage *)arg2 completionHandler:(CDUnknownBlockType)arg3;

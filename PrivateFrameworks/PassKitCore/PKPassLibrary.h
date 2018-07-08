@@ -20,11 +20,13 @@
     NSHashTable *_delegates;
     NSObject<OS_dispatch_queue> *_delegateQueue;
     NSObject<OS_dispatch_queue> *_asynchronousImageQueue;
+    BOOL _shouldSendRemovingPassesOfTypeDidFinish;
     id <PKPassLibraryDelegate> _delegate;
 }
 
 + (BOOL)contactlessInterfaceCanBePresentedFromSource:(long long)arg1;
 + (id)sharedInstance;
++ (id)sharedInstanceWithRemoteLibrary;
 + (BOOL)isSuppressingAutomaticPassPresentation;
 + (void)endAutomaticPassPresentationSuppressionWithRequestToken:(unsigned long long)arg1;
 + (unsigned long long)requestAutomaticPassPresentationSuppressionWithResponseHandler:(CDUnknownBlockType)arg1;
@@ -56,6 +58,7 @@
 - (void)noteAccountChanged;
 - (void)logDelayExitReasons;
 - (void)shuffleGroups:(int)arg1;
+- (void)removePassesOfType:(unsigned long long)arg1 withDiagnosticReason:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)removePassesOfType:(unsigned long long)arg1 withDiagnosticReason:(id)arg2;
 - (void)removePassesOfType:(unsigned long long)arg1;
 - (void)removePassesWithUniqueIDs:(id)arg1 diagnosticReason:(id)arg2;
@@ -80,7 +83,7 @@
 - (id)_sortedPaymentPassesForPaymentRequest:(id)arg1;
 - (void)sortedTransitPassesForAppletDataFormat:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)expressFelicaTransitPasses;
-- (id)defaultPaymentPasses;
+- (id)defaultPaymentPassesWithRemotePasses:(BOOL)arg1;
 - (BOOL)resetSettingsForPass:(id)arg1;
 - (BOOL)setSuppressNotificationsEnabled:(BOOL)arg1 forPass:(id)arg2;
 - (BOOL)setAutomaticPresentationEnabled:(BOOL)arg1 forPass:(id)arg2;
@@ -117,6 +120,7 @@
 - (void)openPaymentSetup;
 - (void)addPassesWithData:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)addPasses:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
+- (id)dataForBundleResources:(id)arg1 objectUniqueIdentifier:(id)arg2;
 - (id)dataForBundleResourceNamed:(id)arg1 withExtension:(id)arg2 objectUniqueIdentifier:(id)arg3;
 - (id)archiveForObjectWithUniqueID:(id)arg1;
 - (BOOL)replacePassWithPass:(id)arg1;
@@ -170,6 +174,7 @@
 - (id)_remoteObjectProxy;
 - (void)dealloc;
 - (id)initWithMachServiceName:(id)arg1 resumeNotificationName:(id)arg2 interfaceType:(unsigned long long)arg3;
+- (id)_initWithRemote:(id)arg1;
 - (id)init;
 
 // Remaining properties

@@ -32,6 +32,7 @@
 @property(readonly, copy) INPerson *payee;
 - (id)initWithPayee:(id)arg1 currencyAmount:(id)arg2 note:(id)arg3;
 - (id)_categoryVerb;
+- (long long)_intentCategory;
 - (void)_setMetadata:(id)arg1;
 - (id)_metadata;
 - (id)_typedBackingStore;

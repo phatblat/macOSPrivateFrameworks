@@ -11,6 +11,8 @@
 }
 
 - (void)deleteFilesFrom:(id)arg1 exceptFor:(int)arg2 filesOfType:(id)arg3;
+- (void)successfullySavedWakeDiagnostic;
+- (BOOL)throttleWakeDiagnosticCollection;
 - (id)eventReportForWake:(id)arg1;
 - (void)reportSlowWakeEventToServer:(id)arg1 withDiagnostic:(id)arg2;
 - (void)moveTailspinToSysdiagnoseDirectory:(id)arg1;
@@ -21,6 +23,7 @@
 - (unsigned long long)tailspinEndTimeForWake:(id)arg1;
 - (unsigned long long)tailspinStartTimeForWake:(id)arg1;
 - (id)stringForWakeType:(unsigned long long)arg1;
+- (void)augmentTailspinWithIORegistry:(id)arg1;
 - (void)collectDiagnosticsForWake:(id)arg1;
 
 @end

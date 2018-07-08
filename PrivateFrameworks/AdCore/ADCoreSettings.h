@@ -66,6 +66,8 @@
 @property(nonatomic) BOOL isLATEnabled;
 @property(readonly, nonatomic) BOOL limitAdTrackingRestrictionEnabledBySpringboard;
 - (void)reloadStorefront:(CDUnknownBlockType)arg1;
+- (BOOL)deviceUnlockedOnce;
+- (BOOL)purpleBuddyWillRun;
 - (int)deviceRunStateForBundleIdentifier:(id)arg1;
 - (id)deviceDescription;
 @property(readonly, nonatomic) BOOL isManagediCloudAccount;
@@ -78,8 +80,8 @@
 @property(readonly, nonatomic) NSString *iCloudAccountIdentifier;
 @property(readonly, nonatomic) ACAccount *iCloudAccount;
 - (void)clearAdvertisingIdentifier;
-- (id)createAndStoreIDFAStringBasedOnLAT;
 @property(readonly, nonatomic) NSUUID *IDFA;
+- (id)createAndStoreIDFAStringBasedOnLAT;
 - (void)expire;
 - (id)init;
 

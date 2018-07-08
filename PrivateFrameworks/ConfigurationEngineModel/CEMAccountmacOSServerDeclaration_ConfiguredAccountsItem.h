@@ -14,6 +14,7 @@
     NSNumber *_payloadPort;
 }
 
++ (id)buildRequiredOnlyWithType:(id)arg1;
 + (id)buildWithType:(id)arg1 withPort:(id)arg2;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadPort; // @synthesize payloadPort=_payloadPort;

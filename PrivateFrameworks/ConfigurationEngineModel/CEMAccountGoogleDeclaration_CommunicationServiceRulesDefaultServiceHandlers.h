@@ -13,6 +13,7 @@
     NSString *_payloadAudioCall;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithAudioCall:(id)arg1;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadAudioCall; // @synthesize payloadAudioCall=_payloadAudioCall;

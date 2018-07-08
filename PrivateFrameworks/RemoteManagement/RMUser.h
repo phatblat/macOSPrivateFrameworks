@@ -12,8 +12,10 @@
 {
 }
 
++ (id)shouldRequestMoreTimeForLocalUserWithManagedObjectContext:(id)arg1 error:(id *)arg2;
 + (id)fetchRequestForUsersBelongingToOrganizationWithIdentifier:(id)arg1 altID:(id)arg2;
 + (id)fetchRequestForUsersBelongingToOrganizationWithIdentifier:(id)arg1 userDSID:(id)arg2;
++ (id)fetchRequestForMeInOrganizationWithIdentifier:(id)arg1;
 + (id)fetchRequestForManagedUsersBelongingToOrganizationWithIdentifier:(id)arg1;
 + (id)fetchRequestForUsersBelongingToOrganizationWithIdentifier:(id)arg1;
 - (id)computeUniqueIdentifier;
@@ -37,6 +39,8 @@
 @property(copy, nonatomic) NSString *name; // @dynamic name;
 @property(retain, nonatomic) RMOrganization *organization; // @dynamic organization;
 @property(nonatomic) short role; // @dynamic role;
+@property(copy, nonatomic) NSString *uri; // @dynamic uri;
+@property(retain, nonatomic) NSSet *usage; // @dynamic usage;
 @property(retain, nonatomic) RMUsageSettings *usageSettings; // @dynamic usageSettings;
 @property(retain, nonatomic) NSSet *userDevicePairs; // @dynamic userDevicePairs;
 

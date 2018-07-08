@@ -13,7 +13,6 @@
     NSString *_payloadURL;
     NSString *_payloadName;
     NSArray *_payloadSubject;
-    NSString *_payloadChallenge;
     NSNumber *_payloadKeysize;
     NSString *_payloadKeyType;
     NSNumber *_payloadKeyUsage;
@@ -26,7 +25,8 @@
     NSNumber *_payloadAllowAllAppsAccess;
 }
 
-+ (id)buildWithURL:(id)arg1 withName:(id)arg2 withSubject:(id)arg3 withChallenge:(id)arg4 withKeysize:(id)arg5 withKeyType:(id)arg6 withKeyUsage:(id)arg7 withCAFingerprint:(id)arg8 withRetries:(id)arg9 withRetryDelay:(id)arg10 withSubjectAltName:(id)arg11 withKeyIsExtractable:(id)arg12 withChallengeCredential:(id)arg13 withAllowAllAppsAccess:(id)arg14;
++ (id)buildRequiredOnlyWithURL:(id)arg1;
++ (id)buildWithURL:(id)arg1 withName:(id)arg2 withSubject:(id)arg3 withKeysize:(id)arg4 withKeyType:(id)arg5 withKeyUsage:(id)arg6 withCAFingerprint:(id)arg7 withRetries:(id)arg8 withRetryDelay:(id)arg9 withSubjectAltName:(id)arg10 withKeyIsExtractable:(id)arg11 withChallengeCredential:(id)arg12 withAllowAllAppsAccess:(id)arg13;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadAllowAllAppsAccess; // @synthesize payloadAllowAllAppsAccess=_payloadAllowAllAppsAccess;
 @property(copy, nonatomic) NSString *payloadChallengeCredential; // @synthesize payloadChallengeCredential=_payloadChallengeCredential;
@@ -38,7 +38,6 @@
 @property(copy, nonatomic) NSNumber *payloadKeyUsage; // @synthesize payloadKeyUsage=_payloadKeyUsage;
 @property(copy, nonatomic) NSString *payloadKeyType; // @synthesize payloadKeyType=_payloadKeyType;
 @property(copy, nonatomic) NSNumber *payloadKeysize; // @synthesize payloadKeysize=_payloadKeysize;
-@property(copy, nonatomic) NSString *payloadChallenge; // @synthesize payloadChallenge=_payloadChallenge;
 @property(copy, nonatomic) NSArray *payloadSubject; // @synthesize payloadSubject=_payloadSubject;
 @property(copy, nonatomic) NSString *payloadName; // @synthesize payloadName=_payloadName;
 @property(copy, nonatomic) NSString *payloadURL; // @synthesize payloadURL=_payloadURL;

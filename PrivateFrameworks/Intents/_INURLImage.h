@@ -15,14 +15,18 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)supportsSecureCoding;
-@property(copy, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
+@property(readonly, copy, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
 - (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (id)_initWithURLRepresentation:(id)arg1;
+- (id)_URLRepresentation;
+- (void)_setUri:(id)arg1;
 - (id)_copyWithSubclass:(Class)arg1;
 - (BOOL)_requiresRetrieval;
 - (id)_identifier;
 - (id)_dictionaryRepresentation;
+- (id)initWithImageURL:(id)arg1;
 - (void)_loadImageDataAndSizeWithHelper:(id)arg1 accessSpecifier:(id)arg2 completion:(CDUnknownBlockType)arg3;
 
 @end

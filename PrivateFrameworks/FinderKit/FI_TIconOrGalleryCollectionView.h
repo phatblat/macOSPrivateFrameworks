@@ -17,6 +17,10 @@ __attribute__((visibility("hidden")))
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (id)hitTestInIconViewIconOrText:(const struct CGPoint *)arg1;
+- (id)hitTestInIconViewText:(const struct CGPoint *)arg1;
+- (id)hitTestInIconViewIcon:(const struct CGPoint *)arg1;
+- (id)viewAtLocalPoint:(const struct CGPoint *)arg1;
 - (void)shrinkToFitTextViewAboutToClose;
 - (void)shrinkToFitTextViewEditingComplete:(id)arg1;
 - (_Bool)shrinkToFitTextViewAboutToOpen;

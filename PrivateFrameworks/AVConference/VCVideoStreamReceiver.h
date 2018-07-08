@@ -76,7 +76,7 @@ __attribute__((visibility("hidden")))
 - (void *)networkReceivePackets;
 - (int)stopNetworkReceiveThread;
 - (int)startNetworkReceiveThread;
-- (void)updateSourcePlayoutTimestamp:(unsigned int)arg1;
+- (void)updateSourcePlayoutTimestamp:(CDStruct_1b6d18a9 *)arg1;
 - (void)setSyncSource:(id)arg1;
 - (id)syncSource;
 - (void)stopSynchronization;

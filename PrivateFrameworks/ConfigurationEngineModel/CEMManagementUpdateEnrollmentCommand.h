@@ -15,6 +15,7 @@
     NSData *_payloadProfile;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withProfile:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withProfile:(id)arg2;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

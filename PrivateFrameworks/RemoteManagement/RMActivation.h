@@ -12,16 +12,19 @@
 {
 }
 
++ (id)fetchRequestForActivationsWithIdentifier:(id)arg1 organizationIdentifier:(id)arg2;
++ (id)fetchRequestForActivationsAppliedToUserDSID:(id)arg1 organizationIdentifier:(id)arg2;
 + (id)fetchRequestForActivationsBelongingToOrganizationWithIdentifier:(id)arg1;
 - (id)computeUniqueIdentifier;
 - (void)didChangeValueForKey:(id)arg1;
+@property(retain, nonatomic) RMOrganization *organization; // @dynamic organization;
 
 // Remaining properties
 @property(copy, nonatomic) NSData *activationPlist; // @dynamic activationPlist;
 @property(retain, nonatomic) NSSet *appliedToUsers; // @dynamic appliedToUsers;
 @property(retain, nonatomic) NSSet *configurations; // @dynamic configurations;
 @property(copy, nonatomic) NSString *identifier; // @dynamic identifier;
-@property(retain, nonatomic) RMOrganization *organization; // @dynamic organization;
+@property(copy, nonatomic) NSString *organizationIdentifier; // @dynamic organizationIdentifier;
 
 @end
 

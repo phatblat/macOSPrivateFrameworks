@@ -14,6 +14,7 @@
     CEMSystemEnergySaverDeclaration_RepeatingPowerItem *_payloadRepeatingPowerOff;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithRepeatingPowerOn:(id)arg1 withRepeatingPowerOff:(id)arg2;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) CEMSystemEnergySaverDeclaration_RepeatingPowerItem *payloadRepeatingPowerOff; // @synthesize payloadRepeatingPowerOff=_payloadRepeatingPowerOff;

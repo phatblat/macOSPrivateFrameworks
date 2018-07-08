@@ -15,6 +15,7 @@
     NSString *_payloadESIMServerURL;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withESIMServerURL:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withESIMServerURL:(id)arg2;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

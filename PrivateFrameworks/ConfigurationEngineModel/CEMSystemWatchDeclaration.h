@@ -16,6 +16,7 @@
     NSNumber *_payloadAllowPairedWatch;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withForceWatchWristDetection:(id)arg2 withAllowPairedWatch:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

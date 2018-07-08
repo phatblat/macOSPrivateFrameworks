@@ -30,6 +30,8 @@
 @property(retain, nonatomic) NSData *_ucData; // @synthesize _ucData=__ucData;
 @property(copy, nonatomic) NSString *currentInputSourceName; // @synthesize currentInputSourceName=_currentInputSourceName;
 - (void).cxx_destruct;
+- (BOOL)usbKeyCodeIsModifiedByCapsLock:(unsigned long long)arg1 modifiers:(unsigned long long)arg2 deadKeyState:(unsigned int)arg3;
+- (BOOL)macKeyCodeIsModifiedByCapsLock:(unsigned long long)arg1 modifiers:(unsigned long long)arg2 deadKeyState:(unsigned int)arg3;
 - (id)description;
 - (id)_fixedStringForMacKeyCode:(unsigned long long)arg1;
 - (id)keyCapsByModifierMaskForUSBKeyCode:(unsigned long long)arg1 deadKeyState:(unsigned int)arg2;

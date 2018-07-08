@@ -20,6 +20,7 @@
     NSString *_payloadIcon;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withURL:(id)arg2 withLabel:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withPrecomposed:(id)arg2 withFullScreen:(id)arg3 withURL:(id)arg4 withIsRemovable:(id)arg5 withLabel:(id)arg6 withIcon:(id)arg7;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

@@ -16,6 +16,7 @@
     NSNumber *_payloadDay;
 }
 
++ (id)buildRequiredOnlyWithFrequency:(id)arg1;
 + (id)buildWithFrequency:(id)arg1 withLocalTime:(id)arg2 withSpread:(id)arg3 withDay:(id)arg4;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadDay; // @synthesize payloadDay=_payloadDay;

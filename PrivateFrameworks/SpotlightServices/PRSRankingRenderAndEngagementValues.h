@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
 
 @class NSMutableArray;
 
-@interface PRSRankingRenderAndEngagementValues : NSObject <NSSecureCoding>
+@interface PRSRankingRenderAndEngagementValues : NSObject <NSSecureCoding, NSCopying>
 {
     NSMutableArray *_renderValues;
     NSMutableArray *_engagementValues;
@@ -23,6 +24,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 
 @end
 

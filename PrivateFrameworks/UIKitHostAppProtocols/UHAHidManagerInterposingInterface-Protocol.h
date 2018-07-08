@@ -6,7 +6,12 @@
 
 #import "ROCKImpersonateable.h"
 
+@class NSData;
+
 @protocol UHAHidManagerInterposingInterface <ROCKImpersonateable>
+@property(readonly) BOOL forceClickPerformsQuickLook;
 - (void)registerServiceId:(unsigned long long)arg1 dataHandler:(void (^)(NSData *))arg2;
+- (NSData *)pullNextEventDataFromQueue;
+- (void)registerEventPingHandler:(void (^)(void))arg1;
 @end
 

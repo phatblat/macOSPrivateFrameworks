@@ -18,6 +18,7 @@
     NSString *_payloadPassword;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withDestinationName:(id)arg2 withDestinationDeviceID:(id)arg3 withScanTime:(id)arg4 withPassword:(id)arg5;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

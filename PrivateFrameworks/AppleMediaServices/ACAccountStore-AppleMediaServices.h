@@ -17,6 +17,7 @@
 + (id)ams_sharedAccountStore;
 - (id)ams_iTunesSandboxAccounts;
 - (void)_createLocalAccount;
+- (id)_allCommerceiTunesAccounts;
 - (id)_alliTunesAccounts;
 - (BOOL)ams_removeCookiesMatchingProperties:(id)arg1 error:(id *)arg2;
 - (BOOL)ams_addCookiesForResponse:(id)arg1 request:(id)arg2 account:(id)arg3 error:(id *)arg4;

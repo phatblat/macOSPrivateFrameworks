@@ -26,7 +26,7 @@ __attribute__((visibility("hidden")))
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)applyTagsToNodes;
-- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesChanged:(const struct TFENodeUpdateList *)arg2 inObservedNode:(const struct TFENode *)arg3;
+- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesChanged:(const vector_614ab7ad *)arg2 inObservedNode:(const struct TFENode *)arg3;
 @property(copy, nonatomic) NSArray *tags; // @dynamic tags;
 - (void)setNodes:(const struct TFENodeVector *)arg1;
 - (struct TFENodeVector)nodes;

@@ -17,6 +17,7 @@
     NSMutableDictionary *_appletsById;
 }
 
+- (id)getOSUpdateLog;
 - (BOOL)powerCycleSEID:(id)arg1 error:(id *)arg2;
 - (id)dumpDomain:(unsigned char)arg1 forSEID:(id)arg2 error:(id *)arg3;
 - (id)dumpDomain:(unsigned char)arg1 forSEID:(id)arg2;

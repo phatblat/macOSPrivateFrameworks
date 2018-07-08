@@ -9,13 +9,14 @@
 @protocol RMToolXPCInterface
 - (void)removeNotificationWithContext:(RMUserNotificationContext *)arg1 completionHandler:(void (^)(NSError *))arg2;
 - (void)postNotificationWithContext:(RMUserNotificationContext *)arg1 completionHandler:(void (^)(NSError *))arg2;
+- (void)postWeeklyReportNotificationWithCompletionHandler:(void (^)(NSError *))arg1;
+- (void)purgeUsageDataIncludingUsageTracking:(BOOL)arg1 withCompletion:(void (^)(id, NSError *))arg2;
 - (void)rollupUsageData:(void (^)(NSError *))arg1;
 - (void)fetchFamilyStatus:(void (^)(NSDictionary *))arg1;
 - (void)requeryFamilyStatus:(void (^)(NSDictionary *, NSError *))arg1;
-- (void)gatherDataWithCompletion:(void (^)(id, NSError *))arg1;
+- (void)setScreenTimeEnabled:(BOOL)arg1 withCompletion:(void (^)(NSError *))arg2;
+- (void)gatherDataWithFullDetails:(BOOL)arg1 withCompletion:(void (^)(id, NSError *))arg2;
 - (void)startMirroringSyncWithCompletion:(void (^)(id, NSError *))arg1;
-- (void)startMirroringExportWithCompletion:(void (^)(id, NSError *))arg1;
-- (void)startMirroringImportWithCompletion:(void (^)(id, NSError *))arg1;
 - (void)sendUsageRequestPayload:(NSDictionary *)arg1 withCompletion:(void (^)(BOOL, NSError *))arg2;
 - (void)setInstalledApps:(NSDictionary *)arg1 completion:(void (^)(id, NSError *))arg2;
 - (void)sendExtensionRequest:(RMExtensionRequest *)arg1 withCompletion:(void (^)(BOOL, NSError *))arg2;

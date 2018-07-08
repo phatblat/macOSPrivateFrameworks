@@ -9,7 +9,7 @@
 @protocol INHServing
 - (oneway void)purgeImageWithIdentifier:(NSString *)arg1 completion:(void (^)(NSError *))arg2;
 - (oneway void)retrieveImageWithIdentifier:(NSString *)arg1 completion:(void (^)(INImage *, NSError *))arg2;
-- (oneway void)storeImage:(INImage *)arg1 completion:(void (^)(NSString *, NSError *))arg2;
+- (oneway void)storeImage:(INImage *)arg1 scaled:(BOOL)arg2 completion:(void (^)(NSString *, NSError *))arg3;
 - (oneway void)loadImageData:(INImage *)arg1 usingPortableImageLoader:(INPortableImageLoader *)arg2 completion:(void (^)(INImage *, NSError *))arg3;
 @end
 

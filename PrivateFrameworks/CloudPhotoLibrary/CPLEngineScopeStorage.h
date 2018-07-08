@@ -6,11 +6,15 @@
 
 #import <CloudPhotoLibrary/CPLEngineStorage.h>
 
-@class _CPLEngineScopeCache;
+#import "CPLAbstractObject.h"
 
-@interface CPLEngineScopeStorage : CPLEngineStorage
+@class CPLPlatformObject, NSMutableSet, NSString, _CPLEngineScopeCache;
+
+@interface CPLEngineScopeStorage : CPLEngineStorage <CPLAbstractObject>
 {
     _CPLEngineScopeCache *_scopeCache;
+    NSMutableSet *_scopeIdentifiersExcludedFromMingling;
+    NSMutableSet *_scopeIdentifiersManuallyExcludedFromMingling;
     BOOL _shouldResetGlobalsForMainScope;
     BOOL _scheduleATransportUpdate;
     BOOL _scheduleAScopeUpdate;
@@ -25,6 +29,13 @@
 }
 
 - (void).cxx_destruct;
+- (void)forceIncludeScopeIdentifierInMingling:(id)arg1;
+- (void)forceExcludeScopeIdentifierFromMingling:(id)arg1;
+- (void)includeScopeIdentifierInMingling:(id)arg1;
+- (void)excludeScopeIdentifierFromMingling:(id)arg1;
+- (id)filterOnScopesAllowingMingling;
+- (id)filterForExcludedScopeIdentifiers:(id)arg1;
+- (id)filterForIncludedScopeIdentifiers:(id)arg1;
 - (BOOL)storeScopeListSyncAnchor:(struct NSData *)arg1 error:(id *)arg2;
 - (struct NSData *)scopeListSyncAnchor;
 - (id)primaryScope;
@@ -50,6 +61,7 @@
 - (struct NSData *)transientSyncAnchorForScope:(id)arg1;
 @property(readonly, nonatomic) BOOL hasStagedSyncAnchors;
 - (BOOL)hasStagedSyncAnchorForScope:(id)arg1;
+- (BOOL)discardStagedSyncAnchorWithScopeFilter:(id)arg1 error:(id *)arg2;
 - (BOOL)discardStagedSyncAnchorForScope:(id)arg1 error:(id *)arg2;
 - (BOOL)commitSyncAnchorForScope:(id)arg1 error:(id *)arg2;
 - (BOOL)setSyncAnchor:(struct NSData *)arg1 forScope:(id)arg2 error:(id *)arg3;
@@ -147,6 +159,13 @@
 - (unsigned long long)scopeType;
 - (BOOL)openWithError:(id *)arg1;
 - (id)initWithEngineStore:(id)arg1 name:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) CPLPlatformObject *platformObject;
+@property(readonly) Class superclass;
 
 @end
 

@@ -38,6 +38,7 @@
 
 + (id)cleanImageMetadataFromData:(id)arg1;
 + (BOOL)hasPrivateImageMetadata:(id)arg1;
++ (id)supportedOutputTypes;
 @property BOOL cropToolEnabled; // @synthesize cropToolEnabled=_cropToolEnabled;
 @property(copy, nonatomic) NSString *hostProcessBundleIdentifier; // @synthesize hostProcessBundleIdentifier=_hostProcessBundleIdentifier;
 @property BOOL encryptPrivateMetadata; // @synthesize encryptPrivateMetadata=_encryptPrivateMetadata;

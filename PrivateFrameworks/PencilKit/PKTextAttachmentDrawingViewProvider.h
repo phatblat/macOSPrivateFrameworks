@@ -10,6 +10,7 @@
 {
 }
 
++ (void)registerViewProviderClassIfNecessary;
 + (void)didInsertDrawingAttachment:(id)arg1;
 - (void)loadView;
 

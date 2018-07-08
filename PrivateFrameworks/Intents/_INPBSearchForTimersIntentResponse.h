@@ -16,13 +16,19 @@
 @interface _INPBSearchForTimersIntentResponse : PBCodable <_INPBSearchForTimersIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
 {
     struct _has;
+    NSArray *_matchedTimers;
     NSArray *_timers;
+    NSArray *_unmatchedTimers;
     INCodableAttribute *_associatedCodableAttribute;
 }
 
++ (Class)unmatchedTimersType;
 + (Class)timersType;
++ (Class)matchedTimersType;
 @property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
+@property(copy, nonatomic) NSArray *unmatchedTimers; // @synthesize unmatchedTimers=_unmatchedTimers;
 @property(copy, nonatomic) NSArray *timers; // @synthesize timers=_timers;
+@property(copy, nonatomic) NSArray *matchedTimers; // @synthesize matchedTimers=_matchedTimers;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 @property(readonly) unsigned long long hash;
@@ -30,10 +36,18 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (id)unmatchedTimersAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long unmatchedTimersCount;
+- (void)addUnmatchedTimers:(id)arg1;
+- (void)clearUnmatchedTimers;
 - (id)timersAtIndex:(unsigned long long)arg1;
 @property(readonly, nonatomic) unsigned long long timersCount;
 - (void)addTimers:(id)arg1;
 - (void)clearTimers;
+- (id)matchedTimersAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long matchedTimersCount;
+- (void)addMatchedTimers:(id)arg1;
+- (void)clearMatchedTimers;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

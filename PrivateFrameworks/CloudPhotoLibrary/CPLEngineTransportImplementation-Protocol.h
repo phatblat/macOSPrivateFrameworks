@@ -38,7 +38,7 @@
 - (id <CPLEngineTransportGroup>)createGroupForResetSync;
 - (id <CPLEngineTransportGroup>)createGroupForInitialUpload;
 - (void)getPushEnvironmentWithCompletionHandler:(void (^)(NSString *, NSString *, NSError *))arg1;
-- (void)cancelBlockedTasks;
+- (void)cancelBlockedTasksIncludingBackground:(BOOL)arg1;
 - (void)noteClientIsEndingSignificantWork;
 - (void)noteClientIsBeginningSignificantWork;
 - (void)setShouldOverride:(BOOL)arg1 forSystemBudgets:(unsigned long long)arg2;

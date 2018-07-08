@@ -13,6 +13,7 @@ __attribute__((visibility("hidden")))
 
 + (id)returnTypes;
 + (id)name;
+- (id)makeRequest;
 - (id)serviceIdentifier;
 
 @end

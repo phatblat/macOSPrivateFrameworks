@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSDate, NSObject<OS_dispatch_queue>, NSString, SFDevice, SFSession;
+@class NSArray, NSDate, NSObject<OS_dispatch_queue>, NSString, SFDevice, SFSession;
 
 @interface SFRemoteAutoFillSession : NSObject
 {
@@ -15,6 +15,7 @@
     NSString *_contextLocalizedAppName;
     int _contextRequestState;
     NSString *_contextUnlocalizedAppName;
+    NSArray *_contextAssociatedDomains;
     NSString *_contextURL;
     BOOL _invalidateCalled;
     BOOL _pairingFinishedNotified;

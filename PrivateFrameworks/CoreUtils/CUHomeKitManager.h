@@ -77,9 +77,7 @@
 @property(nonatomic) unsigned int flags; // @synthesize flags=_flags;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
 - (void).cxx_destruct;
-- (void)user:(id)arg1 didUpdatePairingIdentity:(id)arg2;
 - (void)user:(id)arg1 didUpdateAssistantAccessControl:(id)arg2 forHome:(id)arg3;
-- (void)accessory:(id)arg1 didUpdatePairingIdentity:(id)arg2;
 - (void)accessoryDidUpdateApplicationData:(id)arg1;
 - (void)mediaSystem:(id)arg1 didUpdateName:(id)arg2;
 - (void)mediaSystem:(id)arg1 didUpdateComponents:(id)arg2;
@@ -98,12 +96,12 @@
 - (void)homeManagerDidUpdateHomes:(id)arg1;
 - (void)homeManagerDidUpdateDataSyncState:(id)arg1;
 - (id)_selfAccessoryMediaSystemUncached:(id *)arg1;
-- (id)_selfAccessoryUncached;
 - (BOOL)_isOwnerOfHome:(id)arg1;
 - (id)_cuPairingIdentityWithHMFPairingIdentity:(id)arg1 options:(unsigned long long)arg2 error:(id *)arg3;
-- (id)_bestPairingIdentityAndLabel:(id *)arg1;
+- (id)_bestUserAndLabel:(id *)arg1;
 - (void)_findPairedPeer:(id)arg1 options:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)findPairedPeer:(id)arg1 options:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)_getPairingIdentityCompleted:(id)arg1 options:(unsigned long long)arg2 error:(id)arg3 label:(id)arg4 completion:(CDUnknownBlockType)arg5;
 - (void)_getPairingIdentityForUserWithOptions:(unsigned long long)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_getPairingIdentityForAccessoryWithOptions:(unsigned long long)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)getPairingIdentityWithOptions:(unsigned long long)arg1 completion:(CDUnknownBlockType)arg2;

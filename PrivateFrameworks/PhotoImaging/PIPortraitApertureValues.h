@@ -18,6 +18,7 @@
 @property(retain, nonatomic) NSNumber *minimumAperture; // @synthesize minimumAperture=_minimumAperture;
 @property(nonatomic) float aperture; // @synthesize aperture=_aperture;
 - (void).cxx_destruct;
+- (id)description;
 
 @end
 

@@ -92,6 +92,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) unsigned int localBandwidthEstimation; // @synthesize localBandwidthEstimation=_localBandwidthEstimation;
 @property(readonly, nonatomic) BOOL isNewRateSentOut; // @synthesize isNewRateSentOut=_isNewRateSentOut;
 @property(readonly, nonatomic) double roundTripTime; // @synthesize roundTripTime=_roundTripTime;
+@property(readonly, nonatomic) unsigned int totalPacketReceived; // @synthesize totalPacketReceived=_totalPacketReceived;
 @property(readonly, nonatomic) double packetLossRate; // @synthesize packetLossRate=_packetLossRate;
 @property(readonly, nonatomic) unsigned int mostBurstLoss; // @synthesize mostBurstLoss=_mostBurstLoss;
 @property(retain, nonatomic) VCRateControlMediaController *mediaController; // @synthesize mediaController=_mediaController;
@@ -130,8 +131,8 @@ __attribute__((visibility("hidden")))
 - (void)stateChangeTo:(int)arg1;
 - (void)resetRampingStatus;
 - (void)updateInternalStatus;
-- (void)doRateControlWithBasebandStatistics:(CDStruct_dd06a755)arg1;
-- (void)doRateControlWithStatistics:(CDStruct_dd06a755)arg1;
+- (void)doRateControlWithBasebandStatistics:(CDStruct_48a7b5a5)arg1;
+- (void)doRateControlWithStatistics:(CDStruct_48a7b5a5)arg1;
 - (void)enableBasebandDump:(void *)arg1;
 - (void)enableLogDump:(void *)arg1 enablePeriodicLogging:(BOOL)arg2;
 - (void)configure:(struct VCRateControlAlgorithmConfig)arg1 restartRequired:(BOOL)arg2;

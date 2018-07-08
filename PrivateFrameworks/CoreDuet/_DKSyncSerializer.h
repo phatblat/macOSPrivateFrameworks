@@ -15,11 +15,6 @@
     NSOperation *_previousOperation;
 }
 
-+ (void)operationDeallocating:(id)arg1;
-+ (void)operationFinishing:(id)arg1;
-+ (void)operationNotExecuting:(id)arg1;
-+ (void)operationExecuting:(id)arg1;
-+ (void)operationStarting:(id)arg1;
 + (id)underlyingQueue;
 + (void)addDependentOperationWithBlock:(CDUnknownBlockType)arg1;
 + (void)addDependentOperation:(id)arg1;
@@ -34,7 +29,6 @@
 @property(readonly) NSObject<OS_dispatch_queue> *underlyingQueue; // @synthesize underlyingQueue=_underlyingQueue;
 @property(readonly) NSOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
 - (void).cxx_destruct;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (id)debugDescription;
 - (id)description;
 - (void)addDependentOperationWithBlock:(CDUnknownBlockType)arg1;

@@ -27,8 +27,8 @@ __attribute__((visibility("hidden")))
 - (id)_tryCreatingTokenForURLWithSynchronousUI:(id)arg1 permissions:(unsigned long long)arg2 identifier:(id)arg3 category:(long long)arg4 delegate:(id)arg5 error:(id *)arg6;
 - (void)_tryCreatingTokenForURLWithAsynchronousUI:(id)arg1 permissions:(unsigned long long)arg2 delegate:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (id)_createOpenPanel;
-- (id)_createTokenForAccessibleURL:(id)arg1 permissions:(unsigned long long)arg2 error:(id *)arg3;
-- (void)_createTokenForAccessibleURL:(id)arg1 permissions:(unsigned long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (id)_createTokenForAccessibleURL:(id)arg1 isSecurityScoped:(BOOL)arg2 permissions:(unsigned long long)arg3 error:(id *)arg4;
+- (void)_createTokenForAccessibleURL:(id)arg1 isSecurityScoped:(BOOL)arg2 permissions:(unsigned long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (BOOL)_canWriteFileAtURL:(id)arg1;
 - (BOOL)_canReadFileAtURL:(id)arg1;
 - (id)initWithSandboxExtensionController:(id)arg1 sandboxBrokerConnection:(id)arg2;

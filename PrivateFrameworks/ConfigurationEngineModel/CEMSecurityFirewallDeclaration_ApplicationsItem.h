@@ -14,6 +14,7 @@
     NSNumber *_payloadAllowed;
 }
 
++ (id)buildRequiredOnlyWithBundleID:(id)arg1 withAllowed:(id)arg2;
 + (id)buildWithBundleID:(id)arg1 withAllowed:(id)arg2;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadAllowed; // @synthesize payloadAllowed=_payloadAllowed;

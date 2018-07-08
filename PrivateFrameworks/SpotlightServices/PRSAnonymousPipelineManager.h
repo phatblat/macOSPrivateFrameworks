@@ -30,6 +30,7 @@
 + (id)candidateLogsURLForBundle:(id)arg1;
 + (id)candidateLogsBasePath;
 + (id)submittedLogsURL;
++ (id)submittedLogsURLForUser:(id)arg1;
 + (id)logURLForCurrentTimeAndBundle:(id)arg1;
 + (id)relativePositionKey;
 + (id)sharedManager;

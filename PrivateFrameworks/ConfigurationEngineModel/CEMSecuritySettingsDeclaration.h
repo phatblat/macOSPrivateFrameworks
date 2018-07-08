@@ -19,6 +19,7 @@
     NSNumber *_payloadAllowEnablingRestrictions;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowUntrustedTLSPrompt:(id)arg2 withAllowOTAPKIUpdates:(id)arg3 withForceEncryptedBackup:(id)arg4 withAllowEraseContentAndSettings:(id)arg5 withAllowEnablingRestrictions:(id)arg6;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

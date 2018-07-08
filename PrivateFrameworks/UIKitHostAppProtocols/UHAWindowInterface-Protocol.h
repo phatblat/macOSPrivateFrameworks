@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "ROCKForwardingInterposableWithRunLoop.h"
 #import "ROCKImpersonateable.h"
 
 @class NSArray, NSObject<OS_dispatch_queue>, NSString;
 
-@protocol UHAWindowInterface <ROCKImpersonateable>
+@protocol UHAWindowInterface <ROCKImpersonateable, ROCKForwardingInterposableWithRunLoop>
 @property(copy, nonatomic) CDUnknownBlockType appearsKeyDidChangeCallback;
 @property(readonly, nonatomic) BOOL appearsKey;
 @property(nonatomic) BOOL wantsDarkChrome;

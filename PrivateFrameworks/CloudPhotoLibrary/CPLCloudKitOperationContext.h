@@ -27,6 +27,7 @@
 @property(copy, nonatomic) NSArray *bundleIdentifiers; // @synthesize bundleIdentifiers=_bundleIdentifiers;
 @property(nonatomic) __weak CKOperation *operation; // @synthesize operation=_operation;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL mightBeBlocked;
 @property(readonly, nonatomic) double approximativeBlockedInterval;
 - (id)startDateDescriptionWithNow:(id)arg1;
 - (id)operationDescription;

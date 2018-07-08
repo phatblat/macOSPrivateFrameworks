@@ -15,6 +15,7 @@
     NSString *_payloadUserName;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withUserName:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withUserName:(id)arg2;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

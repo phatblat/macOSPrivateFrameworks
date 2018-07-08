@@ -17,6 +17,7 @@
     NSArray *_payloadDeniedExtensionPoints;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowedExtensions:(id)arg2 withDeniedExtensions:(id)arg3 withDeniedExtensionPoints:(id)arg4;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

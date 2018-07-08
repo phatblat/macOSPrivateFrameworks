@@ -6,14 +6,12 @@
 
 #import <PersonalizationPortraitInternals/PPContactSuggester.h>
 
-@class NSMutableSet, NSObject<OS_dispatch_queue>;
+@class NSObject<OS_dispatch_queue>, _PASLock;
 
 @interface PPDiscoverySuggester : PPContactSuggester
 {
     NSObject<OS_dispatch_queue> *_queue;
-    NSMutableSet *_seenEvents;
-    NSMutableSet *_seenNames;
-    NSMutableSet *_seenRecipients;
+    _PASLock *_data;
     BOOL _enabled;
 }
 
@@ -24,7 +22,10 @@
 - (void)_discoveredRecipient:(id)arg1;
 - (void)discoveredRecipients:(id)arg1;
 - (void)_discoveredEvent:(id)arg1 identifier:(id)arg2 store:(id)arg3;
-- (void)discoveredEvents:(id)arg1 store:(id)arg2;
+- (void)discoverEvent:(id)arg1 store:(id)arg2;
+- (void)_undiscoverEvent:(id)arg1 identifier:(id)arg2 store:(id)arg3;
+- (void)undiscoverEvent:(id)arg1 store:(id)arg2;
+- (void)_removeContacts:(id)arg1;
 - (void)_addContacts:(id)arg1;
 - (void)clearCaches;
 - (id)init;

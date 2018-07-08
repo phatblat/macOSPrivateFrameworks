@@ -12,7 +12,6 @@
 @property(readonly, nonatomic) NSData *jsonData;
 @property(copy, nonatomic) NSArray *feedbacks;
 @property(copy, nonatomic) NSString *parsecDeveloperID;
-@property(copy, nonatomic) NSString *version;
 @property(nonatomic) BOOL removeTimestamps;
 @property(nonatomic) double firstUseDate;
 @property(nonatomic) BOOL firstUseOfTheDay;

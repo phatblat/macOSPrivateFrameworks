@@ -38,7 +38,7 @@ __attribute__((visibility("hidden")))
 @property unsigned int lastRTPTimestamp; // @synthesize lastRTPTimestamp=_timestamp;
 @property CDStruct_1b6d18a9 lastFrameTime; // @synthesize lastFrameTime=_latestSampleBufferTimestamp;
 - (void)handleActiveConnectionChange:(id)arg1;
-- (void)collectChannelMetrics:(CDStruct_1c8e0384 *)arg1;
+- (void)collectChannelMetrics:(CDStruct_1c8e0384 *)arg1 interval:(float)arg2;
 - (void)setStreamIDs:(unsigned short *)arg1 numOfStreamIDs:(unsigned char)arg2 repairedStreamIDs:(unsigned short *)arg3 numOfRepairedStreamIDs:(unsigned char)arg4;
 - (void)setKeyFrameOnlyStreamID:(unsigned short)arg1;
 - (unsigned int)setTemporaryMaximumBitrate:(unsigned int)arg1;

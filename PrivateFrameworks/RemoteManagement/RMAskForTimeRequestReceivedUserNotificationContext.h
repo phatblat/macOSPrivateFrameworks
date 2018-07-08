@@ -6,14 +6,22 @@
 
 #import <RemoteManagement/RMUserNotificationContext.h>
 
+@class FAFamilyMember;
+
 @interface RMAskForTimeRequestReceivedUserNotificationContext : RMUserNotificationContext
 {
+    FAFamilyMember *_familyMember;
 }
 
 + (id)supportedCategories;
-- (id)categoryIdentifier;
-- (id)localizedUserNotificationBodyKey;
-- (id)localizedUserNotificationTitleKey;
++ (BOOL)supportsSecureCoding;
+@property(retain, nonatomic) FAFamilyMember *familyMember; // @synthesize familyMember=_familyMember;
+- (void).cxx_destruct;
+- (void)_fetchAndWriteFamilyPhotoURLIfNeeded:(CDUnknownBlockType)arg1;
+- (void)customizeNotificationContent:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (id)initWithAskForTimeRequestIdentifier:(id)arg1 familyMember:(id)arg2 requestedResourceName:(id)arg3;
 - (id)initWithAskForTimeRequestIdentifier:(id)arg1 childName:(id)arg2 requestedResourceName:(id)arg3;
 
 @end

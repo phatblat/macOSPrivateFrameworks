@@ -18,6 +18,7 @@
     NSNumber *_payloadRemoveWhenDeactivated;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withMedia:(id)arg2 withMandatory:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withMedia:(id)arg2 withMandatory:(id)arg3 withInstallWhenActivated:(id)arg4 withRemoveWhenDeactivated:(id)arg5;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

@@ -18,7 +18,6 @@
     IDSAccountController *_accountController;
     NSMutableDictionary *_uniqueIDToConnection;
     NSSet *_commands;
-    NSString *_rerouteService;
     NSMapTable *_delegateToInfo;
     id _delegateContext;
     NSMutableDictionary *_protobufSelectors;

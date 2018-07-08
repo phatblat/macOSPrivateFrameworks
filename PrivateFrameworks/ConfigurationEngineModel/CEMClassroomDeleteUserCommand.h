@@ -16,6 +16,7 @@
     NSNumber *_payloadForceDeletion;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withUserName:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withUserName:(id)arg2 withForceDeletion:(id)arg3;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

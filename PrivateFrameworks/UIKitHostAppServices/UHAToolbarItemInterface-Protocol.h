@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "ROCKForwardingInterposableWithRunLoop.h"
 #import "ROCKImpersonateable.h"
 
 @class NSString;
 
-@protocol UHAToolbarItemInterface <ROCKImpersonateable>
+@protocol UHAToolbarItemInterface <ROCKImpersonateable, ROCKForwardingInterposableWithRunLoop>
 @property(copy, nonatomic) CDUnknownBlockType changeHandler;
 @property(copy, nonatomic) NSString *label;
 @property(readonly, copy, nonatomic) NSString *identifier;

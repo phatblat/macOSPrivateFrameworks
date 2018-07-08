@@ -52,7 +52,7 @@
 - (id)transportScopeForUpgradeFromScopeName:(id)arg1;
 - (id)scopeNameForTransportScope:(id)arg1;
 - (id)descriptionForTransportScope:(id)arg1;
-- (void)cancelBlockedTasks;
+- (void)cancelBlockedTasksIncludingBackground:(BOOL)arg1;
 - (void)noteClientIsEndingSignificantWork;
 - (void)noteClientIsBeginningSignificantWork;
 - (void)setShouldOverride:(BOOL)arg1 forSystemBudgets:(unsigned long long)arg2;

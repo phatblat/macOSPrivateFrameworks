@@ -22,7 +22,6 @@
 + (void)continuePastReportsToSentry;
 + (void)monitorUntilNextWake;
 + (void)monitorForever;
-+ (id)_sentryFrameworkDefaults;
 - (void).cxx_destruct;
 - (BOOL)isWakeSlow:(id)arg1;
 - (void)recordSignpostsForWake:(id)arg1;

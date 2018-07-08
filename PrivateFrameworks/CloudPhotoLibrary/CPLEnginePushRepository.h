@@ -49,6 +49,7 @@
 - (id)_completeChange:(id)arg1;
 - (id)_propertiesForChange:(id)arg1;
 - (BOOL)storeChange:(id)arg1 uploadIdentifier:(id)arg2 error:(id *)arg3;
+- (BOOL)hasChangesWithScopeFilter:(id)arg1;
 - (BOOL)hasChangesInScopeWithIdentifier:(id)arg1;
 - (unsigned long long)countOfChangesInScopeWithIdentifier:(id)arg1;
 - (BOOL)deleteRecordsForScopeIndex:(long long)arg1 maxCount:(long long)arg2 deletedCount:(long long *)arg3 error:(id *)arg4;

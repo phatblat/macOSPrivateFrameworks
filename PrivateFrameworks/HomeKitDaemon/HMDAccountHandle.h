@@ -13,7 +13,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class IDSURI, NSString, NSUUID;
+@class CNContact, IDSURI, NSString, NSUUID;
 
 @interface HMDAccountHandle : HMFObject <HMFLogging, HMDBackingStoreObjectProtocol, HMDBackingStoreModelBackedObjectProtocol, HMDRemoteAddressable, NSCopying, NSSecureCoding>
 {
@@ -42,6 +42,7 @@
 - (void)transactionObjectRemoved:(id)arg1 message:(id)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+@property(readonly, copy) CNContact *contact;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly) long long type;
 - (id)attributeDescriptions;

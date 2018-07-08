@@ -56,7 +56,7 @@ __attribute__((visibility("hidden")))
 - (void)updatePreviewPanel;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesGoingAway:(const struct TFENodeVector *)arg2;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesDeleted:(const struct TFENodeVector *)arg2 fromObservedNode:(const struct TFENode *)arg3;
-- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesChanged:(const struct TFENodeUpdateList *)arg2 inObservedNode:(const struct TFENode *)arg3;
+- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesChanged:(const vector_614ab7ad *)arg2 inObservedNode:(const struct TFENode *)arg3;
 - (void)removeNodes:(const struct TFENodeVector *)arg1;
 - (void)setNodes:(const struct TFENodeVector *)arg1;
 - (const struct TFENodeVector *)nodes;

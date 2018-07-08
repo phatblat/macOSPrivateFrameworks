@@ -62,6 +62,8 @@
 - (void)dealloc;
 - (void)_registerPowerAssertionIfNeeded;
 - (void)_unregisterPowerAssertion;
+- (void)_schedulePowerAssertionTimer;
+- (void)_invalidatePowerAssertionTimer;
 - (void)_releasePowerAssertion;
 - (void)_releasePowerAssertionAndSimulateCrash;
 - (id)init;

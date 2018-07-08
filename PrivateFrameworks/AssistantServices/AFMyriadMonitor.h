@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSObject<OS_dispatch_source>;
+@class NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
 
 @interface AFMyriadMonitor : NSObject
 {
@@ -14,18 +14,17 @@
     NSObject<OS_dispatch_source> *_timer;
     struct __CFNotificationCenter *_center;
     NSObject<OS_dispatch_queue> *_myriadMonitorQueue;
-    NSObject<OS_dispatch_semaphore> *_decisionSemaphore;
-    NSMutableSet *_groupsToWake;
+    NSMutableSet *_completions;
 }
 
 + (void)clear;
-+ (void)awaitMyriadDecisionInGroup:(id)arg1;
++ (void)waitForMyriadDecisionWithCompletion:(CDUnknownBlockType)arg1;
 + (id)sharedMonitor;
 - (void).cxx_destruct;
 - (void)resultSeenWithValue:(BOOL)arg1;
-- (void)_leaveGroups;
+- (void)_flushCompletions;
 - (void)clear;
-- (void)addDispatchGroup:(id)arg1;
+- (void)addCompletion:(CDUnknownBlockType)arg1;
 - (void)setDecisionIsPending;
 - (void)dealloc;
 - (id)init;

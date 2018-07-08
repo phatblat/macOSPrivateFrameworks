@@ -15,6 +15,7 @@
     NSString *_statusName;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithAllowed:(id)arg1 withBundleID:(id)arg2 withName:(id)arg3;
 + (id)allowedStatusKeys;
 @property(copy, nonatomic) NSString *statusName; // @synthesize statusName=_statusName;

@@ -16,6 +16,7 @@
     NSArray *_payloadAllowedTVs;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowedRemotes:(id)arg2 withAllowedTVs:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

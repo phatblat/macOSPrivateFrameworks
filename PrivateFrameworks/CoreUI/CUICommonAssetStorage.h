@@ -97,6 +97,7 @@
 - (const struct _renditionkeyfmt *)keyFormat;
 - (id)keyFormatData;
 - (int)keySemantics;
+- (void)updateTimestamp;
 - (long long)storageTimestamp;
 - (long long)_storagefileTimestamp;
 - (unsigned int)schemaVersion;

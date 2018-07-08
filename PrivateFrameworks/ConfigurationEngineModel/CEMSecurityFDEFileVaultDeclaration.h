@@ -26,6 +26,7 @@
     NSString *_payloadCertificateIdentifier;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withEnable:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withEnable:(id)arg2 withDefer:(id)arg3 withUserEntersMissingInfo:(id)arg4 withUseRecoveryKey:(id)arg5 withShowRecoveryKey:(id)arg6 withOutputPath:(id)arg7 withUsername:(id)arg8 withPassword:(id)arg9 withUseKeychain:(id)arg10 withDeferForceAtUserLoginMaxBypassAttempts:(id)arg11 withDeferDontAskAtUserLogout:(id)arg12 withCertificateIdentifier:(id)arg13;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

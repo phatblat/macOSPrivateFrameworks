@@ -13,6 +13,7 @@
     NSNumber *_payloadOverridePrimary;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithOverridePrimary:(id)arg1;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadOverridePrimary; // @synthesize payloadOverridePrimary=_payloadOverridePrimary;

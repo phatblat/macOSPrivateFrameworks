@@ -25,6 +25,7 @@
 - (BOOL)commitAndWaitUntilSubmitted;
 - (void)commitAndHold;
 - (id <MTLDebugCommandEncoder>)debugCommandEncoder;
+- (id <MTLComputeCommandEncoder>)sampledComputeCommandEncoderWithDispatchType:(unsigned long long)arg1 programInfoBuffer:(CDStruct_4af8c268 *)arg2 capacity:(unsigned long long)arg3;
 - (id <MTLComputeCommandEncoder>)sampledComputeCommandEncoderWithProgramInfoBuffer:(CDStruct_4af8c268 *)arg1 capacity:(unsigned long long)arg2;
 - (id <MTLRenderCommandEncoder>)sampledRenderCommandEncoderWithDescriptor:(MTLRenderPassDescriptor *)arg1 programInfoBuffer:(CDStruct_4af8c268 *)arg2 capacity:(unsigned long long)arg3;
 - (id <MTLVideoCommandEncoderSPI>)videoCommandEncoder;

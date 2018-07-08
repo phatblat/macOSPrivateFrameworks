@@ -50,7 +50,6 @@ __attribute__((visibility("hidden")))
 - (void)mouseDragged:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)rightMouseDown:(id)arg1;
-- (void)dumpRepresentedObjectCache:(id)arg1;
 - (void)layout;
 - (struct CGSize)intrinsicContentSize;
 - (void)viewDidChangeBackingProperties;

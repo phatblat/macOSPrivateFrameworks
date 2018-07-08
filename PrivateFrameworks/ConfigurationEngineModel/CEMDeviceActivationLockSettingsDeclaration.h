@@ -15,6 +15,7 @@
     NSNumber *_payloadActivationLockAllowedWhileSupervised;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withActivationLockAllowedWhileSupervised:(id)arg2;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

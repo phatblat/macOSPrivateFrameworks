@@ -23,10 +23,7 @@
 + (id)extraordinaryThresholdConfig;
 + (id)participantsInEvent:(id)arg1;
 + (id)emailAddressFromEKAttendee:(id)arg1;
-+ (id)participantsFromEvents:(id)arg1;
-+ (id)eventTitlesFromEvents:(id)arg1;
-+ (BOOL)shouldConsiderAlarms:(id)arg1;
-+ (double)earliestStartTimeFromEvents:(id)arg1;
++ (id)enrichDictionary:(id)arg1 withEvent:(id)arg2;
 + (BOOL)scoreIsExtraordinary:(double)arg1 rankingOptions:(int)arg2;
 - (void).cxx_destruct;
 - (id)coreRoutineLocationsOfInterestLocationsUsingDate:(id)arg1;

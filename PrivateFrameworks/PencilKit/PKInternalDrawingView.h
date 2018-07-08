@@ -23,6 +23,7 @@
     struct CGPoint _oldEraseLocation;
     unsigned long long _maxNumPredictionPoints;
     NSMutableOrderedSet *_strokesToErase;
+    BOOL _shouldPresentInDidMoveToWindow;
     BOOL _isDrawing;
     BOOL _disableWideGamut;
     BOOL _zooming;
@@ -106,6 +107,7 @@
 - (void)eraseStrokesForPoint:(struct CGPoint)arg1 prevPoint:(struct CGPoint)arg2;
 - (void)eraseStrokesForPoint:(struct CGPoint)arg1;
 @property(readonly, nonatomic) BOOL isRendering;
+- (void)viewDidMoveToWindow;
 - (void)setDrawing:(id)arg1 image:(id)arg2 imageDrawing:(id)arg3 completion:(CDUnknownBlockType)arg4 fullyRenderedCompletionBlock:(CDUnknownBlockType)arg5;
 - (void)delayCompletionBlockUntilPresentation:(CDUnknownBlockType)arg1;
 - (void)rotate:(id)arg1;

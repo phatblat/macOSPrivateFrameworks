@@ -19,6 +19,7 @@
     NSString *_payloadOrganizationMagic;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withOrganizationName:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withOrganizationName:(id)arg2 withOrganizationAddress:(id)arg3 withOrganizationPhone:(id)arg4 withOrganizationEmail:(id)arg5 withOrganizationMagic:(id)arg6;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

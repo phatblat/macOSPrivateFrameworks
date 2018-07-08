@@ -8,7 +8,7 @@
 
 #import "UHADragItemInterface.h"
 
-@class NSArray, NSString;
+@class NSArray, NSObject<OS_dispatch_queue>, NSString;
 
 @interface UHADragItem : NSObject <UHADragItemInterface>
 {
@@ -25,6 +25,7 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *memoizableSerializerQueue;
 @property(readonly) Class superclass;
 
 @end

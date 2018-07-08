@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSSet, NSURL, NSUUID;
+@class NSSet, NSString, NSURL, NSUUID, TUHandle;
 
 @interface TUJoinConversationRequest : NSObject <NSCopying, NSSecureCoding>
 {
@@ -18,16 +18,23 @@
     BOOL _wantsStagingArea;
     NSSet *_remoteMembers;
     NSUUID *_UUID;
+    TUHandle *_callerID;
     NSUUID *_messagesGroupUUID;
+    NSString *_messagesGroupName;
 }
 
 + (BOOL)supportsSecureCoding;
++ (id)sanitizedMembersFromMembers:(id)arg1;
++ (id)messagesGroupNameFromURLComponents:(id)arg1;
 + (id)messagesGroupUUIDFromURLComponents:(id)arg1;
++ (id)callerIDFromURLComponents:(id)arg1;
 + (BOOL)wantsStagingAreaFromURLComponents:(id)arg1;
 + (BOOL)shouldSuppressInCallUIFromURLComponents:(id)arg1;
 + (BOOL)videoEnabledFromURLComponents:(id)arg1;
 + (id)remoteMembersFromURLComponents:(id)arg1;
+@property(copy, nonatomic) NSString *messagesGroupName; // @synthesize messagesGroupName=_messagesGroupName;
 @property(copy, nonatomic) NSUUID *messagesGroupUUID; // @synthesize messagesGroupUUID=_messagesGroupUUID;
+@property(retain, nonatomic) TUHandle *callerID; // @synthesize callerID=_callerID;
 @property(nonatomic) BOOL wantsStagingArea; // @synthesize wantsStagingArea=_wantsStagingArea;
 @property(nonatomic) BOOL shouldSuppressInCallUI; // @synthesize shouldSuppressInCallUI=_shouldSuppressInCallUI;
 @property(nonatomic, getter=isVideoEnabled) BOOL videoEnabled; // @synthesize videoEnabled=_videoEnabled;
@@ -37,7 +44,9 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)messagesGroupNameQueryItem;
 - (id)messagesGroupUUIDQueryItem;
+- (id)callerIDQueryItem;
 - (id)wantsStagingAreaQueryItem;
 - (id)shouldSuppressInCallUIQueryItem;
 - (id)videoEnabledQueryItem;

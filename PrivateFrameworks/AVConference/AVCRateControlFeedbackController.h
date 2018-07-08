@@ -30,7 +30,7 @@ __attribute__((visibility("hidden")))
 - (id)translateRateControlDataWithFeedbackMessage:(CDStruct_bcb9d60a)arg1;
 - (BOOL)processRateControlProbingMessage:(CDStruct_4c345eff)arg1 type:(unsigned int)arg2 error:(id *)arg3;
 - (BOOL)processRateControlFeedbackMessage:(CDStruct_bcb9d60a)arg1 type:(unsigned int)arg2 error:(id *)arg3;
-- (BOOL)getVCStatisticsFeedbackMessage:(CDStruct_dd06a755 *)arg1 time:(double)arg2;
+- (BOOL)getVCStatisticsFeedbackMessage:(CDStruct_48a7b5a5 *)arg1 time:(double)arg2;
 - (BOOL)getRateControlFeedbackMessage:(id *)arg1 type:(unsigned int)arg2 metaData:(id *)arg3 error:(id *)arg4;
 - (BOOL)processFeedbackMessage:(id)arg1 type:(unsigned int)arg2 metaData:(id)arg3 error:(id *)arg4;
 - (BOOL)getFeedbackMessage:(id *)arg1 type:(unsigned int)arg2 metaData:(id *)arg3 error:(id *)arg4;

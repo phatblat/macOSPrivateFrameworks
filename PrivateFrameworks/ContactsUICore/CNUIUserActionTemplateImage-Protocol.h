@@ -9,6 +9,7 @@
 @class NSImage;
 
 @protocol CNUIUserActionTemplateImage <NSObject>
+- (NSImage *)templateImage;
 - (NSImage *)thirtyPercentAlphaWhiteImage;
 - (NSImage *)systemMidGrayImage;
 - (NSImage *)whiteImage;

@@ -6,25 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSString, NSURL;
-
 @interface RMPersistenceConfiguration : NSObject
 {
-    NSString *_storeType;
-    NSString *_configurationType;
-    NSDictionary *_storeOptions;
-    NSDictionary *_mirroringOptions;
-    NSURL *_storeURL;
 }
 
-+ (id)storeURLForConfigurationType:(id)arg1;
-@property(readonly, nonatomic) NSURL *storeURL; // @synthesize storeURL=_storeURL;
-@property(readonly, copy, nonatomic) NSDictionary *mirroringOptions; // @synthesize mirroringOptions=_mirroringOptions;
-@property(readonly, copy, nonatomic) NSDictionary *storeOptions; // @synthesize storeOptions=_storeOptions;
-@property(readonly, copy, nonatomic) NSString *configurationType; // @synthesize configurationType=_configurationType;
-@property(readonly, copy, nonatomic) NSString *storeType; // @synthesize storeType=_storeType;
-- (void).cxx_destruct;
-- (id)initWithStoreType:(id)arg1 configurationType:(id)arg2 storeOptions:(id)arg3 mirroringOptions:(id)arg4 storeURL:(id)arg5;
++ (id)persistentStoreURLForConfigurationName:(id)arg1;
++ (id)persistentStoreDescriptionForConfigurationName:(id)arg1 type:(id)arg2;
++ (id)managedObjectModel;
++ (id)managedObjectModelURL;
 
 @end
 

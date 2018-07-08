@@ -20,6 +20,7 @@
 @property(readonly, nonatomic) CSSearchableIndex *index; // @synthesize index=_index;
 @property(retain, nonatomic) _CDEventIndexerContext *context; // @synthesize context=_context;
 - (void).cxx_destruct;
+- (void)resetIndex;
 - (void)indexAdditionsAsBatch;
 - (void)indexDeletionsAsBatch;
 - (void)_beginIndexingFromLatestSpotlightClientState;

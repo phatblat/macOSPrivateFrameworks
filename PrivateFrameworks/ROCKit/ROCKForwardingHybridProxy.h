@@ -8,19 +8,20 @@
 
 #import "ROCKMemoizable.h"
 
-@class NSString;
+@class NSObject<OS_dispatch_queue>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface ROCKForwardingHybridProxy : ROCKForwardingProxy <ROCKMemoizable>
 {
 }
 
-- (id)initWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 instance:(id)arg3 protocols:(id)arg4;
+- (id)initWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 instance:(id)arg3 protocols:(id)arg4 error:(id *)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *memoizableSerializerQueue;
 @property(readonly) Class superclass;
 
 @end

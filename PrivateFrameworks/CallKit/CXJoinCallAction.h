@@ -6,7 +6,7 @@
 
 #import <CallKit/CXCallAction.h>
 
-@class NSDate, NSSet, NSUUID;
+@class CXHandle, NSDate, NSSet, NSString, NSUUID;
 
 @interface CXJoinCallAction : CXCallAction
 {
@@ -16,17 +16,21 @@
     BOOL _upgrade;
     NSUUID *_groupUUID;
     NSSet *_remoteMembers;
+    CXHandle *_callerID;
     NSUUID *_messagesGroupUUID;
+    NSString *_messagesGroupName;
     NSDate *_dateStarted;
 }
 
 + (BOOL)supportsSecureCoding;
 @property(copy, nonatomic) NSDate *dateStarted; // @synthesize dateStarted=_dateStarted;
+@property(copy, nonatomic) NSString *messagesGroupName; // @synthesize messagesGroupName=_messagesGroupName;
 @property(copy, nonatomic) NSUUID *messagesGroupUUID; // @synthesize messagesGroupUUID=_messagesGroupUUID;
 @property(nonatomic, getter=isUpgrade) BOOL upgrade; // @synthesize upgrade=_upgrade;
 @property(nonatomic) BOOL wantsStagingArea; // @synthesize wantsStagingArea=_wantsStagingArea;
 @property(nonatomic) BOOL shouldSuppressInCallUI; // @synthesize shouldSuppressInCallUI=_shouldSuppressInCallUI;
 @property(nonatomic, getter=isVideoEnabled) BOOL videoEnabled; // @synthesize videoEnabled=_videoEnabled;
+@property(copy, nonatomic) CXHandle *callerID; // @synthesize callerID=_callerID;
 @property(copy, nonatomic) NSSet *remoteMembers; // @synthesize remoteMembers=_remoteMembers;
 @property(copy, nonatomic) NSUUID *groupUUID; // @synthesize groupUUID=_groupUUID;
 - (void).cxx_destruct;

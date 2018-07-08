@@ -190,7 +190,7 @@
 - (long long)linkType;
 - (id)primaryAccessory;
 - (id)services;
-- (void)createKeysForDataStreamWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)createKeysForDataStreamWithKeySalt:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)resolveLocalHostnameWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)pairSetupStartSoftAuthWAC;
 - (void)_continuePairingAfterConfirmingSoftAuthWAC;

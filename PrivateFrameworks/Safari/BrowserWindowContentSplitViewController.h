@@ -49,13 +49,11 @@ __attribute__((visibility("hidden")))
 - (void)_loadSidebarSplitViewItemIfNeeded;
 - (void)_updateConstraints;
 @property(retain, nonatomic) NSColor *separatorColor;
-@property(nonatomic) BOOL hidesSeparator;
 - (void)didForceContentRepaintAndCollectPageLayoutInformationForSidebarAnimationAfterResize:(id)arg1;
 - (BOOL)_isPageCenteredGivenLayoutInformation:(id)arg1;
 - (void)_browserViewDidResizeForSidebarAnimation:(id)arg1;
 - (void)didCollectPageLayoutInformationForSidebarAnimationBeforeResize;
 - (id)_browserViewForPageLayoutInformation;
-- (void)setSidebarSplitViewItemHasBaseVibrancyEffect:(BOOL)arg1;
 @property(readonly, nonatomic) BOOL isSidebarAnimationInProgress;
 - (double)sidebarWidth;
 - (void)hideOverlaySidebarIfNeeded;

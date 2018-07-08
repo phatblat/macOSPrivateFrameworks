@@ -10,22 +10,20 @@
 
 @interface DMFPolicyMonitor : NSObject
 {
-    NSMutableDictionary *_registrationsByIdentifier;
     NSXPCConnection *_xpcConnection;
     NSObject<OS_dispatch_queue> *_registrationCallbackQueue;
-    NSMutableDictionary *_notificationTokensByRegistrationIdentifier;
+    NSMutableDictionary *_notificationTokensByPolicyMonitorIdentifier;
 }
 
 + (id)remoteInterface;
 + (id)policyMonitor;
-@property(readonly, nonatomic) NSMutableDictionary *notificationTokensByRegistrationIdentifier; // @synthesize notificationTokensByRegistrationIdentifier=_notificationTokensByRegistrationIdentifier;
+@property(readonly, nonatomic) NSMutableDictionary *notificationTokensByPolicyMonitorIdentifier; // @synthesize notificationTokensByPolicyMonitorIdentifier=_notificationTokensByPolicyMonitorIdentifier;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *registrationCallbackQueue; // @synthesize registrationCallbackQueue=_registrationCallbackQueue;
 @property(readonly, nonatomic) NSXPCConnection *xpcConnection; // @synthesize xpcConnection=_xpcConnection;
-@property(readonly, nonatomic) NSMutableDictionary *registrationsByIdentifier; // @synthesize registrationsByIdentifier=_registrationsByIdentifier;
 - (void).cxx_destruct;
-- (void)_proxyWithRetryCount:(unsigned long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)requestPoliciesForTypes:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)addRegistration:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)addRegistration:(id)arg1 forPolicyMonitorIdentifier:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)invalidatePolicyMonitor:(id)arg1;
 - (void)dealloc;
 - (id)initWithXPCConnection:(id)arg1;
 - (id)init;

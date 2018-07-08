@@ -9,7 +9,7 @@
 #import "IMSendProgressDelegate.h"
 #import "INSpeakable.h"
 
-@class IMAccount, IMChatRegistry, IMHandle, IMMessage, IMScheduledUpdater, IMSendProgress, IMTimingCollection, MKMapItem, NSArray, NSData, NSDate, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSNumber, NSSet, NSString, TUConversation;
+@class IMAccount, IMChatRegistry, IMHandle, IMMessage, IMMessageItem, IMScheduledUpdater, IMSendProgress, IMTimingCollection, MKMapItem, NSArray, NSData, NSDate, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSNumber, NSSet, NSString, TUConversation;
 
 @interface IMChat : IMItemsController <INSpeakable, IMSendProgressDelegate>
 {
@@ -70,6 +70,7 @@
     BOOL _isCurrentlyDownloadingPurgedAssets;
     BOOL _hasSurfRequest;
     NSString *_personCentricID;
+    IMMessage *_lastSentMessage;
     NSDictionary *_bizIntent;
     double _latestTypingIndicatorTimeInterval;
     TUConversation *_conversation;
@@ -82,11 +83,18 @@
 + (void)updateVIPChatIdentifiers:(CDUnknownBlockType)arg1;
 + (CDUnknownBlockType)watermarkComparator;
 + (void)cleanWatermarkCache;
++ (void)removeGUIDInAttemptingListInScrutinyMode:(id)arg1;
++ (BOOL)isGUIDInAttemptingListInScrutinyMode:(id)arg1;
++ (void)storeGUIDInAttemptingListInScrutinyMode:(id)arg1;
++ (void)_removeGUID:(id)arg1 fromList:(id)arg2;
++ (void)_storeGUID:(id)arg1 forKey:(id)arg2;
++ (id)_GUIDsForKey:(id)arg1;
 + (id)__im_adjustMessageSummaryInfoForSending:(id)arg1;
 @property(readonly, nonatomic) TUConversation *conversation; // @synthesize conversation=_conversation;
 @property(nonatomic) double latestTypingIndicatorTimeInterval; // @synthesize latestTypingIndicatorTimeInterval=_latestTypingIndicatorTimeInterval;
 @property(copy, nonatomic) NSDictionary *bizIntent; // @synthesize bizIntent=_bizIntent;
 @property(readonly, nonatomic) long long lastMessageTimeStampOnLoad; // @synthesize lastMessageTimeStampOnLoad=_lastMessageTimeStampOnLoad;
+@property(readonly, nonatomic) IMMessage *lastSentMessage; // @synthesize lastSentMessage=_lastSentMessage;
 @property(nonatomic) BOOL hasSurfRequest; // @synthesize hasSurfRequest=_hasSurfRequest;
 @property(readonly, nonatomic) NSData *engramID; // @synthesize engramID=_engramID;
 @property(retain, nonatomic) NSString *personCentricID; // @synthesize personCentricID=_personCentricID;
@@ -117,7 +125,7 @@
 - (void)_daemonAlive:(id)arg1;
 - (void)_accountControllerUpdated:(id)arg1;
 - (BOOL)_sanityCheckAccounts;
-- (void)_handleAddressBookChange:(id)arg1;
+- (void)_handleAddressBookChangeForRecipientUID:(id)arg1;
 - (void)addPendingParticipants:(id)arg1;
 - (void)_removeParticipantsFromChat:(id)arg1 reason:(id)arg2 fromiMessageChat:(BOOL)arg3;
 - (void)removeParticipantsFromiMessageChat:(id)arg1 reason:(id)arg2;
@@ -183,6 +191,8 @@
 @property(readonly, nonatomic) NSString *roomNameWithoutSuffix;
 @property(readonly, nonatomic) NSString *deviceIndependentID;
 @property(readonly, nonatomic) NSString *persistentID;
+- (void)setLastAddressedHandle:(id)arg1;
+- (void)_updateLastAddressedHandleID:(id)arg1;
 - (void)_updateEngramID:(id)arg1;
 - (void)_updateDisplayName:(id)arg1;
 - (void)_setDisplayName:(id)arg1;
@@ -247,9 +257,11 @@
 @property(readonly, nonatomic) IMMessage *lastIncomingFinishedMessageWithTextContent;
 @property(readonly, nonatomic) IMMessage *lastIncomingFinishedMessage;
 @property(readonly, nonatomic) IMMessage *lastIncomingMessage;
+@property(readonly, nonatomic) IMMessageItem *lastFinishedMessageItem;
 @property(readonly, nonatomic) IMMessage *lastFinishedMessage;
 @property(readonly, nonatomic) IMMessage *firstMessage;
 - (id)messageForGUID:(id)arg1;
+- (id)_lastFinishedMessage;
 - (id)_appendArchivedItemsToItemsArray:(id)arg1;
 - (id)_archivedItemsToReplace:(id)arg1 numberOfMessagesBeforeGUID:(unsigned long long)arg2 numberOfMessagesAfterGUID:(unsigned long long)arg3;
 - (void)_insertHistoricalMessages:(id)arg1 queryID:(id)arg2 isRefresh:(BOOL)arg3 isHistoryQuery:(BOOL)arg4 limit:(unsigned long long)arg5 numberOfMessagesBeforeGUID:(unsigned long long)arg6 numberOfMessagesAfterGUID:(unsigned long long)arg7;
@@ -304,6 +316,14 @@
 - (id)allMessagesToReportAsSpam;
 - (id)chatItemsForItems:(id)arg1;
 - (id)chatItemsForMessages:(id)arg1;
+- (void)clearScrutinyMode;
+- (void)watermarkOutForScrutinyMode;
+- (BOOL)isInScrutinyMode;
+- (BOOL)_serverBagPreventsScrutinyMode;
+- (unsigned long long)scrutinyModeAttemptCount;
+- (void)watermarkInForScrutinyMode;
+- (void)_setRenderingDataDictionary:(id)arg1;
+- (id)_renderingDataDictionary;
 - (void)markChatItemAsPlayedExpressiveSend:(id)arg1;
 - (void)_markItemAsPlayed:(id)arg1;
 - (void)markChatItemAsPlayed:(id)arg1;

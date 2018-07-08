@@ -10,12 +10,19 @@
 {
 }
 
++ (id)subscriptionFromAvailableSubscriptions:(id)arg1 matchingSelectedSubscription:(id)arg2;
++ (BOOL)isPhoneNumber:(id)arg1 equivalentToExistingPhoneNumber:(id)arg2;
 - (id)_legacy_carrierBundleValueForKey:(id)arg1 ofType:(Class)arg2;
 - (id)selectedPhoneNumberRegistrationRegistrationCarrierBundleValueForKey:(id)arg1 ofType:(Class)arg2 withFallbackValue:(id)arg3;
 - (id)selectedRegistrationPhoneNumberWithError:(id *)arg1;
 - (BOOL)isSelectedPhoneNumberRegistrationSubscriptionContext:(id)arg1;
+- (id)selectedPhoneNumberRegistrationSubscriptionWithError:(id *)arg1 persistUpdateIfNeeded:(BOOL)arg2;
+- (void)reevaluateAndPersistSelectedPhoneNumberRegistrationSubscription;
 - (id)selectedPhoneNumberRegistrationSubscriptionWithError:(id *)arg1;
-- (BOOL)_userSelectionDoesMatchSubscriptionNumber:(long long)arg1;
+- (id)_PNRSubscriptionFromCTSubscriptionContext:(id)arg1;
+- (void)_makeSubscriptionChoiceStickyBasedOnPreviousReference:(id)arg1 newSelection:(id)arg2;
+- (id)_userSelectedReferencePNRSubscription;
+- (BOOL)_PNRSubscription:(id)arg1 doesMatchSubscriptionNumber:(long long)arg2;
 
 @end
 

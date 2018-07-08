@@ -73,7 +73,7 @@
 @property(readonly, copy, nonatomic) _INPBIntentResponse *backingStore; // @synthesize backingStore=_backingStore;
 - (long long)_code;
 - (void)_setCode:(long long)arg1;
-- (void)_commonInit;
+- (BOOL)_commonInit;
 - (id)initWithBackingStore:(id)arg1;
 - (id)_initWithCode:(long long)arg1 userActivity:(id)arg2;
 - (id)initWithCode:(long long)arg1 userActivity:(id)arg2;

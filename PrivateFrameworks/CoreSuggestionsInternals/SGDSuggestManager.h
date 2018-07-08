@@ -8,7 +8,7 @@
 
 #import "SGDSuggestManagerAllProtocol.h"
 
-@class CNContactStore, EKEventStore, NSDictionary, NSLock, NSMutableSet, NSOperationQueue, NSString, NSXPCConnection, SGDManagerForCTS, SGQueryPredictions, SGServiceContext, SGSqlEntityStore, SGSuggestHistory, SGXpcTransaction, _PASNotificationToken;
+@class CNContactStore, EKEventStore, NSDictionary, NSLock, NSMutableSet, NSOperationQueue, NSString, NSXPCConnection, SGDManagerForCTS, SGServiceContext, SGSqlEntityStore, SGSuggestHistory, SGXpcTransaction, _PASNotificationToken;
 
 @interface SGDSuggestManager : NSObject <SGDSuggestManagerAllProtocol>
 {
@@ -21,8 +21,6 @@
     EKEventStore *_ekStore;
     CNContactStore *_contactStore;
     NSDictionary *_bundleIdToPET;
-    id <PMLTrainingProtocol> _pmlTraining;
-    SGQueryPredictions *_queryPredictions;
     NSLock *_dirtyLock;
     SGXpcTransaction *_dirtyTransaction;
     NSMutableSet *_recentlyHarvestedDetail;
@@ -38,7 +36,6 @@
 - (void).cxx_destruct;
 - (id)_maybeFormatString;
 - (void)deleteCloudKitZoneWithCompletion:(CDUnknownBlockType)arg1;
-- (void)setQueryPredictionsForTesting:(id)arg1;
 - (void)clearContactAggregatorConversation:(id)arg1;
 - (void)clearContactAggregator;
 - (void)sleepWithCompletion:(CDUnknownBlockType)arg1;
@@ -157,15 +154,15 @@
 - (void)prepareForRealtimeExtraction:(CDUnknownBlockType)arg1;
 - (BOOL)_clientIsMessages;
 - (BOOL)_clientIsMail;
+- (id)_pmlTraining;
 - (void)dealloc;
-- (id)initWithStore:(id)arg1 ctsManager:(id)arg2 ekStore:(id)arg3 contactStore:(id)arg4;
 - (id)initWithStore:(id)arg1;
-- (id)initWithStore:(id)arg1 queryPredictions:(id)arg2 ctsManager:(id)arg3 ekStore:(id)arg4 contactStore:(id)arg5;
+- (id)initWithStore:(id)arg1 ctsManager:(id)arg2 ekStore:(id)arg3 contactStore:(id)arg4;
 - (id)initWithMessagesConnection:(id)arg1 store:(id)arg2;
 - (id)initWithConnection:(id)arg1 store:(id)arg2;
 - (void)_onInteractionBlacklistUpdate:(id)arg1;
 - (void)_setupHistoryObserver:(id)arg1;
-- (void)setupManagerWithConnection:(id)arg1 store:(id)arg2 queryPredictions:(id)arg3 ctsManager:(id)arg4 ekStore:(id)arg5 contactStore:(id)arg6;
+- (void)setupManagerWithConnection:(id)arg1 store:(id)arg2 ctsManager:(id)arg3 ekStore:(id)arg4 contactStore:(id)arg5;
 
 @end
 

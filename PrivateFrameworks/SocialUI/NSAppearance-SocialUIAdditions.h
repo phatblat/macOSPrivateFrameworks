@@ -7,6 +7,22 @@
 #import "NSAppearance.h"
 
 @interface NSAppearance (SocialUIAdditions)
+- (id)recipientTokenExistingChatColor;
+- (id)recipientTokenBusinessColor;
+- (id)recipientTokenSMSColor;
+- (id)recipientTokeniMessageColor;
+- (id)recipientTokenDecidingColor;
+- (id)recipientTokenErrorColor;
+- (id)inputLineWaveformPlayedBarColor;
+- (id)inputLineWaveformBarColor;
+- (id)inputLineWaveformBackgroundColor;
+- (id)inputLinePlaceholderTextColor;
+- (id)inputLineTransferTextColor;
+- (id)inputLineTransferBackgroundColor;
+- (id)inputLineTextColor;
+- (id)inputLineInsertionPointColor;
+- (id)inputLineBorderColor;
+- (id)inputLineBackgroundColor;
 - (id)conversationListControllerCellSeperatorColor;
 - (BOOL)isDarkAqua_so;
 @end

@@ -30,16 +30,10 @@ __attribute__((visibility("hidden")))
     struct TNSRef<FI_TDesktopInlinePreviewController, void> _inlinePreviewController;
     _Bool _isUpdateInlinePreviewSuspended;
     struct shared_ptr<TInfoExtractorController> _infoController;
-    struct TNSRef<NSEvent, void> _mouseDownEventForDrag;
-    struct TFENode _nodeClickedOnMouseDown;
-    _Bool _doubleClickOnMouseUp;
-    _Bool _startEditingOnMouseUp;
-    struct CGPoint _initialClickAt;
     struct TNotificationCenterObserver _iconSizeSliderWillChangeObserver;
     struct TNotificationCenterObserver _iconSizeSliderDidChangeObserver;
     struct TNotificationCenterObserver _gridSpacingSliderWillChangeObserver;
     struct TNotificationCenterObserver _gridSpacingSliderDidChangeObserver;
-    struct TKeyValueObserver _selectionIndexPathsObserver;
     struct vector<TKeyValueBinder, std::__1::allocator<TKeyValueBinder>> _viewSettingsBinders;
     struct TNSRef<FI_TBrowserImmediateActionGestureRecognizerDelegate, void> _immediateActionGestureRecognizerDelegate;
     struct TNSRef<NSImmediateActionGestureRecognizer, void> _quickLookImmediateActionGestureRecognizer;
@@ -87,9 +81,8 @@ __attribute__((visibility("hidden")))
 - (void)performBatchUpdatesCompletionHandler:(const unordered_set_931aff12 *)arg1:(const unordered_map_f8b1458f *)arg2:(_Bool)arg3:(_Bool)arg4:(unsigned long long)arg5;
 - (void)configureGroupNodes:(const unordered_set_931aff12 *)arg1 firstPopulation:(_Bool)arg2;
 - (void)dataSourceChanged_insert:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2:(unordered_set_931aff12 *)arg3:(_Bool *)arg4;
-- (void)dataSourceChanged:(const vector_ddb76938 *)arg1;
+- (void)dataSourceChanged:(const vector_274a36ec *)arg1;
 - (_Bool)handleMouseUp:(id)arg1;
-- (_Bool)handleMouseDragged:(id)arg1;
 - (_Bool)handleMouseDown:(id)arg1;
 - (void)updateSpatialDataAfterGridSizeChange:(const struct CGSize *)arg1 oldFirstIconAnchorPoint:(const struct CGPoint *)arg2;
 - (void)getFreeFormLayoutGridSize:(struct CGSize *)arg1 firstIconAnchorPoint:(struct CGPoint *)arg2;
@@ -150,6 +143,7 @@ __attribute__((visibility("hidden")))
 - (void)saveScrollPosition;
 - (void)restoreBrowserViewState:(id)arg1;
 - (id)browserViewState;
+- (void)selectionIndexPathsChanged:(id)arg1;
 - (void)registerCollectionViewItemClassOrNib;
 - (id)itemIdentifier;
 - (void)reloadIconsInView;

@@ -67,9 +67,15 @@
     NSData *_encKey;
     NSData *_decKey;
     NSData *_hmacKey;
+    NSDictionary *_participantIDMap;
+    BOOL _serverIsDegraded;
+    double _testStartTime;
+    unsigned int _testOptions;
 }
 
 + (id)candidatePairWithLocalCandidate:(id)arg1 remoteCandidate:(id)arg2 sessionID:(id)arg3 delegate:(id)arg4 sendMsgBlock:(CDUnknownBlockType)arg5;
+@property(readonly, nonatomic) BOOL serverIsDegraded; // @synthesize serverIsDegraded=_serverIsDegraded;
+@property(readonly) NSDictionary *participantIDMap; // @synthesize participantIDMap=_participantIDMap;
 @property(readonly) NSData *hmacKey; // @synthesize hmacKey=_hmacKey;
 @property(readonly) NSData *decKey; // @synthesize decKey=_decKey;
 @property(readonly) NSData *encKey; // @synthesize encKey=_encKey;
@@ -93,6 +99,7 @@
 @property(readonly, nonatomic) unsigned char statsIntervalInSeconds; // @synthesize statsIntervalInSeconds=_statsIntervalInSeconds;
 @property(nonatomic) double lastOutgoingPacketTime; // @synthesize lastOutgoingPacketTime=_lastOutgoingPacketTime;
 @property(nonatomic) double lastIncomingPacketTime; // @synthesize lastIncomingPacketTime=_lastIncomingPacketTime;
+@property(readonly, nonatomic) double testStartTime; // @synthesize testStartTime=_testStartTime;
 @property(copy) NSData *skeData; // @synthesize skeData=_skeData;
 @property(nonatomic) BOOL recvDisconnectedAck; // @synthesize recvDisconnectedAck=_recvDisconnectedAck;
 @property(nonatomic) BOOL recvDisconnected; // @synthesize recvDisconnected=_recvDisconnected;
@@ -123,9 +130,11 @@
 - (BOOL)processStunErrorResponse:(id)arg1 packetBuffer:(CDStruct_e844bd1c *)arg2 headerOverhead:(unsigned long long)arg3;
 - (BOOL)processSessionInfoIndication:(id)arg1 arrivalTime:(double)arg2;
 - (BOOL)processInfoIndication:(id)arg1 arrivalTime:(double)arg2;
+- (BOOL)processTestResponse:(id)arg1 arrivalTime:(double)arg2;
 - (BOOL)processSessionInfoResponse:(id)arg1 packetBuffer:(CDStruct_e844bd1c *)arg2 headerOverhead:(unsigned long long)arg3;
 - (BOOL)processInfoResponse:(id)arg1 packetBuffer:(CDStruct_e844bd1c *)arg2 headerOverhead:(unsigned long long)arg3;
 - (BOOL)processStatsResponse:(id)arg1 arrivalTime:(double)arg2;
+- (void)sendTestRequest:(id)arg1;
 - (void)sendSessionInfoRequest:(id)arg1 options:(id)arg2;
 - (void)sendInfoRequest:(id)arg1;
 - (void)sendStatsRequest:(id)arg1 options:(id)arg2;
@@ -136,10 +145,12 @@
 - (void)removeStunRequest:(id)arg1;
 - (void)addStunRequest:(id)arg1;
 - (id)processParticipantsData:(char *)arg1 dataLen:(int)arg2;
+- (void)initParticipantIDMap;
 - (void)deriveAES128CTRKeys:(id)arg1;
 - (void)setProtocolVersion:(unsigned char)arg1 isInitiator:(BOOL)arg2 enableSKE:(BOOL)arg3;
 - (void)setRelayLinkID:(unsigned short)arg1;
 - (BOOL)hasValidCapabilityFlags;
+- (void)setTestOptionsFromUserDefaults;
 - (void)setChannelSettings:(unsigned int)arg1;
 @property(readonly, nonatomic) unsigned short hbCounter; // @synthesize hbCounter=_hbCounter;
 - (void)stopSessionConvergenceTimer;

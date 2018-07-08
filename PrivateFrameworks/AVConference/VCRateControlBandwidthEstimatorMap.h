@@ -14,11 +14,13 @@ __attribute__((visibility("hidden")))
     unsigned int _mode;
     unsigned int _radioAccessTechnology;
     double _estimatedBandwidth;
+    double _estimatedBandwidthUncapped;
     NSMutableDictionary *_estimatorMap;
     unsigned int _currentActiveEstimatorID;
     int _state;
 }
 
+@property(nonatomic) double estimatedBandwidthUncapped; // @synthesize estimatedBandwidthUncapped=_estimatedBandwidthUncapped;
 @property(nonatomic) unsigned int mode; // @synthesize mode=_mode;
 @property(nonatomic) unsigned int radioAccessTechnology; // @synthesize radioAccessTechnology=_radioAccessTechnology;
 @property(nonatomic) double estimatedBandwidth; // @synthesize estimatedBandwidth=_estimatedBandwidth;

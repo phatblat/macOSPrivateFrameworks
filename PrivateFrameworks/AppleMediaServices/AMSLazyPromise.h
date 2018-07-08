@@ -20,6 +20,7 @@
 - (id)resultWithError:(id *)arg1;
 - (id)resultBeforeDate:(id)arg1 error:(id *)arg2;
 - (void)addSuccessBlock:(CDUnknownBlockType)arg1;
+- (void)addFinishBlock:(CDUnknownBlockType)arg1;
 - (void)addErrorBlock:(CDUnknownBlockType)arg1;
 - (id)initWithBlock:(CDUnknownBlockType)arg1;
 

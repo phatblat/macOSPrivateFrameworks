@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class FAFamilyMember, NSArray, NSString, PRRequest;
+@class CKDialog, FAFamilyMember, NSArray, NSString, PRRequest;
 
 @protocol PRUIHelperProtocol <NSObject>
+- (void)presentDialog:(CKDialog *)arg1 delegate:(id <PRUIDialogDelegate>)arg2;
 - (void)showStorePreviewWindowForRequest:(PRRequest *)arg1 fromFamilyMember:(FAFamilyMember *)arg2 withRequestString:(NSString *)arg3 delegate:(id <PRUIPresenterDelegate>)arg4;
 - (void)promptForApprovalSignInWithRequest:(PRRequest *)arg1 localApproval:(BOOL)arg2 statusToSet:(unsigned long long)arg3 familyMembers:(NSArray *)arg4 explanation:(NSString *)arg5 delegate:(id <PRUISignInDelegate>)arg6;
 @end

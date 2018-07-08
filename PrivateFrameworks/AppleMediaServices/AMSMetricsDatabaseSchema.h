@@ -12,9 +12,10 @@ __attribute__((visibility("hidden")))
 }
 
 + (void)migrateVersion0to1WithMigration:(id)arg1;
-+ (id)_containerURL;
++ (id)_containerURLForContainerId:(id)arg1;
 + (void)_applyProtectionClassForDirectoryAtURL:(id)arg1;
 + (BOOL)_addSkipBackupAttribute:(BOOL)arg1 forURL:(id)arg2;
++ (BOOL)removeDatabaseForContainerId:(id)arg1;
 + (id)databasePathForContainerId:(id)arg1;
 + (BOOL)createOrUpdateSchemaUsingConnection:(id)arg1;
 

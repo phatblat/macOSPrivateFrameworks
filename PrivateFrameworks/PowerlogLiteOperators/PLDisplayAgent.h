@@ -66,7 +66,7 @@
 + (BOOL)shouldLogBLR;
 + (id)entryAggregateDefinitionUserTouch;
 + (id)entryAggregateDefinitions;
-+ (id)entryEventIntervalDefinitionAPLStats;
++ (id)entryEventBackwardDefinitionAPLStats;
 + (id)entryEventIntervalDefinitions;
 + (id)entryEventBackwardDefinitionBlueLightParameters;
 + (id)entryEventBackwardDefinitionTouch;

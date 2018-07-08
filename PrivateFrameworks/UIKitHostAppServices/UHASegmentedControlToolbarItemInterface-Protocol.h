@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "ROCKForwardingInterposableWithRunLoop.h"
 #import "UHAToolbarItemInterface.h"
 
 @class NSArray;
 
-@protocol UHASegmentedControlToolbarItemInterface <UHAToolbarItemInterface>
+@protocol UHASegmentedControlToolbarItemInterface <UHAToolbarItemInterface, ROCKForwardingInterposableWithRunLoop>
 @property(copy, nonatomic) CDUnknownBlockType actionHandler;
 @property(nonatomic) long long selectedSegment;
 @property(nonatomic) long long trackingMode;

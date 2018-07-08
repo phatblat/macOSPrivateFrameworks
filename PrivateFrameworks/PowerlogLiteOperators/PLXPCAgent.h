@@ -33,6 +33,8 @@
     PLXPCListenerOperatorComposition *_BackgroundTransfer;
     PLXPCListenerOperatorComposition *_telNotificationXPCListener;
     PLXPCListenerOperatorComposition *_SpotlightXPCListener;
+    PLXPCListenerOperatorComposition *_SpotlightQosXPCListener;
+    PLXPCListenerOperatorComposition *_SpotlightWatchdogFiredXPCListener;
     PLXPCListenerOperatorComposition *_siriFalseAlarm;
     PLXPCResponderOperatorComposition *_entryRequestResponder;
     NSDate *_spotlightAgentLastFlushDate;
@@ -82,6 +84,7 @@
 + (id)entryEventBackwardDefinitionAttentionService;
 + (id)entryEventBackwardDefinitionAttentionPolling;
 + (id)entryEventBackwardDefinitionAttentionSampling;
++ (id)entryEventBackwardDefinitionSpotlightQos;
 + (id)entryEventBackwardDefinitionSpotlight;
 + (id)entryEventBackwardDefinitionPeekPop;
 + (id)entryEventBackwardDefinitions;
@@ -99,6 +102,7 @@
 + (id)entryEventForwardDefinitionUIKitActivity;
 + (id)entryEventForwardDefinitionUIKitKeyboard;
 + (id)entryEventForwardDefinitions;
++ (id)entryEventPointDefinitionSpotlightWatchdogFired;
 + (id)entryEventPointDefinitionSiriActivication;
 + (id)entryEventPointDefinitionDeepScanReasons;
 + (id)entryEventPointDefinitionSecItem;
@@ -167,6 +171,8 @@
 @property(retain) NSDate *spotlightAgentLastFlushDate; // @synthesize spotlightAgentLastFlushDate=_spotlightAgentLastFlushDate;
 @property(retain) PLXPCResponderOperatorComposition *entryRequestResponder; // @synthesize entryRequestResponder=_entryRequestResponder;
 @property(retain) PLXPCListenerOperatorComposition *siriFalseAlarm; // @synthesize siriFalseAlarm=_siriFalseAlarm;
+@property(retain) PLXPCListenerOperatorComposition *SpotlightWatchdogFiredXPCListener; // @synthesize SpotlightWatchdogFiredXPCListener=_SpotlightWatchdogFiredXPCListener;
+@property(retain) PLXPCListenerOperatorComposition *SpotlightQosXPCListener; // @synthesize SpotlightQosXPCListener=_SpotlightQosXPCListener;
 @property(retain) PLXPCListenerOperatorComposition *SpotlightXPCListener; // @synthesize SpotlightXPCListener=_SpotlightXPCListener;
 @property(retain) PLXPCListenerOperatorComposition *telNotificationXPCListener; // @synthesize telNotificationXPCListener=_telNotificationXPCListener;
 @property(retain) PLXPCListenerOperatorComposition *BackgroundTransfer; // @synthesize BackgroundTransfer=_BackgroundTransfer;
@@ -206,6 +212,8 @@
 - (void)logEventBackwardAttentionSampling:(id)arg1;
 - (void)logEventBackwardNamePeek:(id)arg1;
 - (void)logEventBackwardNamePop:(id)arg1;
+- (void)logEventPointNameSpotlightWatchdogFired:(id)arg1;
+- (void)logEventBackwardNameSpotlightQos:(id)arg1;
 - (void)logEventBackwardNameSpotlight:(id)arg1;
 - (void)logEventBackwardNameMediaServerdRTC:(id)arg1;
 - (void)logEventForwardThermalLevel:(id)arg1;

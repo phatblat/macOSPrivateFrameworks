@@ -18,6 +18,7 @@
     NSArray *_payloadTimeBudget;
 }
 
++ (id)buildRequiredOnlyWithMonitor:(id)arg1 withTimeBudget:(id)arg2;
 + (id)buildWithCalendarIdentifier:(id)arg1 withMonitor:(id)arg2 withIdentifiers:(id)arg3 withTimeBudget:(id)arg4;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

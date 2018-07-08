@@ -42,7 +42,6 @@ __attribute__((visibility("hidden")))
     struct vector<TKeyValueBinder, std::__1::allocator<TKeyValueBinder>> _viewSettingsBinders;
 }
 
-+ (double)columnViewDelayBeforeDisplay;
 @property(nonatomic) _Bool nextSelectionAllowsRetarget; // @synthesize nextSelectionAllowsRetarget=_nextSelectionAllowsRetarget;
 @property(nonatomic) int arrangeBy; // @synthesize arrangeBy=_arrangeBy;
 @property(nonatomic) _Bool delayedOpening; // @synthesize delayedOpening=_delayedOpening;
@@ -106,7 +105,7 @@ __attribute__((visibility("hidden")))
 - (void)handleNodeChangedPropertyMap:(const unordered_map_f886f0c5 *)arg1 forBrowserTableView:(id)arg2;
 - (void)attemptToSelectPendingNodes;
 - (void)reusingDataSource;
-- (void)dataSourceChanged:(const vector_ddb76938 *)arg1;
+- (void)dataSourceChanged:(const vector_274a36ec *)arg1;
 - (struct TFENodeVector)sortedGroups:(const struct TFENodeVector *)arg1 forContainerNode:(const struct TFENode *)arg2;
 - (int)editingSelectionType;
 - (void)updateSTFEditorLocation;

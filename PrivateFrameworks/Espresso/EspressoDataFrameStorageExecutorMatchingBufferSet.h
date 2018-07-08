@@ -12,12 +12,14 @@
 {
     unsigned long long _index;
     NSString *_name;
+    struct __CVBuffer *_computed_pb;
     CDStruct_0a65202a _reference_buffer;
     CDStruct_0a65202a _computed_buffer;
     CDStruct_0a65202a _groundtruth_buffer;
 }
 
 @property CDStruct_0a65202a groundtruth_buffer; // @synthesize groundtruth_buffer=_groundtruth_buffer;
+@property struct __CVBuffer *computed_pb; // @synthesize computed_pb=_computed_pb;
 @property CDStruct_0a65202a computed_buffer; // @synthesize computed_buffer=_computed_buffer;
 @property CDStruct_0a65202a reference_buffer; // @synthesize reference_buffer=_reference_buffer;
 @property(retain) NSString *name; // @synthesize name=_name;

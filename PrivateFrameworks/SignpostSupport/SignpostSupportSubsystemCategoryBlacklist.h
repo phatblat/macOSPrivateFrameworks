@@ -10,6 +10,7 @@
 {
 }
 
+- (void)_forceInclusionOfSubsystem:(id)arg1 category:(id)arg2;
 - (id)liveStreamingPredicate;
 - (BOOL)passesSubsystem:(id)arg1 category:(id)arg2;
 - (id)initWithEntries:(id)arg1;

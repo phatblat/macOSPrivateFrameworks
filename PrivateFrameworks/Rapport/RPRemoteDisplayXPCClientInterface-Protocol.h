@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSDictionary, NSNumber, NSString, RPRemoteDisplayDevice;
+@class NSDictionary, NSError, NSNumber, NSString, RPRemoteDisplayDevice;
 
 @protocol RPRemoteDisplayXPCClientInterface
 
@@ -14,7 +14,8 @@
 - (void)remoteDisplayReceivedEventID:(NSString *)arg1 event:(NSDictionary *)arg2 options:(NSDictionary *)arg3 sessionID:(NSNumber *)arg4;
 - (void)remoteDisplayReceivedEventID:(NSString *)arg1 event:(NSDictionary *)arg2 options:(NSDictionary *)arg3;
 - (void)remoteDisplaySessionEndedWithID:(NSNumber *)arg1;
-- (void)remoteDisplayStartServerSessionID:(NSNumber *)arg1 completion:(void (^)(NSError *))arg2;
+- (void)remoteDisplayStartServerSessionID:(NSNumber *)arg1 device:(RPRemoteDisplayDevice *)arg2 completion:(void (^)(NSError *))arg3;
+- (void)remoteDisplaySessionError:(NSError *)arg1;
 - (void)remoteDisplayChangedDevice:(RPRemoteDisplayDevice *)arg1 changes:(unsigned int)arg2;
 - (void)remoteDisplayLostDevice:(RPRemoteDisplayDevice *)arg1;
 - (void)remoteDisplayFoundDevice:(RPRemoteDisplayDevice *)arg1;

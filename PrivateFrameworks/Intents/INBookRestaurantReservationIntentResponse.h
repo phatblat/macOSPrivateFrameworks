@@ -21,8 +21,6 @@
 - (void).cxx_destruct;
 - (void)_injectProxiesForImages:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)_dictionaryRepresentation;
-- (id)descriptionAtIndent:(unsigned long long)arg1;
-@property(readonly, copy) NSString *description;
 @property(readonly) long long code;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -32,6 +30,7 @@
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

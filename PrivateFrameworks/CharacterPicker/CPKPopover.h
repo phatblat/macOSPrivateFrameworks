@@ -15,7 +15,8 @@
 }
 
 + (id)performanceLogWithBaseTime:(double)arg1;
-+ (void)logCurrentTimeWithLabel:(id)arg1;
++ (id)logArrayForLogType:(id)arg1;
++ (void)logCurrentTimeWithLabel:(id)arg1 forLogType:(id)arg2;
 + (id)transformWindowButtonToExpand:(BOOL)arg1;
 + (id)characterPickerToolbarItem:(id)arg1;
 @property void *CPKUserInfo; // @synthesize CPKUserInfo=_CPKUserInfo;

@@ -36,6 +36,7 @@
 - (void)_removePassword:(id)arg1;
 @property(readonly, copy, nonatomic) NSDictionary *domainToSavedPasswords;
 @property(readonly, nonatomic) NSArray *savedPasswords;
+@property(readonly, nonatomic) NSArray *savedPasswordsExcludingNeverSaveMarkerPasswords;
 - (id)_allInternetPasswordEntriesFromKeychain;
 - (id)savedPasswordForURL:(id)arg1 user:(id)arg2 password:(id)arg3;
 - (void)dealloc;

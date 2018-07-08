@@ -19,6 +19,7 @@
     NSNumber *_payloadRestrictStoreMdmInstallSoftwareupdateOnly;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withRestrictStoreRequireAdminToInstall:(id)arg2 withRestrictStoreSoftwareupdateOnly:(id)arg3 withRestrictStoreDisableAppAdoption:(id)arg4 withDisableSoftwareUpdateNotifications:(id)arg5 withRestrictStoreMdmInstallSoftwareupdateOnly:(id)arg6;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

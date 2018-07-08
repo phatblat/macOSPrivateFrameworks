@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
     BOOL _useInlineStyles;
     BOOL _useVariablesWhenUsingInlineStyles;
     BOOL _includeClassNamesWhenUsingInlineStyles;
+    BOOL _includeDarkInterfaceInlineStyles;
     BOOL _generateEmailCompatibleMarkup;
     NSMutableDictionary *_localVariables;
     NSMutableSet *_pendingVariables;
@@ -21,6 +22,7 @@ __attribute__((visibility("hidden")))
 }
 
 @property(nonatomic) BOOL generateEmailCompatibleMarkup; // @synthesize generateEmailCompatibleMarkup=_generateEmailCompatibleMarkup;
+@property(nonatomic) BOOL includeDarkInterfaceInlineStyles; // @synthesize includeDarkInterfaceInlineStyles=_includeDarkInterfaceInlineStyles;
 @property(nonatomic) BOOL includeClassNamesWhenUsingInlineStyles; // @synthesize includeClassNamesWhenUsingInlineStyles=_includeClassNamesWhenUsingInlineStyles;
 @property(nonatomic) BOOL useVariablesWhenUsingInlineStyles; // @synthesize useVariablesWhenUsingInlineStyles=_useVariablesWhenUsingInlineStyles;
 @property(nonatomic) BOOL useInlineStyles; // @synthesize useInlineStyles=_useInlineStyles;

@@ -48,6 +48,7 @@
     MRAVEndpoint *_endpoint;
 }
 
++ (id)localDeviceLocalizedName;
 + (id)localDeviceUID;
 @property(nonatomic) __weak MRAVEndpoint *endpoint; // @synthesize endpoint=_endpoint;
 @property(nonatomic) float volume; // @synthesize volume=_volume;

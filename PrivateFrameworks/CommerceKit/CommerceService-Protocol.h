@@ -29,6 +29,8 @@
 - (void)setObserverForDownloadQueueWithIdentifier:(NSString *)arg1;
 - (void)addDownloads:(NSArray *)arg1 toQueueWithIdentifier:(NSString *)arg2;
 - (void)downloadsForQueueWithIdentifier:(NSString *)arg1 reply:(void (^)(NSArray *))arg2;
+- (void)unsetDelegateForPurchaseQueueWithIdentifier:(NSString *)arg1;
+- (void)setDelegateForPurchaseQueueWithIdentifier:(NSString *)arg1;
 - (void)unsetObserverForPurchaseQueueWithIdentifier:(NSString *)arg1;
 - (void)setObserverForPurchaseQueueWithIdentifier:(NSString *)arg1;
 - (void)resumePurchaseTransactionWithResumeData:(NSData *)arg1 storeResponse:(CKStoreResponse *)arg2;
@@ -54,8 +56,6 @@
 - (void)cookieHeaderForStoreRequest:(CKStoreRequest *)arg1 reply:(void (^)(NSString *, NSError *))arg2;
 - (void)URLRequestForStoreRequest:(CKStoreRequest *)arg1 reply:(void (^)(NSURLRequest *, NSError *))arg2;
 - (void)runStoreRequest:(CKStoreRequest *)arg1 reply:(void (^)(BOOL, CKStoreResponse *, NSError *))arg2;
-- (void)unsetRemoteDialogContextForIdentifier:(NSString *)arg1;
-- (void)setRemoteDialogContextForIdentifier:(NSString *)arg1;
 - (void)bagDictionaryForClient:(CKStoreClient *)arg1 reply:(void (^)(NSDictionary *, NSError *))arg2;
 - (void)bagValuesForKeys:(NSArray *)arg1 client:(CKStoreClient *)arg2 reply:(void (^)(NSDictionary *, NSError *))arg3;
 - (void)setStorefront:(NSString *)arg1 forClient:(CKStoreClient *)arg2;

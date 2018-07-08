@@ -78,6 +78,28 @@ struct GEOJunctionElement {
     CDStruct_8a1bf2a3 _field4;
 };
 
+struct GEOLabelLineAttribute {
+    unsigned char _field1;
+    unsigned char _field2;
+    struct GEOLabelLineRange _field3;
+};
+
+struct GEOLabelLineFeatureSection {
+    unsigned int _field1;
+    struct GEOLabelLineRange _field2;
+    unsigned short _field3;
+    unsigned short _field4;
+    unsigned short _field5;
+    char _field6;
+    char _field7;
+    char _field8;
+};
+
+struct GEOLabelLineRange {
+    double _field1;
+    double _field2;
+};
+
 struct GEONavigationAudioFeedback {
     int _currentRouteTypeAtEndOfNav;
     unsigned int _manuallyChangedRouteCount;
@@ -253,6 +275,16 @@ struct GEOTileKeyList {
     unsigned long long _field7;
 };
 
+struct GEOTileLabelLine {
+    double _field1;
+    struct GEOLabelLineRange _field2;
+    unsigned long long _field3;
+    unsigned int _field4;
+    unsigned int _field5;
+    unsigned short _field6;
+    unsigned short _field7;
+};
+
 struct GEOTileSetRegion {
     unsigned int _field1;
     unsigned int _field2;
@@ -301,6 +333,13 @@ struct GEOTransitNodeFeature {
 struct GEOVersionedTileSet {
     unsigned int _field1;
     unsigned int _field2;
+};
+
+struct GEOsslpmTileInfo {
+    unsigned char _field1;
+    char _field2;
+    double _field3;
+    double _field4;
 };
 
 struct GeoCoordinates {

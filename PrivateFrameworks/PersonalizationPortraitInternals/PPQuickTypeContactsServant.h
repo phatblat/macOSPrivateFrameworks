@@ -8,12 +8,13 @@
 
 #import "PPQuickTypeServantProtocol.h"
 
-@class CNContactStore, NSArray, NSCache, NSObject<OS_dispatch_semaphore>, PPContact, PPContactScorer;
+@class CNContactStore, NSArray, NSCache, NSObject<OS_dispatch_semaphore>, PPContactScorer, _PASLock;
 
 @interface PPQuickTypeContactsServant : NSObject <PPQuickTypeServantProtocol>
 {
     CNContactStore *_store;
-    PPContact *_meContact;
+    _PASLock *_meCardCacheLock;
+    _PASLock *_meContactDataLock;
     NSCache *_meQuickTypeItemCache;
     NSArray *_peopleKeysToFetch;
     NSCache *_cachedNameLookups;
@@ -25,6 +26,8 @@
 
 + (id)_supportedPeopleSemanticTypes;
 - (void).cxx_destruct;
+- (id)_updateMeCardFromSource;
+- (id)_loadMeCard;
 - (id)_selfContactQueryqueryFromSemanticTagquery:(id)arg1;
 - (BOOL)_isSemanticTagEligible:(unsigned char)arg1;
 - (id)_lookupPeopleWithNamePrefixUncached:(id)arg1 recipients:(id)arg2 explanationSet:(id)arg3;
@@ -37,7 +40,7 @@
 - (id)_predictionForPeopleQuery:(id)arg1 fromEligibleSemanticTextField:(BOOL)arg2 limit:(unsigned long long)arg3 explanationSet:(id)arg4;
 - (id)_applySmartLimitingToCandidates:(id)arg1 clientLimit:(unsigned long long)arg2 explanationSet:(id)arg3;
 - (id)quickTypeItemsWithQuery:(id)arg1 limit:(unsigned long long)arg2 explanationSet:(id)arg3;
-- (void)_preloadContacts;
+- (void)_preloadMeCardAndItemCacheWithMeContact:(id)arg1;
 - (void)_registerForNotifications;
 - (void)setContactScorer:(id)arg1;
 - (void)setCachedNameLookup:(id)arg1;

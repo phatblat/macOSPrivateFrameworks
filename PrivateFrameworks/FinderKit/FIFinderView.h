@@ -71,6 +71,7 @@
 @property int viewStyle;
 @property(retain) NSURL *rootDirectoryURL;
 @property(retain) NSURL *directoryURL;
+- (void)setTopAccessory:(id)arg1;
 - (id)whereLabelTrailingLayoutAnchor;
 - (id)whereLabelLeadingLayoutAnchor;
 - (id)locationAreaTrailingLayoutAnchor;

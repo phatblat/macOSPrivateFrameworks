@@ -16,7 +16,7 @@
 #import "PKPaymentAuthorizationStateMachineDelegate.h"
 #import "PKPostalAddressEditorViewControllerDelegate.h"
 
-@class NSArray, NSString, PKContactEditorViewController, PKContinuityPaymentService, PKPaymentAuthorizationChildViewController, PKPaymentAuthorizationDataController, PKPaymentAuthorizationDataModel, PKPaymentAuthorizationErrorViewController, PKPaymentAuthorizationLayout, PKPaymentAuthorizationMainViewController, PKPaymentAuthorizationPassphraseEntryViewController, PKPaymentAuthorizationStateMachine, PKPaymentService, PKPaymentWebService, PKPostalAddressEditorViewController;
+@class NSArray, NSString, PKContactEditorViewController, PKContinuityPaymentService, PKInAppPaymentService, PKPaymentAuthorizationChildViewController, PKPaymentAuthorizationDataController, PKPaymentAuthorizationDataModel, PKPaymentAuthorizationErrorViewController, PKPaymentAuthorizationLayout, PKPaymentAuthorizationMainViewController, PKPaymentAuthorizationPassphraseEntryViewController, PKPaymentAuthorizationStateMachine, PKPaymentService, PKPaymentWebService, PKPostalAddressEditorViewController;
 
 @interface PKPaymentAuthorizationCoreViewController : NSViewController <PKPaymentAuthorizationMainViewControllerDelegate, PKPostalAddressEditorViewControllerDelegate, PKContactEditorViewControllerDelegate, PKPaymentAuthorizationErrorViewControllerDelegate, PKPaymentAuthorizationPassphraseEntryViewControllerDelegate, PKPaymentAuthorizationStateMachineDelegate, PKPaymentAuthorizationDataControllerDelegate, PKPaymentAuthorizationHostProtocol, PKPaymentAuthorizationServiceProtocol>
 {
@@ -38,6 +38,7 @@
     CDUnknownBlockType _pendingPrepareCompletionBlock;
     CDUnknownBlockType _pendingContactCompletionBlock;
     PKPaymentService *_paymentService;
+    PKInAppPaymentService *_inAppPaymentService;
     PKPaymentWebService *_paymentWebService;
     PKContinuityPaymentService *_continuityPaymentService;
     PKPaymentAuthorizationDataController *_dataController;
@@ -52,6 +53,7 @@
 @property(retain, nonatomic) PKPaymentAuthorizationDataController *dataController; // @synthesize dataController=_dataController;
 @property(retain, nonatomic) PKContinuityPaymentService *continuityPaymentService; // @synthesize continuityPaymentService=_continuityPaymentService;
 @property(retain, nonatomic) PKPaymentWebService *paymentWebService; // @synthesize paymentWebService=_paymentWebService;
+@property(retain, nonatomic) PKInAppPaymentService *inAppPaymentService; // @synthesize inAppPaymentService=_inAppPaymentService;
 @property(retain, nonatomic) PKPaymentService *paymentService; // @synthesize paymentService=_paymentService;
 @property(nonatomic) BOOL didSendDidPresent; // @synthesize didSendDidPresent=_didSendDidPresent;
 @property(nonatomic) BOOL delayingSleep; // @synthesize delayingSleep=_delayingSleep;

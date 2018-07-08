@@ -63,6 +63,7 @@
 - (id)xpcConnectionWithClientID:(short)arg1 withKey:(id)arg2 withPayload:(id)arg3;
 - (id)pendingTasksForType:(id)arg1 forClientID:(short)arg2 forKey:(id)arg3;
 - (void)addToBatchedTaskCacheForType:(id)arg1 forClientID:(short)arg2 forKey:(id)arg3 withPayload:(id)arg4;
+- (int)batchSizeForClientID:(short)arg1;
 - (void)addToPendingTaskCacheForType:(id)arg1 forClientID:(short)arg2 forKey:(id)arg3 withPayload:(id)arg4;
 - (short)cachedPermissionForClientID:(short)arg1 withKey:(id)arg2 withType:(id)arg3;
 - (void)setCachePermission:(short)arg1 ForClientID:(short)arg2 withKey:(id)arg3 withType:(id)arg4;

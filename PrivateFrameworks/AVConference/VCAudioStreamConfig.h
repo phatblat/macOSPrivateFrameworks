@@ -21,8 +21,10 @@ __attribute__((visibility("hidden")))
     NSMutableSet *_supportedNumRedundantPayload;
     BOOL _enableMaxBitrateOnNoChangeCMR;
     BOOL _forceEVSWideBand;
+    float _volume;
 }
 
+@property(nonatomic) float volume; // @synthesize volume=_volume;
 @property(nonatomic) BOOL forceEVSWideBand; // @synthesize forceEVSWideBand=_forceEVSWideBand;
 @property(nonatomic) BOOL enableMaxBitrateOnNoChangeCMR; // @synthesize enableMaxBitrateOnNoChangeCMR=_enableMaxBitrateOnNoChangeCMR;
 @property(nonatomic) unsigned char numRedundantPayloads; // @synthesize numRedundantPayloads=_numRedundantPayloads;

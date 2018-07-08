@@ -11,8 +11,11 @@
 @interface CNAutocompleteStoreQueryContext : NSObject
 {
     CNCache *_directoryServerReuseCache;
+    CNCache *_calendarServerReuseCache;
 }
 
++ (id)cacheBoundaryStrategies;
+@property(readonly) CNCache *calendarServerReuseCache; // @synthesize calendarServerReuseCache=_calendarServerReuseCache;
 @property(readonly) CNCache *directoryServerReuseCache; // @synthesize directoryServerReuseCache=_directoryServerReuseCache;
 - (void).cxx_destruct;
 - (id)init;

@@ -21,6 +21,7 @@ __attribute__((visibility("hidden")))
     _Bool _isMoveTag;
     NSString *_tagName;
     FI_TLabelView *_labelColorView;
+    struct TKeyValueBinder _labelColorBinder;
 }
 
 + (id)itemForMoveTag:(const struct TString *)arg1;
@@ -36,6 +37,8 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) _Bool pinned; // @synthesize pinned=_pinned;
 @property(readonly, nonatomic) _Bool userVisible; // @synthesize userVisible=_userVisible;
 @property(readonly, nonatomic) long long labelColor; // @synthesize labelColor=_labelColor;
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) _Bool isTag; // @dynamic isTag;
 @property(retain, nonatomic) NSColor *textColor; // @dynamic textColor;
 - (void)setColorNumber:(id)arg1;

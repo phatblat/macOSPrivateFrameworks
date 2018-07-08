@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSSet, NSUUID, TUHandle;
+@class NSSet, NSString, NSUUID, TUHandle;
 
 @interface TUConversation : NSObject <NSCopying, NSSecureCoding>
 {
@@ -25,11 +25,13 @@
     long long _avcSessionToken;
     NSUUID *_messagesGroupUUID;
     TUHandle *_initiator;
+    NSString *_messagesGroupName;
 }
 
 + (BOOL)supportsSecureCoding;
 + (id)numberFormatter;
 + (id)emptyConversationWithGroupUUID:(id)arg1;
+@property(copy, nonatomic) NSString *messagesGroupName; // @synthesize messagesGroupName=_messagesGroupName;
 @property(retain, nonatomic) TUHandle *initiator; // @synthesize initiator=_initiator;
 @property(retain, nonatomic) NSUUID *messagesGroupUUID; // @synthesize messagesGroupUUID=_messagesGroupUUID;
 @property(nonatomic) long long avcSessionToken; // @synthesize avcSessionToken=_avcSessionToken;

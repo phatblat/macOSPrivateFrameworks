@@ -6,20 +6,18 @@
 
 #import "NSObject.h"
 
-#import "CSAlarmMonitorDelegate.h"
 #import "CSAssetManagerDelegate.h"
 #import "CSAudioRecorderDelegate.h"
 #import "CSAudioServerCrashMonitorGibraltarDelegate.h"
 #import "CSLanguageCodeUpdateMonitorDelegate.h"
 #import "CSSiriEnabledMonitorDelegate.h"
+#import "CSSmartSiriVolumeDelegate.h"
 #import "CSStateMachineDelegate.h"
-#import "CSTimerMonitorDelegate.h"
 #import "CSVoiceTriggerDelegate.h"
-#import "CSVolumeMonitorDelegate.h"
 
 @class CSAudioCircularBuffer, CSAudioRecorder, CSSmartSiriVolume, CSStateMachine, NSDictionary, NSHashTable, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, NSUUID;
 
-@interface CSSpeechManager : NSObject <CSAudioRecorderDelegate, CSStateMachineDelegate, CSVoiceTriggerDelegate, CSSiriEnabledMonitorDelegate, CSVolumeMonitorDelegate, CSAlarmMonitorDelegate, CSTimerMonitorDelegate, CSAudioServerCrashMonitorGibraltarDelegate, CSAssetManagerDelegate, CSLanguageCodeUpdateMonitorDelegate>
+@interface CSSpeechManager : NSObject <CSAudioRecorderDelegate, CSStateMachineDelegate, CSVoiceTriggerDelegate, CSSiriEnabledMonitorDelegate, CSAudioServerCrashMonitorGibraltarDelegate, CSSmartSiriVolumeDelegate, CSAssetManagerDelegate, CSLanguageCodeUpdateMonitorDelegate>
 {
     BOOL _isSiriEnabled;
     BOOL _deviceRoleIsStereo;
@@ -74,9 +72,9 @@
 - (void)handleLostServerConnection;
 - (void)_startClearLoggingFilesTimer;
 - (void)_createClearLoggingFileTimer;
-- (void)CSTimerMonitor:(id)arg1 didReceiveTimerChanged:(long long)arg2;
-- (void)CSAlarmMonitor:(id)arg1 didReceiveAlarmChanged:(long long)arg2;
-- (void)CSVolumeMonitor:(id)arg1 didReceiveMusicVolumeChanged:(float)arg2;
+- (void)CSSmartSiriVolumeDidReceiveTimerChanged:(long long)arg1;
+- (void)CSSmartSiriVolumeDidReceiveAlarmChanged:(long long)arg1;
+- (void)CSSmartSiriVolumeDidReceiveMusicVolumeChanged:(float)arg1;
 - (void)CSSiriEnabledMonitor:(id)arg1 didReceiveEnabled:(BOOL)arg2;
 - (float)getEstimatedTTSVolume;
 - (id)_eventName:(unsigned long long)arg1;
@@ -87,6 +85,7 @@
 - (void)voiceTriggerDidDetectTwoShotAtTime:(double)arg1;
 - (void)voiceTriggerDidDetectKeyword:(id)arg1;
 - (void)audioRecorderDisconnected:(id)arg1;
+- (void)audioRecorderDidFinishAlertPlayback:(id)arg1 ofType:(long long)arg2 error:(id)arg3;
 - (void)audioRecorderRecordHardwareConfigurationDidChange:(id)arg1 toConfiguration:(long long)arg2;
 - (void)audioRecorderDidStopRecording:(id)arg1 forReason:(long long)arg2;
 - (void)audioRecorderDidStartRecording:(id)arg1 successfully:(BOOL)arg2 error:(id)arg3;
@@ -132,6 +131,8 @@
 - (long long)getCurrentState;
 - (void)_setupStateMachine;
 - (void)registerSpeechController:(id)arg1;
+- (void)_destroyCircularBuffer;
+- (void)_createCircularBuffer;
 - (void)_setupCircularBuffer;
 - (void)_getVoiceTriggerAsset:(CDUnknownBlockType)arg1;
 - (void)_getVoiceTriggerAssetForMac:(CDUnknownBlockType)arg1;

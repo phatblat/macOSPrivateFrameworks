@@ -19,8 +19,8 @@
 @property(readonly, nonatomic) double maximumTimeInterval; // @synthesize maximumTimeInterval=_maximumTimeInterval;
 @property(readonly, nonatomic) double minimumTimeInterval; // @synthesize minimumTimeInterval=_minimumTimeInterval;
 - (void)reset;
-- (void)_fire;
-@property(nonatomic) double timeInterval;
+- (void)__fire;
+- (double)timeInterval;
 - (id)initWithMinimumTimeInterval:(double)arg1 maximumTimeInterval:(double)arg2 exponentialFactor:(long long)arg3 options:(unsigned long long)arg4;
 - (id)initWithTimeInterval:(double)arg1 options:(unsigned long long)arg2;
 

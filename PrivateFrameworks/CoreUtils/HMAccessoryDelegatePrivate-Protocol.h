@@ -6,11 +6,13 @@
 
 #import "HMAccessoryDelegate.h"
 
-@class ACAccount, HMAccessory, HMAccessorySettings, HMCharacteristic, HMFPairingIdentity, HMFSoftwareVersion, HMService, NSString;
+@class ACAccount, HMAccessory, HMAccessorySettings, HMCharacteristic, HMFPairingIdentity, HMFSoftwareVersion, HMService, HMSymptomsHandler, NSString;
 
 @protocol HMAccessoryDelegatePrivate <HMAccessoryDelegate>
 
 @optional
+- (void)accessoryDidRemoveSymptomsHandler:(HMAccessory *)arg1;
+- (void)accessory:(HMAccessory *)arg1 didAddSymptomsHandler:(HMSymptomsHandler *)arg2;
 - (void)accessory:(HMAccessory *)arg1 didRemoveControlTarget:(HMAccessory *)arg2;
 - (void)accessory:(HMAccessory *)arg1 didAddControlTarget:(HMAccessory *)arg2;
 - (void)accessoryDidUpdateTargetControlSupport:(HMAccessory *)arg1;

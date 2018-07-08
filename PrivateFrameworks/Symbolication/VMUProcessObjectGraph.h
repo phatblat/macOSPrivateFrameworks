@@ -49,6 +49,7 @@
 @property(readonly, nonatomic) unsigned int vmPageSize; // @synthesize vmPageSize=_kernPageSize;
 @property(readonly, nonatomic) int pid; // @synthesize pid=_pid;
 - (void).cxx_destruct;
+- (void)markReachableNodesFromRoots:(void *)arg1 inMap:(void *)arg2 showLeakedVMregions:(BOOL)arg3;
 - (void)markReachableNodesFromRoots:(void *)arg1 inMap:(void *)arg2;
 - (void)refineEdges:(unsigned int)arg1 withOptions:(unsigned int)arg2 markingInvalid:(void *)arg3;
 - (void)refineTypesWithOverlay:(id)arg1;

@@ -10,16 +10,16 @@
 
 @interface OSIDebuggerTool : NSObject
 {
+    BOOL _shouldFailAtStart;
     SKDisk *_target;
     NSString *_opToFail;
-    double _failAtProgress;
 }
 
-@property double failAtProgress; // @synthesize failAtProgress=_failAtProgress;
 @property(retain) NSString *opToFail; // @synthesize opToFail=_opToFail;
 @property(retain) SKDisk *target; // @synthesize target=_target;
+@property BOOL shouldFailAtStart; // @synthesize shouldFailAtStart=_shouldFailAtStart;
 - (void).cxx_destruct;
-- (void)updateStatusWithQueueElement:(id)arg1 progress:(double)arg2;
+- (BOOL)shouldFailAtQueueElement:(id)arg1;
 - (BOOL)loadDebuggerPropertyList;
 - (id)initWithTarget:(id)arg1;
 

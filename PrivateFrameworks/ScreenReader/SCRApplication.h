@@ -72,8 +72,8 @@ __attribute__((visibility("hidden")))
         char wasPreviousUIElementInteractingBeforeJump;
     } _sraFlags;
     struct os_unfair_lock_s _uiElementLock;
-    SCRElement *_iOSContentGroup;
     double _applicationCreationTime;
+    SCRElement *_alternateUITriggerElement;
     NSMutableSet *_searchHashSet;
     SCRCTargetSelectorTimer *__busySignalTimer;
     double __lastBusySignalTime;
@@ -92,6 +92,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic, setter=_setLastBusySignalTime:) double _lastBusySignalTime; // @synthesize _lastBusySignalTime=__lastBusySignalTime;
 @property(retain, nonatomic, setter=_setBusySignalTimer:) SCRCTargetSelectorTimer *_busySignalTimer; // @synthesize _busySignalTimer=__busySignalTimer;
 @property(retain, nonatomic) NSMutableSet *searchHashSet; // @synthesize searchHashSet=_searchHashSet;
+@property(retain, nonatomic) SCRElement *alternateUITriggerElement; // @synthesize alternateUITriggerElement=_alternateUITriggerElement;
 @property(readonly, nonatomic) double applicationCreationTime; // @synthesize applicationCreationTime=_applicationCreationTime;
 @property(retain, nonatomic) SCRUIElement *previousUIElementBeforeJump; // @synthesize previousUIElementBeforeJump=_previousUIElementBeforeJump;
 @property(nonatomic) double gestureMinEmptyDistance; // @synthesize gestureMinEmptyDistance=_gestureMinEmptyDistance;
@@ -147,8 +148,7 @@ __attribute__((visibility("hidden")))
 - (void)_speakWordUnderMouseForUIElement:(id)arg1;
 - (void)dispatchMouseSummaryForUIElement:(id)arg1;
 - (void)_describeMouseSummaryForUIElement:(id)arg1;
-@property(readonly, retain, nonatomic) SCRElement *iOSContentGroup; // @synthesize iOSContentGroup=_iOSContentGroup;
-@property(readonly, nonatomic) BOOL isiOSApp;
+@property(readonly, nonatomic) BOOL isUIKitHostApp;
 - (BOOL)isPreLoginApp;
 - (BOOL)shouldEchoFocusInto;
 - (BOOL)_isFullscreenInCurrentWorkspace;
@@ -377,6 +377,7 @@ __attribute__((visibility("hidden")))
 - (void)setShouldIgnoreNextMenuSelection:(BOOL)arg1;
 - (void)_windowWasMinimized:(id)arg1;
 - (void)_windowDidBecomeKey:(id)arg1;
+- (void)_outputTextContentOfElement:(id)arg1;
 - (void)_applicationDidShow:(id)arg1;
 - (void)_applicationDidHide:(id)arg1;
 - (void)applicationDidShow;
@@ -427,7 +428,6 @@ __attribute__((visibility("hidden")))
 - (void)addKeyboardSyncContextForElement:(id)arg1 previousKeyboardChild:(id)arg2 request:(id)arg3;
 - (void)_keyboardFocusDidChange:(id)arg1;
 - (void)_textSelectionDidChange:(id)arg1;
-- (void)setUIElementTriggeringAlternateUI:(id)arg1 revertToDefault:(BOOL)arg2;
 - (void)dispatchVerifyValidFocusChain;
 - (void)_verifyValidFocusChain;
 - (void)dispatchLaunchVerification;
@@ -461,7 +461,6 @@ __attribute__((visibility("hidden")))
 - (void)addProfileNameToRequest:(id)arg1;
 - (BOOL)focusInto:(id)arg1 event:(id)arg2;
 - (BOOL)allowsFocusInto;
-- (void)_layoutChanged:(id)arg1;
 - (void)_applicationActivated:(id)arg1;
 - (void)registerForGeneralNotifications;
 - (void)dispatchSetIsKeyboardEventHandler:(BOOL)arg1;
@@ -491,6 +490,7 @@ __attribute__((visibility("hidden")))
 - (id)initWithUIElement:(id)arg1 parent:(id)arg2;
 - (id)initWithPSN:(struct ProcessSerialNumber)arg1 pid:(int)arg2 name:(id)arg3 bundleIdentifier:(id)arg4 bundleVersion:(id)arg5 url:(id)arg6;
 - (BOOL)_initialize;
+- (BOOL)isAppStoreApplication;
 - (void)_busyStateStopped;
 - (void)echoBusySignal;
 - (void)dispatchEvent:(id)arg1 echoIfBusy:(BOOL)arg2;

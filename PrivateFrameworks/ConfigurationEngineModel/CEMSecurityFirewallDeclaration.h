@@ -18,6 +18,7 @@
     NSArray *_payloadApplications;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withEnableFirewall:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withEnableFirewall:(id)arg2 withBlockAllIncoming:(id)arg3 withEnableStealthMode:(id)arg4 withApplications:(id)arg5;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

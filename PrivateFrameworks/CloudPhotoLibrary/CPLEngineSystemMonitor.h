@@ -23,6 +23,8 @@
     unsigned long long _newBudgetsToStopOverriding;
     NSMutableDictionary *_reasonsToOverrideSystemBudget;
     NSMutableDictionary *_scheduledOverrides;
+    BOOL _allowOperationsBoost;
+    BOOL _allowBackgroundOperationsBoost;
     CPLEngineLibrary *_engineLibrary;
 }
 
@@ -41,6 +43,8 @@
 - (void)_withSystemBudgetOverride:(CDUnknownBlockType)arg1;
 - (void)_stopOverridingBudget:(unsigned long long)arg1 reason:(id)arg2;
 - (void)_startOverridingBudget:(unsigned long long)arg1 reason:(id)arg2;
+@property(readonly) BOOL canBoostBackgroundOperations;
+@property(readonly) BOOL canBoostOperations;
 @property(readonly) BOOL isOnCellularOrUnknown;
 @property(readonly) BOOL isNetworkConnected;
 - (void)getStatusWithCompletionHandler:(CDUnknownBlockType)arg1;

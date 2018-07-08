@@ -95,6 +95,7 @@
 - (void)setFrameSize:(struct CGSize)arg1;
 - (struct NSEdgeInsets)effectiveLayoutMargins;
 - (BOOL)isInBatchUpdate;
+- (struct CGRect)effectiveLayoutBounds;
 
 @end
 

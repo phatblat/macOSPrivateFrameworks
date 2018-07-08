@@ -19,8 +19,10 @@
     NSLock *_inProgressLock;
     NSObject<OS_dispatch_queue> *_workQueue;
     GEOProactiveTileDownloader *_proactiveTileDownloader;
+    BOOL _updatingManifestForProactiveTileDownload;
 }
 
++ (void)enableCDSObserversIfNecessary;
 - (void).cxx_destruct;
 - (void)resourceManifestManager:(id)arg1 didChangeActiveTileGroup:(id)arg2 fromOldTileGroup:(id)arg3;
 - (void)resourceManifestManagerWillChangeActiveTileGroup:(id)arg1;

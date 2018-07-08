@@ -11,7 +11,7 @@
 #import "RTIInputSystemPayloadDelegate.h"
 #import "RTIInputSystemSessionDelegate.h"
 
-@class NSData, NSObject<OS_dispatch_queue>, NSString, RTIInputSystemService, RTIInputSystemSourceSession;
+@class NSDictionary, NSObject<OS_dispatch_queue>, NSString, RTIInputSystemService, RTIInputSystemSourceSession;
 
 @interface SFRemoteTextInputClient : NSObject <RTIInputSystemClientDelegate, RTIInputSystemDelegate, RTIInputSystemPayloadDelegate, RTIInputSystemSessionDelegate>
 {
@@ -44,9 +44,9 @@
 - (void)fireEventHandlerWithPayload:(id)arg1;
 - (void)flushOperations;
 - (void)handleUsername:(id)arg1 password:(id)arg2;
-- (void)handleTextInputData:(struct NSData *)arg1;
+- (void)handleTextInputData:(struct NSDictionary *)arg1;
 @property(readonly, nonatomic) RTIInputSystemSourceSession *sourceSession;
-@property(readonly, copy, nonatomic) NSData *currentPayload;
+@property(readonly, copy, nonatomic) NSDictionary *currentPayload;
 - (void)_cleanup;
 - (void)invalidate;
 - (void)activate;

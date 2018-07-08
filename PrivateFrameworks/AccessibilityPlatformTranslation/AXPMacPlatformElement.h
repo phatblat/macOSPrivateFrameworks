@@ -14,12 +14,14 @@
 {
     NSMutableDictionary *_selectiveCache;
     AXPTranslationObject *translation;
+    CDUnknownBlockType _nsPostEventTestingCallback;
     NSArray *_cachedCustomActions;
 }
 
 + (void)initialize;
 + (id)platformElementWithTranslationObject:(id)arg1;
 @property(retain, nonatomic) NSArray *cachedCustomActions; // @synthesize cachedCustomActions=_cachedCustomActions;
+@property(copy, nonatomic) CDUnknownBlockType nsPostEventTestingCallback; // @synthesize nsPostEventTestingCallback=_nsPostEventTestingCallback;
 @property(retain, nonatomic) AXPTranslationObject *translation; // @synthesize translation;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
@@ -29,7 +31,9 @@
 - (void)performDecrementAction;
 - (void)performIncrementAction;
 - (void)performScrollToVisible;
+- (void)_synthesizeMouseClickAtElementCenter;
 - (id)_convertTranslatorResponse:(id)arg1 forAttribute:(unsigned long long)arg2;
+- (id)_convertTranslatorResponseForSubrole:(id)arg1;
 - (id)_convertTranslatorResponseForRole:(id)arg1;
 - (void)_cacheResultSelectively:(id)arg1 attribute:(unsigned long long)arg2;
 - (id)_postProcessResult:(id)arg1 attributeType:(unsigned long long)arg2;
@@ -39,6 +43,7 @@
 - (id)accessibilityAttributeValue:(id)arg1;
 - (id)accessibilityParent;
 - (struct CGRect)accessibilityFrame;
+- (struct CGPoint)accessibilityActivationPoint;
 - (id)accessibilityMultipleAttributes:(id)arg1;
 - (id)accessibilityAttributeValue:(id)arg1 forParameter:(id)arg2;
 - (unsigned long long)_attributeTypeForMacAttribute:(id)arg1;
@@ -52,8 +57,10 @@
 - (int)pid;
 - (id)accessibilityActionNames;
 - (id)accessibilityCustomActions;
+- (id)accessibilityParameterizedAttributeNames;
 - (id)accessibilityAttributeNames;
 - (BOOL)accessibilityPerformPress;
+- (id)accessibilityRole;
 - (id)role;
 - (id)_cachedRole;
 

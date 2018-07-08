@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CUSystemMonitor, NSData, NSObject<OS_dispatch_queue>, NSString, NSURL, SFDeviceDiscovery, SFService;
+@class CUSystemMonitor, NSArray, NSData, NSObject<OS_dispatch_queue>, NSString, NSURL, SFDeviceDiscovery, SFService, SFSession;
 
 @interface SFRemoteAutoFillService : NSObject
 {
@@ -18,13 +18,16 @@
     BOOL _invalidateCalled;
     NSString *_receivedPassword;
     NSString *_receivedUsername;
+    BOOL _requestingAutoFill;
     SFService *_service;
     int _serviceState;
+    SFSession *_session;
     NSData *_systemBTAddress;
     CUSystemMonitor *_systemMonitor;
     int _systemMonitorState;
     NSURL *_urlForVisualScanning;
     BOOL _unitTesting;
+    NSArray *_associatedDomains;
     NSString *_bundleID;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     NSString *_fixedPIN;
@@ -56,6 +59,7 @@
 @property(copy, nonatomic) NSString *fixedPIN; // @synthesize fixedPIN=_fixedPIN;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
 @property(copy, nonatomic) NSString *bundleID; // @synthesize bundleID=_bundleID;
+@property(copy, nonatomic) NSArray *associatedDomains; // @synthesize associatedDomains=_associatedDomains;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL needsSetup;
 - (void)_bluetoothAddressChanged;

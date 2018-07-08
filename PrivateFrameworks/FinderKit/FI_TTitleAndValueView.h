@@ -16,9 +16,11 @@ __attribute__((visibility("hidden")))
     struct TNSRef<NSMutableArray<NSLayoutConstraint *>, void> _constraints;
     NSLayoutConstraint *_titleAndValueGapConstraint;
     double _titleAndValueGap;
+    double _valueViewBottomInset;
     _Bool _loadedFromNib;
 }
 
+@property(nonatomic) double valueViewBottomInset; // @synthesize valueViewBottomInset=_valueViewBottomInset;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)updateValueViewAXTitle;

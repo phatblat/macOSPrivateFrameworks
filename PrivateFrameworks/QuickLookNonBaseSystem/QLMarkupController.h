@@ -29,6 +29,7 @@
 - (void)promptSaveForCloseWithCloseHandler:(CDUnknownBlockType)arg1;
 - (void)editOccuredOnPage:(long long)arg1;
 - (void)markupBecameDirty:(BOOL)arg1;
+- (void)revertMarkup;
 - (void)exitMarkup:(long long)arg1;
 - (void)_teardownFileForSharingDirtyEdits;
 - (void)_setupFileForSharingDirtyEdits;

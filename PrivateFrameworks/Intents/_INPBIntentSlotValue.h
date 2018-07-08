@@ -45,6 +45,7 @@
     CDStruct_95bda58d _payloadMessageTypes;
     CDStruct_95bda58d _payloadNotebookItemTypes;
     CDStruct_95bda58d _payloadPaymentStatus;
+    CDStruct_95bda58d _payloadPersonalPlaceTypes;
     CDStruct_95bda58d _payloadPhotoAttributes;
     CDStruct_95bda58d _payloadPlaybackRepeatModes;
     CDStruct_95bda58d _payloadPreferredCallProviders;
@@ -402,6 +403,14 @@
 - (void)clearPayloadPhotoAttributes;
 @property(readonly, nonatomic) int *payloadPhotoAttributes;
 - (void)setPayloadPhotoAttributes:(int *)arg1 count:(unsigned long long)arg2;
+- (int)StringAsPayloadPersonalPlaceTypes:(id)arg1;
+- (id)payloadPersonalPlaceTypesAsString:(int)arg1;
+- (int)payloadPersonalPlaceTypeAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long payloadPersonalPlaceTypesCount;
+- (void)addPayloadPersonalPlaceType:(int)arg1;
+- (void)clearPayloadPersonalPlaceTypes;
+@property(readonly, nonatomic) int *payloadPersonalPlaceTypes;
+- (void)setPayloadPersonalPlaceTypes:(int *)arg1 count:(unsigned long long)arg2;
 - (int)StringAsPayloadPaymentStatus:(id)arg1;
 - (id)payloadPaymentStatusAsString:(int)arg1;
 - (int)payloadPaymentStatusAtIndex:(unsigned long long)arg1;

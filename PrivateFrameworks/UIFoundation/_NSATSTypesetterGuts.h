@@ -23,7 +23,7 @@
     struct {
         unsigned int _isiChatTypesetter:1;
         unsigned int _resToWillSetLineFragmentRect:1;
-        unsigned int _reserved2:1;
+        unsigned int _allowsSecurityMeasures:1;
         unsigned int _baselineRendering:1;
         unsigned int _forceWordWrapping:1;
         unsigned int _reserved:27;

@@ -16,9 +16,11 @@
 + (void)getApprovedSharedWebCredentialsEntriesSortedByHighestValueForAppWithAppID:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 + (void)getApprovedSharedWebCredentialsEntriesForAppWithAppID:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 + (void)_sortCredentials:(id)arg1 usingApprovedSharedWebCredentialsDatabaseEntries:(id)arg2;
-+ (BOOL)_savedPasswordIsRelated:(id)arg1 toEntry:(id)arg2 andWebsiteURL:(id)arg3;
++ (BOOL)_savedPassword:(id)arg1 isRelatedToEntryHighLevelDomains:(id)arg2 andWebsiteURL:(id)arg3;
 + (id)_credentialsMatchingSharedWebCredentialsDatabaseEntries:(id)arg1 websiteURL:(id)arg2 savedPasswords:(id)arg3;
++ (id)_highLevelDomainsFromDatabaseEntries:(id)arg1;
 + (void)_getCredentialsForAppWithApprovedAndValidSharedWebCredentialsDatabaseEntries:(id)arg1 websiteURL:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
++ (void)getCredentialsForAppWithAppID:(id)arg1 externallyVerifiedAndApprovedSharedWebCredentialDomains:(id)arg2 websiteURL:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 + (void)getCredentialsForAppWithAppID:(id)arg1 externallyVerifiedAndApprovedSharedWebCredentialDomains:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 + (void)getCredentialsForAppWithAppID:(id)arg1 websiteURL:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 + (void)getCredentialsForAppWithAppID:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;

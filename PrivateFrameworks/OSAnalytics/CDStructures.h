@@ -76,6 +76,7 @@ struct jetsam_snapshot_entry {
     unsigned long long _field24;
     unsigned long long _field25;
     struct timeval _field26;
+    unsigned long long _field27;
 };
 
 struct memorystatus_kernel_stats {

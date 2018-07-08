@@ -60,6 +60,8 @@
 @property(readonly, nonatomic) unsigned int SSVEnergyBufferSize;
 @property(readonly, nonatomic) unsigned long long SSVLKFSChannelBitset;
 @property(readonly, nonatomic) unsigned long long SSVNoiseLevelChannelBitset;
+- (id)_sha256:(id)arg1;
+- (id)_sha1:(id)arg1;
 - (id)RTModel;
 
 @end

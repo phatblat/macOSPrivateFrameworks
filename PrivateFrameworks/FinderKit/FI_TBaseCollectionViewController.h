@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     unsigned long long _pendingNodeToPropertiesToUpdateIndex;
     struct unordered_map<unsigned long, std::__1::unordered_map<TFENode, std::__1::unordered_set<unsigned int, std::__1::hash<unsigned int>, std::__1::equal_to<unsigned int>, std::__1::allocator<unsigned int>>, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, std::__1::unordered_set<unsigned int, std::__1::hash<unsigned int>, std::__1::equal_to<unsigned int>, std::__1::allocator<unsigned int>>>>>, std::__1::hash<unsigned long>, std::__1::equal_to<unsigned long>, std::__1::allocator<std::__1::pair<const unsigned long, std::__1::unordered_map<TFENode, std::__1::unordered_set<unsigned int, std::__1::hash<unsigned int>, std::__1::equal_to<unsigned int>, std::__1::allocator<unsigned int>>, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, std::__1::unordered_set<unsigned int, std::__1::hash<unsigned int>, std::__1::equal_to<unsigned int>, std::__1::allocator<unsigned int>>>>>>>> _pendingNodeToPropertiesToUpdateMaps;
     struct TNotificationCenterObserver _sizeChangedObserver;
+    struct TKeyValueObserver _selectionIndexPathsObserver;
     struct TKeyValueObserver _windowFirstResponderObserver;
     _Bool _useActiveAppearance;
     _Bool _supportsPrefetching;
@@ -71,8 +72,8 @@ __attribute__((visibility("hidden")))
 - (void)startSelectionCoalescing:(id)arg1;
 - (void)performBatchUpdatesCompletionHandler:(const unordered_set_931aff12 *)arg1:(const unordered_map_f8b1458f *)arg2:(_Bool)arg3:(_Bool)arg4:(unsigned long long)arg5;
 - (void)dataSourceItemsDidChange:(const unordered_map_f886f0c5 *)arg1;
-- (void)dataSourceChanged:(const vector_ddb76938 *)arg1;
-- (_Bool)sectionsWillBeReloaded:(const vector_ddb76938 *)arg1;
+- (void)dataSourceChanged:(const vector_274a36ec *)arg1;
+- (_Bool)sectionsWillBeReloaded:(const vector_274a36ec *)arg1;
 - (void)dataSourceChanged_propChanged:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2:(unordered_set_931aff12 *)arg3:(unordered_map_f886f0c5 *)arg4;
 - (void)dataSourceChanged_move:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2;
 - (void)dataSourceChanged_insert:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2:(unordered_set_931aff12 *)arg3:(_Bool *)arg4;
@@ -80,11 +81,12 @@ __attribute__((visibility("hidden")))
 - (id)popoverAnchorViewForNode:(const struct TFENode *)arg1;
 - (struct CGRect)frameForSection:(unsigned long long)arg1;
 - (struct CGRect)frameForNode:(const struct TFENode *)arg1;
+- (void)selectionIndexPathsChanged:(id)arg1;
 - (void)revealNodes:(const struct TFENodeVector *)arg1 select:(_Bool)arg2;
 - (void)deselectAllNodes;
 - (void)selectAllNodes;
 - (struct TFENode)nextNodeInViewAfter:(const struct TFENodeVector *)arg1;
-- (_Bool)setSelectedNodeIfAllowed:(struct TFENode)arg1;
+- (_Bool)setSelectedNodeIfAllowed:(const struct TFENode *)arg1;
 - (void)setSelectedNodes:(const struct TFENodeVector *)arg1 byExtendingSelection:(_Bool)arg2;
 - (unsigned long long)getSelectedNodesFromView:(struct TFENodeVector *)arg1 upTo:(unsigned long long)arg2;
 - (unsigned long long)selectedNodesCount;

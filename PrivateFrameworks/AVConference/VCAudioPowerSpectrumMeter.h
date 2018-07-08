@@ -4,28 +4,34 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <AVConference/VCObject.h>
 
+#import "VCAudioIOSink.h"
 #import "VCAudioPowerSpectrumDelegate.h"
 
 @class NSDictionary, NSMutableDictionary, NSString;
 
 __attribute__((visibility("hidden")))
-@interface VCAudioPowerSpectrumMeter : NSObject <VCAudioPowerSpectrumDelegate>
+@interface VCAudioPowerSpectrumMeter : VCObject <VCAudioPowerSpectrumDelegate, VCAudioIOSink>
 {
     id _delegate;
     unsigned short _audioSpectrumBinCount;
     double _audioSpectrumRefreshRate;
     unsigned int _lastDeliveryTime;
+    // Error parsing type: {atomic_flag="_Value"AB}, name: _isProcessingOutput
     NSMutableDictionary *_audioPowerSpectrums;
     NSMutableDictionary *_outputPowerSpectrums;
+    struct opaqueCMSimpleQueue *_streamTokenRemovedEventQueue;
+    struct opaqueCMSimpleQueue *_streamTokenAddedEventQueue;
 }
 
 @property(readonly, nonatomic) NSDictionary *audioPowerSpectrums; // @synthesize audioPowerSpectrums=_audioPowerSpectrums;
+- (void)pushAudioSamples:(struct opaqueVCAudioBufferList *)arg1;
 - (void)didUpdateAudioPowerSpectrum:(id)arg1;
 - (void)releaseAudioPowerSpectrumForStreamToken:(id)arg1;
-- (id)newAudioPowerSpectrumForStreamToken:(id)arg1;
+- (void)registerNewAudioPowerSpectrumForStreamToken:(id)arg1 spectrumSource:(id)arg2;
 - (void)processOutput;
+- (void)processInternalEvents;
 - (id)delegate;
 - (void)dealloc;
 - (id)initWithBinCount:(unsigned short)arg1 refreshRate:(double)arg2 delegate:(id)arg3;

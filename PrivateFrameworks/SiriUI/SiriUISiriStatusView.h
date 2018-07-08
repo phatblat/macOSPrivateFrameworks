@@ -65,6 +65,7 @@ __attribute__((visibility("hidden")))
 - (void)didLockDevice:(id)arg1;
 - (void)initInputMode;
 - (void)awakeFromNib;
+- (void)initOrbVideoLayerIfNecesary;
 - (id)initWithCoder:(id)arg1;
 
 // Remaining properties

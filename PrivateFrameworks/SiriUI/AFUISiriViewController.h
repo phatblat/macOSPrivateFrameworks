@@ -73,6 +73,8 @@
 - (void)setStatusViewDisabled:(BOOL)arg1;
 - (void)setStatusViewHidden:(BOOL)arg1;
 - (void)siriIdleAndQuietStatusDidChange:(BOOL)arg1;
+- (void)siriDidLaunchApplication:(id)arg1;
+- (void)siriDidLaunchApplicationOrURL;
 - (void)serviceLaunchApplicationWithBundleIdentifier:(id)arg1 withURL:(id)arg2 replyHandler:(CDUnknownBlockType)arg3;
 - (void)performUnlockDependentAction:(CDUnknownBlockType)arg1;
 - (void)askUserToUnlock;
@@ -179,7 +181,10 @@
 - (BOOL)isHoldingDarkWakeAssertion;
 - (void)viewWillAppear;
 @property(readonly, nonatomic) BOOL hasScreenSnapshot;
+- (void)viewDidLayout;
+- (void)viewWillLayout;
 - (void)viewDidLoad;
+- (void)loadView;
 - (id)_siriView;
 - (void)didChangeWindowHeight:(BOOL)arg1;
 @property(readonly, nonatomic) double contentHeight;

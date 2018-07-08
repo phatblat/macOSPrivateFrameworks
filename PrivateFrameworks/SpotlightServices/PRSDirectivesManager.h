@@ -127,6 +127,7 @@
 }
 
 + (id)descriptorsForModelInputScore;
++ (void)initialize;
 @property(nonatomic) double weightY; // @synthesize weightY=_weightY;
 @property(nonatomic) double weightX; // @synthesize weightX=_weightX;
 @property(retain, nonatomic) PRSL2FeatureVectorProcessingContext *processingContext; // @synthesize processingContext=_processingContext;

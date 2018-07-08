@@ -24,6 +24,7 @@
 - (id)removeWritableResourcesForValue:(unsigned long long)arg1;
 - (void)setWritableResources:(id)arg1 forValue:(unsigned long long)arg2;
 - (void)setSignaledValue:(unsigned long long)arg1;
+- (void)dealloc;
 - (id)initWithBaseObject:(id)arg1 parent:(id)arg2;
 
 @end

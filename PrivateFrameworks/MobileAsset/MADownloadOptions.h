@@ -28,6 +28,7 @@
 @property(nonatomic) long long timeoutIntervalForResource; // @synthesize timeoutIntervalForResource=_timeoutIntervalForResource;
 @property(nonatomic) BOOL allowsCellularAccess; // @synthesize allowsCellularAccess=_allowsCellularAccess;
 - (void)logOptions;
+- (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;

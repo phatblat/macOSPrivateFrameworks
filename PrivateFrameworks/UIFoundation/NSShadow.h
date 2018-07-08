@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSColor;
 
-@interface NSShadow : NSObject <NSCopying, NSCoding>
+@interface NSShadow : NSObject <NSCopying, NSSecureCoding>
 {
     unsigned long long _shadowFlags;
     struct CGSize _shadowOffset;
@@ -21,6 +21,7 @@
     void *_reserved;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)defaultShadowColor;
 + (id)shadow;
 + (void)initialize;

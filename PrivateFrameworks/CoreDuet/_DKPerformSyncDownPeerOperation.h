@@ -6,7 +6,7 @@
 
 #import <CoreDuet/_DKSyncCompositeOperation.h>
 
-@class NSMutableArray, _DKSync2Policy, _DKSyncPeer, _DKSyncType;
+@class NSMutableArray, _CDMutablePerfMetric, _DKSync2Policy, _DKSyncPeer, _DKSyncType;
 
 @interface _DKPerformSyncDownPeerOperation : _DKSyncCompositeOperation
 {
@@ -15,10 +15,16 @@
     _DKSyncPeer *_peer;
     _DKSync2Policy *_policy;
     _DKSyncType *_type;
+    _CDMutablePerfMetric *_perfMetric;
+    struct _CDPerfEvent _perfEvent;
     NSMutableArray *_operations;
 }
 
++ (void)_updateEventStatsWithTransportType:(long long)arg1;
 - (void).cxx_destruct;
+- (void)endPerfMetrics;
+- (void)startPerfMetrics;
+- (void)endOperation;
 - (void)addSyncDownPeerDeletionsOperation;
 - (void)addSyncDownPeerAdditionsOperation;
 - (void)performSyncDownPeer;

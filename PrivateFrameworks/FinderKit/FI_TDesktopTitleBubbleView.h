@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     _Bool _isDragItem;
     _Bool _useActiveAppearance;
     _Bool _useDesktopSelectionColor;
+    _Bool _useAutoLayout;
     _Bool _includeShadowPadding;
     _Bool _drawAntiAliased;
     struct TNSRef<NSColor, void> _superViewsBackgroundColor;
@@ -29,9 +30,13 @@ __attribute__((visibility("hidden")))
 + (id)iconViewAppearanceSelectionColor:(_Bool)arg1;
 + (id)desktopAppearanceSelectionColor:(_Bool)arg1;
 @property _Bool useDesktopSelectionColor; // @synthesize useDesktopSelectionColor=_useDesktopSelectionColor;
+@property(nonatomic) _Bool useAutoLayout; // @synthesize useAutoLayout=_useAutoLayout;
 @property _Bool drawAntiAliased; // @synthesize drawAntiAliased=_drawAntiAliased;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (struct NSEdgeInsets)alignmentRectInsets;
+- (void)invalidateIntrinsicContentSize;
+- (struct CGSize)intrinsicContentSize;
 - (id)view:(id)arg1 stringForToolTip:(long long)arg2 point:(struct CGPoint)arg3 userData:(void *)arg4;
 - (void)setToolTip:(id)arg1;
 - (id)toolTip;

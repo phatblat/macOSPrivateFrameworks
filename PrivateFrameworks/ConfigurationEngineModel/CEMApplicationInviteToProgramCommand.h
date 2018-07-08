@@ -16,6 +16,7 @@
     NSString *_payloadInvitationURL;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withProgramID:(id)arg2 withInvitationURL:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withProgramID:(id)arg2 withInvitationURL:(id)arg3;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

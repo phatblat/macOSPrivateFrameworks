@@ -6,6 +6,11 @@
 
 #import "NSObject.h"
 
+@class NSObject<OS_dispatch_queue>;
+
 @protocol ROCKMemoizable <NSObject>
+
+@optional
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *memoizableSerializerQueue;
 @end
 

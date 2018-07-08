@@ -18,7 +18,6 @@
     NSDictionary *_timeZoneAbbreviations;
     NSDictionary *_uniquePostalCodeFormats;
     NSDictionary *_postalCodeFormats;
-    NSDictionary *_regionNames;
     BOOL _keepData;
     NSObject<OS_dispatch_queue> *_queue;
     NSObject<OS_dispatch_source> *_memoryPressureSource;
@@ -44,10 +43,10 @@
 - (id)_getTimeZoneForPostalCode;
 - (id)_getRegionAbbreviations;
 - (id)_getTimeZoneForCountryCodeDictionarySupplement;
+- (void)cleanupCache;
 - (void)_readPlistRegionAbbreviationsData;
 - (id)_getTimeZoneForCountryCode;
 - (id)_getCountryCodeForCountryName;
-- (void)_deleteData;
 - (void)_handleMemoryPressureStatus;
 - (id)init;
 

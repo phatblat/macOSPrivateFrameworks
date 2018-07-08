@@ -17,6 +17,7 @@
     CEMApplicationControlDeclaration_UpdateSchedule *_payloadUpdateSchedule;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withInstallSchedule:(id)arg2 withUpdatePolicy:(id)arg3 withUpdateSchedule:(id)arg4;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

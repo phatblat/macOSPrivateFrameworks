@@ -17,6 +17,7 @@
     CEMAnyPayload *_payloadProviderConfiguration;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withAppBundleIdentifier:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withAppBundleIdentifier:(id)arg2 withProviderBundleIdentifier:(id)arg3 withProviderConfiguration:(id)arg4;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

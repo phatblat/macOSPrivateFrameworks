@@ -13,6 +13,7 @@
     NSString *_payloadTVDeviceID;
 }
 
++ (id)buildRequiredOnlyWithTVDeviceID:(id)arg1;
 + (id)buildWithTVDeviceID:(id)arg1;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadTVDeviceID; // @synthesize payloadTVDeviceID=_payloadTVDeviceID;

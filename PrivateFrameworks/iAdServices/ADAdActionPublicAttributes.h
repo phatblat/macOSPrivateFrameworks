@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class ADMRAIDAction, NSString;
+@class ADMRAIDAction, NSArray, NSNumber, NSString;
 
 @interface ADAdActionPublicAttributes : NSObject <NSSecureCoding>
 {
@@ -19,9 +19,15 @@
     unsigned long long _actionViewControllerPresentationOrientationMask;
     NSString *_actionURLString;
     ADMRAIDAction *_MRAIDAction;
+    NSNumber *_adamIdentifier;
+    NSArray *_iTunesMetadata;
+    NSString *_calendarEventIdentifier;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(copy, nonatomic) NSString *calendarEventIdentifier; // @synthesize calendarEventIdentifier=_calendarEventIdentifier;
+@property(copy, nonatomic) NSArray *iTunesMetadata; // @synthesize iTunesMetadata=_iTunesMetadata;
+@property(copy, nonatomic) NSNumber *adamIdentifier; // @synthesize adamIdentifier=_adamIdentifier;
 @property(copy, nonatomic) ADMRAIDAction *MRAIDAction; // @synthesize MRAIDAction=_MRAIDAction;
 @property(copy, nonatomic) NSString *actionURLString; // @synthesize actionURLString=_actionURLString;
 @property(nonatomic) int transitionType; // @synthesize transitionType=_transitionType;

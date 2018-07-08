@@ -15,6 +15,7 @@
     NSNumber *_payloadTime;
 }
 
++ (id)buildRequiredOnlyWithEventtype:(id)arg1;
 + (id)buildWithEventtype:(id)arg1 withWeekdays:(id)arg2 withTime:(id)arg3;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadTime; // @synthesize payloadTime=_payloadTime;

@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class NSNumber, NSString;
+@class NSNumber, NSString, WDRemoteElement;
 
 @interface WDInputSourceState : NSObject <NSCopying>
 {
@@ -18,11 +18,15 @@
     NSNumber *_mouseButton;
     NSNumber *_locationX;
     NSNumber *_locationY;
+    long long _locationOriginType;
+    WDRemoteElement *_locationOriginElement;
     NSNumber *_duration;
 }
 
 + (id)initialState;
 @property(retain, nonatomic) NSNumber *duration; // @synthesize duration=_duration;
+@property(copy, nonatomic) WDRemoteElement *locationOriginElement; // @synthesize locationOriginElement=_locationOriginElement;
+@property(nonatomic) long long locationOriginType; // @synthesize locationOriginType=_locationOriginType;
 @property(retain, nonatomic) NSNumber *locationY; // @synthesize locationY=_locationY;
 @property(retain, nonatomic) NSNumber *locationX; // @synthesize locationX=_locationX;
 @property(retain, nonatomic) NSNumber *mouseButton; // @synthesize mouseButton=_mouseButton;

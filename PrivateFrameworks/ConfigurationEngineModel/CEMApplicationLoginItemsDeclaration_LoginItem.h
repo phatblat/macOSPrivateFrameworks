@@ -14,6 +14,7 @@
     NSNumber *_payloadHide;
 }
 
++ (id)buildRequiredOnlyWithPath:(id)arg1;
 + (id)buildWithPath:(id)arg1 withHide:(id)arg2;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadHide; // @synthesize payloadHide=_payloadHide;

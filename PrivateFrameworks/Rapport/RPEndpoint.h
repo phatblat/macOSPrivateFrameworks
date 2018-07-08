@@ -8,10 +8,12 @@
 
 #import "NSSecureCoding.h"
 
-@class NSString;
+@class CUBonjourDevice, NSString, SFDevice;
 
 @interface RPEndpoint : NSObject <NSSecureCoding>
 {
+    SFDevice *_bleDevice;
+    CUBonjourDevice *_bonjourDevice;
     NSString *_identifier;
     NSString *_idsDeviceIdentifier;
     NSString *_model;
@@ -24,6 +26,8 @@
 + (BOOL)supportsSecureCoding;
 + (id)nullEndpoint;
 @property(nonatomic) BOOL present; // @synthesize present=_present;
+@property(retain, nonatomic) CUBonjourDevice *bonjourDevice; // @synthesize bonjourDevice=_bonjourDevice;
+@property(retain, nonatomic) SFDevice *bleDevice; // @synthesize bleDevice=_bleDevice;
 @property(nonatomic) unsigned long long statusFlags; // @synthesize statusFlags=_statusFlags;
 @property(readonly, nonatomic) int proximity; // @synthesize proximity=_proximity;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
@@ -31,6 +35,10 @@
 @property(copy, nonatomic) NSString *idsDeviceIdentifier; // @synthesize idsDeviceIdentifier=_idsDeviceIdentifier;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
+- (BOOL)removeSFDevice:(id)arg1;
+- (unsigned int)updateWithSFDevice:(id)arg1;
+- (BOOL)removeBonjourDevice:(id)arg1;
+- (unsigned int)updateWithBonjourDevice:(id)arg1;
 - (id)descriptionWithLevel:(int)arg1;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;

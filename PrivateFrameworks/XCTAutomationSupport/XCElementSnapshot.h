@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSArray, NSDictionary, NSEnumerator, NSIndexPath, NSString, NSValue, XCAccessibilityElement, XCUIApplication;
+@class NSArray, NSDictionary, NSEnumerator, NSIndexPath, NSSet, NSString, NSValue, XCAccessibilityElement, XCUIApplication;
 
 @interface XCElementSnapshot : NSObject <NSSecureCoding, NSCopying>
 {
@@ -42,7 +42,8 @@
     struct CGRect _frame;
 }
 
-+ (id)snapshotAttributesForElementSnapshotKeyPaths:(id)arg1;
++ (id)axAttributesForSnapshotAttributes:(id)arg1;
++ (id)axAttributesForElementSnapshotKeyPaths:(id)arg1;
 + (id)elementWithAccessibilityElement:(id)arg1;
 + (BOOL)supportsSecureCoding;
 @property XCElementSnapshot *parent; // @synthesize parent=_parent;
@@ -55,6 +56,7 @@
 @property(readonly) BOOL isTouchBarElement;
 - (BOOL)_isAncestorOfElement:(id)arg1;
 - (BOOL)_isDescendantOfElement:(id)arg1;
+@property(readonly) NSSet *uniqueDescendantSubframes;
 @property(readonly) NSArray *suggestedHitpoints;
 - (BOOL)isRemote;
 @property(readonly) XCElementSnapshot *rootElement;
@@ -84,6 +86,7 @@
 - (id)elementSnapshotMatchingAccessibilityElement:(id)arg1;
 - (void)enumerateDescendantsUsingBlock:(CDUnknownBlockType)arg1;
 @property(readonly) unsigned long long depth;
+- (id)dictionaryRepresentationWithAttributes:(id)arg1;
 @property(readonly, copy) NSString *sparseTreeDescription;
 @property(readonly, copy) NSString *compactDescription;
 @property(readonly, copy) NSString *pathDescription;

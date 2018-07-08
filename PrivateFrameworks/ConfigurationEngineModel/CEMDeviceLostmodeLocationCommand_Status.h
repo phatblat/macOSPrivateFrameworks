@@ -20,6 +20,7 @@
     NSString *_statusTimestamp;
 }
 
++ (id)buildRequiredOnlyWithLatitude:(id)arg1 withLongitude:(id)arg2 withHorizontalAccuracy:(id)arg3 withVerticalAccuracy:(id)arg4 withAltitude:(id)arg5 withSpeed:(id)arg6 withCourse:(id)arg7 withTimestamp:(id)arg8;
 + (id)buildWithLatitude:(id)arg1 withLongitude:(id)arg2 withHorizontalAccuracy:(id)arg3 withVerticalAccuracy:(id)arg4 withAltitude:(id)arg5 withSpeed:(id)arg6 withCourse:(id)arg7 withTimestamp:(id)arg8;
 + (id)allowedReasons;
 + (id)allowedStatusKeys;

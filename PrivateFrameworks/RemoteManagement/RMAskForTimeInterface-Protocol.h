@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class RMAskForTimeRequest;
+@class NSNumber, NSString, NSUUID, RMAskForTimeRequest;
 
 @protocol RMAskForTimeInterface <NSObject>
-- (void)isRestrictionsPasscodeSet:(void (^)(BOOL))arg1;
-- (void)shouldRequestMoreTime:(void (^)(BOOL, NSError *))arg1;
-- (void)fetchAskForTimeFromMeWithCompletionHandler:(void (^)(NSArray *, NSDictionary *, NSError *))arg1;
+- (void)handleAnswer:(long long)arg1 requestIdentifier:(NSUUID *)arg2 timeApproved:(NSNumber *)arg3 completionHandler:(void (^)(void))arg4;
+- (void)fetchLastResponseForRequestedResourceIdentifier:(NSString *)arg1 usageType:(long long)arg2 withCompletionHandler:(void (^)(long long, NSNumber *, NSError *))arg3;
+- (void)approveExceptionForRequest:(RMAskForTimeRequest *)arg1 completionHandler:(void (^)(NSError *))arg2;
 - (void)sendAskForTimeRequest:(RMAskForTimeRequest *)arg1 completionHandler:(void (^)(NSError *))arg2;
 @end
 

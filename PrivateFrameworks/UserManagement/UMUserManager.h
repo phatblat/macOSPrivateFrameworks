@@ -31,6 +31,7 @@
 - (void)registerUserSwitchStakeHolder:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)registerUserSwitchStakeHolder:(id)arg1;
 - (void)switchToUser:(id)arg1 passcodeData:(id)arg2 context:(id)arg3 preferences:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)loginUICheckInWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)directSwitchToUser:(id)arg1 passcodeData:(id)arg2 context:(id)arg3 preferences:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)switchToUser:(id)arg1 passcodeData:(id)arg2 context:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)logoutToLoginSessionWithCompletionHandler:(CDUnknownBlockType)arg1;

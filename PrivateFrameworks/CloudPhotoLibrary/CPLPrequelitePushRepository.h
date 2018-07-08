@@ -42,6 +42,7 @@
 - (BOOL)_mergeChange:(id)arg1 overChange:(id)arg2 discardedUploadIdentifier:(id *)arg3 error:(id *)arg4;
 - (BOOL)_storeChange:(id)arg1 update:(BOOL)arg2 error:(id *)arg3;
 - (id)_pqlChangeWithScopedIdentifier:(id)arg1;
+- (BOOL)hasChangesWithScopeFilter:(id)arg1;
 - (BOOL)hasChangesInScopeWithIdentifier:(id)arg1;
 - (unsigned long long)countOfChangesInScopeWithIdentifier:(id)arg1;
 - (BOOL)upgradeStorageToVersion:(long long)arg1;

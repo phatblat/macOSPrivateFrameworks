@@ -22,6 +22,7 @@
 }
 
 - (void).cxx_destruct;
+- (BOOL)wakeDataProviderShouldResumeAfterInterruption:(id)arg1;
 - (unsigned long long)wakeTypeFromSleepType:(unsigned long long)arg1;
 - (id)createWakeEventFromCurrentWake;
 - (BOOL)detectWake:(id *)arg1;

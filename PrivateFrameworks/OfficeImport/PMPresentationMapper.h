@@ -32,9 +32,11 @@ __attribute__((visibility("hidden")))
 - (void)startMappingWithState:(id)arg1;
 - (struct CGSize)slideSize;
 - (struct CGSize)pageSizeForDevice;
+- (struct CGSize)pageSizeForDeviceIncludingMargins:(BOOL)arg1;
 - (id)documentTitle;
 - (id)blipAtIndex:(unsigned int)arg1;
 - (id)initWithDocument:(id)arg1 archiver:(id)arg2;
+- (id)defaultStyleSheet;
 - (void)setHtmlDocumentSizeInArchiver;
 
 // Remaining properties

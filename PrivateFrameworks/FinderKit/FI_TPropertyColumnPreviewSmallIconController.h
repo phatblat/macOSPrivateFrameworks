@@ -4,18 +4,63 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <FinderKit/FI_IBasePropertyColumnPreviewIconController.h>
+#import <FinderKit/FI_TPropertyImageViewController.h>
+
+#import "TPropertyThumbnailExtractorDelegate.h"
+#import "TThumbnailExtractorDelegate.h"
+
+@class NSString;
 
 __attribute__((visibility("hidden")))
-@interface FI_TPropertyColumnPreviewSmallIconController : FI_IBasePropertyColumnPreviewIconController
+@interface FI_TPropertyColumnPreviewSmallIconController : FI_TPropertyImageViewController <TPropertyThumbnailExtractorDelegate, TThumbnailExtractorDelegate>
 {
-    _Bool _showSmallThumbnail;
+    struct TFENodeVector _nodes;
+    struct unordered_map<TFENode, std::__1::unordered_set<TFENode, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<TFENode>>, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, std::__1::unordered_set<TFENode, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<TFENode>>>>> _thumbnailTargetNodesToNodesToThumbnail;
+    unordered_set_931aff12 _pendingKeyNodes;
+    TNSWeakPtr_a131d41e _pendingKeyNodesToken;
+    _Bool _wantsToWaitForThumbnails;
+    struct TNotificationCenterObserver _rotateObserver;
+    struct vector<TNotificationCenterObserver, std::__1::allocator<TNotificationCenterObserver>> _viewObservers;
+    struct TKeyValueObserver _effectiveAppearanceObserver;
+    TNSWeakPtr_a131d41e _updateAfterResizeToken;
+    struct TNSRef<NSObject, void> _cachedValue;
+    _Bool _isApplicableToUI;
 }
 
 + (id)keyPathsForValuesAffectingShouldBeVisible;
-@property(nonatomic) _Bool showSmallThumbnail; // @synthesize showSmallThumbnail=_showSmallThumbnail;
+@property(nonatomic, getter=isApplicableToUI) _Bool applicableToUI; // @synthesize applicableToUI=_isApplicableToUI;
+@property _Bool wantsToWaitForThumbnails; // @synthesize wantsToWaitForThumbnails=_wantsToWaitForThumbnails;
+- (id).cxx_construct;
+- (void).cxx_destruct;
+- (void)waitForThumbnail:(const struct TFENode *)arg1;
+- (void)timesUpWaitingForThumbs;
+- (struct TFENode)thumbnailTargetNodeForNode:(const struct TFENode *)arg1;
+- (void)invalidateThumbnailForKeyNodes:(const struct TFENodeVector *)arg1;
+- (_Bool)fetchIconifiedThumbnails;
+- (void)configureThumbnailer:(double)arg1 andScaleFactor:(double)arg2;
+- (void)flushCachedValue;
+- (void)flush;
+- (void)updateWithNodes:(const struct TFENodeVector *)arg1;
+- (void)registerOrUnregisterWithThumbnailCache:(_Bool)arg1;
+- (void)unregisterWithThumbnailCache;
+- (void)registerWithThumbnailCache;
+- (struct TFENodeVector)thumbnailTargetNodes;
+- (id)thumbnailValueExtractor;
+- (void)imageViewEffectiveAppearanceChanged;
+- (void)imageViewBackingPropertiesChanged;
+- (void)updateIconSize;
+- (id)extractValueFromNodes:(const struct TFENodeVector *)arg1;
 - (_Bool)shouldBeVisible;
 - (_Bool)isApplicableToNodes:(const struct TFENodeVector *)arg1;
+- (void)aboutToTearDown;
+- (void)viewLoaded;
+- (void)initCommon;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -20,7 +20,7 @@
 - (void)remoteViewControllerProxy:(void (^)(id))arg1;
 - (void)retreatToConfigPhase;
 - (void)serviceWindowReceivedScrollWheel:(NSData *)arg1 eventOwner:(unsigned int)arg2;
-- (void)serviceViewReceivedLeftMouseDown;
+- (void)serviceViewReceivedLeftMouseDown:(long long)arg1;
 - (void)serviceWindowWouldActivate;
 - (void)discloseAccessoryView:(BOOL)arg1 withVerticalOffset:(double)arg2 andAnimationState:(int)arg3 andDuration:(double)arg4;
 - (void)updateContentMinSize:(struct CGSize)arg1 maxSize:(struct CGSize)arg2;

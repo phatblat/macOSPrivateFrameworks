@@ -29,8 +29,6 @@
 - (void).cxx_destruct;
 - (void)accountStore:(id)arg1 primaryAccountChanged:(id)arg2;
 - (void)runOnFirstUnlock:(CDUnknownBlockType)arg1;
-- (BOOL)deviceUnlockedOnce;
-- (BOOL)purpleBuddyWillRun;
 - (void)handleAccountChange;
 - (void)pushDisable;
 - (void)pushEnable;

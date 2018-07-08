@@ -4,11 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <RemoteManagement/RMOrganization.h>
+#import "NSManagedObject.h"
 
-@interface RMFamilyOrganization : RMOrganization
+@class RMFamilyOrganizationSettings;
+
+@interface RMFamilyOrganization : NSManagedObject
 {
 }
+
++ (id)fetchOrCreateFamilyOrganizationWithContext:(id)arg1 error:(id *)arg2;
+
+// Remaining properties
+@property(retain, nonatomic) RMFamilyOrganizationSettings *settings; // @dynamic settings;
 
 @end
 

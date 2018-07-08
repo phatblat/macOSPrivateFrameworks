@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <UIKitHostAppServices/UHASRemoteObject.h>
 
 #import "UHAToolbarItemInterface.h"
 
 @class NSString;
 
-@interface UHASToolbarItem : NSObject <UHAToolbarItemInterface>
+@interface UHASToolbarItem : UHASRemoteObject <UHAToolbarItemInterface>
 {
     NSString *_identifier;
     NSString *_label;
@@ -19,13 +19,15 @@
 
 @property(copy, nonatomic) CDUnknownBlockType changeHandler; // @synthesize changeHandler=_changeHandler;
 @property(copy, nonatomic) NSString *label; // @synthesize label=_label;
-@property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
+@property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (id)initWithIdentifier:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) const struct __CFString *forwardingInterposableRunLoopMode;
+@property(readonly, nonatomic) double forwardingInterposableRunLoopTimeOut;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

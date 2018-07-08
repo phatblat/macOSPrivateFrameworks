@@ -16,7 +16,6 @@
     CPLChangeBatch *_pendingAckForBatch;
     CPLChangeBatch *_expandedCloudBatch;
     CPLChangeBatch *_expandedClientBatch;
-    BOOL _pushRepositoryIsEmpty;
     CPLChangeBatch *_scopeChangesBatch;
     NSString *_lastSeenLibraryVersion;
     CPLEngineLibrary *_engineLibrary;

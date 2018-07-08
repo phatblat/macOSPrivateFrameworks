@@ -13,6 +13,7 @@
     NSString *_payloadSecret;
 }
 
++ (id)buildRequiredOnlyWithSecret:(id)arg1;
 + (id)buildWithSecret:(id)arg1;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadSecret; // @synthesize payloadSecret=_payloadSecret;

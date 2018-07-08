@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "ROCKMemoizable.h"
+#import "ROCKForwardingInterposableWithRunLoop.h"
+#import "ROCKImpersonateable.h"
 
 @class NSData;
 
-@protocol UHASystemAppearanceInterface <ROCKMemoizable>
+@protocol UHASystemAppearanceInterface <ROCKImpersonateable, ROCKForwardingInterposableWithRunLoop>
 @property(readonly, nonatomic) BOOL accessibilityIsZoomEnabled;
 @property(readonly, nonatomic) BOOL accessibilityIsSwitchControlEnabled;
 @property(readonly, nonatomic) BOOL accessibilityIsVoiceOverEnabled;
@@ -21,8 +22,15 @@
 @property(readonly, nonatomic) BOOL hasDarkWindowChrome;
 @property(readonly, nonatomic) unsigned long long scrollBarClickBehavior;
 @property(readonly, nonatomic) unsigned long long scrollerStyle;
+@property(readonly, nonatomic) NSData *encodedDarkKeyboardFocusIndicatorColor;
 @property(readonly, nonatomic) NSData *encodedKeyboardFocusIndicatorColor;
+@property(readonly, nonatomic) NSData *encodedDarkSelectionMaterialTintColor;
+@property(readonly, nonatomic) NSData *encodedSelectionMaterialTintColor;
+@property(readonly, nonatomic) NSData *encodedDarkTableHighlightColor;
 @property(readonly, nonatomic) NSData *encodedTableHighlightColor;
+@property(readonly, nonatomic) NSData *encodedDarkUnemphasizedTextHighlightColor;
+@property(readonly, nonatomic) NSData *encodedUnemphasizedTextHighlightColor;
+@property(readonly, nonatomic) NSData *encodedDarkTextHighlightColor;
 @property(readonly, nonatomic) NSData *encodedTextHighlightColor;
 @end
 

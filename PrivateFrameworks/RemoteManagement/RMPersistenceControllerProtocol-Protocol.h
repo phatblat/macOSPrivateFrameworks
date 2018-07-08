@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+@class NSManagedObjectContext;
+
 @protocol RMPersistenceControllerProtocol <NSObject>
-- (void)registerDelegate:(id <RMPersistenceControllerDelegate>)arg1;
+- (NSManagedObjectContext *)newBackgroundContext;
+- (void)performBackgroundTaskAndWait:(void (^)(NSManagedObjectContext *))arg1;
 - (void)performBackgroundTask:(void (^)(NSManagedObjectContext *))arg1;
-- (void)reset;
 @end
 

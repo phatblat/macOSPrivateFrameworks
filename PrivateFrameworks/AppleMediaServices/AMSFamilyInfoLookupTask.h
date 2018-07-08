@@ -14,10 +14,15 @@
     NSString *_logKey;
 }
 
++ (id)_processURLResult:(id)arg1;
 @property(retain) NSString *logKey; // @synthesize logKey=_logKey;
 @property(retain) id <AMSFamilyInfoLookupBagContract> bagContract; // @synthesize bagContract=_bagContract;
 - (void).cxx_destruct;
-- (id)_processURLResult:(id)arg1;
+- (id)_pathForCachedFamilyInfoLookupResult;
+- (id)_currentCachedFamilyInfo;
+- (id)_cachedFamilyInfoLookupResultForAccount:(id)arg1;
+- (void)_cacheFamilyInfoLookupResult:(id)arg1 forAccount:(id)arg2;
+- (id)_performFamilyInfoRequestForAccount:(id)arg1 error:(id *)arg2;
 - (id)performFamilyInfoLookup;
 - (id)initWithBagContract:(id)arg1;
 

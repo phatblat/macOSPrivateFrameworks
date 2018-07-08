@@ -17,6 +17,7 @@
     NSNumber *_payloadSecondsPerDay;
 }
 
++ (id)buildRequiredOnlyWithEnabled:(id)arg1 withRangeType:(id)arg2;
 + (id)buildWithEnabled:(id)arg1 withRangeType:(id)arg2 withStart:(id)arg3 withEnd:(id)arg4 withSecondsPerDay:(id)arg5;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadSecondsPerDay; // @synthesize payloadSecondsPerDay=_payloadSecondsPerDay;

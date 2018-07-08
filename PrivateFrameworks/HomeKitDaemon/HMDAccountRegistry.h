@@ -28,6 +28,7 @@
 - (void)_resolveAccountForHandle:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)__handleRemovedRemoteAccount:(id)arg1;
 - (void)__handleAddedRemoteAccount:(id)arg1;
+- (void)__handleAppleAccountDeviceAdded:(id)arg1;
 - (void)__handleAppleAccountUpdate:(id)arg1;
 - (id)deviceForDevice:(id)arg1 exists:(char *)arg2;
 - (id)deviceForDevice:(id)arg1;
@@ -39,6 +40,8 @@
 - (id)accountForHandle:(id)arg1;
 - (BOOL)accountExistsForHandle:(id)arg1;
 @property(readonly, nonatomic) NSArray *accounts;
+- (void)stop;
+- (void)start;
 - (id)attributeDescriptions;
 - (id)initWithAppleAccountManager:(id)arg1 remoteAccountManager:(id)arg2;
 - (id)init;

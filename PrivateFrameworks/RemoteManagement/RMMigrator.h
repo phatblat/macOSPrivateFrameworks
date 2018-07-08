@@ -16,13 +16,20 @@
     NSPersistentHistoryToken *_migratedToken;
 }
 
++ (id)mirroredEntityNames;
++ (id)cloudToLocalMapping;
++ (id)localToCloudMapping;
 - (void).cxx_destruct;
 - (BOOL)addHistoryToken:(id)arg1 forAuthor:(id)arg2 toMetadataForStore:(id)arg3 error:(id *)arg4;
 - (id)historyTokenForAuthor:(id)arg1 fromStore:(id)arg2;
-- (BOOL)isChangeInteresting:(id)arg1;
 - (BOOL)_checkPreconditionsError:(id *)arg1;
-- (BOOL)migrateToCloud:(id *)arg1;
-- (BOOL)migrateToLocal:(id *)arg1;
+- (void)_dumpLocalApps:(id)arg1;
+- (void)_dumpLocalPersonalActivations:(id)arg1;
+- (void)_dumpCloudApps:(id)arg1;
+- (void)_dumpCloudPersonalActivations:(id)arg1;
+- (void)resolveConflictsBetweenLocalDeltas:(id)arg1 cloudDeltas:(id)arg2;
+- (BOOL)migrateWithError:(id *)arg1;
+- (BOOL)areLocalChangesInterestingWithError:(id *)arg1;
 - (id)initWithPersistentStoreCoordinator:(id)arg1;
 
 @end

@@ -6,21 +6,22 @@
 
 #import "NSObject.h"
 
-@class DMFPolicyRegistration, NSArray;
+@class NSArray, NSUUID;
 
 @interface DMFWebsitePolicyMonitor : NSObject
 {
-    DMFPolicyRegistration *_registration;
     NSArray *_policyTypes;
+    NSUUID *_policyMonitorIdentifier;
 }
 
+@property(readonly, nonatomic) NSUUID *policyMonitorIdentifier; // @synthesize policyMonitorIdentifier=_policyMonitorIdentifier;
 @property(copy, nonatomic) NSArray *policyTypes; // @synthesize policyTypes=_policyTypes;
-@property(retain, nonatomic) DMFPolicyRegistration *registration; // @synthesize registration=_registration;
 - (void).cxx_destruct;
 - (BOOL)askPermissionForWebsite:(id)arg1 error:(id *)arg2;
 - (void)_fetchCategoriesIfNeededForWebsites:(id)arg1 response:(CDUnknownBlockType)arg2;
 - (void)requestPoliciesForWebsites:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 @property(readonly, getter=isEnabled) BOOL enabled;
+- (void)dealloc;
 - (id)initWithPolicyChangeHandler:(CDUnknownBlockType)arg1;
 
 @end

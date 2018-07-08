@@ -19,6 +19,7 @@
     NSString *_payloadEndTime;
 }
 
++ (id)buildRequiredOnlyWithStartDay:(id)arg1 withStartTime:(id)arg2 withEndDay:(id)arg3 withEndTime:(id)arg4;
 + (id)buildWithCalendarIdentifier:(id)arg1 withStartDay:(id)arg2 withStartTime:(id)arg3 withEndDay:(id)arg4 withEndTime:(id)arg5;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

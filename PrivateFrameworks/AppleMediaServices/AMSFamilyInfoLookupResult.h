@@ -6,18 +6,21 @@
 
 #import "NSObject.h"
 
-@class NSArray;
+@class NSArray, NSDictionary;
 
 @interface AMSFamilyInfoLookupResult : NSObject
 {
+    BOOL _cached;
     NSArray *_familyMembers;
 }
 
-+ (id)_familyMembersFromServerResponse:(id)arg1;
++ (id)_familyMembersFromDictionaryRepresentation:(id)arg1;
 @property(readonly) NSArray *familyMembers; // @synthesize familyMembers=_familyMembers;
+@property(readonly, getter=isCached) BOOL cached; // @synthesize cached=_cached;
 - (void).cxx_destruct;
 - (id)description;
-- (id)initWithServerResponse:(id)arg1;
+@property(readonly) NSDictionary *dictionaryRepresentation;
+- (id)initWithDictionaryRepresentation:(id)arg1 cached:(BOOL)arg2;
 
 @end
 

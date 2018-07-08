@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "INSpeakable.h"
+
 @class IMDAccount, IMDService, IMDServiceSession, IMMessageItem, NSArray, NSDate, NSDictionary, NSMutableDictionary, NSRecursiveLock, NSString;
 
-@interface IMDChat : NSObject
+@interface IMDChat : NSObject <INSpeakable>
 {
     NSRecursiveLock *_lock;
     NSString *_accountID;
@@ -59,6 +61,7 @@
 - (id)cloudKitChatID;
 @property(readonly, nonatomic) NSString *personCentricID;
 - (id)_personIdentity;
+- (id)_chatRegistry;
 - (void)updateHasHadSuccessfulQuery:(BOOL)arg1;
 - (int)getNumberOfTimesRespondedToThread;
 - (BOOL)isSMSSpam;
@@ -89,7 +92,7 @@
 - (id)copyDictionaryRepresentation:(BOOL)arg1;
 - (id)dictionaryRepresentationIncludingLastMessage;
 @property(readonly, retain) NSDictionary *chatProperties;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (long long)compareBySequenceNumberAndDateDescending:(id)arg1;
 - (BOOL)isNewerThan:(id)arg1;
 - (BOOL)isOlderThan:(id)arg1;
@@ -103,8 +106,7 @@
 - (void)addParticipant:(id)arg1;
 - (void)addParticipants:(id)arg1;
 - (void)_updateCachedParticipants;
-- (void)setLastMessageTimeStampOnLoad:(long long)arg1;
-@property(readonly) long long lastMessageTimeStampOnLoad;
+@property long long lastMessageTimeStampOnLoad;
 - (void)setLastSentMessageDate:(id)arg1;
 @property(readonly, retain) NSDate *lastSentMessageDate;
 @property BOOL hasHadSuccessfulQuery;
@@ -132,6 +134,10 @@
 @property(copy) NSString *guid;
 - (void)dealloc;
 - (id)initWithAccountID:(id)arg1 service:(id)arg2 guid:(id)arg3 groupID:(id)arg4 chatIdentifier:(id)arg5 participants:(id)arg6 roomName:(id)arg7 displayName:(id)arg8 lastAddressedLocalHandle:(id)arg9 properties:(id)arg10 state:(long long)arg11 style:(unsigned char)arg12 isFiltered:(BOOL)arg13 hasHadSuccessfulQuery:(BOOL)arg14 engramID:(id)arg15 serverChangeToken:(id)arg16 cloudKitSyncState:(long long)arg17 originalGroupID:(id)arg18 lastReadMessageTimeStamp:(long long)arg19 lastMessageTimeStampOnLoad:(long long)arg20 srServerChangeToken:(id)arg21 srCloudKitSyncState:(long long)arg22 cloudKitRecordID:(id)arg23 srCloudKitRecordID:(id)arg24;
+@property(readonly) NSArray *alternativeSpeakableMatches;
+@property(readonly) NSString *vocabularyIdentifier;
+@property(readonly) NSString *pronunciationHint;
+@property(readonly) NSString *spokenPhrase;
 - (BOOL)applyChangesUsingCKRecord:(id)arg1 isUsingStingRay:(BOOL)arg2;
 - (id)initWithCKRecord:(id)arg1 isUsingStingRay:(BOOL)arg2;
 - (id)copyCKRecordRepresentationWithZoneID:(id)arg1 salt:(id)arg2 isUsingStingRay:(BOOL)arg3;
@@ -141,6 +147,12 @@
 - (id)_recordNameUsingSalt:(id)arg1;
 - (id)_recordIDUsingName:(id)arg1 zoneID:(id)arg2;
 - (id)_recordIDUsingSalt:(id)arg1 zoneID:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) NSString *identifier;
+@property(readonly) Class superclass;
 
 @end
 

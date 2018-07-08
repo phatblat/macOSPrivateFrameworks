@@ -19,6 +19,8 @@
 @property(readonly, nonatomic) BOOL remoteAssetsDownloaded;
 - (void)downloadRemoteAssetsWithCompletion:(CDUnknownBlockType)arg1;
 - (void)downloadRemoteAssetsWithScreenScale:(double)arg1 suffix:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (id)dataForBundleResources:(id)arg1;
+- (id)dataForBundleResource:(id)arg1;
 - (id)dataForBundleResourceNamed:(id)arg1 withExtension:(id)arg2;
 @property(readonly, nonatomic) NSBundle *bundle;
 @property(readonly, nonatomic) NSData *serializedFileWrapper;

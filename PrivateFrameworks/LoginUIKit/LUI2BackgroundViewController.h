@@ -6,7 +6,7 @@
 
 #import <LoginUIKit/LUI2ViewController.h>
 
-@class CAGradientLayer, CALayer, NSImage;
+@class CAGradientLayer, CALayer, DPRemoteDesktopPicture, NSImage;
 
 @interface LUI2BackgroundViewController : LUI2ViewController
 {
@@ -16,8 +16,10 @@
     CALayer *_darkenSourceOver;
     CALayer *_lightenSourceOver;
     CAGradientLayer *_gradient;
+    DPRemoteDesktopPicture *_remoteDesktopPicture;
 }
 
+@property(retain) DPRemoteDesktopPicture *remoteDesktopPicture; // @synthesize remoteDesktopPicture=_remoteDesktopPicture;
 @property(retain) CAGradientLayer *gradient; // @synthesize gradient=_gradient;
 @property(retain) CALayer *lightenSourceOver; // @synthesize lightenSourceOver=_lightenSourceOver;
 @property(retain) CALayer *darkenSourceOver; // @synthesize darkenSourceOver=_darkenSourceOver;
@@ -28,7 +30,10 @@
 - (void)viewDidLoad;
 - (void)mouseUp:(id)arg1;
 @property(retain) NSImage *image;
+@property BOOL usesDesktopLayer;
+- (void)saveImage:(id)arg1;
 - (void)_initImageLayer;
+- (id)_backgroundColor;
 
 @end
 

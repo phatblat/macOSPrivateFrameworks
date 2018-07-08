@@ -38,7 +38,9 @@
 - (BOOL)synchronizeWithUrgency:(unsigned long long)arg1 client:(id)arg2 error:(id *)arg3;
 - (BOOL)synchronizeWithError:(id *)arg1;
 - (id)knowledgeSynchronizingHandleWithError:(id *)arg1;
+- (void)deleteAllEventsMatchingPredicate:(id)arg1 responseQueue:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
 - (unsigned long long)deleteAllEventsMatchingPredicate:(id)arg1 error:(id *)arg2;
+- (void)deleteAllEventsInEventStream:(id)arg1 responseQueue:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
 - (unsigned long long)deleteAllEventsInEventStream:(id)arg1 error:(id *)arg2;
 - (void)executeQuery:(id)arg1 responseQueue:(id)arg2;
 - (void)executeQuery:(id)arg1 responseQueue:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;

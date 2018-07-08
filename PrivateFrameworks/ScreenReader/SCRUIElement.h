@@ -418,6 +418,7 @@
 @property(readonly, nonatomic) long long _accessibilityMenuItemCmdGlyph;
 @property(readonly, nonatomic) NSString *_accessibilityMenuItemCmdChar;
 - (id)_linkedUIElements;
+@property(readonly, nonatomic) BOOL _startsMediaSession;
 @property(readonly, nonatomic) BOOL _hasSharedFocusUIElements;
 @property(readonly, copy, nonatomic) NSArray *_sharedFocusUIElements;
 @property(readonly, nonatomic) BOOL _canSetAccessibilitySize;

@@ -123,12 +123,12 @@
 - (void)retreatToConfigPhase;
 - (void)discloseAccessoryView:(BOOL)arg1 withVerticalOffset:(double)arg2 andAnimationState:(int)arg3 andDuration:(double)arg4;
 - (BOOL)_hasValidKeyViewInDirection:(unsigned long long)arg1;
-- (void)_serviceViewReceivedLeftMouseDown;
+- (void)_serviceViewReceivedLeftMouseDown:(long long)arg1;
 - (id)serviceMarshalForRemoteViewWindow:(id)arg1;
 - (void)_serviceWindowReceivedScrollWheel:(id)arg1 eventOwner:(unsigned int)arg2;
 - (void)_serviceWindowWouldActivate;
 - (void)maintainWindowEventMonitor:(unsigned int)arg1;
-- (void)_sendWindowFakeClick:(const char *)arg1;
+- (void)_sendWindowFakeClick:(long long)arg1 why:(const char *)arg2;
 - (void)updateContentMinSize:(struct CGSize)arg1 maxSize:(struct CGSize)arg2;
 - (void)updateAccessibilityChildren:(id)arg1;
 - (void)endModalSession:(id)arg1;
@@ -192,6 +192,7 @@
 - (id)wrapProxyForAnimationFencing:(id)arg1;
 - (struct NSObject *)_viewServiceMarshalProxy:(const char *)arg1;
 - (void)_advanceToConfigPhaseLegacy;
+- (void)_signalAndClearLegacyAdvanceSemaphores;
 - (void)_copyFromBootstrapParameters:(const CDStruct_e2fa5527 *)arg1;
 - (double)_reportScaleFactor;
 - (double)_backingScaleFactorOrZero;
@@ -222,7 +223,7 @@
 - (void)viewDidChangeBackingProperties;
 - (void)viewDidMoveToWindow;
 - (BOOL)_windowSupportsVibrancy:(id)arg1;
-- (BOOL)_shouldImposeVibrancySupport;
+- (BOOL)_shouldImposeVibrancySupport:(id)arg1;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)viewDidMoveToSuperview;
 - (BOOL)_isOrBecomingContentView;

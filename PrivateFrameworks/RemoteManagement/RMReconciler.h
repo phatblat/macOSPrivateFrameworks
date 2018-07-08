@@ -10,7 +10,7 @@
 {
 }
 
-+ (void)reconcileWithPersistenceController:(id)arg1 completion:(CDUnknownBlockType)arg2;
++ (void)reconcileWithManagedObjectContext:(id)arg1 completion:(CDUnknownBlockType)arg2;
 
 @end
 

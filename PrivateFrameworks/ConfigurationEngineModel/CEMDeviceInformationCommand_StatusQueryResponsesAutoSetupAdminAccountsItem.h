@@ -14,6 +14,7 @@
     NSString *_statusShortName;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithGUID:(id)arg1 withShortName:(id)arg2;
 + (id)allowedStatusKeys;
 @property(copy, nonatomic) NSString *statusShortName; // @synthesize statusShortName=_statusShortName;

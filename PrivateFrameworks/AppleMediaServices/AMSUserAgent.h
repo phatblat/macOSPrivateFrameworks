@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
 
 + (id)shared;
 - (void).cxx_destruct;
+- (id)_sharedComponentFrameworkVersion;
 - (id)_macComponentWebKitVersionString;
 - (id)_macComponentParenthetical;
 - (id)_macComponentClientInfoWithBundleID:(id)arg1;

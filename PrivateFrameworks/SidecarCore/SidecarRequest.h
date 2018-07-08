@@ -27,6 +27,7 @@
     unsigned int _finished:1;
 }
 
++ (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 @property __weak id <SidecarRequestDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)sidecarSession:(id)arg1 invalidatedWithError:(id)arg2;
@@ -47,8 +48,7 @@
 - (void)setFinished:(_Bool)arg1;
 @property(readonly, getter=isFinished) _Bool finished; // @dynamic finished;
 @property(copy) NSArray *devices; // @dynamic devices;
-- (void)setCancelled:(_Bool)arg1;
-@property(readonly, getter=isCancelled) _Bool cancelled; // @dynamic cancelled;
+@property(getter=isCancelled) _Bool cancelled; // @dynamic cancelled;
 @property(readonly) SidecarService *service;
 @property(readonly) NSProgress *progress;
 - (void)dealloc;

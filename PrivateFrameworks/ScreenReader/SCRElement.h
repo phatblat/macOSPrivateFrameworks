@@ -339,6 +339,7 @@
 - (id)language;
 - (id)titleElementFromUIElement:(id)arg1;
 - (void)_setTitleUIElementRecursionStopper:(id)arg1;
+@property(readonly, nonatomic) BOOL startsMediaSession;
 - (id)overlappingSiblings;
 - (unsigned long long)uiChildrenCount;
 - (id)uiChildrenElements;
@@ -931,6 +932,8 @@
 - (BOOL)canHandleTitleChange;
 - (BOOL)listenForValueChangeWithoutKeyboardFocus;
 - (BOOL)canHandleValueChange;
+- (void)clearAlternateUIIfDisplayed;
+- (void)setAlternateUITriggerElement:(id)arg1;
 - (BOOL)toggleExpandedWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)toggleDisclosureTriangleWithRequest:(id)arg1;
 - (int)transientState;

@@ -20,7 +20,7 @@
 - (void).cxx_destruct;
 - (void)purgeImageWithIdentifier:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)retrieveImageWithIdentifier:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)storeImage:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)storeImage:(id)arg1 scaled:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
 - (BOOL)canStoreImage:(id)arg1;
 - (id)loadImageData:(id)arg1 usingPortableImageLoader:(id)arg2 error:(id *)arg3;
 - (void)loadImageData:(id)arg1 usingPortableImageLoader:(id)arg2 completion:(CDUnknownBlockType)arg3;

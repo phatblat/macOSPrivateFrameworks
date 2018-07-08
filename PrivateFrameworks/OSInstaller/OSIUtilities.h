@@ -16,8 +16,9 @@
 + (void)rebootNow;
 + (void)enableDarkReboot;
 + (void)muteBootChimeForNextReboot;
++ (id)allDiskUUIDs:(id)arg1;
 + (BOOL)stopAutomationOnDisk:(id)arg1 reblessUUID:(id)arg2;
-+ (BOOL)promoteImgsrcDisk:(id)arg1;
++ (int)promoteImgsrcDisk:(id)arg1;
 + (id)getEFIVersion;
 + (BOOL)isCSFusion:(id)arg1;
 + (BOOL)isAPFSFusion:(id)arg1;

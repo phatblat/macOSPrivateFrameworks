@@ -18,7 +18,6 @@ __attribute__((visibility("hidden")))
     struct os_unfair_lock_s _bitmapIDByImageDescriptorLock;
 }
 
-+ (id)asyncQueue;
 + (id)sharedValidationQueue;
 + (id)placeholderIcon;
 @property(readonly) struct os_unfair_lock_s bitmapIDByImageDescriptorLock; // @synthesize bitmapIDByImageDescriptorLock=_bitmapIDByImageDescriptorLock;

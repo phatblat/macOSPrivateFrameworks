@@ -23,6 +23,7 @@
 @property(readonly, nonatomic) NSString *imageName; // @synthesize imageName=_imageName;
 - (void).cxx_destruct;
 - (id)imageWithSuffixIdentifier:(id)arg1;
+- (id)templateImage;
 - (id)thirtyPercentAlphaWhiteImage;
 - (id)systemMidGrayImage;
 - (id)whiteImage;

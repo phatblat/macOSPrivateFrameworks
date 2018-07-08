@@ -22,6 +22,8 @@ __attribute__((visibility("hidden")))
     struct TNSRef<FI_TDesktopTitleBubbleView, void> _titleBubbleView;
     struct TNSRef<FI_TTextField, void> _subtitleField;
     struct TICloudStateCoordinator _iCloudStateCoordinator;
+    function_b1fce659 _iCloudDownloadHandler;
+    struct TString _iCloudSubtitleToolTip;
     struct CGSize _iconSize;
     struct TString _titleStr;
     struct TNSRef<NSFont, void> _titleFont;
@@ -32,6 +34,7 @@ __attribute__((visibility("hidden")))
     struct TNSRef<NSColor, void> _subtitleFontColor;
     double _gridSpacing;
     vector_12bd641b _tagColorIndexes;
+    struct TNSRef<NSImage, void> _badgeImage;
     struct TNSRef<NSColor, void> _superViewsBackgroundColor;
     struct TNSRef<NSColor, void> _fontSmoothingBackgroundColor;
     struct TNSRef<NSImage, void> _placeholderTagImage;
@@ -80,10 +83,16 @@ __attribute__((visibility("hidden")))
 - (BOOL)isAccessibilityEnabled;
 - (id)accessibilityLabel;
 - (BOOL)isAccessibilityElement;
-- (void)configureBadgeImageView:(_Bool)arg1;
-- (void)configureSubtitleField;
-- (void)configureTitleBubbleView;
-- (void)configureIconSelectionView;
+- (void)layoutBadgeImageView:(const struct CGRect *)arg1;
+- (void)dirtyLayoutForBadgeImageViewIfNeeded;
+- (void)layoutSubtitleField:(const struct CGRect *)arg1;
+- (void)configureSubtitleFieldBeforeLayout;
+- (void)dirtyLayoutForSubtitleBubbleViewIfNeeded;
+- (void)layoutTitleBubbleView:(const struct CGRect *)arg1;
+- (void)configureTitleBubbleViewBeforeLayout;
+- (void)dirtyLayoutForTitleBubbleViewIfNeeded;
+- (void)layoutIconSelectionView:(struct CGRect)arg1;
+- (void)dirtyLayoutForIconSelectionViewIfNeeded;
 - (void)layoutTitleAndSubtitleInBounds:(const struct CGRect *)arg1 iconViewFrame:(const struct CGRect *)arg2;
 - (void)layout;
 - (_Bool)isAnimating;
@@ -105,7 +114,6 @@ __attribute__((visibility("hidden")))
 - (_Bool)isIconTracking:(id)arg1;
 - (void)stopIconTracking:(id)arg1;
 - (void)startIconTracking:(id)arg1 options:(unsigned long long)arg2 userInfo:(id)arg3;
-- (_Bool)isIconOrTextInRect:(const struct CGRect *)arg1;
 - (id)hitTestInIconOrText:(const struct CGPoint *)arg1;
 - (id)_hitTestInIconOrTextWithLocalPoint:(const struct CGPoint *)arg1;
 - (id)hitTestInText:(const struct CGPoint *)arg1;

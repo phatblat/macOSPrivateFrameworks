@@ -40,7 +40,7 @@
 - (oneway void)remoteTextInputSessionWithID:(id)arg1 documentDidChange:(id)arg2;
 - (oneway void)beginRemoteTextInputSessionWithID:(id)arg1 documentTraits:(id)arg2 initialDocumentState:(id)arg3;
 - (void)notifyServiceOfPause:(BOOL)arg1 withReason:(id)arg2;
-- (void)_modifyTextEditingAllowedForReason:(id)arg1 block:(CDUnknownBlockType)arg2;
+- (void)_modifyTextEditingAllowedForReason:(id)arg1 notify:(BOOL)arg2 block:(CDUnknownBlockType)arg3;
 - (BOOL)_remoteTextEditingIsAllowed;
 - (void)setEnvironmentEnabled:(BOOL)arg1 withReason:(id)arg2;
 - (void)_endAllActiveSessionsForServices:(id)arg1;

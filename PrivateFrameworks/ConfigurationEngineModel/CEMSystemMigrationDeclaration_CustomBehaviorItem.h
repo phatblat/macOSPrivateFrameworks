@@ -14,6 +14,7 @@
     NSArray *_payloadPaths;
 }
 
++ (id)buildRequiredOnlyWithContext:(id)arg1 withPaths:(id)arg2;
 + (id)buildWithContext:(id)arg1 withPaths:(id)arg2;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSArray *payloadPaths; // @synthesize payloadPaths=_payloadPaths;

@@ -27,6 +27,7 @@
 @property(copy, setter=_setTable:) NSString *_table; // @synthesize _table;
 @property(copy, setter=_setFormatKey:) NSString *_formatKey; // @synthesize _formatKey;
 - (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (Class)classForKeyedArchiver;

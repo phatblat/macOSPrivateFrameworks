@@ -22,7 +22,7 @@
 @property(readonly, nonatomic) NSString *serviceIdentifier;
 - (void)purgeImageWithIdentifier:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)retrieveImageWithIdentifier:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)storeImage:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)storeImage:(id)arg1 scaled:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
 - (BOOL)canStoreImage:(id)arg1;
 - (id)init;
 

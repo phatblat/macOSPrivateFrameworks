@@ -124,7 +124,7 @@
 - (id)description;
 - (void)addFileGroupingPath:(unsigned long long)arg1;
 - (void)removeUserToTransferWithOldShortName:(id)arg1;
-- (void)addUserToTransfer:(id)arg1 excludedPaths:(id)arg2 overwriteTargetName:(id)arg3;
+- (void)addUserToTransfer:(id)arg1 excludedPaths:(id)arg2 overwriteTargetName:(id)arg3 additionalKeyValues:(id)arg4;
 - (void)addMessages:(id)arg1;
 - (void)addMessage:(id)arg1;
 - (id)dictionaryDescription;

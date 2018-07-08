@@ -13,6 +13,7 @@
     NSData *_payloadCertificate;
 }
 
++ (id)buildRequiredOnlyWithCertificate:(id)arg1;
 + (id)buildWithCertificate:(id)arg1;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSData *payloadCertificate; // @synthesize payloadCertificate=_payloadCertificate;

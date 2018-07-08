@@ -16,6 +16,7 @@
     NSNumber *_payloadImmediate;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withIdentifier:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withIdentifier:(id)arg2 withImmediate:(id)arg3;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

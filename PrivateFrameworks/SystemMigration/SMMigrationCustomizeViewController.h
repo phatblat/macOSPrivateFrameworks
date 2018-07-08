@@ -127,6 +127,7 @@
 @property(readonly) NSAttributedString *descriptiveNetSpace;
 - (void)resetState;
 - (void)updateAcceptActionAvailable;
+- (void)setupCommonSystem;
 - (void)setupWindowsSystem;
 - (void)setupMacSystem;
 - (BOOL)setupPasswordCollection;

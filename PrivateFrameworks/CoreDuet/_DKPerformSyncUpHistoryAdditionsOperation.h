@@ -6,7 +6,7 @@
 
 #import <CoreDuet/_DKSyncCompositeOperation.h>
 
-@class NSDate, NSMutableDictionary, _DKSync2Policy, _DKSyncHistory, _DKSyncPeer, _DKSyncType;
+@class NSDate, _CDMutablePerfMetric, _DKSync2Policy, _DKSyncHistory, _DKSyncPeer, _DKSyncType;
 
 @interface _DKPerformSyncUpHistoryAdditionsOperation : _DKSyncCompositeOperation
 {
@@ -15,14 +15,20 @@
     _DKSyncPeer *_me;
     _DKSync2Policy *_policy;
     _DKSyncType *_type;
+    _CDMutablePerfMetric *_perfMetric;
+    struct _CDPerfEvent _perfEvent;
     NSDate *_now;
-    _DKSyncHistory *_history;
     unsigned long long _batchNumber;
-    NSMutableDictionary *_events;
+    _DKSyncHistory *_history;
 }
 
-@property(retain, nonatomic) NSMutableDictionary *events; // @synthesize events=_events;
++ (void)_updateEventStatsWithTotal:(unsigned long long)arg1 streamNameCounts:(id)arg2 transportType:(long long)arg3;
++ (void)_updateEventStatsWithPreviousSyncDate:(id)arg1 transportType:(long long)arg2;
+@property(readonly) _DKSyncHistory *history; // @synthesize history=_history;
 - (void).cxx_destruct;
+- (void)endPerfMetrics;
+- (void)startPerfMetrics;
+- (void)endOperation;
 - (void)handleUpdateStorageWithFetchedWindow:(id)arg1 eventsCount:(unsigned long long)arg2 error:(id)arg3;
 - (void)performSyncUpHistoryAdditionsWithPreviousHighWaterMark:(id)arg1;
 - (void)performSyncUpHistoryAdditionsWithAdditionsHighWaterMark:(id)arg1 orError:(id)arg2;

@@ -131,6 +131,9 @@
 - (void)nearbyLocationsWithCompletion:(CDUnknownBlockType)arg1;
 - (void)favoritesForMaxCount:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)getAllLocations:(CDUnknownBlockType)arg1;
+- (void)removeFavorite:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)addFavorite:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)getFavoritesWithCompletion:(CDUnknownBlockType)arg1;
 - (void)getPendingFriendshipRequestsWithCompletion:(CDUnknownBlockType)arg1;
 - (void)stopSharingMyLocationWithHandles:(id)arg1 groupId:(id)arg2 callerId:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)stopSharingMyLocationWithHandle:(id)arg1 groupId:(id)arg2 callerId:(id)arg3 completion:(CDUnknownBlockType)arg4;

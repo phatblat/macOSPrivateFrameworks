@@ -69,6 +69,7 @@
 @property(retain, nonatomic) HMAccessoryCategory *category; // @synthesize category=_category;
 @property(retain, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
 - (void).cxx_destruct;
+- (void)_handlePairingIdentityRequest:(id)arg1;
 - (BOOL)supportsMinimumUserPrivilege;
 - (id)hashRouteID;
 - (BOOL)providesHashRouteID;
@@ -87,7 +88,6 @@
 - (void)transactionObjectRemoved:(id)arg1 message:(id)arg2;
 - (void)transactionObjectUpdated:(id)arg1 newValues:(id)arg2 message:(id)arg3;
 @property(readonly) BOOL supportsUserManagement;
-- (void)pairingsWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)_handleListPairings:(id)arg1;
 - (BOOL)shouldEnableDaemonRelaunch;
 - (void)_sendBlockedNotification:(BOOL)arg1 withError:(id)arg2 withIdentifier:(id)arg3 withCompletion:(CDUnknownBlockType)arg4;

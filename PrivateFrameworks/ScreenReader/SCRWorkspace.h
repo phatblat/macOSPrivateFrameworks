@@ -381,7 +381,6 @@
 - (void)openWindowsGuideEventHandler:(id)arg1;
 - (void)openApplicationsGuideEventHandler:(id)arg1;
 - (void)openGuideEventHandler:(id)arg1;
-- (void)openManualHandler:(id)arg1;
 - (void)virtualKeyboardPressForCommand:(id)arg1 request:(id)arg2;
 - (void)virtualKeyboardPressEventHandler:(id)arg1;
 - (void)virtualKeyboardModifierPressEventHandler:(id)arg1;

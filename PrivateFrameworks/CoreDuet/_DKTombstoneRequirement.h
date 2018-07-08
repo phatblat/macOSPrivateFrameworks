@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSPredicate, NSString;
+@class NSArray, NSPredicate, NSString;
 
 @interface _DKTombstoneRequirement : NSObject
 {
@@ -18,7 +18,7 @@
 - (void).cxx_destruct;
 - (void)assignPropertiesToTombstone:(id)arg1 extractedFromPartialEvent:(id)arg2;
 - (void)assignPropertiesToTombstone:(id)arg1 extractedFromEvent:(id)arg2;
-@property(readonly) NSString *propertyToFetch;
+@property(readonly) NSArray *propertiesToFetch;
 @property(readonly) NSPredicate *eventPredicate;
 @property(readonly) NSPredicate *predicate;
 

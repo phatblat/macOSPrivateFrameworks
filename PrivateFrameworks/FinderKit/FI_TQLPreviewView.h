@@ -11,6 +11,9 @@ __attribute__((visibility("hidden")))
 {
 }
 
+- (void)mouseDown:(id)arg1;
+- (id)hitTest:(struct CGPoint)arg1;
+- (struct CGRect)previewContentFrame;
 - (void)draggingSession:(id)arg1 endedAtPoint:(struct CGPoint)arg2 operation:(unsigned long long)arg3;
 
 @end

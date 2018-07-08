@@ -16,6 +16,8 @@
 @property(readonly, nonatomic) NSPersistentHistoryToken *finalToken; // @synthesize finalToken=_finalToken;
 - (void).cxx_destruct;
 - (id)changesForStore:(id)arg1 inManagedObjectContext:(id)arg2 sinceToken:(id)arg3 error:(id *)arg4;
+- (BOOL)isChangeInteresting:(id)arg1 interestingEntityNames:(id)arg2;
+- (id)deltasForStore:(id)arg1 inManagedObjectContext:(id)arg2 sinceToken:(id)arg3 ignoreAuthor:(id)arg4 finalToken:(id *)arg5 interestingEntityNames:(id)arg6 error:(id *)arg7;
 
 @end
 

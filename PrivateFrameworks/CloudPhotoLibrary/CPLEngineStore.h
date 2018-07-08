@@ -127,6 +127,7 @@
 - (unsigned long long)libraryOptions;
 - (BOOL)storeLibraryVersion:(id)arg1 withError:(id *)arg2;
 - (void)closeAndDeactivate:(BOOL)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)performBarrier;
 - (void)performBatchedWriteTransactionBarrier;
 - (void)performBatchedWriteTransactionWithBlock:(CDUnknownBlockType)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_reallyPerformBatchedTransactionsLocked;

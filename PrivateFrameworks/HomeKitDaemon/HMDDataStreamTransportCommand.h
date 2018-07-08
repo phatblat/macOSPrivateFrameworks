@@ -4,26 +4,24 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <HomeKitDaemon/HMDNumberParser.h>
+#import "NSObject.h"
 
 #import "NSCopying.h"
 
-@interface HMDDataStreamTransportCommand : HMDNumberParser <NSCopying>
+@interface HMDDataStreamTransportCommand : NSObject <NSCopying>
 {
-    long long _type;
+    long long _command;
 }
 
-+ (BOOL)supportsSecureCoding;
-@property(readonly, nonatomic) long long type; // @synthesize type=_type;
-- (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initWithCommandType:(long long)arg1;
-- (id)initWithTLVData:(id)arg1;
-- (void)description:(id)arg1 indent:(id)arg2;
++ (id)parsedFromData:(id)arg1 error:(id *)arg2;
+@property(nonatomic) long long command; // @synthesize command=_command;
 - (id)description;
-- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)serializeWithError:(id *)arg1;
+- (BOOL)parseFromData:(id)arg1 error:(id *)arg2;
+- (id)initWithCommand:(long long)arg1;
+- (id)init;
 
 @end
 

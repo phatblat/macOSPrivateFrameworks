@@ -6,22 +6,32 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary;
+@class NSArray, NSMutableDictionary;
 
 @interface CNCache : NSObject
 {
-    NSMutableDictionary *_storage;
+    NSArray *_boundingStrategies;
     id <CNScheduler> _resourceScheduler;
+    NSMutableDictionary *_storage;
 }
 
++ (id)boundingStrategyWithTTL:(double)arg1 timeProvider:(id)arg2;
++ (id)boundingStrategyWithTTL:(double)arg1;
++ (id)boundingStrategyWithCapacity:(unsigned long long)arg1;
++ (id)atomicCacheScheduler;
 + (id)atomicCache;
 + (id)cache;
-@property(readonly, nonatomic) id <CNScheduler> resourceScheduler; // @synthesize resourceScheduler=_resourceScheduler;
 @property(readonly, nonatomic) NSMutableDictionary *storage; // @synthesize storage=_storage;
+@property(readonly, nonatomic) id <CNScheduler> resourceScheduler; // @synthesize resourceScheduler=_resourceScheduler;
+@property(readonly, copy, nonatomic) NSArray *boundingStrategies; // @synthesize boundingStrategies=_boundingStrategies;
 - (void).cxx_destruct;
+- (void)resourceLock_validateAllKeys;
+- (void)resourceLock_validateKey:(id)arg1;
+- (void)resourceLock_willAccessKey:(id)arg1;
+- (void)resourceLock_willSetObject:(id)arg1 forKey:(id)arg2;
 - (void)removeAllObjects;
-- (id)allObjects;
-- (id)allKeys;
+@property(readonly, copy) NSArray *allObjects;
+@property(readonly, copy) NSArray *allKeys;
 - (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
 - (void)setObject:(id)arg1 forKey:(id)arg2;
 - (id)objectForKeyedSubscript:(id)arg1;
@@ -29,6 +39,7 @@
 - (id)objectForKey:(id)arg1;
 - (id)resultWithResourceLock:(CDUnknownBlockType)arg1;
 - (void)performWithResourceLock:(CDUnknownBlockType)arg1;
+- (id)initWithBoundingStrategies:(id)arg1 resourceScheduler:(id)arg2;
 - (id)initWithResourceScheduler:(id)arg1;
 - (id)init;
 

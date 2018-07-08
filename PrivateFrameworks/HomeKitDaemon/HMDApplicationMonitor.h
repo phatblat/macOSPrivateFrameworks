@@ -48,6 +48,7 @@
 - (void)_callAppStateChangeDelegate:(id)arg1;
 - (void)_updateProcessInfo:(id)arg1 info:(id)arg2;
 - (void)_handleAppStateChangedInfo:(id)arg1;
+- (void)_processAppStateChange:(id)arg1;
 - (void)removeFromPendingTerminated:(id)arg1;
 - (void)handleAppStateChangedInfo:(id)arg1;
 - (void)_postAppTerminatedNotification:(id)arg1;

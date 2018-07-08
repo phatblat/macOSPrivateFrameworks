@@ -81,7 +81,6 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)controlSize;
 - (void)setControlSize:(unsigned long long)arg1;
 - (id)textAttributes;
-@property(readonly, copy) NSString *description;
 - (void)applySettingsFrom:(id)arg1;
 - (id)copyTextField;
 - (void)dealloc;
@@ -93,6 +92,7 @@ __attribute__((visibility("hidden")))
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

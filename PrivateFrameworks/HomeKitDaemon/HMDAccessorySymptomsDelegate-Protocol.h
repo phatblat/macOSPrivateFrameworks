@@ -6,10 +6,10 @@
 
 #import "NSObject.h"
 
-@class HMDSymptomManager, NSSet;
+@class HMDSymptomManager, NSSet, NSUUID;
 
 @protocol HMDAccessorySymptomsDelegate <NSObject>
-- (void)symptomManager:(HMDSymptomManager *)arg1 didChangeCanInitiateFix:(BOOL)arg2;
+- (void)symptomManager:(HMDSymptomManager *)arg1 didChangeSFDeviceIdentifier:(NSUUID *)arg2;
 - (void)symptomManager:(HMDSymptomManager *)arg1 didChangeLocalSymptoms:(NSSet *)arg2;
 - (void)symptomManager:(HMDSymptomManager *)arg1 didChangeBroadcastedSymptoms:(NSSet *)arg2;
 @end

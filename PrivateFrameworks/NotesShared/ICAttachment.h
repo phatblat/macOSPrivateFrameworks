@@ -174,12 +174,14 @@
 - (id)fallbackImageURL;
 - (BOOL)hasFallbackImage;
 - (void)writeFallbackImageData:(id)arg1;
+- (void)requireMinimumVersionIncludingChildObjects:(long long)arg1;
 - (id)addMediaWithURL:(id)arg1 updateFileBasedAttributes:(BOOL)arg2;
 - (id)addMediaWithURL:(id)arg1;
 - (id)addMediaWithFileWrapper:(id)arg1;
 - (id)addMediaWithData:(id)arg1 filename:(id)arg2 updateFileBasedAttributes:(BOOL)arg3;
 - (id)addMediaWithData:(id)arg1 filename:(id)arg2;
 - (void)updateAfterMediaChange;
+@property(readonly, copy) NSString *description;
 - (id)tableModel;
 - (id)inlineDrawingModel;
 - (id)galleryModel;
@@ -224,7 +226,6 @@
 @property(nonatomic) double croppingQuadTopRightX; // @dynamic croppingQuadTopRightX;
 @property(nonatomic) double croppingQuadTopRightY; // @dynamic croppingQuadTopRightY;
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(nonatomic) double duration; // @dynamic duration;
 @property(retain, nonatomic) NSData *fallbackImageCryptoInitializationVector; // @dynamic fallbackImageCryptoInitializationVector;
 @property(retain, nonatomic) NSData *fallbackImageCryptoTag; // @dynamic fallbackImageCryptoTag;

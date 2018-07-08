@@ -28,7 +28,7 @@
     NSMutableSet *_deviceSetupMediaAccessories;
     NSMutableSet *_unassociatedWACAccessories;
     NSMutableSet *_mediaAccessoryControlConnections;
-    BOOL _browseForMediaAccessories;
+    NSMutableSet *_browsingConnections;
     BOOL _appIsInForeground;
     BOOL _activeSiriCommand;
     HMDUnassociatedWACAccessory *_accessoryPerformingWAC;
@@ -38,7 +38,6 @@
     NSUUID *_uuid;
     HMFMessageDispatcher *_messageDispatcher;
     unsigned long long _generationCounter;
-    NSMutableSet *_browsingXPCConnections;
     HMDHomeManager *_homeManager;
     NSMapTable *_delegates;
     id <HMDAccessoryBrowserManagerDelegate> _managerDelegate;
@@ -88,8 +87,6 @@
 @property(nonatomic) __weak id <HMDAccessoryBrowserManagerDelegate> managerDelegate; // @synthesize managerDelegate=_managerDelegate;
 @property(retain, nonatomic) NSMapTable *delegates; // @synthesize delegates=_delegates;
 @property(nonatomic) __weak HMDHomeManager *homeManager; // @synthesize homeManager=_homeManager;
-@property(nonatomic) BOOL browseForMediaAccessories; // @synthesize browseForMediaAccessories=_browseForMediaAccessories;
-@property(retain, nonatomic) NSMutableSet *browsingXPCConnections; // @synthesize browsingXPCConnections=_browsingXPCConnections;
 @property(nonatomic) unsigned long long generationCounter; // @synthesize generationCounter=_generationCounter;
 @property(retain, nonatomic) HMFMessageDispatcher *messageDispatcher; // @synthesize messageDispatcher=_messageDispatcher;
 @property(retain, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
@@ -171,7 +168,7 @@
 - (void)_updatePairingRetryTimerForAccessory:(id)arg1 delay:(long long)arg2;
 - (void)_promptForPairingPasswordForServer:(id)arg1 reason:(id)arg2;
 - (void)_pairAccessory:(id)arg1 homeName:(id)arg2 setupCode:(id)arg3 setupCodeProvider:(CDUnknownBlockType)arg4 completionHandler:(CDUnknownBlockType)arg5;
-- (void)_pairAccessoryWithDescription:(id)arg1 homeName:(id)arg2 neeedsUserConfirmation:(BOOL)arg3 progressHandler:(CDUnknownBlockType)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)_pairAccessoryWithDescription:(id)arg1 homeName:(id)arg2 needsUserConfirmation:(BOOL)arg3 progressHandler:(CDUnknownBlockType)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)_checkDelegatesOfAccessoryWithSetupID:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)cancelPairingWithAccessoryDescription:(id)arg1 error:(id)arg2;
 - (id)findAccessoryServerForAccessoryDescription:(id)arg1;
@@ -181,7 +178,6 @@
 - (void)_notifyDelegatesOfNewAccessory:(id)arg1;
 - (id)_unpairedAccessoryForServer:(id)arg1;
 - (id)_unpairedAccessoryWithServerIdentifier:(id)arg1;
-- (void)_stopSearchingWithXPCConnection:(id)arg1;
 - (void)_setBTLEPowerChangeCompletionHandler;
 - (void)_handleInvalidatedXPCConnection:(id)arg1;
 - (void)_handleRequestSearchForNewAccessories:(id)arg1;
@@ -197,6 +193,8 @@
 - (void)_startDiscoveringAccessoriesNeedingReprovisioning;
 - (void)startDiscoveringAccessoriesNeedingReprovisioning;
 - (void)_stopDiscoveringAccessoriesWithForce:(BOOL)arg1;
+- (void)_stopDiscoveringMediaAccessories;
+- (void)_startDiscoveringMediaAccessories;
 - (void)_startDiscoveringAccessories;
 - (void)handleStartDiscoveringAssociatedMediaAccessories:(BOOL)arg1 forTransport:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)_startDiscoveringPairedAccessories;
@@ -210,7 +208,7 @@
 - (void)cancelPairingWithAccessory:(id)arg1 error:(id)arg2;
 - (void)handleSetupCodeAvailable:(id)arg1;
 - (void)didReceiveUserConsentResponseForSetupAccessoryDescription:(id)arg1 consent:(BOOL)arg2;
-- (void)pairAccessoryWithDescription:(id)arg1 homeName:(id)arg2 neeedsUserConfirmation:(BOOL)arg3 progressHandler:(CDUnknownBlockType)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)pairAccessoryWithDescription:(id)arg1 homeName:(id)arg2 needsUserConfirmation:(BOOL)arg3 progressHandler:(CDUnknownBlockType)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)pairAccessory:(id)arg1 homeName:(id)arg2 setupCode:(id)arg3 setupCodeProvider:(CDUnknownBlockType)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)registerProgressHandler:(CDUnknownBlockType)arg1 unpairedAccessoryUUID:(id)arg2;
 - (id)discoveredAccessoryServers;
@@ -248,6 +246,7 @@
 - (void)handleNoActiveHomeKitApp:(id)arg1;
 - (void)_handleNoActiveHomeKitAppOrSiriCommand;
 - (void)handleHomeKitAppInForeground:(id)arg1;
+- (void)handleConnectionDeactivation:(id)arg1;
 - (BOOL)__isCurrentDevicePrimaryResident;
 - (void)_reprovisionAccessoryWithIdentifier:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)reprovisionAccessoryWithIdentifier:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
@@ -255,7 +254,9 @@
 - (void)discoverAccessoryServer:(id)arg1 linkType:(long long)arg2 errorHandler:(CDUnknownBlockType)arg3;
 - (void)stopTrackingBTLEAccessoriesWithIdentifiers:(id)arg1;
 - (void)btleAccessoryReachabilityProbeTimer:(BOOL)arg1;
+- (void)stopDiscoveringMediaAccessories;
 - (void)stopDiscoveringAccessories;
+- (void)startDiscoveringMediaAccessories;
 - (void)startDiscoveringAccessories;
 - (void)startDiscoveringPairedAccessories;
 - (void)resetConfiguration;
@@ -263,14 +264,20 @@
 - (void)_handleAddedAccessoryAdvertisements:(id)arg1;
 - (void)_notifyDelegatesOfReachability:(BOOL)arg1 forAccessoryWithIdentifier:(id)arg2;
 - (void)notifyDelegatesOfReachability:(BOOL)arg1 forAccessoryWithIdentifier:(id)arg2;
-- (id)dumpBrowsingConnections;
+- (void)_removeBrowsingConnection:(id)arg1;
+- (void)__addBrowsingConnection:(id)arg1;
+- (void)__removeBrowsingObserver:(id)arg1;
+- (BOOL)__isMediaAccessoryBrowsingRequested;
+- (BOOL)__isAccessoryBrowsingRequested;
+- (void)__resetBrowsingConnections;
+- (id)browsingConnections;
 - (void)_removeMediaAccessoryControlObserverMatchingConnection:(id)arg1;
 - (void)__addMediaAccessoryControlObserver:(id)arg1;
 - (void)__removeMediaAccessoryControlObserver:(id)arg1;
-- (id)__observerMatchingConnection:(id)arg1;
 - (BOOL)hasClientRequestedMediaAccessoryControl:(id)arg1;
-- (BOOL)__isConnectionBeingObserved:(id)arg1;
-- (BOOL)__isMediaAccessoryControlRequested;
+- (void)resetMediaAccessoryControlConnections;
+- (id)mediaAccessoryControlConnections;
+- (id)dumpBrowsingConnections;
 - (void)_sendNewAccessoryData:(id)arg1 added:(BOOL)arg2 requiresSPIEntitlement:(BOOL)arg3;
 - (void)_handleRemovedAccessory:(id)arg1;
 - (void)handleRemovedAccessory:(id)arg1;

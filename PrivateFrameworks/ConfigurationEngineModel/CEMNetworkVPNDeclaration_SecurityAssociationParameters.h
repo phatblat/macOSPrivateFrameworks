@@ -16,6 +16,7 @@
     NSNumber *_payloadLifeTimeInMinutes;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithEncryptionAlgorithm:(id)arg1 withIntegrityAlgorithm:(id)arg2 withDiffieHellmanGroup:(id)arg3 withLifeTimeInMinutes:(id)arg4;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadLifeTimeInMinutes; // @synthesize payloadLifeTimeInMinutes=_payloadLifeTimeInMinutes;

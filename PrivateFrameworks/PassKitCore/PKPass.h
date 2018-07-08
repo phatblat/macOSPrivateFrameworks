@@ -112,12 +112,13 @@
 @property(readonly, nonatomic) struct CGRect stripRect;
 @property(readonly, nonatomic) struct CGRect thumbnailRect;
 @property(readonly, nonatomic) PKImage *partialFrontFaceImage;
+@property(readonly, nonatomic) PKImage *frontFaceShadowImage;
 @property(readonly, nonatomic) PKImage *frontFaceImage;
 @property(readonly, nonatomic) NSData *iconImageICNSData;
 @property(readonly, nonatomic) PKImage *notificationIconImage;
 @property(readonly, nonatomic) PKImage *iconImage;
-@property(readonly, nonatomic) NSDictionary *allSemantics;
-@property(readonly, nonatomic) NSDictionary *semantics;
+- (id)allSemantics;
+- (id)semantics;
 @property(readonly, nonatomic) BOOL isPersonalizable;
 @property(readonly, nonatomic) PKPassPersonalization *personalization;
 @property(readonly, nonatomic) NSURL *appLaunchURL;

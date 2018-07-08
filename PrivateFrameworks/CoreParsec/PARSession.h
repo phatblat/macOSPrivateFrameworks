@@ -15,6 +15,7 @@
 {
     NSFileManager *_fileManager;
     PARBag *_bag;
+    // Error parsing type: AB, name: _sampled
     PARSearchClient *_client;
     PARSessionConfiguration *_configuration;
     id <PARSessionDelegate> _delegate;

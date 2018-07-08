@@ -170,7 +170,6 @@
 - (void)showCreateAppleID;
 - (void)createPressedTopLevel:(id)arg1;
 - (void)cancelPressedTopLevel:(id)arg1;
-- (void)castleSetupDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)enableDataClass:(id)arg1;
 - (void)releasePassword;
 - (void)_closeCreateAppleIDWindow:(BOOL)arg1;

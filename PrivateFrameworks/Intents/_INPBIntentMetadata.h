@@ -11,7 +11,7 @@
 #import "NSSecureCoding.h"
 #import "_INPBIntentMetadata.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBString;
+@class INCodableAttribute, NSArray, NSString, _INPBImageValue, _INPBString;
 
 @interface _INPBIntentMetadata : PBCodable <_INPBIntentMetadata, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
 {
@@ -31,6 +31,7 @@
     int _intentCategory;
     int _triggerMethod;
     NSString *_categoryVerb;
+    _INPBImageValue *_defaultImageValue;
     NSString *_launchId;
     NSString *_nanoLaunchId;
     NSString *_systemExtensionBundleId;
@@ -60,6 +61,7 @@
 @property(copy, nonatomic) NSString *launchId; // @synthesize launchId=_launchId;
 @property(nonatomic) int intentCategory; // @synthesize intentCategory=_intentCategory;
 @property(nonatomic) int executionContext; // @synthesize executionContext=_executionContext;
+@property(retain, nonatomic) _INPBImageValue *defaultImageValue; // @synthesize defaultImageValue=_defaultImageValue;
 @property(copy, nonatomic) NSString *categoryVerb; // @synthesize categoryVerb=_categoryVerb;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;
@@ -100,6 +102,7 @@
 - (int)StringAsExecutionContext:(id)arg1;
 - (id)executionContextAsString:(int)arg1;
 @property(nonatomic) BOOL hasExecutionContext;
+@property(readonly, nonatomic) BOOL hasDefaultImageValue;
 @property(readonly, nonatomic) BOOL hasCategoryVerb;
 
 // Remaining properties

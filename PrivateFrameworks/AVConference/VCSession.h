@@ -11,14 +11,15 @@
 #import "VCConnectionChangedHandler.h"
 #import "VCMediaStreamNotification.h"
 #import "VCNetworkFeedbackControllerDelegate.h"
+#import "VCRateControlMediaControllerDelegate.h"
 #import "VCSecurityEventHandler.h"
 #import "VCSessionParticipantDelegate.h"
 #import "VCSessionParticipantStreamDelegate.h"
 
-@class AVCRateController, NSArray, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, VCControlChannelMultiWay, VCDispatchTimer, VCNetworkFeedbackController, VCSecurityKeyManager, VCSessionConfiguration, VCSessionDownlinkBandwidthAllocator, VCSessionMessaging, VCSessionParticipant, VCSessionParticipantLocal, VCSessionStatsController, VCTransportSession;
+@class AVCRateController, NSArray, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, VCControlChannelMultiWay, VCNetworkFeedbackController, VCRateControlMediaController, VCSecurityKeyManager, VCSessionConfiguration, VCSessionDownlinkBandwidthAllocator, VCSessionMessaging, VCSessionParticipant, VCSessionParticipantLocal, VCSessionStatsController, VCTransportSession;
 
 __attribute__((visibility("hidden")))
-@interface VCSession : NSObject <VCSessionParticipantStreamDelegate, AVCRateControllerDelegate, VCMediaStreamNotification, RTCPReportProvider, VCSecurityEventHandler, VCSessionParticipantDelegate, VCNetworkFeedbackControllerDelegate, VCConnectionChangedHandler>
+@interface VCSession : NSObject <VCSessionParticipantStreamDelegate, AVCRateControllerDelegate, VCRateControlMediaControllerDelegate, VCMediaStreamNotification, RTCPReportProvider, VCSecurityEventHandler, VCSessionParticipantDelegate, VCNetworkFeedbackControllerDelegate, VCConnectionChangedHandler>
 {
     unsigned int _state;
     NSObject<OS_dispatch_queue> *_sessionQueue;
@@ -51,10 +52,11 @@ __attribute__((visibility("hidden")))
     AVCRateController *_downlinkRateController;
     unsigned int _uplinkTargetBitrate;
     unsigned int _downlinkTargetBitrate;
+    VCRateControlMediaController *_uplinkMediaController;
+    unsigned int _basebandFlushTransactionID;
     VCSessionDownlinkBandwidthAllocator *_downlinkBandwidthAllocator;
     NSMutableDictionary *_optInDictionary;
     struct tagVCMediaQueue *_mediaQueue;
-    VCDispatchTimer *_lossStatsSendHeartbeat;
     BOOL _forceDisableMediaPriority;
 }
 
@@ -84,12 +86,14 @@ __attribute__((visibility("hidden")))
 - (void)dispatchedAddParticipantConfigurations:(id)arg1 processID:(int)arg2;
 - (void)dispatchedAddParticipantWithConfig:(id)arg1 processID:(int)arg2;
 - (void)reportingSessionRemoteParticipantEvent:(unsigned short)arg1 withParticipant:(id)arg2 value:(id)arg3;
-- (void)collectSessionEventKeyFields:(struct __CFDictionary *)arg1 eventType:(unsigned short)arg2 withParticipant:(id)arg3 keyChangeReason:(id)arg4 newMKI:(id)arg5;
+- (void)collectSessionEventKeyFields:(struct __CFDictionary *)arg1 eventType:(unsigned short)arg2 withParticipant:(id)arg3 keyChangeReason:(id)arg4 newMKI:(id)arg5 withStreamID:(unsigned short)arg6;
+- (void)reportingSessionParticipantEvent:(unsigned short)arg1 withParticipant:(id)arg2 keyChangeReason:(id)arg3 newMKI:(id)arg4 withStreamID:(unsigned short)arg5;
 - (void)reportingSessionParticipantEvent:(unsigned short)arg1 withParticipant:(id)arg2 keyChangeReason:(id)arg3 newMKI:(id)arg4;
 - (void)reportingSessionParticipantEvent:(unsigned short)arg1 keyChangeReason:(id)arg2 newMKI:(id)arg3;
 - (void)reportingSessionParticipantEvent:(unsigned short)arg1 withParticipant:(id)arg2;
+- (void)reportingSessionParticipantEvent:(unsigned short)arg1 withStreamID:(unsigned short)arg2;
 - (struct __CFDictionary *)getClientSpecificUserInfo;
-- (void)handleEncryptionInfoChange:(id)arg1;
+- (BOOL)handleEncryptionInfoChange:(id)arg1;
 - (BOOL)generateReceptionReportList:(struct _RTCP_RECEPTION_REPORT *)arg1 reportCount:(char *)arg2;
 - (void)mediaStream:(id)arg1 didReceiveNewMasterKeyIndex:(id)arg2;
 - (void)didReceiveRTCPPackets:(struct _RTCPPacketList *)arg1;
@@ -100,7 +104,6 @@ __attribute__((visibility("hidden")))
 - (void)setupVideoRedundancyMessages;
 - (void)generateKeyFrameWithReceivedMessage:(id)arg1;
 - (void)setupSymptomEnabledMessages;
-- (void)setupLossStatsMessages;
 - (void)setupKeyFrameGenerationMessages;
 - (void)setupVideoPausedMessages;
 - (void)setupAudioPausedMessages;
@@ -112,8 +115,6 @@ __attribute__((visibility("hidden")))
 - (void)destroySessionMessaging;
 - (void)createSessionMessaging;
 - (void)sendSymptomsToRemoteParticipants:(id)arg1 symptom:(id)arg2 groupID:(id)arg3;
-- (void)sendLossStats;
-- (void)startLossStatsSendHeartbeat;
 - (void)unregisterRemoteParticipantFromSession:(id)arg1;
 - (void)removeDelegatesForRemoteParticipant:(id)arg1;
 - (void)registerRemoteParticipantToSession:(id)arg1;
@@ -134,7 +135,11 @@ __attribute__((visibility("hidden")))
 - (void)reportingSessionDownlinkOptInEvent:(id)arg1 selectedMediaEntriesForParticipants:(id)arg2;
 - (void)distributeBitrateAndOptInToStreamIDsWithSeamlessTransition:(BOOL)arg1;
 - (void)updateParticipantConfigurations:(id)arg1;
+- (int)flushBasebandWithPayloads:(id)arg1;
+- (void)mediaController:(void *)arg1 mediaSuggestionDidChange:(struct VCRateControlMediaSuggestion)arg2;
 - (void)rateController:(void *)arg1 targetBitrateDidChange:(unsigned int)arg2 rateChangeCounter:(unsigned int)arg3;
+- (void)vcSessionParticipantDidChangeReceivingStreams:(id)arg1;
+- (void)vcSessionParticipantDidChangeSendingStreams:(id)arg1;
 - (void)vcSessionParticipant:(id)arg1 didRequestVideoRedundancy:(BOOL)arg2;
 - (void)vcSessionParticipant:(id)arg1 didSwitchFromStreamID:(unsigned short)arg2 toStreamID:(unsigned short)arg3;
 - (void)vcSessionParticipant:(id)arg1 requestKeyFrameGenerationWithStreamID:(unsigned short)arg2;
@@ -151,6 +156,8 @@ __attribute__((visibility("hidden")))
 - (void)vcSessionParticipant:(id)arg1 audioEnabled:(BOOL)arg2 didSucceed:(BOOL)arg3 error:(id)arg4;
 - (void)vcSessionParticipant:(id)arg1 didStopWithError:(id)arg2;
 - (void)vcSessionParticipant:(id)arg1 didStart:(BOOL)arg2 error:(id)arg3;
+- (unsigned int)calculateExpectedTotalNetworkBitrateUplink;
+- (unsigned int)calculateExpectedTotalNetworkBitrateDownlink;
 - (void)handleActiveConnectionChange:(id)arg1;
 - (void)handleCellularMTUChanged:(unsigned short)arg1 connection:(id)arg2;
 - (void)handleCellTechChange:(int)arg1 connection:(id)arg2;

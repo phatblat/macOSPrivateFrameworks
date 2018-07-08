@@ -10,7 +10,6 @@
 
 @interface PLBatteryAgent : PLAgent
 {
-    BOOL _deviceIsPluggedIn;
     _Bool _isPingPongCharging;
     _Bool _isFirstTimeCheckingPingPong;
     BOOL _allowGasGaugeRead;
@@ -30,6 +29,7 @@
     int _lastUILevel;
     PLIOKitOperatorComposition *_iokit;
     PLEntryNotificationOperatorComposition *_batteryLevelChanged;
+    NSNumber *_deviceIsPluggedIn;
     double _batteryLevelPercent;
     double _rawBatteryVoltageVolt;
     NSDictionary *_lastITMiscStatus;
@@ -152,7 +152,7 @@
 @property int presentMaxRa; // @synthesize presentMaxRa=_presentMaxRa;
 @property double rawBatteryVoltageVolt; // @synthesize rawBatteryVoltageVolt=_rawBatteryVoltageVolt;
 @property double batteryLevelPercent; // @synthesize batteryLevelPercent=_batteryLevelPercent;
-@property BOOL deviceIsPluggedIn; // @synthesize deviceIsPluggedIn=_deviceIsPluggedIn;
+@property(retain) NSNumber *deviceIsPluggedIn; // @synthesize deviceIsPluggedIn=_deviceIsPluggedIn;
 @property(retain) PLEntryNotificationOperatorComposition *batteryLevelChanged; // @synthesize batteryLevelChanged=_batteryLevelChanged;
 @property(readonly) PLIOKitOperatorComposition *iokit; // @synthesize iokit=_iokit;
 - (void).cxx_destruct;
@@ -232,6 +232,7 @@
 - (BOOL)hasAppleSmartBattery;
 - (void)dealloc;
 - (id)init;
+- (void)updateLastChargeLevel:(int)arg1 withTimestamp:(double)arg2;
 
 @end
 

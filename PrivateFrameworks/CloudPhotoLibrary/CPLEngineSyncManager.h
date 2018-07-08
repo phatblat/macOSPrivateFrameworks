@@ -8,15 +8,17 @@
 
 #import "CPLAbstractObject.h"
 #import "CPLEngineComponent.h"
+#import "CPLEngineForceSyncTaskDelegate.h"
 #import "CPLEngineSyncTaskDelegate.h"
 
-@class CPLBackgroundDownloadsTask, CPLCleanupTask, CPLEngineLibrary, CPLMinglePulledChangesTask, CPLPlatformObject, CPLPullFromTransportTask, CPLPullScopesTask, CPLPushToTransportTask, CPLScopeUpdateTask, CPLTransportUpdateTask, NSError, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
+@class CPLBackgroundDownloadsTask, CPLCleanupTask, CPLEngineForceSyncTask, CPLEngineLibrary, CPLMinglePulledChangesTask, CPLPlatformObject, CPLPullFromTransportTask, CPLPullScopesTask, CPLPushToTransportTask, CPLScopeUpdateTask, CPLTransportUpdateTask, NSError, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
 
-@interface CPLEngineSyncManager : NSObject <CPLEngineSyncTaskDelegate, CPLAbstractObject, CPLEngineComponent>
+@interface CPLEngineSyncManager : NSObject <CPLEngineSyncTaskDelegate, CPLAbstractObject, CPLEngineComponent, CPLEngineForceSyncTaskDelegate>
 {
     id <CPLEngineStoreUserIdentifier> _transportUserIdentifier;
     BOOL _setupIsDone;
     BOOL _shouldUpdateDisabledFeatures;
+    BOOL _closed;
     id <CPLEngineTransportSetupTask> _setupTask;
     CDUnknownBlockType _closingCompletionHandler;
     NSObject<OS_dispatch_queue> *_lock;
@@ -30,11 +32,14 @@
     CPLPullFromTransportTask *_pullTask;
     CPLMinglePulledChangesTask *_mingleTask;
     CPLBackgroundDownloadsTask *_backgroundDownloadsTask;
+    CPLEngineForceSyncTask *_currentForceSyncTask;
+    CPLEngineForceSyncTask *_pendingForceSyncTask;
     unsigned long long _shouldRestartSessionFromState;
     NSMutableArray *_lastErrors;
     BOOL _foreground;
     BOOL _boostPriority;
     BOOL _hasOverridenBudgets;
+    BOOL _disabledSchedulerForForceSyncTask;
     BOOL _hasTransactionForSyncSession;
     BOOL _shouldTryToMingleImmediately;
     CPLPlatformObject *_platformObject;
@@ -43,6 +48,8 @@
 }
 
 + (id)platformImplementationProtocol;
++ (unsigned int)qualityOfServiceForForcedTasks;
++ (unsigned int)qualityOfServiceForSyncSessions;
 + (id)shortDescriptionForState:(unsigned long long)arg1;
 + (id)descriptionForState:(unsigned long long)arg1;
 @property(nonatomic) BOOL shouldTryToMingleImmediately; // @synthesize shouldTryToMingleImmediately=_shouldTryToMingleImmediately;
@@ -106,6 +113,12 @@
 - (void)_cancelAllTasksForSetup;
 - (BOOL)_launchSetupTask;
 - (id)_descriptionForSetupTasks;
+- (void)_launchForceSyncTaskIfNecessary;
+- (void)forceSyncTaskHasBeenCancelled:(id)arg1;
+- (void)launchForceSyncTaskWhenPossible:(id)arg1;
+- (BOOL)_checkForegroundAtLaunchForForceSyncTask;
+- (void)_reenableSchedulerForForceSyncTaskIfNecessary;
+- (void)_disabledSchedulerForForceSyncTaskIfNecessary;
 - (BOOL)_prepareAndLaunchSyncTask:(id *)arg1;
 - (void)setBoostPriority:(BOOL)arg1;
 - (void)_overrideBudgetsIfNeeded;
@@ -129,6 +142,8 @@
 - (void)_resetErrorForSyncSession;
 - (void)_setErrorForSyncSession:(id)arg1;
 - (id)initWithEngineLibrary:(id)arg1;
+- (void)dispatchForcedTaskBlock:(CDUnknownBlockType)arg1;
+- (void)dispatchSyncBlock:(CDUnknownBlockType)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

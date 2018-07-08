@@ -18,6 +18,7 @@
     NSString *_payloadLoginWindowModulePath;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAskForPassword:(id)arg2 withAskForPasswordDelay:(id)arg3 withLoginWindowIdleTime:(id)arg4 withLoginWindowModulePath:(id)arg5;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

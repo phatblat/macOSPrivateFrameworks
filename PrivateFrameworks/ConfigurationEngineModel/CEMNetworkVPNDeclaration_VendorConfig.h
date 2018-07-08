@@ -16,6 +16,7 @@
     NSString *_payloadLoginGroupOrDomain;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithRealm:(id)arg1 withRole:(id)arg2 withGroup:(id)arg3 withLoginGroupOrDomain:(id)arg4;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadLoginGroupOrDomain; // @synthesize payloadLoginGroupOrDomain=_payloadLoginGroupOrDomain;

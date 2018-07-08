@@ -43,6 +43,9 @@
 - (id)_description;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) BOOL _isEligibleForProxying;
+- (id)_initWithURLRepresentation:(id)arg1;
+- (id)_URLRepresentation;
 - (id)_preferredImageLoader;
 @property(copy, nonatomic, setter=_setBundlePath:) NSString *_bundlePath;
 @property(copy, nonatomic, setter=_setName:) NSString *_name;

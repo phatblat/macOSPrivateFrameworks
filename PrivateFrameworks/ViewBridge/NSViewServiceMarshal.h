@@ -91,15 +91,15 @@ __attribute__((visibility("hidden")))
 + (void)windowDidOrderOnScreenAndFinishAnimating:(id)arg1;
 + (BOOL)considerWindowForRendezvous:(id)arg1;
 + (BOOL)beginFreeWindowRendezvous:(id)arg1;
++ (BOOL)isSettingStyleMaskOfWindow:(id)arg1;
 + (int)hostProcessIdentifier;
 + (id)auxiliaryProxyFor:(const char *)arg1;
-+ (void)choseNotToPromote:(id)arg1 because:(const char *)arg2;
++ (void)choseNotToRendezvous:(id)arg1 because:(const char *)arg2;
 + (void)logIfFirstRepsonderOf:(id)arg1 isNot:(id)arg2;
 + (id)viewBridgeAuxiliaryProxyForConnection:(id)arg1 withErrorHandler:(CDUnknownBlockType)arg2;
 + (BOOL)responder:(id)arg1 isFieldEditorFor:(id)arg2;
 + (BOOL)serviceWindowWouldActivate:(id)arg1;
 + (id)_findFirstKeyViewInDirection:(unsigned long long)arg1 forKeyLoopGroupingView:(id)arg2;
-+ (BOOL)classOfWindowIsOnBlacklist:(id)arg1;
 + (id)serviceMarshalForServiceWindow:(id)arg1;
 + (id)serviceMarshalForRemoteViewIdentifier:(id)arg1;
 + (id)serviceMarshalForHostWindow:(unsigned int)arg1;
@@ -173,7 +173,7 @@ __attribute__((visibility("hidden")))
 - (void)becomeKeyWindow:(id)arg1;
 - (void)resignKeyWindow:(id)arg1;
 - (void)windowReceivedLeftMouseDown:(id)arg1;
-- (void)remoteViewReceivedLeftMouseDown;
+- (void)remoteViewReceivedLeftMouseDown:(long long)arg1;
 - (void)windowReceivedScrollWheel:(id)arg1;
 - (void)discloseAccessoryView:(BOOL)arg1 withVerticalOffset:(double)arg2 andAnimationState:(int)arg3 andDuration:(double)arg4;
 - (void)hostWindowReceivedMouseEventType:(unsigned long long)arg1;

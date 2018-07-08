@@ -6,11 +6,12 @@
 
 #import <Safari/ConfigurableVibrancyView.h>
 
-@class NSColor;
+@class NSColor, NSVisualEffectView;
 
 __attribute__((visibility("hidden")))
 @interface BackgroundColorView : ConfigurableVibrancyView
 {
+    NSVisualEffectView *_windowBackgroundMaterialVisualEffectView;
     BOOL _continuousCorners;
     NSColor *_backgroundColor;
     double _cornerRadius;
@@ -20,6 +21,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) double cornerRadius; // @synthesize cornerRadius=_cornerRadius;
 @property(retain, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
 - (void).cxx_destruct;
+- (void)_updateWindowBackgroundMaterialVisualEffectViewIfNeeded;
 - (void)_updateLayerFromProperties;
 - (void)updateLayer;
 - (BOOL)wantsUpdateLayer;

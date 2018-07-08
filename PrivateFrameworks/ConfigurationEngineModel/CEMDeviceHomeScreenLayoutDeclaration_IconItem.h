@@ -17,6 +17,7 @@
     NSString *_payloadURL;
 }
 
++ (id)buildRequiredOnlyWithType:(id)arg1;
 + (id)buildWithType:(id)arg1 withDisplayName:(id)arg2 withBundleID:(id)arg3 withPages:(id)arg4 withURL:(id)arg5;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadURL; // @synthesize payloadURL=_payloadURL;

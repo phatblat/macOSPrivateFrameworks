@@ -39,6 +39,8 @@
 @property(copy, nonatomic) NSString *fieldKey; // @synthesize fieldKey=_fieldKey;
 @property(copy, nonatomic) NSString *semanticKey; // @synthesize semanticKey=_semanticKey;
 - (void).cxx_destruct;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

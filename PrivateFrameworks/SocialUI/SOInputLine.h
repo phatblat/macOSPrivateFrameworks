@@ -172,6 +172,7 @@
 - (void)updateDraggingItemsForDrag:(id)arg1;
 - (BOOL)_applyDragAndDropFormatting:(id)arg1;
 - (void)_commonSOInputLineInit;
+- (void)setToDefaultAppearance;
 - (void)setNeedsDisplay:(BOOL)arg1;
 - (void)awakeFromNib;
 - (unsigned long long)validModesForFontPanel:(id)arg1;

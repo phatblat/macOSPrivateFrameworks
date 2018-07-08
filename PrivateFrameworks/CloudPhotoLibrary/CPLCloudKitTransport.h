@@ -24,8 +24,8 @@
 
 + (id)_errorsByTaskForTasksByRecordId:(id)arg1 fromUnderlyingError:(id)arg2;
 + (id)_betterErrorForRecordId:(id)arg1 recordError:(id)arg2;
-+ (long long)qualityOfServiceForForegroundOperation:(BOOL)arg1 upload:(BOOL)arg2 metadata:(BOOL)arg3;
-+ (BOOL)serverSupportsCMM;
++ (unsigned long long)networkBehaviorForForegroundOperation:(BOOL)arg1 upload:(BOOL)arg2 metadata:(BOOL)arg3;
++ (BOOL)enableTurboMode;
 + (BOOL)useSandboxEnvironment;
 + (BOOL)allowsSyncOverCellular;
 @property(retain, nonatomic) NSDate *significantWorkBeginDate; // @synthesize significantWorkBeginDate=_significantWorkBeginDate;
@@ -36,6 +36,8 @@
 @property(readonly, nonatomic) CPLCloudKitOperationsTracker *operationTracker; // @synthesize operationTracker=_operationTracker;
 - (void).cxx_destruct;
 - (void)processTaskErrorIfNeeded:(id)arg1;
+@property(readonly, nonatomic) BOOL canBoostBackgroundOperations;
+@property(readonly, nonatomic) BOOL canBoostOperations;
 @property(readonly, nonatomic, getter=isForeground) BOOL foreground;
 @property(readonly, nonatomic, getter=isNetworkConnected) BOOL networkConnected;
 - (void)getStatusDictionaryWithCompletionHandler:(CDUnknownBlockType)arg1;
@@ -68,7 +70,7 @@
 - (id)transportScopeForUpgradeFromScopeName:(id)arg1;
 - (id)scopeNameForTransportScope:(id)arg1;
 - (id)descriptionForTransportScope:(id)arg1;
-- (void)cancelBlockedTasks;
+- (void)cancelBlockedTasksIncludingBackground:(BOOL)arg1;
 - (void)noteClientIsEndingSignificantWork;
 - (void)noteClientIsBeginningSignificantWork;
 - (void)setShouldOverride:(BOOL)arg1 forSystemBudgets:(unsigned long long)arg2;

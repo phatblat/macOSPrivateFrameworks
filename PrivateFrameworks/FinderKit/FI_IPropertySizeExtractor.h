@@ -16,8 +16,8 @@ __attribute__((visibility("hidden")))
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)flush;
-- (_Bool)updateNeededWithUpdateList:(const struct TFENodeUpdateList *)arg1;
-- (_Bool)updateNeededWithChangedMap:(const struct TCoalescedNodesChangedMap *)arg1;
+- (_Bool)updateNeededWithUpdateList:(const vector_614ab7ad *)arg1;
+- (_Bool)updateNeededWithChangedMap:(const map_253f12d2 *)arg1;
 - (id)value;
 - (_Bool)isWaitingForPendingNode:(const struct TFENode *)arg1;
 - (_Bool)isWaitingForPendingNodes;

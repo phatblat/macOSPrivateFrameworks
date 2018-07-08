@@ -26,7 +26,6 @@
 + (int)getAdaptiveLearningState;
 + (int)getRateControllerType;
 + (BOOL)supportiRATRecommendation;
-+ (BOOL)isRedStateA;
 + (BOOL)supportsRedAudio;
 + (BOOL)supportsEVSCodec;
 + (BOOL)supportsHEVCEncoding;

@@ -34,6 +34,7 @@
 - (id)getActiveDeviceClass;
 - (BOOL)setActiveDeviceClass:(id)arg1;
 - (id)queryNextStep:(id *)arg1;
+- (BOOL)loadPluginWithAccessoryInfo:(id)arg1 options:(id)arg2;
 - (BOOL)sendMessageForCommand:(int)arg1 withOptions:(id)arg2 requiresFilter:(BOOL)arg3 replyHandler:(CDUnknownBlockType)arg4;
 - (BOOL)sendMessageForCommand:(int)arg1 withOptions:(id)arg2 requiresFilter:(BOOL)arg3;
 - (BOOL)doesOperationCodeRequireFilter:(int)arg1;

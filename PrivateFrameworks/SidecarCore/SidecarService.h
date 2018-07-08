@@ -10,6 +10,7 @@
 
 @interface SidecarService : NSObject
 {
+    NSArray *_devices;
 }
 
 + (id)supportedPasteboardTypes;
@@ -22,12 +23,13 @@
 + (id)allServices;
 + (id)serviceWithName:(id)arg1;
 + (id)services;
+- (void).cxx_destruct;
+- (id)copyWithDevice:(id)arg1;
 - (id)makeRequestWithResponder:(id)arg1 sendTypes:(id)arg2 returnTypes:(id)arg3;
 - (id)makeRequest;
 @property(readonly, nonatomic) NSString *localizedItemName;
 - (id)localizedDescriptionWithDevices:(id)arg1;
 @property(readonly, nonatomic) NSString *localizedDescription;
-@property(readonly, nonatomic) NSArray *devices;
 - (id)requestMessage;
 - (id)serviceIdentifier;
 @property(readonly, nonatomic, getter=isEnabled) _Bool enabled;
@@ -35,6 +37,7 @@
 @property(readonly, nonatomic) NSArray *sendTypes; // @dynamic sendTypes;
 @property(readonly, nonatomic) NSArray *returnTypes;
 @property(readonly, nonatomic) NSString *name;
+@property(copy, nonatomic) NSArray *devices; // @dynamic devices;
 - (id)init;
 
 @end

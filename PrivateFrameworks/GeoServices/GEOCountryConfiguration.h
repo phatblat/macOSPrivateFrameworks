@@ -30,10 +30,12 @@
 - (void)serverProxyProvidersDidChange:(id)arg1;
 - (void)resourceManifestManagerDidChangeActiveTileGroup:(id)arg1;
 - (void)resourceManifestManagerWillChangeActiveTileGroup:(id)arg1;
-- (id)_countryDefaultForKey:(id)arg1 inCountry:(id)arg2 sourcePtr:(long long *)arg3;
+- (id)_countryDefaultForKey:(id)arg1 inCountry:(id)arg2 sourcePtr:(long long *)arg3 decoder:(CDUnknownBlockType)arg4;
+- (id)defaultForKey:(id)arg1 defaultValue:(id)arg2 decoder:(CDUnknownBlockType)arg3;
 - (id)defaultForKey:(id)arg1 defaultValue:(id)arg2;
 - (id)defaultForKey:(id)arg1 defaultValue:(id)arg2 sourcePtr:(long long *)arg3;
-- (id)_defaultForKey:(id)arg1 inCountry:(id)arg2 defaultValue:(id)arg3 sourcePtr:(long long *)arg4;
+- (id)defaultForKey:(id)arg1 defaultValue:(id)arg2 sourcePtr:(long long *)arg3 decoder:(CDUnknownBlockType)arg4;
+- (id)_defaultForKey:(id)arg1 inCountry:(id)arg2 defaultValue:(id)arg3 sourcePtr:(long long *)arg4 decoder:(CDUnknownBlockType)arg5;
 - (id)_countryCodeOnIsolationQueue;
 @property(readonly, copy, nonatomic) NSString *countryCode;
 @property(readonly, nonatomic) double urlAuthenticationTimeToLive;

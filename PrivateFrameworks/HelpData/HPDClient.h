@@ -6,12 +6,16 @@
 
 #import <HelpData/HPDBaseClient.h>
 
+@class NSObject<OS_dispatch_queue>;
+
 @interface HPDClient : HPDBaseClient
 {
     struct __CFMessagePort *_serverPortRef;
     struct __CFMessagePort *_localPortRef;
+    NSObject<OS_dispatch_queue> *_messageQueue;
 }
 
+- (void).cxx_destruct;
 - (void)abort;
 - (BOOL)stop;
 - (BOOL)collect;
@@ -27,6 +31,7 @@
 - (struct __CFMessagePort *)createLocalPortIfNeeded;
 - (BOOL)createServerPortIfNeeded;
 - (void)dealloc;
+- (id)init;
 
 @end
 

@@ -10,6 +10,10 @@
 {
 }
 
+- (id)macOSWifiFirmwareVersion:(id *)arg1;
+- (id)macOSWifiSKU:(id *)arg1;
+- (id)macOSBatteryMaxCapacity:(id *)arg1;
+- (id)macOSBatteryCurrentCapacity:(id *)arg1;
 - (id)macOSStartupManagerPolicy:(id *)arg1;
 - (id)macOSAppleSecureBootWindowsPolicy:(id *)arg1;
 - (id)macOSAppleSecureBootPolicy:(id *)arg1;

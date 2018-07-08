@@ -16,7 +16,10 @@
 
 - (void)endKeyFocusForScene:(id)arg1 contextId:(unsigned int)arg2;
 - (void)beginKeyFocusForScene:(id)arg1 contextId:(unsigned int)arg2;
+@property(readonly) BOOL forceClickPerformsQuickLook;
 - (void)registerServiceId:(unsigned long long)arg1 handler:(CDUnknownBlockType)arg2;
+- (struct __IOHIDEvent *)pullNextEventFromQueue;
+- (void)registerEventPingHandler:(CDUnknownBlockType)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

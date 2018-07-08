@@ -8,13 +8,12 @@
 
 @interface RMDeviceDowntimeUserNotificationContext : RMUserNotificationContext
 {
-    BOOL _downtimeEnabled;
 }
 
-@property(nonatomic) BOOL downtimeEnabled; // @synthesize downtimeEnabled=_downtimeEnabled;
-- (id)categoryIdentifier;
-- (id)localizedUserNotificationBodyKey;
-- (id)localizedUserNotificationTitleKey;
++ (BOOL)supportsSecureCoding;
+- (id)destinations;
+- (void)customizeNotificationContent:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
+- (void)setEndDateComponents:(id)arg1;
 - (id)init;
 
 @end

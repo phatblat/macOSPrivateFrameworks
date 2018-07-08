@@ -59,8 +59,10 @@
     float _TTSVolumeLowerLimitDB;
     float _TTSVolumeUpperLimitDB;
     float _noiseWeight;
+    id <CSSmartSiriVolumeDelegate> _delegate;
 }
 
+@property(nonatomic) __weak id <CSSmartSiriVolumeDelegate> delegate; // @synthesize delegate=_delegate;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (float)_getMusicVolumeDB:(float)arg1;

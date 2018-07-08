@@ -36,7 +36,7 @@
 - (BOOL)canSyncTransactionToCloudKitWithBackingData:(BOOL)arg1 passUniqueIdentifier:(id)arg2 serviceIdentifier:(id)arg3;
 - (BOOL)canSyncTransactionFromCloudKitForPassUniqueIdentifier:(id)arg1;
 - (void)fetchAndStoreRecordsForPaymentPassWithUniqueIdentifier:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)requestUpdatesForPassUniqueIdenitifer:(id)arg1;
+- (void)requestUpdatesForPassUniqueIdentifier:(id)arg1;
 - (void)allItemsOfItemType:(unsigned long long)arg1 storeLocally:(BOOL)arg2 userInfo:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)allItemsOfItemType:(unsigned long long)arg1 storeLocally:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)createZones:(id)arg1 userInfo:(id)arg2 completion:(CDUnknownBlockType)arg3;

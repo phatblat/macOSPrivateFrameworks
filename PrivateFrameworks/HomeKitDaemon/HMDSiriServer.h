@@ -7,47 +7,48 @@
 #import "NSObject.h"
 
 #import "HMDDataStreamBulkSendListener.h"
-#import "HMDSiriSessionDelegate.h"
+#import "HMDSiriAccessoryMonitorDelegate.h"
 #import "HMFLogging.h"
 
-@class HMDNotificationRegistration, HMDSiriRemoteInputServer, HMDSiriServerSessionInfo, HMDSiriSession, NSObject<OS_dispatch_queue>, NSString;
+@class HMDNotificationRegistration, HMDSiriAccessoryMonitor, HMDSiriRemoteInputServer, HMDSiriSession, NSObject<OS_dispatch_queue>, NSString;
 
-@interface HMDSiriServer : NSObject <HMDDataStreamBulkSendListener, HMDSiriSessionDelegate, HMFLogging>
+@interface HMDSiriServer : NSObject <HMDDataStreamBulkSendListener, HMDSiriAccessoryMonitorDelegate, HMFLogging>
 {
     NSObject<OS_dispatch_queue> *_queue;
     HMDNotificationRegistration *_notificationRegistration;
     HMDSiriRemoteInputServer *_siriInputServer;
+    HMDSiriAccessoryMonitor *_siriAccessoryMonitor;
     HMDSiriSession *_siriUISession;
-    HMDSiriServerSessionInfo *_activeSiriUISessionInfo;
 }
 
 + (id)logCategory;
 + (id)sharedSiriServer;
-@property(retain, nonatomic) HMDSiriServerSessionInfo *activeSiriUISessionInfo; // @synthesize activeSiriUISessionInfo=_activeSiriUISessionInfo;
 @property(retain, nonatomic) HMDSiriSession *siriUISession; // @synthesize siriUISession=_siriUISession;
+@property(retain, nonatomic) HMDSiriAccessoryMonitor *siriAccessoryMonitor; // @synthesize siriAccessoryMonitor=_siriAccessoryMonitor;
 @property(retain, nonatomic) HMDSiriRemoteInputServer *siriInputServer; // @synthesize siriInputServer=_siriInputServer;
 @property(readonly, nonatomic) HMDNotificationRegistration *notificationRegistration; // @synthesize notificationRegistration=_notificationRegistration;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 - (void).cxx_destruct;
-- (void)siriSession:(id)arg1 willStartAudioWithCompletion:(CDUnknownBlockType)arg2;
-- (void)siriSession:(id)arg1 didStopAudioWithCompletion:(CDUnknownBlockType)arg2;
-- (void)_startAudioStreamForSiriSession:(id)arg1 sessionInfo:(id)arg2;
 - (void)accessoryDidCloseDataStream:(id)arg1;
 - (void)accessory:(id)arg1 didReceiveBulkSessionCandidate:(id)arg2;
-- (void)_removeSiriSession:(id)arg1 sessionInfo:(id)arg2;
-- (id)_getSessionInfoForSiriSession:(id)arg1;
-- (void)_siriSessionPluginDidStop:(id)arg1 sessionInfo:(id)arg2;
-- (void)_siriSessionDidReceiveAllAudio:(id)arg1 sessionInfo:(id)arg2;
-- (void)_siriSession:(id)arg1 sendDidFailWithReason:(unsigned char)arg2 sessionInfo:(id)arg3;
-- (void)_siriSession:(id)arg1 bulkSendDidFail:(id)arg2 sessionInfo:(id)arg3;
-- (BOOL)_siriSession:(id)arg1 didReceiveFrame:(id)arg2 sessionInfo:(id)arg3;
-- (void)_stopSiriUI;
-- (BOOL)_startSiriUI;
+- (void)monitorHasNoAccessoriesForDragonSiri:(id)arg1;
+- (void)monitor:(id)arg1 willNotAllowAccessoryForDragonSiri:(id)arg2;
+- (void)monitor:(id)arg1 willAllowAccessoryForDragonSiri:(id)arg2;
+- (void)monitor:(id)arg1 needsSiriCapabilityForAccessory:(id)arg2;
+- (BOOL)_isAudioCodecSupported:(id)arg1;
+- (id)_getBestAudioCodecConfiguration:(id)arg1;
+- (BOOL)_doesAccessorySupportDragonSiri:(id)arg1 siriAudioConfiguration:(id)arg2;
+- (void)_checkSiriSupportByAccessory:(id)arg1;
+- (void)_tearDownSiriUIContext;
 - (void)_setupSiriUIContext;
+- (void)_tearDownSiriPlugin;
 - (void)_setupSiriPlugin;
+- (void)handleAccessoryRemoved:(id)arg1;
+- (void)handleAccessoryIsNotReachable:(id)arg1;
+- (void)handleAccessoryIsReachable:(id)arg1;
 - (void)handleAccessoryHasBulkSendDataStream:(id)arg1;
 - (void)registerForMessages;
-- (void)start;
+- (void)setTargetableAccessory:(id)arg1 withControllers:(id)arg2;
 - (id)init;
 
 // Remaining properties

@@ -37,7 +37,8 @@ __attribute__((visibility("hidden")))
 - (void)setFrameSize:(struct CGSize)arg1;
 - (void)setFrameOrBoundsSizeHelper:(const struct CGSize *)arg1 oldSize:(const struct CGSize *)arg2 sizeChangerBlock:(const function_96ce23bb *)arg3;
 - (void)setNeedsDisplayInRect:(struct CGRect)arg1;
-- (_Bool)intersectsOpaquePixels:(struct CGRect)arg1;
+- (_Bool)intersectsOpaquePixels:(const struct CGRect *)arg1;
+- (_Bool)pointInOpaquePixels:(const struct CGPoint *)arg1;
 - (id)hitTest:(struct CGPoint)arg1;
 - (void)viewDidChangeBackingProperties;
 - (void)updateLayerContents:(const struct CGSize *)arg1 force:(_Bool)arg2;

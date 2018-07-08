@@ -60,7 +60,6 @@ __attribute__((visibility("hidden")))
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)cmdRename:(id)arg1;
-- (_Bool)handlesRename:(id)arg1;
 - (_Bool)validateRename:(id)arg1;
 - (void)cmdRemoveLabel7:(id)arg1;
 - (void)cmdRemoveLabel6:(id)arg1;
@@ -209,7 +208,7 @@ __attribute__((visibility("hidden")))
 - (_Bool)isTypeSelectInProgressWithTime:(double)arg1;
 - (void)clearTypeSelectBuffer;
 - (_Bool)typeSelectEvent:(const struct TString *)arg1 atTime:(double)arg2;
-- (void)selectContextMenuTargetNodes;
+- (void)selectContextMenuTargetNodesForCommand:(SEL)arg1;
 - (void)revealNodes:(const struct TFENodeVector *)arg1 select:(_Bool)arg2;
 - (void)deselectAllNodes;
 - (void)selectAllNodes;

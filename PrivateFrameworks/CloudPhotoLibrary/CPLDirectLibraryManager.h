@@ -83,6 +83,8 @@
 - (void)noteClientIsInForeground;
 - (void)startSyncSession;
 - (void)resetStatus;
+- (void)forceSynchronizingScopeWithIdentifiers:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)_dispatchForceSyncForScopeIdentifiers:(id)arg1 errors:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)queryUserIdentitiesWithParticipants:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)acceptMomentShare:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)fetchMomentShareFromShareURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;

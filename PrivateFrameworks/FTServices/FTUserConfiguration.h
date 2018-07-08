@@ -12,6 +12,7 @@
 
 + (id)sharedInstance;
 @property(readonly, nonatomic) BOOL _nonWifiFaceTimeEntitled;
+@property(readonly, nonatomic) BOOL hasSelectedPhoneNumberRegistrationSubscription;
 @property(nonatomic) long long selectedPhoneNumberRegistrationSubscriptionNumber;
 @property(nonatomic) BOOL allowAnyNetwork;
 @property(nonatomic) BOOL cellularFaceTimeEnabled;

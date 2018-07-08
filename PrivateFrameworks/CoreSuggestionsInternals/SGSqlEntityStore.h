@@ -69,7 +69,8 @@
 + (id)defaultPath;
 + (id)defaultPathCreatingSuggestionsDirectoryIfNeeded:(BOOL)arg1;
 + (void)clearMigrationCompletedForPaths;
-+ (id)cnContactIdentifiersForStorageContact:(id)arg1;
++ (id)cnContactIdentifiersForContact:(id)arg1;
++ (id)cnContactIdentifiersSpotlightQueryStringForContact:(id)arg1;
 + (id)journalNameForDbPath:(id)arg1;
 @property(readonly) SGKeyValueCacheManager *kvCacheManager; // @synthesize kvCacheManager=_kvCacheManager;
 @property(readonly) SGSGtoCNContactsCacheUpdateAdapter *sgToCNContactsCacheUpdateAdapter; // @synthesize sgToCNContactsCacheUpdateAdapter=_sgToCNContactsCacheUpdateAdapter;
@@ -248,7 +249,7 @@
 - (void)registerCachePrecomputationWithCTS;
 - (void)registerSentTextMessage:(id)arg1;
 - (BOOL)mayHaveSentMessageToHandle:(id)arg1;
-- (id)_normalizeHandle:(id)arg1;
+- (id)normalizeHandleForRecipientFilterAndRemoveFromDetailsCache:(id)arg1;
 - (void)registerSentMailMessage:(id)arg1;
 - (BOOL)mayHaveSentMessageToEmail:(id)arg1;
 - (BOOL)recentsContainSomeOfEmails:(id)arg1 phoneNumbers:(id)arg2 instantMessageAddresses:(id)arg3;

@@ -58,6 +58,8 @@ __attribute__((visibility("hidden")))
 - (void)_cleanupDeadClients;
 - (BOOL)removeClient:(id)arg1;
 - (BOOL)addClient:(id)arg1;
+- (void)removeClient:(id)arg1 clientArray:(id)arg2 eventQueue:(struct AudioEventQueue_t *)arg3;
+- (void)addClient:(id)arg1 clientArray:(id)arg2 eventQueue:(struct AudioEventQueue_t *)arg3;
 - (void)unloadRelay;
 - (void)loadRelay;
 - (void)dealloc;

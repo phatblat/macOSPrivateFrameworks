@@ -14,6 +14,7 @@
     NSString *_payloadID;
 }
 
++ (id)buildRequiredOnlyWithType:(id)arg1 withID:(id)arg2;
 + (id)buildWithType:(id)arg1 withID:(id)arg2;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadID; // @synthesize payloadID=_payloadID;

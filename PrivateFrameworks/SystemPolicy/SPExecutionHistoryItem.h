@@ -18,12 +18,14 @@
     NSString *_teamID;
     NSString *_cdHash;
     NSString *_responsiblePath;
+    NSString *_developerName;
     NSDate *_lastSeen;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)executionHistoryItemWithExecPath:(id)arg1 mmapPath:(id)arg2 signingID:(id)arg3 teamID:(id)arg4 cdHash:(id)arg5 responsiblePath:(id)arg6 lasSeen:(id)arg7;
++ (id)executionHistoryItemWithExecPath:(id)arg1 mmapPath:(id)arg2 signingID:(id)arg3 teamID:(id)arg4 cdHash:(id)arg5 responsiblePath:(id)arg6 developerName:(id)arg7 lasSeen:(id)arg8;
 @property(readonly, nonatomic) NSDate *lastSeen; // @synthesize lastSeen=_lastSeen;
+@property(readonly, nonatomic) NSString *developerName; // @synthesize developerName=_developerName;
 @property(readonly, nonatomic) NSString *responsiblePath; // @synthesize responsiblePath=_responsiblePath;
 @property(readonly, nonatomic) NSString *cdHash; // @synthesize cdHash=_cdHash;
 @property(readonly, nonatomic) NSString *teamID; // @synthesize teamID=_teamID;
@@ -33,7 +35,7 @@
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithExecPath:(id)arg1 mmapPath:(id)arg2 signingID:(id)arg3 teamID:(id)arg4 cdHash:(id)arg5 responsiblePath:(id)arg6 lasSeen:(id)arg7;
+- (id)initWithExecPath:(id)arg1 mmapPath:(id)arg2 signingID:(id)arg3 teamID:(id)arg4 cdHash:(id)arg5 responsiblePath:(id)arg6 developerName:(id)arg7 lasSeen:(id)arg8;
 - (id)init;
 
 @end

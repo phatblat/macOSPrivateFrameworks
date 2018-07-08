@@ -16,6 +16,7 @@
     NSString *_payloadAction;
 }
 
++ (id)buildRequiredOnlyWithAction:(id)arg1;
 + (id)buildWithDNSDomainMatch:(id)arg1 withDNSServerAddressMatch:(id)arg2 withURLStringProbe:(id)arg3 withAction:(id)arg4;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadAction; // @synthesize payloadAction=_payloadAction;

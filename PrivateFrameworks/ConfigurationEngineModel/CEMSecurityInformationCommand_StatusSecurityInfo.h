@@ -26,6 +26,7 @@
     CEMSecurityInformationCommand_StatusSecurityInfoFirmwarePasswordStatus *_statusFirmwarePasswordStatus;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithHardwareEncryptionCaps:(id)arg1 withPasscodePresent:(id)arg2 withPasscodeCompliant:(id)arg3 withPasscodeCompliantWithProfiles:(id)arg4 withPasscodeLockGracePeriod:(id)arg5 withPasscodeLockGracePeriodEnforced:(id)arg6 withFDEEnabled:(id)arg7 withFDEHasPersonalRecoveryKey:(id)arg8 withFDEHasInstitutionalRecoveryKey:(id)arg9 withFDEPersonalRecoveryKeyCMS:(id)arg10 withFDEPersonalRecoveryKeyDeviceKey:(id)arg11 withSystemIntegrityProtectionEnabled:(id)arg12 withFirewallSettings:(id)arg13 withFirmwarePasswordStatus:(id)arg14;
 + (id)allowedStatusKeys;
 @property(copy, nonatomic) CEMSecurityInformationCommand_StatusSecurityInfoFirmwarePasswordStatus *statusFirmwarePasswordStatus; // @synthesize statusFirmwarePasswordStatus=_statusFirmwarePasswordStatus;

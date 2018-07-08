@@ -15,10 +15,12 @@ __attribute__((visibility("hidden")))
 {
     NSArray *_extensions;
     NSObject<OS_dispatch_queue> *_queue;
+    BOOL _stopAccessingRequestURLWhenDone;
     NSURL *_requestURL;
 }
 
 @property(readonly, nonatomic) NSURL *requestURL; // @synthesize requestURL=_requestURL;
+@property(readonly, nonatomic) BOOL stopAccessingRequestURLWhenDone; // @synthesize stopAccessingRequestURLWhenDone=_stopAccessingRequestURLWhenDone;
 - (void).cxx_destruct;
 - (id)copy;
 - (void)dealloc;
@@ -27,7 +29,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSURL *shortestAccessibleURL;
 @property(readonly, copy, nonatomic) NSSet *urls;
 - (id)_consumeAllExtensionsOrNone:(id)arg1 error:(id *)arg2;
-- (id)initWithExtensions:(id)arg1 requestURL:(id)arg2 queue:(id)arg3 error:(id *)arg4;
+- (id)initWithExtensions:(id)arg1 requestURL:(id)arg2 stopAccessingRequestURLWhenDone:(BOOL)arg3 queue:(id)arg4 error:(id *)arg5;
 
 @end
 

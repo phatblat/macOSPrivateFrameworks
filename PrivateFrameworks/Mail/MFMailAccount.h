@@ -197,7 +197,6 @@
 @property(copy) NSString *username;
 - (void)_resetAllMailboxURLs;
 - (void)invalidateChildrenOfMailbox:(id)arg1;
-- (void)_deleteMailboxIfEmpty:(id)arg1;
 - (BOOL)deleteMailbox:(id)arg1 reflectToServer:(BOOL)arg2;
 - (BOOL)renameMailbox:(id)arg1 newDisplayName:(id)arg2 parent:(id)arg3;
 - (id)createMailboxWithParent:(id)arg1 displayName:(id)arg2 localizedDisplayName:(id)arg3;

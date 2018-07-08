@@ -43,7 +43,7 @@
 + (id)allDisplayImageIdentifiersForSystemActions;
 + (id)displayImageIdentifierForSystemActionType:(unsigned long long)arg1;
 + (id)descriptionForSystemActionType:(unsigned long long)arg1;
-+ (BOOL)_shouldShowAlternateTextForModifiers:(unsigned long long)arg1;
++ (BOOL)shouldShowAlternateTextForModifiers:(unsigned long long)arg1 autoShift:(BOOL)arg2;
 + (BOOL)_actionIsKeyboardKeyAction:(id)arg1 displayText:(id)arg2;
 + (id)buttonWithRect:(struct CGRect)arg1 text:(id)arg2 actions:(id)arg3;
 + (id)keysForValuesToObserveForView;
@@ -86,10 +86,10 @@
 - (id)descriptionForDepth:(unsigned long long)arg1;
 - (void)updateResourceIdentifiers:(id)arg1;
 - (void)updateToKeyboardLayout:(id)arg1;
-- (void)_updateDisplayTextKeyDictionaryForKeyboardLayout:(id)arg1 deadKeyState:(unsigned int)arg2 modifiers:(unsigned long long)arg3 lockedModifiers:(unsigned long long)arg4;
-- (void)updateForModifiers:(unsigned long long)arg1 lockedModifiers:(unsigned long long)arg2 deadKeyState:(unsigned int)arg3;
+- (void)_updateDisplayTextKeyDictionaryForKeyboardLayout:(id)arg1 deadKeyState:(unsigned int)arg2 modifiers:(unsigned long long)arg3 lockedModifiers:(unsigned long long)arg4 autoShift:(BOOL)arg5;
+- (void)updateForModifiers:(unsigned long long)arg1 lockedModifiers:(unsigned long long)arg2 deadKeyState:(unsigned int)arg3 autoShift:(BOOL)arg4;
 @property(readonly, nonatomic) ACSHKeyboardLayout *_keyboardLayout;
-- (void)_updateKeyDisplayTextForModifiers:(unsigned long long)arg1 deadKeyState:(unsigned int)arg2;
+- (void)_updateKeyDisplayTextForModifiers:(unsigned long long)arg1 deadKeyState:(unsigned int)arg2 autoShift:(BOOL)arg3;
 @property(readonly, nonatomic) ACSHActionPressKeyCode *pressKeyCodeActionForKeyboardKey;
 - (void)_updateIsKeyboardKeyStatus;
 @property(readonly, nonatomic) BOOL canInvertImage;

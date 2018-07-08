@@ -12,10 +12,15 @@
 
 @interface PPPBContactNameRecordCache : PBCodable <NSCopying>
 {
+    long long _createdAt;
     NSMutableArray *_records;
+    struct {
+        unsigned int createdAt:1;
+    } _has;
 }
 
 + (Class)recordsType;
+@property(nonatomic) long long createdAt; // @synthesize createdAt=_createdAt;
 @property(retain, nonatomic) NSMutableArray *records; // @synthesize records=_records;
 - (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
@@ -27,6 +32,7 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasCreatedAt;
 - (id)recordsAtIndex:(unsigned long long)arg1;
 - (unsigned long long)recordsCount;
 - (void)addRecords:(id)arg1;

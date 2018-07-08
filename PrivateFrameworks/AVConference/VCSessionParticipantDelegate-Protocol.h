@@ -9,6 +9,8 @@
 @class NSError, NSString, VCSessionParticipant;
 
 @protocol VCSessionParticipantDelegate <NSObject>
+- (void)vcSessionParticipantDidChangeReceivingStreams:(VCSessionParticipant *)arg1;
+- (void)vcSessionParticipantDidChangeSendingStreams:(VCSessionParticipant *)arg1;
 - (void)vcSessionParticipant:(VCSessionParticipant *)arg1 didRequestVideoRedundancy:(BOOL)arg2;
 - (void)vcSessionParticipant:(VCSessionParticipant *)arg1 didSwitchFromStreamID:(unsigned short)arg2 toStreamID:(unsigned short)arg3;
 - (void)vcSessionParticipant:(VCSessionParticipant *)arg1 requestKeyFrameGenerationWithStreamID:(unsigned short)arg2;

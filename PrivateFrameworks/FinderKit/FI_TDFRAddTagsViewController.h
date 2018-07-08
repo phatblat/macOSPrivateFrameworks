@@ -38,7 +38,7 @@ __attribute__((visibility("hidden")))
 - (void)setButtonAction:(const function_92f9ed64 *)arg1;
 - (function_92f9ed64)buttonAction;
 @property(nonatomic) __weak NSObject<TDFRTagsViewTagProviding> *tagProvider;
-- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 bulkNodesChanged:(const struct TCoalescedNodesChangedMap *)arg2;
+- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 bulkNodesChanged:(const map_253f12d2 *)arg2;
 - (void)setTargetNodes:(const struct TFENodeVector *)arg1;
 
 // Remaining properties

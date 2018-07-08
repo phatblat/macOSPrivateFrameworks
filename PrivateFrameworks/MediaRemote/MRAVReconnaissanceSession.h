@@ -14,9 +14,9 @@
     NSObject<OS_dispatch_queue> *_serialQueue;
     NSMutableSet *_localMatchingDevicesFound;
     BOOL _useWeakMatching;
+    BOOL _returnPartialResults;
     BOOL _searchInProgress;
     BOOL _shouldWaitForUnanimousEndpoints;
-    BOOL _returnPartialResults;
     unsigned int _endpointFeatures;
     MRAVRoutingDiscoverySession *_discoverySession;
     NSArray *_matchingLogicalDeviceIDs;
@@ -42,7 +42,6 @@
 @property(retain, nonatomic) NSArray *availableOutputDevices; // @synthesize availableOutputDevices=_availableOutputDevices;
 @property(retain, nonatomic) MRAVEndpoint *unanimousEndpoint; // @synthesize unanimousEndpoint=_unanimousEndpoint;
 @property(retain, nonatomic) NSMutableSet *matchingDevicesFound; // @synthesize matchingDevicesFound=_matchingDevicesFound;
-@property(nonatomic) BOOL returnPartialResults; // @synthesize returnPartialResults=_returnPartialResults;
 @property(nonatomic) BOOL shouldWaitForUnanimousEndpoints; // @synthesize shouldWaitForUnanimousEndpoints=_shouldWaitForUnanimousEndpoints;
 @property(nonatomic) BOOL searchInProgress; // @synthesize searchInProgress=_searchInProgress;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *callbackSyncQueue; // @synthesize callbackSyncQueue=_callbackSyncQueue;
@@ -52,6 +51,7 @@
 @property(retain, nonatomic) NSString *matchingOutputDeviceGroupID; // @synthesize matchingOutputDeviceGroupID=_matchingOutputDeviceGroupID;
 @property(retain, nonatomic) NSSet *matchingOutputDeviceUIDsSet; // @synthesize matchingOutputDeviceUIDsSet=_matchingOutputDeviceUIDsSet;
 @property(copy, nonatomic) NSArray *matchingLogicalDeviceIDs; // @synthesize matchingLogicalDeviceIDs=_matchingLogicalDeviceIDs;
+@property(nonatomic) BOOL returnPartialResults; // @synthesize returnPartialResults=_returnPartialResults;
 @property(nonatomic) BOOL useWeakMatching; // @synthesize useWeakMatching=_useWeakMatching;
 @property(retain, nonatomic) MRAVRoutingDiscoverySession *discoverySession; // @synthesize discoverySession=_discoverySession;
 @property(readonly, nonatomic) unsigned int endpointFeatures; // @synthesize endpointFeatures=_endpointFeatures;

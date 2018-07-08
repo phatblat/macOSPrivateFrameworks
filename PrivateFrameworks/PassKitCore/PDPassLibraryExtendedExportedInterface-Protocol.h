@@ -6,9 +6,10 @@
 
 #import "PDPassLibraryInAppExportedInterface.h"
 
-@class CLLocation, NSArray, NSString, PKCatalog, PKContact, PKDisplayProfile, PKFieldProperties, PKPass;
+@class CLLocation, NSArray, NSSet, NSString, PKCatalog, PKContact, PKDisplayProfile, PKFieldProperties, PKPass;
 
 @protocol PDPassLibraryExtendedExportedInterface <PDPassLibraryInAppExportedInterface>
+- (void)getDataForBundleResources:(NSSet *)arg1 objectUniqueIdentifier:(NSString *)arg2 handler:(void (^)(NSDictionary *))arg3;
 - (void)spotlightDeleteIndexEntriesForAllPassesWithCompletion:(void (^)(NSError *))arg1;
 - (void)spotlightReindexPassesWithUniqueIDs:(NSArray *)arg1 completion:(void (^)(NSError *))arg2;
 - (void)spotlightReindexAllPassesWithCompletion:(void (^)(NSError *))arg1;

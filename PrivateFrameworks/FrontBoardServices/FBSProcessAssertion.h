@@ -32,7 +32,6 @@
 - (id)succinctDescriptionBuilder;
 - (id)succinctDescription;
 @property(readonly, copy) NSString *description;
-- (void)_invalidateAssertion:(id)arg1;
 - (void)invalidate;
 - (void)deactivate;
 - (void)activate;

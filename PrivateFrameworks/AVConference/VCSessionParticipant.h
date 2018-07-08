@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <AVConference/VCObject.h>
 
 #import "VCAudioIODelegate.h"
 #import "VCAudioIOSink.h"
 #import "VCAudioIOSource.h"
+#import "VCAudioPowerSpectrumSourceDelegate.h"
 #import "VCConnectionChangedHandler.h"
 #import "VCMediaStreamDelegate.h"
 #import "VCRedundancyControllerDelegate.h"
@@ -17,7 +18,7 @@
 @class AVCBasebandCongestionDetector, AVCStatisticsCollector, NSArray, NSData, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSString, VCAudioIO, VCAudioPowerSpectrumSource, VCAudioRuleCollection, VCCallInfoBlob, VCMediaNegotiator, VCRedundancyControllerAudio, VCRedundancyControllerVideo;
 
 __attribute__((visibility("hidden")))
-@interface VCSessionParticipant : NSObject <VCMediaStreamDelegate, VCSecurityEventHandler, VCAudioIOSink, VCAudioIOSource, VCAudioIODelegate, VCConnectionChangedHandler, VCRedundancyControllerDelegate>
+@interface VCSessionParticipant : VCObject <VCMediaStreamDelegate, VCSecurityEventHandler, VCAudioIOSink, VCAudioIOSource, VCAudioIODelegate, VCConnectionChangedHandler, VCRedundancyControllerDelegate, VCAudioPowerSpectrumSourceDelegate>
 {
     unsigned int _state;
     union tagNTP _creationTime;
@@ -91,6 +92,9 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) union tagNTP creationTime; // @synthesize creationTime=_creationTime;
 @property(readonly, nonatomic) NSData *opaqueData; // @synthesize opaqueData=_opaqueData;
 @property(readonly, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
+- (void)audioPowerSpectrumSinkDidUnregister;
+- (void)audioPowerSpectrumSinkDidRegister;
+- (void)sendAudioPowerSpectrumSourceRegistration:(BOOL)arg1;
 - (void)redundancyController:(id)arg1 redundancyPercentageDidChange:(unsigned int)arg2;
 - (void)redundancyController:(id)arg1 redundancyIntervalDidChange:(double)arg2;
 - (void)handleActiveConnectionChange:(id)arg1;
@@ -98,7 +102,7 @@ __attribute__((visibility("hidden")))
 - (void)pullAudioSamples:(struct opaqueVCAudioBufferList *)arg1;
 - (void)didResumeAudioIO:(id)arg1;
 - (void)didSuspendAudioIO:(id)arg1;
-- (void)handleEncryptionInfoChange:(id)arg1;
+- (BOOL)handleEncryptionInfoChange:(id)arg1;
 - (void)vcMediaStream:(id)arg1 requestKeyFrameGenerationWithStreamID:(unsigned short)arg2;
 - (void)vcMediaStream:(id)arg1 didResumeStream:(BOOL)arg2 error:(id)arg3;
 - (void)vcMediaStream:(id)arg1 didPauseStream:(BOOL)arg2 error:(id)arg3;
@@ -123,7 +127,7 @@ __attribute__((visibility("hidden")))
 - (void)dealloc;
 - (id)initWithIDSDestination:(id)arg1 delegate:(id)arg2 processId:(int)arg3 sessionUUID:(id)arg4;
 - (BOOL)configureWithIsContinuity:(BOOL)arg1;
-- (BOOL)configureAudioIO;
+- (BOOL)configureAudioIOWithContinuity:(BOOL)arg1;
 - (void)completeStreamSetup:(id)arg1;
 - (void)setupNetworkAddressesForMediaConfig:(id)arg1;
 - (void)processPausedStream:(id)arg1 didPause:(BOOL)arg2;

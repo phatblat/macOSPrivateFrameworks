@@ -14,6 +14,7 @@
     CEMAnyPayload *_payloadOverrides;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withOverrides:(id)arg2;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) CEMAnyPayload *payloadOverrides; // @synthesize payloadOverrides=_payloadOverrides;

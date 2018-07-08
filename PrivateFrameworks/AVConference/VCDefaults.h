@@ -23,6 +23,8 @@ __attribute__((visibility("hidden")))
     int _forceKeyFrameInterval;
 }
 
++ (BOOL)booleanValueForKey:(struct __CFString *)arg1 defaultValue:(BOOL)arg2;
++ (BOOL)booleanValueForKey:(struct __CFString *)arg1;
 + (long long)integerValueForKey:(struct __CFString *)arg1 defaultValue:(long long)arg2;
 + (long long)integerValueForKey:(struct __CFString *)arg1;
 + (double)getDoubleValueForKey:(struct __CFString *)arg1 defaultValue:(double)arg2;
@@ -31,12 +33,14 @@ __attribute__((visibility("hidden")))
 @property(readonly) unsigned int prominenceInactiveProbabilityThreshold;
 @property(readonly) unsigned int prominenceActiveAccumulationThreshold;
 @property(readonly) unsigned int prominenceActiveProbabilityThreshold;
+@property(readonly) BOOL forceDisableReporting;
 @property(readonly) BOOL forceDisableMessageEncryption;
 @property(readonly) BOOL forceDisableMediaEncryption;
 - (BOOL)shouldOverrideEffectsFramerate:(unsigned int *)arg1;
 @property(readonly) BOOL forceDisableMediaStalled;
 @property(readonly) BOOL forceDisableVideoDegraded;
-@property(readonly) BOOL forceFaceZoom;
+@property(readonly) BOOL forceDynamicEffectsFramerate;
+@property(readonly) BOOL forceDisableFaceZoom;
 @property(readonly) unsigned int multiwayVideoNetworkBitrateCapCellular;
 @property(readonly) unsigned int multiwayVideoNetworkBitrateCapWifi;
 @property(readonly) unsigned int multiwayAudioNetworkBitrateCapCellular;
@@ -49,6 +53,8 @@ __attribute__((visibility("hidden")))
 @property(readonly) unsigned char audioPriorityDecayFast;
 @property(readonly) unsigned char audioPriorityDecaySlow;
 @property(readonly) BOOL forceDisableMediaPriority;
+@property(readonly) BOOL forceFECRepairStream;
+@property(readonly) unsigned int forceVisibilityIndex;
 @property(readonly) unsigned int minParticipantCountSendVoiceActiveOnly;
 @property(readonly) BOOL forceMuteAtStart;
 @property(readonly) BOOL forceEVSWideBand;
@@ -57,10 +63,12 @@ __attribute__((visibility("hidden")))
 @property(readonly) BOOL dumpMediaBlob;
 @property(readonly) BOOL momentsUserPreferenceEnabled;
 @property(readonly) BOOL shouldDisplayVideoInfoLayer;
+@property(readonly) float pauseHeartbeatInterval;
 @property(readonly) int localWRMLinkType;
 @property(readonly) NSNumber *enableiRATSuggestion;
 @property(readonly) BOOL forceIPv6;
 @property(readonly) int max2GRate;
+@property(readonly) int redundancyControlForceVideoRedundancyPercentage;
 @property(readonly) int rateControlForceRxRate;
 @property(readonly) int rateControlForceTxRate;
 @property(readonly) int rateControlForceRxCap;
@@ -84,6 +92,7 @@ __attribute__((visibility("hidden")))
 @property(readonly) int forceRedMaxDelay;
 @property(readonly) int forceRedNumPayloads;
 @property(readonly) BOOL disableRed;
+@property(readonly) BOOL forceDisableAudioPowerSpectrumRegister;
 @property(readonly) int forceAudioChannelCount;
 @property(readonly) BOOL forceUseFloat;
 @property(readonly) int forceAudioPowerTimeInterval;
@@ -105,6 +114,7 @@ __attribute__((visibility("hidden")))
 @property(readonly) BOOL enableVPBLogging;
 @property(readonly) int enable2vuyCapture;
 @property(readonly) BOOL enableBitstreamCapture;
+@property(readonly) BOOL forceMirroredCapture;
 @property(readonly) BOOL forceARCapture;
 @property(readonly) int forceKeyFrameInterval;
 @property(readonly) int forceRecvVideoPayload;

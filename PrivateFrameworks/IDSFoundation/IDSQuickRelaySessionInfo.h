@@ -21,6 +21,7 @@
     unsigned char _protocolVersion;
     long long _relayServerProviderType;
     long long _participantID;
+    NSArray *_allParticipantIDs;
     BOOL _isInitiator;
     long long _linkProtocol;
     struct sockaddr_storage _serverAddress;
@@ -44,6 +45,7 @@
 @property(readonly) NSUUID *defaultDeviceLocalCBUUID; // @synthesize defaultDeviceLocalCBUUID=_defaultDeviceLocalCBUUID;
 @property(readonly) long long linkProtocol; // @synthesize linkProtocol=_linkProtocol;
 @property(readonly) BOOL isInitiator; // @synthesize isInitiator=_isInitiator;
+@property(readonly) NSArray *allParticipantIDs; // @synthesize allParticipantIDs=_allParticipantIDs;
 @property(readonly) long long participantID; // @synthesize participantID=_participantID;
 @property(readonly) long long relayServerProviderType; // @synthesize relayServerProviderType=_relayServerProviderType;
 @property(readonly) unsigned char protocolVersion; // @synthesize protocolVersion=_protocolVersion;

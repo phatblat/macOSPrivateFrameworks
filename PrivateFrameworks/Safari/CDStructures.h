@@ -1153,6 +1153,10 @@ struct SerializedScriptValue {
     struct WKRetainPtr<const void *> _field1;
 };
 
+struct SessionState {
+    struct WKRetainPtr<const void *> _field1;
+};
+
 struct SheetRequest {
     CDUnknownFunctionPointerType *_field1;
     unsigned int _field2;

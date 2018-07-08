@@ -12,6 +12,7 @@
 }
 
 + (id)screens;
++ (id)screenForWindow:(id)arg1;
 + (id)mainScreen;
 @property(readonly) int displayID; // @synthesize displayID=_displayID;
 - (id)initWithDisplayID:(unsigned int)arg1;

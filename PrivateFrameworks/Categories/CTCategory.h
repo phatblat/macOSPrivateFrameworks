@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class CKContextClient, NSArray, NSString;
+@class NSArray, NSString;
 
 @interface CTCategory : NSObject <NSSecureCoding>
 {
@@ -17,7 +17,6 @@
     NSArray *_webDomains;
     NSString *_secondaryIdentifier;
     NSString *_resourceString;
-    CKContextClient *_client;
 }
 
 + (id)_AppStoreIDToDHIDCategoriesMap;
@@ -27,25 +26,17 @@
 + (id)primaryLocalizedNameForIdentifier:(id)arg1;
 + (id)localizedNameForIdentifier:(id)arg1;
 + (BOOL)supportsSecureCoding;
-+ (void)initialize;
-@property(nonatomic) __weak CKContextClient *client; // @synthesize client=_client;
 @property(copy, nonatomic) NSString *resourceString; // @synthesize resourceString=_resourceString;
 @property(copy, nonatomic) NSString *secondaryIdentifier; // @synthesize secondaryIdentifier=_secondaryIdentifier;
 @property(copy, nonatomic) NSArray *webDomains; // @synthesize webDomains=_webDomains;
 @property(copy, nonatomic) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
-- (void)_identifierUsingContextKit:(id)arg1 response:(CDUnknownBlockType)arg2;
-- (void)_lookupDHIDInInfoPlist:(id)arg1 key:(unsigned long long)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
-- (void)_lookupAppStoreUsing:(id)arg1 key:(unsigned long long)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 @property(readonly, copy, nonatomic) NSString *primaryLocalizedName;
 @property(readonly, copy, nonatomic) NSString *primaryIdentifier;
 - (id)description;
 @property(readonly, copy, nonatomic) NSString *secondaryLocalizedName;
 @property(readonly, copy, nonatomic) NSString *localizedName;
-- (void)categoryForBundleID:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
-- (void)categoryForDomainURL:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
-- (void)categoryForDomainName:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToCategory:(id)arg1;
@@ -53,7 +44,6 @@
 - (void)encodeWithCoder:(id)arg1;
 - (void)_ctCategoryCommonInitWithIdentifier:(id)arg1 webDomains:(id)arg2 bundleIdentifier:(id)arg3;
 - (id)initWithIdentifier:(id)arg1 webDomains:(id)arg2 bundleIdentifier:(id)arg3;
-- (id)initWithContext:(id)arg1;
 
 @end
 

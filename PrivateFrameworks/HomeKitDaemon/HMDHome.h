@@ -434,8 +434,7 @@
 - (void)_handleUpdateRequestForHomeInvitationFromInvitee:(id)arg1;
 - (void)_handleUpdateOutgoingInvitationState:(id)arg1;
 - (void)_postOutgoingInvitationStateChangedNotification:(id)arg1 newInvitationState:(long long)arg2;
-- (void)_updateOutgoingInvitationForUser:(id)arg1 invitationState:(long long)arg2 error:(id)arg3 responseHandler:(CDUnknownBlockType)arg4;
-- (void)_sendInvitation:(id)arg1 confirm:(BOOL)arg2 message:(id)arg3;
+- (void)_sendInvitation:(id)arg1 message:(id)arg2;
 - (void)_addOutgoingInvitations:(id)arg1 message:(id)arg2;
 - (void)_handleOutgoingInvitations:(id)arg1;
 - (void)_refreshUserDisplayNames;
@@ -457,9 +456,7 @@
 - (void)_handleRemoveOutgoingHomeInvitationModel:(id)arg1 message:(id)arg2;
 - (void)_handleAddOutgoingHomeInvitationModel:(id)arg1 message:(id)arg2;
 - (void)_handleUserInvitations:(id)arg1;
-- (void)_addUser:(id)arg1 userPrivilege:(unsigned long long)arg2 confirm:(BOOL)arg3 message:(id)arg4;
 - (void)_cleanRemovedUsers:(id)arg1;
-- (void)_handleAddUser:(id)arg1;
 - (id)prepareUserManagementOperationForUser:(id)arg1 accessory:(id)arg2 type:(unsigned long long)arg3 model:(id)arg4 error:(id *)arg5;
 - (id)prepareUserManagementOperationForUser:(id)arg1 accessories:(id)arg2 type:(unsigned long long)arg3 error:(id *)arg4;
 - (void)_addAllUsersToAccessory:(id)arg1;
@@ -561,7 +558,7 @@
 - (void)_notifyClientOfNewlyAddedAccessories:(id)arg1;
 - (void)_sharedAdminDidFailToAddAccessories:(id)arg1;
 - (void)_notifyOwnerOfAddedAccessories:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)_addOwnerToPrimaryAccessory:(id)arg1 error:(id *)arg2;
+- (BOOL)_addOwnerToPrimaryAccessory:(id)arg1 error:(id *)arg2;
 - (void)_deregisterPairedAccessory:(id)arg1;
 - (void)_registerPairedAccessory:(id)arg1 btleTransport:(BOOL)arg2 airPlay:(BOOL)arg3;
 - (id)hapAccessoryUniqueIdentifiers;
@@ -605,6 +602,7 @@
 - (void)_updateWoWState:(id)arg1;
 - (void)_handleAssistantAccessControlUpdate:(id)arg1;
 - (void)_registerForMessages;
+@property(readonly, nonatomic) NSUUID *spiClientIdentifier;
 - (void)notifyClientOfVendorInfoUpdatedForManufacturers:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)resetConfiguration;
 - (void)_evaluateShouldRelaunchAndSetRelaunch;

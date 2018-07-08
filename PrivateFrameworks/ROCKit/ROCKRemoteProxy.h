@@ -18,22 +18,21 @@ __attribute__((visibility("hidden")))
     NSMapTable *_selectorsToMethodSignatures;
 }
 
-+ (id)remoteProxyWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 protocols:(id)arg3 forwardingInterposerClass:(Class)arg4 connectionUUID:(id)arg5;
++ (id)remoteProxyWithSessionManager:(id)arg1 xpcDictionary:(id)arg2;
 @property(retain, nonatomic) NSMapTable *selectorsToMethodSignatures; // @synthesize selectorsToMethodSignatures=_selectorsToMethodSignatures;
 @property(retain, nonatomic) NSObject<OS_xpc_object> *connectionUUID; // @synthesize connectionUUID=_connectionUUID;
-@property(retain, nonatomic) NSSet *protocols; // @synthesize protocols=_protocols;
+@property(readonly, nonatomic) NSSet *protocols; // @synthesize protocols=_protocols;
 - (void).cxx_destruct;
 - (void)remoteInvocation:(id)arg1 sessionManager:(id)arg2 invocationHandler:(CDUnknownBlockType)arg3;
 - (id)description;
 - (id)debugDescription;
 - (void)dealloc;
 - (BOOL)checkIn;
-- (id)initWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 protocols:(id)arg3 forwardingInterposerClass:(Class)arg4 connectionUUID:(id)arg5;
+- (id)initWithSessionManager:(id)arg1 xpcDictionary:(id)arg2;
 - (void)_forwardStackInvocation:(id)arg1;
 - (BOOL)respondsToSelector:(SEL)arg1;
 - (id)methodSignatureForSelector:(SEL)arg1;
 - (void)forwardInvocation:(id)arg1;
-- (BOOL)conformsToProtocol:(id)arg1;
 
 @end
 

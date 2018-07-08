@@ -9,9 +9,11 @@
 @interface AXPTranslator_macOS : AXPTranslator
 {
     CDUnknownBlockType _zoomTriggerTestingCallback;
+    CDUnknownBlockType _appNotificationTestingCallback;
 }
 
 + (id)sharedInstance;
+@property(copy, nonatomic) CDUnknownBlockType appNotificationTestingCallback; // @synthesize appNotificationTestingCallback=_appNotificationTestingCallback;
 @property(copy, nonatomic) CDUnknownBlockType zoomTriggerTestingCallback; // @synthesize zoomTriggerTestingCallback=_zoomTriggerTestingCallback;
 - (void).cxx_destruct;
 - (id)processApplicationObject:(id)arg1;

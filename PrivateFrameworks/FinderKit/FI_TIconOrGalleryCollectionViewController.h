@@ -13,11 +13,19 @@
 __attribute__((visibility("hidden")))
 @interface FI_TIconOrGalleryCollectionViewController : FI_TBaseCollectionViewController <TIconOrGalleryCollectionViewDelegateProtocol>
 {
+    _Bool _doubleClickOnMouseUp;
+    struct CGPoint _initialClickAt;
+    struct TNSRef<NSEvent, void> _mouseDownEventForDrag;
     struct TNotificationCenterObserver _clipViewBoundsDidChangeObserver;
+    struct TFENode _nodeClickedOnMouseDown;
+    _Bool _startEditingOnMouseUp;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (_Bool)handleMouseUp:(id)arg1;
+- (_Bool)handleMouseDragged:(id)arg1;
+- (_Bool)handleMouseDown:(id)arg1;
 - (void)shrinkToFitTextViewAboutToCloseForNode:(const struct TFENode *)arg1;
 - (void)shrinkToFitTextViewEditingComplete:(id)arg1 forNode:(const struct TFENode *)arg2 renameOp:(id)arg3;
 - (_Bool)shrinkToFitTextViewAboutToOpenForNode:(const struct TFENode *)arg1;
@@ -27,6 +35,7 @@ __attribute__((visibility("hidden")))
 - (void)stopEditing:(_Bool)arg1;
 - (_Bool)startEditingWithNode:(const struct TFENode *)arg1 renameOp:(id)arg2 afterDelay:(_Bool)arg3;
 - (_Bool)startEditingWithNode:(const struct TFENode *)arg1 renameOp:(id)arg2;
+- (struct TFENode)nodeClickedOnMouseDown;
 - (void)aboutToTearDown;
 - (id)iconOrGalleryView;
 

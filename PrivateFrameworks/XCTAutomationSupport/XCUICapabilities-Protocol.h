@@ -14,6 +14,7 @@
 @property(readonly) NSDictionary *truncatedValueSnapshotParameter;
 @property(readonly) NSString *truncatedValueAttribute;
 @property(readonly) BOOL supportsTruncatedValue;
+@property(readonly) long long automationSessionSupport;
 @property(readonly) BOOL supportsAutomationSessions;
 @end
 

@@ -20,13 +20,12 @@
 @property(copy, nonatomic) NSArray *localizedUserNotificationBodyArguments; // @synthesize localizedUserNotificationBodyArguments=_localizedUserNotificationBodyArguments;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
-- (id)userInfo;
-- (id)categoryIdentifier;
-- (id)localizedUserNotificationBodyKey;
-- (id)localizedUserNotificationSubTitleKey;
-- (id)localizedUserNotificationTitleKey;
+- (id)destinations;
+- (void)customizeNotificationContent:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
+- (void)notificationContentWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithIdentifier:(id)arg1;
 - (id)init;
 
 @end

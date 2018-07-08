@@ -32,6 +32,7 @@
 - (oneway void)stopAllAudioPlaybackRequests:(BOOL)arg1;
 - (oneway void)stopAudioPlaybackRequest:(AFAudioPlaybackRequest *)arg1 immediately:(BOOL)arg2;
 - (oneway void)startAudioPlaybackRequest:(AFAudioPlaybackRequest *)arg1 options:(unsigned long long)arg2 reply:(void (^)(NSError *))arg3;
+- (oneway void)getRemoteClockTimerSnapshotWithCompletion:(void (^)(AFClockTimerSnapshot *, NSError *))arg1;
 - (oneway void)getSerializedCachedObjectsWithIdentifiers:(NSSet *)arg1 completion:(void (^)(NSDictionary *))arg2;
 - (oneway void)getDeferredObjectsWithIdentifiers:(NSArray *)arg1 completion:(void (^)(NSArray *, NSError *))arg2;
 - (oneway void)recordCancellationMetrics;

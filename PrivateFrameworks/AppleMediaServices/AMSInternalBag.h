@@ -21,6 +21,7 @@ __attribute__((visibility("hidden")))
 @property(retain) AMSBag *bag; // @synthesize bag=_bag;
 - (void).cxx_destruct;
 @property(readonly) AMSBagValue *trustedDomains;
+@property(readonly) id <AMSMetricsBagContract> metricsContract;
 @property(readonly) id <AMSMescalBagContract> mescalContract;
 @property(readonly) AMSBagValue *mescalSignSapResponses;
 @property(readonly) AMSBagValue *mescalSignSapRequests;
@@ -28,6 +29,7 @@ __attribute__((visibility("hidden")))
 @property(readonly) AMSBagValue *mescalSetupURL;
 @property(readonly) AMSBagValue *mescalCertificateURL;
 @property(readonly) AMSBagValue *metricsURL;
+@property(readonly) AMSBagValue *metricsDictionary;
 - (id)init;
 
 // Remaining properties
@@ -40,8 +42,6 @@ __attribute__((visibility("hidden")))
 @property(readonly) AMSBagValue *guidSchemes;
 @property(readonly) unsigned long long hash;
 @property(readonly) AMSBagValue *mescalPrimingURL;
-@property(readonly) id <AMSMetricsBagContract> metricsContract;
-@property(readonly) AMSBagValue *metricsDictionary;
 @property(readonly) AMSBagValue *metricsUrl;
 @property(readonly) AMSBagValue *storefrontSuffix;
 @property(readonly) Class superclass;

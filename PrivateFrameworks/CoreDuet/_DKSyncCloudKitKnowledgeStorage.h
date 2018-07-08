@@ -6,19 +6,24 @@
 
 #import "NSObject.h"
 
-@class CKContainer, NSDictionary, NSHashTable, NSOperation, _DKSyncPeerStatusTracker;
+@class CKContainer, CKServerChangeToken, NSHashTable, NSMutableDictionary, NSMutableSet, NSOperation, _DKSyncPeerStatusTracker, _DKThrottledActivity;
 
 @interface _DKSyncCloudKitKnowledgeStorage : NSObject
 {
     BOOL _started;
     id <_DKKeyValueStore> _keyValueStore;
+    _DKThrottledActivity *_activityThrottler;
     _DKSyncPeerStatusTracker *_tracker;
     BOOL _cloudSyncAvailablityObserverRegistered;
     CKContainer *_container;
-    NSDictionary *_zoneIDsBySourceDeviceID;
+    double _updateSyncedDeviceIdentifiersBackoffTimeInterval;
+    NSMutableDictionary *_zoneIDsBySourceDeviceID;
+    NSMutableSet *_zoneIDsWithAdditionChanges;
+    NSMutableSet *_zoneIDsWithDeletionChanges;
+    CKServerChangeToken *_fetchDatabaseChangesServerChangeToken;
     NSOperation *_previousDependentOperation;
     NSHashTable *_outstandingOperations;
-    BOOL _isAvailable;
+    BOOL _available;
     id <_DKSyncRemoteKnowledgeStorageFetchDelegate> _delegate;
 }
 
@@ -27,7 +32,7 @@
 + (void)setMySyncZoneID:(id)arg1;
 + (id)mySyncZoneID;
 + (id)sharedInstance;
-@property BOOL isAvailable; // @synthesize isAvailable=_isAvailable;
+@property(getter=isAvailable) BOOL available; // @synthesize available=_available;
 @property(retain) id <_DKSyncRemoteKnowledgeStorageFetchDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (long long)transportType;
@@ -44,13 +49,21 @@
 - (id)_previousServerChangeTokenForRecordZoneID:(id)arg1;
 - (id)_previousServerChangeTokenKeyForRecordZoneID:(id)arg1;
 - (void)syncDownDeletionsFromCloudWithZoneID:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)fetchDeletedEventIDsFromPeer:(id)arg1 sinceDate:(id)arg2 streamNames:(id)arg3 highPriority:(BOOL)arg4 completion:(CDUnknownBlockType)arg5;
+- (void)fetchDeletedEventIDsFromPeer:(id)arg1 sinceDate:(id)arg2 streamNames:(id)arg3 limit:(unsigned long long)arg4 highPriority:(BOOL)arg5 completion:(CDUnknownBlockType)arg6;
 - (void)syncDownAdditionsFromCloudWithZoneID:(id)arg1 creationDateBetweenDate:(id)arg2 andDate:(id)arg3 streamNames:(id)arg4 limit:(unsigned long long)arg5 fetchOrder:(long long)arg6 completion:(CDUnknownBlockType)arg7;
 - (void)fetchEventsFromPeer:(id)arg1 creationDateBetweenDate:(id)arg2 andDate:(id)arg3 streamNames:(id)arg4 limit:(unsigned long long)arg5 fetchOrder:(long long)arg6 highPriority:(BOOL)arg7 completion:(CDUnknownBlockType)arg8;
+- (void)commitFetchDatabaseChangesServerChangeToken;
+- (void)prewarmFetchWithCompletion:(CDUnknownBlockType)arg1;
+- (void)removeSourceDeviceIdentifierWithRecordZoneID:(id)arg1;
+- (void)fastForwardPastDeletionsInZoneWithZoneID:(id)arg1;
+- (void)configurePeerWithSourceDeviceID:(id)arg1 zoneID:(id)arg2;
+- (void)addSourceDeviceIdentifierWithRecordZoneID:(id)arg1;
+- (void)fetchChangedZonesWithCompletion:(CDUnknownBlockType)arg1;
 - (void)_storeZoneIDFromRecords:(id)arg1 orError:(id)arg2;
 - (void)_createZoneWithZoneID:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)setZoneIDsBySourceDeviceID:(id)arg1;
 - (void)configureCloudPseudoPeerWithMySyncZoneID:(id)arg1;
+- (void)scheduleRetryUpdateSyncedDeviceIdentifiers;
 - (void)finishUpdatingSyncedDeviceIdentifiersWithMySyncZoneID:(id)arg1 orError:(id)arg2 zoneIDsBySourceDeviceID:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)updateSyncedDeviceIdentifiersWithRecordZonesByZoneID:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_performThrottledUpdateSyncedDeviceIdentifiersWithCompletion:(CDUnknownBlockType)arg1;

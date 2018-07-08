@@ -17,6 +17,7 @@
     NSString *_payloadDeviceKey;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withLocation:(id)arg2 withEncryptCertPayloadUUID:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withLocation:(id)arg2 withEncryptCertPayloadUUID:(id)arg3 withDeviceKey:(id)arg4;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

@@ -17,6 +17,7 @@
     NSString *_payloadPIN;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withPIN:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withPreserveDataPlan:(id)arg2 withDisallowProximitySetup:(id)arg3 withPIN:(id)arg4;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

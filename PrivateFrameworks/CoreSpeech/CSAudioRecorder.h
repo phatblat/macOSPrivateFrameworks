@@ -55,6 +55,7 @@
 - (void)remoteRecordDidStartRecordingWithError:(id)arg1;
 - (void)voiceControllerMediaServicesWereReset:(id)arg1;
 - (void)voiceControllerMediaServicesWereLost:(id)arg1;
+- (void)voiceControllerDidFinishAlertPlayback:(id)arg1 ofType:(int)arg2 error:(id)arg3;
 - (void)voiceControllerRecordHardwareConfigurationDidChange:(id)arg1 toConfiguration:(int)arg2;
 - (void)voiceControllerDidStopRecording:(id)arg1 forReason:(long long)arg2;
 - (void)voiceControllerDidStartRecording:(id)arg1 successfully:(BOOL)arg2 error:(id)arg3;

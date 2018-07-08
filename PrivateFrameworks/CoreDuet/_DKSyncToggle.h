@@ -24,6 +24,8 @@
 @property(readonly, nonatomic) __weak NSObject *object; // @synthesize object=_object;
 @property(nonatomic, getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
 - (void).cxx_destruct;
+- (void)_setEnabled:(BOOL)arg1;
+- (void)dealloc;
 - (id)initWithObject:(id)arg1 name:(id)arg2 enableSelector:(SEL)arg3 disableSelector:(SEL)arg4;
 
 @end

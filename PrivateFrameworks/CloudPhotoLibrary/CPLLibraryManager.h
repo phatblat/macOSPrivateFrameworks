@@ -37,6 +37,7 @@
     unsigned long long _numberOfOtherItemsToUpload;
     id <CPLLibraryManagerDelegate> _delegate;
     id <CPLResourceProgressDelegate> _resourceProgressDelegate;
+    id <CPLLibraryManagerForceSyncDelegate> _forceSyncDelegate;
     id <CPLLibraryManagerOwner> _owner;
     unsigned long long _status;
     NSError *_statusError;
@@ -54,6 +55,7 @@
 @property(readonly, nonatomic) NSError *statusError; // @synthesize statusError=_statusError;
 @property(readonly, nonatomic) unsigned long long status; // @synthesize status=_status;
 @property(nonatomic) __weak id <CPLLibraryManagerOwner> owner; // @synthesize owner=_owner;
+@property(nonatomic) __weak id <CPLLibraryManagerForceSyncDelegate> forceSyncDelegate; // @synthesize forceSyncDelegate=_forceSyncDelegate;
 @property(nonatomic) __weak id <CPLResourceProgressDelegate> resourceProgressDelegate; // @synthesize resourceProgressDelegate=_resourceProgressDelegate;
 @property(nonatomic) __weak id <CPLLibraryManagerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) unsigned long long numberOfOtherItemsToUpload; // @synthesize numberOfOtherItemsToUpload=_numberOfOtherItemsToUpload;
@@ -113,6 +115,7 @@
 - (void)getCloudScopedIdentifiersForLocalScopedIdentifiers:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (id)_mappedUnscopedIdentifiersFromScopedIdentifiers:(id)arg1;
 - (void)_getMappedScopedIdentifiersForScopedIdentifiers:(id)arg1 inAreLocalIdentifiers:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)forceSynchronizingScopeWithIdentifiers:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)queryUserIdentitiesWithParticipants:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)acceptMomentShare:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)fetchMomentShareFromShareURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;

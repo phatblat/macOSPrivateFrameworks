@@ -16,6 +16,9 @@
 @property(retain, nonatomic) PKPaymentPreferenceContact *billingPreference; // @synthesize billingPreference=_billingPreference;
 - (void).cxx_destruct;
 - (BOOL)canSelectPreference:(id)arg1 atIndex:(unsigned long long)arg2;
+- (BOOL)_isPaymentPassApplicationStateDeactivated:(long long)arg1;
+- (id)_unavailableReasonForInstrument:(id)arg1;
+- (id)cardEntriesForInstruments:(id)arg1 accepted:(BOOL)arg2;
 - (void)_setupPreferences;
 - (long long)numberOfMenuItemsInSection:(long long)arg1;
 - (void)updatePreferences;

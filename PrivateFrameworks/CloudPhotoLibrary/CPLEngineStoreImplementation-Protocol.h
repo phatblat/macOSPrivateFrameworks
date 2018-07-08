@@ -37,6 +37,7 @@
 - (unsigned long long)libraryOptions;
 - (void)writeTransactionDidFail;
 - (void)writeTransactionDidSucceed;
+- (void)performBarrier;
 - (void)performBarrierTransaction:(CPLEngineStoreTransaction *)arg1 withBlock:(void (^)(void))arg2;
 - (void)performWriteTransaction:(CPLEngineStoreTransaction *)arg1 withBlock:(void (^)(void))arg2 completionHandler:(void (^)(NSError *))arg3;
 - (void)performReadTransaction:(CPLEngineStoreTransaction *)arg1 withBlock:(void (^)(void))arg2;

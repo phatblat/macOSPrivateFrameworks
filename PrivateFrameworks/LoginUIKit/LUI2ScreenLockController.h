@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class LUI2AuthHintViewController, LUI2BackgroundViewController, LUI2ButtonViewController, LUI2MessageViewController, LUI2MultiWindowController, LUI2PasswordViewController, LUI2SpinnerViewController, LUI2StatusViewController, LUI2UserNameViewController, LUI2UserViewController;
+@class LUI2AuthHintViewController, LUI2BackgroundViewController, LUI2ButtonViewController, LUI2MessageViewController, LUI2MultiWindowController, LUI2PasswordViewController, LUI2SpinnerViewController, LUI2StatusViewController, LUI2UserNameViewController, LUI2UserViewController, LUIPopoverController;
 
 @interface LUI2ScreenLockController : NSObject
 {
@@ -20,8 +20,10 @@
     LUI2StatusViewController *_statusViewController;
     LUI2UserNameViewController *_userNameViewController;
     LUI2UserViewController *_userViewController;
+    LUIPopoverController *_popover;
 }
 
+@property(retain) LUIPopoverController *popover; // @synthesize popover=_popover;
 @property BOOL enabledInternal; // @synthesize enabledInternal=_enabledInternal;
 @property(readonly) LUI2UserViewController *userViewController; // @synthesize userViewController=_userViewController;
 @property(readonly) LUI2UserNameViewController *userNameViewController; // @synthesize userNameViewController=_userNameViewController;
@@ -36,6 +38,10 @@
 - (id)init;
 @property(readonly) LUI2BackgroundViewController *backgroundViewController;
 @property(getter=isEnabled) BOOL enabled; // @dynamic enabled;
+- (void)showPopover:(id)arg1;
+- (void)hidePopover;
+- (void)shakePopover;
+- (id)currentPopover;
 - (void)_setupScreenLockController;
 
 @end

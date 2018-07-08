@@ -14,6 +14,7 @@
     NSArray *_statusUnknownEvents;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithInactiveEvents:(id)arg1 withUnknownEvents:(id)arg2;
 + (id)allowedReasons;
 + (id)allowedStatusKeys;

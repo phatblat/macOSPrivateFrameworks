@@ -18,6 +18,7 @@
     NSString *_payloadFootnote;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withEnable:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withEnable:(id)arg2 withMessage:(id)arg3 withPhoneNumber:(id)arg4 withFootnote:(id)arg5;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

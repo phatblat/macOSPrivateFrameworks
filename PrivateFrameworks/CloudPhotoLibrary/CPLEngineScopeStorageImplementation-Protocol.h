@@ -6,10 +6,12 @@
 
 #import "CPLEngineStorageImplementation.h"
 
-@class CPLEngineScope, CPLEngineScopeFlagsUpdate, CPLLibraryInfo, CPLLibraryState, NSData, NSDate, NSIndexSet, NSString;
+@class CPLEngineScope, CPLEngineScopeFlagsUpdate, CPLLibraryInfo, CPLLibraryState, CPLScopeFilter, NSData, NSDate, NSIndexSet, NSString;
 
 @protocol CPLEngineScopeStorageImplementation <CPLEngineStorageImplementation>
 @property(readonly, nonatomic) BOOL hasStagedSyncAnchors;
+- (CPLScopeFilter *)filterForExcludedScopeIdentifiers:(id <NSFastEnumeration>)arg1;
+- (CPLScopeFilter *)filterForIncludedScopeIdentifiers:(id <NSFastEnumeration>)arg1;
 - (BOOL)storeScopeListSyncAnchor:(struct NSData *)arg1 error:(id *)arg2;
 - (struct NSData *)scopeListSyncAnchor;
 - (CPLEngineScope *)primaryScope;
@@ -28,6 +30,7 @@
 - (BOOL)storeTransientSyncAnchor:(struct NSData *)arg1 forScope:(CPLEngineScope *)arg2 error:(id *)arg3;
 - (struct NSData *)transientSyncAnchorForScope:(CPLEngineScope *)arg1;
 - (BOOL)hasStagedSyncAnchorForScope:(CPLEngineScope *)arg1;
+- (BOOL)discardStagedSyncAnchorWithScopeFilter:(CPLScopeFilter *)arg1 error:(id *)arg2;
 - (BOOL)discardStagedSyncAnchorForScope:(CPLEngineScope *)arg1 error:(id *)arg2;
 - (BOOL)commitSyncAnchorForScope:(CPLEngineScope *)arg1 error:(id *)arg2;
 - (BOOL)resetSyncAnchorForScope:(CPLEngineScope *)arg1 error:(id *)arg2;

@@ -18,7 +18,7 @@ __attribute__((visibility("hidden")))
     unsigned long long _material;
 }
 
-+ (_Bool)skyGlowDarkEnabled;
++ (_Bool)useDarkLook;
 + (void)initialize;
 @property(nonatomic) unsigned char materialStyle; // @synthesize materialStyle=_materialStyle;
 @property(nonatomic) unsigned long long material; // @synthesize material=_material;

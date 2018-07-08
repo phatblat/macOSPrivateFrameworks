@@ -35,7 +35,6 @@
     unsigned char _deviceActionType;
     BOOL _needsAWDL;
     BOOL _needsKeyboard;
-    BOOL _needsNAN;
     BOOL _needsSetup;
     BOOL _overrideScreenOff;
     BOOL _pairSetupDisabled;
@@ -132,7 +131,6 @@
 @property(copy, nonatomic) NSDictionary *pairSetupACL; // @synthesize pairSetupACL=_pairSetupACL;
 @property(nonatomic) BOOL overrideScreenOff; // @synthesize overrideScreenOff=_overrideScreenOff;
 @property(nonatomic) BOOL needsSetup; // @synthesize needsSetup=_needsSetup;
-@property(nonatomic) BOOL needsNAN; // @synthesize needsNAN=_needsNAN;
 @property(nonatomic) BOOL needsKeyboard; // @synthesize needsKeyboard=_needsKeyboard;
 @property(nonatomic) BOOL needsAWDL; // @synthesize needsAWDL=_needsAWDL;
 @property(copy, nonatomic) NSString *label; // @synthesize label=_label;

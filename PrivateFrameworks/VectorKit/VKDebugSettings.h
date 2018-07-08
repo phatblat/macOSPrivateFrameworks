@@ -23,6 +23,7 @@
     BOOL _paintCoastlines;
     BOOL _paintBuildingNormals;
     BOOL _paintLoadReason;
+    BOOL _showPreliminaryInfo;
     BOOL _disableRoute;
     BOOL _labelHighlighting;
     BOOL _transitHighlighting;
@@ -50,6 +51,8 @@
     BOOL _hideServerPositionedRoadFeatures;
     BOOL _hideServerPositionedTransitFeatures;
     BOOL _keepTooCloseServerPositionedTransitFeatures;
+    BOOL _overrideNeworkDefaultsBaseSSLPMSwitch;
+    BOOL _labelBaseSSLPMEnabled;
     BOOL _labelHideLineFeatures;
     BOOL _labelHidePointFeatures;
     BOOL _paintTrafficSkeleton;
@@ -138,13 +141,12 @@
     unsigned long long _arSwipeGesture;
     unsigned long long _arPinchGesture;
     BOOL _arRenderAtNativeRate;
-    struct unordered_map<std::__1::basic_string<char>, std::__1::vector<std::__1::shared_ptr<md::ObjectGroup>, std::__1::allocator<std::__1::shared_ptr<md::ObjectGroup>>>, std::__1::hash<std::__1::basic_string<char>>, std::__1::equal_to<std::__1::basic_string<char>>, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::vector<std::__1::shared_ptr<md::ObjectGroup>, std::__1::allocator<std::__1::shared_ptr<md::ObjectGroup>>>>>> _customLandmarks;
+    struct unique_ptr<(anonymous namespace)::CustomLandmarksContainer, std::__1::default_delete<(anonymous namespace)::CustomLandmarksContainer>> _customLandmarks;
     BOOL _paintPoiTiles;
     BOOL _paintLandcoverTiles;
     BOOL _paintVenues;
     BOOL _labelCollideContinuously;
     BOOL _useStaticTrafficFeed;
-    BOOL _newRouteTraffic;
     BOOL _showNavCameraDebugConsoleProperties;
     BOOL _showNavCameraDebugOverlay;
     BOOL _disableStylesheetAnimations;
@@ -247,12 +249,13 @@
 @property(nonatomic) BOOL prioritizeTrafficSkeleton; // @synthesize prioritizeTrafficSkeleton=_prioritizeTrafficSkeleton;
 @property(nonatomic) BOOL texturedTrafficCasing; // @synthesize texturedTrafficCasing=_texturedTrafficCasing;
 @property(nonatomic) BOOL showTrafficCasing; // @synthesize showTrafficCasing=_showTrafficCasing;
-@property(nonatomic) BOOL newRouteTraffic; // @synthesize newRouteTraffic=_newRouteTraffic;
 @property(nonatomic) BOOL useStaticTrafficFeed; // @synthesize useStaticTrafficFeed=_useStaticTrafficFeed;
 @property(nonatomic) BOOL loadGreenTraffic; // @synthesize loadGreenTraffic=_loadGreenTraffic;
 @property(nonatomic) BOOL paintTrafficSkeleton; // @synthesize paintTrafficSkeleton=_paintTrafficSkeleton;
 @property(nonatomic) BOOL labelHidePointFeatures; // @synthesize labelHidePointFeatures=_labelHidePointFeatures;
 @property(nonatomic) BOOL labelHideLineFeatures; // @synthesize labelHideLineFeatures=_labelHideLineFeatures;
+@property(nonatomic) BOOL labelBaseSSLPMEnabled; // @synthesize labelBaseSSLPMEnabled=_labelBaseSSLPMEnabled;
+@property(nonatomic) BOOL overrideNeworkDefaultsBaseSSLPMSwitch; // @synthesize overrideNeworkDefaultsBaseSSLPMSwitch=_overrideNeworkDefaultsBaseSSLPMSwitch;
 @property(nonatomic) BOOL keepTooCloseServerPositionedTransitFeatures; // @synthesize keepTooCloseServerPositionedTransitFeatures=_keepTooCloseServerPositionedTransitFeatures;
 @property(nonatomic) BOOL hideServerPositionedTransitFeatures; // @synthesize hideServerPositionedTransitFeatures=_hideServerPositionedTransitFeatures;
 @property(nonatomic) BOOL hideServerPositionedRoadFeatures; // @synthesize hideServerPositionedRoadFeatures=_hideServerPositionedRoadFeatures;
@@ -281,6 +284,7 @@
 @property(nonatomic) BOOL transitHighlighting; // @synthesize transitHighlighting=_transitHighlighting;
 @property(nonatomic) BOOL labelHighlighting; // @synthesize labelHighlighting=_labelHighlighting;
 @property(nonatomic) BOOL disableRoute; // @synthesize disableRoute=_disableRoute;
+@property(nonatomic) BOOL showPreliminaryInfo; // @synthesize showPreliminaryInfo=_showPreliminaryInfo;
 @property(nonatomic) BOOL paintLoadReason; // @synthesize paintLoadReason=_paintLoadReason;
 @property(nonatomic) BOOL paintBuildingNormals; // @synthesize paintBuildingNormals=_paintBuildingNormals;
 @property(nonatomic) BOOL paintCoastlines; // @synthesize paintCoastlines=_paintCoastlines;

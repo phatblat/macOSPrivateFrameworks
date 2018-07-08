@@ -9,7 +9,7 @@
 #import "VCSessionUplinkVideoStreamControllerDelegate.h"
 #import "VCVideoCaptureClient.h"
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSString, VCSessionUplinkBandwidthAllocator, VCSessionUplinkVideoStreamController, VCVideoRule;
+@class NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSet, NSString, VCSessionUplinkBandwidthAllocator, VCSessionUplinkVideoStreamController, VCVideoRule;
 
 __attribute__((visibility("hidden")))
 @interface VCSessionParticipantLocal : VCSessionParticipant <VCVideoCaptureClient, VCSessionUplinkVideoStreamControllerDelegate>
@@ -53,8 +53,16 @@ __attribute__((visibility("hidden")))
     VCVideoRule *_videoRule;
     BOOL _speechDetected;
     double _fecRatio;
+    NSMutableSet *_audioPayloadTypes;
+    NSMutableSet *_videoPayloadTypes;
+    unsigned int _currentUplinkTotalBitrateVideo;
+    unsigned int _currentUplinkTotalBitrateAudio;
 }
 
+@property(readonly, nonatomic) unsigned int currentUplinkTotalBitrateAudio; // @synthesize currentUplinkTotalBitrateAudio=_currentUplinkTotalBitrateAudio;
+@property(readonly, nonatomic) unsigned int currentUplinkTotalBitrateVideo; // @synthesize currentUplinkTotalBitrateVideo=_currentUplinkTotalBitrateVideo;
+@property(readonly, nonatomic) NSSet *videoPayloadTypes; // @synthesize videoPayloadTypes=_videoPayloadTypes;
+@property(readonly, nonatomic) NSSet *audioPayloadTypes; // @synthesize audioPayloadTypes=_audioPayloadTypes;
 @property(copy, nonatomic) NSArray *peerSubscribedStreams; // @synthesize peerSubscribedStreams=_peerSubscribedStreams;
 @property(nonatomic) BOOL enableVADFiltering; // @synthesize enableVADFiltering=_enableVADFiltering;
 @property(nonatomic) unsigned int uplinkBitrateCapCell; // @synthesize uplinkBitrateCapCell=_uplinkBitrateCapCell;
@@ -82,6 +90,7 @@ __attribute__((visibility("hidden")))
 - (void)redundancyController:(id)arg1 redundancyPercentageDidChange:(unsigned int)arg2;
 - (void)flushVideoRedundancyEventQueue;
 - (void)processVideoEventQueueWithSampleBuffer:(struct opaqueCMSampleBuffer *)arg1;
+- (void)enableRedundancy:(BOOL)arg1;
 - (void)generateKeyFrameWithStreamID:(unsigned short)arg1;
 - (void)setCaptureFrame:(struct opaqueCMSampleBuffer *)arg1 fecRatio:(double)arg2;
 - (void)setupEncodingModeWithVideoStreamConfig:(id)arg1;
@@ -107,6 +116,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)containsStreamWithSSRC:(unsigned int)arg1;
 - (void)updateSupportedAudioRules:(id)arg1;
 - (id)supportedAudioRules;
+- (void)updatePayloadTypesWithConfigProvider:(id)arg1;
 - (BOOL)computeMediaBlob;
 - (id)multiwayVideoStreamConfigs;
 - (id)multiwayAudioStreamConfigs;
@@ -115,6 +125,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)setupVideoStreamsWithConfigProvider:(id)arg1;
 - (BOOL)setupAudioStreamWithConfiguration:(id)arg1;
 - (BOOL)setupAudioStreamsWithConfigProvider:(id)arg1;
+- (unsigned int)calculateUplinkTotalBitrateForMediaStreams:(id)arg1;
 - (void)collectAudioChannelMetrics:(CDStruct_1c8e0384 *)arg1;
 - (void)collectVideoChannelMetrics:(CDStruct_1c8e0384 *)arg1;
 - (BOOL)setState:(unsigned int)arg1;

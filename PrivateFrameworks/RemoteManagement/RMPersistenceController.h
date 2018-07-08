@@ -9,48 +9,31 @@
 #import "RMPersistenceControllerProtocol.h"
 #import "RMPersistenceStoreChangeProcessingOperationDelegate.h"
 
-@class CATSerialOperationQueue, NSArray, NSHashTable, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSPersistentContainer, NSString;
+@class CATSerialOperationQueue, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSPersistentContainer, NSString;
 
 @interface RMPersistenceController : NSObject <RMPersistenceControllerProtocol, RMPersistenceStoreChangeProcessingOperationDelegate>
 {
-    NSHashTable *_delegates;
-    BOOL _persistentContainerLoaded;
-    NSObject<OS_dispatch_queue> *_persistentContainerQueue;
+    NSObject *_lastPersistentHistoryTokenByStoreIdentifierLock;
     NSPersistentContainer *_persistentContainer;
-    NSArray *_storeConfigurations;
-    NSMutableDictionary *_storeByIdentifier;
-    NSMutableDictionary *_lastStoreTokenByIdentifier;
-    NSMutableDictionary *_storeConfigurationByIdentifier;
-    id _persistenceStoreNotificationObserver;
+    NSMutableDictionary *_lastPersistentHistoryTokenByStoreIdentifier;
+    NSObject<OS_dispatch_queue> *_coreDataQueue;
     CATSerialOperationQueue *_operationQueue;
 }
 
 @property(readonly, nonatomic) CATSerialOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
-@property(retain, nonatomic) id persistenceStoreNotificationObserver; // @synthesize persistenceStoreNotificationObserver=_persistenceStoreNotificationObserver;
-@property(readonly, copy, nonatomic) NSMutableDictionary *storeConfigurationByIdentifier; // @synthesize storeConfigurationByIdentifier=_storeConfigurationByIdentifier;
-@property(readonly, copy, nonatomic) NSMutableDictionary *lastStoreTokenByIdentifier; // @synthesize lastStoreTokenByIdentifier=_lastStoreTokenByIdentifier;
-@property(readonly, copy, nonatomic) NSMutableDictionary *storeByIdentifier; // @synthesize storeByIdentifier=_storeByIdentifier;
-@property(readonly, copy, nonatomic) NSArray *storeConfigurations; // @synthesize storeConfigurations=_storeConfigurations;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *coreDataQueue; // @synthesize coreDataQueue=_coreDataQueue;
+@property(readonly, copy, nonatomic) NSMutableDictionary *lastPersistentHistoryTokenByStoreIdentifier; // @synthesize lastPersistentHistoryTokenByStoreIdentifier=_lastPersistentHistoryTokenByStoreIdentifier;
 @property(retain, nonatomic) NSPersistentContainer *persistentContainer; // @synthesize persistentContainer=_persistentContainer;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *persistentContainerQueue; // @synthesize persistentContainerQueue=_persistentContainerQueue;
-@property(nonatomic, getter=isPersistentContainerLoaded) BOOL persistentContainerLoaded; // @synthesize persistentContainerLoaded=_persistentContainerLoaded;
 - (void).cxx_destruct;
-- (void)_persistenceStoreChangedNotification:(id)arg1;
-- (void)_unregisterForPersistenceNotifications;
-- (void)_registerForPersistenceNotifications;
-- (void)_loadStoreMetadata;
-- (void)_loadContainerStoresWithCompletion:(CDUnknownBlockType)arg1;
-- (void)_loadRMDCtlPersistentContainerWithCompletion:(CDUnknownBlockType)arg1;
-- (id)_createStoreDescriptionWithConfigurationType:(id)arg1;
-- (id)_createPersistentContainer;
-- (id)storeForConfigurationName:(id)arg1;
-- (void)handlePersistenceStoreChanges:(id)arg1 managedObjectContext:(id)arg2;
-- (void)savePersistentHistoryToken:(id)arg1 forStoreIdentifier:(id)arg2;
-- (id)persistentHistoryTokenForStoreIdentifier:(id)arg1;
+- (void)_persistentStoreCoordinatorStoresDidChange:(id)arg1;
+- (void)_remotePersistentStoreDidChange:(id)arg1;
+- (id)descriptionForPersistentStore:(id)arg1;
+- (void)savePersistentHistoryToken:(id)arg1 forStore:(id)arg2;
+- (id)persistentHistoryTokenForStore:(id)arg1;
+- (id)newBackgroundContext;
+- (void)performBackgroundTaskAndWait:(CDUnknownBlockType)arg1;
 - (void)performBackgroundTask:(CDUnknownBlockType)arg1;
-- (void)registerDelegate:(id)arg1;
-- (void)reset;
-- (id)initWithStoreConfigurations:(id)arg1;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

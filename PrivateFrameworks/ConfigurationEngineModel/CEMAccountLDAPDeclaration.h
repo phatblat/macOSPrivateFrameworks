@@ -20,6 +20,7 @@
     NSString *_payloadLDAPCredentials;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withLDAPAccountHostName:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withLDAPAccountDescription:(id)arg2 withLDAPAccountHostName:(id)arg3 withLDAPAccountUseSSL:(id)arg4 withLDAPSearchSettings:(id)arg5 withCommunicationServiceRules:(id)arg6 withLDAPCredentials:(id)arg7;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

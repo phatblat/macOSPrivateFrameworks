@@ -16,6 +16,7 @@
     NSString *_payloadITunesStoreID;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withDescriptor:(id)arg2 withITunesStoreID:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withDescriptor:(id)arg2 withITunesStoreID:(id)arg3;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

@@ -10,10 +10,9 @@
 {
 }
 
-+ (id)encodedTemplateImage;
-+ (id)templateSubtitle;
-+ (id)templateTitle;
-+ (id)encodedRelevanceProviders;
++ (id)serializedKeyImage;
++ (id)keyImageProxyIdentifier;
++ (id)serializedRelevantShortcut;
 
 @end
 

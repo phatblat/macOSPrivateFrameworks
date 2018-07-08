@@ -18,13 +18,13 @@
 
 @property(readonly) NSMutableArray *errors; // @synthesize errors=_errors;
 - (void).cxx_destruct;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)cancelOperation;
 - (void)endOperation;
 - (void)_shutdownOperation;
 - (void)childOperation:(id)arg1 didEndWithErrors:(id)arg2;
 - (void)childOperationWasAdded:(id)arg1;
 - (BOOL)isReady;
+- (void)setReadyToStart:(BOOL)arg1;
 - (BOOL)isAsynchronous;
 - (void)dealloc;
 - (id)initWithParent:(id)arg1;

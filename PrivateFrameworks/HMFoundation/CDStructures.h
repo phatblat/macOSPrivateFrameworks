@@ -10,6 +10,11 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct _HMFRate {
+    unsigned long long value;
+    double period;
+};
+
 struct in6_addr {
     union {
         unsigned char _field1[16];

@@ -64,6 +64,7 @@ __attribute__((visibility("hidden")))
 - (id)wrapEncryptedData:(id)arg1 withPCS:(struct _OpaquePCSShareProtection *)arg2 inContext:(id)arg3;
 - (id)unwrapEncryptedData:(id)arg1 withPCS:(struct _OpaquePCSShareProtection *)arg2 withContextString:(id)arg3;
 - (id)unwrapEncryptedData:(id)arg1 withPCS:(struct _OpaquePCSShareProtection *)arg2 inContext:(id)arg3;
+- (void)triggerAutoSysdiagnoseIfNecessaryForError:(id)arg1 encryptedData:(id)arg2 pcs:(struct _OpaquePCSShareProtection *)arg3;
 - (id)referenceSignatureFromAssetKey:(id)arg1;
 - (id)referenceIdentifierStringFromAssetKey:(id)arg1;
 - (id)newAssetKeyWithType:(unsigned long long)arg1 withError:(id *)arg2;

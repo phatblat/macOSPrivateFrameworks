@@ -13,7 +13,7 @@ __attribute__((visibility("hidden")))
 }
 
 - (void)handleActiveConnectionChange:(id)arg1;
-- (void)collectChannelMetrics:(CDStruct_1c8e0384 *)arg1;
+- (void)collectChannelMetrics:(CDStruct_1c8e0384 *)arg1 interval:(float)arg2;
 - (void)setIsServerBasedBandwidthProbingEnabled:(BOOL)arg1;
 - (void)computeTimestamp:(unsigned int *)arg1 hostTime:(double *)arg2 forFrame:(struct opaqueCMSampleBuffer *)arg3;
 - (void)setStreamIDs:(unsigned short *)arg1 numOfStreamIDs:(unsigned char)arg2 repairedStreamIDs:(unsigned short *)arg3 numOfRepairedStreamIDs:(unsigned char)arg4;

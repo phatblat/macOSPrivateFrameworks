@@ -27,8 +27,10 @@
     id <PKPaymentSetupDelegate> _setupDelegate;
     NSString *_currentStatusString;
     NSView *_welcomeView;
-    NSView *_welcomeImageView;
+    NSImageView *_welcomeImageView;
     NSView *_welcomeImageViewGEO;
+    NSImageView *_welcomeSplashImageViewGEO;
+    NSImageView *_welcomeHandImageViewGEO;
     NSView *_welcomeViewAboutPrivacyContainer;
     NSImageView *_paymentLogoImageView;
     NSTextView *_welcomeTextField;
@@ -109,8 +111,10 @@
 @property(retain) NSTextView *welcomeTextField; // @synthesize welcomeTextField=_welcomeTextField;
 @property(retain) NSImageView *paymentLogoImageView; // @synthesize paymentLogoImageView=_paymentLogoImageView;
 @property(retain) NSView *welcomeViewAboutPrivacyContainer; // @synthesize welcomeViewAboutPrivacyContainer=_welcomeViewAboutPrivacyContainer;
+@property(retain) NSImageView *welcomeHandImageViewGEO; // @synthesize welcomeHandImageViewGEO=_welcomeHandImageViewGEO;
+@property(retain) NSImageView *welcomeSplashImageViewGEO; // @synthesize welcomeSplashImageViewGEO=_welcomeSplashImageViewGEO;
 @property(retain) NSView *welcomeImageViewGEO; // @synthesize welcomeImageViewGEO=_welcomeImageViewGEO;
-@property(retain) NSView *welcomeImageView; // @synthesize welcomeImageView=_welcomeImageView;
+@property(retain) NSImageView *welcomeImageView; // @synthesize welcomeImageView=_welcomeImageView;
 @property(retain) NSView *welcomeView; // @synthesize welcomeView=_welcomeView;
 @property(retain) NSString *currentStatusString; // @synthesize currentStatusString=_currentStatusString;
 @property(nonatomic) __weak id <PKPaymentSetupDelegate> setupDelegate; // @synthesize setupDelegate=_setupDelegate;
@@ -155,6 +159,8 @@
 - (BOOL)textView:(id)arg1 clickedOnLink:(id)arg2 atIndex:(unsigned long long)arg3;
 - (id)textView:(id)arg1 willDisplayToolTip:(id)arg2 forCharacterAtIndex:(unsigned long long)arg3;
 - (id)textView:(id)arg1 willChangeSelectionFromCharacterRanges:(id)arg2 toCharacterRanges:(id)arg3;
+- (void)_presentClaimSecureElementAlert:(unsigned long long)arg1 inWindow:(id)arg2 withErrorStateHandler:(CDUnknownBlockType)arg3;
+- (void)_presentDisplayableErrorAlert:(id)arg1 inWindow:(id)arg2 withErrorStateHandler:(CDUnknownBlockType)arg3;
 - (void)_setupWelcomeTextFieldShowsSetupLater:(BOOL)arg1;
 - (void)help:(id)arg1;
 - (void)setupLater:(id)arg1;
@@ -187,11 +193,13 @@
 - (void)updateViewAnimated;
 - (void)_updateWelcomeImagePaymentPrompt;
 - (void)_updateCardImage;
+- (void)_setupWelcomeImageViewImages;
 - (void)_setupPaymentLogoImage;
 - (void)_setupCheckmarkViewImage;
 - (void)_stackSetupFields;
 - (void)_setControlsInView:(id)arg1 enabled:(BOOL)arg2;
 - (void)_bootStrapSetupFlow;
+- (void)startSetupFlow;
 - (void)skipWelcomeScreen;
 - (id)initWithProvisioningController:(id)arg1 context:(long long)arg2 setupDelegate:(id)arg3;
 - (id)nibName;

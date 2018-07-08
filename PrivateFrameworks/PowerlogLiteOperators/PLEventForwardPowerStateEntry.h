@@ -19,7 +19,8 @@
 @property(readonly) short event;
 @property(readonly) short state;
 - (id)initEntryWithIOMessage:(unsigned int)arg1;
-- (id)initEntryWithState:(short)arg1 withEvent:(short)arg2 withReason:(id)arg3 withCurrentKernelWakeTime:(unsigned long long)arg4 withCapabilities:(unsigned int)arg5 withDate:(id)arg6;
+- (id)initEntryWithState:(short)arg1 withEvent:(short)arg2 withReason:(id)arg3 withCurrentMachWakeTime:(unsigned long long)arg4 withDate:(id)arg5;
+- (id)initEntryWithState:(short)arg1 withEvent:(short)arg2 withReason:(id)arg3 withCurrentKernelWakeTime:(unsigned long long)arg4 withCapabilities:(unsigned int)arg5 withWakeTriggerSubclass:(id)arg6 withDate:(id)arg7;
 - (id)initEntryWithState:(short)arg1 withEvent:(short)arg2 withReason:(id)arg3 withKernelSleepDate:(id)arg4 withDate:(id)arg5;
 - (id)initEntryWithState:(short)arg1 withEvent:(short)arg2 withReason:(id)arg3 withDate:(id)arg4;
 

@@ -8,7 +8,7 @@
 
 #import "C2SessionTaskDelegate.h"
 
-@class C2RequestOptions, NSString, NSURLSessionDataTask;
+@class C2RequestOptions, NSObject<OS_os_activity>, NSString, NSURLSessionDataTask;
 
 @interface C2SessionTask : NSObject <C2SessionTaskDelegate>
 {
@@ -16,7 +16,7 @@
     unsigned int _attemptCount;
     C2RequestOptions *_options;
     id <C2RequestDelegate> _delegate;
-    struct os_activity_s *_activity;
+    NSObject<OS_os_activity> *_activity;
     NSURLSessionDataTask *_task;
     id <C2SessionTaskDelegate> _sessionTaskDelegate;
     double _initTime;
@@ -31,7 +31,7 @@
 @property(retain, nonatomic) id <C2SessionTaskDelegate> sessionTaskDelegate; // @synthesize sessionTaskDelegate=_sessionTaskDelegate;
 @property(nonatomic) BOOL isComplete; // @synthesize isComplete=_isComplete;
 @property(retain, nonatomic) NSURLSessionDataTask *task; // @synthesize task=_task;
-@property(readonly, nonatomic) struct os_activity_s *activity; // @synthesize activity=_activity;
+@property(readonly, nonatomic) NSObject<OS_os_activity> *activity; // @synthesize activity=_activity;
 @property(readonly, nonatomic) id <C2RequestDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, copy, nonatomic) C2RequestOptions *options; // @synthesize options=_options;
 - (void).cxx_destruct;

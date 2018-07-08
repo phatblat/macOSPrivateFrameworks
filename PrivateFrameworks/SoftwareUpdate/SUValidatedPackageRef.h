@@ -14,6 +14,7 @@
 }
 
 + (BOOL)isValidatedPackageRefDictionaryRepesenstation:(id)arg1;
++ (BOOL)supportsSecureCoding;
 @property(retain) IASChunklist *chunklist; // @synthesize chunklist=_chunklist;
 - (id)dictionaryRepresentation;
 - (id)initWithDictionaryRepresentation:(id)arg1 baseURL:(id)arg2;

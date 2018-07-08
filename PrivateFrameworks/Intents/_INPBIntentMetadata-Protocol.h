@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSString, _INPBPair, _INPBString;
+@class NSArray, NSString, _INPBImageValue, _INPBPair, _INPBString;
 
 @protocol _INPBIntentMetadata <NSObject>
 + (Class)parameterImagesType;
@@ -42,6 +42,8 @@
 @property(nonatomic) int intentCategory;
 @property(nonatomic) BOOL hasExecutionContext;
 @property(nonatomic) int executionContext;
+@property(readonly, nonatomic) BOOL hasDefaultImageValue;
+@property(retain, nonatomic) _INPBImageValue *defaultImageValue;
 @property(readonly, nonatomic) BOOL hasCategoryVerb;
 @property(copy, nonatomic) NSString *categoryVerb;
 - (int)StringAsTriggerMethod:(NSString *)arg1;

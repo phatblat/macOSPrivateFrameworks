@@ -9,8 +9,11 @@
 @class NSString;
 
 @protocol UHAHidManagerInterface <ROCKImpersonateable>
+@property(readonly) BOOL forceClickPerformsQuickLook;
+- (void)registerServiceId:(unsigned long long)arg1 handler:(void (^)(struct __IOHIDEvent *))arg2;
 - (void)endKeyFocusForScene:(NSString *)arg1 contextId:(unsigned int)arg2;
 - (void)beginKeyFocusForScene:(NSString *)arg1 contextId:(unsigned int)arg2;
-- (void)registerServiceId:(unsigned long long)arg1 handler:(void (^)(struct __IOHIDEvent *))arg2;
+- (struct __IOHIDEvent *)pullNextEventFromQueue;
+- (void)registerEventPingHandler:(void (^)(void))arg1;
 @end
 

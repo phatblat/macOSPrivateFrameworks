@@ -28,6 +28,7 @@ __attribute__((visibility("hidden")))
     id _hostWindowLocalEventMonitor;
     id _processNotificationEventMonitor;
     NSAccessibilityRemoteUIElement *_accessoryViewAccessibilityParent;
+    NSMutableArray *_legacyAdvanceToConfigPhaseSemaphores;
     NSColor *_serviceWindowBackgroundColor;
     NSData *_mostRecentlyReportedAccessibilityParentToken;
     NSDictionary *_remoteAccessibilityChildren;
@@ -141,7 +142,7 @@ __attribute__((visibility("hidden")))
 - (void)registerBridgeKey:(id)arg1 defaultObject:(id)arg2 owner:(unsigned char)arg3 withReply:(CDUnknownBlockType)arg4;
 - (void)setRemoteObject:(id)arg1 forKey:(id)arg2 withReply:(CDUnknownBlockType)arg3;
 - (void)exceptionSafeSetRemoteObject:(id)arg1 forKey:(id)arg2 withReply:(CDUnknownBlockType)arg3;
-- (void)serviceViewReceivedLeftMouseDown;
+- (void)serviceViewReceivedLeftMouseDown:(long long)arg1;
 - (void)serviceWindowReceivedScrollWheel:(id)arg1 eventOwner:(unsigned int)arg2;
 - (void)serviceWindowWouldActivate;
 - (void)updateContentMinSize:(struct CGSize)arg1 maxSize:(struct CGSize)arg2;

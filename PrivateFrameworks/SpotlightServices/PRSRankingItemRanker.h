@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CSAttributeEvaluator, NSMapTable, NSString;
+@class NSMapTable, NSString;
 
 @interface PRSRankingItemRanker : NSObject
 {
@@ -14,9 +14,9 @@
     BOOL _policyDisabled;
     BOOL _isCancelled;
     float _lastIsSpaceFeature;
+    NSString *_keyboardLanguage;
     NSString *_searchString;
-    CSAttributeEvaluator *_fuzzyEvaluator;
-    CSAttributeEvaluator *_evaluator;
+    unsigned long long _queryTermCount;
     NSMapTable *_bundleFeatures;
     float *_bundleFeaturesScratchBuf;
     double _experimentalWeight1;
@@ -48,9 +48,9 @@
 @property(nonatomic) float *bundleFeaturesScratchBuf; // @synthesize bundleFeaturesScratchBuf=_bundleFeaturesScratchBuf;
 @property(retain, nonatomic) NSMapTable *bundleFeatures; // @synthesize bundleFeatures=_bundleFeatures;
 @property BOOL isInternalDevice; // @synthesize isInternalDevice=_isInternalDevice;
-@property(retain, nonatomic) CSAttributeEvaluator *evaluator; // @synthesize evaluator=_evaluator;
-@property(retain, nonatomic) CSAttributeEvaluator *fuzzyEvaluator; // @synthesize fuzzyEvaluator=_fuzzyEvaluator;
+@property unsigned long long queryTermCount; // @synthesize queryTermCount=_queryTermCount;
 @property(retain, nonatomic) NSString *searchString; // @synthesize searchString=_searchString;
+@property(retain, nonatomic) NSString *keyboardLanguage; // @synthesize keyboardLanguage=_keyboardLanguage;
 - (void).cxx_destruct;
 - (void)prepareItems:(id)arg1 inBundle:(id)arg2;
 - (void)setRenderEngagementFeaturesForItem:(id)arg1 counts:(id)arg2 isRender:(BOOL)arg3 bundleDict:(id)arg4;

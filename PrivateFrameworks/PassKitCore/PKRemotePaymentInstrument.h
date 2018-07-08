@@ -16,6 +16,7 @@
     BOOL _supportsAutomaticSelection;
     BOOL _hasAssociatedPeerPaymentAccount;
     NSString *_passIdentifier;
+    NSString *_organizationName;
     NSData *_manifestHash;
     NSString *_displayName;
     NSString *_primaryAccountNumberSuffix;
@@ -46,6 +47,7 @@
 @property(copy, nonatomic) NSString *primaryAccountNumberSuffix; // @synthesize primaryAccountNumberSuffix=_primaryAccountNumberSuffix;
 @property(copy, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 @property(copy, nonatomic) NSData *manifestHash; // @synthesize manifestHash=_manifestHash;
+@property(copy, nonatomic) NSString *organizationName; // @synthesize organizationName=_organizationName;
 @property(copy, nonatomic) NSString *passIdentifier; // @synthesize passIdentifier=_passIdentifier;
 - (void).cxx_destruct;
 - (BOOL)isEqualToRemotePaymentInstrument:(id)arg1;

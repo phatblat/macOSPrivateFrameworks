@@ -12,7 +12,6 @@ __attribute__((visibility("hidden")))
     struct TNotificationCenterObserver _menuDidCompleteInteractionObserver;
 }
 
-+ (void)servicesDidChange;
 + (void)addServiceActionsToMenu:(id)arg1 forSelection:(const struct TFENodeVector *)arg2 target:(id)arg3;
 + (void)addTagColorItemsToMenu:(id)arg1 target:(id)arg2 setTagColor:(SEL)arg3;
 + (void)populateTagActionsMenu:(id)arg1 target:(id)arg2 deleteTag:(SEL)arg3 renameTag:(SEL)arg4 setTagColor:(SEL)arg5;

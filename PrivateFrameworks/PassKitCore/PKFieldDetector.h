@@ -9,7 +9,7 @@
 #import "NFFieldDetectSessionDelegate.h"
 #import "NFLoyaltyAndPaymentSessionDelegate.h"
 
-@class NFFieldDetectSession, NFLoyaltyAndPaymentSession, NSHashTable, NSLock, NSObject<NFSession>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, PKFieldProperties;
+@class NFFieldDetectSession, NFLoyaltyAndPaymentSession, NSHashTable, NSObject<NFSession>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, PKFieldProperties;
 
 @interface PKFieldDetector : NSObject <NFFieldDetectSessionDelegate, NFLoyaltyAndPaymentSessionDelegate>
 {
@@ -22,8 +22,8 @@
     NSObject<NFSession> *_fieldPropertiesLookupSessionHandle;
     NSObject<OS_dispatch_source> *_fieldPropertiesLookupTimer;
     unsigned long long _fieldPropertieslookupSynchronizer;
+    struct os_unfair_lock_s _lock;
     NSHashTable *_observers;
-    NSLock *_observersLock;
     PKFieldProperties *_fieldProperties;
     NSObject<OS_dispatch_queue> *_fieldDetectorSerialQueue;
     NSObject<OS_dispatch_queue> *_replyQueue;
@@ -36,7 +36,7 @@
 - (void)_startLookupForFieldProperties:(id)arg1;
 - (void)_startFieldDetectSession;
 - (void)_restartFieldDetectSession;
-@property(nonatomic) __weak id <PKFieldDetectorDelegate> delegate;
+@property(nonatomic) __weak id <PKFieldDetectorDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) __weak PKFieldProperties *fieldProperties;
 - (void)unregisterObserver:(id)arg1;
 - (void)registerObserver:(id)arg1;

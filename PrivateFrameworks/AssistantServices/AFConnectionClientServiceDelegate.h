@@ -45,7 +45,6 @@
 - (oneway void)speechRecordingWillBeginWithInputAudioPowerXPCWrapper:(id)arg1;
 - (oneway void)aceConnectionWillRetryOnError:(id)arg1;
 - (oneway void)shouldSpeakChanged:(BOOL)arg1;
-- (oneway void)handleIntent:(id)arg1 inBackgroundAppWithBundleId:(id)arg2 reply:(CDUnknownBlockType)arg3;
 - (oneway void)extensionRequestFinishedForApplication:(id)arg1 error:(id)arg2;
 - (oneway void)extensionRequestWillStartForApplication:(id)arg1;
 - (oneway void)cacheImage:(id)arg1;

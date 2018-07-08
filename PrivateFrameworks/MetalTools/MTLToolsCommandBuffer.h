@@ -40,6 +40,7 @@
 @property(readonly) NSDictionary *profilingResults;
 @property(getter=isProfilingEnabled) BOOL profilingEnabled;
 - (id)videoCommandEncoder;
+- (id)sampledComputeCommandEncoderWithDispatchType:(unsigned long long)arg1 programInfoBuffer:(CDStruct_4af8c268 *)arg2 capacity:(unsigned long long)arg3;
 - (void)addPurgedHeap:(id)arg1;
 - (void)addPurgedResource:(id)arg1;
 - (void)encodeWaitForEvent:(id)arg1 value:(unsigned long long)arg2;

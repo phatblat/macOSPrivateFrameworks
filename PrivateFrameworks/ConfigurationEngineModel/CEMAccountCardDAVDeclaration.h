@@ -21,6 +21,7 @@
     NSString *_payloadCardDAVCredentials;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withCardDAVHostName:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withCardDAVAccountDescription:(id)arg2 withCardDAVHostName:(id)arg3 withCardDAVPrincipalURL:(id)arg4 withCardDAVUseSSL:(id)arg5 withCardDAVPort:(id)arg6 withCommunicationServiceRules:(id)arg7 withCardDAVCredentials:(id)arg8;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

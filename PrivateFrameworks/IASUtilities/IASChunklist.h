@@ -39,10 +39,11 @@
 @property(readonly) long long chunkHashType;
 - (unsigned long long)chunkSizeForChunk:(unsigned long long)arg1;
 - (BOOL)validateData:(id)arg1 forChunk:(unsigned long long)arg2;
+- (BOOL)validateData:(id)arg1 progressDelegate:(id)arg2;
 - (BOOL)validateData:(id)arg1;
+- (unsigned long long)_firstInvalidChunkInData:(id)arg1 range:(struct _NSRange *)arg2 progressDelegate:(id)arg3;
 - (unsigned long long)firstInvalidChunkInData:(id)arg1 range:(struct _NSRange *)arg2;
 - (unsigned long long)firstInvalidChunkInData:(id)arg1;
-- (void)dealloc;
 - (id)initWithData:(id)arg1 options:(id)arg2 error:(id *)arg3;
 
 @end

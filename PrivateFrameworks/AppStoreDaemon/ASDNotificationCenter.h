@@ -14,6 +14,7 @@
 {
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     NSMutableDictionary *_notificationObservers;
+    struct os_unfair_lock_s _observerLock;
     NSHashTable *_progressObservers;
 }
 

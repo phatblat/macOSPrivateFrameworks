@@ -13,6 +13,7 @@
 
 @interface AXPTranslationObject : NSObject <NSCopying, NSSecureCoding>
 {
+    BOOL _isApplicationElement;
     int _pid;
     unsigned long long _objectID;
     NSString *_remoteDebugDescription;
@@ -22,6 +23,7 @@
 + (id)allowedDecodableClasses;
 + (void)initialize;
 @property(copy, nonatomic) NSString *remoteDebugDescription; // @synthesize remoteDebugDescription=_remoteDebugDescription;
+@property(nonatomic) BOOL isApplicationElement; // @synthesize isApplicationElement=_isApplicationElement;
 @property(nonatomic) int pid; // @synthesize pid=_pid;
 @property(nonatomic) unsigned long long objectID; // @synthesize objectID=_objectID;
 - (void).cxx_destruct;

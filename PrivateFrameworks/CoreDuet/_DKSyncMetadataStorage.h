@@ -10,7 +10,7 @@
 {
 }
 
-+ (id)lastSyncDownWindowMissingForWindows:(id)arg1 overlappingWindowMinimumDate:(id)arg2 windowMaximumDate:(id)arg3;
++ (id)eventFromStartDate:(id)arg1 endDate:(id)arg2 bookmarkStreamName:(id)arg3 transportName:(id)arg4;
 + (id)eventFromFetchedWindow:(id)arg1 windowStreamName:(id)arg2 transportName:(id)arg3;
 + (id)bookmarkStreamNameWithSourceDeviceID:(id)arg1;
 + (id)windowStreamNameWithSourceDeviceID:(id)arg1;

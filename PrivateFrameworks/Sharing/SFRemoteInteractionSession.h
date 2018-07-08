@@ -48,7 +48,7 @@
 - (void)_ensureXPCStarted;
 - (void)_sessionHandleEvent:(id)arg1;
 - (void)_sessionSetText:(id)arg1;
-- (void)_sessionSendPayload:(struct NSData *)arg1;
+- (void)_sessionSendPayload:(struct NSDictionary *)arg1;
 - (void)_sessionInsertText:(id)arg1;
 - (void)_sessionDeleteTextBackward;
 - (void)_sessionCommitText;
@@ -59,7 +59,7 @@
 - (void)deleteTextBackward;
 - (void)commitText;
 - (void)clearText;
-- (void)sendPayload:(struct NSData *)arg1;
+- (void)sendPayload:(struct NSDictionary *)arg1;
 - (void)_invalidated;
 - (void)_invalidate;
 - (void)invalidate;

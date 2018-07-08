@@ -11,6 +11,7 @@
 }
 
 + (BOOL)isAppleInternal;
++ (BOOL)isMemoryConstrained;
 + (id)_determineHardwareModel;
 + (id)osBuild;
 + (id)hardwareModel;

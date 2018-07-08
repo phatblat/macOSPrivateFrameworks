@@ -49,8 +49,7 @@
 - (void)cancel;
 - (void)_cancelAllRunningOperations;
 - (void)_cleanup;
-- (id)newRequestWithType:(int)arg1 URL:(id)arg2 xpcRequest:(id)arg3 entityTag:(id)arg4 cachedData:(id)arg5 allowedRequestMode:(BOOL)arg6 timeout:(double)arg7 requestCounterTicket:(id)arg8;
-- (double)_networkTimeoutForTileKey:(const struct _GEOTileKey *)arg1;
+- (id)newRequestWithType:(int)arg1 URL:(id)arg2 useProxyAuth:(BOOL)arg3 entityTag:(id)arg4 cachedData:(id)arg5 allowedRequestMode:(BOOL)arg6 timeout:(double)arg7 requestCounterTicket:(id)arg8;
 - (void)createRequest:(id *)arg1 localizationRequest:(id *)arg2 forKey:(const struct _GEOTileKey *)arg3;
 - (id)_createOperationsForTileKey:(const struct _GEOTileKey *)arg1 priority:(unsigned int)arg2;
 - (void)_notifyDelegateDone:(CDUnknownBlockType)arg1;
@@ -72,6 +71,7 @@
 - (BOOL)needsLocalizationForKey:(const struct _GEOTileKey *)arg1;
 - (id)localizationURLForTileKey:(const struct _GEOTileKey *)arg1;
 - (id)newXPCDataRequestForTileKey:(const struct _GEOTileKey *)arg1;
+- (BOOL)useProxyAuthForTileKey:(const struct _GEOTileKey *)arg1;
 - (id)urlForTileKey:(const struct _GEOTileKey *)arg1;
 - (BOOL)allowsCookies;
 - (int)checksumMethodForIncomingTileDataWithKey:(struct _GEOTileKey *)arg1;

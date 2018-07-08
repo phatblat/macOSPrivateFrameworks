@@ -13,12 +13,14 @@
 @interface IMDChatRegistry : NSObject <TUConversationManagerDelegate>
 {
     NSRecursiveLock *_chatsLock;
+    NSRecursiveLock *_handlesLock;
     NSMutableDictionary *_chats;
     BOOL _isLoading;
     BOOL _doneLoadingAfterMerge;
     NSCache *_allChatsByIDCache;
     NSMutableDictionary *_chatsByGroupID;
     BOOL _hasDumpedLogsForNoExisitingGroup;
+    NSMutableDictionary *_idToHandlesMap;
     IMDCKUtilities *_ckUtilities;
     IMDChatStore *_chatStore;
     IMDMessageProcessingController *_messageProcessingController;
@@ -33,6 +35,8 @@
 @property(nonatomic) BOOL hasDumpedLogsForNoExisitingGroup; // @synthesize hasDumpedLogsForNoExisitingGroup=_hasDumpedLogsForNoExisitingGroup;
 @property(retain, nonatomic) IMDChatStore *chatStore; // @synthesize chatStore=_chatStore;
 @property(retain, nonatomic) IMDCKUtilities *ckUtilities; // @synthesize ckUtilities=_ckUtilities;
+@property(retain, nonatomic) NSMutableDictionary *idToHandlesMap; // @synthesize idToHandlesMap=_idToHandlesMap;
+- (void)simulateMessageReceive:(id)arg1 serviceName:(id)arg2 handles:(id)arg3 sender:(id)arg4;
 - (id)_existingiMessageChatForChatIdentifier:(id)arg1 style:(unsigned char)arg2;
 - (BOOL)isBeingSetup;
 - (void)clearPendingDeleteTable;
@@ -61,6 +65,7 @@
 - (void)updateChatWithGUID:(id)arg1 serverChangeToken:(id)arg2 recordID:(id)arg3;
 - (id)chatsToUploadToCloudKitWithLimit:(unsigned long long)arg1 isUsingStingRay:(BOOL)arg2;
 - (id)personCentricGroupedChatsArrayWithMaximumNumberOfChats:(long long)arg1;
+- (id)chatIdToLastMessageMapOfOldChats;
 - (id)sortPersonCentricChatGroups:(id)arg1;
 - (id)truncateSortedChatsGroupedByPersonCentricID:(id)arg1 toMaximumNumberOfChats:(long long)arg2;
 - (id)groupChatsBasedOnIdentity;
@@ -73,7 +78,7 @@
 - (BOOL)_mergeDuplicateGroupsIfNeeded;
 - (struct NSArray *)_createGroupChatsArray;
 - (id)_findLosingChatGUIDsInArrayOfChats:(struct NSArray *)arg1 withWinner:(id)arg2;
-- (id)_findChatWinnerInDuplicateChatArray:(struct NSArray *)arg1;
+- (id)_findChatWinnerInDuplicateChatArray:(struct NSArray *)arg1 fixDisplayName:(char *)arg2;
 - (struct NSArray *)findDuplicateChats:(struct NSArray *)arg1;
 - (BOOL)_chat:(id)arg1 isDuplicateOfChat:(id)arg2;
 - (BOOL)_updateDuplicateUnnamedGroupsWithNewGroupIDIfNeeded;
@@ -81,6 +86,9 @@
 - (void)_makeAllAttachmentsClassC;
 - (void)systemDidUnlock;
 - (void)systemDidLeaveFirstDataProtectionLock;
+- (id)allHandlesForID:(id)arg1;
+- (void)removeIMDHandleFromRegistry:(id)arg1;
+- (void)addIMDHandleToRegistry:(id)arg1;
 - (BOOL)updateProperties:(id)arg1 chat:(id)arg2 style:(unsigned char)arg3;
 - (BOOL)saveChats;
 - (BOOL)_saveChats;

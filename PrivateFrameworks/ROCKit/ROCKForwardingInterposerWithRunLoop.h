@@ -18,7 +18,7 @@ __attribute__((visibility("hidden")))
 - (void).cxx_destruct;
 - (void)forwardCallWithInvocation:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (id)forwardingTargetForSelector:(SEL)arg1;
-- (void)configureRunLoopWithTimeOut:(double)arg1 tracksMainThread:(BOOL)arg2 runLoopMode:(const struct __CFString *)arg3;
+- (void)configureRunLoopWithTimeOut:(double)arg1 runLoopMode:(const struct __CFString *)arg2;
 
 @end
 

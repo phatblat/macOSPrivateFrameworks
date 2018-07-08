@@ -14,7 +14,7 @@
 #import "TabButtonDelegate.h"
 #import "TabDraggingDestination.h"
 
-@class CABackdropLayer, CALayer, NSArray, NSMapTable, NSMutableArray, NSScrollView, NSString, NSTrackingArea, NSView, TabBarEmptyRegionPlaceholderButton, TabButton;
+@class BackgroundColorView, CABackdropLayer, NSArray, NSMapTable, NSMutableArray, NSScrollView, NSString, NSTitlebarSeparatorView, NSTrackingArea, NSView, TabBarEmptyRegionPlaceholderButton, TabButton;
 
 __attribute__((visibility("hidden")))
 @interface TabBarView : KeyLoopSplicingContainerView <ButtonInTabSyncGroupDelegate, DetachedTabDraggingImageToWindowTransitionControllerDelegate, MorphingDragImageControllerDragSource, NSAnimationDelegate, NSDraggingDestination, TabButtonDelegate, TabDraggingDestination>
@@ -53,7 +53,8 @@ __attribute__((visibility("hidden")))
     double _slowingDistance;
     NSView *_backgroundView;
     CABackdropLayer *_backdropLayer;
-    CALayer *_topBorderLayer;
+    BackgroundColorView *_backgroundColorView;
+    NSTitlebarSeparatorView *_topBorderSeparatorView;
     NSView *_pinnedTabsContainer;
     unsigned long long _numberOfPinnedTabs;
     unsigned long long _numberOfPinnedTabsForLayout;
@@ -208,6 +209,7 @@ __attribute__((visibility("hidden")))
 - (void)_scheduleButtonLayOutAnimated:(BOOL)arg1;
 - (BOOL)_shouldLayOutButtonsNow;
 - (void)_clipViewBoundsChanged:(id)arg1;
+- (struct CGRect)_contentBounds;
 - (void)_windowChangedKeyState;
 - (BOOL)isOpaque;
 - (BOOL)allowsVibrancy;

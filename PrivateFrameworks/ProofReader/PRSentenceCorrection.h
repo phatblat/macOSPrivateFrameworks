@@ -16,13 +16,13 @@ __attribute__((visibility("hidden")))
     NSArray *_corrections;
 }
 
+- (BOOL)presentAsGrammarError;
 - (BOOL)presentAsSpellingError;
 - (id)corrections;
 - (struct _NSRange)range;
 - (int)category;
 - (id)description;
 - (void)dealloc;
-- (id)initWithCorrection:(id)arg1 offset:(unsigned long long)arg2;
 - (id)initWithCategory:(int)arg1 range:(struct _NSRange)arg2 corrections:(id)arg3;
 
 @end

@@ -18,6 +18,7 @@
     CEMAccountGoogleDeclaration_CommunicationServiceRules *_payloadCommunicationServiceRules;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withEmailAddress:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withAccountDescription:(id)arg2 withAccountName:(id)arg3 withEmailAddress:(id)arg4 withCommunicationServiceRules:(id)arg5;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

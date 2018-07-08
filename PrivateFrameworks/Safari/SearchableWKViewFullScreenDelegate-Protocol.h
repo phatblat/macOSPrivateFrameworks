@@ -12,7 +12,6 @@
 
 @optional
 - (void)searchableWKViewDidReturnFromFullscreenWindow:(SearchableWKView *)arg1;
-- (void)searchableWKViewDidEnterFullScreen:(SearchableWKView *)arg1;
 - (void)searchableWKViewWillEnterFullscreenWindow:(SearchableWKView *)arg1;
 @end
 

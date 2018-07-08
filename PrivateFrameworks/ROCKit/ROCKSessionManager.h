@@ -25,7 +25,7 @@
     NSMapTable *_serializers;
     NSMapTable *_classesToProtocols;
     NSMapTable *_protocolsToMethodSignatures;
-    NSMapTable *_protocolsToClasses;
+    NSMapTable *_xpcProtocolsToClasses;
     NSMapTable *_objCTypesToMethodSignatures;
 }
 
@@ -38,7 +38,7 @@
 + (void)forwardingProxyWithInstance:(id)arg1 eventQueue:(id)arg2 eventHandler:(CDUnknownBlockType)arg3;
 + (id)sessionManagerWithEventQueue:(id)arg1 eventHandler:(CDUnknownBlockType)arg2;
 @property(retain, nonatomic) NSMapTable *objCTypesToMethodSignatures; // @synthesize objCTypesToMethodSignatures=_objCTypesToMethodSignatures;
-@property(retain, nonatomic) NSMapTable *protocolsToClasses; // @synthesize protocolsToClasses=_protocolsToClasses;
+@property(retain, nonatomic) NSMapTable *xpcProtocolsToClasses; // @synthesize xpcProtocolsToClasses=_xpcProtocolsToClasses;
 @property(retain, nonatomic) NSMapTable *protocolsToMethodSignatures; // @synthesize protocolsToMethodSignatures=_protocolsToMethodSignatures;
 @property(retain, nonatomic) NSMapTable *classesToProtocols; // @synthesize classesToProtocols=_classesToProtocols;
 @property(retain, nonatomic) NSMapTable *serializers; // @synthesize serializers=_serializers;
@@ -55,13 +55,6 @@
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *eventQueue; // @synthesize eventQueue=_eventQueue;
 @property(retain, nonatomic) NSObject<OS_xpc_object> *serviceConnection; // @synthesize serviceConnection=_serviceConnection;
 - (void).cxx_destruct;
-- (id)remoteHybridProxyWithRemoteImpersonatorUUID:(id)arg1 protocols:(id)arg2 rockConnection:(id)arg3 memoizedInstance:(id)arg4;
-- (id)blockProxyWithRemoteImpersonatorUUID:(id)arg1 signature:(id)arg2 stret:(id)arg3 rockConnection:(id)arg4;
-- (id)remoteProxyWithRemoteImpersonatorUUID:(id)arg1 protocols:(id)arg2 forwardingInterposerClass:(Class)arg3 rockConnection:(id)arg4;
-- (id)forwardingProxyWithBlock:(id)arg1;
-- (id)forwardingProxyWithInstance:(id)arg1;
-- (id)immutableProxyWithInstance:(id)arg1 error:(id *)arg2;
-- (id)dispatchQueueProxyWithQueue:(id)arg1;
 - (void)dealloc;
 - (id)initWithEventQueue:(id)arg1 eventHandler:(CDUnknownBlockType)arg2;
 - (id)init;

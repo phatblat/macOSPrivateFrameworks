@@ -28,6 +28,7 @@
     NSObject<OS_dispatch_queue> *_firstUnlockQueue;
     NSString *_dataclass;
     NSObject<OS_dispatch_source> *_indexIdleTimer;
+    double _idleStartTime;
     NSMutableArray *_outstandingMaintenance;
 }
 
@@ -36,7 +37,8 @@
 @property(readonly, nonatomic) NSMapTable *checkedInClients; // @synthesize checkedInClients=_checkedInClients;
 @property(readonly, nonatomic) NSMutableSet *knownClients; // @synthesize knownClients=_knownClients;
 @property(retain, nonatomic) NSMutableArray *outstandingMaintenance; // @synthesize outstandingMaintenance=_outstandingMaintenance;
-@property(retain, nonatomic) NSObject<OS_dispatch_source> *indexIdleTimer; // @synthesize indexIdleTimer=_indexIdleTimer;
+@property(readonly, nonatomic) double idleStartTime; // @synthesize idleStartTime=_idleStartTime;
+@property(readonly, nonatomic) NSObject<OS_dispatch_source> *indexIdleTimer; // @synthesize indexIdleTimer=_indexIdleTimer;
 @property(retain, nonatomic) NSString *dataclass; // @synthesize dataclass=_dataclass;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *firstUnlockQueue; // @synthesize firstUnlockQueue=_firstUnlockQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *indexQueue; // @synthesize indexQueue=_indexQueue;
@@ -77,7 +79,7 @@
 - (void)readyIndex:(BOOL)arg1;
 - (void)resumeIndex;
 - (void)closeIndex;
-- (void)writeDiagnostic:(id)arg1 bundleID:(id)arg2 identifier:(id)arg3;
+- (BOOL)writeDiagnostic:(id)arg1 bundleID:(id)arg2 identifier:(id)arg3;
 - (void)issueConsistencyCheck;
 - (void)issueRepair;
 - (void)cleanupStringsWithActivity:(id)arg1 group:(id)arg2 shouldDefer:(_Bool *)arg3 flags:(int)arg4;

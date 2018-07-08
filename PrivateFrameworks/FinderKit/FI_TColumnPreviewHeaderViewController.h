@@ -14,21 +14,24 @@ __attribute__((visibility("hidden")))
     FI_TPropertyColumnPreviewSmallIconController *_iconController;
     FI_TPropertyColumnPreviewNameController *_nameController;
     FI_TPropertyColumnPreviewKindAndSizeController *_kindAndSizeController;
-    _Bool _showSmallThumbnail;
     NSStackView *_textVerticalStackView;
     NSLayoutConstraint *_nameTopConstraint;
     NSLayoutConstraint *_nameHeightConstraint;
+    struct TKeyValueBinder _nameTextAlignmentBinder;
 }
 
 + (id)keyPathsForValuesAffectingNameKindTextAlignment;
 + (id)keyPathsForValuesAffectingNameFontSize;
-@property(nonatomic) _Bool showSmallThumbnail; // @synthesize showSmallThumbnail=_showSmallThumbnail;
+- (id).cxx_construct;
+- (void).cxx_destruct;
+@property(nonatomic) _Bool showSmallThumbnail; // @dynamic showSmallThumbnail;
 @property(readonly, nonatomic) unsigned long long nameKindTextAlignment; // @dynamic nameKindTextAlignment;
 @property(readonly, nonatomic) double nameFontSize; // @dynamic nameFontSize;
 - (void)targetNodesChanged;
 - (unsigned int)notificationOptionsForNodes:(const struct TFENodeVector *)arg1;
 - (void)loadValueControllers;
 - (void)viewLoaded;
+- (void)aboutToTearDown;
 - (void)dealloc;
 
 @end

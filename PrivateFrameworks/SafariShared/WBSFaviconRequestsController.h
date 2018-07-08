@@ -22,6 +22,7 @@
 - (void).cxx_destruct;
 - (void)_issueRequest:(id)arg1 isOneTime:(BOOL)arg2 withToken:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)cancelAllRegistrations;
+- (void)cancelAllRegistrationsWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)registerOneTimeRequestForDomain:(id)arg1 withToken:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)registerOneTimeRequestForURLString:(id)arg1 withToken:(id)arg2 returnDefaultIconIfNoneAvailable:(BOOL)arg3 iconSize:(struct CGSize)arg4 isURLTypedByUser:(BOOL)arg5 completion:(CDUnknownBlockType)arg6;
 - (void)registerOneTimeRequestForURLString:(id)arg1 withToken:(id)arg2 completion:(CDUnknownBlockType)arg3;

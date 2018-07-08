@@ -4,27 +4,27 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <HomeKitDaemon/HMDTLVBase.h>
+#import "NSObject.h"
 
-#import "HMDTLVCreateParse.h"
-#import "NSSecureCoding.h"
+#import "NSCopying.h"
 
-@class HMDDataStreamTransportProtocol;
+@class HMDDataStreamTransportTransportType;
 
-@interface HMDDataStreamTransportConfiguration : HMDTLVBase <HMDTLVCreateParse, NSSecureCoding>
+@interface HMDDataStreamTransportConfiguration : NSObject <NSCopying>
 {
-    HMDDataStreamTransportProtocol *_protocol;
+    HMDDataStreamTransportTransportType *_transportType;
 }
 
-+ (BOOL)supportsSecureCoding;
-@property(readonly, copy, nonatomic) HMDDataStreamTransportProtocol *protocol; // @synthesize protocol=_protocol;
++ (id)parsedFromData:(id)arg1 error:(id *)arg2;
+@property(retain, nonatomic) HMDDataStreamTransportTransportType *transportType; // @synthesize transportType=_transportType;
 - (void).cxx_destruct;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
-- (void)description:(id)arg1 indent:(id)arg2;
-- (id)tlvData;
-- (BOOL)_parseFromTLVData;
-- (id)initWithProtocol:(id)arg1;
+- (id)description;
+- (BOOL)isEqual:(id)arg1;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)serializeWithError:(id *)arg1;
+- (BOOL)parseFromData:(id)arg1 error:(id *)arg2;
+- (id)initWithTransportType:(id)arg1;
+- (id)init;
 
 @end
 

@@ -41,6 +41,7 @@
     NSMutableDictionary *_operationStatisticsByClassName;
 }
 
++ (id)operationStatusReport:(id)arg1;
 + (id)sharedClientThrottlingOperationQueue;
 @property(retain, nonatomic) NSMutableDictionary *operationStatisticsByClassName; // @synthesize operationStatisticsByClassName=_operationStatisticsByClassName;
 @property(retain, nonatomic) id <NSObject> TCCDatabaseChangedNotificationObserver; // @synthesize TCCDatabaseChangedNotificationObserver=_TCCDatabaseChangedNotificationObserver;
@@ -79,7 +80,6 @@
 - (void)clearContextFromMetadataCache;
 - (void)wipeAllCachesAndDie;
 - (id)CKStatusReportArray;
-- (id)_operationStatusReport:(id)arg1;
 - (void)repairZonePCSWithOperationInfo:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)getRecordPCSDiagnosticsForZonesWithSetupInfo:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)getPCSDiagnosticsForZonesWithSetupInfo:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;

@@ -10,6 +10,8 @@
 + (void)_lp_reverseEnumerateComponents:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (id)_lp_simplifiedUserVisibleURLStringWithSimplifications:(unsigned long long)arg1 forDisplayOnly:(BOOL)arg2;
 - (id)_lp_highLevelDomainFromHost;
-- (id)_lp_topLevelDomainUsingCFFromComponents:(id)arg1;
+- (unsigned long long)_lp_lengthOfDeepSubdomainsFromComponents:(id)arg1;
+- (id)_lp_topLevelDomainFromComponents:(id)arg1 indexOfFirstComponent:(unsigned long long *)arg2;
+- (BOOL)_lp_hasCaseInsensitiveSubstring:(id)arg1 startingAt:(unsigned long long)arg2;
 @end
 

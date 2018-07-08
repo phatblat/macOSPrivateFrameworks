@@ -24,6 +24,7 @@
     NSNumber *_payloadEnableMonoAudio;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithDisableTouch:(id)arg1 withDisableDeviceRotation:(id)arg2 withDisableVolumeButtons:(id)arg3 withDisableRingerSwitch:(id)arg4 withDisableSleepWakeButton:(id)arg5 withDisableAutoLock:(id)arg6 withEnableVoiceOver:(id)arg7 withEnableZoom:(id)arg8 withEnableInvertColors:(id)arg9 withEnableAssistiveTouch:(id)arg10 withEnableSpeakSelection:(id)arg11 withEnableMonoAudio:(id)arg12;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadEnableMonoAudio; // @synthesize payloadEnableMonoAudio=_payloadEnableMonoAudio;

@@ -9,7 +9,7 @@
 #import "TCoalescingNodeObserverProtocol.h"
 #import "TTrackingAreaOwnerProtocol.h"
 
-@class FI_TColumnPreviewHeaderViewController, FI_TColumnPreviewInfoViewController, FI_TColumnPreviewViewController, FI_TPreviewOptions, NSStackView, NSString;
+@class FI_TColumnPreviewHeaderViewController, FI_TColumnPreviewInfoViewController, FI_TColumnPreviewViewController, FI_TPreviewOptions, NSLayoutConstraint, NSStackView, NSString;
 
 __attribute__((visibility("hidden")))
 @interface FI_TColumnPreviewController : FI_TViewController <TCoalescingNodeObserverProtocol, TTrackingAreaOwnerProtocol>
@@ -18,20 +18,25 @@ __attribute__((visibility("hidden")))
     FI_TColumnPreviewHeaderViewController *_headerViewController;
     FI_TColumnPreviewInfoViewController *_infoViewController;
     NSStackView *_stackView;
+    NSLayoutConstraint *_metaTitleWidthConstraint;
     struct TNSRef<NSArray<FI_TBaseInfoWindowViewController *>, void> _viewControllers;
     struct shared_ptr<TCoalescingNodeObserverCocoaBridge> _nodeObserver;
     struct TFENodeVector _targetInfoNodes;
     unsigned int _targetInfoNodeNotificationOptions;
     struct TNotificationCenterObserver _viewDidMoveToSuperviewObserver;
     struct TNotificationCenterObserver _viewDidMoveToWindowObserver;
+    struct TNotificationCenterObserver _clipViewBoundsChangedObserver;
+    struct TNotificationCenterObserver _frameChangedObserver;
     struct TNSRef<FI_TContainerLayoutManager, void> _containerLayoutManager;
     struct TKeyValueObserver _contentInsetsDidChangeObserver;
     struct TNSRef<NSArray<NSLayoutConstraint *>, void> _layoutConstraints;
     struct TNSWeakPtr<NSLayoutConstraint, void> _minHeightLayoutConstraint;
     struct TNSRef<NSTrackingArea, void> _wholeColumnTrackingArea;
+    _Bool _inColumnView;
     struct TNSRef<FI_TPreviewOptions, void> _previewOptions;
 }
 
+@property(nonatomic) _Bool inColumnView; // @synthesize inColumnView=_inColumnView;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)mouseExited:(id)arg1;
@@ -41,12 +46,17 @@ __attribute__((visibility("hidden")))
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodeMDAttributeChanged:(const struct TFENode *)arg2 attributes:(id)arg3 isDisplayAttributes:(_Bool)arg4;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 aliasesTargetChanged:(const struct TFENodeVector *)arg2;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesGoingAway:(const struct TFENodeVector *)arg2;
-- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 bulkNodesDeleted:(const struct TCoalescedNodesAddedMap *)arg2;
-- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 bulkNodesChanged:(const struct TCoalescedNodesChangedMap *)arg2;
-- (void)handleNodePropertyChanges:(const struct TCoalescedNodesChangedMap *)arg1;
+- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 bulkNodesDeleted:(const map_27534541 *)arg2;
+- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 bulkNodesChanged:(const map_253f12d2 *)arg2;
+- (void)handleNodePropertyChanges:(const map_253f12d2 *)arg1;
+- (_Bool)shouldShowMagicPocketLine:(struct CGRect)arg1;
+- (_Bool)shouldShowScrollBarsForVisibleHeight:(double)arg1;
+- (struct CGRect)visibleRectForScrollView:(id)arg1;
+- (void)updateQuickActionsPocketInScrollView:(id)arg1;
+- (void)updateScrollStateForContent;
 - (void)updateSubviewContentInsets:(struct NSEdgeInsets)arg1;
-- (void)viewDidMoveToWindow;
 - (void)updateMinHeightConstraintForView:(id)arg1;
+- (void)viewDidMoveToWindow;
 - (void)viewDidMoveToSuperview;
 - (void)setTargetInfoNodes:(const struct TFENodeVector *)arg1;
 - (const struct TFENodeVector *)targetInfoNodes;

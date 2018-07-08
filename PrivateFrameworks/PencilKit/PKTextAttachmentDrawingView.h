@@ -42,6 +42,8 @@
 - (void).cxx_destruct;
 - (void)_liveResizeDidEnd;
 - (void)_liveResizeWillStart;
+- (void)viewDidEndLiveResize;
+- (void)viewWillStartLiveResize;
 - (void)_textStorageDidProcessEditing;
 - (void)_textClipViewDidChange;
 - (void)_textViewDidChangeSize;

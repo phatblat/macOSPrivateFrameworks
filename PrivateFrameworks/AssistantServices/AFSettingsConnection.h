@@ -59,6 +59,8 @@
 - (id)_filterVoices:(id)arg1 forLanguage:(id)arg2;
 - (id)_voices;
 - (void)_setVoices:(id)arg1;
+- (void)configOverrides:(CDUnknownBlockType)arg1;
+- (void)setConfigOverrides:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)getDevicesWithAvailablePHSAssetsForLanguage:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)disableAndDeleteCloudSyncWithCompletion:(CDUnknownBlockType)arg1;
 - (void)barrier;

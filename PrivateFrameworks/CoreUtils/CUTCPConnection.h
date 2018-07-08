@@ -29,7 +29,6 @@
     unsigned long long _ifExtendedFlags;
     unsigned int _ifFlags;
     unsigned int _ifIndex;
-    unsigned char _ifMACAddress[6];
     unsigned int _ifMedia;
     char _ifName[17];
     unsigned int _ifTransportType;

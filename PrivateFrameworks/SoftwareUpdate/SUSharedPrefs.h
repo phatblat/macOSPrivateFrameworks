@@ -85,6 +85,8 @@
 - (id)lastCheckAttemptBuildVersion;
 - (id)lastCheckAttemptSystemVersion;
 - (void)addPrimaryLanguageIfNecessary:(id)arg1;
+- (void)setLastRecommendedMajorOSBundleIdentifier:(id)arg1;
+- (id)lastRecommendedMajorOSBundleIdentifier;
 - (void)removeAllRecommendedUpdates;
 - (void)removeRecommendedUpdates:(id)arg1;
 - (void)addRecommendedUpdates:(id)arg1;

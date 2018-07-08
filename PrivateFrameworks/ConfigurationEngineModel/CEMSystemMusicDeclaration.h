@@ -17,6 +17,7 @@
     NSNumber *_payloadAllowMusicArtistActivity;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowMusicService:(id)arg2 withAllowRadioService:(id)arg3 withAllowMusicArtistActivity:(id)arg4;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

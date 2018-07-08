@@ -33,6 +33,7 @@
 - (BOOL)_hasEmailAddress;
 - (void)_showClientFailureSheet:(id)arg1;
 - (void)_showMergeConfirmationSheet:(id)arg1;
+- (BOOL)shouldEnableOnLogin;
 - (BOOL)isDataService;
 - (BOOL)hasDataToMerge;
 - (void)setEnabled:(BOOL)arg1 creating:(BOOL)arg2 withWindow:(id)arg3;

@@ -36,7 +36,6 @@
 + (id)logCategory;
 + (id)deviceWithHandle:(id)arg1;
 + (id)deviceWithDestination:(id)arg1;
-+ (id)currentDeviceWithIDSService:(id)arg1;
 + (id)destinationForDevice:(id)arg1 service:(id)arg2;
 @property(getter=isCloudTracked) BOOL cloudTracked; // @synthesize cloudTracked=_cloudTracked;
 @property(getter=isLocallyTracked) BOOL locallyTracked; // @synthesize locallyTracked=_locallyTracked;

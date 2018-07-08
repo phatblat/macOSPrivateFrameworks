@@ -106,6 +106,7 @@
 - (void)audioConverterDidConvertPackets:(id)arg1 packets:(id)arg2 timestamp:(unsigned long long)arg3;
 - (BOOL)_setupAudioConverter:(BOOL)arg1;
 - (void)_setupDownsamplerIfNeeded;
+- (void)speechManagerDidFinishAlertPlayback:(id)arg1 ofType:(long long)arg2 error:(id)arg3;
 - (void)speechManagerDetectedSystemVolumeChange:(id)arg1 withVolume:(float)arg2 forReason:(unsigned long long)arg3;
 - (void)speechManagerRecordHardwareConfigurationDidChange:(id)arg1 toConfiguration:(long long)arg2;
 - (id)speechManagerRecordingContext;
@@ -113,6 +114,7 @@
 - (void)speechManagerDidStartForwarding:(id)arg1 successfully:(BOOL)arg2 error:(id)arg3;
 - (void)speechManagerRecordBufferAvailable:(id)arg1 buffer:(id)arg2;
 - (void)speechManagerLPCMRecordBufferAvailable:(id)arg1 chunk:(id)arg2;
+- (BOOL)_private_PacketEncodingUsed;
 - (BOOL)_private_PacketDecodingUsed;
 - (BOOL)_isSpeakerIdTrainingTriggered;
 - (BOOL)_isAutoPrompted;

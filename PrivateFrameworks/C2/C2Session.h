@@ -27,7 +27,6 @@
     double _routeLastUpdated;
     id <C2SessionDelegate> _sessionDelegate;
     double _emptyTimestamp;
-    unsigned long long _creatingTaskCounter;
     NSMutableDictionary *_wrappedTaskByTaskDescription;
     NSOperationQueue *_queue;
     CDUnknownBlockType _testBehavior_sessionInvalidated_cfnetwork;
@@ -41,7 +40,6 @@
 @property(copy, nonatomic) CDUnknownBlockType testBehavior_sessionInvalidated_cfnetwork; // @synthesize testBehavior_sessionInvalidated_cfnetwork=_testBehavior_sessionInvalidated_cfnetwork;
 @property(readonly, nonatomic) NSOperationQueue *queue; // @synthesize queue=_queue;
 @property(readonly, nonatomic) NSMutableDictionary *wrappedTaskByTaskDescription; // @synthesize wrappedTaskByTaskDescription=_wrappedTaskByTaskDescription;
-@property(nonatomic) unsigned long long creatingTaskCounter; // @synthesize creatingTaskCounter=_creatingTaskCounter;
 @property(nonatomic) double emptyTimestamp; // @synthesize emptyTimestamp=_emptyTimestamp;
 @property(retain, nonatomic) id <C2SessionDelegate> sessionDelegate; // @synthesize sessionDelegate=_sessionDelegate;
 @property(nonatomic) BOOL isComplete; // @synthesize isComplete=_isComplete;
@@ -75,8 +73,6 @@
 - (id)addTask:(id)arg1 withDescription:(id)arg2 request:(id)arg3;
 - (void)_recalculateSessionDelegateQueuePriority;
 - (id)createTaskWithOptions:(id)arg1 delegate:(id)arg2;
-- (void)didCreateTask;
-- (void)willCreateTask;
 - (void)dealloc;
 - (id)initWithSessionConfigurationName:(id)arg1 routeHost:(id)arg2 options:(id)arg3 sessionDelegate:(id)arg4;
 

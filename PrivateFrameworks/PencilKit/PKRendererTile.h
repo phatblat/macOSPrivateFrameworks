@@ -22,7 +22,7 @@
 + (struct CGRect)layerFrameForLevel:(long long)arg1 offset:(struct CGPoint)arg2;
 + (double)tileSizeForLevel:(long long)arg1;
 @property BOOL outOfDate; // @synthesize outOfDate=_outOfDate;
-@property(retain, nonatomic) NSArray *renderedStrokes; // @synthesize renderedStrokes=_renderedStrokes;
+@property(copy, nonatomic) NSArray *renderedStrokes; // @synthesize renderedStrokes=_renderedStrokes;
 @property(readonly, nonatomic) struct CGPoint offset; // @synthesize offset=_offset;
 @property(readonly, nonatomic) long long level; // @synthesize level=_level;
 @property __weak id <PKRendererControllerProtocol> rendererController; // @synthesize rendererController=_rendererController;

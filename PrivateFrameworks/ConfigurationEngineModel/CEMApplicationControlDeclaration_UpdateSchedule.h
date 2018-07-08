@@ -16,6 +16,7 @@
     NSString *_payloadEndTime;
 }
 
++ (id)buildRequiredOnlyWithMode:(id)arg1;
 + (id)buildWithMode:(id)arg1 withDuration:(id)arg2 withStartTime:(id)arg3 withEndTime:(id)arg4;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadEndTime; // @synthesize payloadEndTime=_payloadEndTime;

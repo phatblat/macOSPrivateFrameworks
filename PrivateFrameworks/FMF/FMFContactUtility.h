@@ -6,12 +6,16 @@
 
 #import "NSObject.h"
 
+@class CNContactStore;
+
 @interface FMFContactUtility : NSObject
 {
+    CNContactStore *_contactStore;
 }
 
 + (id)sharedInstance;
-- (id)contactStore;
+@property(retain, nonatomic) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
+- (void).cxx_destruct;
 - (id)contactKeys;
 - (id)findOptimalContactInContacts:(id)arg1;
 - (id)getContactForHandle:(id)arg1 keysToFetch:(id)arg2;

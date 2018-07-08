@@ -17,6 +17,7 @@
     NSString *_titleLocID;
     NSString *_descriptiveText;
     NSString *_descriptiveTextLocID;
+    NSString *_defaultImageName;
     long long _intentCategory;
     NSString *_verb;
 }
@@ -25,6 +26,7 @@
 @property(nonatomic) BOOL userConfirmationRequired; // @synthesize userConfirmationRequired=_userConfirmationRequired;
 @property(copy, nonatomic) NSString *verb; // @synthesize verb=_verb;
 @property(nonatomic) long long intentCategory; // @synthesize intentCategory=_intentCategory;
+@property(copy, nonatomic) NSString *defaultImageName; // @synthesize defaultImageName=_defaultImageName;
 @property(copy, nonatomic) NSString *descriptiveTextLocID; // @synthesize descriptiveTextLocID=_descriptiveTextLocID;
 @property(copy, nonatomic) NSString *descriptiveText; // @synthesize descriptiveText=_descriptiveText;
 @property(copy, nonatomic) NSString *titleLocID; // @synthesize titleLocID=_titleLocID;

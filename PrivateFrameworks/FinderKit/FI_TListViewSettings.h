@@ -52,7 +52,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) _Bool useRelativeDates;
 @property(nonatomic) double textSize;
 @property(nonatomic) double iconSize;
-- (unsigned long long)checkIntegrity:(const struct TFENode *)arg1;
+- (unsigned long long)checkIntegrity;
 - (_Bool)checkNumberSettingForKey:(id)arg1 lowValue:(double)arg2 highValue:(double)arg3;
 - (void)addBladeRunnerStatusSettingsIfNeeded:(const struct TFENode *)arg1;
 - (void)addDateAddedSettingsIfNeeded;

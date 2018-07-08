@@ -33,6 +33,8 @@
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) const struct __CFString *forwardingInterposableRunLoopMode;
+@property(readonly, nonatomic) double forwardingInterposableRunLoopTimeOut;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

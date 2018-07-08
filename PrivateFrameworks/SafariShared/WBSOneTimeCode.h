@@ -23,6 +23,7 @@
 @property(readonly, copy, nonatomic) NSString *displayCode; // @synthesize displayCode=_displayCode;
 @property(readonly, copy, nonatomic) NSString *code; // @synthesize code=_code;
 - (void).cxx_destruct;
+- (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)initWithDictionary:(id)arg1;

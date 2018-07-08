@@ -42,6 +42,7 @@
 @property(readonly, nonatomic) BOOL collectAnonymousMetadata;
 @property(readonly, nonatomic) BOOL collectScores;
 @property(readonly, nonatomic) BOOL sampleFeatures;
+@property(readonly, nonatomic) BOOL sampleClientTiming;
 @property(readonly, nonatomic) unsigned long long smartHistoryMinimumQueryLength;
 @property(readonly, nonatomic) BOOL smartHistoryFeatureFeedbackEnabled;
 @property(readonly, nonatomic) unsigned long long smartHistorySampleThreshold;
@@ -57,6 +58,7 @@
 @property(readonly, nonatomic) double safariLast1week;
 @property(readonly, nonatomic) double safariLast1day;
 @property(readonly, nonatomic) double safariLast1hour;
+@property(readonly, nonatomic) NSNumber *duetExpertCustomFeedbackSamplingPercentage;
 @property(readonly, nonatomic) double timeoutIntervalForRequest;
 @property(readonly, nonatomic) NSNumber *feedbackMaxAgeInDays;
 @property(readonly, nonatomic) NSNumber *eagerFeedbackSamplingPercentage;

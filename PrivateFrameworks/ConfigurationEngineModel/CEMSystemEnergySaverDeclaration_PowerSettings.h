@@ -20,6 +20,7 @@
     NSNumber *_payloadAutomaticRestartOnPowerLoss;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithDisplaySleepTimer:(id)arg1 withDiskSleepTimer:(id)arg2 withSystemSleepTimer:(id)arg3 withReduceProcessorSpeed:(id)arg4 withDynamicPowerStep:(id)arg5 withWakeOnLAN:(id)arg6 withWakeOnModemRing:(id)arg7 withAutomaticRestartOnPowerLoss:(id)arg8;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadAutomaticRestartOnPowerLoss; // @synthesize payloadAutomaticRestartOnPowerLoss=_payloadAutomaticRestartOnPowerLoss;

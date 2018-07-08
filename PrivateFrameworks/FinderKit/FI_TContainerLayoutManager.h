@@ -11,7 +11,6 @@
 __attribute__((visibility("hidden")))
 @interface FI_TContainerLayoutManager : NSObject
 {
-    struct TNSRef<NSLayoutGuide, void> _topStatusBarLayoutGuide;
     struct TNSRef<NSLayoutGuide, void> _searchSliceLayoutGuide;
     struct TNSRef<NSLayoutGuide, void> _bannerLayoutGuide;
     struct TNSRef<NSLayoutGuide, void> _pathBarLayoutGuide;
@@ -38,7 +37,6 @@ __attribute__((visibility("hidden")))
 - (id)pathBarLayoutGuide;
 - (id)bannerLayoutGuide;
 - (id)searchSliceLayoutGuide;
-- (id)topStatusBarLayoutGuide;
 - (struct NSEdgeInsets)contentInsetsWithInnerRect:(struct CGRect)arg1;
 - (id)newLayoutGuideWithTopAnchor:(id)arg1 bottomAnchor:(id)arg2 identifier:(id)arg3 outConstraints:(id)arg4;
 - (void)dealloc;

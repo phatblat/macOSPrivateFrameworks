@@ -20,6 +20,11 @@ struct NSDictionary {
     Class _field1;
 };
 
+struct _HMFRate {
+    unsigned long long value;
+    double period;
+};
+
 struct in6_addr {
     union {
         unsigned char __u6_addr8[16];

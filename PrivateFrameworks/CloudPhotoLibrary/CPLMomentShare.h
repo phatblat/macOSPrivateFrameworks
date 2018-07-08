@@ -27,10 +27,12 @@
     NSData *_previewData;
     NSArray *_participants;
     NSURL *_shareURL;
+    NSString *_originatingScopeIdentifier;
 }
 
 + (BOOL)supportsSecureCoding;
 + (id)cplAdditionalSecureClassesForProperty:(id)arg1;
+@property(copy, nonatomic) NSString *originatingScopeIdentifier; // @synthesize originatingScopeIdentifier=_originatingScopeIdentifier;
 @property(copy, nonatomic) NSURL *shareURL; // @synthesize shareURL=_shareURL;
 @property(copy, nonatomic) NSArray *participants; // @synthesize participants=_participants;
 @property(copy, nonatomic) NSData *previewData; // @synthesize previewData=_previewData;

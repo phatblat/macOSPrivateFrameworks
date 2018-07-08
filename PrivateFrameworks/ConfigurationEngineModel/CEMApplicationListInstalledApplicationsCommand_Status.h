@@ -13,6 +13,7 @@
     NSArray *_statusInstalledApplicationList;
 }
 
++ (id)buildRequiredOnlyWithInstalledApplicationList:(id)arg1;
 + (id)buildWithInstalledApplicationList:(id)arg1;
 + (id)allowedReasons;
 + (id)allowedStatusKeys;

@@ -27,6 +27,7 @@
 - (void)deleteResources:(NSArray *)arg1 checkServerIfNecessary:(BOOL)arg2 completionHandler:(void (^)(NSArray *, NSDictionary *))arg3;
 - (void)setDiagnosticsEnabled:(BOOL)arg1;
 - (BOOL)diagnosticsEnabled;
+- (void)forceSynchronizingScopeWithIdentifiers:(NSArray *)arg1 completionHandler:(void (^)(CPLForceSyncTask *))arg2;
 - (void)queryUserIdentitiesWithParticipants:(NSArray *)arg1 completionHandler:(void (^)(NSArray *, NSError *))arg2;
 - (void)acceptMomentShare:(CPLMomentShare *)arg1 completionHandler:(void (^)(NSError *))arg2;
 - (void)fetchMomentShareFromShareURL:(NSURL *)arg1 completionHandler:(void (^)(CPLMomentShare *, NSError *))arg2;

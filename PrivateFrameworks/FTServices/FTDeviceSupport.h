@@ -62,6 +62,7 @@
 @property(readonly, nonatomic) BOOL supportsHandoff; // @synthesize supportsHandoff=_supportsHandoff;
 @property(readonly, nonatomic) BOOL isGreenTea; // @synthesize isGreenTea=_isGreenTea;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL lowRAMDevice;
 @property(readonly, nonatomic) BOOL supportsApplePay;
 @property(readonly, nonatomic) BOOL isInMultiUserMode;
 @property(readonly, nonatomic) BOOL nonWifiCallingAvailable;
@@ -87,6 +88,7 @@
 - (void)_updateCTNetworkDictionary:(id)arg1 key:(id)arg2 withTelephonyNetworkValue:(id)arg3 telephonyError:(id)arg4;
 @property(readonly, nonatomic) NSDictionary *CTNetworkInformation;
 - (void)_handlePotentialPhoneNumberRegistrationStateChanged;
+- (void)_invalidateValuesCachedForSelectedPhoneNumberRegistration;
 - (void)noteSelectedPhoneNumberRegistrationSubscriptionNumberDidChange;
 - (void)_handleCarrierSettingsChanged;
 - (void)_handleSIMStatusChangedToStatus:(id)arg1;

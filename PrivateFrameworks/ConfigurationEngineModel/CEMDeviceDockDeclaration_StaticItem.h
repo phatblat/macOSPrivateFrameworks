@@ -14,6 +14,7 @@
     NSString *_payloadTileType;
 }
 
++ (id)buildRequiredOnlyWithTileData:(id)arg1 withTileType:(id)arg2;
 + (id)buildWithTileData:(id)arg1 withTileType:(id)arg2;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadTileType; // @synthesize payloadTileType=_payloadTileType;

@@ -7,20 +7,23 @@
 #import "NSObject.h"
 
 #import "QLPreviewItem.h"
+#import "QLPreviewItemPrivate.h"
 
 @class NSString, NSURL;
 
 __attribute__((visibility("hidden")))
-@interface FI_TQLMultiPreviewItem : NSObject <QLPreviewItem>
+@interface FI_TQLMultiPreviewItem : NSObject <QLPreviewItem, QLPreviewItemPrivate>
 {
     struct TFENodeVector _nodes;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)previewItemDisplayName;
+- (struct CGImage *)createImageForMaximumSize:(struct CGSize)arg1 options:(struct __CFDictionary *)arg2;
+@property(readonly) NSString *previewItemDisplayName;
+@property(readonly) NSString *previewItemLocalizedDescription;
+@property(readonly) NSURL *launchURL;
 @property(readonly) NSString *previewItemTitle;
-- (id)launchURL;
 @property(readonly) NSURL *previewItemURL;
 - (struct TString)urlString;
 @property(readonly, nonatomic) const struct TFENodeVector *nodes; // @dynamic nodes;
@@ -29,10 +32,17 @@ __attribute__((visibility("hidden")))
 - (id)initWithNodes:(const struct TFENodeVector *)arg1;
 
 // Remaining properties
+@property(readonly) NSString *applicationBundleIdentifier;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly, copy) NSString *extensionPath;
 @property(readonly) unsigned long long hash;
+@property(readonly) NSString *previewItemContentType;
 @property(readonly) id previewItemDisplayState;
+@property(readonly, copy) NSString *queryString;
+@property(readonly) NSString *searchableItemTitle;
+@property(readonly) NSURL *searchableItemURL;
+@property(readonly) NSString *searchableItemUniqueIdentifier;
 @property(readonly) Class superclass;
 
 @end

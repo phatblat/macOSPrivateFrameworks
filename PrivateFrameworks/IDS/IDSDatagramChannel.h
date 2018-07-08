@@ -13,6 +13,7 @@
     _IDSDatagramChannel *_internal;
 }
 
++ (id)realTimeContext;
 - (void).cxx_destruct;
 - (void)optoutStreamIDs:(id)arg1;
 - (void)optinStreamIDs:(id)arg1;
@@ -20,7 +21,6 @@
 - (void)_reportFirstPacketTimeForMKI:(id)arg1;
 - (void)reportFirstPacketTimeForMKI:(id)arg1;
 - (void)requestSessionInfoWithOptions:(id)arg1;
-- (void)requestStatsWithOptions:(id)arg1;
 - (void)setChannelPreferences:(id)arg1;
 - (void)sendMetadata;
 - (void)readyToRead;

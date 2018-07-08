@@ -13,6 +13,7 @@
     NSString *_payloadRemoteDeviceID;
 }
 
++ (id)buildRequiredOnlyWithRemoteDeviceID:(id)arg1;
 + (id)buildWithRemoteDeviceID:(id)arg1;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadRemoteDeviceID; // @synthesize payloadRemoteDeviceID=_payloadRemoteDeviceID;

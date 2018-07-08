@@ -31,10 +31,15 @@
 - (void)_chompEventsUpToStartDate:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_createEventsWithInUseStartDate:(id)arg1 inFocusStartDate:(id)arg2 endDate:(id)arg3 webApplication:(id)arg4 url:(id)arg5 domain:(id)arg6 completionHandler:(CDUnknownBlockType)arg7;
 - (void)deleteWebDomainFromStorage:(id)arg1 webApplication:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)deleteWebHistoryForDomain:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)deleteWebApplicationFromStorage:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)deleteAllWebHistoryWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)deleteStorageDataDuringInterval:(id)arg1 webApplication:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)deleteWebHistoryDuringInterval:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)deleteWebpageURLFromStorage:(id)arg1 webApplication:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)deleteWebHistoryForURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)updateStorageWithInUseStartDate:(id)arg1 inFocusStartDate:(id)arg2 endDate:(id)arg3 webApplication:(id)arg4 url:(id)arg5 domain:(id)arg6 completionHandler:(CDUnknownBlockType)arg7;
+- (void)updateWebStorageWithInUseStartDate:(id)arg1 inFocusStartDate:(id)arg2 endDate:(id)arg3 url:(id)arg4 domain:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
 - (void)deleteAllHistoryWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)_usUsageStorageCommonInit;
 - (id)initWithEventStorageDirectory:(id)arg1 context:(id)arg2;

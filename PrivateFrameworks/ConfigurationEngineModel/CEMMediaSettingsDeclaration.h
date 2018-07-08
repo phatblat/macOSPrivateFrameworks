@@ -18,6 +18,7 @@
     NSNumber *_payloadAllowEnterpriseBookMetadataSync;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowBookstore:(id)arg2 withAllowBookstoreErotica:(id)arg3 withAllowEnterpriseBookBackup:(id)arg4 withAllowEnterpriseBookMetadataSync:(id)arg5;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

@@ -13,7 +13,7 @@
 - (void)ams_addRequestingProcessWithClient:(id)arg1;
 - (void)ams_addPrimaryiCloudIdentifierHeader;
 - (void)ams_addParameters:(id)arg1 encoding:(long long)arg2 compressBody:(BOOL)arg3 error:(id *)arg4;
-- (void)ams_addMescalHeaderWithType:(long long)arg1 bagContract:(id)arg2;
+- (void)ams_addMescalHeaderWithType:(long long)arg1 bagContract:(id)arg2 logKey:(id)arg3;
 - (void)ams_addIssuingProcessHeader;
 - (void)ams_addIdentifierHeadersForAccount:(id)arg1;
 - (void)ams_addGUIDParameterUsingContract:(id)arg1;

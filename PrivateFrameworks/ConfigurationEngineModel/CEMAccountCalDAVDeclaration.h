@@ -20,6 +20,7 @@
     NSString *_payloadCalDAVCredentials;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withCalDAVHostName:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withCalDAVAccountDescription:(id)arg2 withCalDAVHostName:(id)arg3 withCalDAVPrincipalURL:(id)arg4 withCalDAVUseSSL:(id)arg5 withCalDAVPort:(id)arg6 withCalDAVCredentials:(id)arg7;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

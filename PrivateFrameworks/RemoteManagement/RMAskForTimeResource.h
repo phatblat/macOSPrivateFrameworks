@@ -6,27 +6,24 @@
 
 #import "NSObject.h"
 
-@class NSString, RMAskForTimeClient;
+@class RMAskForTimeClient, RMAskForTimeRequest;
 
 @interface RMAskForTimeResource : NSObject
 {
+    int _notificationToken;
     RMAskForTimeClient *_askForTimeClient;
-    CDUnknownBlockType _changeHandler;
-    NSString *_requestedResourceIdentifier;
-    NSString *_resourceDisplayName;
-    long long _usageType;
+    RMAskForTimeRequest *_request;
 }
 
-@property(readonly, nonatomic) long long usageType; // @synthesize usageType=_usageType;
-@property(readonly, copy, nonatomic) NSString *resourceDisplayName; // @synthesize resourceDisplayName=_resourceDisplayName;
-@property(readonly, copy, nonatomic) NSString *requestedResourceIdentifier; // @synthesize requestedResourceIdentifier=_requestedResourceIdentifier;
-@property(copy, nonatomic) CDUnknownBlockType changeHandler; // @synthesize changeHandler=_changeHandler;
+@property(readonly, nonatomic) int notificationToken; // @synthesize notificationToken=_notificationToken;
+@property(readonly, nonatomic) RMAskForTimeRequest *request; // @synthesize request=_request;
 @property(retain, nonatomic) RMAskForTimeClient *askForTimeClient; // @synthesize askForTimeClient=_askForTimeClient;
 - (void).cxx_destruct;
 - (void)cancelOutstandingRequestsWithCompletion:(CDUnknownBlockType)arg1;
-- (BOOL)requestIsEqual:(id)arg1;
 - (void)checkRequestForAdditionalTimeWithResponseHandler:(CDUnknownBlockType)arg1;
+- (void)approveAdditionalTime:(double)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)requestAdditionalTime:(double)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)dealloc;
 - (id)initWithResourceIdentifier:(id)arg1 resourceDisplayName:(id)arg2 usageType:(long long)arg3 changeHandler:(CDUnknownBlockType)arg4;
 
 @end

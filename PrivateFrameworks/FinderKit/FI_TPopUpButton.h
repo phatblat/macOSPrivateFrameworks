@@ -22,7 +22,6 @@ __attribute__((visibility("hidden")))
 - (void)_windowChangedKeyState;
 - (void)setEnabled:(BOOL)arg1;
 - (BOOL)acceptsFirstMouse:(id)arg1;
-- (id)description;
 - (void)awakeCommon;
 - (void)initCommon;
 - (void)awakeFromNib;

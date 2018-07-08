@@ -219,7 +219,7 @@
 - (void)_updateDefaultCandidatePair:(id)arg1;
 - (void)disconnectWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)connectWithSessionInfo:(id)arg1 interfaceAddress:(id)arg2 joinSession:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (void)_addQRAAWDBlock:(id)arg1 allocateRequestTime:(double)arg2 inferredExternalIP:(unsigned int)arg3 stunTransport:(long long)arg4 relayProviderType:(long long)arg5;
+- (void)_addQRAAWDBlock:(id)arg1 allocateRequestTime:(double)arg2 inferredExternalIP:(unsigned int)arg3 stunTransport:(long long)arg4 relayProviderType:(long long)arg5 idsSessionID:(id)arg6;
 - (BOOL)hasReachableInterface:(unsigned long long)arg1;
 - (unsigned long long)defaultLinkType;
 - (void)startWithOptions:(id)arg1;

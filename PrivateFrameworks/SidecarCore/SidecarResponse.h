@@ -25,6 +25,7 @@
     unsigned int _finished:1;
 }
 
++ (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 - (void).cxx_destruct;
 - (void)sendCompletion:(id)arg1;
 - (void)sidecarTransfer:(id)arg1 didComplete:(id)arg2;

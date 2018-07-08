@@ -20,6 +20,7 @@ __attribute__((visibility("hidden")))
     struct TFENode _nodeBeingEdited;
     _Bool _isShowingICloudDriveContent;
     _Bool _iCloudMode;
+    _Bool _closingTarget;
     FI_TContainerLayoutManager *_containerLayoutManager;
     NSLayoutGuide *_contentInsetsLayoutGuide;
     struct TNSRef<NSLayoutConstraint, void> _minimumHeightConstraint;
@@ -59,6 +60,7 @@ __attribute__((visibility("hidden")))
 
 + (id)keyPathsForValuesAffectingViewSettings;
 + (id)appCentricLibraryFolderIcon:(const struct TFENode *)arg1 iconSize:(double)arg2 includeAppIconOverlay:(_Bool)arg3 scaleFactor:(double)arg4 darkBackground:(_Bool)arg5;
+@property(readonly) _Bool closingTarget; // @synthesize closingTarget=_closingTarget;
 @property(readonly) _Bool iCloudMode; // @synthesize iCloudMode=_iCloudMode;
 @property(readonly) _Bool allowAppCentricLibraryIcons; // @synthesize allowAppCentricLibraryIcons=_allowAppCentricLibraryIcons;
 @property _Bool shouldRestoreScrollDistance; // @synthesize shouldRestoreScrollDistance=_shouldRestoreScrollDistance;
@@ -152,13 +154,15 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)indexForNode:(const struct TFENode *)arg1;
 - (struct TFENode)nodeAtIndex:(unsigned long long)arg1;
 - (void)viewDidFullyPopulate;
-- (void)viewDidSyncToDataSource:(const vector_ddb76938 *)arg1;
-- (void)dataSourceChanged:(const vector_ddb76938 *)arg1;
+- (void)viewDidSyncToDataSource:(const vector_274a36ec *)arg1;
+- (void)dataSourceChanged:(const vector_274a36ec *)arg1;
 - (_Bool)shouldDelayNextPreviewPaneRetargetForKeyDownEvent:(id)arg1 currentKey:(unsigned short)arg2;
+- (double)previewPaneDisplayDelay;
 - (_Bool)shouldDelayNextPreviewPaneRetargetForCurrentKey:(unsigned short)arg1;
 - (void)openPreviewPanelInFullScreen:(_Bool)arg1;
 - (id)iconImageForNode:(const struct TFENode *)arg1;
 - (struct TFENode)thumbnailTargetNodeForNode:(const struct TFENode *)arg1;
+- (void)updateQueryHitPreviewForNode:(const struct TFENode *)arg1;
 - (void)invalidateThumbnailForKeyNodes:(const struct TFENodeVector *)arg1;
 - (_Bool)getThumbnailExtractorData:(struct TThumbnailExtractorData *)arg1 forNode:(const struct TFENode *)arg2;
 - (_Bool)waitingForThumbnailForNode:(const struct TFENode *)arg1;

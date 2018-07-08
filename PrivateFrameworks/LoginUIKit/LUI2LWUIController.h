@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class LUI2AuthHintViewController, LUI2BackgroundViewController, LUI2ButtonViewController, LUI2MessageViewController, LUI2MultiWindowController, LUI2PasswordViewController, LUI2SpinnerViewController, LUI2StatusViewController, LUI2UserListViewController, LUI2UserNameViewController, LUI2UserViewController, LUIPopoverController;
+@class LUI2AuthHintViewController, LUI2BackgroundViewController, LUI2ButtonViewController, LUI2MessageViewController, LUI2MultiWindowController, LUI2PasswordViewController, LUI2PopupButtonViewController, LUI2SpinnerViewController, LUI2StatusViewController, LUI2UserListViewController, LUI2UserNameViewController, LUI2UserViewController, LUIPopoverController;
 
 @interface LUI2LWUIController : NSObject
 {
@@ -16,6 +16,7 @@
     LUI2ButtonViewController *_buttonViewController;
     LUI2MessageViewController *_messageViewController;
     LUI2PasswordViewController *_passwordViewController;
+    LUI2PopupButtonViewController *_popupButtonViewController;
     LUI2SpinnerViewController *_spinnerViewController;
     LUI2StatusViewController *_statusViewController;
     LUI2UserListViewController *_userListViewController;
@@ -31,6 +32,7 @@
 @property(readonly) LUI2UserListViewController *userListViewController; // @synthesize userListViewController=_userListViewController;
 @property(readonly) LUI2StatusViewController *statusViewController; // @synthesize statusViewController=_statusViewController;
 @property(readonly) LUI2SpinnerViewController *spinnerViewController; // @synthesize spinnerViewController=_spinnerViewController;
+@property(readonly) LUI2PopupButtonViewController *popupButtonViewController; // @synthesize popupButtonViewController=_popupButtonViewController;
 @property(readonly) LUI2PasswordViewController *passwordViewController; // @synthesize passwordViewController=_passwordViewController;
 @property(readonly) LUI2MessageViewController *messageViewController; // @synthesize messageViewController=_messageViewController;
 @property(readonly) LUI2ButtonViewController *buttonViewController; // @synthesize buttonViewController=_buttonViewController;

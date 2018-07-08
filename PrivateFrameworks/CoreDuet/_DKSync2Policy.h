@@ -33,7 +33,7 @@
     NSArray *_streamNamesToAlwaysSync;
 }
 
-+ (id)disabledFeatures;
++ (id)disabledFeaturesForSyncType:(id)arg1 transports:(long long)arg2;
 + (id)configurationPlistForFilename:(id)arg1;
 + (id)syncPolicyConfigPathForFilename:(id)arg1;
 + (void)handleDownloadSyncPolicyResponse:(id)arg1 data:(id)arg2 error:(id)arg3;
@@ -70,10 +70,11 @@
 - (double)hoursBetweenSyncsWhenIsSingleDevice:(BOOL)arg1;
 - (id)queryStartDateWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3 isSingleDevice:(BOOL)arg4 previousHighWaterMark:(id)arg5;
 - (id)queryStartDateWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3 isSingleDevice:(BOOL)arg4;
-- (BOOL)highPriorityForSyncType:(id)arg1;
+- (BOOL)highPriorityForSyncType:(id)arg1 lastSyncDate:(id)arg2;
 - (BOOL)canPerformSyncOperationWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3 isSingleDevice:(BOOL)arg4 isCharging:(BOOL)arg5;
-- (id)streamNamesToSyncWithSyncType:(id)arg1;
-- (id)_streamNamesToSyncExceptDisabledFeatures:(id)arg1;
+- (BOOL)canDeferSyncOperationWithSyncType:(id)arg1;
+- (id)streamNamesToSyncWithSyncType:(id)arg1 transportType:(long long)arg2;
+- (id)streamNamesToSyncWithDisabledFeatures:(id)arg1;
 - (id)initWithDictionary:(id)arg1;
 
 @end

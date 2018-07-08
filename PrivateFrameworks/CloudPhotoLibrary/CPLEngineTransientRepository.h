@@ -26,13 +26,14 @@
 - (BOOL)resetTransientRepositoryForScopeWithIdentifier:(id)arg1 error:(id *)arg2;
 - (unsigned long long)countOfUnmingledRecords;
 - (BOOL)deleteMingledRecordsForScopeWithIdentifier:(id)arg1 error:(id *)arg2;
+- (BOOL)resetMingledRecordsWithScopeFilter:(id)arg1 error:(id *)arg2;
 - (BOOL)resetMingledRecordsForScopeWithIdentifier:(id)arg1 error:(id *)arg2;
 - (BOOL)hasUnmingledRecordsForScopeWithIdentifier:(id)arg1;
 - (BOOL)hasMingledRecordsForScopeWithIdentifier:(id)arg1;
 - (BOOL)popChangeBatch:(id *)arg1 error:(id *)arg2;
 - (BOOL)_popChangeBatchOfChangedRecords:(id *)arg1 maximumCount:(unsigned long long)arg2 stop:(char *)arg3 error:(id *)arg4;
 - (BOOL)_popChangeBatchOfDeletedRecords:(id *)arg1 maximumCount:(unsigned long long)arg2 error:(id *)arg3;
-- (BOOL)prepareForMinglingWithError:(id *)arg1;
+- (BOOL)prepareForMinglingWithScopeFilter:(id)arg1 error:(id *)arg2;
 - (BOOL)appendBatch:(id)arg1 alreadyMingled:(BOOL)arg2 error:(id *)arg3;
 - (BOOL)_appendBatchToStorage:(id)arg1 alreadyMingled:(BOOL)arg2 error:(id *)arg3;
 - (id)changeWithScopedIdentifier:(id)arg1;

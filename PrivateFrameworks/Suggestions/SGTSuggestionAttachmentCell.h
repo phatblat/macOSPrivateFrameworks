@@ -20,7 +20,6 @@ __attribute__((visibility("hidden")))
     BOOL _leftClicked;
 }
 
-+ (BOOL)_effectiveAppearanceIsDarkAppearanceInView:(id)arg1;
 - (void).cxx_destruct;
 - (void)accessibilityPerformAction:(id)arg1;
 - (void)_showMenu;

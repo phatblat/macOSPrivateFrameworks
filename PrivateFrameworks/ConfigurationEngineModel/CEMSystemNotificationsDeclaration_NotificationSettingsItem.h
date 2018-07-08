@@ -19,10 +19,13 @@
     NSNumber *_payloadSoundsEnabled;
     NSNumber *_payloadShowInCarPlay;
     NSNumber *_payloadEmergencyEnabled;
+    NSNumber *_payloadCriticalAlertEnabled;
 }
 
-+ (id)buildWithBundleIdentifier:(id)arg1 withNotificationsEnabled:(id)arg2 withShowInNotificationCenter:(id)arg3 withShowInLockScreen:(id)arg4 withAlertType:(id)arg5 withBadgesEnabled:(id)arg6 withSoundsEnabled:(id)arg7 withShowInCarPlay:(id)arg8 withEmergencyEnabled:(id)arg9;
++ (id)buildRequiredOnlyWithBundleIdentifier:(id)arg1;
++ (id)buildWithBundleIdentifier:(id)arg1 withNotificationsEnabled:(id)arg2 withShowInNotificationCenter:(id)arg3 withShowInLockScreen:(id)arg4 withAlertType:(id)arg5 withBadgesEnabled:(id)arg6 withSoundsEnabled:(id)arg7 withShowInCarPlay:(id)arg8 withEmergencyEnabled:(id)arg9 withCriticalAlertEnabled:(id)arg10;
 + (id)allowedPayloadKeys;
+@property(copy, nonatomic) NSNumber *payloadCriticalAlertEnabled; // @synthesize payloadCriticalAlertEnabled=_payloadCriticalAlertEnabled;
 @property(copy, nonatomic) NSNumber *payloadEmergencyEnabled; // @synthesize payloadEmergencyEnabled=_payloadEmergencyEnabled;
 @property(copy, nonatomic) NSNumber *payloadShowInCarPlay; // @synthesize payloadShowInCarPlay=_payloadShowInCarPlay;
 @property(copy, nonatomic) NSNumber *payloadSoundsEnabled; // @synthesize payloadSoundsEnabled=_payloadSoundsEnabled;

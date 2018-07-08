@@ -27,6 +27,7 @@
     NSNumber *_payloadDisconnectOnIdleTimer;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withVPNType:(id)arg2 withUserDefinedName:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withVPNType:(id)arg2 withVPNSubType:(id)arg3 withUserDefinedName:(id)arg4 withVendorConfig:(id)arg5 withVPN:(id)arg6 withIPv4:(id)arg7 withPPP:(id)arg8 withIPSec:(id)arg9 withIKEv2:(id)arg10 withProxies:(id)arg11 withAlwaysOn:(id)arg12 withDisconnectOnIdle:(id)arg13 withDisconnectOnIdleTimer:(id)arg14;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

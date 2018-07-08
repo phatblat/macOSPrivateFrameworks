@@ -13,6 +13,8 @@ __attribute__((visibility("hidden")))
     unsigned int _internalOptions;
 }
 
+- (void)assertNotOwner;
+- (void)assertOwner;
 - (void)unlock;
 - (void)lock;
 - (id)initWithOptions:(unsigned long long)arg1;

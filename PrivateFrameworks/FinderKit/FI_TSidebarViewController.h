@@ -145,8 +145,7 @@ __attribute__((visibility("hidden")))
 - (_Bool)isZoneHidden:(int)arg1;
 - (void)hideZone:(int)arg1;
 - (void)showZone:(int)arg1;
-- (void)selectNode:(const struct TFENode *)arg1;
-- (struct TFENode)selectedNode;
+@property(nonatomic) struct TFENode selectedNode;
 - (void)setHidesSharedItems:(_Bool)arg1;
 - (_Bool)hidesSharedItems;
 - (void)setMediaBrowserShownTypes:(unsigned long long)arg1;
@@ -163,11 +162,11 @@ __attribute__((visibility("hidden")))
 - (void)setSidebarUpdateCallback:(function_b1fce659)arg1;
 - (void)invalidateOptimalWidthCache;
 - (struct CGSize)idealContentSize;
-- (double)optimalWidth;
+@property(readonly) double optimalWidth;
 - (double)optimalWidthForZone:(int)arg1;
 - (double)optionalScrollbarWidth;
 - (double)optimalWidthNoScrollbar;
-- (double)optimalHeight;
+@property(readonly) double optimalHeight;
 - (id)seamlessCloserTransitionImageForPreviewItem:(id)arg1 contentRect:(struct CGRect *)arg2;
 - (struct CGRect)seamlessCloserSourceFrameOnScreenForPreviewItem:(id)arg1;
 - (id)window;
@@ -178,8 +177,8 @@ __attribute__((visibility("hidden")))
 - (_Bool)canTarget:(id)arg1;
 - (_Bool)isDimmed:(id)arg1;
 - (_Bool)quicklyCheckIfNode:(const struct TFENode *)arg1 isDimmed:(_Bool *)arg2;
-- (_Bool)isSnapshotImageBrowser;
-- (_Bool)isBackupBrowser;
+@property(readonly) _Bool isSnapshotImageBrowser;
+@property(readonly) _Bool isBackupBrowser;
 - (struct TFENode)nodeForClick;
 - (void)startOrStopAnimations;
 - (void)updateAnimationStateForNode:(const struct TFENode *)arg1 startOnly:(_Bool)arg2;
@@ -196,18 +195,18 @@ __attribute__((visibility("hidden")))
 - (_Bool)shouldAnimateOverlay;
 - (_Bool)nodeShouldAnimate:(const struct TFENode *)arg1;
 - (void)updateSubviewContentInsets:(struct NSEdgeInsets)arg1;
-- (struct TFENode)containerSidebarTarget;
+@property(readonly) struct TFENode containerSidebarTarget;
 - (void)updateSelectionForCurrentTarget;
 - (void)updateSelectionForTarget:(const struct TFENode *)arg1;
 - (void)aboutToTearDown;
 - (id)nibName;
 - (void)removedFromWindow;
 - (void)addedToWindow;
-- (double)minimumSidebarWidth;
+@property(readonly) double minimumSidebarWidth;
 - (void)viewLoaded;
 - (void)initialSidebarPopulation;
 - (_Bool)isSidebarCachingBrowser;
-- (id)sidebar;
+@property(readonly) FI_TSidebarView *sidebar;
 - (void)dealloc;
 - (id)init:(id)arg1 frame:(struct CGRect)arg2 containerLayoutManager:(id)arg3;
 

@@ -24,6 +24,8 @@
 - (void)setPropertiesByName:(id)arg1;
 - (id)propertiesByName;
 - (id)_dictionaryRepresentation;
+@property(copy) NSNumber *minutesToFull;
+@property(copy) NSNumber *charging;
 @property(copy) NSMeasurement *distanceRemaining;
 @property(copy) NSNumber *chargePercentRemaining;
 @property(copy) NSNumber *fuelPercentRemaining;

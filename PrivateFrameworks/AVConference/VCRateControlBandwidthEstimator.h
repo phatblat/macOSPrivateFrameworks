@@ -34,6 +34,7 @@ __attribute__((visibility("hidden")))
     double _maxDetectableBandwidth;
     unsigned int _maxOverRangePacketsCount;
     double _estimatedBandwidth;
+    double _estimatedBandwidthUncapped;
     unsigned int _radioAccessTechnology;
     unsigned int _mode;
     unsigned int _bandwidthEstimationState;
@@ -41,6 +42,7 @@ __attribute__((visibility("hidden")))
 
 @property(nonatomic) unsigned int mode; // @synthesize mode=_mode;
 @property(nonatomic) unsigned int radioAccessTechnology; // @synthesize radioAccessTechnology=_radioAccessTechnology;
+@property(nonatomic) double estimatedBandwidthUncapped; // @synthesize estimatedBandwidthUncapped=_estimatedBandwidthUncapped;
 @property(nonatomic) double estimatedBandwidth; // @synthesize estimatedBandwidth=_estimatedBandwidth;
 - (void)updateBandwidthDivergeCountAtArrivalTime:(double)arg1 suddenChangeAbove:(BOOL)arg2 suddenChangeBelow:(BOOL)arg3;
 - (BOOL)isSuddenChangeDurationMetAtArrivalTime:(double)arg1;

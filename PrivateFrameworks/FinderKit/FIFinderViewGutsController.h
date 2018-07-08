@@ -28,6 +28,9 @@ __attribute__((visibility("hidden")))
     NSTextField *_whereLabel;
     NSView *_toolbarButtonArea;
     NSVisualEffectView *_visualEffectView;
+    NSView *_topAccessoryContainerView;
+    NSLayoutConstraint *_topAccessoryContainerCollapsingConstraint;
+    NSView *_topAccessory;
     struct TNSRef<FILocationPopUp, void> _associatedLocationPopup;
     struct TNSRef<FITopBarTitlebarAccessoryViewController, void> _topBarTitlebarAccessoryViewController;
     FI_TBrowserContentViewController *_contentViewController;
@@ -276,6 +279,7 @@ __attribute__((visibility("hidden")))
 - (void)windowWillOrderOnScreen;
 - (void)prepareToHide;
 - (void)prepareToShow;
+- (void)setTopAccessory:(id)arg1;
 - (id)whereLabelTrailingLayoutAnchor;
 - (id)whereLabelLeadingLayoutAnchor;
 - (id)locationAreaTrailingLayoutAnchor;

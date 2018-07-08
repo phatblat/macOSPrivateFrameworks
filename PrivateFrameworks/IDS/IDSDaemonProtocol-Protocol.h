@@ -157,7 +157,6 @@
 - (void)authenticationChangedForAccount:(NSString *)arg1;
 - (void)passwordChanged:(NSString *)arg1 forAccount:(NSString *)arg2;
 - (void)authTokenChanged:(NSString *)arg1 forAccount:(NSString *)arg2;
-- (void)setLoginID:(NSString *)arg1 forAccount:(NSString *)arg2;
 - (void)disableAccount:(NSString *)arg1;
 - (void)enableAccount:(NSString *)arg1;
 - (void)updateAccount:(NSString *)arg1 withAccountInfo:(NSDictionary *)arg2;

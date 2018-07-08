@@ -15,6 +15,7 @@
     CEMApplicationLockDeclaration_App *_payloadApp;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withApp:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withApp:(id)arg2;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

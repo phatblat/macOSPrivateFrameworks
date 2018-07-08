@@ -6,13 +6,15 @@
 
 #import <LoginUIKit/LUI2ViewController.h>
 
-@class LUI2TextField;
+@class LUI2TextField, LUI2TextFieldBackgroundView;
 
 @interface LUI2TextFieldViewController : LUI2ViewController
 {
     LUI2TextField *_textField;
+    LUI2TextFieldBackgroundView *_backgroundView;
 }
 
+@property(retain) LUI2TextFieldBackgroundView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(readonly) LUI2TextField *textField; // @synthesize textField=_textField;
 - (void)dealloc;
 - (void)viewDidLoad;

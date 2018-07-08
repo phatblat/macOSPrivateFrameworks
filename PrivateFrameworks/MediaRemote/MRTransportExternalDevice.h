@@ -8,7 +8,7 @@
 
 #import "MRProtocolClientConnectionDelegate.h"
 
-@class CURunLoopThread, MRExternalClientConnection, MRExternalDeviceTransport, NSData, NSDate, NSDictionary, NSObject<OS_dispatch_queue>, NSString, _MRContentItemProtobuf, _MRDeviceInfoMessageProtobuf, _MRNowPlayingPlayerPathProtobuf, _MROriginProtobuf;
+@class CURunLoopThread, MRExternalClientConnection, MRExternalDeviceTransport, NSData, NSDate, NSDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_os_transaction>, NSString, _MRContentItemProtobuf, _MRDeviceInfoMessageProtobuf, _MRNowPlayingPlayerPathProtobuf, _MROriginProtobuf;
 
 @interface MRTransportExternalDevice : MRExternalDevice <MRProtocolClientConnectionDelegate>
 {
@@ -28,6 +28,7 @@
     unsigned long long _reconnectionAttemptCount;
     BOOL _forceReconnectOnConnectionFailure;
     BOOL _disconnecting;
+    NSObject<OS_os_transaction> *_transaction;
     BOOL _isCallingClientCallback;
     MRExternalClientConnection *_clientConnection;
     _MROriginProtobuf *_customOrigin;

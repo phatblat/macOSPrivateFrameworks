@@ -11,20 +11,26 @@
 #import "NSSecureCoding.h"
 #import "_INPBGetCarPowerLevelStatusIntentResponse.h"
 
-@class INCodableAttribute, NSString, _INPBDistance, _INPBDouble;
+@class INCodableAttribute, NSString, _INPBDistance, _INPBDouble, _INPBInteger;
 
 @interface _INPBGetCarPowerLevelStatusIntentResponse : PBCodable <_INPBGetCarPowerLevelStatusIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
 {
-    struct _has;
+    struct {
+        unsigned int charging:1;
+    } _has;
+    BOOL _charging;
     _INPBDouble *_chargePercentRemaining;
     _INPBDistance *_distanceRemaining;
     _INPBDouble *_fuelPercentRemaining;
+    _INPBInteger *_minutesToFull;
     INCodableAttribute *_associatedCodableAttribute;
 }
 
 @property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
+@property(retain, nonatomic) _INPBInteger *minutesToFull; // @synthesize minutesToFull=_minutesToFull;
 @property(retain, nonatomic) _INPBDouble *fuelPercentRemaining; // @synthesize fuelPercentRemaining=_fuelPercentRemaining;
 @property(retain, nonatomic) _INPBDistance *distanceRemaining; // @synthesize distanceRemaining=_distanceRemaining;
+@property(nonatomic) BOOL charging; // @synthesize charging=_charging;
 @property(retain, nonatomic) _INPBDouble *chargePercentRemaining; // @synthesize chargePercentRemaining=_chargePercentRemaining;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;
@@ -33,8 +39,10 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+@property(readonly, nonatomic) BOOL hasMinutesToFull;
 @property(readonly, nonatomic) BOOL hasFuelPercentRemaining;
 @property(readonly, nonatomic) BOOL hasDistanceRemaining;
+@property(nonatomic) BOOL hasCharging;
 @property(readonly, nonatomic) BOOL hasChargePercentRemaining;
 
 // Remaining properties

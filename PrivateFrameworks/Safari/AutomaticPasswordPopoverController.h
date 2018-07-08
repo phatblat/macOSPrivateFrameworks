@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
 {
     AutomaticPasswordPopoverViewController *_automaticPasswordPopoverViewController;
     int _generatedPasswordInteractionType;
+    BOOL _shouldIgnoreInteractionsWithPopover;
     // Error parsing type: ^{FormCompletionController=^^?{atomic<unsigned int>=AI}Bq@@@@{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}@@dBBBBB{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}^^?@QB^{SafeAutoFillConfirmationController}@@{Frame={WKRetainPtr<const void *>=^v}}@@BBBB@BB@}, name: _formCompletionController
     NSView *_positioningView;
     struct CGRect _positioningRectInViewCoordinates;

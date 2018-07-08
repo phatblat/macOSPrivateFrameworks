@@ -6,18 +6,18 @@
 
 #import "NSView.h"
 
-#import "ReaderInstallationTarget.h"
 #import "VisualTabPickerThumbnailSnapshotProviding.h"
 
 @class BackgroundColorView, BrowserWKView, ContinuousPageView, NSClipView, NSHashTable, NSString, ReaderWKView, TabDialogInstaller;
 
 __attribute__((visibility("hidden")))
-@interface TabContentView : NSView <ReaderInstallationTarget, VisualTabPickerThumbnailSnapshotProviding>
+@interface TabContentView : NSView <VisualTabPickerThumbnailSnapshotProviding>
 {
     NSView *_readerContainerView;
     ReaderWKView *_readerWKView;
     NSView *_responsiveDesignModeView;
     NSClipView *_startPageClipView;
+    BOOL _shouldClipStartPageViewDuringSwipe;
     TabDialogInstaller *_tabDialogInstaller;
     NSView *_firstResponderViewBeforeDimmingViewPresentation;
     ContinuousPageView *_continuousBrowserPageView;
@@ -25,7 +25,6 @@ __attribute__((visibility("hidden")))
     NSHashTable *_nativeContentViewsThatWereShownInWindow;
     CDUnknownBlockType _updateVisualTabPickerSnapshotBlock;
     BackgroundColorView *_backgroundView;
-    NSView *_resizableContentContainer;
     BrowserWKView *_browserWKView;
     NSView *_startPageView;
     NSView *_bookmarksView;
@@ -39,9 +38,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSView *snapshotView; // @synthesize snapshotView=_snapshotView;
 @property(readonly, nonatomic) NSView *bookmarksView; // @synthesize bookmarksView=_bookmarksView;
 @property(readonly, nonatomic) NSView *startPageView; // @synthesize startPageView=_startPageView;
-@property(readonly) ReaderWKView *readerWKView; // @synthesize readerWKView=_readerWKView;
 @property(readonly) BrowserWKView *browserWKView; // @synthesize browserWKView=_browserWKView;
-@property(readonly) NSView *resizableContentContainer; // @synthesize resizableContentContainer=_resizableContentContainer;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) struct CGRect visualTabPickerThumbnailContentViewVisibleBounds;
 @property(readonly, nonatomic) NSView *visualTabPickerThumbnailContentView;
@@ -49,36 +46,22 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) BOOL visualTabPickerThumbnailContentViewWasShownInWindow;
 - (id)_browserWindowController;
 - (void)_adjustSubviewsForTopContentInset;
-- (void)adjustSubviewBannersForTopContentInset;
 - (void)_currentContentViewDidChange;
-@property(readonly, nonatomic) struct CGRect contentLayoutFrame;
 - (void)_replaceCurrentBrowserWKViewWithBrowserWKView:(id)arg1;
 - (BOOL)handleScrollEvent:(id)arg1;
 - (BOOL)isInContinuousMode;
 - (void)uninstallContinuousBrowserPageView;
 - (void)installContinuousBrowserPageView:(id)arg1;
 - (id)accessibilityChildren;
-- (void)_dismissReaderView;
-- (void)uninstallReaderView:(id)arg1 closedByUser:(BOOL)arg2;
+- (void)uninstallReaderView:(id)arg1;
 - (void)installReaderView:(id)arg1;
-- (BOOL)readerIsInstalled;
 - (void)viewDidMoveToWindow;
 - (void)willRemoveSubview:(id)arg1;
 - (void)didAddSubview:(id)arg1;
-- (void)endDeferringWKViewInWindowChanges;
-- (void)beginDeferringWKViewInWindowChanges;
 - (void)willClose;
 - (void)_invalidateSnapshotViewImageIfNecessary;
 - (void)uninstallSnapshotView;
 - (void)installSnapshotViewWithImage:(id)arg1 imageScale:(double)arg2 showWhiteOverlay:(BOOL)arg3;
-- (void)uninstallTabDialogViewAnimated:(BOOL)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)transplantTabDialogView:(id)arg1 andDimmingView:(id)arg2 placement:(long long)arg3;
-- (void)installTabDialogView:(id)arg1 andDimmingView:(id)arg2 placement:(long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (void)uninstallModalDialogDimmingViewAnimated:(BOOL)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)dimContentViewForModalDialogPresentation;
-- (void)_didFinishShowingDialog;
-- (void)_willShowDialog;
-- (void)prepareForModalDialogPresentation;
 - (BOOL)_isShowingStartPage;
 - (void)uninstallStartPageView;
 - (void)installStartPageView:(id)arg1;
@@ -91,7 +74,6 @@ __attribute__((visibility("hidden")))
 - (void)updateCustomSwipeViews;
 - (id)currentDialogOrContentView;
 - (id)currentContentView;
-- (void)adjustSubviews;
 - (void)scrollWheel:(id)arg1;
 - (BOOL)isOpaque;
 - (void)resizeSubviewsWithOldSize:(struct CGSize)arg1;

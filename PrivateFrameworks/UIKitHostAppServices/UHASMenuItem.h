@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <UIKitHostAppServices/UHASRemoteObject.h>
 
 #import "UHAMenuItemInterface.h"
 
 @class NSString;
 
-@interface UHASMenuItem : NSObject <UHAMenuItemInterface>
+@interface UHASMenuItem : UHASRemoteObject <UHAMenuItemInterface>
 {
     BOOL alternate;
     BOOL enabled;
@@ -44,6 +44,8 @@
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) const struct __CFString *forwardingInterposableRunLoopMode;
+@property(readonly, nonatomic) double forwardingInterposableRunLoopTimeOut;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

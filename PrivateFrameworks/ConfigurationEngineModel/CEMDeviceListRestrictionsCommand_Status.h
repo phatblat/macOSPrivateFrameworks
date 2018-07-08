@@ -14,6 +14,7 @@
     CEMDeviceListRestrictionsCommand_StatusProfileRestrictions *_statusProfileRestrictions;
 }
 
++ (id)buildRequiredOnlyWithGlobalRestrictions:(id)arg1 withProfileRestrictions:(id)arg2;
 + (id)buildWithGlobalRestrictions:(id)arg1 withProfileRestrictions:(id)arg2;
 + (id)allowedReasons;
 + (id)allowedStatusKeys;

@@ -15,6 +15,7 @@
 }
 
 + (id)_ignoredParameters;
+- (id)_spotlightContentType;
 - (BOOL)configureAttributeSet:(id)arg1;
 - (void)setParametersByName:(id)arg1;
 - (id)parametersByName;
@@ -35,10 +36,11 @@
 @property long long audioRoute;
 - (id)initWithDestinationType:(long long)arg1 contacts:(id)arg2;
 - (id)_categoryVerb;
+- (long long)_intentCategory;
 - (void)_setMetadata:(id)arg1;
 - (id)_metadata;
 - (id)_typedBackingStore;
-- (id)_subtitleForLanguage:(id)arg1;
+- (id)_subtitleForLanguage:(id)arg1 fromBundleURL:(id)arg2;
 - (id)initWithContacts:(id)arg1;
 - (void)setUseSpeaker:(BOOL)arg1;
 @property(readonly) BOOL useSpeaker;

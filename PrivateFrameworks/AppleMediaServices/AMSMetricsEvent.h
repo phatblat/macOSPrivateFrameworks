@@ -25,6 +25,7 @@
 @property(readonly, nonatomic) NSMutableDictionary *underlyingDictionary; // @synthesize underlyingDictionary=_underlyingDictionary;
 - (void).cxx_destruct;
 - (void)setProperty:(id)arg1 forBodyKey:(id)arg2;
+- (void)removePropertiesForKeys:(id)arg1;
 - (id)propertyForBodyKey:(id)arg1;
 - (void)addPropertiesWithDictionary:(id)arg1;
 @property(retain, nonatomic) NSString *topic;
@@ -36,7 +37,7 @@
 @property(retain, nonatomic) NSString *canaryIdentifier;
 @property(retain, nonatomic) NSNumber *baseVersion;
 @property(retain, nonatomic) NSString *appVersion;
-- (id)reportingURLFromContract:(id)arg1 error:(id *)arg2;
+- (id)reportingURLFromBaseURL:(id)arg1;
 - (id)initWithTopic:(id)arg1;
 - (id)initWithDictionary:(id)arg1;
 

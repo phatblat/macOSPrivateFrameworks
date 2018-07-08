@@ -65,6 +65,7 @@
 - (id)descriptionWithPointer:(BOOL)arg1;
 - (id)shortDescription;
 @property(readonly, nonatomic) unsigned long long capabilities;
+@property(readonly, getter=isBlocked) BOOL blocked;
 - (void)configureWithHome:(id)arg1;
 - (id)initWithDevice:(id)arg1 home:(id)arg2;
 - (id)initWithModel:(id)arg1 residentDeviceManager:(id)arg2;

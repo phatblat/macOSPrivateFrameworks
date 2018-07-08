@@ -26,7 +26,7 @@
 - (void)serviceActivateTLSWithCompletion:(void (^)(NSError *))arg1;
 - (void)serviceActivate:(SFService *)arg1 completion:(void (^)(NSError *))arg2;
 - (void)serviceReceivedTLSData:(NSData *)arg1 type:(unsigned char)arg2 peer:(NSUUID *)arg3;
-- (void)remoteInteractionSessionSendPayload:(NSData *)arg1;
+- (void)remoteInteractionSessionSendPayload:(NSDictionary *)arg1;
 - (void)remoteInteractionSessionSetText:(NSString *)arg1;
 - (void)remoteInteractionSessionInsertText:(NSString *)arg1;
 - (void)remoteInteractionSessionDeleteTextBackward;

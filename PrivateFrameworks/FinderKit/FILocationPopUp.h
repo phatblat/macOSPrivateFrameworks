@@ -89,6 +89,8 @@
 - (id)data;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (void)viewDidChangeEffectiveAppearance;
+- (void)checkDarkBackground;
 - (void)viewDidMoveToWindow;
 - (void)_commonLocationPopUpInit;
 

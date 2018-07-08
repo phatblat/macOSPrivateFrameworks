@@ -20,7 +20,7 @@
     NSMutableDictionary *_pendingSessionOperations;
 }
 
-+ (id)sharedAbsintheSession;
++ (id)sharedSigningSession;
 + (id)sharedSession;
 - (void).cxx_destruct;
 - (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;

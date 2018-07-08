@@ -129,6 +129,7 @@
 - (void)_updateVoiceMetering;
 - (void)_inputLineUpdateVoiceMetering:(id)arg1;
 - (void)_inputLineUpdateTimeStamp:(id)arg1;
+- (void)_updateAudioTimeStamp:(id)arg1;
 - (void)startRecording;
 - (void)_transitionInputLineIntoMessaging;
 - (void)_transitionInputLineIntoPreviewRecording;

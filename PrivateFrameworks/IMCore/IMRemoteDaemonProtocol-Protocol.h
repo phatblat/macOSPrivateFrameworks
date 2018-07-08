@@ -144,6 +144,7 @@
 - (void)chat:(NSString *)arg1 updateDisplayName:(NSString *)arg2;
 - (void)chat:(NSString *)arg1 updateProperties:(NSDictionary *)arg2;
 - (void)cleanupAttachments;
+- (void)requestLastMessagesForChats;
 - (void)loadIsDownloadingPurgedAttachmentsForIDs:(NSArray *)arg1 style:(unsigned char)arg2 onServices:(NSArray *)arg3 chatID:(NSString *)arg4 queryID:(NSString *)arg5;
 - (void)downloadPurgedAttachmentsForIDs:(NSArray *)arg1 style:(unsigned char)arg2 onServices:(NSArray *)arg3 chatID:(NSString *)arg4;
 - (unsigned long long)loadUncachedAttachmentCountForIDs:(NSArray *)arg1 style:(unsigned char)arg2 onServices:(NSArray *)arg3 chatID:(NSString *)arg4 queryID:(NSString *)arg5;
@@ -161,6 +162,7 @@
 - (void)markReadForIDs:(NSArray *)arg1 style:(unsigned char)arg2 onServices:(NSArray *)arg3 messages:(NSArray *)arg4 clientUnreadCount:(unsigned long long)arg5;
 - (void)markReadForMessageGUID:(NSString *)arg1 callerOrigin:(long long)arg2;
 - (void)markReadForMessageGUID:(NSString *)arg1;
+- (void)markMessageAsCorrupt:(NSString *)arg1 setCorrupt:(BOOL)arg2;
 - (void)updateMessage:(IMMessageItem *)arg1;
 - (void)markAsSpamForIDs:(NSArray *)arg1 style:(unsigned char)arg2 onServices:(NSArray *)arg3 chatID:(NSString *)arg4 queryID:(NSString *)arg5 autoReport:(BOOL)arg6;
 - (void)clearHistoryForIDs:(NSArray *)arg1 style:(unsigned char)arg2 onServices:(NSArray *)arg3 beforeGUID:(NSString *)arg4 afterGUID:(NSString *)arg5 chatID:(NSString *)arg6 queryID:(NSString *)arg7;

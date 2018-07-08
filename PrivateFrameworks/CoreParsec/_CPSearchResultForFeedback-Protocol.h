@@ -10,6 +10,7 @@
 
 @protocol _CPSearchResultForFeedback <NSObject>
 @property(readonly, nonatomic) NSData *jsonData;
+@property(nonatomic) unsigned long long hashedIdentifier;
 @property(nonatomic) unsigned long long blockId;
 @property(nonatomic) BOOL doNotFold;
 @property(nonatomic) BOOL isFuzzyMatch;

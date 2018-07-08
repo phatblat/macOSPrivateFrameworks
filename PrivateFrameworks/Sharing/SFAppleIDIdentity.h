@@ -41,6 +41,7 @@
 @property(readonly, nonatomic) NSString *altDSID; // @synthesize altDSID=_altDSID;
 @property(retain, nonatomic) NSString *accountIdentifier; // @synthesize accountIdentifier=_accountIdentifier;
 - (void).cxx_destruct;
+- (int)verifyKeys;
 - (void)removeFromKeychain;
 - (struct OpaqueSecIdentityRef *)copyIdentity;
 @property(readonly, nonatomic) BOOL needsRenewal;

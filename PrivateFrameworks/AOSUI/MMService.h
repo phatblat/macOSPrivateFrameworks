@@ -38,6 +38,7 @@
 @property BOOL alwaysShowOptions; // @synthesize alwaysShowOptions=_alwaysShowOptions;
 @property(retain) NSString *infoButtonLabel; // @synthesize infoButtonLabel=_infoButtonLabel;
 @property(retain) NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
+- (id)mmAccount;
 - (id)appleAccount;
 - (void)mtLogFeature:(id)arg1 toggledOn:(BOOL)arg2;
 - (void)DSEEnableWithCompletionHandler:(CDUnknownBlockType)arg1;

@@ -51,6 +51,9 @@
 - (void)deleteAllSearchableItemsWithBundleID:(id)arg1;
 - (void)deleteSearchableItemsWithDomainIdentifiers:(id)arg1 bundleID:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
 - (void)deleteSearchableItemsWithDomainIdentifiers:(id)arg1 bundleID:(id)arg2;
+- (void)_deleteUserActivitiesWithPersistentIdentifiers:(id)arg1 bundleID:(id)arg2;
+- (void)deleteUserActivitiesWithPersistentIdentifiers:(id)arg1 bundleID:(id)arg2;
+- (void)deleteAllUserActivities:(id)arg1;
 - (void)addUserAction:(id)arg1 withItem:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
 - (void)addUserAction:(id)arg1 withItem:(id)arg2;
 - (void)addOrUpdateSearchableItems:(id)arg1 bundleID:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;

@@ -10,7 +10,7 @@
 #import "TSearchCriteriaViewControllerDelegate.h"
 #import "TSearchScopeSliceControllerDelegate.h"
 
-@class FI_TBrowserContainerController, NSSearchField, NSSet, NSString;
+@class FI_TBrowserContainerController, NSDictionary, NSSearchField, NSSet, NSString;
 
 __attribute__((visibility("hidden")))
 @interface FI_TSearchSliceController : FI_TViewController <NSTextFieldDelegate, TSearchScopeSliceControllerDelegate, TSearchCriteriaViewControllerDelegate>
@@ -42,23 +42,23 @@ __attribute__((visibility("hidden")))
 - (int)searchWhen;
 - (id)appendSearchWhen:(int)arg1 toString:(id)arg2;
 - (_Bool)queryIsCannedSearch;
-- (struct TMDQueryAliasNode *)queryNode;
+@property(readonly, nonatomic) struct TMDQueryAliasNode *queryNode;
 - (void)configureForAction:(int)arg1 forSearchString:(id)arg2;
 - (void)setDefaultFileNameOnly:(int)arg1;
 - (void)setSuggestionFieldScope:(long long)arg1;
 - (void)setCriteriaTo:(id)arg1;
 - (void)showDefaultCriteria:(_Bool)arg1;
 - (void)setCriteriaIsVisible:(_Bool)arg1;
-- (_Bool)hasCriteria;
-- (_Bool)criteriaIsCollapsed;
+@property(readonly, nonatomic) _Bool hasCriteria;
+@property(readonly, nonatomic) _Bool criteriaIsCollapsed;
 - (void)removeCriteria;
 - (_Bool)addSearchStringAndSuggestionsToCriteria;
 - (void)addCriteria;
 - (void)makeCriteriaController;
 - (_Bool)criteriaIsVisible;
-- (id)userSlices;
+@property(readonly, nonatomic) NSDictionary *userSlices;
 - (id)userCriteria:(_Bool)arg1;
-- (id)currentSearchField;
+@property(readonly, nonatomic) NSSearchField *currentSearchField;
 - (void)setToolbarSearchField:(id)arg1;
 - (void)setScopePlusMinusButtonTitle:(_Bool)arg1;
 - (void)setScopePlusMinusButtonEnabled:(_Bool)arg1;
@@ -79,8 +79,8 @@ __attribute__((visibility("hidden")))
 - (void)fieldChanged:(id)arg1 nameOnly:(_Bool)arg2;
 - (void)scopeChanged:(id)arg1 index:(unsigned long long)arg2;
 - (void)controlTextDidChange:(id)arg1;
-- (id)currentScopeString;
-- (_Bool)scopeSliceIsVisible;
+@property(readonly, nonatomic) NSString *currentScopeString;
+@property(readonly, nonatomic) _Bool scopeSliceIsVisible;
 - (void)toggleSlices;
 @property(copy) NSSet *searchFilterUTIs; // @dynamic searchFilterUTIs;
 - (void)aboutToTearDown;

@@ -9,7 +9,7 @@
 #import "HMDDataStreamProtocol.h"
 #import "HMFLogging.h"
 
-@class NSMapTable, NSObject<OS_dispatch_queue>, NSPointerArray, NSString;
+@class NSMapTable, NSObject<OS_dispatch_queue>, NSString;
 
 @interface HMDDataStreamBulkSendProtocol : NSObject <HMFLogging, HMDDataStreamProtocol>
 {
@@ -17,7 +17,7 @@
     id <HMDDataStreamProtocolDelegate> _dataStream;
     NSObject<OS_dispatch_queue> *_queue;
     id _accessory;
-    NSPointerArray *_listeners;
+    NSMapTable *_listeners;
     NSMapTable *_activeBulkSendSessions;
     NSMapTable *_pendingBulkSendSessions;
 }
@@ -26,7 +26,7 @@
 @property(nonatomic) BOOL isConnected; // @synthesize isConnected=_isConnected;
 @property(retain, nonatomic) NSMapTable *pendingBulkSendSessions; // @synthesize pendingBulkSendSessions=_pendingBulkSendSessions;
 @property(retain, nonatomic) NSMapTable *activeBulkSendSessions; // @synthesize activeBulkSendSessions=_activeBulkSendSessions;
-@property(retain, nonatomic) NSPointerArray *listeners; // @synthesize listeners=_listeners;
+@property(retain, nonatomic) NSMapTable *listeners; // @synthesize listeners=_listeners;
 @property(nonatomic) __weak id accessory; // @synthesize accessory=_accessory;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(nonatomic) __weak id <HMDDataStreamProtocolDelegate> dataStream; // @synthesize dataStream=_dataStream;
@@ -53,7 +53,8 @@
 - (void)dataStreamDidClose:(id)arg1;
 - (void)dataStream:(id)arg1 didFailWithError:(id)arg2;
 - (void)_closeAllSessionsWithError:(id)arg1;
-- (void)addListener:(id)arg1;
+- (void)removeListener:(id)arg1;
+- (void)addListener:(id)arg1 fileType:(id)arg2;
 - (id)initWithQueue:(id)arg1 accessory:(id)arg2;
 
 // Remaining properties

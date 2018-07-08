@@ -27,6 +27,8 @@
 - (void)setTargetTimer:(id)arg1;
 @property(readonly, copy) INTimer *targetTimer;
 - (id)initWithTargetTimer:(id)arg1 toDuration:(double)arg2;
+- (id)_categoryVerb;
+- (long long)_intentCategory;
 - (void)_setMetadata:(id)arg1;
 - (id)_metadata;
 - (id)_typedBackingStore;

@@ -248,10 +248,11 @@ struct CUIDescriptor {
     double _field37;
     double _field38;
     struct CGColor *_field39;
+    struct __CFArray *_field40;
     union {
         struct CGRect _field1[5];
         double _field2[20];
-    } _field40;
+    } _field41;
 };
 
 struct FontValue {

@@ -9,7 +9,7 @@
 #import "CXCallObserverDelegate.h"
 #import "FMFSessionDelegate.h"
 
-@class CUBluetoothClient, CUWiFiManager, CXCallObserver, NSArray, NSData, NSObject<OS_dispatch_queue>, NSString;
+@class CUBluetoothClient, CUSystemMonitor, CUWiFiManager, CXCallObserver, NSArray, NSData, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CUSystemMonitorImp : NSObject <FMFSessionDelegate, CXCallObserverDelegate>
@@ -21,6 +21,9 @@ __attribute__((visibility("hidden")))
     CUBluetoothClient *_bluetoothClient;
     CXCallObserver *_callObserver;
     int _activeCallCount;
+    unsigned int _consoleUserID;
+    NSString *_consoleUserName;
+    struct __SCDynamicStore *_consoleUserStore;
     NSArray *_familyMembers;
     BOOL _familyObserving;
     int _familyUpdatedToken;
@@ -35,6 +38,10 @@ __attribute__((visibility("hidden")))
     BOOL _powerUnlimited;
     BOOL _primaryAppleIDIsHSA2;
     BOOL _primaryAppleIDObserving;
+    CDStruct_83abfce7 _rotatingIdentifier48;
+    NSData *_rotatingIdentifierData;
+    CUSystemMonitor *_rotatingIdentifierBluetoothAddressMonitor;
+    NSObject<OS_dispatch_source> *_rotatingIdentifierTimer;
     BOOL _screenLocked;
     int _screenLockedToken;
     int _screenUnlockedToken;
@@ -64,6 +71,11 @@ __attribute__((visibility("hidden")))
 - (void)_screenLockedChanged;
 - (void)_screenLockedMonitorStop;
 - (void)_screenLockedMonitorStart;
+- (void)_rotatingIdentifierTimerReset:(BOOL)arg1;
+- (void)_rotatingIdentifierTimerFired;
+- (void)_rotatingIdentifierBTUpdated;
+- (void)_rotatingIdentifierMonitorStop;
+- (void)_rotatingIdentifierMonitorStart;
 - (void)_primaryAppleIDChanged:(id)arg1;
 - (void)_primaryAppleIDMonitorStop;
 - (void)_primaryAppleIDMonitorStart;
@@ -77,6 +89,9 @@ __attribute__((visibility("hidden")))
 - (void)_familyGetMembers:(BOOL)arg1;
 - (void)_familyMonitorStop;
 - (void)_familyMonitorStart;
+- (void)_consoleUserChanged;
+- (void)_consoleUserMonitorStop;
+- (void)_consoleUserMonitorStart;
 - (int)_activeCallCountUnached;
 - (void)callObserver:(id)arg1 callChanged:(id)arg2;
 - (void)_callMonitorStop;

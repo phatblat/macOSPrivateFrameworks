@@ -32,10 +32,9 @@
 @property NSDictionary *keyboardShortcutDictionary; // @dynamic keyboardShortcutDictionary;
 - (void)notifyVoiceTriggerSuppressionNoLongerHonored;
 - (void)notifyUserDidSwitchOnVoiceTrigger;
-@property NSString *preferredMicrophoneIdentifier; // @dynamic preferredMicrophoneIdentifier;
 @property(readonly) NSString *preferredBluetoothMicrophoneIdentifier;
-@property(readonly) BOOL isBestMicrophoneInternal;
-@property(readonly) NSString *bestMicrophoneIdentifier;
+@property(readonly) BOOL isEffectiveMicrophoneInternal;
+@property(readonly) NSString *effectiveMicrophoneIdentifier;
 @property(getter=isStatusMenuVisible) BOOL statusMenuVisible;
 - (void)_notifyStatusMenuVisibleDidChange;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;

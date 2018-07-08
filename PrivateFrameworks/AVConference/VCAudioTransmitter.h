@@ -94,11 +94,13 @@ __attribute__((visibility("hidden")))
         unsigned int averageMediaBitrate;
         double averageFramerate;
     } _currentChannelMetrics;
-    CDStruct_81244b4e _idsChannelDataFormat;
+    CDStruct_94aa5fb4 _idsChannelDataFormat;
     unsigned int _maxIDSStreamIdCount;
     NSArray *_supportedNumRedundantPayload;
+    BOOL _currentDTXEnable;
 }
 
+@property(nonatomic, getter=isCurrentDTXEnabled) BOOL currentDTXEnable; // @synthesize currentDTXEnable=_currentDTXEnable;
 @property(nonatomic) BOOL sendActiveVoiceOnly; // @synthesize sendActiveVoiceOnly=_sendActiveVoiceOnly;
 @property(nonatomic) CDStruct_1c8e0384 currentChannelMetrics; // @synthesize currentChannelMetrics=_currentChannelMetrics;
 @property(retain, nonatomic) NSArray *supportedNumRedundantPayload; // @synthesize supportedNumRedundantPayload=_supportedNumRedundantPayload;
@@ -149,6 +151,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)shouldUseDtx;
 - (float)nextAudioInterval:(int)arg1;
 @property(readonly, nonatomic) NSDictionary *dtxMetrics;
+- (void)reportRedundancyConfigChange;
 - (void)registerReportingTask;
 - (BOOL)setupAudio:(id *)arg1;
 - (void)setCellTech:(int)arg1 remoteCellular:(int)arg2 isIPV6:(int)arg3 audioCap:(unsigned int)arg4;

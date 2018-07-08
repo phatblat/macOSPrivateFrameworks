@@ -47,6 +47,7 @@
     BOOL _eligibleForPublicIndexing;
     BOOL _eligibleForPrediction;
     NSString *_persistentIdentifier;
+    id <UAUserActivityDelegate> _delegate;
     BOOL _invalidated;
     BOOL _userInfoContainsFileURLs;
     BOOL _canCreateStreams;
@@ -54,7 +55,6 @@
     NSSet *_keywords;
     NSSet *_requiredUserInfoKeys;
     NSDictionary *_userInfo;
-    id <UAUserActivityDelegate> _delegate;
     UAUserActivityManager *_manager;
     NSString *_typeIdentifier;
     NSString *_dynamicIdentifier;
@@ -106,7 +106,6 @@
 @property(copy) NSString *dynamicIdentifier; // @synthesize dynamicIdentifier=_dynamicIdentifier;
 @property(copy) NSString *typeIdentifier; // @synthesize typeIdentifier=_typeIdentifier;
 @property(readonly) __weak UAUserActivityManager *manager; // @synthesize manager=_manager;
-@property id <UAUserActivityDelegate> delegate; // @synthesize delegate=_delegate;
 @property(copy) NSSet *requiredUserInfoKeys; // @synthesize requiredUserInfoKeys=_requiredUserInfoKeys;
 @property(copy) NSSet *keywords; // @synthesize keywords=_keywords;
 @property BOOL userInfoContainsFileURLs; // @synthesize userInfoContainsFileURLs=_userInfoContainsFileURLs;
@@ -143,6 +142,7 @@
 - (void)_resignCurrent;
 - (void)becomeCurrent;
 - (void)getContinuationStreamsWithCompletionHandler:(CDUnknownBlockType)arg1;
+@property id <UAUserActivityDelegate> delegate; // @dynamic delegate;
 @property BOOL supportsContinuationStreams; // @dynamic supportsContinuationStreams;
 @property(copy) NSData *streamsData;
 @property __weak NSUserActivity *parentUserActivity;

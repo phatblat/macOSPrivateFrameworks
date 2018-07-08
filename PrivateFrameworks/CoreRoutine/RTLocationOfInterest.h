@@ -13,7 +13,6 @@
 
 @interface RTLocationOfInterest : NSObject <NSCopying, NSSecureCoding>
 {
-    id <GEOMapItem> _geoMapItem;
     double _latitude;
     double _longitude;
     double _uncertainty;
@@ -44,7 +43,7 @@
 - (long long)recentCompare:(id)arg1;
 - (id)nameFromType:(long long)arg1;
 @property(readonly, nonatomic) NSString *preferredName;
-@property(readonly, nonatomic) id <GEOMapItem> geoMapItem; // @synthesize geoMapItem=_geoMapItem;
+@property(readonly, nonatomic) id <GEOMapItem> geoMapItem;
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;

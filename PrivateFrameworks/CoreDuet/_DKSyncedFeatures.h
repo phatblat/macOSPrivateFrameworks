@@ -8,15 +8,17 @@
 
 @interface _DKSyncedFeatures : NSObject
 {
+    BOOL _isDigitalHealthDisabledInitialized;
+    BOOL _isDigitalHealthDisabled;
 }
 
 + (id)sharedInstance;
 - (id)description;
 - (BOOL)anyFeatureEnabled;
-- (BOOL)isSupergreenDisabled;
+- (BOOL)isSupergreenDisabledForTransports:(long long)arg1;
 - (BOOL)isSiriPortraitDisabled;
 - (BOOL)isIDSMessageGatingDisabled;
-- (BOOL)isDigitalHealthDisabled;
+- (BOOL)isDigitalHealthDisabledWithIsSingleDevice:(BOOL)arg1;
 
 @end
 

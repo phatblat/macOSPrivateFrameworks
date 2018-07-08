@@ -15,10 +15,12 @@
     FLFollowUpController *_controller;
     FLItemChangeObserver *_observer;
     NSString *_bundleIdentifier;
+    NSString *_localizedDeviceRowTitle;
 }
 
 + (id)_prefixFromBundleIdentifier:(id)arg1;
 + (id)redirectURLForItem:(id)arg1 withAction:(id)arg2;
+@property(copy, nonatomic) NSString *localizedDeviceRowTitle; // @synthesize localizedDeviceRowTitle=_localizedDeviceRowTitle;
 - (void).cxx_destruct;
 - (void)setItemChangeHandler:(CDUnknownBlockType)arg1;
 - (void)mapItemsToGroups:(id)arg1;

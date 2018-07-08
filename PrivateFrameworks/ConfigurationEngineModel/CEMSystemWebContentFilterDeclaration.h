@@ -29,6 +29,7 @@
     NSNumber *_payloadFilterSockets;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withFilterType:(id)arg2 withAutoFilterEnabled:(id)arg3 withPermittedURLs:(id)arg4 withBlacklistedURLs:(id)arg5 withWhitelistedBookmarks:(id)arg6 withUserDefinedName:(id)arg7 withPluginBundleID:(id)arg8 withServerAddress:(id)arg9 withUserName:(id)arg10 withPassword:(id)arg11 withCertificate:(id)arg12 withOrganization:(id)arg13 withVendorConfig:(id)arg14 withFilterBrowsers:(id)arg15 withFilterSockets:(id)arg16;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;
