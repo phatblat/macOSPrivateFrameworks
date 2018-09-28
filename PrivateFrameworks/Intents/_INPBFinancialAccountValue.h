@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBFinancialAccountValue.h"
 
-@class INCodableAttribute, NSString, _INPBBalanceAmountValue, _INPBDataString, _INPBValueMetadata;
+@class NSString, _INPBBalanceAmountValue, _INPBDataString, _INPBValueMetadata;
 
-@interface _INPBFinancialAccountValue : PBCodable <_INPBFinancialAccountValue, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBFinancialAccountValue : PBCodable <_INPBFinancialAccountValue, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int accountType:1;
@@ -25,10 +24,8 @@
     _INPBDataString *_organizationName;
     _INPBBalanceAmountValue *_secondaryBalance;
     _INPBValueMetadata *_valueMetadata;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBValueMetadata *valueMetadata; // @synthesize valueMetadata=_valueMetadata;
 @property(retain, nonatomic) _INPBBalanceAmountValue *secondaryBalance; // @synthesize secondaryBalance=_secondaryBalance;
 @property(retain, nonatomic) _INPBDataString *organizationName; // @synthesize organizationName=_organizationName;

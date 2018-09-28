@@ -29,6 +29,7 @@
 + (id)sharedBagCacheConfig;
 + (id)sharedBagConfig;
 + (id)sharedAccountsStorefrontConfig;
++ (id)sharedAccountsOversizeConfig;
 + (id)sharedAccountsNotificationPluginConfig;
 + (id)sharedAccountsMigrationConfigOversize;
 + (id)sharedAccountsMigrationConfig;

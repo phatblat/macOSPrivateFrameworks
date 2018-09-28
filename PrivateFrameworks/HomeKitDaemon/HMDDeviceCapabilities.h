@@ -21,6 +21,8 @@
 + (id)deviceCapabilitiesModelIdentifierWithParentIdentifier:(id)arg1;
 + (BOOL)supportsSecureCoding;
 + (id)deviceCapabilities;
++ (BOOL)supportsSyncingToSharedUsers;
++ (BOOL)supportsAddingAccessory;
 + (BOOL)supportsReceivingRemoteCameraStream;
 + (BOOL)supportsDismissUserNotificationAndDialog;
 + (BOOL)supportsUserNotifications;
@@ -29,6 +31,8 @@
 + (BOOL)supportsRemoteAccess;
 + (BOOL)isAppleMediaAccessory;
 + (BOOL)supportsCustomerReset;
++ (BOOL)supportsDeviceLock;
++ (BOOL)supportsSymptomsHandler;
 + (BOOL)supportsIntentDonation;
 + (BOOL)supportsHomeApp;
 + (BOOL)supportsLocalization;

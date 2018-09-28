@@ -8,15 +8,17 @@
 
 #import "HMDBackingStoreModelBackedObjectProtocol.h"
 #import "HMDBackingStoreObjectProtocol.h"
+#import "HMDRemoteAddressable.h"
 #import "HMFLogging.h"
 #import "HMFMerging.h"
 #import "HMFObject.h"
 #import "NSSecureCoding.h"
 
-@class HMDAccount, HMDDeviceCapabilities, HMDHomeKitVersion, HMFProductInfo, NSArray, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
+@class HMDAccount, HMDDeviceCapabilities, HMDHomeKitVersion, HMFProductInfo, HMFUnfairLock, NSArray, NSSet, NSString, NSUUID;
 
-@interface HMDDevice : HMFObject <HMFObject, HMFLogging, HMDBackingStoreObjectProtocol, HMDBackingStoreModelBackedObjectProtocol, HMFMerging, NSSecureCoding>
+@interface HMDDevice : HMFObject <HMFObject, HMFLogging, HMDBackingStoreObjectProtocol, HMDBackingStoreModelBackedObjectProtocol, HMDRemoteAddressable, HMFMerging, NSSecureCoding>
 {
+    HMFUnfairLock *_lock;
     NSSet *_handles;
     BOOL _dirty;
     BOOL _locallyTracked;
@@ -29,21 +31,19 @@
     NSUUID *_idsIdentifierHash;
     NSUUID *_modelIdentifier;
     NSUUID *_identifier;
-    NSObject<OS_dispatch_queue> *_propertyQueue;
 }
 
 + (BOOL)supportsSecureCoding;
 + (id)logCategory;
 + (id)deviceWithHandle:(id)arg1;
 + (id)deviceWithDestination:(id)arg1;
-+ (id)currentDeviceWithIDSService:(id)arg1;
 + (id)destinationForDevice:(id)arg1 service:(id)arg2;
 @property(getter=isCloudTracked) BOOL cloudTracked; // @synthesize cloudTracked=_cloudTracked;
 @property(getter=isLocallyTracked) BOOL locallyTracked; // @synthesize locallyTracked=_locallyTracked;
-@property(readonly) NSObject<OS_dispatch_queue> *propertyQueue; // @synthesize propertyQueue=_propertyQueue;
 @property(readonly, copy) NSUUID *identifier; // @synthesize identifier=_identifier;
 @property(readonly, nonatomic) NSUUID *modelIdentifier; // @synthesize modelIdentifier=_modelIdentifier;
 - (void).cxx_destruct;
+- (BOOL)isBackingStorageEqual:(id)arg1;
 - (id)modelBackedObjects;
 - (id)backingStoreObjectsWithChangeType:(unsigned long long)arg1 version:(long long)arg2;
 - (id)modelObjectWithChangeType:(unsigned long long)arg1 version:(long long)arg2;
@@ -55,10 +55,10 @@
 - (id)initWithCoder:(id)arg1;
 - (BOOL)mergeObject:(id)arg1;
 - (id)logIdentifier;
+- (id)remoteDestinationString;
 @property(copy, setter=setIDSIdentifierHash:) NSUUID *idsIdentifierHash; // @synthesize idsIdentifierHash=_idsIdentifierHash;
 @property(getter=isDirty) BOOL dirty; // @synthesize dirty=_dirty;
-- (void)setCapabilities:(id)arg1;
-@property(readonly, copy) HMDDeviceCapabilities *capabilities; // @synthesize capabilities=_capabilities;
+@property(copy) HMDDeviceCapabilities *capabilities; // @synthesize capabilities=_capabilities;
 - (void)updateWithDevice:(id)arg1;
 - (void)updateVersion:(id)arg1;
 - (void)setVersion:(id)arg1;
@@ -69,11 +69,11 @@
 @property(readonly, copy) NSString *name; // @synthesize name=_name;
 @property(readonly, copy) NSUUID *idsIdentifier;
 - (id)destination;
+- (void)__handleAccountHandleUpdated:(id)arg1;
 - (void)setHandles:(id)arg1;
 - (id)globalHandles;
 - (id)localHandles;
 - (id)handles;
-- (BOOL)isBackingStorageEqual:(id)arg1;
 - (BOOL)isRelatedToDevice:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;

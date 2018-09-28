@@ -8,6 +8,7 @@
 
 @interface NSDictionary (AppleMediaServices)
 - (id)ams_objectForKey:(id)arg1 defaultValue:(id)arg2;
+- (id)ams_objectForCaseInsensitiveKey:(id)arg1;
 - (id)ams_filterUsingTest:(CDUnknownBlockType)arg1;
 - (id)ams_dictionaryByAddingEntriesFromDictionary:(id)arg1;
 - (id)ams_arrayUsingTransform:(CDUnknownBlockType)arg1;

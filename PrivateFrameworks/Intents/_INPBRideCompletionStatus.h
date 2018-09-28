@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBRideCompletionStatus.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBCurrencyAmountValue, _INPBUserActivity;
+@class NSArray, NSString, _INPBCurrencyAmountValue, _INPBUserActivity;
 
-@interface _INPBRideCompletionStatus : PBCodable <_INPBRideCompletionStatus, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBRideCompletionStatus : PBCodable <_INPBRideCompletionStatus, NSSecureCoding, NSCopying>
 {
     CDStruct_95bda58d _feedbackTypes;
     struct {
@@ -31,11 +30,9 @@
     _INPBUserActivity *_completionUserActivity;
     NSArray *_defaultTippingOptions;
     _INPBCurrencyAmountValue *_paymentAmount;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)defaultTippingOptionsType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBCurrencyAmountValue *paymentAmount; // @synthesize paymentAmount=_paymentAmount;
 @property(nonatomic) BOOL outstanding; // @synthesize outstanding=_outstanding;
 @property(nonatomic) BOOL missedPickup; // @synthesize missedPickup=_missedPickup;

@@ -34,8 +34,10 @@
 - (void)stashLoginCredentialsEnablingFLO:(BOOL)arg1 reply:(void (^)(BOOL))arg2;
 - (void)productKeysToAutomaticallyInstallLaterWithReply:(void (^)(NSArray *))arg1;
 - (void)setAutomaticallyInstallLater:(BOOL)arg1 forProductKeys:(NSArray *)arg2 replyWhenDone:(void (^)(NSArray *, NSError *))arg3;
+- (void)stashAndCommitFDEKeyReplyingWithResult:(void (^)(BOOL))arg1;
 - (void)consumeUUIDForToken:(NSString *)arg1 replyWithResult:(void (^)(BOOL))arg2;
 - (void)adoptManualProductArchiveByReadingFromFileHandle:(NSFileHandle *)arg1 archiveName:(NSString *)arg2 displayName:(NSString *)arg3 displayVersion:(NSString *)arg4 allowDevSigning:(BOOL)arg5 replyWithResult:(void (^)(NSString *, NSError *))arg6;
+- (void)performBaseSystemInstallCleanupTasks:(void (^)(BOOL))arg1;
 - (void)productKeysToInstallAfterLogoutWithReply:(void (^)(NSArray *))arg1;
 - (void)registerToInstallAfterLogoutForProductKeys:(NSArray *)arg1 nowIsLater:(BOOL)arg2 restartNow:(BOOL)arg3 shouldStashCredentials:(BOOL)arg4 reply:(void (^)(NSArray *))arg5;
 - (void)cancelUpdatesForProductKeys:(NSArray *)arg1 reply:(void (^)(NSArray *))arg2;
@@ -57,6 +59,7 @@
 - (void)refreshAvailableUpdates:(BOOL)arg1 preferredLocalizations:(NSArray *)arg2 limitedToProductTypes:(NSArray *)arg3 replyWhenDone:(void (^)(NSError *))arg4;
 - (void)catalogAndScanInformationWithReply:(void (^)(NSString *, BOOL, NSDate *, long long, BOOL, BOOL, BOOL, BOOL, BOOL))arg1;
 - (void)catalogInformationWithReply:(void (^)(NSString *, NSURL *, int, BOOL, BOOL, BOOL))arg1;
+- (void)adminDeferredAvailableUpdatesWithReply:(void (^)(NSArray *))arg1;
 - (void)installedUpdateJournalPrunedAndSortedWithReply:(void (^)(NSArray *))arg1;
 - (void)installedUpdateJournalWithReply:(void (^)(NSArray *))arg1;
 - (void)installStatus:(SUUpdateStatus *)arg1 didChangeExternallyForProductKey:(NSString *)arg2;

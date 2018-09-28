@@ -6,24 +6,21 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBRideDriver.h"
 
-@class INCodableAttribute, NSString, _INPBContactValue, _INPBImageValue;
+@class NSString, _INPBContactValue, _INPBImageValue;
 
-@interface _INPBRideDriver : PBCodable <_INPBRideDriver, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBRideDriver : PBCodable <_INPBRideDriver, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBImageValue *_image;
     _INPBContactValue *_person;
     NSString *_phoneNumber;
     NSString *_rating;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *rating; // @synthesize rating=_rating;
 @property(copy, nonatomic) NSString *phoneNumber; // @synthesize phoneNumber=_phoneNumber;
 @property(retain, nonatomic) _INPBContactValue *person; // @synthesize person=_person;

@@ -6,13 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>;
+@class NSDictionary, NSObject<OS_dispatch_queue>;
 
 @interface PPConnectionsParameters : NSObject
 {
     NSDictionary *_assets;
     NSObject<OS_dispatch_queue> *_queue;
-    NSObject<OS_dispatch_semaphore> *_assets_sem;
 }
 
 + (id)sharedInstance;

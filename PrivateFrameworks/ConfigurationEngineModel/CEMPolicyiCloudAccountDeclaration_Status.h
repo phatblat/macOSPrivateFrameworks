@@ -10,6 +10,7 @@
 {
 }
 
++ (id)buildRequiredOnly;
 + (id)build;
 + (id)allowedReasons;
 + (id)allowedStatusKeys;

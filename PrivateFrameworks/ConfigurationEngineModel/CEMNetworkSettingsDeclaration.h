@@ -16,6 +16,7 @@
     NSNumber *_payloadAllowVPNCreation;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withForceWiFiWhitelisting:(id)arg2 withAllowVPNCreation:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

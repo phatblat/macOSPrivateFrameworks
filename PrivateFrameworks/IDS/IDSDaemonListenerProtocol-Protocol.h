@@ -53,7 +53,9 @@
 - (void)localDeviceInfo:(NSDictionary *)arg1;
 - (void)xpcObject:(NSObject<OS_xpc_object> *)arg1 objectContext:(NSDictionary *)arg2;
 - (void)openedSocket:(NSObject<OS_xpc_object> *)arg1 forHandlerID:(NSString *)arg2 error:(NSError *)arg3;
+- (void)groupSession:(NSString *)arg1 didReceiveReport:(NSArray *)arg2;
 - (void)allocationDone:(NSString *)arg1 sessionInfo:(NSDictionary *)arg2;
+- (void)receivedGroupSessionParticipantDataUpdate:(NSDictionary *)arg1 forTopic:(NSString *)arg2 toIdentifier:(NSString *)arg3 fromID:(NSString *)arg4;
 - (void)receivedGroupSessionParticipantUpdate:(NSDictionary *)arg1 forTopic:(NSString *)arg2 toIdentifier:(NSString *)arg3 fromID:(NSString *)arg4;
 - (void)session:(NSString *)arg1 didReceiveActiveParticipants:(NSArray *)arg2 success:(BOOL)arg3;
 - (void)session:(NSString *)arg1 didGetGroupSessionParticipants:(NSArray *)arg2 requestID:(NSNumber *)arg3 error:(NSNumber *)arg4;
@@ -63,6 +65,7 @@
 - (void)sessionDidJoinGroup:(NSString *)arg1 participantUpdateDictionary:(NSDictionary *)arg2 error:(NSError *)arg3;
 - (void)sessionDidJoinGroup:(NSString *)arg1 participantInfo:(NSDictionary *)arg2 error:(NSError *)arg3;
 - (void)sessionDidJoinGroup:(NSString *)arg1 participantsInfo:(NSArray *)arg2 error:(NSError *)arg3;
+- (void)session:(NSString *)arg1 didReceiveReport:(NSArray *)arg2;
 - (void)session:(NSString *)arg1 muted:(BOOL)arg2;
 - (void)session:(NSString *)arg1 audioEnabled:(BOOL)arg2;
 - (void)session:(NSString *)arg1 invitationSentToTokens:(NSSet *)arg2 shouldBreakBeforeMake:(BOOL)arg3;

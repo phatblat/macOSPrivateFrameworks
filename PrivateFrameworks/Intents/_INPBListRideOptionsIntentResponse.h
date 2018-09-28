@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBListRideOptionsIntentResponse.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBTimestamp;
+@class NSArray, NSString, _INPBTimestamp;
 
-@interface _INPBListRideOptionsIntentResponse : PBCodable <_INPBListRideOptionsIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBListRideOptionsIntentResponse : PBCodable <_INPBListRideOptionsIntentResponse, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int supportsApplePayForPayment:1;
@@ -22,12 +21,10 @@
     _INPBTimestamp *_expirationDate;
     NSArray *_paymentMethods;
     NSArray *_rideOptions;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)rideOptionsType;
 + (Class)paymentMethodsType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) BOOL supportsApplePayForPayment; // @synthesize supportsApplePayForPayment=_supportsApplePayForPayment;
 @property(copy, nonatomic) NSArray *rideOptions; // @synthesize rideOptions=_rideOptions;
 @property(copy, nonatomic) NSArray *paymentMethods; // @synthesize paymentMethods=_paymentMethods;

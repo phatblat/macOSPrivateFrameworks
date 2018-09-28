@@ -30,6 +30,7 @@
     NSNumber *_statusDownloadCancelled;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withExternalVersionIdentifier:(id)arg2 withVersion:(id)arg3 withShortVersion:(id)arg4 withName:(id)arg5 withAppStoreVendable:(id)arg6 withDeviceBasedVPP:(id)arg7 withBetaApp:(id)arg8 withAdHocCodeSigned:(id)arg9 withHasUpdateAvailable:(id)arg10;
 + (id)buildWithIdentifier:(id)arg1 withExternalVersionIdentifier:(id)arg2 withVersion:(id)arg3 withShortVersion:(id)arg4 withName:(id)arg5 withBundleSize:(id)arg6 withDynamicSize:(id)arg7 withIsValidated:(id)arg8 withInstalling:(id)arg9 withAppStoreVendable:(id)arg10 withDeviceBasedVPP:(id)arg11 withBetaApp:(id)arg12 withAdHocCodeSigned:(id)arg13 withHasUpdateAvailable:(id)arg14 withDownloadFailed:(id)arg15 withDownloadWaiting:(id)arg16 withDownloadPaused:(id)arg17 withDownloadCancelled:(id)arg18;
 + (id)allowedStatusKeys;
 @property(copy, nonatomic) NSNumber *statusDownloadCancelled; // @synthesize statusDownloadCancelled=_statusDownloadCancelled;

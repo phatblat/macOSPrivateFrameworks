@@ -86,12 +86,12 @@
 - (void)_handleStatus:(id)arg1 response:(id)arg2;
 - (void)_handleDeleteSession:(id)arg1 response:(id)arg2 relatedSession:(id)arg3;
 - (void)_handleNewSession:(id)arg1 response:(id)arg2;
-- (void)_createSessionFromFirstMatchAtIndex:(unsigned long long)arg1 firstMatchList:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)_createSessionFromFirstMatchAtIndex:(unsigned long long)arg1 firstMatchList:(id)arg2 accumulatedErrors:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)_evaluateInternalAsyncJavaScriptFunction:(id)arg1 withArguments:(id)arg2 sourceURL:(id)arg3 inBrowsingContext:(id)arg4 relatedSession:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
 - (void)_evaluateInternalJavaScriptFunction:(id)arg1 withArguments:(id)arg2 sourceURL:(id)arg3 inBrowsingContext:(id)arg4 relatedSession:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
 - (void)_handleUserPromptsInSession:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (BOOL)_extractInteractionSteps:(id *)arg1 andInputSources:(id *)arg2 fromPayload:(id)arg3 error:(id *)arg4;
-- (BOOL)_parseAction:(id)arg1 intoInputSource:(id *)arg2 withStates:(id *)arg3 error:(id *)arg4;
+- (BOOL)_extractInteractionSteps:(id *)arg1 andInputSources:(id *)arg2 fromPayload:(id)arg3 inSession:(id)arg4 error:(id *)arg5;
+- (BOOL)_parseAction:(id)arg1 intoInputSource:(id *)arg2 withStates:(id *)arg3 inSession:(id)arg4 error:(id *)arg5;
 - (BOOL)_parseMouseButton:(long long *)arg1 fromNumber:(id)arg2;
 - (BOOL)_parseCharKey:(id *)arg1 andVirtualKey:(id *)arg2 fromString:(id)arg3;
 - (BOOL)_extractFunctionBody:(id *)arg1 andArguments:(id *)arg2 fromRequest:(id)arg3 orSendResponse:(id)arg4 relatedSession:(id)arg5;

@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBFileProperty.h"
 
-@class INCodableAttribute, NSString, _INPBFilePropertyValue;
+@class NSString, _INPBFilePropertyValue;
 
-@interface _INPBFileProperty : PBCodable <_INPBFileProperty, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBFileProperty : PBCodable <_INPBFileProperty, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int name:1;
@@ -22,10 +21,8 @@
     int _name;
     int _qualifier;
     _INPBFilePropertyValue *_value;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBFilePropertyValue *value; // @synthesize value=_value;
 @property(nonatomic) int qualifier; // @synthesize qualifier=_qualifier;
 @property(nonatomic) int name; // @synthesize name=_name;

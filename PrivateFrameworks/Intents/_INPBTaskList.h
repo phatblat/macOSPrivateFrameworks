@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBTaskList.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBDataString, _INPBDateTime;
+@class NSArray, NSString, _INPBDataString, _INPBDateTime;
 
-@interface _INPBTaskList : PBCodable <_INPBTaskList, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBTaskList : PBCodable <_INPBTaskList, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBDateTime *_createdDateTime;
@@ -22,11 +21,9 @@
     _INPBDateTime *_modifiedDateTime;
     NSArray *_tasks;
     _INPBDataString *_title;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)tasksType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBDataString *title; // @synthesize title=_title;
 @property(copy, nonatomic) NSArray *tasks; // @synthesize tasks=_tasks;
 @property(retain, nonatomic) _INPBDateTime *modifiedDateTime; // @synthesize modifiedDateTime=_modifiedDateTime;

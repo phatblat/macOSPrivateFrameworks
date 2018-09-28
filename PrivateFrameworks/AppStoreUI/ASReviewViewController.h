@@ -6,13 +6,17 @@
 
 #import "NSViewController.h"
 
-@class ASWriteReviewBodyView, ASWriteReviewConfiguration;
+#import "NSControlTextEditingDelegate.h"
+#import "NSTextFieldDelegate.h"
 
-@interface ASReviewViewController : NSViewController
+@class ASWriteReviewBodyView, ASWriteReviewConfiguration, NSAlert, NSString;
+
+@interface ASReviewViewController : NSViewController <NSTextFieldDelegate, NSControlTextEditingDelegate>
 {
     BOOL _isReadyToPublish;
     CDUnknownBlockType _completionBlock;
     ASWriteReviewConfiguration *_configuration;
+    NSAlert *_alert;
     long long _state;
 }
 
@@ -21,10 +25,14 @@
 + (struct CGSize)preferredSizeForConfiguration:(id)arg1;
 @property(nonatomic) long long state; // @synthesize state=_state;
 @property(nonatomic) BOOL isReadyToPublish; // @synthesize isReadyToPublish=_isReadyToPublish;
+@property(retain, nonatomic) NSAlert *alert; // @synthesize alert=_alert;
 @property(retain, nonatomic) ASWriteReviewConfiguration *configuration; // @synthesize configuration=_configuration;
 @property(copy, nonatomic) CDUnknownBlockType completionBlock; // @synthesize completionBlock=_completionBlock;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) ASWriteReviewBodyView *reviewView;
+- (void)controlTextDidChange:(id)arg1;
+- (BOOL)control:(id)arg1 textView:(id)arg2 doCommandBySelector:(SEL)arg3;
+- (void)promptForNickNameWithMessage:(id)arg1;
 - (void)publishReview;
 - (void)transitionToLoadingCompleteAndPublishIfNeeded;
 - (void)loadReviewMetadata;
@@ -33,6 +41,12 @@
 - (void)configureDialogView:(id)arg1;
 - (void)loadView;
 - (id)initWithConfiguration:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

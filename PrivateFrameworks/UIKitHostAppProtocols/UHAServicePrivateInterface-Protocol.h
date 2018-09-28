@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "ROCKForwardingInterposableWithRunLoop.h"
 #import "UHAServiceInterface.h"
 
 @class NSObject<OS_dispatch_queue>;
 
-@protocol UHAServicePrivateInterface <UHAServiceInterface>
+@protocol UHAServicePrivateInterface <UHAServiceInterface, ROCKForwardingInterposableWithRunLoop>
 - (void)registerClient:(id <UHAClientInterface>)arg1 completionQueue:(NSObject<OS_dispatch_queue> *)arg2 completionHandler:(void (^)(NSError *))arg3;
 @end
 

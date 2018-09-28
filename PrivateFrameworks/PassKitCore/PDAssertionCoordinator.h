@@ -7,10 +7,11 @@
 #import <PassKitCore/PDXPCService.h>
 
 #import "PDAssertionCoordinatorExportedInterface.h"
+#import "PDAssertionRequestDelegate.h"
 
 @class NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, PKEntitlementWhitelist;
 
-@interface PDAssertionCoordinator : PDXPCService <PDAssertionCoordinatorExportedInterface>
+@interface PDAssertionCoordinator : PDXPCService <PDAssertionRequestDelegate, PDAssertionCoordinatorExportedInterface>
 {
     NSMutableDictionary *_assertionsByType;
     NSObject<OS_dispatch_queue> *_coordinatorSerialQueue;
@@ -31,6 +32,7 @@
 - (id)assertionsOfType:(unsigned long long)arg1;
 - (void)invalidateAssertionsForBackgroundApplicationState;
 - (void)invalidateAllAssertions;
+- (void)assertionRequestDidTimeout:(id)arg1;
 - (void)_processPendingAssertionRequests;
 - (void)_cancelPendingAssertionRequest:(id)arg1;
 - (void)_addRequestForAssertion:(id)arg1 handler:(CDUnknownBlockType)arg2;

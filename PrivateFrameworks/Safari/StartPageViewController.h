@@ -31,6 +31,7 @@ __attribute__((visibility("hidden")))
 
 + (id)urlForMode:(int)arg1;
 + (int)defaultStartPageMode;
++ (id)pageTitleForURL:(id)arg1;
 + (id)defaultPageTitle;
 @property(retain, nonatomic) NSLayoutConstraint *bottomBannerContainerToMainContainerBottomConstraint; // @synthesize bottomBannerContainerToMainContainerBottomConstraint=_bottomBannerContainerToMainContainerBottomConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *mainContainerToBottomBannerContainerConstraint; // @synthesize mainContainerToBottomBannerContainerConstraint=_mainContainerToBottomBannerContainerConstraint;

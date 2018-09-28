@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class AFRequestInfo;
+@class AFRequestInfo, INIntent, NSString;
 
 @protocol AFSiriActivationService <NSObject>
+- (oneway void)handleIntent:(INIntent *)arg1 inBackgroundAppWithBundleId:(NSString *)arg2 reply:(void (^)(INIntentResponse *, NSError *))arg3;
 - (oneway void)activateWithRequestInfo:(AFRequestInfo *)arg1 completion:(void (^)(NSError *))arg2;
 - (oneway void)prewarmForRequestInfo:(AFRequestInfo *)arg1 completion:(void (^)(NSError *))arg2;
 @end

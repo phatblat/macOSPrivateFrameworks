@@ -14,6 +14,7 @@
 @interface SORecipientBarViewController : SOChatViewController <NSMenuDelegate, CNContactPickerDelegate>
 {
     NSButton *_layoutTestDetailsButton;
+    double _initialButtonWidth;
     BOOL _reloadContactPicker;
     SOProgressBarViewController *_progressBarViewController;
     NSTextField *_toLabel;
@@ -60,7 +61,9 @@
 - (void)_updateBanner;
 - (void)_updateColors;
 - (void)_setupRecipientActionsView;
-- (void)viewDidLayout;
+- (void)viewDidAppear;
+- (void)windowDidResize:(id)arg1;
+- (void)_updateRecipientBarView;
 - (void)viewDidLoad;
 - (void)contactPicker:(id)arg1 didChooseCompatibilityContact:(id)arg2 key:(id)arg3 value:(id)arg4;
 - (void)showContacts:(id)arg1;

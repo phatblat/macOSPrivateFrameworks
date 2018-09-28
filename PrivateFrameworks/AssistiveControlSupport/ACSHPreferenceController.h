@@ -19,6 +19,7 @@
 @property(retain, nonatomic) NSDictionary *_preferenceDefaults; // @synthesize _preferenceDefaults=__preferenceDefaults;
 @property(nonatomic) BOOL showButtonLabels; // @synthesize showButtonLabels=_showButtonLabels;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL nonProportionalResizingEnabled;
 - (void)updateToolbarSetting:(unsigned long long)arg1 forToolbarIdentifier:(id)arg2 panelIdentifier:(id)arg3 productSupportType:(unsigned long long)arg4;
 - (unsigned long long)toolbarSettingForToolbarIdentifier:(id)arg1 panelIdentifier:(id)arg2 productSupportType:(unsigned long long)arg3;
 @property(readonly, nonatomic) double hotCornerDwellTime;

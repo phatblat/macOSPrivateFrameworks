@@ -7,6 +7,8 @@
 @class CKContainer, CKDatabase, CPLCloudKitOperationsTracker, NSError;
 
 @protocol CPLCloudKitTaskController
+@property(readonly, nonatomic) BOOL canBoostBackgroundOperations;
+@property(readonly, nonatomic) BOOL canBoostOperations;
 @property(readonly, nonatomic, getter=isForeground) BOOL foreground;
 @property(readonly, nonatomic, getter=isNetworkConnected) BOOL networkConnected;
 @property(readonly, nonatomic) CPLCloudKitOperationsTracker *operationTracker;

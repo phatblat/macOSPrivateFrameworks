@@ -50,6 +50,8 @@
 - (id)paragraphArbitrator;
 - (void)setLineBreakStrategy:(unsigned long long)arg1;
 - (unsigned long long)lineBreakStrategy;
+- (void)setLimitsLayoutForSuspiciousContents:(BOOL)arg1;
+- (BOOL)limitsLayoutForSuspiciousContents;
 - (void)setDefaultTighteningFactor:(double)arg1;
 - (double)defaultTighteningFactor;
 - (unsigned long long)_sweepDirectionForGlyphAtIndex:(long long)arg1;

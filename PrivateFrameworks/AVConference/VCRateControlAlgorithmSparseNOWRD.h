@@ -36,6 +36,8 @@ __attribute__((visibility("hidden")))
     double _nowrdShort;
     double _nowrdAcc;
     double _lastOWRDChangeTime;
+    double _lastCongestionTime;
+    double _lastRampUpTime;
     double _rampUpFrozenTime;
     BOOL _isCongested;
     BOOL _isFirstTimestampArrived;
@@ -51,11 +53,20 @@ __attribute__((visibility("hidden")))
     BOOL _belowNoRampUpBandwidth;
     double _lastNoOvershootBWEstimationTime;
     double _firstBelowNoRampUpBandwidthTime;
+    int _recentTierWindow[256];
+    unsigned int _recentTierWindowSize;
+    unsigned int _recentTierWindowIndex;
+    unsigned int _totalTierNumbersInWindow;
+    double _recentAverageTier;
+    double _lastTimeDetectNoOscillation;
+    BOOL _isTargetBitrateOscillating;
+    int _deviationChangeCount;
     unsigned int _totalPacketReceived;
     unsigned int _totalPacketSent;
     unsigned int _mostBurstLoss;
     unsigned int _roundTripTimeTick;
     double _roundTripTime;
+    double _averageRoundTripTime;
     double _packetLossRate;
     double _previousPacketLossRate;
     double _basebandNotificationArrivalTime;
@@ -67,6 +78,7 @@ __attribute__((visibility("hidden")))
     BOOL _isWaitingForBasebandRampDown;
     double _lastBasebandRampDownTime;
     double _lastHighNBDCDTime;
+    double _lastEmergencyBasebandRampDownTime;
     int _basebandAdditionalTiersForRampUp;
     int _currentTierIndex;
     int _previousTierIndex;
@@ -82,6 +94,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) unsigned int localBandwidthEstimation; // @synthesize localBandwidthEstimation=_localBandwidthEstimation;
 @property(readonly, nonatomic) BOOL isNewRateSentOut; // @synthesize isNewRateSentOut=_isNewRateSentOut;
 @property(readonly, nonatomic) double roundTripTime; // @synthesize roundTripTime=_roundTripTime;
+@property(readonly, nonatomic) unsigned int totalPacketReceived; // @synthesize totalPacketReceived=_totalPacketReceived;
 @property(readonly, nonatomic) double packetLossRate; // @synthesize packetLossRate=_packetLossRate;
 @property(readonly, nonatomic) unsigned int mostBurstLoss; // @synthesize mostBurstLoss=_mostBurstLoss;
 @property(retain, nonatomic) VCRateControlMediaController *mediaController; // @synthesize mediaController=_mediaController;
@@ -93,6 +106,10 @@ __attribute__((visibility("hidden")))
 - (double)getDoubleTimeFromTimestamp:(unsigned int)arg1 timestampTick:(unsigned int)arg2 wrapAroundCounter:(unsigned int)arg3;
 - (void)logToDumpFilesWithString:(id)arg1;
 - (void)resetRampingStatus;
+- (void)resetOscillationDetection;
+- (int)countDeviationChangeInTierWindow;
+- (BOOL)updateRecentTierWindow;
+- (void)checkTargetBitrateOscillation;
 - (void)resetLossEventBuffer;
 - (int)lossEventCount;
 - (void)updateLossEvent:(double)arg1 time:(double)arg2;
@@ -106,6 +123,7 @@ __attribute__((visibility("hidden")))
 - (void)stateEnter;
 - (void)stateExit;
 - (void)stateChangeTo:(int)arg1;
+- (void)updateLastEmergencyBasebandRampDownTimeWithTierIndex:(int)arg1;
 - (int)rampDownTierDueToBaseband;
 - (int)rampDownTier;
 - (int)rampUpTier;
@@ -114,8 +132,9 @@ __attribute__((visibility("hidden")))
 - (BOOL)shouldRampDown;
 - (BOOL)shouldRampUp;
 - (void)checkPaused;
-- (void)doRateControlWithBasebandStatistics:(CDStruct_dd06a755)arg1;
-- (void)doRateControlWithStatistics:(CDStruct_dd06a755)arg1;
+- (void)checkCongestionStatus;
+- (void)doRateControlWithBasebandStatistics:(CDStruct_48a7b5a5)arg1;
+- (BOOL)doRateControlWithStatistics:(CDStruct_48a7b5a5)arg1;
 - (void)enableBasebandDump:(void *)arg1;
 - (void)enableLogDump:(void *)arg1 enablePeriodicLogging:(BOOL)arg2;
 - (void)configure:(struct VCRateControlAlgorithmConfig)arg1 restartRequired:(BOOL)arg2;

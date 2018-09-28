@@ -22,6 +22,7 @@
     NSNumber *_payloadProxyCaptiveLoginAllowed;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withProxyServer:(id)arg2 withProxyServerPort:(id)arg3 withProxyPACURL:(id)arg4;
 + (id)buildWithIdentifier:(id)arg1 withProxyType:(id)arg2 withProxyServer:(id)arg3 withProxyServerPort:(id)arg4 withProxyUsername:(id)arg5 withProxyPassword:(id)arg6 withProxyPACURL:(id)arg7 withProxyPACFallbackAllowed:(id)arg8 withProxyCaptiveLoginAllowed:(id)arg9;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

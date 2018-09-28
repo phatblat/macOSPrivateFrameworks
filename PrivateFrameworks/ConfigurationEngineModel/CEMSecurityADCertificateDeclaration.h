@@ -22,14 +22,17 @@
     NSNumber *_payloadPromptForCredentials;
     NSNumber *_payloadKeyIsExtractable;
     NSNumber *_payloadKeysize;
+    NSNumber *_payloadEnableAutoRenewal;
 }
 
-+ (id)buildWithIdentifier:(id)arg1 withCertServer:(id)arg2 withCertTemplate:(id)arg3 withDescription:(id)arg4 withCertificateRenewalTimeInterval:(id)arg5 withCertificateAuthority:(id)arg6 withCertificateAcquisitionMechanism:(id)arg7 withAllowAllAppsAccess:(id)arg8 withPromptForCredentials:(id)arg9 withKeyIsExtractable:(id)arg10 withKeysize:(id)arg11;
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withCertServer:(id)arg2 withCertTemplate:(id)arg3;
++ (id)buildWithIdentifier:(id)arg1 withCertServer:(id)arg2 withCertTemplate:(id)arg3 withDescription:(id)arg4 withCertificateRenewalTimeInterval:(id)arg5 withCertificateAuthority:(id)arg6 withCertificateAcquisitionMechanism:(id)arg7 withAllowAllAppsAccess:(id)arg8 withPromptForCredentials:(id)arg9 withKeyIsExtractable:(id)arg10 withKeysize:(id)arg11 withEnableAutoRenewal:(id)arg12;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;
 + (id)profileType;
 + (id)registeredIdentifier;
 + (id)registeredClassName;
+@property(copy, nonatomic) NSNumber *payloadEnableAutoRenewal; // @synthesize payloadEnableAutoRenewal=_payloadEnableAutoRenewal;
 @property(copy, nonatomic) NSNumber *payloadKeysize; // @synthesize payloadKeysize=_payloadKeysize;
 @property(copy, nonatomic) NSNumber *payloadKeyIsExtractable; // @synthesize payloadKeyIsExtractable=_payloadKeyIsExtractable;
 @property(copy, nonatomic) NSNumber *payloadPromptForCredentials; // @synthesize payloadPromptForCredentials=_payloadPromptForCredentials;

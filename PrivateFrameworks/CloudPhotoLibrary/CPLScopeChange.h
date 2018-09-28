@@ -51,6 +51,7 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (id)updatedLibraryInfoFromLibraryInfo:(id)arg1 didUpdate:(char *)arg2;
 - (id)initWithScopeIdentifier:(id)arg1 type:(long long)arg2 libraryInfo:(id)arg3 state:(id)arg4;
 - (void)_setupWithLibraryState:(id)arg1;
 - (void)_setupWithLibraryInfo:(id)arg1;

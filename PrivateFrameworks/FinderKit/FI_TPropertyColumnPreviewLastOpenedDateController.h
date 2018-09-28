@@ -9,8 +9,10 @@
 __attribute__((visibility("hidden")))
 @interface FI_TPropertyColumnPreviewLastOpenedDateController : FI_TPropertyColumnPreviewDateTextFieldController
 {
+    _Bool _alwaysShow;
 }
 
+@property(nonatomic) _Bool alwaysShow; // @synthesize alwaysShow=_alwaysShow;
 - (_Bool)hasValue;
 - (_Bool)shouldFetchWhenDisabled;
 - (_Bool)shouldBeVisible;

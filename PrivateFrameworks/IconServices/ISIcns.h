@@ -23,6 +23,7 @@
 + (id)icnsWithIconFamilyHandle:(struct IconFamilyResource **)arg1;
 + (id)icnsWithContentsOfURL:(id)arg1;
 + (id)icnsWithResourceFile:(id)arg1;
++ (id)systemIconNamed:(id)arg1;
 @property BOOL dirty; // @synthesize dirty=_dirty;
 @property(readonly) NSMutableDictionary *elements; // @synthesize elements=_elements;
 @property unsigned int type; // @synthesize type=_type;

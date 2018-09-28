@@ -94,6 +94,7 @@
     HMDRoom *_roomForEntireHome;
     long long _lastKnownReachableAccessoryCount;
     long long _configurationVersion;
+    long long _lastSyncedConfigurationVersion;
     long long _expectedConfigurationVersion;
     NSString *_ownerName;
     HMDNotificationRegistry *_notificationRegistry;
@@ -171,6 +172,7 @@
 @property(nonatomic) int regionState; // @synthesize regionState=_regionState;
 @property(retain, nonatomic) NSString *ownerName; // @synthesize ownerName=_ownerName;
 @property(nonatomic) long long expectedConfigurationVersion; // @synthesize expectedConfigurationVersion=_expectedConfigurationVersion;
+@property(nonatomic) long long lastSyncedConfigurationVersion; // @synthesize lastSyncedConfigurationVersion=_lastSyncedConfigurationVersion;
 @property(nonatomic) long long configurationVersion; // @synthesize configurationVersion=_configurationVersion;
 @property(nonatomic) long long lastKnownReachableAccessoryCount; // @synthesize lastKnownReachableAccessoryCount=_lastKnownReachableAccessoryCount;
 @property(retain, nonatomic) HMDRoom *roomForEntireHome; // @synthesize roomForEntireHome=_roomForEntireHome;
@@ -307,7 +309,7 @@
 - (BOOL)_isSecureClassTriggeredByCharactersitics:(id)arg1;
 - (void)accessoryBrowser:(id)arg1 accessoryServer:(id)arg2 didUpdateValuesForCharacteristics:(id)arg3 stateNumber:(id)arg4 broadcast:(BOOL)arg5;
 - (id)_changedHMDCharacteristicsForHAPCharacteristics:(id)arg1 stateNumber:(id)arg2 broadcast:(BOOL)arg3 accessoryServer:(id)arg4;
-- (id)_hmdCharacteristicsForUpdatedHAPCharacterstics:(id)arg1 accessoryServer:(id)arg2;
+- (id)_hmdCharacteristicsForUpdatedHAPcharacteristics:(id)arg1 accessoryServer:(id)arg2;
 - (void)accessoryBrowser:(id)arg1 didUpdateEndpoint:(id)arg2;
 - (void)accessoryBrowser:(id)arg1 identifier:(id)arg2 reachable:(BOOL)arg3;
 - (void)accessoryBrowser:(id)arg1 setupID:(id)arg2 isPairedWithCompletionHandler:(CDUnknownBlockType)arg3;
@@ -339,6 +341,7 @@
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *messageReceiveQueue;
 - (id)messageDestination;
 @property(readonly, nonatomic) NSUUID *messageTargetUUID;
+- (void)_removeCorruptAccessories;
 - (void)_encodeActionSets:(id)arg1 coder:(id)arg2;
 - (void)_encodeObjectsWithAcessoriesWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -405,11 +408,12 @@
 - (void)_writeCharacteristicValues:(id)arg1 requestMessage:(id)arg2 source:(unsigned long long)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
 - (void)_redispatchWriteForAccessories:(id)arg1 dispatchGroup:(id)arg2 requestMap:(id)arg3 requestMessage:(id)arg4 responseTuples:(id)arg5;
 - (void)_loadBalancedRedispatchForAccessories:(id)arg1 source:(unsigned long long)arg2 dispatchGroup:(id)arg3 writeRequestMap:(id)arg4 requestMessage:(id)arg5 responseTuples:(id)arg6;
+- (id)__residentDeviceForAccesory:(id)arg1 fromMap:(id)arg2;
 - (void)_writeCharacteristicValuesForAccessories:(id)arg1 writeRequestMap:(id)arg2 responseTuples:(id)arg3 requestMessage:(id)arg4 viaDevice:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
 - (id)_applyDeviceLockCheck:(id)arg1 forSource:(unsigned long long)arg2;
 - (void)writeCharacteristicValues:(id)arg1 source:(unsigned long long)arg2 identifier:(id)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
 - (void)_notifyChangedCharacteristics:(id)arg1 identifier:(id)arg2 multiPartResponse:(BOOL)arg3 moreMessagesInMultipart:(BOOL)arg4 requestMessage:(id)arg5 withCompletionHandler:(CDUnknownBlockType)arg6;
-- (void)_sendClientCharacteristicsChangedNotification:(id)arg1 identifier:(id)arg2 isSecure:(BOOL)arg3 multiPartResponse:(BOOL)arg4 moreMessagesInMultipart:(BOOL)arg5 withCompletionHandler:(CDUnknownBlockType)arg6;
+- (void)_sendClientCharacteristicsChangedNotification:(id)arg1 identifier:(id)arg2 entitledClientsOnly:(BOOL)arg3 multiPartResponse:(BOOL)arg4 moreMessagesInMultipart:(BOOL)arg5 withCompletionHandler:(CDUnknownBlockType)arg6;
 - (void)_updateBulletinBoardOfChangedCharacteristics:(id)arg1 changedByThisDevice:(BOOL)arg2 homePresence:(id)arg3;
 - (void)notifyOfChangedCharacteristic:(id)arg1 changedByThisDevice:(BOOL)arg2 residentShouldNotifyPeers:(BOOL)arg3 message:(id)arg4;
 - (void)_postInternalNotificationForChangedCharacterisitics:(id)arg1 modifiedCharacteristics:(id)arg2 modifiedAccessories:(id)arg3 changedByThisDevice:(BOOL)arg4 residentShouldNotifyPeers:(BOOL)arg5 message:(id)arg6;
@@ -422,7 +426,7 @@
 - (BOOL)_shouldRegisterForNotificationsWithDevice:(id)arg1;
 - (BOOL)shouldRelayNotificationToRegisteredDevicesForSource:(id)arg1;
 - (void)_notifyChangedCharacteristics:(id)arg1 message:(id)arg2 modifiedCharacteristics:(id)arg3;
-- (id)_splitSecureCharacteristicChanges:(id)arg1 changedAccessories:(id)arg2;
+- (id)_splitCharacteristicChanges:(id)arg1 changedAccessories:(id)arg2;
 - (void)_handleRequestHomeDataSync:(id)arg1;
 - (void)_sendInvitationCancelationRequestToInvitee:(id)arg1;
 - (void)__handleCompletedOutgoingInvitation:(id)arg1;
@@ -433,9 +437,7 @@
 - (void)_updateOutgoingInviationsWithCompleteUserManagementOperation:(id)arg1;
 - (void)_handleUpdateRequestForHomeInvitationFromInvitee:(id)arg1;
 - (void)_handleUpdateOutgoingInvitationState:(id)arg1;
-- (void)_postOutgoingInvitationStateChangedNotification:(id)arg1 newInvitationState:(long long)arg2;
-- (void)_updateOutgoingInvitationForUser:(id)arg1 invitationState:(long long)arg2 error:(id)arg3 responseHandler:(CDUnknownBlockType)arg4;
-- (void)_sendInvitation:(id)arg1 confirm:(BOOL)arg2 message:(id)arg3;
+- (void)_sendInvitation:(id)arg1 message:(id)arg2;
 - (void)_addOutgoingInvitations:(id)arg1 message:(id)arg2;
 - (void)_handleOutgoingInvitations:(id)arg1;
 - (void)_refreshUserDisplayNames;
@@ -457,9 +459,7 @@
 - (void)_handleRemoveOutgoingHomeInvitationModel:(id)arg1 message:(id)arg2;
 - (void)_handleAddOutgoingHomeInvitationModel:(id)arg1 message:(id)arg2;
 - (void)_handleUserInvitations:(id)arg1;
-- (void)_addUser:(id)arg1 userPrivilege:(unsigned long long)arg2 confirm:(BOOL)arg3 message:(id)arg4;
 - (void)_cleanRemovedUsers:(id)arg1;
-- (void)_handleAddUser:(id)arg1;
 - (id)prepareUserManagementOperationForUser:(id)arg1 accessory:(id)arg2 type:(unsigned long long)arg3 model:(id)arg4 error:(id *)arg5;
 - (id)prepareUserManagementOperationForUser:(id)arg1 accessories:(id)arg2 type:(unsigned long long)arg3 error:(id *)arg4;
 - (void)_addAllUsersToAccessory:(id)arg1;
@@ -521,6 +521,7 @@
 - (void)_handleCancelPairingAccessory:(id)arg1;
 - (CDUnknownBlockType)_setupCodeProviderForMessage:(id)arg1;
 - (void)_presentPairingPasswordDialogForAccessory:(id)arg1 setupCodeAvailable:(CDUnknownBlockType)arg2;
+- (void)_retrieveStateForTrackedAccessory:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)getReachableIPAccessories:(unsigned long long *)arg1 btleAccessories:(unsigned long long *)arg2 mediaAccessories:(unsigned long long *)arg3;
 - (unsigned long long)reachableIPAccessories;
 - (long long)reachableMediaAccessories;
@@ -561,7 +562,7 @@
 - (void)_notifyClientOfNewlyAddedAccessories:(id)arg1;
 - (void)_sharedAdminDidFailToAddAccessories:(id)arg1;
 - (void)_notifyOwnerOfAddedAccessories:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)_addOwnerToPrimaryAccessory:(id)arg1 error:(id *)arg2;
+- (BOOL)_addOwnerToPrimaryAccessory:(id)arg1 error:(id *)arg2;
 - (void)_deregisterPairedAccessory:(id)arg1;
 - (void)_registerPairedAccessory:(id)arg1 btleTransport:(BOOL)arg2 airPlay:(BOOL)arg3;
 - (id)hapAccessoryUniqueIdentifiers;
@@ -605,6 +606,7 @@
 - (void)_updateWoWState:(id)arg1;
 - (void)_handleAssistantAccessControlUpdate:(id)arg1;
 - (void)_registerForMessages;
+@property(readonly, nonatomic) NSUUID *spiClientIdentifier;
 - (void)notifyClientOfVendorInfoUpdatedForManufacturers:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)resetConfiguration;
 - (void)_evaluateShouldRelaunchAndSetRelaunch;
@@ -623,8 +625,9 @@
 - (id)hapAccessoriesForServer:(id)arg1;
 - (id)hapAccessoriesForServer:(id)arg1 linkType:(long long)arg2;
 - (void)_readProfileState:(id)arg1 viaDevice:(id)arg2 message:(id)arg3;
-- (void)_getRunTimeStateUpdate:(BOOL)arg1 includeHAPAccessoryState:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)getRunTimeStateUpdate:(BOOL)arg1 includeHAPAccessoryState:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)_getRunTimeStateUpdate:(BOOL)arg1 includeHAPAccessoryState:(BOOL)arg2 includeResidentDeviceState:(BOOL)arg3 completion:(CDUnknownBlockType)arg4;
+- (id)residentDevicesIncludingRemoteGateways;
+- (void)getRunTimeStateUpdate:(BOOL)arg1 includeHAPAccessoryState:(BOOL)arg2 includeResidentDeviceState:(BOOL)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)handleBackgroundTaskAgentJob:(id)arg1;
 - (void)checkTimerTriggers;
 - (id)migrateOwnedTriggers;
@@ -668,7 +671,7 @@
 - (void)saveSharedHomeToAccountWithReason:(id)arg1 postSyncNotification:(BOOL)arg2 options:(id)arg3;
 - (void)_updateExpectConfigurationVersion;
 - (void)_updateConfigurationVersion;
-- (void)_modifyAllRegistrationsForNotificationsInNotificationRegistry:(BOOL)arg1;
+- (void)__saveConfigurationVersionTransaction;
 - (void)_handleModifyCharacteristicNotifications:(id)arg1;
 - (void)auditUsersForNotifications:(id)arg1;
 - (id)_populatePropertiesThatNeedNotificationsFromDictionary:(id)arg1;
@@ -716,7 +719,9 @@
 - (void)takeOwnershipOfAppData:(id)arg1;
 - (void)takeOwnershipOfAccessories:(id)arg1;
 - (void)handleForegroundAppsNotification:(id)arg1;
+- (void)_handleAppTermination:(id)arg1;
 - (void)handleAppTermination:(id)arg1;
+- (void)handleHomeUIServiceTermination:(id)arg1;
 - (void)_startHomeNotificationDeregistrationTimer;
 - (void)_disableNotificationsForClient:(id)arg1;
 - (void)_cleanAddAccessoryOperations;

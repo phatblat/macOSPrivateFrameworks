@@ -13,6 +13,8 @@
     NSDictionary *_dictionary;
 }
 
++ (void)setRemoteServer:(id)arg1;
++ (id)remoteServer;
 + (void)reset;
 + (id)_urlConfigurationWithError:(id *)arg1;
 + (id)itemForKey:(id)arg1 error:(id *)arg2;
@@ -41,7 +43,6 @@
 @property(readonly, nonatomic) NSString *familyLearnMoreURL;
 @property(readonly, nonatomic) NSString *rejectChildTransferURL;
 @property(readonly, nonatomic) NSString *acceptChildTransferURL;
-@property(readonly, nonatomic) NSString *apsEnvironment;
 @property(readonly, nonatomic) NSString *grandslamURL;
 @property(readonly, nonatomic) NSString *childAccountCreationUIURL;
 @property(readonly, nonatomic) NSString *getFamilyDetailsURL;
@@ -98,6 +99,8 @@
 @property(readonly, nonatomic) NSString *updateAccountURL;
 @property(readonly, nonatomic) NSString *accountCreationURL;
 - (id)_urlStringForKey:(id)arg1;
+@property(readonly, nonatomic) NSString *apsEnvironment;
+- (id)_envStringForKey:(id)arg1;
 @property(readonly, nonatomic) NSArray *urlsStoringCookies;
 
 @end

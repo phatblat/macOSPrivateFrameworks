@@ -18,6 +18,7 @@
     NSNumber *_payloadAllowKeyboardShortcuts;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowPredictiveKeyboard:(id)arg2 withAllowAutoCorrection:(id)arg3 withAllowSpellCheck:(id)arg4 withAllowKeyboardShortcuts:(id)arg5;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

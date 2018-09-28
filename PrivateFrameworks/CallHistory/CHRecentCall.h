@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class CHHandle, CNContact, NSDate, NSMutableArray, NSNumber, NSSet, NSString, NSValue;
+@class CHHandle, CNContact, NSDate, NSMutableArray, NSNumber, NSSet, NSString, NSUUID, NSValue;
 
 @interface CHRecentCall : CHSynchronizable <NSSecureCoding, NSCopying>
 {
@@ -24,6 +24,8 @@
     unsigned int _callType;
     NSString *_callerNetworkName;
     long long _handleType;
+    NSUUID *_localParticipantUUID;
+    NSUUID *_outgoingLocalParticipantUUID;
     CHHandle *_localParticipantHandle;
     NSSet *_remoteParticipantHandles;
     NSString *_uniqueId;
@@ -143,6 +145,8 @@
 - (void)fetchAndSetFullContactSync;
 - (void)fetchAndSetContactIdentifierSync;
 @property(nonatomic) BOOL read; // @synthesize read=_read;
+@property(retain, nonatomic) NSUUID *outgoingLocalParticipantUUID; // @synthesize outgoingLocalParticipantUUID=_outgoingLocalParticipantUUID;
+@property(retain, nonatomic) NSUUID *localParticipantUUID; // @synthesize localParticipantUUID=_localParticipantUUID;
 - (void)createOccurrenceArraySync;
 - (id)callOccurrencesSync;
 - (unsigned long long)numberOfOccurrences;

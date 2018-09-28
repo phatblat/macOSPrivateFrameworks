@@ -6,15 +6,19 @@
 
 #import "NSView.h"
 
-@class CPKPickerSearchField, NSButton;
+@class CPKPickerSearchField, NSButton, NSLayoutConstraint;
 
 __attribute__((visibility("hidden")))
 @interface CPKSearchView : NSView
 {
     CPKPickerSearchField *_searchField;
     NSButton *_showCVButton;
+    NSLayoutConstraint *_fieldTrailingConstraintForButton;
+    NSLayoutConstraint *_fieldTrailingConstraintForSuperview;
 }
 
+@property NSLayoutConstraint *fieldTrailingConstraintForSuperview; // @synthesize fieldTrailingConstraintForSuperview=_fieldTrailingConstraintForSuperview;
+@property NSLayoutConstraint *fieldTrailingConstraintForButton; // @synthesize fieldTrailingConstraintForButton=_fieldTrailingConstraintForButton;
 @property(readonly) NSButton *showCVButton; // @synthesize showCVButton=_showCVButton;
 @property(readonly) CPKPickerSearchField *searchField; // @synthesize searchField=_searchField;
 - (void)viewDidMoveToWindow;

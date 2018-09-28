@@ -33,6 +33,7 @@
     NSArray *_payloadPublicRanges;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowPersonalCaching:(id)arg2 withAllowSharedCaching:(id)arg3 withAutoActivation:(id)arg4 withCacheLimit:(id)arg5 withDataPath:(id)arg6 withDenyActivation:(id)arg7 withDenyTetheredCaching:(id)arg8 withListenRanges:(id)arg9 withListenRangesOnly:(id)arg10 withListenWithPeersAndParents:(id)arg11 withLocalSubnetsOnly:(id)arg12 withLogClientIdentity:(id)arg13 withParents:(id)arg14 withParentSelectionPolicy:(id)arg15 withPeerFilterRanges:(id)arg16 withPeerListenRanges:(id)arg17 withPeerLocalSubnetsOnly:(id)arg18 withPort:(id)arg19 withPublicRanges:(id)arg20;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

@@ -19,7 +19,8 @@ __attribute__((visibility("hidden")))
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)updateRelativeHeightConstraintForView:(id)arg1;
-- (void)showSmallThumbnail:(_Bool)arg1;
+@property(nonatomic) struct TFENode browserTargetNode;
+@property(nonatomic, getter=isApplicableToUI) _Bool applicableToUI; // @dynamic applicableToUI;
 - (void)targetNodesChanged;
 - (void)loadValueControllers;
 

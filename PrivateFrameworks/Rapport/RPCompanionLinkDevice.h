@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class CUBonjourDevice, NSString, NSUUID;
+@class NSDictionary, NSString, NSUUID;
 
 @interface RPCompanionLinkDevice : RPEndpoint <NSSecureCoding>
 {
@@ -30,10 +30,9 @@
     NSString *_mediaSystemName;
     NSString *_publicIdentifier;
     NSString *_roomName;
+    NSDictionary *_siriInfo;
     NSString *_sourceVersion;
     NSString *_role;
-    NSString *_tightSyncGroupID;
-    CUBonjourDevice *_bonjourDevice;
     NSUUID *_mediaSystemIdentifierEffective;
     NSUUID *_pairingIdentifier;
     NSString *_password;
@@ -47,10 +46,9 @@
 @property(nonatomic) BOOL daemon; // @synthesize daemon=_daemon;
 @property(nonatomic) BOOL changed; // @synthesize changed=_changed;
 @property(nonatomic) BOOL btPipeConnected; // @synthesize btPipeConnected=_btPipeConnected;
-@property(retain, nonatomic) CUBonjourDevice *bonjourDevice; // @synthesize bonjourDevice=_bonjourDevice;
-@property(copy, nonatomic) NSString *tightSyncGroupID; // @synthesize tightSyncGroupID=_tightSyncGroupID;
 @property(copy, nonatomic) NSString *role; // @synthesize role=_role;
 @property(copy, nonatomic) NSString *sourceVersion; // @synthesize sourceVersion=_sourceVersion;
+@property(copy, nonatomic) NSDictionary *siriInfo; // @synthesize siriInfo=_siriInfo;
 @property(copy, nonatomic) NSString *roomName; // @synthesize roomName=_roomName;
 @property(copy, nonatomic) NSString *publicIdentifier; // @synthesize publicIdentifier=_publicIdentifier;
 @property(nonatomic) int personalRequestsState; // @synthesize personalRequestsState=_personalRequestsState;

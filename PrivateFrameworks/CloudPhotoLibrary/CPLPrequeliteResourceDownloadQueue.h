@@ -40,6 +40,7 @@
 - (BOOL)openWithError:(id *)arg1;
 - (BOOL)upgradeStorageToVersion:(long long)arg1;
 - (BOOL)initializeStorage;
+- (BOOL)_createResourceTypeAndStatusIndex;
 - (id)initWithAbstractObject:(id)arg1;
 
 // Remaining properties

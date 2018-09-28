@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSearchForBillsIntent.h"
 
-@class INCodableAttribute, NSString, _INPBBillPayeeValue, _INPBDateTimeRange, _INPBIntentMetadata;
+@class NSString, _INPBBillPayeeValue, _INPBDateTimeRange, _INPBIntentMetadata;
 
-@interface _INPBSearchForBillsIntent : PBCodable <_INPBSearchForBillsIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSearchForBillsIntent : PBCodable <_INPBSearchForBillsIntent, NSSecureCoding, NSCopying>
 {
     CDStruct_c8e9def3 _has;
     int _billType;
@@ -22,10 +21,8 @@
     _INPBDateTimeRange *_dueDateRange;
     _INPBIntentMetadata *_intentMetadata;
     _INPBDateTimeRange *_paymentDateRange;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int status; // @synthesize status=_status;
 @property(retain, nonatomic) _INPBDateTimeRange *paymentDateRange; // @synthesize paymentDateRange=_paymentDateRange;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;

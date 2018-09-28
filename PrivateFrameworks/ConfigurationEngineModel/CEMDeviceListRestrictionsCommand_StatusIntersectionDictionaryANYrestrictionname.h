@@ -13,6 +13,7 @@
     NSArray *_statusValues;
 }
 
++ (id)buildRequiredOnlyWithValues:(id)arg1;
 + (id)buildWithValues:(id)arg1;
 + (id)allowedStatusKeys;
 @property(copy, nonatomic) NSArray *statusValues; // @synthesize statusValues=_statusValues;

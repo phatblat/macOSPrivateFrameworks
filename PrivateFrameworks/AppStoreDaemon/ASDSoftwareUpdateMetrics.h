@@ -13,11 +13,13 @@
 
 @interface ASDSoftwareUpdateMetrics : NSObject <NSCopying, NSSecureCoding>
 {
+    BOOL _usingModernUpdatesCheck;
     NSDate *_lastUpdateCheck;
     NSDate *_nextUpdateCheck;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(readonly, nonatomic) BOOL usingModernUpdatesCheck; // @synthesize usingModernUpdatesCheck=_usingModernUpdatesCheck;
 @property(readonly, nonatomic) NSDate *nextUpdateCheck; // @synthesize nextUpdateCheck=_nextUpdateCheck;
 @property(readonly, nonatomic) NSDate *lastUpdateCheck; // @synthesize lastUpdateCheck=_lastUpdateCheck;
 - (void).cxx_destruct;

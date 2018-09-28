@@ -23,6 +23,7 @@ __attribute__((visibility("hidden")))
 - (id)helpDescription;
 - (id)shortInstruction;
 - (id)typeDescription;
+- (id)captionDescriptionContainsUserLabel:(char *)arg1 containsAncestorLabel:(char *)arg2;
 - (BOOL)hasAutofillMenuAvailable;
 - (BOOL)canHandleValueChange;
 - (BOOL)canHandleTextValueChange;

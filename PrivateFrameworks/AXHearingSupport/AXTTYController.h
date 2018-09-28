@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "TTYCallDelegate.h"
+#import "TUCallCapabilitiesDelegate.h"
 
 @class NSMutableArray, NSString;
 
-@interface AXTTYController : NSObject <TTYCallDelegate>
+@interface AXTTYController : NSObject <TTYCallDelegate, TUCallCapabilitiesDelegate>
 {
     NSMutableArray *_ttyCalls;
 }
@@ -27,11 +28,13 @@
 - (void)dealloc;
 - (void)displayRTTFirstUseAlert;
 - (void)dismissRTTFirstUseAlert;
-- (void)updateRelayNumber;
 - (id)callForUUID:(id)arg1;
 - (void)handleUpdatedCalls:(id)arg1;
 - (void)callDidConnect:(id)arg1;
 - (void)telephonySupportDidChange:(id)arg1;
+- (void)didChangeFaceTimeVideoCallingSupport;
+- (void)didChangeFaceTimeAudioCallingSupport;
+- (void)didChangeTelephonyCallingSupport;
 - (id)init;
 
 // Remaining properties

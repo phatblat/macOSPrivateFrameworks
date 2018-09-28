@@ -22,6 +22,7 @@
     CEMAnyPayload *_payloadConfiguration;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withApplication:(id)arg2 withMandatory:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withApplication:(id)arg2 withMandatory:(id)arg3 withInstallWhenActivated:(id)arg4 withRemoveWhenDeactivated:(id)arg5 withManageData:(id)arg6 withVPNUUID:(id)arg7 withPreventDataBackup:(id)arg8 withConfiguration:(id)arg9;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

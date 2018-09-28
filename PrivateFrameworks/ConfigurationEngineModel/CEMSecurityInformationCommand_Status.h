@@ -13,6 +13,7 @@
     CEMSecurityInformationCommand_StatusSecurityInfo *_statusSecurityInfo;
 }
 
++ (id)buildRequiredOnlyWithSecurityInfo:(id)arg1;
 + (id)buildWithSecurityInfo:(id)arg1;
 + (id)allowedReasons;
 + (id)allowedStatusKeys;

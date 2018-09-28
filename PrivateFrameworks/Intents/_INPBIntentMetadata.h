@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBIntentMetadata.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBString;
+@class NSArray, NSString, _INPBImageValue, _INPBString;
 
-@interface _INPBIntentMetadata : PBCodable <_INPBIntentMetadata, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBIntentMetadata : PBCodable <_INPBIntentMetadata, NSSecureCoding, NSCopying>
 {
     CDStruct_95bda58d _requiredEntitlements;
     struct {
@@ -31,20 +30,20 @@
     int _intentCategory;
     int _triggerMethod;
     NSString *_categoryVerb;
+    _INPBImageValue *_defaultImageValue;
     NSString *_launchId;
     NSString *_nanoLaunchId;
     NSString *_systemExtensionBundleId;
+    NSString *_systemUIExtensionBundleId;
     NSString *_intentDescription;
     NSString *_intentId;
     NSString *_originatingDeviceIdsIdentifier;
     NSArray *_parameterImages;
     NSString *_suggestedInvocationPhrase;
     _INPBString *_userUtterance;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)parameterImagesType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBString *userUtterance; // @synthesize userUtterance=_userUtterance;
 @property(nonatomic) BOOL userConfirmationRequired; // @synthesize userConfirmationRequired=_userConfirmationRequired;
 @property(nonatomic) int triggerMethod; // @synthesize triggerMethod=_triggerMethod;
@@ -55,11 +54,13 @@
 @property(copy, nonatomic) NSString *intentDescription; // @synthesize intentDescription=_intentDescription;
 @property(nonatomic) BOOL confirmed; // @synthesize confirmed=_confirmed;
 @property(nonatomic) BOOL backgroundLaunch; // @synthesize backgroundLaunch=_backgroundLaunch;
+@property(copy, nonatomic) NSString *systemUIExtensionBundleId; // @synthesize systemUIExtensionBundleId=_systemUIExtensionBundleId;
 @property(copy, nonatomic) NSString *systemExtensionBundleId; // @synthesize systemExtensionBundleId=_systemExtensionBundleId;
 @property(copy, nonatomic) NSString *nanoLaunchId; // @synthesize nanoLaunchId=_nanoLaunchId;
 @property(copy, nonatomic) NSString *launchId; // @synthesize launchId=_launchId;
 @property(nonatomic) int intentCategory; // @synthesize intentCategory=_intentCategory;
 @property(nonatomic) int executionContext; // @synthesize executionContext=_executionContext;
+@property(retain, nonatomic) _INPBImageValue *defaultImageValue; // @synthesize defaultImageValue=_defaultImageValue;
 @property(copy, nonatomic) NSString *categoryVerb; // @synthesize categoryVerb=_categoryVerb;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;
@@ -83,6 +84,7 @@
 @property(readonly, nonatomic) BOOL hasIntentDescription;
 @property(nonatomic) BOOL hasConfirmed;
 @property(nonatomic) BOOL hasBackgroundLaunch;
+@property(readonly, nonatomic) BOOL hasSystemUIExtensionBundleId;
 @property(readonly, nonatomic) BOOL hasSystemExtensionBundleId;
 - (int)StringAsRequiredEntitlements:(id)arg1;
 - (id)requiredEntitlementsAsString:(int)arg1;
@@ -100,6 +102,7 @@
 - (int)StringAsExecutionContext:(id)arg1;
 - (id)executionContextAsString:(int)arg1;
 @property(nonatomic) BOOL hasExecutionContext;
+@property(readonly, nonatomic) BOOL hasDefaultImageValue;
 @property(readonly, nonatomic) BOOL hasCategoryVerb;
 
 // Remaining properties

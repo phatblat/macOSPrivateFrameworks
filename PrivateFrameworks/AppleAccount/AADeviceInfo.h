@@ -10,7 +10,6 @@
 {
 }
 
-+ (BOOL)hasiCloudSignOutRestriction;
 + (BOOL)isMultiUserMode;
 + (BOOL)isInternalBuild;
 + (id)currentInfo;

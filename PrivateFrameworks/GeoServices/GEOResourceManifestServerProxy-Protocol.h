@@ -14,6 +14,7 @@
 - (void)getResourceManifestWithHandler:(void (^)(GEOResourceManifestDownload *, NSError *))arg1;
 - (oneway void)resetActiveTileGroup;
 - (oneway void)setActiveTileGroupIdentifier:(NSNumber *)arg1;
+- (unsigned long long)maximumZoomLevelForStyle:(int)arg1 scale:(int)arg2;
 - (NSProgress *)updateProgress;
 - (void)deactivateResourceScenario:(int)arg1;
 - (void)activateResourceScenario:(int)arg1;

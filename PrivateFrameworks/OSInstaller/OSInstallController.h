@@ -15,10 +15,11 @@
 {
     BOOL _isCurrentlyInstalling;
     BOOL _hasEvaluatedInstallability;
+    BOOL _didReblessSuccessfully;
+    BOOL _installationCompletedSuccessfully;
     BOOL _needAPFSConvert;
     BOOL _showingStuckUI;
     BOOL _shouldProcessTimeRemaining;
-    BOOL _installationCompletedSuccessfully;
     int _numOfCPIOExtractionRetries;
     NSError *_installCheckFailureReason;
     OSInstallOptions *_options;
@@ -66,7 +67,6 @@
 @property(retain) NSMutableArray *installOperations; // @synthesize installOperations=_installOperations;
 @property(retain) OSIPowerController *powerManager; // @synthesize powerManager=_powerManager;
 @property(retain) IASUnifiedProgressClient *progressClient; // @synthesize progressClient=_progressClient;
-@property BOOL installationCompletedSuccessfully; // @synthesize installationCompletedSuccessfully=_installationCompletedSuccessfully;
 @property double lastIncommingTime; // @synthesize lastIncommingTime=_lastIncommingTime;
 @property(retain) NSTimer *stuckElementTimer; // @synthesize stuckElementTimer=_stuckElementTimer;
 @property(retain) NSTimer *progressUpdateCheckTimer; // @synthesize progressUpdateCheckTimer=_progressUpdateCheckTimer;
@@ -81,6 +81,8 @@
 @property BOOL needAPFSConvert; // @synthesize needAPFSConvert=_needAPFSConvert;
 @property(retain) NSString *distPath; // @synthesize distPath=_distPath;
 @property NSObject<OSInstallControllerDelegate> *delegate; // @synthesize delegate=_delegate;
+@property BOOL installationCompletedSuccessfully; // @synthesize installationCompletedSuccessfully=_installationCompletedSuccessfully;
+@property BOOL didReblessSuccessfully; // @synthesize didReblessSuccessfully=_didReblessSuccessfully;
 @property(retain) OSInstallOptions *options; // @synthesize options=_options;
 @property(retain) NSError *installCheckFailureReason; // @synthesize installCheckFailureReason=_installCheckFailureReason;
 @property BOOL hasEvaluatedInstallability; // @synthesize hasEvaluatedInstallability=_hasEvaluatedInstallability;
@@ -97,6 +99,7 @@
 - (id)getPreviousShutdownCause;
 - (void)reportMutableProductFailedWithError:(id)arg1;
 - (void)reportCPIOExtractionRetry:(id)arg1;
+- (void)_cleanupVirtualMemoryFolder;
 - (id)_createFirmwareDistributionControllerFromProduct:(id)arg1;
 - (id)_createDistributionControllerFromProduct:(id)arg1 interfaceType:(id)arg2;
 - (id)_createDistributionControllerFromProduct:(id)arg1;
@@ -129,7 +132,7 @@
 - (void)_invalidateCustomization;
 @property(readonly) BOOL hasCustomizationOptions;
 - (void)dealloc;
-- (BOOL)_loadInstallerDocuments;
+- (BOOL)_loadInstallerDocuments:(id *)arg1;
 - (id)initWithDistributionPath:(id)arg1 requireAutomation:(BOOL)arg2 error:(id *)arg3;
 - (id)initWithDistributionPath:(id)arg1 requireAutomation:(BOOL)arg2;
 

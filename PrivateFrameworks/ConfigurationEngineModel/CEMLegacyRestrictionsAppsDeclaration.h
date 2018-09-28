@@ -21,6 +21,7 @@
     NSArray *_payloadBlacklistedAppBundleIDs;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowChat:(id)arg2 withAllowiTunes:(id)arg3 withAllowNews:(id)arg4 withAllowPodcasts:(id)arg5 withAllowSafari:(id)arg6 withAllowVideoConferencing:(id)arg7 withBlacklistedAppBundleIDs:(id)arg8;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

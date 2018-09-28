@@ -8,11 +8,12 @@
 
 #import "NSOutlineViewDataSource.h"
 
-@class BookmarksSearcher, KeyLoopSplicingContainerView, NSButton, NSScrollView, NSSearchField, NSString, NSTableColumn, NSTextField, OutlineViewPlus, WBSFaviconRequestsController, WebBookmark;
+@class BookmarksSearcher, KeyLoopSplicingContainerView, NSBox, NSButton, NSLayoutConstraint, NSScrollView, NSSearchField, NSString, NSTableColumn, NSTextField, OutlineViewPlus, WBSFaviconRequestsController, WebBookmark;
 
 __attribute__((visibility("hidden")))
 @interface BookmarksViewController : NSViewController <NSOutlineViewDataSource>
 {
+    NSLayoutConstraint *_mainContentViewTopConstraint;
     BOOL _draggingUndeletableBookmarks;
     BOOL _abortedDraggingBookmarks;
     BookmarksSearcher *_searcher;
@@ -21,6 +22,7 @@ __attribute__((visibility("hidden")))
     WBSFaviconRequestsController *_requestsController;
     id <BookmarksViewControllerDelegate> _delegate;
     WebBookmark *_selectedCollection;
+    NSBox *_mainContentView;
     NSScrollView *_scrollView;
     OutlineViewPlus *_outlineView;
     NSTableColumn *_bookmarkColumn;
@@ -33,6 +35,8 @@ __attribute__((visibility("hidden")))
 + (void)setDraggedBookmarks:(id)arg1;
 + (id)dateVisitedColumnTitle;
 + (id)parentColumnTitle;
++ (id)historyPageTitle;
++ (id)bookmarksPageTitle;
 + (id)draggedBookmarks;
 + (float)bottomGradientHeight;
 @property(nonatomic) __weak NSTextField *titleField; // @synthesize titleField=_titleField;
@@ -42,6 +46,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) __weak NSTableColumn *bookmarkColumn; // @synthesize bookmarkColumn=_bookmarkColumn;
 @property(nonatomic) __weak OutlineViewPlus *outlineView; // @synthesize outlineView=_outlineView;
 @property(nonatomic) __weak NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
+@property(nonatomic) __weak NSBox *mainContentView; // @synthesize mainContentView=_mainContentView;
 @property(retain, nonatomic) WebBookmark *selectedCollection; // @synthesize selectedCollection=_selectedCollection;
 @property(nonatomic) __weak id <BookmarksViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
@@ -168,7 +173,9 @@ __attribute__((visibility("hidden")))
 - (id)pageTitle;
 - (void)viewWillDisappear;
 - (void)_updateTitleField;
+- (void)updateViewConstraints;
 - (void)viewDidAppear;
+- (void)viewWillAppear;
 - (void)invalidate;
 - (BOOL)outlineView:(id)arg1 wantsDFRAccessoriesForEditedRow:(long long)arg2 tableColumn:(id)arg3;
 - (void)outlineViewItemDidExpand:(id)arg1;

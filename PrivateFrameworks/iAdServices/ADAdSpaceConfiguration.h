@@ -16,6 +16,8 @@
     int _creativeType;
     float _containerWidth;
     float _containerHeight;
+    float _reorientedContainerWidth;
+    float _reorientedContainerHeight;
     long long _options;
     NSString *_identifier;
     NSURL *_serverURL;
@@ -26,6 +28,8 @@
 }
 
 + (BOOL)supportsSecureCoding;
+@property(nonatomic) float reorientedContainerHeight; // @synthesize reorientedContainerHeight=_reorientedContainerHeight;
+@property(nonatomic) float reorientedContainerWidth; // @synthesize reorientedContainerWidth=_reorientedContainerWidth;
 @property(nonatomic) float containerHeight; // @synthesize containerHeight=_containerHeight;
 @property(nonatomic) float containerWidth; // @synthesize containerWidth=_containerWidth;
 @property(copy, nonatomic) NSString *adSpaceContextJSON; // @synthesize adSpaceContextJSON=_adSpaceContextJSON;

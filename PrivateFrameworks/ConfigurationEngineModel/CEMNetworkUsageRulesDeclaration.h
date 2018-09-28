@@ -15,6 +15,7 @@
     NSArray *_payloadApplicationRules;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withApplicationRules:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withApplicationRules:(id)arg2;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

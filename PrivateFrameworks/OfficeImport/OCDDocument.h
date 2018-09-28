@@ -10,7 +10,6 @@
 
 @interface OCDDocument : NSObject
 {
-    OCDReader *mReader;
     OCDWriter *mWriter;
     OCDSummary *mSummary;
     OADBlipCollection *mBlips;
@@ -21,6 +20,7 @@
     OADTextListStyle *mDefaultTextStyle;
     OADGraphicStyleCache *mGraphicStyleCache;
     NSData *mEncryptionInfo;
+    OCDReader *mReader;
 }
 
 @property(retain, nonatomic) OADGraphicStyleCache *graphicStyleCache; // @synthesize graphicStyleCache=mGraphicStyleCache;

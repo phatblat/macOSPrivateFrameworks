@@ -16,6 +16,7 @@
     CEMAnyPayload *_payloadFileData;
 }
 
++ (id)buildRequiredOnlyWithLabel:(id)arg1 withFileType:(id)arg2;
 + (id)buildWithLabel:(id)arg1 withUrl:(id)arg2 withFileType:(id)arg3 withFileData:(id)arg4;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) CEMAnyPayload *payloadFileData; // @synthesize payloadFileData=_payloadFileData;

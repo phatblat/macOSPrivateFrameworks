@@ -6,18 +6,24 @@
 
 #import <LoginUIKit/LUI2ViewController.h>
 
-@class CAGradientLayer, CALayer, NSImage;
+@class CAGradientLayer, CALayer, DPRemoteDesktopPicture, NSImage, NSObject<OS_dispatch_semaphore>;
 
 @interface LUI2BackgroundViewController : LUI2ViewController
 {
+    BOOL _useDesktopLayer;
     id _target;
     SEL _action;
     CALayer *_imageLayer;
     CALayer *_darkenSourceOver;
     CALayer *_lightenSourceOver;
     CAGradientLayer *_gradient;
+    DPRemoteDesktopPicture *_remoteDesktopPicture;
+    NSObject<OS_dispatch_semaphore> *_remoteDesktopPictureSemaphore;
 }
 
+@property(retain) NSObject<OS_dispatch_semaphore> *remoteDesktopPictureSemaphore; // @synthesize remoteDesktopPictureSemaphore=_remoteDesktopPictureSemaphore;
+@property(retain) DPRemoteDesktopPicture *remoteDesktopPicture; // @synthesize remoteDesktopPicture=_remoteDesktopPicture;
+@property BOOL useDesktopLayer; // @synthesize useDesktopLayer=_useDesktopLayer;
 @property(retain) CAGradientLayer *gradient; // @synthesize gradient=_gradient;
 @property(retain) CALayer *lightenSourceOver; // @synthesize lightenSourceOver=_lightenSourceOver;
 @property(retain) CALayer *darkenSourceOver; // @synthesize darkenSourceOver=_darkenSourceOver;
@@ -28,7 +34,17 @@
 - (void)viewDidLoad;
 - (void)mouseUp:(id)arg1;
 @property(retain) NSImage *image;
+@property BOOL usesDesktopLayer;
+- (void)_fadeInLayer:(id)arg1;
+- (void)saveImage:(id)arg1;
+- (void)_updateRemoteDesktopPicture;
+- (void)_displayDidChange:(id)arg1;
+- (void)_configureRemoteDesktopPicture:(id)arg1 fadeIn:(BOOL)arg2;
+- (void)_updateWindow;
+- (void)_darkeningLayersSetHidden:(BOOL)arg1;
+- (void)_companionPressed:(id)arg1;
 - (void)_initImageLayer;
+- (id)_backgroundColor;
 
 @end
 

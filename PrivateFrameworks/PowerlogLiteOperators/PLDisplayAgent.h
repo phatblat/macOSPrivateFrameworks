@@ -6,7 +6,7 @@
 
 #import "PLAgent.h"
 
-@class BrightnessSystemClient, DisplayServicesClient, NSDate, NSDictionary, NSMutableArray, PLDisplayIOReportStats, PLEntry, PLEntryNotificationOperatorComposition, PLEventForwardDisplayEntry, PLIOKitOperatorComposition, PLMonotonicTimer, PLTimer, PLXPCListenerOperatorComposition;
+@class BrightnessSystemClient, CBAdaptationClient, DisplayServicesClient, NSDate, NSDictionary, NSMutableArray, PLDisplayIOReportStats, PLEntry, PLEntryNotificationOperatorComposition, PLEventForwardDisplayEntry, PLIOKitOperatorComposition, PLMonotonicTimer, PLTimer, PLXPCListenerOperatorComposition;
 
 @interface PLDisplayAgent : PLAgent
 {
@@ -28,6 +28,7 @@
     PLIOKitOperatorComposition *_iokitTouch;
     PLIOKitOperatorComposition *_iokitKeyboardBrightness;
     BrightnessSystemClient *_brightnessSystemClient;
+    CBAdaptationClient *_colorAdaptationClient;
     PLTimer *_backlightFilterTimer;
     PLTimer *_bluelightFilterTimer;
     PLTimer *_uAmpsFilterTimer;
@@ -66,14 +67,16 @@
 + (BOOL)shouldLogBLR;
 + (id)entryAggregateDefinitionUserTouch;
 + (id)entryAggregateDefinitions;
-+ (id)entryEventIntervalDefinitionAPLStats;
++ (id)entryEventBackwardDefinitionAPLStats;
 + (id)entryEventIntervalDefinitions;
 + (id)entryEventBackwardDefinitionBlueLightParameters;
++ (id)entryEventBackwardDefinitionHarmonyParameters;
 + (id)entryEventBackwardDefinitionTouch;
 + (id)entryEventBackwardDefinitions;
 + (id)entryEventForwardDefinitionLinearBrightness;
 + (id)entryEventForwardDefinitionALSLux;
 + (id)entryEventForwardDefinitionBlueLightReductionStatus;
++ (id)entryEventForwardDefinitionColorAdaptationMode;
 + (id)entryEventForwardDefinitionALSPowerSaved;
 + (id)entryEventForwardDefinitionALSEnabled;
 + (id)entryEventForwardDefinitionALSUserPreferences;
@@ -126,6 +129,7 @@
 @property(retain) PLTimer *uAmpsFilterTimer; // @synthesize uAmpsFilterTimer=_uAmpsFilterTimer;
 @property(retain) PLTimer *bluelightFilterTimer; // @synthesize bluelightFilterTimer=_bluelightFilterTimer;
 @property(retain) PLTimer *backlightFilterTimer; // @synthesize backlightFilterTimer=_backlightFilterTimer;
+@property(retain) CBAdaptationClient *colorAdaptationClient; // @synthesize colorAdaptationClient=_colorAdaptationClient;
 @property(retain) BrightnessSystemClient *brightnessSystemClient; // @synthesize brightnessSystemClient=_brightnessSystemClient;
 @property(readonly) PLIOKitOperatorComposition *iokitKeyboardBrightness; // @synthesize iokitKeyboardBrightness=_iokitKeyboardBrightness;
 @property(readonly) PLIOKitOperatorComposition *iokitTouch; // @synthesize iokitTouch=_iokitTouch;
@@ -155,6 +159,7 @@
 - (void)logEventForwardALSUserPreferencesWithCurrLux;
 - (void)logEventForwardALSEnabled;
 - (void)logEventForwardALSUserPreferencesEntryWithLux:(id)arg1;
+- (void)logEventForwardColorAdaptationMode;
 - (void)logEventForwardALSUserPreferences;
 - (void)reArmUAmpsCallback;
 - (void)logEventForwardDisplayWithRawData:(id)arg1 withDate:(id)arg2;

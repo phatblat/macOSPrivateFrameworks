@@ -15,6 +15,7 @@
     NSNumber *_payloadAllowDriverDoNotDisturbModifications;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowDriverDoNotDisturbModifications:(id)arg2;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

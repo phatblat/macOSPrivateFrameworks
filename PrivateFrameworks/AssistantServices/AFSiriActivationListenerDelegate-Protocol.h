@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
-@class AFRequestInfo, AFSiriActivationListener;
+@class AFRequestInfo, AFSiriActivationListener, INIntent, NSString;
 
 @protocol AFSiriActivationListenerDelegate <NSObject>
 - (void)siriActivationListener:(AFSiriActivationListener *)arg1 handleActivationWithRequestInfo:(AFRequestInfo *)arg2;
 
 @optional
+- (void)siriActivationListener:(AFSiriActivationListener *)arg1 handleIntent:(INIntent *)arg2 inBackgroundAppWithBundleId:(NSString *)arg3 reply:(void (^)(INIntentResponse *, NSError *))arg4;
 - (void)siriActivationListener:(AFSiriActivationListener *)arg1 handlePrewarmForRequestInfo:(AFRequestInfo *)arg2;
 @end
 

@@ -157,6 +157,12 @@ struct sockaddr_storage {
 #pragma mark Typedef'd Structures
 
 typedef struct {
+    char *_field1;
+    char *_field2;
+    char *_field3;
+} CDStruct_32bf18e6;
+
+typedef struct {
     int length;
     unsigned char data[12];
 } CDStruct_330c469e;
@@ -205,6 +211,7 @@ typedef struct {
     char _field18;
     char _field19;
     int _field20;
-    unsigned char _field21[0];
-} CDStruct_e844bd1c;
+    double _field21;
+    unsigned char _field22[0];
+} CDStruct_18fdc6f4;
 

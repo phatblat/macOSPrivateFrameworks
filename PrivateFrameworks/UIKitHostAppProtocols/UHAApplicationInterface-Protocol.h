@@ -4,20 +4,22 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "ROCKForwardingInterposableWithRunLoop.h"
 #import "ROCKImpersonateable.h"
 
 @class NSObject<OS_dispatch_queue>, NSString, NSURL;
 
-@protocol UHAApplicationInterface <ROCKImpersonateable>
-@property(copy, nonatomic) CDUnknownBlockType _preparePasteboardForServiceRequestWithCompletionHandler;
+@protocol UHAApplicationInterface <ROCKImpersonateable, ROCKForwardingInterposableWithRunLoop>
 @property(copy, nonatomic) CDUnknownBlockType readSelectionFromPasteboardWithName;
-@property(copy, nonatomic) CDUnknownBlockType hasValidRequestorForSendType;
+@property(copy, nonatomic) CDUnknownBlockType hasValidRequestorForReturnType;
+@property(copy, nonatomic) CDUnknownBlockType objectsForServicesAndSharing;
 @property(copy, nonatomic) CDUnknownBlockType sendTestURLToClientCallback;
+@property(copy, nonatomic) CDUnknownBlockType appNapStateDidChangeCallback;
 @property(copy, nonatomic) CDUnknownBlockType systemAppearanceDidChangeCallback;
 @property(readonly, nonatomic) id <UHASystemAppearanceInterface> systemAppearance;
 @property(copy, nonatomic) CDUnknownBlockType resignFirstResponderHandler;
 @property(copy, nonatomic) CDUnknownBlockType becomeFirstResponderHandler;
-@property(copy, nonatomic) CDUnknownBlockType performAction;
+@property(copy, nonatomic) CDUnknownBlockType performActionWithCompletionHandler;
 @property(copy, nonatomic) CDUnknownBlockType mainHostWindowDidChangeCallback;
 @property(readonly, nonatomic) id <UHAWindowInterface> mainHostWindow;
 @property(readonly, nonatomic) id <UHAShareSheetControllerInterface> shareSheetController;
@@ -25,6 +27,7 @@
 - (void)openURL:(NSURL *)arg1 completion:(void (^)(BOOL))arg2;
 - (void)setAppName:(NSString *)arg1 completionQueue:(NSObject<OS_dispatch_queue> *)arg2 completionHandler:(void (^)(NSError *))arg3;
 - (BOOL)setAppName:(NSString *)arg1 error:(id *)arg2;
+- (void)didConfigureMainHostWindowWithCompletionQueue:(NSObject<OS_dispatch_queue> *)arg1 completionHandler:(void (^)(void))arg2;
 - (BOOL)didConfigureMainHostWindow;
 @end
 

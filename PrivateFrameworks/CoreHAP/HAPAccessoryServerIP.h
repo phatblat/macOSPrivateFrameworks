@@ -30,7 +30,6 @@
     BOOL _continuingLegacyWACpairing;
     BOOL _wacStarted;
     BOOL _hasStartedPairing;
-    BOOL _networkReachable;
     BOOL _tokenRequestPending;
     BOOL _tokenValidationPending;
     NSString *_model;
@@ -60,7 +59,6 @@
 + (id)sharedPairOperationQueue;
 @property(nonatomic, getter=isTokenValidationPending) BOOL tokenValidationPending; // @synthesize tokenValidationPending=_tokenValidationPending;
 @property(nonatomic, getter=isTokenRequestPending) BOOL tokenRequestPending; // @synthesize tokenRequestPending=_tokenRequestPending;
-@property(nonatomic, getter=isNetworkReachable) BOOL networkReachable; // @synthesize networkReachable=_networkReachable;
 @property(readonly, nonatomic) HMFNetMonitor *networkMonitor; // @synthesize networkMonitor=_networkMonitor;
 @property(nonatomic) BOOL hasStartedPairing; // @synthesize hasStartedPairing=_hasStartedPairing;
 @property(retain, nonatomic) HMFTimer *bonjourEventTimer; // @synthesize bonjourEventTimer=_bonjourEventTimer;
@@ -190,7 +188,7 @@
 - (long long)linkType;
 - (id)primaryAccessory;
 - (id)services;
-- (void)createKeysForDataStreamWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)createKeysForDataStreamWithKeySalt:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)resolveLocalHostnameWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)pairSetupStartSoftAuthWAC;
 - (void)_continuePairingAfterConfirmingSoftAuthWAC;

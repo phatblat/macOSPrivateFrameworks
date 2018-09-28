@@ -13,8 +13,9 @@
 
 @interface RTIInputSystemClient : NSObject <RTIInputSystemSessionResponseProtocol, RTIInputSystemSessionProtocol>
 {
+    unsigned long long _environmentOptions;
     BOOL _isInDealloc;
-    BOOL _environmentEnabled;
+    unsigned long long _currentEnvironmentOptions;
     id <RTIInputSystemClientDelegate> _delegate;
     NSMutableDictionary *_activeSessions;
     NSMutableSet *_begunSessionIDs;
@@ -31,7 +32,7 @@
 @property(retain, nonatomic) NSMutableSet *begunSessionIDs; // @synthesize begunSessionIDs=_begunSessionIDs;
 @property(retain, nonatomic) NSMutableDictionary *activeSessions; // @synthesize activeSessions=_activeSessions;
 @property(nonatomic) __weak id <RTIInputSystemClientDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic, getter=isEnvironmentEnabled) BOOL environmentEnabled; // @synthesize environmentEnabled=_environmentEnabled;
+@property(readonly, nonatomic) unsigned long long currentEnvironmentOptions; // @synthesize currentEnvironmentOptions=_currentEnvironmentOptions;
 - (void).cxx_destruct;
 - (oneway void)performTextOperations:(id)arg1 resultHandler:(CDUnknownBlockType)arg2;
 - (oneway void)performTextOperations:(id)arg1;
@@ -40,9 +41,11 @@
 - (oneway void)remoteTextInputSessionWithID:(id)arg1 documentDidChange:(id)arg2;
 - (oneway void)beginRemoteTextInputSessionWithID:(id)arg1 documentTraits:(id)arg2 initialDocumentState:(id)arg3;
 - (void)notifyServiceOfPause:(BOOL)arg1 withReason:(id)arg2;
-- (void)_modifyTextEditingAllowedForReason:(id)arg1 block:(CDUnknownBlockType)arg2;
+- (void)_modifyTextEditingAllowedForReason:(id)arg1 notify:(BOOL)arg2 block:(CDUnknownBlockType)arg3;
 - (BOOL)_remoteTextEditingIsAllowed;
+- (void)setEnvironmentOptions:(unsigned long long)arg1 withReason:(id)arg2;
 - (void)setEnvironmentEnabled:(BOOL)arg1 withReason:(id)arg2;
+@property(readonly, nonatomic, getter=isEnvironmentEnabled) BOOL environmentEnabled;
 - (void)_endAllActiveSessionsForServices:(id)arg1;
 - (void)_beginAllActiveSessionsForServices:(id)arg1;
 - (void)_endAllActiveSessions;

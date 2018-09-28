@@ -12,6 +12,7 @@ __attribute__((visibility("hidden")))
 }
 
 - (void)mapLeftExpression:(id *)arg1 andRightExpression:(id *)arg2;
+- (id)validKeyPaths;
 
 @end
 

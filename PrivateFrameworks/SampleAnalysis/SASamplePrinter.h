@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSMutableDictionary, NSString, SAOutputStream, SASamplePrintOptions, SASampleStore, SATimestamp;
+@class NSMutableArray, NSMutableDictionary, NSString, NSUUID, SAOutputStream, SASamplePrintOptions, SASampleStore, SATimestamp;
 
 @interface SASamplePrinter : NSObject
 {
@@ -20,6 +20,7 @@
     NSMutableArray *_timeJumps;
     SASamplePrintOptions *_options;
     NSString *_headerNote;
+    NSUUID *_incidentUUID;
     SASampleStore *_sampleStore;
     SATimestamp *_startTime;
     SATimestamp *_endTime;
@@ -28,6 +29,7 @@
 @property(retain) SATimestamp *endTime; // @synthesize endTime=_endTime;
 @property(retain) SATimestamp *startTime; // @synthesize startTime=_startTime;
 @property(retain) SASampleStore *sampleStore; // @synthesize sampleStore=_sampleStore;
+@property(copy) NSUUID *incidentUUID; // @synthesize incidentUUID=_incidentUUID;
 @property(copy) NSString *headerNote; // @synthesize headerNote=_headerNote;
 @property(copy) SASamplePrintOptions *options; // @synthesize options=_options;
 - (void).cxx_destruct;

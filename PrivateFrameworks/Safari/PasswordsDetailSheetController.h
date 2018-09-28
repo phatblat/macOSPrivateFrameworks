@@ -10,7 +10,7 @@
 #import "TableViewPlusDataSource.h"
 #import "TableViewPlusDelegate.h"
 
-@class NSButton, NSImageView, NSScrollView, NSSharingService, NSString, NSTextField, NSWindow, WBSSavedPassword;
+@class ContentHuggingTextView, NSButton, NSClipView, NSImageView, NSLayoutConstraint, NSScrollView, NSSharingService, NSString, NSTextField, NSWindow, WBSSavedPassword;
 
 __attribute__((visibility("hidden")))
 @interface PasswordsDetailSheetController : SheetWithTableController <NSSharingServiceDelegate, TableViewPlusDelegate, TableViewPlusDataSource>
@@ -20,28 +20,34 @@ __attribute__((visibility("hidden")))
     id <PasswordsDetailSheetControllerDecisionHandler> _delegate;
     WBSSavedPassword *_password;
     id <PasswordsAuditingHandler> _passwordAuditingHandler;
+    NSTextField *_websiteLabel;
     NSTextField *_usernameTextField;
     NSTextField *_passwordTextField;
     NSButton *_okButton;
     NSButton *_shareButton;
     NSScrollView *_scrollView;
+    NSLayoutConstraint *_scrollViewHeightConstraint;
     NSImageView *_passwordReusedWarningImageView;
-    NSTextField *_passwordReusedWarningLabel;
-    NSButton *_changePasswordButton;
+    ContentHuggingTextView *_passwordReusedWarningLabel;
+    NSClipView *_passwordReusedWarningLabelEnclosingClipView;
 }
 
-@property(nonatomic) __weak NSButton *changePasswordButton; // @synthesize changePasswordButton=_changePasswordButton;
-@property(nonatomic) __weak NSTextField *passwordReusedWarningLabel; // @synthesize passwordReusedWarningLabel=_passwordReusedWarningLabel;
+@property __weak NSClipView *passwordReusedWarningLabelEnclosingClipView; // @synthesize passwordReusedWarningLabelEnclosingClipView=_passwordReusedWarningLabelEnclosingClipView;
+@property ContentHuggingTextView *passwordReusedWarningLabel; // @synthesize passwordReusedWarningLabel=_passwordReusedWarningLabel;
 @property(nonatomic) __weak NSImageView *passwordReusedWarningImageView; // @synthesize passwordReusedWarningImageView=_passwordReusedWarningImageView;
+@property(nonatomic) __weak NSLayoutConstraint *scrollViewHeightConstraint; // @synthesize scrollViewHeightConstraint=_scrollViewHeightConstraint;
 @property(nonatomic) __weak NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(nonatomic) __weak NSButton *shareButton; // @synthesize shareButton=_shareButton;
 @property(nonatomic) __weak NSButton *okButton; // @synthesize okButton=_okButton;
 @property(nonatomic) __weak NSTextField *passwordTextField; // @synthesize passwordTextField=_passwordTextField;
 @property(nonatomic) __weak NSTextField *usernameTextField; // @synthesize usernameTextField=_usernameTextField;
+@property(nonatomic) __weak NSTextField *websiteLabel; // @synthesize websiteLabel=_websiteLabel;
 @property(nonatomic) __weak id <PasswordsAuditingHandler> passwordAuditingHandler; // @synthesize passwordAuditingHandler=_passwordAuditingHandler;
 @property(readonly, nonatomic) WBSSavedPassword *password; // @synthesize password=_password;
 @property(nonatomic) __weak id <PasswordsDetailSheetControllerDecisionHandler> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)sharingServiceWindowDidResignMain:(id)arg1;
+- (void)sharingServiceWindowDidBecomeMain:(id)arg1;
 - (void)sharingService:(id)arg1 didFailToShareItems:(id)arg2 error:(id)arg3;
 - (void)sharingService:(id)arg1 didShareItems:(id)arg2;
 - (void)sharingService:(id)arg1 willShareItems:(id)arg2;
@@ -56,7 +62,7 @@ __attribute__((visibility("hidden")))
 - (id)tableView:(id)arg1 menuForEvent:(id)arg2 inRow:(long long)arg3 tableColumn:(id)arg4;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
-- (void)_changePassword:(id)arg1;
+- (void)_updateTableViewAppearance;
 - (void)_copySelectedWebsite;
 - (BOOL)_confirmRemovingSelectedIndexes:(id)arg1;
 - (void)_updateUsernameAndPasswordsView;

@@ -15,6 +15,7 @@
     NSNumber *_payloadProfileRestrictions;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withProfileRestrictions:(id)arg2;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

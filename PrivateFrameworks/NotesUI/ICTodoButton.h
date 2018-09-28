@@ -37,7 +37,11 @@
 - (void)setFrame:(struct CGRect)arg1 leftToRight:(BOOL)arg2;
 - (void)updateImagesAnimated:(BOOL)arg1;
 - (struct CGSize)sizeForLetterpressedImage;
+- (void)updateAccentColor;
+- (void)accentColorDidChange;
+- (BOOL)allowsVibrancy;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (void)dealloc;
 
 @end
 

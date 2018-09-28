@@ -35,7 +35,8 @@
 - (id)initPrivate;
 - (void)setupNotificationPipeline;
 - (void)processInterval:(id)arg1;
-- (void)perfProblemDetected:(id)arg1;
+- (id)tailspinFilenamePrefixForInterval:(id)arg1;
+- (void)perfProblemDetected:(id)arg1 tailspinFilenamePrefix:(id)arg2;
 
 @end
 

@@ -20,14 +20,17 @@
 - (void).cxx_destruct;
 - (void)runOperations;
 - (void)fetchUserRecord;
+- (void)fetchDisabledFeaturesWithUserRecord:(id)arg1;
 - (id)initWithController:(id)arg1 updateDisabledFeatures:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 
 // Remaining properties
+@property(nonatomic, getter=isBackgroundTask) BOOL backgroundTask;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(nonatomic, getter=isForcedTask) BOOL forcedTask;
 @property(nonatomic) BOOL foreground;
 @property(readonly) unsigned long long hash;
-@property(nonatomic) long long minimumQualityOfService;
+@property(nonatomic, getter=isHighPriorityBackground) BOOL highPriorityBackground;
 @property(readonly) Class superclass;
 @property(retain, nonatomic) id <CPLEngineTransportGroup> transportGroup;
 

@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSearchForNotebookItemsIntentResponse.h"
 
-@class INCodableAttribute, NSArray, NSString;
+@class NSArray, NSString;
 
-@interface _INPBSearchForNotebookItemsIntentResponse : PBCodable <_INPBSearchForNotebookItemsIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSearchForNotebookItemsIntentResponse : PBCodable <_INPBSearchForNotebookItemsIntentResponse, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int sortType:1;
@@ -22,13 +21,11 @@
     NSArray *_notes;
     NSArray *_taskLists;
     NSArray *_tasks;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)tasksType;
 + (Class)taskListsType;
 + (Class)notesType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *tasks; // @synthesize tasks=_tasks;
 @property(copy, nonatomic) NSArray *taskLists; // @synthesize taskLists=_taskLists;
 @property(nonatomic) int sortType; // @synthesize sortType=_sortType;

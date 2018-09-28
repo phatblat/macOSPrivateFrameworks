@@ -17,6 +17,7 @@
     NSString *_payloadPassword;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withSecurityType:(id)arg2 withAccessType:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withSecurityType:(id)arg2 withAccessType:(id)arg3 withPassword:(id)arg4;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

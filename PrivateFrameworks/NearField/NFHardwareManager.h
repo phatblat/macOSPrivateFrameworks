@@ -71,6 +71,7 @@
 - (unsigned int)checkUserBlessing:(id)arg1;
 - (id)disableHeadless;
 - (BOOL)getHeadlessFactoryMode:(id *)arg1;
+- (id)getHeadlessModeFlags:(unsigned int *)arg1;
 - (id)configureHeadlessFactoryMode:(BOOL)arg1;
 - (id)expressTransitIdentifier;
 - (BOOL)expressModesEnabled;

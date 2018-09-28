@@ -6,21 +6,18 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBLanguageTag.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBLanguageTag : PBCodable <_INPBLanguageTag, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBLanguageTag : PBCodable <_INPBLanguageTag, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSString *_tag;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *tag; // @synthesize tag=_tag;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

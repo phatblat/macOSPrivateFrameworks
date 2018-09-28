@@ -15,6 +15,7 @@
 - (id)init;
 - (void)loadView;
 @property(readonly) BOOL isVisible;
+@property(readonly) long long blendingMode;
 
 @end
 

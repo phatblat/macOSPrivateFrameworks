@@ -116,7 +116,7 @@
 @property(retain, nonatomic) WDBorder *topBorder; // @synthesize topBorder=_topBorder;
 @property(retain, nonatomic) WDShading *shading; // @synthesize shading=_shading;
 @property unsigned short look; // @synthesize look=_look;
-@property(retain, nonatomic) WDStyle *baseStyle; // @synthesize baseStyle=_baseStyle;
+@property(nonatomic) __weak WDStyle *baseStyle; // @synthesize baseStyle=_baseStyle;
 @property BOOL formattingChangeDateOverridden; // @synthesize formattingChangeDateOverridden=mFormattingChangeDateOverridden;
 @property BOOL editDateOverridden; // @synthesize editDateOverridden=mEditDateOverridden;
 @property BOOL deletionDateOverridden; // @synthesize deletionDateOverridden=mDeletionDateOverridden;

@@ -29,6 +29,7 @@
 - (id)currentValueForStateChannel:(id)arg1 atIndex:(int)arg2;
 - (id)deltaValueForSimpleChannel:(id)arg1;
 - (id)currentValueForSimpleChannel:(id)arg1;
+- (id)parseSimpleDeltaSample;
 - (id)parseSimpleIOReportSample;
 - (BOOL)updateStatsWithBlock:(CDUnknownBlockType)arg1;
 - (BOOL)updateStats;

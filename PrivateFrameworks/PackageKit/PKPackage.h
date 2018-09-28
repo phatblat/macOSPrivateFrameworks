@@ -29,7 +29,6 @@
 - (void)_populateComponentSubpaths;
 @property(readonly) NSURL *fileURL;
 @property(readonly) PKArchive *archive;
-- (BOOL)_extractFilesForBundleComponent:(id)arg1 toPath:(id)arg2 error:(id *)arg3;
 - (BOOL)extractFilesForBundleComponent:(id)arg1 toPath:(id)arg2 error:(id *)arg3;
 - (id)firmwareComponents;
 - (id)subpathsForComponent:(id)arg1;

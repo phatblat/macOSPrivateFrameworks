@@ -88,7 +88,7 @@
 @property(readonly, nonatomic) struct __Mecabra *mecabra;
 - (unsigned long long)autoquoteType;
 - (void)dealloc;
-- (id)initWithConfig:(id)arg1;
+- (id)initWithConfig:(id)arg1 keyboardState:(id)arg2;
 
 @end
 

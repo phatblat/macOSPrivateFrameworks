@@ -10,6 +10,16 @@
 
 @interface CSSpeakerDetectorNDAPI : NSObject
 {
+    void *_novDetect;
+    const struct _ndresult {
+        unsigned int _field1;
+        unsigned int _field2;
+        unsigned int _field3;
+        unsigned int _field4;
+        float _field5;
+        _Bool _field6;
+        _Bool _field7;
+    } *_lastResult;
     float _threshold;
     unsigned long long _maxSpeakerVectorsToPersist;
     CSSpeakerModel *_spkModel;

@@ -68,6 +68,7 @@
 - (void)splitDisk:(SKDisk *)arg1 toSize:(unsigned long long)arg2 newDiskRole:(NSString *)arg3 name:(NSString *)arg4 caseSensitive:(BOOL)arg5 password:(NSString *)arg6 handlingProgress:(void (^)(float, NSString *))arg7 withCompletionBlock:(void (^)(SKDisk *, SKDisk *, NSError *))arg8;
 - (void)splitDisk:(SKDisk *)arg1 toSize:(unsigned long long)arg2 newDiskType:(NSString *)arg3 name:(NSString *)arg4 caseSensitive:(BOOL)arg5 password:(NSString *)arg6 handlingProgress:(void (^)(float, NSString *))arg7 withCompletionBlock:(void (^)(SKDisk *, SKDisk *, NSError *))arg8;
 - (void)mountDisk:(SKDisk *)arg1 options:(NSArray *)arg2 withCompletionBlock:(void (^)(NSError *))arg3;
+- (void)unmountDisk:(SKDisk *)arg1 options:(NSDictionary *)arg2 withCompletionBlock:(void (^)(NSError *))arg3;
 - (void)unmountDisk:(SKDisk *)arg1 withCompletionBlock:(void (^)(NSError *))arg2;
 - (void)renameDisk:(SKDisk *)arg1 to:(NSString *)arg2 withCompletionBlock:(void (^)(NSError *))arg3;
 - (void)secureEraseDisk:(SKDisk *)arg1 withEraseLevel:(int)arg2 handlingProgress:(void (^)(float, NSString *))arg3 withCompletionBlock:(void (^)(SKDisk *, NSError *))arg4;

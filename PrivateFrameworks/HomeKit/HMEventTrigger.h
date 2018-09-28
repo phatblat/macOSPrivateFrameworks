@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class HMThreadSafeMutableArrayCollection, NSArray, NSPredicate;
+@class HMMutableArray, NSArray, NSPredicate;
 
 @interface HMEventTrigger : HMTrigger <NSSecureCoding>
 {
@@ -16,7 +16,7 @@
     BOOL _executeOnce;
     NSPredicate *_internalPredicate;
     unsigned long long _activationState;
-    HMThreadSafeMutableArrayCollection *_currentEvents;
+    HMMutableArray *_currentEvents;
 }
 
 + (BOOL)isActionAffectedByEndEvents:(id)arg1;
@@ -39,7 +39,7 @@
 + (id)predicateForEvaluatingTriggerOccurringBeforeSignificantEvent:(id)arg1 applyingOffset:(id)arg2;
 + (id)negateOffset:(id)arg1;
 + (BOOL)__validateRecurrences:(id)arg1;
-@property(retain, nonatomic) HMThreadSafeMutableArrayCollection *currentEvents; // @synthesize currentEvents=_currentEvents;
+@property(retain, nonatomic) HMMutableArray *currentEvents; // @synthesize currentEvents=_currentEvents;
 - (void).cxx_destruct;
 - (BOOL)compatibleWithApp;
 - (BOOL)containsSharedTriggerActivationBits;
@@ -64,7 +64,6 @@
 - (void)_updatePredicate:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)updatePredicate:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_updateCharacteristicReference;
-- (void)_configure:(id)arg1 uuid:(id)arg2 messageDispatcher:(id)arg3 clientQueue:(id)arg4 delegateCaller:(id)arg5;
 - (void)_updateEvents:(id)arg1 endEvent:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)updateEndEvents:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)updateEvents:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
@@ -72,10 +71,6 @@
 - (void)removeEvent:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_addEvent:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)addEvent:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)dealloc;
-- (id)initWithName:(id)arg1 events:(id)arg2 predicate:(id)arg3;
-- (id)initInternalWithName:(id)arg1 events:(id)arg2 endEvents:(id)arg3 recurrences:(id)arg4 predicate:(id)arg5;
-- (id)initWithName:(id)arg1 events:(id)arg2 endEvents:(id)arg3 recurrences:(id)arg4 predicate:(id)arg5;
 @property(readonly, nonatomic) unsigned long long triggerActivationState;
 @property(nonatomic) unsigned long long activationState; // @synthesize activationState=_activationState;
 - (void)setExecuteOnce:(BOOL)arg1;
@@ -87,6 +82,10 @@
 @property(readonly, copy, nonatomic) NSArray *allEvents;
 @property(readonly, copy, nonatomic) NSArray *endEvents;
 @property(readonly, copy, nonatomic) NSArray *events;
+- (void)__configureWithContext:(id)arg1 home:(id)arg2;
+- (id)initWithName:(id)arg1 events:(id)arg2 predicate:(id)arg3;
+- (id)initInternalWithName:(id)arg1 events:(id)arg2 endEvents:(id)arg3 recurrences:(id)arg4 predicate:(id)arg5;
+- (id)initWithName:(id)arg1 events:(id)arg2 endEvents:(id)arg3 recurrences:(id)arg4 predicate:(id)arg5;
 
 @end
 

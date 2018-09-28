@@ -6,24 +6,31 @@
 
 #import <Intents/INImage.h>
 
-@class NSData;
+@class NSData, NSUUID;
 
 __attribute__((visibility("hidden")))
 @interface _INDataImage : INImage
 {
+    NSUUID *_md5HashUUID;
     NSData *_imageData;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(copy, nonatomic) NSData *imageData; // @synthesize imageData=_imageData;
+@property(readonly, copy, nonatomic) NSData *imageData; // @synthesize imageData=_imageData;
 - (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (id)_md5HashUUID;
+- (BOOL)_isEligibleForProxying;
+- (void)_setImageData:(id)arg1;
+- (id)_imageData;
 - (id)_copyWithSubclass:(Class)arg1;
-- (BOOL)isEqual:(id)arg1;
 - (id)_dictionaryRepresentation;
 - (id)_identifier;
+- (void)_retrieveImageDataWithReply:(CDUnknownBlockType)arg1;
 - (BOOL)_requiresRetrieval;
+- (BOOL)isEqual:(id)arg1;
+- (id)initWithImageData:(id)arg1;
 - (void)_loadImageDataAndSizeWithHelper:(id)arg1 accessSpecifier:(id)arg2 completion:(CDUnknownBlockType)arg3;
 
 @end

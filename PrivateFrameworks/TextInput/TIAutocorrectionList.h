@@ -12,6 +12,7 @@
 
 @interface TIAutocorrectionList : NSObject <NSSecureCoding>
 {
+    BOOL _containsProactiveTriggers;
     TIKeyboardCandidate *_autocorrection;
     NSArray *_predictions;
     NSArray *_emojiList;
@@ -26,6 +27,7 @@
 + (id)listWithAutocorrection:(id)arg1 predictions:(id)arg2;
 + (id)listWithAutocorrection:(id)arg1;
 + (BOOL)supportsSecureCoding;
+@property(nonatomic) BOOL containsProactiveTriggers; // @synthesize containsProactiveTriggers=_containsProactiveTriggers;
 @property(readonly, nonatomic) NSArray *proactiveTriggers; // @synthesize proactiveTriggers=_proactiveTriggers;
 @property(readonly, nonatomic) NSArray *emojiList; // @synthesize emojiList=_emojiList;
 @property(readonly, nonatomic) NSArray *predictions; // @synthesize predictions=_predictions;

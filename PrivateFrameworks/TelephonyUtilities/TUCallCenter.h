@@ -99,6 +99,7 @@
 - (void)dialWithRequest:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)dialWithRequest:(id)arg1;
 - (BOOL)canDialWithRequest:(id)arg1;
+- (BOOL)_isEmergencyDialRequest:(id)arg1;
 - (BOOL)_canDialWithRequest:(id)arg1 shouldUseRelay:(char *)arg2;
 - (BOOL)_isCallingAvailableOnSecondaryDeviceWithRelayCallingAvailability:(int)arg1 isProviderAvailable:(BOOL)arg2 isRelayAllowed:(BOOL)arg3 isEmergency:(BOOL)arg4 supportsBasebandCalling:(BOOL)arg5 shouldUseRelay:(char *)arg6;
 - (BOOL)_existingCallsAllowDialRequest:(id)arg1 allowVoiceWithData:(BOOL)arg2;

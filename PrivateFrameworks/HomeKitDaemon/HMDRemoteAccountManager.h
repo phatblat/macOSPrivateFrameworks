@@ -12,14 +12,14 @@
 #import "IDSServiceDelegate.h"
 #import "NSFastEnumeration.h"
 
-@class HMDBackingStore, IDSService, NSArray, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
+@class HMDBackingStore, HMFUnfairLock, IDSService, NSArray, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
 
 @interface HMDRemoteAccountManager : HMFObject <HMDAccountManager, HMFLogging, HMFObject, IDSServiceDelegate, NSFastEnumeration>
 {
+    NSObject<OS_dispatch_queue> *_queue;
+    HMFUnfairLock *_lock;
     NSMutableSet *_accounts;
     BOOL _monitoring;
-    NSObject<OS_dispatch_queue> *_clientQueue;
-    NSObject<OS_dispatch_queue> *_propertyQueue;
     IDSService *_service;
     NSMutableArray *_resolveOperations;
     HMDBackingStore *_backingStore;
@@ -31,8 +31,6 @@
 @property(readonly, nonatomic) NSMutableArray *resolveOperations; // @synthesize resolveOperations=_resolveOperations;
 @property(nonatomic, getter=isMonitoring) BOOL monitoring; // @synthesize monitoring=_monitoring;
 @property(readonly, nonatomic) IDSService *service; // @synthesize service=_service;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *propertyQueue; // @synthesize propertyQueue=_propertyQueue;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *clientQueue; // @synthesize clientQueue=_clientQueue;
 - (void).cxx_destruct;
 - (void)service:(id)arg1 account:(id)arg2 identifier:(id)arg3 didSendWithSuccess:(BOOL)arg4 error:(id)arg5 context:(id)arg6;
 - (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
@@ -55,10 +53,9 @@
 @property(readonly, copy, nonatomic) NSArray *attributeDescriptions;
 - (id)initWithIDSService:(id)arg1;
 - (id)init;
-- (void)__handleSendMessageFailureWithError:(id)arg1 handle:(id)arg2;
 - (id)deviceForSenderContext:(id)arg1;
 - (id)accountForSenderContext:(id)arg1;
-- (void)updateWithSenderContext:(id)arg1;
+- (void)__handleSendMessageFailureWithError:(id)arg1 destination:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

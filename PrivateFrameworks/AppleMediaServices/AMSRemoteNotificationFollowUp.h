@@ -9,21 +9,33 @@
 #import "AMSRemoteNotificationParsable.h"
 #import "AMSUserNotificationIntentCallback.h"
 
+@class NSString;
+
 __attribute__((visibility("hidden")))
 @interface AMSRemoteNotificationFollowUp : NSObject <AMSRemoteNotificationParsable, AMSUserNotificationIntentCallback>
 {
 }
 
-+ (id)_sharedNotificationCenter;
-+ (id)_generateNotificationFromPayload:(id)arg1;
-+ (id)_followUpActionFromActionDictionary:(id)arg1 logKey:(id)arg2;
++ (id)_createNotificationFromFollowUpItem:(id)arg1;
++ (id)_createFollowUpItemFromNotification:(id)arg1;
++ (id)_createFollowUpItemFromPayload:(id)arg1;
 + (BOOL)_shouldClearFollowUpFromPayload:(id)arg1;
 + (BOOL)_shouldAllowFollowUp:(id)arg1;
++ (id)_sharedNotificationCenter;
 + (void)_performPostWithPayload:(id)arg1;
 + (void)_performClearWithPayload:(id)arg1;
 + (void)userNotification:(id)arg1 selectedButtonAction:(id)arg2;
++ (BOOL)supportsInactiveAccounts;
 + (long long)supportedActionType;
 + (void)handleNotificationPayload:(id)arg1;
++ (BOOL)isDeviceOfferNotification:(id)arg1;
++ (void)removeDeviceOfferWithPayload:(id)arg1 logKey:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

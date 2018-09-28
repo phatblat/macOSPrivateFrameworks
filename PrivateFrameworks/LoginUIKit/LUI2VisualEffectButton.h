@@ -4,22 +4,48 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSButton.h"
+#import "NSView.h"
 
-@class NSImage, NSVisualEffectView;
+#import "NSAccessibilityButton.h"
 
-@interface LUI2VisualEffectButton : NSButton
+@class LUI2DarkenView, LUI2VEBButton, NSImage, NSString, NSVisualEffectView;
+
+@interface LUI2VisualEffectButton : NSView <NSAccessibilityButton>
 {
+    BOOL _enabledInternal;
+    NSImage *_vebImage;
     NSVisualEffectView *_backgroundView;
+    LUI2VEBButton *_button;
+    LUI2DarkenView *_darkenView;
 }
 
-+ (void)initialize;
+@property(retain) LUI2DarkenView *darkenView; // @synthesize darkenView=_darkenView;
+@property(retain) LUI2VEBButton *button; // @synthesize button=_button;
 @property(retain) NSVisualEffectView *backgroundView; // @synthesize backgroundView=_backgroundView;
+@property(retain) NSImage *vebImage; // @synthesize vebImage=_vebImage;
+@property BOOL enabledInternal; // @synthesize enabledInternal=_enabledInternal;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 @property(retain) NSImage *image;
+@property long long blendingMode;
+- (BOOL)accessibilityPerformPress;
+- (void)setAccessibilityLabel:(id)arg1;
+- (id)accessibilityLabel;
+@property id target;
+@property(getter=isEnabled) BOOL enabled;
+@property SEL action;
+- (void)performClick:(id)arg1;
+- (BOOL)performKeyEquivalent:(id)arg1;
+@property unsigned long long keyEquivalentModifierMask;
+@property(copy) NSString *keyEquivalent;
 - (void)_setupVisualEffectButton;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

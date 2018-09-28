@@ -6,11 +6,17 @@
 
 #import <CoreDuet/_CDPerfMetric.h>
 
+@class NSObject<OS_os_activity>, _DKEventStatsTimerCounter;
+
 @interface _CDMutablePerfMetric : _CDPerfMetric
 {
     // Error parsing type: ^{XSPerfCollection={_opaque_pthread_mutex_t=q[56c]}IIIAS^{XSPerfCounter}^{XSPerfMetric}^{XSPerfString}*}, name: _stats
+    NSObject<OS_os_activity> *_os_activity;
+    struct os_activity_scope_state_s _os_activity_scope_state;
+    _DKEventStatsTimerCounter *_eventStatsTimerCounter;
 }
 
+- (void).cxx_destruct;
 - (id)description;
 - (id)elapsedTimeHistogram;
 - (unsigned long long)errorCount;
@@ -21,6 +27,7 @@
 - (double)minimumElapsedTime;
 - (double)lastElapsedTime;
 - (unsigned long long)count;
+- (void)startTelemetryWithOSActivity:(id)arg1;
 - (void)dealloc;
 - (id)initWithName:(id)arg1 string:(id)arg2 family:(id)arg3;
 

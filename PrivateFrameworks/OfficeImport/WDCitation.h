@@ -10,7 +10,6 @@
 
 @interface WDCitation : NSObject
 {
-    WDDocument *mDocument;
     NSString *mSourceType;
     NSMutableArray *mAuthors;
     NSString *mYear;
@@ -22,6 +21,7 @@
     NSString *mSection;
     NSString *mPubDate;
     NSString *mPages;
+    WDDocument *mDocument;
 }
 
 + (id)stringValuesForNodesAtPath:(id)arg1 nodePtr:(struct _xmlNode *)arg2 trimStyle:(BOOL)arg3;
@@ -34,6 +34,7 @@
 + (id)endNoteStringForRefType:(int)arg1;
 + (id)refTypeEnumMap;
 + (id)wordRefTypeEnumMap;
+@property(readonly) __weak WDDocument *document; // @synthesize document=mDocument;
 @property(retain, nonatomic) NSString *pages; // @synthesize pages=mPages;
 @property(retain, nonatomic) NSMutableArray *urls; // @synthesize urls=mUrls;
 @property(retain, nonatomic) NSString *pubDate; // @synthesize pubDate=mPubDate;
@@ -48,7 +49,6 @@
 - (void).cxx_destruct;
 - (id)description;
 - (id)initWithDocument:(id)arg1;
-- (id)document;
 
 @end
 

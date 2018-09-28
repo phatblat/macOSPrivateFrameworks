@@ -34,6 +34,7 @@
 @property(readonly, copy) INSpeakableString *workoutName;
 - (id)initWithWorkoutName:(id)arg1 goalValue:(id)arg2 workoutGoalUnitType:(long long)arg3 workoutLocationType:(long long)arg4 isOpenEnded:(id)arg5;
 - (id)_categoryVerb;
+- (long long)_intentCategory;
 - (void)_setMetadata:(id)arg1;
 - (id)_metadata;
 - (id)_typedBackingStore;

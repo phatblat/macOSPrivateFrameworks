@@ -20,6 +20,7 @@
 - (id)_pendingFollowUpWithBackingIdentifier:(id)arg1 error:(id *)arg2;
 - (id)postFollowUpItem:(id)arg1;
 - (id)pendingFollowUpWithIdentifier:(id)arg1 account:(id)arg2;
+- (id)pendingFollowUpsForAccount:(id)arg1;
 - (id)pendingFollowUps;
 - (id)clearFollowUpWithIdentifier:(id)arg1 account:(id)arg2;
 - (id)init;

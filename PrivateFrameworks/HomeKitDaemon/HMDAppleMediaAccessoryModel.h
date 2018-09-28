@@ -15,6 +15,7 @@
 + (id)properties;
 
 // Remaining properties
+@property(retain, nonatomic) NSString *appleMediaAccessoryChangeTag; // @dynamic appleMediaAccessoryChangeTag;
 @property(retain, nonatomic) HMDDevice *device; // @dynamic device;
 @property(retain, nonatomic) NSString *deviceUUID; // @dynamic deviceUUID;
 @property(retain, nonatomic) NSData *loggedInAccount; // @dynamic loggedInAccount;

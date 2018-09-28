@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBDateTimeRangeValue.h"
 
-@class INCodableAttribute, NSString, _INPBDateTime, _INPBRecurrenceValue, _INPBValueMetadata;
+@class NSString, _INPBDateTime, _INPBRecurrenceValue, _INPBValueMetadata;
 
-@interface _INPBDateTimeRangeValue : PBCodable <_INPBDateTimeRangeValue, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBDateTimeRangeValue : PBCodable <_INPBDateTimeRangeValue, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int endCalendar:1;
@@ -25,10 +24,8 @@
     long long _startCalendar;
     _INPBDateTime *_startDateTime;
     _INPBValueMetadata *_valueMetadata;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBValueMetadata *valueMetadata; // @synthesize valueMetadata=_valueMetadata;
 @property(retain, nonatomic) _INPBDateTime *startDateTime; // @synthesize startDateTime=_startDateTime;
 @property(nonatomic) long long startCalendar; // @synthesize startCalendar=_startCalendar;

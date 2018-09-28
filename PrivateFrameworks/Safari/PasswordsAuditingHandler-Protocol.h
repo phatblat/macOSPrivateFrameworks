@@ -6,10 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSString, WBSSavedPassword;
+@class NSAttributedString, WBSSavedPassword;
 
 @protocol PasswordsAuditingHandler <NSObject>
 - (void)changePasswordForSavedPassword:(WBSSavedPassword *)arg1;
-- (NSString *)passwordsReusedWarningStringForSavedPassword:(WBSSavedPassword *)arg1;
+- (NSAttributedString *)passwordsReusedWarningStringForSavedPassword:(WBSSavedPassword *)arg1;
 @end
 

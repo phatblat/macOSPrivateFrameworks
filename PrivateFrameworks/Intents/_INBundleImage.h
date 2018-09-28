@@ -21,15 +21,21 @@ __attribute__((visibility("hidden")))
 - (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (void)_setBundleIdentifier:(id)arg1;
+- (id)_bundleIdentifier;
+- (void)_setBundlePath:(id)arg1;
+- (id)_bundlePath;
+- (void)_setName:(id)arg1;
+- (id)_name;
 - (id)_copyWithSubclass:(Class)arg1;
 - (id)_dictionaryRepresentation;
 - (BOOL)_requiresRetrieval;
 - (id)_identifier;
 - (id)stringRepresentation;
 - (id)initWithStringRepresentation:(id)arg1;
-- (id)_initWithIdentifier:(id)arg1;
+- (id)_URLRepresentation;
+- (id)_initWithURLRepresentation:(id)arg1;
 - (void)_loadImageDataAndSizeWithHelper:(id)arg1 accessSpecifier:(id)arg2 completion:(CDUnknownBlockType)arg3;
-- (id)_in_bundleImageFileWritingPath;
 
 @end
 

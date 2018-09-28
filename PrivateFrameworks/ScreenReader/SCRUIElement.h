@@ -267,6 +267,7 @@
 - (id)descendantWithMaximumDepth:(long long)arg1 predicate:(CDUnknownBlockType)arg2;
 - (id)descendantMatchingBlock:(CDUnknownBlockType)arg1 depth:(long long)arg2;
 - (id)ancestorMatchingBlock:(CDUnknownBlockType)arg1;
+- (BOOL)hasAncestor:(id)arg1;
 - (id)uiElementForParameterizedAXAttribute:(struct __CFString *)arg1 parameterValue:(void *)arg2;
 - (void)setAXAttribute:(struct __CFString *)arg1 withMarkerRange:(struct __AXTextMarkerRange *)arg2;
 - (struct __AXTextMarkerRange *)textMarkerRangeForParameterizedAXAttribute:(struct __CFString *)arg1 parameterValue:(void *)arg2;
@@ -379,6 +380,17 @@
 @property(readonly, nonatomic) NSArray *accessibilityCustomRotorNames;
 @property(readonly, nonatomic) NSArray *accessibilityCustomRotors;
 - (BOOL)isProbablyLayoutTable;
+- (id)_accessibilityMoveiOSFocusToPreviousOpaqueChildUIElement;
+- (id)_accessibilityMoveiOSFocusToNextOpaqueChildUIElement;
+- (id)_accessibilityLastContainedElement;
+- (id)_accessibilityFirstContainedElement;
+- (id)_accessibilityVisibleOpaqueElements;
+- (id)_accessibilityFocusedOpaqueElement;
+- (id)_accessibilityOpaqueElementParent;
+@property(readonly, nonatomic) BOOL _accessibilityIsOpaqueElementProvider;
+@property(readonly, copy, nonatomic) NSString *_accessibilityEquivalenceTag;
+@property(nonatomic, getter=_isAssistiveTechnologyFocused, setter=_setAssistiveTechnologyFocused:) BOOL _assistiveTechnologyFocused;
+@property(readonly, nonatomic) BOOL _isiOSElement;
 - (id)_accessibilityUIElementsForRole:(struct __CFString *)arg1;
 @property(readonly, nonatomic, getter=_isAccessibilityApplicationIgnored) BOOL _accessibilityApplicationIgnored;
 @property(nonatomic, getter=_isAccessibilityEnhancedUserInterface, setter=_setAccessibilityEnhancedUserInterface:) BOOL _accessibilityEnhancedUserInterface;
@@ -418,6 +430,7 @@
 @property(readonly, nonatomic) long long _accessibilityMenuItemCmdGlyph;
 @property(readonly, nonatomic) NSString *_accessibilityMenuItemCmdChar;
 - (id)_linkedUIElements;
+@property(readonly, nonatomic) BOOL _startsMediaSession;
 @property(readonly, nonatomic) BOOL _hasSharedFocusUIElements;
 @property(readonly, copy, nonatomic) NSArray *_sharedFocusUIElements;
 @property(readonly, nonatomic) BOOL _canSetAccessibilitySize;

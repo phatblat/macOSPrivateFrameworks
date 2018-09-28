@@ -15,17 +15,18 @@
     unsigned long long _participantIdentifier;
     unsigned long long _videoQuality;
     NSNumber *_visibility;
+    NSNumber *_prominence;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(readonly, nonatomic) NSNumber *prominence; // @synthesize prominence=_prominence;
 @property(readonly, nonatomic) NSNumber *visibility; // @synthesize visibility=_visibility;
 @property(readonly, nonatomic) unsigned long long videoQuality; // @synthesize videoQuality=_videoQuality;
 @property(readonly, nonatomic) unsigned long long participantIdentifier; // @synthesize participantIdentifier=_participantIdentifier;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)description;
-- (id)initWithParticipantIdentifier:(unsigned long long)arg1 videoQuality:(unsigned long long)arg2 visibility:(id)arg3;
-- (id)initWithParticipant:(id)arg1 videoQuality:(unsigned long long)arg2 visibility:(id)arg3;
+- (id)initWithParticipantIdentifier:(unsigned long long)arg1 videoQuality:(unsigned long long)arg2 visibility:(id)arg3 prominence:(id)arg4;
 
 @end
 

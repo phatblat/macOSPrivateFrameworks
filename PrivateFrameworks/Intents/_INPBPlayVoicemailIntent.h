@@ -6,22 +6,19 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBPlayVoicemailIntent.h"
 
-@class INCodableAttribute, NSString, _INPBIntentMetadata;
+@class NSString, _INPBIntentMetadata;
 
-@interface _INPBPlayVoicemailIntent : PBCodable <_INPBPlayVoicemailIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBPlayVoicemailIntent : PBCodable <_INPBPlayVoicemailIntent, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSString *_callRecordIdentifier;
     _INPBIntentMetadata *_intentMetadata;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
 @property(copy, nonatomic) NSString *callRecordIdentifier; // @synthesize callRecordIdentifier=_callRecordIdentifier;
 - (void).cxx_destruct;

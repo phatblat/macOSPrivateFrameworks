@@ -24,16 +24,19 @@
 - (void).cxx_destruct;
 - (void)_fetchShareParticipantsForParticipants:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)_fetchExpiryDateInZone:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)_saveShare:(id)arg1 rootRecord:(id)arg2 inZone:(id)arg3;
 - (void)_createNewShareInZone:(id)arg1 withShareParticipants:(id)arg2 mode:(short)arg3;
 - (void)runOperations;
 - (id)initWithController:(id)arg1 momentShare:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 
 // Remaining properties
+@property(nonatomic, getter=isBackgroundTask) BOOL backgroundTask;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(nonatomic, getter=isForcedTask) BOOL forcedTask;
 @property(nonatomic) BOOL foreground;
 @property(readonly) unsigned long long hash;
-@property(nonatomic) long long minimumQualityOfService;
+@property(nonatomic, getter=isHighPriorityBackground) BOOL highPriorityBackground;
 @property(readonly) Class superclass;
 @property(retain, nonatomic) id <CPLEngineTransportGroup> transportGroup;
 

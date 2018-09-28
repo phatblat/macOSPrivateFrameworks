@@ -6,37 +6,42 @@
 
 #import "NSObject.h"
 
-@class CKContextClient, NSArray, NSString;
+@class NSArray, NSString;
 
 @interface CTCategories : NSObject
 {
     NSString *_indexVersionId;
-    CKContextClient *_client;
 }
 
++ (id)systemBundleIdentifiers;
++ (id)systemHiddenBundleIdentifiers;
++ (id)systemUnblockableBundleIdentifiers;
++ (id)systemBlockableBundleIdentifiers;
 + (id)sharedCategories;
 + (void)initialize;
-@property(retain, nonatomic) CKContextClient *client; // @synthesize client=_client;
 - (void).cxx_destruct;
-- (void)categoriesForDomainURLs:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)categoriesForDomainURLs:(id)arg1 responseWithError:(CDUnknownBlockType)arg2;
 - (void)categoriesForDomainURLs:(id)arg1 response:(CDUnknownBlockType)arg2;
-- (void)categoriesForDomainNames:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)categoriesForDomainNames:(id)arg1 responseWithError:(CDUnknownBlockType)arg2;
 - (void)categoriesForDomainNames:(id)arg1 response:(CDUnknownBlockType)arg2;
-- (void)categoriesForBundleIDs:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)categoriesForBundleIDs:(id)arg1 responseWithError:(CDUnknownBlockType)arg2;
 - (void)categoriesForBundleIDs:(id)arg1 response:(CDUnknownBlockType)arg2;
-- (void)categoryForDomainURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)categoryForDomainURL:(id)arg1 responseWithError:(CDUnknownBlockType)arg2;
 - (void)categoryForDomainURL:(id)arg1 response:(CDUnknownBlockType)arg2;
-- (void)categoryForDomainName:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)categoryForDomainName:(id)arg1 responseWithError:(CDUnknownBlockType)arg2;
 - (void)categoryForDomainName:(id)arg1 response:(CDUnknownBlockType)arg2;
-- (void)categoryForBundleID:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)categoryForBundleID:(id)arg1 responseWithError:(CDUnknownBlockType)arg2;
 - (void)categoryForBundleID:(id)arg1 response:(CDUnknownBlockType)arg2;
+- (void)categoryForBundleID:(id)arg1 responseWithError:(CDUnknownBlockType)arg2;
+- (void)unCategorizedDomainsFromDomains:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
+- (void)categoriesForDomainURLs:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)categoriesForDomainNames:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)categoriesForBundleIDs:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)categoryForDomainURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)categoryForDomainName:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)categoryForBundleID:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 @property(readonly, copy) NSArray *availableCategoryIDs;
+- (void)_emptySharedCache:(id)arg1;
+- (void)dealloc;
 - (id)init;
 
 @end

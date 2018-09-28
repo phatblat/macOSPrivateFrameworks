@@ -18,6 +18,7 @@
 - (void)_automationSession:(_WKAutomationSession *)arg1 dismissCurrentJavaScriptDialogOnPage:(const struct OpaqueWKPage *)arg2;
 - (BOOL)_automationSession:(_WKAutomationSession *)arg1 isShowingJavaScriptDialogOnPage:(const struct OpaqueWKPage *)arg2;
 - (void)_automationSession:(_WKAutomationSession *)arg1 requestSwitchToPage:(const struct OpaqueWKPage *)arg2 completionHandler:(void (^)(void))arg3;
+- (void)_automationSession:(_WKAutomationSession *)arg1 requestMaximizeWindowOfPage:(const struct OpaqueWKPage *)arg2 completionHandler:(void (^)(void))arg3;
 - (void)_automationSession:(_WKAutomationSession *)arg1 requestRestoreWindowOfPage:(const struct OpaqueWKPage *)arg2 completionHandler:(void (^)(void))arg3;
 - (void)_automationSession:(_WKAutomationSession *)arg1 requestHideWindowOfPage:(const struct OpaqueWKPage *)arg2 completionHandler:(void (^)(void))arg3;
 - (void)_automationSession:(_WKAutomationSession *)arg1 requestNewPageWithOptions:(unsigned long long)arg2 completionHandler:(void (^)(struct OpaqueWKPage *))arg3;
@@ -28,6 +29,7 @@
 - (void)_automationSession:(_WKAutomationSession *)arg1 dismissCurrentJavaScriptDialogForWebView:(WKWebView *)arg2;
 - (BOOL)_automationSession:(_WKAutomationSession *)arg1 isShowingJavaScriptDialogForWebView:(WKWebView *)arg2;
 - (void)_automationSession:(_WKAutomationSession *)arg1 requestSwitchToWebView:(WKWebView *)arg2 completionHandler:(void (^)(void))arg3;
+- (void)_automationSession:(_WKAutomationSession *)arg1 requestMaximizeWindowOfWebView:(WKWebView *)arg2 completionHandler:(void (^)(void))arg3;
 - (void)_automationSession:(_WKAutomationSession *)arg1 requestRestoreWindowOfWebView:(WKWebView *)arg2 completionHandler:(void (^)(void))arg3;
 - (void)_automationSession:(_WKAutomationSession *)arg1 requestHideWindowOfWebView:(WKWebView *)arg2 completionHandler:(void (^)(void))arg3;
 - (void)_automationSession:(_WKAutomationSession *)arg1 requestNewWebViewWithOptions:(unsigned long long)arg2 completionHandler:(void (^)(WKWebView *))arg3;

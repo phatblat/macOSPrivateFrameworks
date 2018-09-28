@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBTemperatureList.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBCondition;
+@class NSArray, NSString, _INPBCondition;
 
-@interface _INPBTemperatureList : PBCodable <_INPBTemperatureList, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBTemperatureList : PBCodable <_INPBTemperatureList, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBCondition *_condition;
     NSArray *_temperatures;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)temperatureType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *temperatures; // @synthesize temperatures=_temperatures;
 @property(retain, nonatomic) _INPBCondition *condition; // @synthesize condition=_condition;
 - (void).cxx_destruct;

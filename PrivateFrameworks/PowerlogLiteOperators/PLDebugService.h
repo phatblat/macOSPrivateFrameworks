@@ -30,6 +30,7 @@
 + (id)entryEventNoneDefinitionArrayTest;
 + (id)entryEventNoneDefinitionPLAPITest;
 + (id)entryEventNoneDefinitions;
++ (id)entryAggregateDefinitionAggregateTestSplitAndBucket;
 + (id)entryAggregateDefinitionAggregateTestVerySmall;
 + (id)entryAggregateDefinitionAggregateTestSmall;
 + (id)entryAggregateDefinitionAggregateTest;
@@ -51,6 +52,9 @@
 @property(retain) PLXPCResponderOperatorComposition *xpcResponderPLLog; // @synthesize xpcResponderPLLog=_xpcResponderPLLog;
 @property(retain) PLXPCListenerOperatorComposition *xpcListenerPLLog; // @synthesize xpcListenerPLLog=_xpcListenerPLLog;
 - (void).cxx_destruct;
+- (void)testProportionateAggregateEntries;
+- (void)testMonotonicAggregateEntriesExtendedTime;
+- (void)testMonotonicAggregateEntries;
 - (void)testEntryQueries;
 - (void)testEntryDelete;
 - (void)testEntryApplicationAgent;

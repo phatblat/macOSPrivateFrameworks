@@ -12,14 +12,15 @@
 
 @interface WDTableProperties : NSObject <NSCopying>
 {
-    WDDocument *mDocument;
     unsigned int mOriginal:1;
     unsigned int mTracked:1;
     unsigned int mResolved:1;
     WDTablePropertiesValues *mOriginalProperties;
     WDTablePropertiesValues *mTrackedProperties;
+    WDDocument *mDocument;
 }
 
+@property(readonly) __weak WDDocument *document; // @synthesize document=mDocument;
 - (void).cxx_destruct;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -138,7 +139,6 @@
 - (id)baseStyle;
 - (void)setResolveMode:(int)arg1;
 - (int)resolveMode;
-- (id)document;
 - (id)initWithDocument:(id)arg1;
 - (id)init;
 - (void)moveOrignalToTracked;

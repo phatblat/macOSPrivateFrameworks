@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBAddTasksIntent.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBIntentMetadata, _INPBSpatialEventTrigger, _INPBTaskList, _INPBTemporalEventTrigger;
+@class NSArray, NSString, _INPBIntentMetadata, _INPBSpatialEventTrigger, _INPBTaskList, _INPBTemporalEventTrigger;
 
-@interface _INPBAddTasksIntent : PBCodable <_INPBAddTasksIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBAddTasksIntent : PBCodable <_INPBAddTasksIntent, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBIntentMetadata *_intentMetadata;
@@ -21,11 +20,9 @@
     _INPBTaskList *_targetTaskList;
     NSArray *_taskTitles;
     _INPBTemporalEventTrigger *_temporalEventTrigger;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)taskTitlesType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBTemporalEventTrigger *temporalEventTrigger; // @synthesize temporalEventTrigger=_temporalEventTrigger;
 @property(copy, nonatomic) NSArray *taskTitles; // @synthesize taskTitles=_taskTitles;
 @property(retain, nonatomic) _INPBTaskList *targetTaskList; // @synthesize targetTaskList=_targetTaskList;

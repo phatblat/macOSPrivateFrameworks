@@ -6,7 +6,7 @@
 
 #import <SAObjects/SABaseClientBoundCommand.h>
 
-@class NSArray;
+@class NSArray, NSString;
 
 @interface SADPDevicePlaySound : SABaseClientBoundCommand
 {
@@ -16,6 +16,7 @@
 + (id)devicePlaySound;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *devices;
+@property(copy, nonatomic) NSString *action;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

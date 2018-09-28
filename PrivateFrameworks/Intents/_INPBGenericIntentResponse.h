@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBGenericIntentResponse.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBIntentMetadata;
+@class NSArray, NSString, _INPBIntentMetadata;
 
-@interface _INPBGenericIntentResponse : PBCodable <_INPBGenericIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBGenericIntentResponse : PBCodable <_INPBGenericIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBIntentMetadata *_metadata;
     NSArray *_properties;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)propertiesType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *properties; // @synthesize properties=_properties;
 @property(retain, nonatomic) _INPBIntentMetadata *metadata; // @synthesize metadata=_metadata;
 - (void).cxx_destruct;

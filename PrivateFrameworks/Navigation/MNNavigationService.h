@@ -89,7 +89,7 @@
 - (void)navigationServiceProxy:(id)arg1 didUpdateActiveRouteDetails:(id)arg2;
 - (void)navigationServiceProxy:(id)arg1 didChangeFromState:(unsigned long long)arg2 toState:(unsigned long long)arg3;
 - (void)navigationServiceProxy:(id)arg1 willChangeFromState:(unsigned long long)arg2 toState:(unsigned long long)arg3;
-- (void)_reset;
+- (void)_resetDetails;
 - (void)recordTraceBookmarkAtCurrentPositionWthScreenshotData:(id)arg1;
 - (void)setTracePlaybackSpeed:(double)arg1;
 @property(nonatomic) double tracePosition;
@@ -148,9 +148,9 @@
 - (void)setCurrentAudioOutputSetting:(id)arg1;
 - (void)setHFPPreference:(BOOL)arg1 forSetting:(id)arg2;
 - (void)stopCurrentGuidancePrompt;
-- (void)vibrateForPrompt:(unsigned long long)arg1 withReply:(CDUnknownBlockType)arg2;
-- (void)repeatCurrentTrafficAlertWithReply:(CDUnknownBlockType)arg1;
-- (void)repeatCurrentGuidanceWithReply:(CDUnknownBlockType)arg1;
+- (BOOL)vibrateForPrompt:(unsigned long long)arg1;
+- (BOOL)repeatCurrentTrafficAlert;
+- (BOOL)repeatCurrentGuidance;
 - (void)changeSettings:(id)arg1;
 - (id)settings;
 - (void)setFullGuidanceMode:(BOOL)arg1;

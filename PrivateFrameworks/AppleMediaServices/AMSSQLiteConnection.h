@@ -31,6 +31,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)_resetAfterCorruptionError;
 - (id)_prepareStatement:(id)arg1 error:(id *)arg2;
 - (BOOL)_performResetAfterCorruptionError;
+- (BOOL)_openAndAllowRetry:(BOOL)arg1;
 - (BOOL)_open;
 - (void)_flushAfterTransactionBlocks;
 - (void)_finalizeAllStatements;

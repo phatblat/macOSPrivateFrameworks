@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBPauseTimerIntent.h"
 
-@class INCodableAttribute, NSString, _INPBIntentMetadata, _INPBTimer;
+@class NSString, _INPBIntentMetadata, _INPBTimer;
 
-@interface _INPBPauseTimerIntent : PBCodable <_INPBPauseTimerIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBPauseTimerIntent : PBCodable <_INPBPauseTimerIntent, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int pauseMultiple:1;
@@ -21,10 +20,8 @@
     BOOL _pauseMultiple;
     _INPBIntentMetadata *_intentMetadata;
     _INPBTimer *_targetTimer;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBTimer *targetTimer; // @synthesize targetTimer=_targetTimer;
 @property(nonatomic) BOOL pauseMultiple; // @synthesize pauseMultiple=_pauseMultiple;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;

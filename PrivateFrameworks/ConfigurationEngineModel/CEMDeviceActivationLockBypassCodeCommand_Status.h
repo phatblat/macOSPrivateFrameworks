@@ -13,6 +13,7 @@
     NSString *_statusActivationLockBypassCode;
 }
 
++ (id)buildRequiredOnlyWithActivationLockBypassCode:(id)arg1;
 + (id)buildWithActivationLockBypassCode:(id)arg1;
 + (id)allowedReasons;
 + (id)allowedStatusKeys;

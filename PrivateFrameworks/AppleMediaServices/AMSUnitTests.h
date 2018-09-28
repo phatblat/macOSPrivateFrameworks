@@ -11,6 +11,9 @@ __attribute__((visibility("hidden")))
 {
 }
 
++ (void)_sync:(CDUnknownBlockType)arg1;
++ (id)protocolClasses;
++ (void)setProtocolClasses:(id)arg1;
 + (BOOL)isRunningUnitTests;
 
 @end

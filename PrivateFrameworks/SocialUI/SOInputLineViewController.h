@@ -120,6 +120,7 @@
 - (BOOL)inputLine:(id)arg1 canAttachFilesAtURLs:(id)arg2;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (void)audioRecorderDidFinishRecording:(id)arg1 successfully:(BOOL)arg2;
+- (void)_appearanceChanged:(id)arg1;
 - (void)_updateTouchBar:(id)arg1;
 - (void)_updateEdgeInsets;
 - (void)_cleanupRecording;
@@ -129,10 +130,12 @@
 - (void)_updateVoiceMetering;
 - (void)_inputLineUpdateVoiceMetering:(id)arg1;
 - (void)_inputLineUpdateTimeStamp:(id)arg1;
+- (void)_updateAudioTimeStamp:(id)arg1;
 - (void)startRecording;
 - (void)_transitionInputLineIntoMessaging;
 - (void)_transitionInputLineIntoPreviewRecording;
 - (void)_transitionInputLineIntoRecording;
+- (void)updateAudioMessageButtonForAppearance;
 - (void)_updateAudioMessageButtonVisibilty;
 - (void)_updateEffectPickerButtonVisibility;
 - (void)_updateSmileyButtonVisibility;

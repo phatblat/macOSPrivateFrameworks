@@ -134,6 +134,8 @@
 + (id)sunriseSunsetAvailabilityStatusKey;
 + (id)keyPathForSunriseSunsetDataDictionary;
 + (id)predicateForBluetoothConnectionStatus:(BOOL)arg1;
++ (id)bluetoothProductIDKey;
++ (id)bluetoothIsAppleAudioDeviceKey;
 + (id)bluetoothDeviceTypeKey;
 + (id)bluetoothAddressKey;
 + (id)bluetoothNameKey;

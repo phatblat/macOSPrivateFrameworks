@@ -12,7 +12,6 @@ __attribute__((visibility("hidden")))
     BOOL _createdForPopover;
 }
 
-+ (Class)cellClass;
 @property BOOL createdForPopover; // @synthesize createdForPopover=_createdForPopover;
 - (void)mouseDown:(id)arg1;
 - (BOOL)allowsVibrancy;

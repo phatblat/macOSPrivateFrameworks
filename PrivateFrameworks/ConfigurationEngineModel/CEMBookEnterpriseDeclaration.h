@@ -20,6 +20,7 @@
     NSString *_payloadTitle;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withDescriptor:(id)arg2 withReference:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withDescriptor:(id)arg2 withReference:(id)arg3 withKind:(id)arg4 withVersion:(id)arg5 withAuthor:(id)arg6 withTitle:(id)arg7;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

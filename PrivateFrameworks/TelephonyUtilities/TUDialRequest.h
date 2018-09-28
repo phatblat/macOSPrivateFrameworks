@@ -11,7 +11,7 @@
 #import "TUCallRequest.h"
 #import "TUVideoRequest.h"
 
-@class CNContactStore, IDSDestination, NSArray, NSDate, NSString, NSURL, NSUUID, NSUserActivity, TUCallProvider, TUCallProviderManager, TUHandle;
+@class CNContactStore, IDSDestination, NSArray, NSDate, NSString, NSURL, NSUUID, NSUserActivity, TUCallProvider, TUCallProviderManager, TUHandle, TUSenderIdentityClient;
 
 @interface TUDialRequest : NSObject <TUCallRequest, TUVideoRequest, NSSecureCoding, NSCopying>
 {
@@ -26,6 +26,7 @@
     BOOL _redial;
     BOOL _shouldSuppressInCallUI;
     NSString *_uniqueProxyIdentifier;
+    TUSenderIdentityClient *_senderIdentityClient;
     TUCallProvider *_provider;
     long long _dialType;
     TUHandle *_handle;
@@ -133,6 +134,7 @@
 - (BOOL)boolValueForQueryItemWithName:(id)arg1 inURLComponents:(id)arg2;
 @property(readonly, nonatomic) IDSDestination *endpointIDSDestination;
 @property(copy, nonatomic) NSString *destinationID;
+@property(readonly, nonatomic) TUSenderIdentityClient *senderIdentityClient; // @synthesize senderIdentityClient=_senderIdentityClient;
 @property(readonly, nonatomic) CNContactStore *contactStore;
 @property(readonly, nonatomic) BOOL useTTY;
 @property(readonly, nonatomic) int service;

@@ -8,6 +8,7 @@
 
 @interface NSRegularExpression (Intents)
 + (id)_intents_sharedStringsDictFormatRegularExpression;
++ (id)_intents_sharedOldFormatRegularExpression;
 + (id)_intents_sharedFormatRegularExpression;
 @end
 

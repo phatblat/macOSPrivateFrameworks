@@ -9,30 +9,33 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class CXHandle, NSString, NSUUID;
+@class CXAccount, CXHandle, NSString, NSUUID;
 
 @interface CXSenderIdentity : NSObject <NSCopying, NSSecureCoding>
 {
     NSUUID *_UUID;
-    CXHandle *_handle;
-    NSString *_localizedName;
+    CXAccount *_account;
     NSString *_localizedShortName;
 }
 
++ (id)unarchivedObjectFromData:(id)arg1 error:(id *)arg2;
++ (id)unarchivedObjectClasses;
 + (BOOL)supportsSecureCoding;
 @property(readonly, copy, nonatomic) NSString *localizedShortName; // @synthesize localizedShortName=_localizedShortName;
-@property(readonly, copy, nonatomic) NSString *localizedName; // @synthesize localizedName=_localizedName;
-@property(readonly, copy, nonatomic) CXHandle *handle; // @synthesize handle=_handle;
+@property(readonly, nonatomic) CXAccount *account; // @synthesize account=_account;
 @property(readonly, nonatomic) NSUUID *UUID; // @synthesize UUID=_UUID;
 - (void).cxx_destruct;
+- (id)archivedDataWithError:(id *)arg1;
+- (BOOL)isEqualToSenderIdentity:(id)arg1;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
+- (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (unsigned long long)hash;
-- (BOOL)isEqualToSenderIdentity:(id)arg1;
-- (BOOL)isEqual:(id)arg1;
-- (id)description;
-- (id)initWithUUID:(id)arg1 handle:(id)arg2 localizedName:(id)arg3 localizedShortName:(id)arg4;
+@property(readonly, copy, nonatomic) NSString *localizedName;
+@property(readonly, nonatomic) CXHandle *handle;
+- (id)initWithUUID:(id)arg1 account:(id)arg2;
 - (id)initWithUUID:(id)arg1 handle:(id)arg2 localizedName:(id)arg3;
 
 @end

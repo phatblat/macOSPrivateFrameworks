@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBFilePropertyValue.h"
 
-@class INCodableAttribute, NSString, _INPBContact, _INPBDateTimeRange, _INPBLong, _INPBString;
+@class NSString, _INPBContact, _INPBDateTimeRange, _INPBLong, _INPBString;
 
-@interface _INPBFilePropertyValue : PBCodable <_INPBFilePropertyValue, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBFilePropertyValue : PBCodable <_INPBFilePropertyValue, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int fileType:1;
@@ -23,10 +22,8 @@
     _INPBContact *_person;
     _INPBLong *_quantity;
     _INPBString *_value;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBString *value; // @synthesize value=_value;
 @property(retain, nonatomic) _INPBLong *quantity; // @synthesize quantity=_quantity;
 @property(retain, nonatomic) _INPBContact *person; // @synthesize person=_person;

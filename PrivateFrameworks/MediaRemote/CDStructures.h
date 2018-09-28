@@ -14,6 +14,10 @@ struct NSMutableDictionary {
     Class _field1;
 };
 
+struct NSString {
+    Class _field1;
+};
+
 struct _MRHIDButtonEvent {
     unsigned int _field1;
     unsigned int _field2;

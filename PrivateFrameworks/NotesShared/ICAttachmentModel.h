@@ -35,6 +35,7 @@
 - (id)correctedHardlinkURLFileExtensionForExtention:(id)arg1;
 - (id)generateHardLinkURLIfNecessaryForURL:(id)arg1 withFileName:(id)arg2;
 - (id)generateHardLinkURLIfNecessaryForURL:(id)arg1;
+- (id)generateTemporaryURLWithExtension:(id)arg1;
 @property(readonly) NSURL *previewItemURL;
 - (id)titleForSubAttachment:(id)arg1;
 - (id)hardLinkFolderPath;

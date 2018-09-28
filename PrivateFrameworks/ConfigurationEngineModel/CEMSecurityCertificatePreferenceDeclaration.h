@@ -16,6 +16,7 @@
     NSString *_payloadCertificateIdentifier;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withName:(id)arg2 withCertificateIdentifier:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withName:(id)arg2 withCertificateIdentifier:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

@@ -12,6 +12,8 @@
 {
 }
 
++ (id)fetchRequestForConfigurationsWithIdentifier:(id)arg1 organizationIdentifier:(id)arg2;
++ (id)fetchRequestForConfigurationsBelongingToOrganizationWithIdentifier:(id)arg1;
 - (id)computeUniqueIdentifier;
 - (void)didChangeValueForKey:(id)arg1;
 

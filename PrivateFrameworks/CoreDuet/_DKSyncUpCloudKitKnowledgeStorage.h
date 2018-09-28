@@ -12,29 +12,32 @@
 
 @interface _DKSyncUpCloudKitKnowledgeStorage : NSObject <_DKSyncRemoteKnowledgeStorage>
 {
-    BOOL _isAvailable;
     _DKSyncCloudKitKnowledgeStorage *_common;
     id <_DKSyncRemoteKnowledgeStorageFetchDelegate> _delegate;
 }
 
 + (id)sharedInstance;
-@property BOOL isAvailable; // @synthesize isAvailable=_isAvailable;
 @property(retain) id <_DKSyncRemoteKnowledgeStorageFetchDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain) _DKSyncCloudKitKnowledgeStorage *common; // @synthesize common=_common;
 - (void).cxx_destruct;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (long long)transportType;
 - (id)name;
 - (void)updateStorageWithAddedEvents:(id)arg1 deletedEventIDs:(id)arg2 highPriority:(BOOL)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)setFetchDelegate:(id)arg1;
 - (void)fetchSourceDeviceIDFromPeer:(id)arg1 highPriority:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)fetchDeletionsHighWaterMarkWithPeer:(id)arg1 highPriority:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)fetchDeletedEventIDsFromPeer:(id)arg1 sinceDate:(id)arg2 streamNames:(id)arg3 highPriority:(BOOL)arg4 completion:(CDUnknownBlockType)arg5;
+- (void)fetchDeletedEventIDsFromPeer:(id)arg1 sinceDate:(id)arg2 streamNames:(id)arg3 limit:(unsigned long long)arg4 highPriority:(BOOL)arg5 completion:(CDUnknownBlockType)arg6;
 - (void)fetchAdditionsHighWaterMarkWithPeer:(id)arg1 highPriority:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)fetchEventsFromPeer:(id)arg1 creationDateBetweenDate:(id)arg2 andDate:(id)arg3 streamNames:(id)arg4 limit:(unsigned long long)arg5 fetchOrder:(long long)arg6 highPriority:(BOOL)arg7 completion:(CDUnknownBlockType)arg8;
+- (void)setHasDeletionsFlag:(BOOL)arg1 forPeer:(id)arg2;
+- (BOOL)hasDeletionsFlagForPeer:(id)arg1;
+- (void)setHasAdditionsFlag:(BOOL)arg1 forPeer:(id)arg2;
+- (BOOL)hasAdditionsFlagForPeer:(id)arg1;
+- (void)prewarmFetchWithCompletion:(CDUnknownBlockType)arg1;
 - (void)cancelOutstandingOperations;
 - (void)start;
-- (void)dealloc;
+@property(getter=isAvailable) BOOL available;
+@property(readonly) BOOL isAvailable;
 - (id)init;
 
 @end

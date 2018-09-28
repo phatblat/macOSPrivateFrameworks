@@ -14,6 +14,7 @@
     NSString *_payloadPageTitle;
 }
 
++ (id)buildRequiredOnlyWithAddress:(id)arg1;
 + (id)buildWithAddress:(id)arg1 withPageTitle:(id)arg2;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadPageTitle; // @synthesize payloadPageTitle=_payloadPageTitle;

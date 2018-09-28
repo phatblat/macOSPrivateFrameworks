@@ -21,7 +21,7 @@ __attribute__((visibility("hidden")))
 - (void).cxx_destruct;
 - (long long)htmlInputElementLastAutoFillButtonType;
 - (long long)htmlInputElementAutoFillButtonType;
-- (void)setHTMLInputElementAutoFilledWithAutomaticStrongPassword:(BOOL)arg1 inputElementIsPasswordConfirmation:(BOOL)arg2;
+- (void)setHTMLInputElementAutoFilledWithAutomaticStrongPassword:(BOOL)arg1;
 - (const struct BundleNodeHandle *)wkBundleNodeHandle;
 - (BOOL)isHTMLTextAreaElementUserEdited;
 - (BOOL)isHTMLInputElementUserEdited;

@@ -14,6 +14,7 @@
 {
 }
 
++ (id)buildRequiredOnly;
 + (id)build;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

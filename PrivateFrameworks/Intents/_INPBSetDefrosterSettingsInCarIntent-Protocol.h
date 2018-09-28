@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSString, _INPBIntentMetadata;
+@class NSString, _INPBDataString, _INPBIntentMetadata;
 
 @protocol _INPBSetDefrosterSettingsInCarIntent <NSObject>
 @property(readonly, nonatomic) BOOL hasIntentMetadata;
@@ -15,6 +15,8 @@
 @property(nonatomic) BOOL enable;
 @property(nonatomic) BOOL hasDefroster;
 @property(nonatomic) int defroster;
+@property(readonly, nonatomic) BOOL hasCarName;
+@property(retain, nonatomic) _INPBDataString *carName;
 - (int)StringAsDefroster:(NSString *)arg1;
 - (NSString *)defrosterAsString:(int)arg1;
 @end

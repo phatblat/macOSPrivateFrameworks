@@ -8,12 +8,13 @@
 
 #import "PKPaymentWebServiceTargetDeviceProtocol.h"
 
-@class NSString, PKAssertion, PKPassLibrary, PKPaymentService;
+@class NSString, PKAssertion, PKPassLibrary, PKPaymentService, PKSecureElement;
 
 @interface PKPaymentWebServiceTargetDevice : NSObject <PKPaymentWebServiceTargetDeviceProtocol>
 {
     PKPassLibrary *_passLibrary;
     PKPaymentService *_paymentService;
+    PKSecureElement *_secureElement;
     PKAssertion *_provisioningAssertion;
     BOOL _provisioningAssertionActive;
     PKAssertion *_verificationAssertion;
@@ -29,6 +30,7 @@
 - (BOOL)felicaSecureElementIsAvailable;
 - (void)paymentWebService:(id)arg1 validateTransferPreconditionsWithCompletion:(CDUnknownBlockType)arg2;
 - (unsigned long long)secureElementOwnershipStateForCurrentUser;
+- (void)claimSecureElementForCurrentUserWithCompletion:(CDUnknownBlockType)arg1;
 - (BOOL)claimSecureElementForCurrentUser;
 - (void)paymentWebService:(id)arg1 removePass:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (void)downloadAllPaymentPassesForPaymentWebService:(id)arg1;

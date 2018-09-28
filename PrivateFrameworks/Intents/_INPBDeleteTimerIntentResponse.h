@@ -6,22 +6,19 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBDeleteTimerIntentResponse.h"
 
-@class INCodableAttribute, NSArray, NSString;
+@class NSArray, NSString;
 
-@interface _INPBDeleteTimerIntentResponse : PBCodable <_INPBDeleteTimerIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBDeleteTimerIntentResponse : PBCodable <_INPBDeleteTimerIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSArray *_deletedTimers;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)deletedTimersType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *deletedTimers; // @synthesize deletedTimers=_deletedTimers;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

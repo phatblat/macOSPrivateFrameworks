@@ -4,11 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "ROCKForwardingInterposableWithRunLoop.h"
 #import "ROCKImpersonateable.h"
 
 @class NSArray, NSObject<OS_dispatch_queue>, NSString;
 
-@protocol UHAWindowInterface <ROCKImpersonateable>
+@protocol UHAWindowInterface <ROCKImpersonateable, ROCKForwardingInterposableWithRunLoop>
+@property(copy, nonatomic) CDUnknownBlockType windowNotificationCallback;
 @property(copy, nonatomic) CDUnknownBlockType appearsKeyDidChangeCallback;
 @property(readonly, nonatomic) BOOL appearsKey;
 @property(nonatomic) BOOL wantsDarkChrome;
@@ -23,6 +25,7 @@
 - (void)getDropSessionWithID:(unsigned int)arg1 reply:(void (^)(id <UHADropSessionInterface>))arg2;
 - (void)beginDragWithItems:(NSArray *)arg1 handler:(id <UHADragSessionHandlerInterface>)arg2;
 - (void)setCursor:(id <UHACursorInterface>)arg1;
+- (void)takeCursor:(id <UHACursorInterface>)arg1;
 - (void)setLiveResizeWillStartHandler:(void (^)(void))arg1 didEndHandler:(void (^)(void))arg2;
 - (void)toolbarCreatingIfNeeded:(BOOL)arg1 completionQueue:(NSObject<OS_dispatch_queue> *)arg2 completionHandler:(void (^)(id <UHAToolbarInterface>, NSError *))arg3;
 - (void)acceptKeyViewHandoff:(BOOL)arg1 completionQueue:(NSObject<OS_dispatch_queue> *)arg2 completionHandler:(void (^)(BOOL))arg3;

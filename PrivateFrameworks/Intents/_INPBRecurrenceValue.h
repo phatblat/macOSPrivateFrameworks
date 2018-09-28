@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBRecurrenceValue.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBRecurrenceValue : PBCodable <_INPBRecurrenceValue, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBRecurrenceValue : PBCodable <_INPBRecurrenceValue, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int frequency:1;
@@ -23,14 +22,11 @@
     int _frequency;
     unsigned long long _interval;
     long long _ordinal;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) long long ordinal; // @synthesize ordinal=_ordinal;
 @property(nonatomic) unsigned long long interval; // @synthesize interval=_interval;
 @property(nonatomic) int frequency; // @synthesize frequency=_frequency;
-- (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;

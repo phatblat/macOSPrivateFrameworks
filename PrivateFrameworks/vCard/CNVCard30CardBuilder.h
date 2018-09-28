@@ -39,7 +39,6 @@
 - (void)addLegacyInstantMessagingHandles:(id)arg1 forService:(id)arg2 vCardProperty:(id)arg3;
 - (void)addInstantMessagingHandles:(id)arg1;
 - (void)addInstantMessagingInfo;
-- (void)addPreferredChannel;
 - (void)addPreferredApplePersonaIdentifier;
 - (void)addPreferredLikenessSource;
 - (void)addPhonemeData;

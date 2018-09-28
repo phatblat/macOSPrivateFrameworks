@@ -20,12 +20,14 @@
 - (BOOL)_isPassCatalogItemFromRecordType:(id)arg1;
 - (BOOL)_isPassItemFromRecordType:(id)arg1;
 - (BOOL)_canInitializeContainer;
+- (void)cloudStoreAccountChanged:(id)arg1;
 - (void)readCachedContainerValues;
 - (void)saveCachedContainerValues;
 - (void)updateCloudStoreWithLocalItems:(id)arg1 recordSpecificKeys:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)processFetchedCloudStoreDataWithModifiedRecords:(id)arg1 deletedRecords:(id)arg2 operationGroupName:(id)arg3 shouldUpdateLocalDatabase:(BOOL)arg4 userInfo:(id)arg5 completion:(CDUnknownBlockType)arg6;
 - (void)setContainerState:(unsigned long long)arg1 retryCount:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (id)recordTypeForRecordID:(id)arg1;
+- (BOOL)shouldFetchAndStoreCloudDataAtStartup;
 - (BOOL)canInitializeContainer;
 - (id)initWithDataSource:(id)arg1 passManager:(id)arg2;
 

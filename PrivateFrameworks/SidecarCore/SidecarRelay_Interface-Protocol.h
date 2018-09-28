@@ -6,12 +6,13 @@
 
 #import "SidecarCore_Interface.h"
 
-@class NSData, NSError, NSString;
+@class NSData, NSError, NSString, NSUUID;
 
 @protocol SidecarRelay_Interface <SidecarCore_Interface>
+- (void)relayDiagnose:(void (^)(NSData *, NSError *))arg1;
 - (void)relaySession:(long long)arg1 invalidate:(NSError *)arg2 completion:(void (^)(NSError *))arg3;
 - (void)relaySession:(long long)arg1 sendOPACKData:(NSData *)arg2 completion:(void (^)(NSError *))arg3;
-- (void)relaySession:(long long)arg1 serviceIdentifier:(NSString *)arg2 destination:(NSString *)arg3 completion:(void (^)(NSError *))arg4;
+- (void)relaySession:(long long)arg1 serviceIdentifier:(NSString *)arg2 destination:(NSUUID *)arg3 completion:(void (^)(NSError *))arg4;
 - (void)relayDevicesForServiceIdentifier:(NSString *)arg1 completion:(void (^)(NSArray *, NSError *))arg2;
 - (void)relayRegisterServiceProvider:(void (^)(NSError *))arg1;
 @end

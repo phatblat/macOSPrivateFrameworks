@@ -18,7 +18,6 @@
     float _rawScore;
     float _feedbackScore;
     float _score;
-    float _quality_score;
     NSString *_identifier;
     NSString *_sectionBundleIdentifier;
     PRSL2FeatureVector *_L2FeatureVector;
@@ -40,8 +39,6 @@
 
 + (unsigned short)featureFromVirtualIdx:(unsigned long long)arg1;
 + (id)rankingDescriptorForBundleFeature:(unsigned long long)arg1;
-+ (id)defaultBundleFeatureArrValues;
-+ (id)defaultArrForBundleFeature:(unsigned long long)arg1;
 + (id)deviceClass;
 + (id)requiredContactAttributes;
 + (id)requiredMailAttributes;
@@ -70,7 +67,6 @@
 @property(retain, nonatomic) NSData *serverFeaturesJSON; // @synthesize serverFeaturesJSON=_serverFeaturesJSON;
 @property(retain, nonatomic) PRSL2FeatureVector *L2FeatureVector; // @synthesize L2FeatureVector=_L2FeatureVector;
 @property(retain, nonatomic) NSString *sectionBundleIdentifier; // @synthesize sectionBundleIdentifier=_sectionBundleIdentifier;
-@property(nonatomic) float quality_score; // @synthesize quality_score=_quality_score;
 @property(nonatomic) float score; // @synthesize score=_score;
 @property(nonatomic) float feedbackScore; // @synthesize feedbackScore=_feedbackScore;
 @property(nonatomic) float rawScore; // @synthesize rawScore=_rawScore;
@@ -86,17 +82,17 @@
 - (id)moreRecentDateFromDate1:(id)arg1 date2:(id)arg2;
 - (id)interestingDate;
 - (id)dedupeIdentifier;
-- (void)populateTextFeatureValuesForProperty:(id)arg1 updatingBundleFeatureValues:(id)arg2 withEvaluator:(id)arg3 withContext:(struct prs_feature_population_ctx_t *)arg4 featureScoreInfo:(struct PRSL2FeatureScoreInfo *)arg5 fuzzyEvaluator:(id)arg6 propertyCanFuzzyMatch:(BOOL)arg7;
-- (void)populateFeaturesWithEvaluator:(id)arg1 updatingBundleFeatures:(float *)arg2 withContext:(struct prs_feature_population_ctx_t *)arg3 fuzzyEvaluator:(id)arg4;
+- (void)populateTextFeatureValuesForProperty:(id)arg1 updatingBundleFeatureValues:(float (*)[0])arg2 propertyIndex:(unsigned long long)arg3 withEvaluator:(id)arg4 withContext:(struct prs_feature_population_ctx_t *)arg5 featureScoreInfo:(struct PRSL2FeatureScoreInfo *)arg6 propertyCanFuzzyMatch:(BOOL)arg7 keyboardLanguage:(id)arg8 isCJK:(BOOL)arg9;
+- (void)populateFeaturesWithEvaluator:(id)arg1 updatingBundleFeatures:(float *)arg2 withContext:(struct prs_feature_population_ctx_t *)arg3 keyboardLanguage:(id)arg4 isCJK:(BOOL)arg5;
 - (void)populateOtherFeatures:(struct PRSL2FeatureScoreInfo *)arg1;
 - (void)inferDateBinsFromDates:(id)arg1 intoBins:(int *)arg2;
 - (void)populateMailFeatures:(struct PRSL2FeatureScoreInfo *)arg1;
 - (void)populateBundleSpecificFeatures:(struct PRSL2FeatureScoreInfo *)arg1;
 - (void)populateCrossAttributeDerivedFeaturesWithContext:(struct prs_feature_population_ctx_t *)arg1 featureScoreInfo:(struct PRSL2FeatureScoreInfo *)arg2;
-- (void)updateBundleFeatures:(float *)arg1 withArrValues:(id)arg2 featureScoreInfo:(struct PRSL2FeatureScoreInfo *)arg3;
-- (void)updateAccumulatedBundleFeatures:(float *)arg1 values:(id)arg2 feature:(unsigned long long)arg3;
-- (void)updateScoreDescriptorBundleFeatures:(float *)arg1 values:(id)arg2 feature:(unsigned long long)arg3;
-- (void)updateNumScoreDescriptorBundleFeatures:(float *)arg1 values:(id)arg2 feature:(unsigned long long)arg3 featureScoreInfo:(struct PRSL2FeatureScoreInfo *)arg4;
+- (void)updateBundleFeatures:(float *)arg1 withArrValues:(float (*)[0])arg2 featureScoreInfo:(struct PRSL2FeatureScoreInfo *)arg3;
+- (void)updateAccumulatedBundleFeatures:(float *)arg1 values:(float *)arg2 feature:(unsigned long long)arg3;
+- (void)updateScoreDescriptorBundleFeatures:(float *)arg1 feature:(unsigned long long)arg2;
+- (void)updateNumScoreDescriptorBundleFeatures:(float *)arg1 feature:(unsigned long long)arg2 featureScoreInfo:(struct PRSL2FeatureScoreInfo *)arg3;
 - (void)populateContactFeatures:(struct PRSL2FeatureScoreInfo *)arg1;
 - (BOOL)didMatchRankingDescriptor:(id)arg1;
 - (void)dealloc;

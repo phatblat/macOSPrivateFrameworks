@@ -8,7 +8,7 @@
 
 #import "ROCKMemoizable.h"
 
-@class NSString;
+@class NSObject<OS_dispatch_queue>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface ROCKRemoteHybridProxy : ROCKRemoteProxy <ROCKMemoizable>
@@ -16,11 +16,12 @@ __attribute__((visibility("hidden")))
     id <ROCKMemoizable> _memoizedInstance;
 }
 
-+ (id)remoteProxyWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 protocols:(id)arg3 connectionUUID:(id)arg4 memoizedInstance:(id)arg5;
++ (id)remoteProxyWithSessionManager:(id)arg1 xpcDictionary:(id)arg2;
 @property(retain, nonatomic) id <ROCKMemoizable> memoizedInstance; // @synthesize memoizedInstance=_memoizedInstance;
 - (void).cxx_destruct;
-- (id)initWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 protocols:(id)arg3 connectionUUID:(id)arg4 memoizedInstance:(id)arg5;
+- (id)initWithSessionManager:(id)arg1 xpcDictionary:(id)arg2;
 - (BOOL)respondsToSelector:(SEL)arg1;
+- (id)methodSignatureForSelector:(SEL)arg1;
 - (id)forwardingTargetForSelector:(SEL)arg1;
 - (BOOL)conformsToProtocol:(id)arg1;
 
@@ -28,6 +29,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *memoizableSerializerQueue;
 @property(readonly) Class superclass;
 
 @end

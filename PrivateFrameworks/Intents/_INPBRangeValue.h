@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBRangeValue.h"
 
-@class INCodableAttribute, NSString, _INPBValueMetadata;
+@class NSString, _INPBValueMetadata;
 
-@interface _INPBRangeValue : PBCodable <_INPBRangeValue, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBRangeValue : PBCodable <_INPBRangeValue, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int length:1;
@@ -22,10 +21,8 @@
     unsigned long long _length;
     unsigned long long _location;
     _INPBValueMetadata *_valueMetadata;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBValueMetadata *valueMetadata; // @synthesize valueMetadata=_valueMetadata;
 @property(nonatomic) unsigned long long location; // @synthesize location=_location;
 @property(nonatomic) unsigned long long length; // @synthesize length=_length;

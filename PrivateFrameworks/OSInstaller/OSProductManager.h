@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSString, PKDownloader, PKMutableProduct, PKPackageSourceManager;
+@class NSArray, NSMutableArray, NSMutableDictionary, NSString, PKDownloader, PKMutableProduct, PKPackageSourceManager, SKDisk;
 
 @interface OSProductManager : NSObject
 {
@@ -20,9 +20,13 @@
     PKDownloader *_downloader;
     NSMutableDictionary *_retryCountByPackageRef;
     NSString *_seedingProgramForTarget;
+    SKDisk *_productDisk;
+    NSString *_productPath;
 }
 
 + (id)defaultProductManager;
+@property(retain) NSString *productPath; // @synthesize productPath=_productPath;
+@property(retain) SKDisk *productDisk; // @synthesize productDisk=_productDisk;
 @property(retain) NSString *seedingProgramForTarget; // @synthesize seedingProgramForTarget=_seedingProgramForTarget;
 - (void).cxx_destruct;
 - (BOOL)flushAttributesDictionary;

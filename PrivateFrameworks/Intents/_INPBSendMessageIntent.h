@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSendMessageIntent.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBContact, _INPBDataString, _INPBIntentMetadata, _INPBString;
+@class NSArray, NSString, _INPBContact, _INPBDataString, _INPBIntentMetadata, _INPBString;
 
-@interface _INPBSendMessageIntent : PBCodable <_INPBSendMessageIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSendMessageIntent : PBCodable <_INPBSendMessageIntent, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSArray *_attachments;
@@ -25,12 +24,10 @@
     _INPBContact *_sender;
     NSString *_serviceName;
     _INPBDataString *_speakableGroupName;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)recipientType;
 + (Class)attachmentType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBDataString *speakableGroupName; // @synthesize speakableGroupName=_speakableGroupName;
 @property(copy, nonatomic) NSString *serviceName; // @synthesize serviceName=_serviceName;
 @property(retain, nonatomic) _INPBContact *sender; // @synthesize sender=_sender;

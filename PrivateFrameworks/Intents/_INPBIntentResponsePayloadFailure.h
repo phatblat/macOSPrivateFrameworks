@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBIntentResponsePayloadFailure.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBIntentResponsePayloadFailure : PBCodable <_INPBIntentResponsePayloadFailure, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBIntentResponsePayloadFailure : PBCodable <_INPBIntentResponsePayloadFailure, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int appLaunchRequested:1;
@@ -22,10 +21,8 @@
     BOOL _appLaunchRequested;
     int _errorCode;
     NSString *_enumTypeName;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int errorCode; // @synthesize errorCode=_errorCode;
 @property(copy, nonatomic) NSString *enumTypeName; // @synthesize enumTypeName=_enumTypeName;
 @property(nonatomic) BOOL appLaunchRequested; // @synthesize appLaunchRequested=_appLaunchRequested;

@@ -23,10 +23,12 @@
     MTLToolsPointerArray *_computeCommandEncoders;
     MTLToolsPointerArray *_blitCommandEncoders;
     MTLToolsPointerArray *_parallelRenderCommandEncoders;
+    MTLToolsPointerArray *_videoCommandEncoders;
     struct ILayerLockingPolicy *_retainedObjectsLock;
 }
 
 @property(nonatomic) struct ILayerLockingPolicy *retainedObjectsLock; // @synthesize retainedObjectsLock=_retainedObjectsLock;
+@property(readonly, nonatomic) MTLToolsPointerArray *videoCommandEncoders; // @synthesize videoCommandEncoders=_videoCommandEncoders;
 @property(readonly, nonatomic) MTLToolsPointerArray *parallelRenderCommandEncoders; // @synthesize parallelRenderCommandEncoders=_parallelRenderCommandEncoders;
 @property(readonly, nonatomic) MTLToolsPointerArray *blitCommandEncoders; // @synthesize blitCommandEncoders=_blitCommandEncoders;
 @property(readonly, nonatomic) MTLToolsPointerArray *computeCommandEncoders; // @synthesize computeCommandEncoders=_computeCommandEncoders;
@@ -40,6 +42,7 @@
 @property(readonly) NSDictionary *profilingResults;
 @property(getter=isProfilingEnabled) BOOL profilingEnabled;
 - (id)videoCommandEncoder;
+- (id)sampledComputeCommandEncoderWithDispatchType:(unsigned long long)arg1 programInfoBuffer:(CDStruct_4af8c268 *)arg2 capacity:(unsigned long long)arg3;
 - (void)addPurgedHeap:(id)arg1;
 - (void)addPurgedResource:(id)arg1;
 - (void)encodeWaitForEvent:(id)arg1 value:(unsigned long long)arg2;

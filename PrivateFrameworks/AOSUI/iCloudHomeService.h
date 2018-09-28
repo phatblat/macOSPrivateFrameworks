@@ -14,7 +14,6 @@
 {
 }
 
-- (BOOL)hasPreflightAction;
 - (id)icon;
 - (void)dealloc;
 

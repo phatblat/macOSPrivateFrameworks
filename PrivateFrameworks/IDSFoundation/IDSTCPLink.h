@@ -35,12 +35,12 @@
 - (void).cxx_destruct;
 - (id)generateLinkReport:(double)arg1 isCurrentLink:(BOOL)arg2;
 - (unsigned long long)sendPacketBufferArray:(CDStruct_183601bc **)arg1 arraySize:(int)arg2 toDeviceUniqueID:(id)arg3 cbuuid:(id)arg4;
-- (unsigned long long)sendPacketBuffer:(CDStruct_e844bd1c *)arg1 toDeviceUniqueID:(id)arg2 cbuuid:(id)arg3;
-- (void)processIncomingPacket:(CDStruct_e844bd1c *)arg1;
+- (unsigned long long)sendPacketBuffer:(CDStruct_18fdc6f4 *)arg1 toDeviceUniqueID:(id)arg2 cbuuid:(id)arg3;
+- (void)processIncomingPacket:(CDStruct_18fdc6f4 *)arg1;
 - (BOOL)disconnect:(struct sockaddr_in *)arg1 remoteAddress:(struct sockaddr_in *)arg2;
 - (BOOL)connect:(int)arg1 localAddress:(struct sockaddr_in *)arg2 portRange:(unsigned short)arg3 remoteAddress:(struct sockaddr_in *)arg4 clientUUID:(unsigned char [16])arg5 completionHandler:(CDUnknownBlockType)arg6;
-- (struct IDSTCPConnection_ *)_getIDSTCPConnection:(CDStruct_e844bd1c *)arg1;
-- (long long)getPacketLength:(CDStruct_e844bd1c *)arg1 isChannelData:(char *)arg2;
+- (struct IDSTCPConnection_ *)_getIDSTCPConnection:(CDStruct_18fdc6f4 *)arg1;
+- (long long)getPacketLength:(CDStruct_18fdc6f4 *)arg1 isChannelData:(char *)arg2;
 - (id)copyLinkStatsDict;
 @property(readonly, getter=linkTypeString) NSString *linkTypeString;
 @property(readonly) unsigned long long headerOverhead;

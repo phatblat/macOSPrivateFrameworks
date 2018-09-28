@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 @protocol STYWakeDataConsumer <NSObject>
+- (BOOL)wakeDataProviderShouldResumeAfterInterruption:(id <STYWakeDataProvider>)arg1;
 - (void)consumeWakeTimestamp:(unsigned long long)arg1 ofType:(unsigned long long)arg2;
 @end
 

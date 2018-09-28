@@ -194,7 +194,7 @@ __attribute__((visibility("hidden")))
 - (struct TFENodeVector)openContainers:(const struct TFENodeVector *)arg1;
 - (void)updateCellViewsDisabledStateAtRow:(id)arg1 node:(const struct TFENode *)arg2;
 - (void)dataSourceItemsDidChange:(const unordered_map_f886f0c5 *)arg1;
-- (void)dataSourceChanged:(const vector_ddb76938 *)arg1;
+- (void)dataSourceChanged:(const vector_274a36ec *)arg1;
 - (void)configureIndentation;
 - (_Bool)shouldDiscloseSubFolderContents;
 - (void)configureRowHeight;

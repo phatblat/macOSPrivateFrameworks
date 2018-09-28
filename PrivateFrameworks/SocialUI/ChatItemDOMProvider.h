@@ -39,6 +39,15 @@
 - (void)_appendFaceTimeCallMessageItem:(id)arg1 toElement:(id)arg2 withChat:(id)arg3;
 - (void)updateFaceTimeMultiwayBubble:(id)arg1 withChat:(id)arg2;
 - (id)_childElementFromElement:(id)arg1 withTagName:(id)arg2;
+- (id)_createFaceTimeBubbleWithMessageItem:(id)arg1 withChat:(id)arg2;
+- (id)_faceTimeButtonForFaceTimeChatItem:(id)arg1 withChat:(id)arg2;
+- (id)_faceTimeTextBoxForFacetimeChatItem:(id)arg1 withChat:(id)arg2;
+- (id)_rootFaceTimeElementWithFaceTimeItem:(id)arg1 withChat:(id)arg2;
+- (id)_faceTimeIconElement;
+- (id)_faceTimeCallTextElement:(id)arg1;
+- (id)_faceTimeCallHeaderElement:(id)arg1;
+- (id)_faceTimeInfoButtonElement:(id)arg1;
+- (id)_faceTimeJoinButtonElement:(id)arg1;
 - (id)_parseBuddyIcon:(id)arg1;
 - (id)_parseLocationShareActionChatItem:(id)arg1;
 - (id)_parseMessageActionChatItem:(id)arg1;

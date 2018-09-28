@@ -48,6 +48,8 @@
 @property(readonly) long long recipientsOperator;
 @property(readonly, copy) NSArray *recipients;
 - (id)initWithRecipients:(id)arg1 senders:(id)arg2 searchTerms:(id)arg3 attributes:(unsigned long long)arg4 dateTimeRange:(id)arg5 identifiers:(id)arg6 notificationIdentifiers:(id)arg7 speakableGroupNames:(id)arg8 conversationIdentifiers:(id)arg9;
+- (id)_categoryVerb;
+- (long long)_intentCategory;
 - (void)_setMetadata:(id)arg1;
 - (id)_metadata;
 - (id)_typedBackingStore;

@@ -14,7 +14,7 @@
 {
 }
 
-- (BOOL)hasPreflightAction;
+- (BOOL)hasDataToMerge;
 - (id)icon;
 - (void)dealloc;
 

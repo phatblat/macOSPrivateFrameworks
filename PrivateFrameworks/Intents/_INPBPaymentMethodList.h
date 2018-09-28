@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBPaymentMethodList.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBCondition;
+@class NSArray, NSString, _INPBCondition;
 
-@interface _INPBPaymentMethodList : PBCodable <_INPBPaymentMethodList, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBPaymentMethodList : PBCodable <_INPBPaymentMethodList, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBCondition *_condition;
     NSArray *_paymentMethods;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)paymentMethodsType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *paymentMethods; // @synthesize paymentMethods=_paymentMethods;
 @property(retain, nonatomic) _INPBCondition *condition; // @synthesize condition=_condition;
 - (void).cxx_destruct;

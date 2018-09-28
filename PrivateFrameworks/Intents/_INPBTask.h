@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBTask.h"
 
-@class INCodableAttribute, NSString, _INPBDataString, _INPBDateTime, _INPBSpatialEventTrigger, _INPBTemporalEventTrigger;
+@class NSString, _INPBDataString, _INPBDateTime, _INPBSpatialEventTrigger, _INPBTemporalEventTrigger;
 
-@interface _INPBTask : PBCodable <_INPBTask, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBTask : PBCodable <_INPBTask, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int status:1;
@@ -27,10 +26,8 @@
     _INPBSpatialEventTrigger *_spatialEventTrigger;
     _INPBTemporalEventTrigger *_temporalEventTrigger;
     _INPBDataString *_title;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBDataString *title; // @synthesize title=_title;
 @property(retain, nonatomic) _INPBTemporalEventTrigger *temporalEventTrigger; // @synthesize temporalEventTrigger=_temporalEventTrigger;
 @property(nonatomic) int taskType; // @synthesize taskType=_taskType;

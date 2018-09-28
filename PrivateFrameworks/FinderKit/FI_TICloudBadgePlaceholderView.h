@@ -14,9 +14,11 @@ __attribute__((visibility("hidden")))
     _Bool _active;
     _Bool _isMouseDown;
     int _context;
+    int _badge;
     function_b1fce659 _clickHandler;
 }
 
+@property(nonatomic) int badge; // @synthesize badge=_badge;
 @property int context; // @synthesize context=_context;
 @property(getter=isActive) _Bool active; // @synthesize active=_active;
 @property(getter=isDimmed) _Bool dimmed; // @synthesize dimmed=_dimmed;

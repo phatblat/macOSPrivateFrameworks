@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSNumber, NSString;
+@class NSNumber, NSSet, NSString;
 
 @interface AMSDeviceOffer : NSObject
 {
@@ -14,6 +14,7 @@
     BOOL _subscribed;
     NSNumber *_adamId;
     NSString *_description;
+    NSSet *_serialNumbers;
     NSString *_offerIdentifier;
     unsigned long long _productType;
 }
@@ -22,14 +23,16 @@
 @property(getter=isSubscribed) BOOL subscribed; // @synthesize subscribed=_subscribed;
 @property(copy) NSString *offerIdentifier; // @synthesize offerIdentifier=_offerIdentifier;
 @property(getter=isDowngrading) BOOL downgrading; // @synthesize downgrading=_downgrading;
+@property(readonly) NSSet *serialNumbers; // @synthesize serialNumbers=_serialNumbers;
 @property(copy) NSString *description; // @synthesize description=_description;
 @property(copy) NSNumber *adamId; // @synthesize adamId=_adamId;
 - (void).cxx_destruct;
+- (id)initWithAdamId:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 @property(readonly) unsigned long long offerType;
 - (id)initWithDictionary:(id)arg1;
-- (id)initWithAdamId:(id)arg1;
+- (id)initWithOfferIdentifier:(id)arg1;
 
 @end
 

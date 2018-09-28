@@ -11,13 +11,14 @@
 @interface WDTableCell : NSObject
 {
     unsigned long long mIndex;
-    WDTableRow *mRow;
     WDTableCellProperties *mProperties;
     WDText *mText;
     NSString *mIdentifier;
     BOOL mUseTrackedProperties;
+    WDTableRow *mRow;
 }
 
+@property(readonly) __weak WDTableRow *row; // @synthesize row=mRow;
 - (void).cxx_destruct;
 - (id)description;
 - (void)setIdentifier:(id)arg1;
@@ -25,7 +26,6 @@
 - (id)text;
 - (void)clearProperties;
 - (id)properties;
-- (id)row;
 - (long long)compareIndex:(id)arg1;
 - (unsigned long long)index;
 - (void)setUseTrackedProperties:(BOOL)arg1;

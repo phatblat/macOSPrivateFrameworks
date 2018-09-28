@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
     CDUnknownBlockType _callback;
     NSMutableDictionary *_displayContainers;
     NSObject<OS_dispatch_source> *_CDInitTimer;
+    BOOL _CDReady;
     NSMutableDictionary *_colorModules;
     unsigned int _pmRootDomainService;
     unsigned int _clamshellNotification;

@@ -13,9 +13,10 @@
 - (id)identifier;
 - (void)assignPropertiesToTombstone:(id)arg1 extractedFromPartialEvent:(id)arg2;
 - (void)assignPropertiesToTombstone:(id)arg1 extractedFromEvent:(id)arg2;
-- (id)propertyToFetch;
+- (id)propertiesToFetch;
 - (id)eventPredicate;
 - (id)predicate;
+- (id)eligibleForPredictionKey;
 
 @end
 

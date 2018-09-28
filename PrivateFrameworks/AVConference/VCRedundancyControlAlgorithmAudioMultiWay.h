@@ -30,7 +30,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)shouldApplyRedundancy;
 - (void)computeRedundancyInfo;
 - (BOOL)isPacketLossSignificantWithStatistics:(id)arg1;
-- (void)updateRedundancyStrategyWithNetworkStatistics:(CDStruct_dd06a755)arg1;
+- (void)updateRedundancyStrategyWithNetworkStatistics:(CDStruct_48a7b5a5)arg1;
 - (void)dealloc;
 - (id)init;
 

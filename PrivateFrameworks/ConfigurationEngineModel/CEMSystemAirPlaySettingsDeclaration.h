@@ -17,6 +17,7 @@
     NSNumber *_payloadAllowAirPlayIncomingRequests;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withForceAirPlayOutgoingRequestsPairingPassword:(id)arg2 withForceAirPlayIncomingRequestsPairingPassword:(id)arg3 withAllowAirPlayIncomingRequests:(id)arg4;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

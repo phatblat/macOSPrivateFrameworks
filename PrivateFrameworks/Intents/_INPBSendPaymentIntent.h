@@ -6,24 +6,21 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSendPaymentIntent.h"
 
-@class INCodableAttribute, NSString, _INPBContact, _INPBCurrencyAmount, _INPBIntentMetadata, _INPBString;
+@class NSString, _INPBContact, _INPBCurrencyAmount, _INPBIntentMetadata, _INPBString;
 
-@interface _INPBSendPaymentIntent : PBCodable <_INPBSendPaymentIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSendPaymentIntent : PBCodable <_INPBSendPaymentIntent, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBCurrencyAmount *_currencyAmount;
     _INPBIntentMetadata *_intentMetadata;
     _INPBString *_note;
     _INPBContact *_payee;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBContact *payee; // @synthesize payee=_payee;
 @property(retain, nonatomic) _INPBString *note; // @synthesize note=_note;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;

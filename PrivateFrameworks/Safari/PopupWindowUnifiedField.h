@@ -14,8 +14,8 @@ __attribute__((visibility("hidden")))
 + (double)mediaIndicatorYOffset;
 + (double)urlTextYOffset;
 + (double)marginBeforeFirstComponent;
-+ (BOOL)shouldDrawBackground;
 - (void)setNeedsDisplay:(BOOL)arg1;
+- (BOOL)_shouldShowAlternativeStaticURLForAboutBlank;
 - (id)_mediaCaptureIndicatorWithColor:(id)arg1;
 - (BOOL)willHandleMouseDraggedEvent:(id)arg1;
 - (BOOL)allowsVibrancy;

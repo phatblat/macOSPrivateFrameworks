@@ -43,6 +43,8 @@
 - (BOOL)isDeviceGroupable;
 - (BOOL)isProxyGroupPlayer;
 - (BOOL)isGroupable;
+- (id)parentGroupIdentifier;
+- (BOOL)parentGroupContainsDiscoverableLeader;
 - (BOOL)isAirPlayReceiverSessionActive;
 - (BOOL)groupContainsGroupLeader;
 - (BOOL)isGroupLeader;

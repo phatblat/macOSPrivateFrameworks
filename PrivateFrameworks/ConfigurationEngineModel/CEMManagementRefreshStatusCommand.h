@@ -15,6 +15,7 @@
     NSArray *_payloadIdentifiers;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withIdentifiers:(id)arg2;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

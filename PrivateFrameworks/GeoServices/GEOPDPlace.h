@@ -91,6 +91,7 @@
 - (void)enumerateComponentOfType:(int)arg1 enumerationOptions:(unsigned long long)arg2 usingBlock:(CDUnknownBlockType)arg3;
 - (void)enumerateValidComponentsWithValuesUsingBlock:(CDUnknownBlockType)arg1;
 - (void)enumerateComponentsWithOptions:(unsigned long long)arg1 usingBlock:(CDUnknownBlockType)arg2;
+- (id)compactDebugDescription;
 - (BOOL)isStringIndicatingPoiInsideWestfield:(id)arg1;
 @property(readonly, nonatomic, getter=isSupportedVenuePOI) BOOL supportedVenuePOI;
 @property(readonly, nonatomic, getter=isSupportedVenue) BOOL supportedVenue;

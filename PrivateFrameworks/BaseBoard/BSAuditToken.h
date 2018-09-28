@@ -16,6 +16,8 @@
 {
     NSString *_bundleID;
     CDStruct_4c969caf _auditToken;
+    struct os_unfair_lock_s _secTaskLock;
+    struct __SecTask *_lazy_secTaskLock_secTask;
 }
 
 + (BOOL)supportsSecureCoding;
@@ -36,6 +38,7 @@
 - (id)_bundleIDGeneratingIfNeeded:(BOOL)arg1;
 - (id)_valueFromData:(id)arg1 ofType:(const char *)arg2;
 - (id)_dataWithValue:(id)arg1;
+- (void)_accessSecTask:(CDUnknownBlockType)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithXPCDictionary:(id)arg1;
@@ -43,6 +46,7 @@
 - (id)valueForEntitlement:(id)arg1;
 - (BOOL)hasEntitlement:(id)arg1;
 @property(readonly, nonatomic) int pid; // @dynamic pid;
+- (void)dealloc;
 - (id)initWithXPCMessage:(id)arg1;
 - (id)initWithAuditToken:(CDStruct_4c969caf)arg1;
 

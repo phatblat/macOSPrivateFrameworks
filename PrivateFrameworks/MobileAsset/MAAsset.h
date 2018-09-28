@@ -22,8 +22,11 @@
 @property(readonly, nonatomic) NSString *assetId; // @synthesize assetId=_assetId;
 @property(readonly, nonatomic) NSString *assetType; // @synthesize assetType=_assetType;
 @property(readonly, nonatomic) NSDictionary *attributes; // @synthesize attributes=_attributes;
+- (BOOL)isEqual:(id)arg1;
 - (_Bool)refreshState;
 - (_Bool)spaceCheck:(long long *)arg1;
+- (long long)configDownloadSync:(id)arg1;
+- (void)configDownload:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (long long)cancelDownloadSync;
 - (void)cancelDownload:(CDUnknownBlockType)arg1;
 - (long long)purgeSync;
@@ -34,6 +37,7 @@
 - (void)startDownload:(CDUnknownBlockType)arg1;
 - (id)createExtractor;
 - (id)hashToString:(id)arg1;
+- (void)startDownloadWithExtractor:(CDUnknownBlockType)arg1 options:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)startDownloadWithExtractor:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)logAsset;
 - (id)assetProperty:(id)arg1;

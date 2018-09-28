@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBLocationList.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBCondition;
+@class NSArray, NSString, _INPBCondition;
 
-@interface _INPBLocationList : PBCodable <_INPBLocationList, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBLocationList : PBCodable <_INPBLocationList, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBCondition *_condition;
     NSArray *_locations;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)locationType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *locations; // @synthesize locations=_locations;
 @property(retain, nonatomic) _INPBCondition *condition; // @synthesize condition=_condition;
 - (void).cxx_destruct;

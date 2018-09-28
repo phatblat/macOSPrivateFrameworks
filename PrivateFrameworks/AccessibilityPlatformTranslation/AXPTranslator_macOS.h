@@ -9,9 +9,11 @@
 @interface AXPTranslator_macOS : AXPTranslator
 {
     CDUnknownBlockType _zoomTriggerTestingCallback;
+    CDUnknownBlockType _appNotificationTestingCallback;
 }
 
 + (id)sharedInstance;
+@property(copy, nonatomic) CDUnknownBlockType appNotificationTestingCallback; // @synthesize appNotificationTestingCallback=_appNotificationTestingCallback;
 @property(copy, nonatomic) CDUnknownBlockType zoomTriggerTestingCallback; // @synthesize zoomTriggerTestingCallback=_zoomTriggerTestingCallback;
 - (void).cxx_destruct;
 - (id)processApplicationObject:(id)arg1;
@@ -21,7 +23,7 @@
 - (id)processActionRequest:(id)arg1;
 - (id)processMultipleAttributeRequest:(id)arg1;
 - (void)_processAppAccessibilityNotification:(unsigned long long)arg1 data:(id)arg2 associatedObject:(id)arg3;
-- (void)_processZoomFocusNotificationWithData:(id)arg1;
+- (void)_processZoomFocusNotificationWithData:(id)arg1 associatedObject:(id)arg2;
 - (void)processPlatformNotification:(unsigned long long)arg1 data:(id)arg2 associatedObject:(id)arg3;
 - (void)enableAccessibility;
 - (id)platformElementFromTranslation:(id)arg1;

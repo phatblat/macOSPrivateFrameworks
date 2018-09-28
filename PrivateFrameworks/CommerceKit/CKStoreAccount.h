@@ -39,6 +39,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)description;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) BOOL isPrimary;
 @property(readonly) BOOL isSignedIn;

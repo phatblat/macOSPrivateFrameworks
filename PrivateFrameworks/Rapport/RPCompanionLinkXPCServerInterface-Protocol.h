@@ -15,6 +15,7 @@
 - (void)companionLinkSendEventID:(NSString *)arg1 event:(NSDictionary *)arg2 destinationID:(NSString *)arg3 options:(NSDictionary *)arg4 completion:(void (^)(NSError *))arg5;
 - (void)companionLinkDeregisterEventID:(NSString *)arg1 completion:(void (^)(NSError *))arg2;
 - (void)companionLinkRegisterEventID:(NSString *)arg1 options:(NSDictionary *)arg2 completion:(void (^)(NSError *))arg3;
+- (void)companionLinkUpdateClient:(RPCompanionLinkClient *)arg1;
 - (void)companionLinkActivateClient:(RPCompanionLinkClient *)arg1 completion:(void (^)(NSError *))arg2;
 - (void)companionLinkInvalidateAssertion:(RPCompanionLinkAssertion *)arg1;
 - (void)companionLinkActivateAssertion:(RPCompanionLinkAssertion *)arg1 completion:(void (^)(NSError *))arg2;

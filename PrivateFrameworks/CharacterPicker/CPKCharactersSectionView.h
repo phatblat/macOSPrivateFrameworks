@@ -44,6 +44,8 @@ __attribute__((visibility("hidden")))
 - (void)_drawCells:(id)arg1;
 - (long long)_fillCellDrawingInfo:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
+- (id)_characterDescriptionAtIndex:(long long)arg1;
+- (id)view:(id)arg1 stringForToolTip:(long long)arg2 point:(struct CGPoint)arg3 userData:(void *)arg4;
 - (id)menuForEvent:(id)arg1;
 - (void)mouseExited:(id)arg1;
 - (void)mouseMoved:(id)arg1;

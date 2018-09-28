@@ -13,7 +13,6 @@
     unsigned int mOriginal:1;
     unsigned int mTracked:1;
     unsigned int mResolved:1;
-    WDDocument *mDocument;
     WDText *mText;
     WDText *mEvenPageHeader;
     WDText *mOddPageHeader;
@@ -23,8 +22,10 @@
     WDText *mFirstPageFooter;
     CDStruct_9cc0d39f mOriginalProperties;
     CDStruct_9cc0d39f mTrackedProperties;
+    WDDocument *mDocument;
 }
 
+@property(readonly) __weak WDDocument *document; // @synthesize document=mDocument;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)description;
@@ -155,7 +156,6 @@
 - (id)evenPageHeader;
 - (id)oddPageHeader;
 - (id)text;
-- (id)document;
 - (void)setResolveMode:(int)arg1;
 - (int)resolveMode;
 - (id)initWithDocument:(id)arg1;

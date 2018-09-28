@@ -85,6 +85,7 @@
 - (id)deploymentPlatformVersion;
 - (id)deploymentPlatform;
 - (id)thinningArguments;
+- (void)_loadExtendedMetadata;
 - (unsigned int)colorSpaceID;
 - (unsigned int)associatedChecksum;
 - (id)uuid;
@@ -97,6 +98,7 @@
 - (const struct _renditionkeyfmt *)keyFormat;
 - (id)keyFormatData;
 - (int)keySemantics;
+- (void)updateTimestamp;
 - (long long)storageTimestamp;
 - (long long)_storagefileTimestamp;
 - (unsigned int)schemaVersion;

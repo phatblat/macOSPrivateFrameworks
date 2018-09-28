@@ -60,7 +60,7 @@
 - (id)newURLRequest;
 - (id)updatedRequestWithNewProtobufRequest:(id)arg1;
 - (id)updatedRequestWithNewBodyData:(id)arg1;
-- (id)initHttpOnlyRequestWithKind:(int)arg1 protobufRequest:(id)arg2 URL:(id)arg3 additionalHTTPHeaders:(id)arg4 allowCellularUse:(BOOL)arg5 compressRequest:(BOOL)arg6 requestCounterTicket:(id)arg7;
+- (id)initHttpOnlyRequestWithKind:(int)arg1 protobufRequest:(id)arg2 URL:(id)arg3 additionalHTTPHeaders:(id)arg4 needsProxy:(BOOL)arg5 allowCellularUse:(BOOL)arg6 compressRequest:(BOOL)arg7 requestCounterTicket:(id)arg8;
 - (id)initWithKind:(int)arg1 protobufRequest:(id)arg2 URL:(id)arg3 additionalHTTPHeaders:(id)arg4 needsProxy:(BOOL)arg5 auditToken:(id)arg6 traits:(id)arg7 requestCounterTicket:(id)arg8;
 
 // Remaining properties

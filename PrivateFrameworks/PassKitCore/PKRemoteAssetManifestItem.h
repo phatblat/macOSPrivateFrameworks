@@ -30,13 +30,14 @@
 @property(copy, nonatomic) NSURL *passURL; // @synthesize passURL=_passURL;
 @property(copy, nonatomic) NSURL *localURL; // @synthesize localURL=_localURL;
 - (void).cxx_destruct;
-- (void)downloadAssetWithCompletion:(CDUnknownBlockType)arg1;
+- (void)downloadAssetWithCloudStoreCoordinatorDelegate:(id)arg1 completion:(CDUnknownBlockType)arg2;
 @property(readonly, nonatomic) unsigned long long itemType;
 - (BOOL)isZipFile;
 @property(readonly, nonatomic) __weak NSString *relativeLocalPath;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithLocalURL:(id)arg1 passURL:(id)arg2 dictionary:(id)arg3 error:(id *)arg4;
+- (void)downloadAssetWithCompletion:(CDUnknownBlockType)arg1;
 
 @end
 

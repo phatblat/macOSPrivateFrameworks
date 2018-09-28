@@ -90,6 +90,7 @@
 - (void)splitDisk:(id)arg1 toSize:(unsigned long long)arg2 newDiskType:(id)arg3 name:(id)arg4 caseSensitive:(BOOL)arg5 password:(id)arg6 handlingProgress:(CDUnknownBlockType)arg7 withCompletionBlock:(CDUnknownBlockType)arg8;
 - (void)ejectDisk:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (void)mountDisk:(id)arg1 options:(id)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
+- (void)unmountDisk:(id)arg1 options:(id)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
 - (void)unmountDisk:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (void)renameDisk:(id)arg1 to:(id)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
 - (void)secureEraseDisk:(id)arg1 withEraseLevel:(int)arg2 handlingProgress:(CDUnknownBlockType)arg3 withCompletionBlock:(CDUnknownBlockType)arg4;

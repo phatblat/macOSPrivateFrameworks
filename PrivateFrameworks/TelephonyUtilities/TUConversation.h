@@ -9,13 +9,14 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSSet, NSUUID, TUHandle;
+@class NSSet, NSString, NSUUID, TUContactsDataProvider, TUHandle;
 
 @interface TUConversation : NSObject <NSCopying, NSSecureCoding>
 {
     BOOL _audioEnabled;
     BOOL _videoEnabled;
     BOOL _locallyCreated;
+    TUContactsDataProvider *_contactsDataProvider;
     NSUUID *_UUID;
     NSUUID *_groupUUID;
     long long _state;
@@ -25,11 +26,13 @@
     long long _avcSessionToken;
     NSUUID *_messagesGroupUUID;
     TUHandle *_initiator;
+    NSString *_messagesGroupName;
 }
 
 + (BOOL)supportsSecureCoding;
 + (id)numberFormatter;
 + (id)emptyConversationWithGroupUUID:(id)arg1;
+@property(copy, nonatomic) NSString *messagesGroupName; // @synthesize messagesGroupName=_messagesGroupName;
 @property(retain, nonatomic) TUHandle *initiator; // @synthesize initiator=_initiator;
 @property(retain, nonatomic) NSUUID *messagesGroupUUID; // @synthesize messagesGroupUUID=_messagesGroupUUID;
 @property(nonatomic) long long avcSessionToken; // @synthesize avcSessionToken=_avcSessionToken;
@@ -49,7 +52,9 @@
 - (unsigned long long)hash;
 - (BOOL)isEqualToConversation:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
+@property(readonly, nonatomic) TUContactsDataProvider *contactsDataProvider; // @synthesize contactsDataProvider=_contactsDataProvider;
 - (BOOL)isRepresentedByRemoteMembers:(id)arg1;
+- (id)initiatorLocalizedName;
 - (id)displayName;
 - (id)description;
 - (id)initWithUUID:(id)arg1 groupUUID:(id)arg2;

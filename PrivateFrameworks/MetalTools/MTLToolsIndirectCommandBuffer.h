@@ -17,6 +17,7 @@
 
 @property(readonly, nonatomic) MTLToolsPointerArray *indirectRenderCommand; // @synthesize indirectRenderCommand=_indirectRenderCommand;
 @property(readonly) unsigned long long uniqueIdentifier;
+- (void)resetWithRange:(struct _NSRange)arg1;
 - (void)getHeader:(void **)arg1 headerSize:(unsigned long long *)arg2;
 @property(readonly) unsigned long long storageMode;
 @property(readonly) unsigned long long size;

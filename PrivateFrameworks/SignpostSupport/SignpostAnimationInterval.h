@@ -21,10 +21,11 @@
 - (id)initWithBeginEvent:(id)arg1 endEvent:(id)arg2 compositeIntervalTimeline:(id)arg3;
 @property(readonly, nonatomic) float frameRate;
 - (id)debugDescription;
-- (id)descriptionStringForColumn:(unsigned long long)arg1 timeInSeconds:(BOOL)arg2;
+- (id)descriptionStringForColumn:(unsigned long long)arg1 timeFormat:(unsigned long long)arg2;
 - (id)_intervalTypeString;
+- (id)_dictionaryRepresentationWithIsHumanReadable:(BOOL)arg1;
+- (id)humanReadableType;
 - (id)initWithDictionary:(id)arg1;
-- (id)serializeableDictionary;
 
 @end
 

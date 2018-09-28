@@ -14,8 +14,7 @@
 }
 
 - (void).cxx_destruct;
-- (id)generatedPasswordForAppWithAppID:(id)arg1 passwordRules:(id)arg2 confirmPasswordRules:(id)arg3;
-- (id)generatedPasswordForAppWithAppID:(id)arg1 passwordRules:(id)arg2 minimumLength:(unsigned long long)arg3 maximumLength:(unsigned long long)arg4;
+- (id)generatedPasswordForAppWithAppID:(id)arg1 associatedDomains:(id)arg2 passwordRules:(id)arg3 confirmPasswordRules:(id)arg4;
 - (id)init;
 
 @end

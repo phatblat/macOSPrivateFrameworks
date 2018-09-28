@@ -17,6 +17,7 @@
     CEMSystemAllowedMediaDeclaration_MediaItems *_payloadUnmountControls;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withLogoutEject:(id)arg2 withMountControls:(id)arg3 withUnmountControls:(id)arg4;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

@@ -6,21 +6,18 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSetTaskAttributeIntentResponse.h"
 
-@class INCodableAttribute, NSString, _INPBTask;
+@class NSString, _INPBTask;
 
-@interface _INPBSetTaskAttributeIntentResponse : PBCodable <_INPBSetTaskAttributeIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSetTaskAttributeIntentResponse : PBCodable <_INPBSetTaskAttributeIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBTask *_modifiedTask;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBTask *modifiedTask; // @synthesize modifiedTask=_modifiedTask;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

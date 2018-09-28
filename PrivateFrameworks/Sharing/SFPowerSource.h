@@ -14,6 +14,7 @@
 {
     struct OpaqueIOPSPowerSourceID *_psID;
     int _lowPowerMonitoringToken;
+    double _lowWarnLevel;
     BOOL _charging;
     BOOL _lowPowerModeEnabled;
     BOOL _showChargingUI;
@@ -27,7 +28,6 @@
     long long _familyCode;
     NSString *_groupID;
     NSArray *_LEDs;
-    double _lowWarnLevel;
     double _maxCapacity;
     NSString *_name;
     NSString *_partID;
@@ -76,7 +76,7 @@
 @property(copy, nonatomic) NSString *partID; // @synthesize partID=_partID;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(nonatomic) double maxCapacity; // @synthesize maxCapacity=_maxCapacity;
-@property(readonly, nonatomic) double lowWarnLevel; // @synthesize lowWarnLevel=_lowWarnLevel;
+@property(nonatomic) double lowWarnLevel; // @synthesize lowWarnLevel=_lowWarnLevel;
 @property(readonly, nonatomic, getter=isLowPowerModeEnabled) BOOL lowPowerModeEnabled; // @synthesize lowPowerModeEnabled=_lowPowerModeEnabled;
 @property(copy, nonatomic) NSArray *LEDs; // @synthesize LEDs=_LEDs;
 @property(copy, nonatomic) NSString *groupID; // @synthesize groupID=_groupID;
@@ -105,7 +105,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (void)_updateWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)init:(id)arg1;
+- (id)init;
 
 @end
 

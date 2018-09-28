@@ -15,6 +15,7 @@
     NSNumber *_payloadAllowAccountModification;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowAccountModification:(id)arg2;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

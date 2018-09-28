@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBDateTimeRangeList.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBCondition;
+@class NSArray, NSString, _INPBCondition;
 
-@interface _INPBDateTimeRangeList : PBCodable <_INPBDateTimeRangeList, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBDateTimeRangeList : PBCodable <_INPBDateTimeRangeList, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBCondition *_condition;
     NSArray *_dateRanges;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)dateRangeType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *dateRanges; // @synthesize dateRanges=_dateRanges;
 @property(retain, nonatomic) _INPBCondition *condition; // @synthesize condition=_condition;
 - (void).cxx_destruct;

@@ -26,7 +26,7 @@
 - (id)resourceInputModes;
 - (void)reduceCacheToSize:(unsigned long long)arg1;
 - (void)cacheInputManager:(id)arg1;
-- (id)inputManagerForInputMode:(id)arg1 withClass:(Class)arg2;
+- (id)inputManagerForInputMode:(id)arg1 withKeyboardState:(id)arg2 class:(Class)arg3;
 - (void)startSyncHelper;
 - (void)dealloc;
 - (id)init;

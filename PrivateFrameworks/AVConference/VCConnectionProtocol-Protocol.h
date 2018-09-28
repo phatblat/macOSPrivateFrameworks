@@ -20,6 +20,7 @@
 @property(readonly) int remoteConnectionType;
 @property(readonly) int localConnectionType;
 @property(readonly) NSUUID *connectionUUID;
+@property(readonly) BOOL serverIsDegraded;
 @property(readonly) BOOL isVPN;
 @property(readonly) BOOL isRelay;
 @property(readonly) int connectionId;

@@ -6,34 +6,40 @@
 
 #import "NSObject.h"
 
+#import "HMDActiveSiriSessionInfoDelegate.h"
 #import "HMFLogging.h"
 
-@class HMDSiriRemoteInputServer, NSString;
+@class HMDActiveSiriSessionInfo, HMDSiriRemoteInputServer, NSString;
 
-@interface HMDSiriSession : NSObject <HMFLogging>
+@interface HMDSiriSession : NSObject <HMDActiveSiriSessionInfoDelegate, HMFLogging>
 {
-    BOOL _isStreaming;
-    id <HMDSiriSessionDelegate> _delegate;
     NSString *_identifier;
     HMDSiriRemoteInputServer *_server;
+    HMDActiveSiriSessionInfo *_activeSessionInfo;
 }
 
 + (id)logCategory;
-@property(nonatomic) BOOL isStreaming; // @synthesize isStreaming=_isStreaming;
-@property(readonly, nonatomic) __weak HMDSiriRemoteInputServer *server; // @synthesize server=_server;
-@property(retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
-@property(nonatomic) __weak id <HMDSiriSessionDelegate> delegate; // @synthesize delegate=_delegate;
++ (id)siriSessionForUI;
+@property(retain, nonatomic) HMDActiveSiriSessionInfo *activeSessionInfo; // @synthesize activeSessionInfo=_activeSessionInfo;
+@property(nonatomic) __weak HMDSiriRemoteInputServer *server; // @synthesize server=_server;
+@property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
+- (id)_createArgsDictionaryWithError:(id)arg1;
 - (void)sendMsg:(const char *)arg1 args:(id)arg2;
-- (void)stopStream:(CDUnknownBlockType)arg1;
-- (void)startStream:(CDUnknownBlockType)arg1;
+- (void)_stopStream;
+- (BOOL)_startStream;
+- (void)activeSiriSessionDidStop:(id)arg1;
 - (void)handleResetStream;
 - (void)handleStopStream;
 - (void)handleStartStream;
 - (void)publish;
 - (void)invalidate;
-- (void)sendAudioFrame:(id)arg1 sequenceNumber:(long long)arg2 gain:(double)arg3;
-- (id)initWithIdentifier:(id)arg1 server:(id)arg2;
+- (void)activeSiriSession:(id)arg1 didCreateAudioFrame:(id)arg2 sequenceNumber:(id)arg3 gain:(id)arg4;
+- (void)setActiveBulkSendSession:(id)arg1;
+- (id)activeSessionToken;
+- (void)deactivate;
+- (BOOL)activate;
+- (id)initWithIdentifier:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

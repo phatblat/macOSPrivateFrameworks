@@ -4,12 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSArray, NSPredicate, NSString, _DKObject, _DKQuery;
+@class NSArray, NSPredicate, NSString, _DKQuery;
 
 @protocol _DKDaemonInterface
 - (void)confirmDatabaseConnectionWithReply:(void (^)(BOOL, NSError *))arg1;
 - (void)sourceDeviceIdentityWithReply:(void (^)(NSObject *, NSError *))arg1;
-- (void)sourceDeviceIdentityFromObject:(_DKObject *)arg1 reply:(void (^)(NSObject *, NSError *))arg2;
 - (void)deleteRemoteState:(void (^)(BOOL, NSError *))arg1;
 - (void)synchronizeWithUrgency:(unsigned long long)arg1 client:(NSString *)arg2 reply:(void (^)(BOOL, NSError *))arg3;
 - (void)synchronizeWithReply:(void (^)(BOOL, NSError *))arg1;

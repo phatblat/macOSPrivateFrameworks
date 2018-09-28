@@ -43,7 +43,12 @@
 - (id)_description;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) BOOL _isSupportedForDonation;
+@property(readonly, nonatomic) BOOL _isEligibleForProxying;
+- (id)_initWithURLRepresentation:(id)arg1;
+- (id)_URLRepresentation;
 - (id)_preferredImageLoader;
+@property(copy, nonatomic, setter=_setBundleIdentifier:) NSString *_bundleIdentifier;
 @property(copy, nonatomic, setter=_setBundlePath:) NSString *_bundlePath;
 @property(copy, nonatomic, setter=_setName:) NSString *_name;
 @property(copy, nonatomic, setter=_setUri:) NSURL *_uri;
@@ -61,7 +66,8 @@
 - (void)generateCachePayloadWithCompletion:(CDUnknownBlockType)arg1;
 - (void)_injectProxiesForImages:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_loadImageDataAndSizeWithHelper:(id)arg1 accessSpecifier:(id)arg2 completion:(CDUnknownBlockType)arg3;
-- (id)_in_writeableFilePersistenceConfiguration;
+- (id)_in_writeableFilePersistenceConfigurationForStoreType:(unsigned long long)arg1;
+- (id)_in_downscaledImageForFilePersistence;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -10,7 +10,7 @@ __attribute__((visibility("hidden")))
 @interface FI_TPopoverContentSubview : FI_TUpdateLayerView
 {
     struct TNSRef<NSView, void> _view;
-    struct TNSRef<FI_TGradientSeparator, void> _separator;
+    struct TNSRef<NSBox, void> _separator;
 }
 
 - (id).cxx_construct;

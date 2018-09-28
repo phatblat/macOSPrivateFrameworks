@@ -6,7 +6,7 @@
 
 #import "NSViewController.h"
 
-@class NSButton, NSPopover, NSString, NSTextField, WBSSavedPassword;
+@class ContentHuggingTextView, NSClipView, NSPopover, NSString, WBSSavedPassword;
 
 __attribute__((visibility("hidden")))
 @interface PasswordsAuditingPopoverViewController : NSViewController
@@ -15,20 +15,20 @@ __attribute__((visibility("hidden")))
     NSPopover *_popover;
     id <PasswordsAuditingHandler> _passwordAuditingHandler;
     WBSSavedPassword *_auditingSavedPassword;
-    NSTextField *_passwordsAuditingWarningLabel;
-    NSButton *_changePasswordButton;
+    NSClipView *_passwordsAuditingWarningLabelEnclosingClipView;
+    ContentHuggingTextView *_passwordsAuditingWarningLabel;
 }
 
-@property(nonatomic) __weak NSButton *changePasswordButton; // @synthesize changePasswordButton=_changePasswordButton;
-@property(nonatomic) __weak NSTextField *passwordsAuditingWarningLabel; // @synthesize passwordsAuditingWarningLabel=_passwordsAuditingWarningLabel;
-@property(retain, nonatomic) WBSSavedPassword *auditingSavedPassword; // @synthesize auditingSavedPassword=_auditingSavedPassword;
+@property ContentHuggingTextView *passwordsAuditingWarningLabel; // @synthesize passwordsAuditingWarningLabel=_passwordsAuditingWarningLabel;
+@property __weak NSClipView *passwordsAuditingWarningLabelEnclosingClipView; // @synthesize passwordsAuditingWarningLabelEnclosingClipView=_passwordsAuditingWarningLabelEnclosingClipView;
+@property(readonly, nonatomic) WBSSavedPassword *auditingSavedPassword; // @synthesize auditingSavedPassword=_auditingSavedPassword;
 @property(nonatomic) __weak id <PasswordsAuditingHandler> passwordAuditingHandler; // @synthesize passwordAuditingHandler=_passwordAuditingHandler;
 - (void).cxx_destruct;
 - (void)closePopover;
 - (void)showPopoverWithPositioningView:(id)arg1;
-- (void)_changePassword:(id)arg1;
 - (void)_updateWarningLabelStringValue;
 - (void)viewDidLoad;
+- (id)initWithAuditingSavedPassword:(id)arg1;
 
 @end
 

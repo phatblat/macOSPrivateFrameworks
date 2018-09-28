@@ -13,7 +13,10 @@ __attribute__((visibility("hidden")))
 
 + (id)returnTypes;
 + (id)name;
+- (id)localizedItemName;
+- (id)localizedDescription;
 - (id)serviceIdentifier;
+- (id)mutableRequestMessage;
 
 @end
 

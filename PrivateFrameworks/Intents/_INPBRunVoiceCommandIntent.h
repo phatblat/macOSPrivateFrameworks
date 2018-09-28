@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBRunVoiceCommandIntent.h"
 
-@class INCodableAttribute, NSString, _INPBDataString, _INPBIntentMetadata, _INPBVoiceCommandDeviceInformation;
+@class NSString, _INPBDataString, _INPBIntentMetadata, _INPBVoiceCommandDeviceInformation;
 
-@interface _INPBRunVoiceCommandIntent : PBCodable <_INPBRunVoiceCommandIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBRunVoiceCommandIntent : PBCodable <_INPBRunVoiceCommandIntent, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBIntentMetadata *_intentMetadata;
     _INPBVoiceCommandDeviceInformation *_originDevice;
     _INPBDataString *_voiceCommand;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBDataString *voiceCommand; // @synthesize voiceCommand=_voiceCommand;
 @property(retain, nonatomic) _INPBVoiceCommandDeviceInformation *originDevice; // @synthesize originDevice=_originDevice;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;

@@ -24,11 +24,14 @@
 @property __weak id <STYWakeDataConsumer> consumer; // @synthesize consumer=_consumer;
 - (void).cxx_destruct;
 - (void)receivedPowerManagerNotification:(unsigned long long)arg1 atTimestamp:(unsigned long long)arg2;
+- (void)handleSignpostProcessingCompletion:(id)arg1;
 - (void)handleSignpostInterval:(id)arg1;
 - (void)handleSignpost:(id)arg1;
 - (unsigned long long)firstHidWakeEventAfter:(unsigned long long)arg1 before:(unsigned long long)arg2;
 - (unsigned long long)sleepType;
-- (double)lastWakeTime:(double *)arg1;
+- (unsigned long long)lastWakeTime:(unsigned long long *)arg1;
+- (void)stopMonitoringWakeSignposts;
+- (void)startMonitoringWakeSignposts;
 - (void)startMonitoring;
 - (void)dealloc;
 - (id)initWithConsumer:(id)arg1;

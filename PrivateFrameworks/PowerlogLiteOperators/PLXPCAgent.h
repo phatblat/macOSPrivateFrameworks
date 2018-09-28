@@ -33,6 +33,8 @@
     PLXPCListenerOperatorComposition *_BackgroundTransfer;
     PLXPCListenerOperatorComposition *_telNotificationXPCListener;
     PLXPCListenerOperatorComposition *_SpotlightXPCListener;
+    PLXPCListenerOperatorComposition *_SpotlightQosXPCListener;
+    PLXPCListenerOperatorComposition *_SpotlightWatchdogFiredXPCListener;
     PLXPCListenerOperatorComposition *_siriFalseAlarm;
     PLXPCResponderOperatorComposition *_entryRequestResponder;
     NSDate *_spotlightAgentLastFlushDate;
@@ -52,6 +54,7 @@
     PLXPCListenerOperatorComposition *_UbiquityAccountStatisticsXPCListener;
     PLXPCListenerOperatorComposition *_DeepScanReasonsXPCListener;
     PLXPCListenerOperatorComposition *_LocationVehicularDetectionXPCListener;
+    PLXPCListenerOperatorComposition *_MotionWakeReasonXPCListener;
     PLXPCListenerOperatorComposition *_CommuteRefreshXPCListener;
     PLXPCListenerOperatorComposition *_SecItemXPCListener;
     PLXPCListenerOperatorComposition *_SOSKVSRateLimitingEventXPCListener;
@@ -68,10 +71,12 @@
     PLXPCListenerOperatorComposition *_ODOnXPCListener;
     PLXPCListenerOperatorComposition *_ODHNXPCListener;
     PLXPCListenerOperatorComposition *_AirTrafficAssetDownloadXPCListener;
+    PLXPCListenerOperatorComposition *_CoreDuetKnowledgeSyncXPCListener;
 }
 
 + (id)entryAggregateDefinitions;
 + (id)entryEventNoneDefinitions;
++ (id)entryEventIntervalDefinitionCoreDuetKnowledgeSync;
 + (id)entryEventIntervalDefinitionAirTrafficAssetDownload;
 + (id)entryEventIntervalDefinitions;
 + (id)entryEventBackwardDefinitionUbiquityAccountStatistics;
@@ -82,8 +87,10 @@
 + (id)entryEventBackwardDefinitionAttentionService;
 + (id)entryEventBackwardDefinitionAttentionPolling;
 + (id)entryEventBackwardDefinitionAttentionSampling;
++ (id)entryEventBackwardDefinitionSpotlightQos;
 + (id)entryEventBackwardDefinitionSpotlight;
 + (id)entryEventBackwardDefinitionPeekPop;
++ (id)entryEventBackwardDefinitionSiriFalseAlarm;
 + (id)entryEventBackwardDefinitions;
 + (id)entryEventForwardDefinitionSOSKVSRateLimitingEvent;
 + (id)entryEventForwardDefinitionThermalHiP;
@@ -99,11 +106,13 @@
 + (id)entryEventForwardDefinitionUIKitActivity;
 + (id)entryEventForwardDefinitionUIKitKeyboard;
 + (id)entryEventForwardDefinitions;
++ (id)entryEventPointDefinitionSpotlightWatchdogFired;
 + (id)entryEventPointDefinitionSiriActivication;
 + (id)entryEventPointDefinitionDeepScanReasons;
 + (id)entryEventPointDefinitionSecItem;
 + (id)entryEventPointDefinitionCacheDelete;
 + (id)entryEventPointDefinitionCommuteRefresh;
++ (id)entryEventPointDefinitionMotionWakeReason;
 + (id)entryEventPointDefinitionLocationVehicularDetection;
 + (id)entryEventPointDefinitionCloudKit;
 + (id)entryEventPointDefinitionAppActivationPerformancePowerStateStatistics;
@@ -132,6 +141,7 @@
 + (BOOL)shouldLogiOSWatchOSOnly;
 + (id)defaults;
 + (void)load;
+@property(retain) PLXPCListenerOperatorComposition *CoreDuetKnowledgeSyncXPCListener; // @synthesize CoreDuetKnowledgeSyncXPCListener=_CoreDuetKnowledgeSyncXPCListener;
 @property(retain) PLXPCListenerOperatorComposition *AirTrafficAssetDownloadXPCListener; // @synthesize AirTrafficAssetDownloadXPCListener=_AirTrafficAssetDownloadXPCListener;
 @property(retain) PLXPCListenerOperatorComposition *ODHNXPCListener; // @synthesize ODHNXPCListener=_ODHNXPCListener;
 @property(retain) PLXPCListenerOperatorComposition *ODOnXPCListener; // @synthesize ODOnXPCListener=_ODOnXPCListener;
@@ -148,6 +158,7 @@
 @property(retain) PLXPCListenerOperatorComposition *SOSKVSRateLimitingEventXPCListener; // @synthesize SOSKVSRateLimitingEventXPCListener=_SOSKVSRateLimitingEventXPCListener;
 @property(retain) PLXPCListenerOperatorComposition *SecItemXPCListener; // @synthesize SecItemXPCListener=_SecItemXPCListener;
 @property(retain) PLXPCListenerOperatorComposition *CommuteRefreshXPCListener; // @synthesize CommuteRefreshXPCListener=_CommuteRefreshXPCListener;
+@property(retain) PLXPCListenerOperatorComposition *MotionWakeReasonXPCListener; // @synthesize MotionWakeReasonXPCListener=_MotionWakeReasonXPCListener;
 @property(retain) PLXPCListenerOperatorComposition *LocationVehicularDetectionXPCListener; // @synthesize LocationVehicularDetectionXPCListener=_LocationVehicularDetectionXPCListener;
 @property(retain) PLXPCListenerOperatorComposition *DeepScanReasonsXPCListener; // @synthesize DeepScanReasonsXPCListener=_DeepScanReasonsXPCListener;
 @property(retain) PLXPCListenerOperatorComposition *UbiquityAccountStatisticsXPCListener; // @synthesize UbiquityAccountStatisticsXPCListener=_UbiquityAccountStatisticsXPCListener;
@@ -167,6 +178,8 @@
 @property(retain) NSDate *spotlightAgentLastFlushDate; // @synthesize spotlightAgentLastFlushDate=_spotlightAgentLastFlushDate;
 @property(retain) PLXPCResponderOperatorComposition *entryRequestResponder; // @synthesize entryRequestResponder=_entryRequestResponder;
 @property(retain) PLXPCListenerOperatorComposition *siriFalseAlarm; // @synthesize siriFalseAlarm=_siriFalseAlarm;
+@property(retain) PLXPCListenerOperatorComposition *SpotlightWatchdogFiredXPCListener; // @synthesize SpotlightWatchdogFiredXPCListener=_SpotlightWatchdogFiredXPCListener;
+@property(retain) PLXPCListenerOperatorComposition *SpotlightQosXPCListener; // @synthesize SpotlightQosXPCListener=_SpotlightQosXPCListener;
 @property(retain) PLXPCListenerOperatorComposition *SpotlightXPCListener; // @synthesize SpotlightXPCListener=_SpotlightXPCListener;
 @property(retain) PLXPCListenerOperatorComposition *telNotificationXPCListener; // @synthesize telNotificationXPCListener=_telNotificationXPCListener;
 @property(retain) PLXPCListenerOperatorComposition *BackgroundTransfer; // @synthesize BackgroundTransfer=_BackgroundTransfer;
@@ -194,6 +207,7 @@
 - (void)createInCallServiceAccountingEvent:(id)arg1;
 - (void)createAirDropAccountingEvent:(id)arg1;
 - (void)createAccessoryAccountingEventWithName:(id)arg1 isStartEvent:(BOOL)arg2;
+- (void)logEventIntervalCoreDuetKnowledgeSync:(id)arg1;
 - (void)logEventIntervalAirTrafficAssetDownload:(id)arg1;
 - (void)logEventPointCacheDelete:(id)arg1;
 - (void)logEventPointNetworkSymptomsAdviosry:(id)arg1;
@@ -206,6 +220,8 @@
 - (void)logEventBackwardAttentionSampling:(id)arg1;
 - (void)logEventBackwardNamePeek:(id)arg1;
 - (void)logEventBackwardNamePop:(id)arg1;
+- (void)logEventPointNameSpotlightWatchdogFired:(id)arg1;
+- (void)logEventBackwardNameSpotlightQos:(id)arg1;
 - (void)logEventBackwardNameSpotlight:(id)arg1;
 - (void)logEventBackwardNameMediaServerdRTC:(id)arg1;
 - (void)logEventForwardThermalLevel:(id)arg1;
@@ -221,6 +237,7 @@
 - (void)logEventPointSiriActivation:(id)arg1;
 - (void)logEventPointSecItemSession:(id)arg1;
 - (void)logEventPointCommuteRefreshSession:(id)arg1;
+- (void)logEventPointMotionWakeReasonSession:(id)arg1;
 - (void)logEventPointLocationVehicularDetectionSession:(id)arg1;
 - (void)logEventPointCloudKit:(id)arg1;
 - (void)logEventPointAppActivationPerformancePowerStateStatistics:(id)arg1;
@@ -245,6 +262,7 @@
 - (void)logEventPointDACalendarItemsDownloaded:(id)arg1;
 - (void)logEventPointDASyncStart:(id)arg1;
 - (void)logEventPointTestMarker:(id)arg1;
+- (void)logEventBackwardSiriFalseAlarm:(id)arg1;
 - (void)logEventAggregateTelNotification:(id)arg1;
 - (void)log;
 - (id)entryRequestResponseForPayload:(id)arg1;

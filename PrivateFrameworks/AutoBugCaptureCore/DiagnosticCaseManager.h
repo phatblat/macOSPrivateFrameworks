@@ -89,7 +89,7 @@
 - (BOOL)sendReportsForCase:(id)arg1;
 - (void)startCollectingNextReportForDiagnosticCase:(id)arg1;
 - (BOOL)requestReportGenerator:(id)arg1 options:(id)arg2;
-- (unsigned long long)collectDiagnosticExtensionLogsWithParameters:(id)arg1 diagCase:(id)arg2 reply:(CDUnknownBlockType)arg3;
+- (unsigned long long)collectDiagnosticExtensionLogsWithParameters:(id)arg1 options:(id)arg2 diagCase:(id)arg3 reply:(CDUnknownBlockType)arg4;
 - (void)postProcessActionsForClosedCase:(id)arg1;
 - (BOOL)closeCase:(id)arg1;
 - (id)caseStorageForCaseID:(id)arg1;

@@ -17,7 +17,7 @@
     AVCAudioPowerSpectrumMeter *_powerSpectrumMeter;
 }
 
-+ (id)normalizedPowerLevelForPowerSpectrum:(id)arg1;
++ (float)normalizedPowerLevelForPowerSpectrum:(id)arg1;
 @property(readonly, nonatomic) AVCAudioPowerSpectrumMeter *powerSpectrumMeter; // @synthesize powerSpectrumMeter=_powerSpectrumMeter;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(readonly, nonatomic) __weak id <TUAudioFrequencyControllerDelegate> delegate; // @synthesize delegate=_delegate;

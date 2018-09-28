@@ -15,7 +15,8 @@
 }
 
 + (id)_ignoredParameters;
-- (BOOL)configureAttributeSet:(id)arg1;
+- (id)_spotlightContentType;
+- (BOOL)configureAttributeSet:(id)arg1 includingData:(BOOL)arg2;
 - (void)setParametersByName:(id)arg1;
 - (id)parametersByName;
 - (void)setVerb:(id)arg1;
@@ -43,6 +44,7 @@
 @property(readonly, copy) NSArray *recipients;
 - (id)initWithRecipients:(id)arg1 content:(id)arg2 speakableGroupName:(id)arg3 conversationIdentifier:(id)arg4 serviceName:(id)arg5 sender:(id)arg6;
 - (id)_categoryVerb;
+- (long long)_intentCategory;
 - (void)_setMetadata:(id)arg1;
 - (id)_metadata;
 - (id)_typedBackingStore;

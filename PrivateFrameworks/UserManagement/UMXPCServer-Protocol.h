@@ -23,6 +23,9 @@
 - (void)addUserSwitchBlockingTask:(NSDictionary *)arg1 forPID:(int)arg2 completionHandler:(void (^)(NSError *))arg3;
 - (void)removeUserSwitchBlockingTask:(NSDictionary *)arg1 forPID:(int)arg2;
 - (void)addUserSwitchBlockingTask:(NSDictionary *)arg1 forPID:(int)arg2;
+- (void)loginUICheckinForPID:(int)arg1 completionHandler:(void (^)(NSError *))arg2;
+- (void)directSwitchToUser:(NSDictionary *)arg1 passcodeData:(NSData *)arg2 context:(NSData *)arg3 preferences:(NSDictionary *)arg4 pid:(int)arg5 completionHandler:(void (^)(NSError *))arg6;
+- (void)logoutToLoginSessionWithPID:(int)arg1 completionHandler:(void (^)(NSError *))arg2;
 - (void)switchToLoginUserWithPID:(int)arg1 completionHandler:(void (^)(NSError *))arg2;
 - (void)switchToUser:(NSDictionary *)arg1 passcodeData:(NSData *)arg2 context:(NSData *)arg3 preferences:(NSDictionary *)arg4 pid:(int)arg5 completionHandler:(void (^)(NSError *))arg6;
 - (void)switchToUser:(NSDictionary *)arg1 passcodeData:(NSData *)arg2 context:(NSData *)arg3 pid:(int)arg4 completionHandler:(void (^)(NSError *))arg5;

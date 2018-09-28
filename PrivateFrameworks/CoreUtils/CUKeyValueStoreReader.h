@@ -10,15 +10,22 @@
 {
     struct cdb _cdb;
     int _fd;
+    Class _keyType;
+    Class _valueType;
 }
 
 - (id)valueForKey:(id)arg1 valueType:(Class)arg2 error:(id *)arg3;
+- (id)valueForKey:(id)arg1 error:(id *)arg2;
 - (BOOL)valueExistsForKey:(id)arg1;
-- (id)_readObjectAtOffset:(unsigned int)arg1 length:(unsigned int)arg2 type:(Class)arg3 error:(id *)arg4;
+- (BOOL)enumerateValuesForKey:(id)arg1 valueType:(Class)arg2 error:(id *)arg3 handler:(CDUnknownBlockType)arg4;
+- (BOOL)enumerateValuesForKey:(id)arg1 error:(id *)arg2 handler:(CDUnknownBlockType)arg3;
 - (BOOL)enumerateKeyType:(Class)arg1 valueType:(Class)arg2 error:(id *)arg3 handler:(CDUnknownBlockType)arg4;
+- (BOOL)enumerateKeysAndValuesAndReturnError:(id *)arg1 handler:(CDUnknownBlockType)arg2;
+- (id)_readObjectAtOffset:(unsigned int)arg1 length:(unsigned int)arg2 type:(Class)arg3 error:(id *)arg4;
 - (void)close;
 - (BOOL)openAtPath:(id)arg1 error:(id *)arg2;
 - (void)dealloc;
+- (id)initWithKeyType:(Class)arg1 valueType:(Class)arg2;
 - (id)init;
 
 @end

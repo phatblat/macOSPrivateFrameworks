@@ -51,8 +51,10 @@
     NSNumber *_idsLastSocketDelay;
     NSNumber *_idsLastSocketOpenError;
     NSString *_tlsVersion;
+    NSNumber *_simSubscriptions;
 }
 
+@property(copy, nonatomic) NSNumber *simSubscriptions; // @synthesize simSubscriptions=_simSubscriptions;
 @property(copy, nonatomic) NSString *tlsVersion; // @synthesize tlsVersion=_tlsVersion;
 @property(copy, nonatomic) NSNumber *idsLastSocketOpenError; // @synthesize idsLastSocketOpenError=_idsLastSocketOpenError;
 @property(copy, nonatomic) NSNumber *idsLastSocketDelay; // @synthesize idsLastSocketDelay=_idsLastSocketDelay;

@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBGetFileInformationIntent.h"
 
-@class INCodableAttribute, NSString, _INPBIntentMetadata, _INPBString;
+@class NSString, _INPBIntentMetadata, _INPBString;
 
-@interface _INPBGetFileInformationIntent : PBCodable <_INPBGetFileInformationIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBGetFileInformationIntent : PBCodable <_INPBGetFileInformationIntent, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int entityType:1;
@@ -25,10 +24,8 @@
     int _qualifier;
     _INPBString *_entityName;
     _INPBIntentMetadata *_intentMetadata;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int qualifier; // @synthesize qualifier=_qualifier;
 @property(nonatomic) int propertyName; // @synthesize propertyName=_propertyName;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;

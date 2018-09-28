@@ -4,26 +4,26 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <ROCKit/ROCKRemoteImpersonator.h>
+#import <ROCKit/ROCKImpersonatableProxy.h>
 
 @class NSSet;
 
 __attribute__((visibility("hidden")))
-@interface ROCKForwardingProxy : ROCKRemoteImpersonator
+@interface ROCKForwardingProxy : ROCKImpersonatableProxy
 {
     id <NSObject> _instance;
     NSSet *_protocols;
 }
 
-+ (void)forwardingProxyWithInstance:(id)arg1 eventQueue:(id)arg2 eventHandler:(CDUnknownBlockType)arg3;
-+ (id)forwardingProxyWithSessionManager:(id)arg1 instance:(id)arg2;
-@property(retain, nonatomic) NSSet *protocols; // @synthesize protocols=_protocols;
++ (void)forwardingProxyWithInstance:(id)arg1 options:(id)arg2 eventQueue:(id)arg3 eventHandler:(CDUnknownBlockType)arg4;
++ (id)forwardingProxyWithSessionManager:(id)arg1 instance:(id)arg2 error:(id *)arg3;
+@property(readonly, nonatomic) NSSet *protocols; // @synthesize protocols=_protocols;
 @property(retain, nonatomic) id <NSObject> instance; // @synthesize instance=_instance;
 - (void).cxx_destruct;
 - (id)description;
 - (id)debugDescription;
-- (id)initWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 instance:(id)arg3;
-- (id)initWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 instance:(id)arg3 protocols:(id)arg4;
+- (id)initWithSessionManager:(id)arg1 impersonatableProxyUUID:(id)arg2 instance:(id)arg3 error:(id *)arg4;
+- (id)initWithSessionManager:(id)arg1 impersonatableProxyUUID:(id)arg2 instance:(id)arg3 protocols:(id)arg4 error:(id *)arg5;
 - (void)_forwardStackInvocation:(id)arg1;
 - (BOOL)respondsToSelector:(SEL)arg1;
 - (id)forwardingTargetForSelector:(SEL)arg1;

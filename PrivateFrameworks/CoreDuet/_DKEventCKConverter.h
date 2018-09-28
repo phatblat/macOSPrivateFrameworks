@@ -10,10 +10,10 @@
 
 @interface _DKEventCKConverter : NSObject
 {
-    CKRecordZoneID *_mySyncZoneID;
+    CKRecordZoneID *_zoneID;
 }
 
-@property(retain) CKRecordZoneID *mySyncZoneID; // @synthesize mySyncZoneID=_mySyncZoneID;
+@property(retain) CKRecordZoneID *zoneID; // @synthesize zoneID=_zoneID;
 - (void).cxx_destruct;
 - (id)recordFromEventData:(id)arg1 event:(id)arg2;
 - (id)eventDataFromRecord:(id)arg1;
@@ -21,7 +21,7 @@
 - (id)recordIDsFromEventIDs:(id)arg1;
 - (id)recordsFromEvents:(id)arg1;
 - (id)eventsFromRecords:(id)arg1;
-- (id)initWithMySyncZoneID:(id)arg1;
+- (id)initWithZoneID:(id)arg1;
 
 @end
 

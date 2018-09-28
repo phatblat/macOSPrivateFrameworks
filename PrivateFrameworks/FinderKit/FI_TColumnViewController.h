@@ -42,7 +42,6 @@ __attribute__((visibility("hidden")))
     struct vector<TKeyValueBinder, std::__1::allocator<TKeyValueBinder>> _viewSettingsBinders;
 }
 
-+ (double)columnViewDelayBeforeDisplay;
 @property(nonatomic) _Bool nextSelectionAllowsRetarget; // @synthesize nextSelectionAllowsRetarget=_nextSelectionAllowsRetarget;
 @property(nonatomic) int arrangeBy; // @synthesize arrangeBy=_arrangeBy;
 @property(nonatomic) _Bool delayedOpening; // @synthesize delayedOpening=_delayedOpening;
@@ -58,6 +57,7 @@ __attribute__((visibility("hidden")))
 - (id)selectedItemsForColumn:(long long)arg1;
 - (BOOL)browser:(id)arg1 acceptDrop:(id)arg2 atRow:(long long)arg3 column:(long long)arg4 dropOperation:(unsigned long long)arg5;
 - (unsigned long long)browser:(id)arg1 validateDrop:(id)arg2 proposedRow:(long long *)arg3 column:(long long *)arg4 dropOperation:(unsigned long long *)arg5;
+- (void)mouseDown:(id)arg1;
 - (void)commonPostMouseDown:(id)arg1;
 - (BOOL)browser:(id)arg1 canDragRowsWithIndexes:(id)arg2 inColumn:(long long)arg3 withEvent:(id)arg4;
 - (BOOL)browser:(id)arg1 writeRowsWithIndexes:(id)arg2 inColumn:(long long)arg3 toPasteboard:(id)arg4;
@@ -106,7 +106,7 @@ __attribute__((visibility("hidden")))
 - (void)handleNodeChangedPropertyMap:(const unordered_map_f886f0c5 *)arg1 forBrowserTableView:(id)arg2;
 - (void)attemptToSelectPendingNodes;
 - (void)reusingDataSource;
-- (void)dataSourceChanged:(const vector_ddb76938 *)arg1;
+- (void)dataSourceChanged:(const vector_274a36ec *)arg1;
 - (struct TFENodeVector)sortedGroups:(const struct TFENodeVector *)arg1 forContainerNode:(const struct TFENode *)arg2;
 - (int)editingSelectionType;
 - (void)updateSTFEditorLocation;

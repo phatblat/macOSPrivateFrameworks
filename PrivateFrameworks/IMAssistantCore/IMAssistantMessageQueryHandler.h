@@ -18,8 +18,6 @@
 - (id)chatParticipantsForSPIHandles:(id)arg1;
 - (id)chatParticipantForSPIHandle:(id)arg1;
 - (id)messageContentsPredicate:(id)arg1;
-- (id)conversationIdentifiersPredicate:(id)arg1;
-- (id)chatNamesPredicate:(id)arg1;
 - (id)vocabularyIdentifiersFromSpeakableStrings:(id)arg1;
 - (id)spokenPhrasesForSpeakableStrings:(id)arg1;
 - (id)sendersPredicate:(id)arg1;

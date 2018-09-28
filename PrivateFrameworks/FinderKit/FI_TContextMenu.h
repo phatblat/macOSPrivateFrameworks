@@ -12,8 +12,7 @@ __attribute__((visibility("hidden")))
     struct TNotificationCenterObserver _menuDidCompleteInteractionObserver;
 }
 
-+ (void)servicesDidChange;
-+ (void)addServiceActionsToMenu:(id)arg1 forSelection:(const struct TFENodeVector *)arg2 target:(id)arg3;
++ (void)addFilteredQuickActions:(id)arg1 toMenu:(id)arg2;
 + (void)addTagColorItemsToMenu:(id)arg1 target:(id)arg2 setTagColor:(SEL)arg3;
 + (void)populateTagActionsMenu:(id)arg1 target:(id)arg2 deleteTag:(SEL)arg3 renameTag:(SEL)arg4 setTagColor:(SEL)arg5;
 + (void)showContextMenuInView:(id)arg1 atPoint:(const struct CGPoint *)arg2;
@@ -28,6 +27,7 @@ __attribute__((visibility("hidden")))
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)configureForTagNode:(const struct TFENode *)arg1 browserViewController:(id)arg2 clickedView:(id)arg3;
+- (void)configureFor:(const function_dc9816ab *)arg1 browserViewController:(id)arg2 clickedView:(id)arg3 container:(_Bool)arg4;
 - (void)configureFromMenuNeedsUpdate:(id)arg1 clickedView:(id)arg2 container:(_Bool)arg3 event:(id)arg4 selectedNodes:(const struct TFENodeVector *)arg5;
 - (void)dealloc;
 - (id)initWithDelegate:(id)arg1;

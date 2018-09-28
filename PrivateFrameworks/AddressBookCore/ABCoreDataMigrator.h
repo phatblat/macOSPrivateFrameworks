@@ -14,6 +14,8 @@
     NSPersistentStore *_store;
 }
 
+@property(readonly) NSPersistentStore *store; // @synthesize store=_store;
+@property(readonly) NSManagedObjectContext *moc; // @synthesize moc=_moc;
 - (void)migrate;
 - (void)dealloc;
 - (id)initWithStore:(id)arg1;

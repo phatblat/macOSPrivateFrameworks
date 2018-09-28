@@ -22,9 +22,10 @@
 - (void).cxx_destruct;
 - (void)_flush;
 - (void)flush;
-- (void)recordTileCacheMissForReason:(unsigned char)arg1 missType:(int)arg2 tileKey:(const struct _GEOTileKey *)arg3 tileSizeInBytes:(unsigned int)arg4;
+- (void)recordTileCacheMissForReason:(unsigned char)arg1 missType:(int)arg2 tileKey:(const struct _GEOTileKey *)arg3 loadError:(id)arg4;
+- (void)recordTileCacheMissForReason:(unsigned char)arg1 missType:(int)arg2 tileKey:(const struct _GEOTileKey *)arg3 tileSizeInBytes:(unsigned int)arg4 httpStatus:(unsigned int)arg5;
 - (void)recordTileCacheHitForReason:(unsigned char)arg1 tileSource:(unsigned char)arg2 firstAccess:(BOOL)arg3 tileKey:(const struct _GEOTileKey *)arg4 tileSizeInBytes:(unsigned int)arg5;
-- (void)_recordTileCacheEventWithKey:(id)arg1 cacheEventDict:(id)arg2 tileSizeInBytes:(unsigned int)arg3;
+- (void)_recordTileCacheEventWithKey:(id)arg1 cacheEventDict:(id)arg2 tileSizeInBytes:(unsigned int)arg3 error:(id)arg4;
 - (void)recordCacheMissForType:(int)arg1;
 - (void)recordCacheHitForType:(int)arg1;
 - (void)_startTimerIfNecessary;

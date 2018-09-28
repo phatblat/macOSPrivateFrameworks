@@ -27,6 +27,8 @@
 - (void)setPickupLocation:(id)arg1;
 @property(readonly, copy) CLPlacemark *pickupLocation;
 - (id)initWithPickupLocation:(id)arg1 dropOffLocation:(id)arg2;
+- (id)_categoryVerb;
+- (long long)_intentCategory;
 - (void)_setMetadata:(id)arg1;
 - (id)_metadata;
 - (id)_typedBackingStore;

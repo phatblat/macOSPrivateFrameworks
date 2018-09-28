@@ -11,5 +11,6 @@
 - (int)accessibilityPresenterProcessIdentifier;
 @property int viewBridgeHostProcessIdentifier;
 @property BOOL viewBridgeBecomingChild;
+- (id)_lastDragRegionDataDescription;
 @end
 

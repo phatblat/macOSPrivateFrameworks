@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBPayloadUnsupported.h"
 
-@class INCodableAttribute, NSArray, NSString;
+@class NSArray, NSString;
 
-@interface _INPBPayloadUnsupported : PBCodable <_INPBPayloadUnsupported, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBPayloadUnsupported : PBCodable <_INPBPayloadUnsupported, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int requestPaymentIntentCurrencyAmountUnsupportedReason:1;
@@ -24,6 +23,7 @@
         unsigned int reason:1;
         unsigned int sendMessageIntentRecipientUnsupportedReason:1;
         unsigned int setTimerAttributeIntentTargetTimerUnsupportedReason:1;
+        unsigned int runWorkflowIntentWorkflowUnsupportedReason:1;
     } _has;
     int _requestPaymentIntentCurrencyAmountUnsupportedReason;
     int _sendPaymentIntentCurrencyAmountUnsupportedReason;
@@ -33,12 +33,12 @@
     int _reason;
     int _sendMessageIntentRecipientUnsupportedReason;
     int _setTimerAttributeIntentTargetTimerUnsupportedReason;
+    int _runWorkflowIntentWorkflowUnsupportedReason;
     NSArray *_conflictingParameters;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)conflictingParametersType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
+@property(nonatomic) int runWorkflowIntentWorkflowUnsupportedReason; // @synthesize runWorkflowIntentWorkflowUnsupportedReason=_runWorkflowIntentWorkflowUnsupportedReason;
 @property(nonatomic) int setTimerAttributeIntentTargetTimerUnsupportedReason; // @synthesize setTimerAttributeIntentTargetTimerUnsupportedReason=_setTimerAttributeIntentTargetTimerUnsupportedReason;
 @property(nonatomic) int sendMessageIntentRecipientUnsupportedReason; // @synthesize sendMessageIntentRecipientUnsupportedReason=_sendMessageIntentRecipientUnsupportedReason;
 @property(nonatomic) int reason; // @synthesize reason=_reason;
@@ -55,6 +55,9 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (int)StringAsRunWorkflowIntentWorkflowUnsupportedReason:(id)arg1;
+- (id)runWorkflowIntentWorkflowUnsupportedReasonAsString:(int)arg1;
+@property(nonatomic) BOOL hasRunWorkflowIntentWorkflowUnsupportedReason;
 - (int)StringAsSetTimerAttributeIntentTargetTimerUnsupportedReason:(id)arg1;
 - (id)setTimerAttributeIntentTargetTimerUnsupportedReasonAsString:(int)arg1;
 @property(nonatomic) BOOL hasSetTimerAttributeIntentTargetTimerUnsupportedReason;

@@ -8,9 +8,13 @@
 
 @interface VCPEffectsAnalyzer : NSObject
 {
+    BOOL _hasFace;
 }
 
-- (int)analyzeAsset:(id)arg1 onDemand:(BOOL)arg2 cancel:(CDUnknownBlockType)arg3 results:(id *)arg4;
++ (BOOL)usePHAssetScene;
+- (int)analyzeAsset:(id)arg1 onDemand:(BOOL)arg2 cancel:(CDUnknownBlockType)arg3 statsFlags:(unsigned long long *)arg4 results:(id *)arg5;
+- (id)initWithFlagHasFace:(BOOL)arg1;
+- (id)initWithAnalysisResults:(id)arg1;
 
 @end
 

@@ -21,6 +21,7 @@
     NSNumber *_payloadAllowedProtocolMaskInRoaming;
 }
 
++ (id)buildRequiredOnlyWithName:(id)arg1;
 + (id)buildWithName:(id)arg1 withAuthenticationType:(id)arg2 withUsername:(id)arg3 withPassword:(id)arg4 withProxyServer:(id)arg5 withProxyPort:(id)arg6 withDefaultProtocolMask:(id)arg7 withAllowedProtocolMask:(id)arg8 withAllowedProtocolMaskInRoaming:(id)arg9;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadAllowedProtocolMaskInRoaming; // @synthesize payloadAllowedProtocolMaskInRoaming=_payloadAllowedProtocolMaskInRoaming;

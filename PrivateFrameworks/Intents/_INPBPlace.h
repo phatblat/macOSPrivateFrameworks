@@ -6,27 +6,28 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBPlace.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBString;
+@class NSArray, NSString, _INPBString;
 
-@interface _INPBPlace : PBCodable <_INPBPlace, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBPlace : PBCodable <_INPBPlace, NSSecureCoding, NSCopying>
 {
-    struct _has;
+    struct {
+        unsigned int personalPlaceType:1;
+    } _has;
+    int _personalPlaceType;
     NSArray *_placeDescriptors;
     _INPBString *_placeSubType;
     _INPBString *_placeType;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)placeDescriptorsType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBString *placeType; // @synthesize placeType=_placeType;
 @property(retain, nonatomic) _INPBString *placeSubType; // @synthesize placeSubType=_placeSubType;
 @property(copy, nonatomic) NSArray *placeDescriptors; // @synthesize placeDescriptors=_placeDescriptors;
+@property(nonatomic) int personalPlaceType; // @synthesize personalPlaceType=_personalPlaceType;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 @property(readonly) unsigned long long hash;
@@ -40,6 +41,9 @@
 @property(readonly, nonatomic) unsigned long long placeDescriptorsCount;
 - (void)addPlaceDescriptors:(id)arg1;
 - (void)clearPlaceDescriptors;
+- (int)StringAsPersonalPlaceType:(id)arg1;
+- (id)personalPlaceTypeAsString:(int)arg1;
+@property(nonatomic) BOOL hasPersonalPlaceType;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

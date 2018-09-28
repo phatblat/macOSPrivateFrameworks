@@ -16,6 +16,7 @@
     NSArray *_payloadPasswords;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withWhitelist:(id)arg2 withPasswords:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

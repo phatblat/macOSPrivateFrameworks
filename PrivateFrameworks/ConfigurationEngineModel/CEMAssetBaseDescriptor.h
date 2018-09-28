@@ -14,6 +14,7 @@
     NSString *_payloadDescription;
 }
 
++ (id)buildRequiredOnlyWithTitle:(id)arg1;
 + (id)buildWithTitle:(id)arg1 withDescription:(id)arg2;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadDescription; // @synthesize payloadDescription=_payloadDescription;

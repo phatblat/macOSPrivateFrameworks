@@ -18,6 +18,7 @@
 @property(readonly) struct _LSBinding *binding; // @synthesize binding=_binding;
 - (void).cxx_destruct;
 - (id)description;
+- (id)fallbackType;
 - (BOOL)isImageNullable;
 - (BOOL)checkValidationToken:(CDStruct_cbacfc36 *)arg1;
 - (CDStruct_cbacfc36)validationToken;

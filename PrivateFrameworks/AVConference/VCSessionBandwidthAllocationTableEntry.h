@@ -19,11 +19,13 @@ __attribute__((visibility("hidden")))
     BOOL _hasRepairStreamID;
     unsigned int _repairStreamID;
     unsigned int _repairMaxNetworkBitrate;
+    BOOL _enabled;
 }
 
 + (long long)compareAudioEntry:(id)arg1 videoEntry:(id)arg2;
 + (long long)compareVideoEntry:(id)arg1 videoEntry:(id)arg2;
 + (long long)compareAudioEntry:(id)arg1 audioEntry:(id)arg2;
+@property(getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
 @property(readonly) BOOL hasRepairStreamID; // @synthesize hasRepairStreamID=_hasRepairStreamID;
 @property(readonly) unsigned int repairMaxNetworkBitrate; // @synthesize repairMaxNetworkBitrate=_repairMaxNetworkBitrate;
 @property(readonly) unsigned int repairStreamID; // @synthesize repairStreamID=_repairStreamID;
@@ -37,7 +39,7 @@ __attribute__((visibility("hidden")))
 - (long long)compare:(id)arg1;
 - (id)description;
 - (void)dealloc;
-- (id)initWithClient:(id)arg1 type:(unsigned char)arg2 networkBitrate:(unsigned int)arg3 qualityIndex:(unsigned int)arg4 streamID:(unsigned int)arg5 hasRepairStreamID:(BOOL)arg6 repairStreamID:(unsigned int)arg7 repairMaxNetworkBitrate:(unsigned int)arg8;
+- (id)initWithClient:(id)arg1 type:(unsigned char)arg2 networkBitrate:(unsigned int)arg3 qualityIndex:(unsigned int)arg4 streamID:(unsigned int)arg5 hasRepairStreamID:(BOOL)arg6 repairStreamID:(unsigned int)arg7 repairMaxNetworkBitrate:(unsigned int)arg8 enabled:(BOOL)arg9;
 - (id)initWithClient:(id)arg1 type:(unsigned char)arg2 networkBitrate:(unsigned int)arg3 qualityIndex:(unsigned int)arg4 streamID:(unsigned int)arg5;
 
 @end

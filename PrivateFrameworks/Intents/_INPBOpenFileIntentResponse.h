@@ -6,25 +6,22 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBOpenFileIntentResponse.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBInteger, _INPBString;
+@class NSArray, NSString, _INPBInteger, _INPBString;
 
-@interface _INPBOpenFileIntentResponse : PBCodable <_INPBOpenFileIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBOpenFileIntentResponse : PBCodable <_INPBOpenFileIntentResponse, NSSecureCoding, NSCopying>
 {
     CDStruct_f2ecb737 _has;
     BOOL _success;
     NSArray *_entities;
     _INPBInteger *_numResults;
     _INPBString *_query;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)entitiesType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) BOOL success; // @synthesize success=_success;
 @property(retain, nonatomic) _INPBString *query; // @synthesize query=_query;
 @property(retain, nonatomic) _INPBInteger *numResults; // @synthesize numResults=_numResults;

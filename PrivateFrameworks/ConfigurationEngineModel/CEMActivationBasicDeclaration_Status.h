@@ -13,6 +13,7 @@
     NSArray *_statusInstalledConfigurations;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithInstalledConfigurations:(id)arg1;
 + (id)allowedReasons;
 + (id)allowedStatusKeys;

@@ -12,9 +12,9 @@
 
 @interface SAInstruction : NSObject <SASerializable>
 {
-    SASymbol *_symbol;
     unsigned long long _offsetIntoTextSegment;
     SABinary *_binary;
+    SASymbol *_symbol;
     SASourceInfo *_sourceInfo;
 }
 
@@ -22,11 +22,11 @@
 + (id)newInstanceWithoutReferencesFromSerializedBuffer:(const CDStruct_e7a0f457 *)arg1 bufferLength:(unsigned long long)arg2;
 + (id)classDictionaryKey;
 @property(retain) SASourceInfo *sourceInfo; // @synthesize sourceInfo=_sourceInfo;
+@property(retain) SASymbol *symbol; // @synthesize symbol=_symbol;
 @property __weak SABinary *binary; // @synthesize binary=_binary;
 @property unsigned long long offsetIntoTextSegment; // @synthesize offsetIntoTextSegment=_offsetIntoTextSegment;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *debugDescription;
-@property(retain) SASymbol *symbol;
 - (BOOL)symbolicateWithOptions:(unsigned long long)arg1 pid:(int)arg2;
 - (void)populateReferencesUsingBuffer:(const CDStruct_e7a0f457 *)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(struct NSMutableDictionary *)arg3 andDataBufferDictionary:(struct NSMutableDictionary *)arg4;
 - (void)addSelfToSerializationDictionary:(struct NSMutableDictionary *)arg1;

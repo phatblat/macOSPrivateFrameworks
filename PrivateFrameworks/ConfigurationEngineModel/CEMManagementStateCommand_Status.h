@@ -14,6 +14,7 @@
     NSArray *_statusDeclarations;
 }
 
++ (id)buildRequiredOnlyWithCommands:(id)arg1 withDeclarations:(id)arg2;
 + (id)buildWithCommands:(id)arg1 withDeclarations:(id)arg2;
 + (id)allowedReasons;
 + (id)allowedStatusKeys;

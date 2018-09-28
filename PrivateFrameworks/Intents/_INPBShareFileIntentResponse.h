@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBShareFileIntentResponse.h"
 
-@class INCodableAttribute, NSArray, NSString;
+@class NSArray, NSString;
 
-@interface _INPBShareFileIntentResponse : PBCodable <_INPBShareFileIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBShareFileIntentResponse : PBCodable <_INPBShareFileIntentResponse, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int confirm:1;
@@ -24,11 +23,9 @@
     BOOL _success;
     int _shareMode;
     NSArray *_recipients;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)recipientsType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) BOOL success; // @synthesize success=_success;
 @property(nonatomic) int shareMode; // @synthesize shareMode=_shareMode;
 @property(copy, nonatomic) NSArray *recipients; // @synthesize recipients=_recipients;

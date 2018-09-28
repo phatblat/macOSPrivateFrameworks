@@ -15,7 +15,7 @@ __attribute__((visibility("hidden")))
     AVCStatisticsCollector *_downlinkStatisticsCollector;
     CDStruct_2756d7ac _remoteStats;
     NSObject<OS_dispatch_source> *_localSessionStatsTimemoutSource;
-    unsigned short _statsRequestCounter;
+    unsigned int _statsRequestCounter;
     VCConnectionManager *_connectionManager;
     VCTransportStream *_transportStream;
     double _lastTriggerRateControlTime;
@@ -29,6 +29,7 @@ __attribute__((visibility("hidden")))
     unsigned int _previousTotalPacketReceived;
     unsigned int _uplinkMostRecentSendTimestamp;
     unsigned int _downlinkMostRecentSendTimestamp;
+    BOOL _didReceiveServerStatsResponse;
     int _lastProcessedBytesSent;
     int _bytesSentToReport;
     int _maxSentRate;
@@ -37,16 +38,27 @@ __attribute__((visibility("hidden")))
     int _bytesReceivedToReport;
     int _maxReceivedRate;
     int _minReceivedRate;
-    double _lastUpdateTimestamp;
+    double _lastUpdateTime;
     double _lastTimeReceiveStatsFailed;
     BOOL _isReceiveStatsFailedSymptomReported;
+    unsigned int _statsResponseCounter;
+    unsigned int _numStatsDroppedDueToStatsID;
+    unsigned int _numStatsDroppedDueToLinkID;
+    unsigned int _numStatsProcessed;
+    unsigned int _numStatsTriggered;
+    double _totalStatsTransportStreamQueueTime;
+    double _maxStatsTransportStreamQueueTime;
+    double _lastHealthPrintTime;
 }
 
 - (void)flushRealTimeReportingStats;
 - (void)deregisterPeriodicTask;
+- (void)periodicTask:(void *)arg1;
 - (void)registerPeriodicTask;
 @property(readonly) id reportingAgent;
-- (void)handleRemoteSessionStats:(CDStruct_bb74c5c4 *)arg1;
+- (void)resetHealthPrintCounters;
+- (void)healthPrintForServerStats;
+- (void)handleRemoteSessionStats:(CDStruct_88f6cd69 *)arg1;
 - (void)statsReceiveStatsPayload;
 - (void)triggerRateControlWithLocalSessionStats:(CDStruct_b5e1e8f2)arg1 time:(double)arg2;
 - (unsigned short)translateTimestampFromMicro:(double)arg1;
@@ -56,6 +68,7 @@ __attribute__((visibility("hidden")))
 - (int)startLocalSessionStatsReceive;
 - (void)startLocalSessionStatsUpdate;
 - (void)sendLocalStats;
+- (void)reset;
 - (void)dealloc;
 - (id)initWithConnectionManager:(id)arg1 uplinkStatsCollector:(id)arg2 downlinkStatsCollector:(id)arg3 reportingAgent:(struct opaqueRTCReporting *)arg4 transportSessionID:(unsigned int)arg5 streamID:(unsigned short)arg6 mediaQueue:(struct tagVCMediaQueue *)arg7;
 

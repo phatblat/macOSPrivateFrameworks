@@ -10,17 +10,18 @@
 
 @interface WDCharacterProperties : NSObject
 {
-    WDDocument *mDocument;
     BOOL mOriginal;
     BOOL mTracked;
     BOOL mResolved;
     WDCharacterPropertiesValues *mOriginalProperties;
     WDCharacterPropertiesValues *mTrackedProperties;
+    WDDocument *mDocument;
 }
 
 + (SEL)setFontSelectorForFontType:(int)arg1;
 + (SEL)fontOverriddenSelectorForFontType:(int)arg1;
 + (SEL)fontSelectorForFontType:(int)arg1;
+@property(readonly) __weak WDDocument *document; // @synthesize document=mDocument;
 - (void).cxx_destruct;
 - (id)description;
 - (void)copyPropertiesInto:(id)arg1;
@@ -239,7 +240,6 @@
 - (void)setResolveMode:(int)arg1;
 - (int)resolveMode;
 - (BOOL)isAnythingOverridden;
-- (id)document;
 - (id)initWithDocument:(id)arg1;
 - (int)reverseBooleanProperty:(int)arg1;
 - (BOOL)formattingChangedDifferentFrom:(id)arg1 mode:(int)arg2;

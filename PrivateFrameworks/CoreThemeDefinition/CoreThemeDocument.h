@@ -6,7 +6,7 @@
 
 #import "NSPersistentDocument.h"
 
-@class NSManagedObjectModel, NSMutableArray, NSMutableDictionary, NSString, NSURL, NSUUID, TDCatalogGlobals, TDDeviceTraits, TDHistorian, TDThreadMOCOrganizer;
+@class NSManagedObjectModel, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, NSURL, NSUUID, TDCatalogGlobals, TDDeviceTraits, TDHistorian, TDThreadMOCOrganizer;
 
 @interface CoreThemeDocument : NSPersistentDocument
 {
@@ -33,6 +33,7 @@
     struct _renditionkeyfmt *_keyFormat;
     TDCatalogGlobals *_catalogGlobals;
     NSMutableArray *_cachedAppearances;
+    NSMutableSet *_cachedUnknownAppearanceIds;
     id <TDAssetManagementDelegate> _assetManagementDelegate;
     id <TDCustomAssetProvider> _customAssetProvider;
 }
@@ -174,11 +175,11 @@
 - (void)createNamedModelsForCustomInfos:(id)arg1 referenceFiles:(BOOL)arg2 bitSource:(id)arg3 error:(id *)arg4;
 - (void)createNamedTexturesForCustomInfos:(id)arg1 referenceFiles:(BOOL)arg2 bitSource:(id)arg3 error:(id *)arg4;
 - (id)createNamedArtworkProductionsForAssets:(id)arg1 customInfos:(id)arg2 error:(id *)arg3;
-- (void)_createBackstopRenditions;
-- (void)createBackstop:(id)arg1 withDeploymentTarget:(long long)arg2;
-- (BOOL)needToCreateBackstopFor2018DeploymentVariant:(id)arg1;
-- (BOOL)isArtworkRenditionEligibleForBackdrop:(id)arg1;
-- (BOOL)needToCreateBackstopForPlatform;
+- (void)_createForwardstopRenditions;
+- (void)createForwardstop:(id)arg1 withDeploymentTarget:(long long)arg2;
+- (BOOL)needToCreateForwardstopFor2018DeploymentVariant:(id)arg1;
+- (BOOL)isArtworkRenditionEligibleForForwardstop:(id)arg1;
+- (BOOL)needToCreateForwardstopForPlatform;
 - (id)_sizeIndexesByNameFromNamedAssetImportInfos:(id)arg1;
 - (id)createNamedColorProductionsForImportInfos:(id)arg1 error:(id *)arg2;
 - (id)slicesComputedForImageSize:(struct CGSize)arg1 usingSliceInsets:(CDStruct_3c058996)arg2 resizableSliceSize:(struct CGSize)arg3 withRenditionType:(long long)arg4;
@@ -274,8 +275,8 @@
 - (void)_getFilename:(id *)arg1 scaleFactor:(unsigned int *)arg2 category:(id *)arg3 bitSource:(id *)arg4 forFileURL:(id)arg5;
 - (id)_predicateForRenditionKeySpec:(id)arg1;
 - (void)changedObjectsNotification:(id)arg1;
-- (BOOL)shouldCreateBackstopForLossless;
-- (BOOL)shouldCreateBackstopForLossy;
+- (BOOL)shouldCreateForwardstopForLossless;
+- (BOOL)shouldCreateForwardstopForLossy;
 - (BOOL)shouldAllowDeepmapCompressionForDeploymentTarget:(unsigned int)arg1;
 - (BOOL)shouldAllowDeepmapCompression;
 - (BOOL)shouldAllowHevcCompressionForDeploymentTarget:(unsigned int)arg1;

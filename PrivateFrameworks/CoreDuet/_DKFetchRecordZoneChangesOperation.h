@@ -10,8 +10,7 @@
 {
 }
 
-- (void)dealloc;
-- (BOOL)isAsynchronous;
++ (BOOL)_removesDependenciesAfterFinish;
 - (void)main;
 
 @end

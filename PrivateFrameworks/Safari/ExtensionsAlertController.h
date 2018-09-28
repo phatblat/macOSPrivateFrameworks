@@ -11,7 +11,6 @@ __attribute__((visibility("hidden")))
 {
 }
 
-+ (void)offerUpgradeForExtension:(id)arg1 toGalleryVersion:(id)arg2 orDeveloperVersion:(id)arg3 defaultToGalleryVersion:(BOOL)arg4 responseBlock:(CDUnknownBlockType)arg5;
 + (void)offerUpgradeForExtension:(id)arg1 toGalleryVersion:(id)arg2 defaultToGalleryVersion:(BOOL)arg3 responseBlock:(CDUnknownBlockType)arg4;
 + (void)showPromptForExtensionsDisabledDueToResourceHogging:(id)arg1 developerHosted:(id)arg2;
 + (void)reportRefusalToInstallDeveloperHostedExtension:(id)arg1;
@@ -20,7 +19,7 @@ __attribute__((visibility("hidden")))
 + (void)confirmUserIntendsToEnableResourceHoggingExtension:(id)arg1 responseBlock:(CDUnknownBlockType)arg2;
 + (void)showPromptForExtensionsDisabledDueToResourceHogging:(id)arg1;
 + (void)confirmUserTrustsEnablingExtension:(id)arg1 warnAboutExtensionPerformance:(BOOL)arg2 responseBlock:(CDUnknownBlockType)arg3;
-+ (void)offerInstallationOfExtension:(id)arg1 ofGalleryVersion:(id)arg2 orDeveloperVersion:(id)arg3 responseBlock:(CDUnknownBlockType)arg4;
++ (void)offerInstallationOfExtensionFromGallery:(id)arg1 version:(id)arg2 responseBlock:(CDUnknownBlockType)arg3;
 + (void)showPromptForExtensionDisabledBecauseItHasRequestedAdditionalPermissions:(id)arg1 responseBlock:(CDUnknownBlockType)arg2;
 + (void)_handleExtensionTurnedOffAlertResponse:(long long)arg1 responseBlock:(CDUnknownBlockType)arg2;
 + (void)confirmUserIntendsToUseSafariExtensionBuilder:(id)arg1 responseBlock:(CDUnknownBlockType)arg2;

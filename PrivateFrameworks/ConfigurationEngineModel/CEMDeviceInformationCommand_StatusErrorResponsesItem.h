@@ -14,6 +14,7 @@
     NSArray *_statusErrorChain;
 }
 
++ (id)buildRequiredOnlyWithCode:(id)arg1;
 + (id)buildWithCode:(id)arg1 withErrorChain:(id)arg2;
 + (id)allowedStatusKeys;
 @property(copy, nonatomic) NSArray *statusErrorChain; // @synthesize statusErrorChain=_statusErrorChain;

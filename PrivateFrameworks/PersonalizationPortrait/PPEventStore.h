@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSMapTable;
+@class NSMapTable, NSObject<OS_dispatch_queue>;
 
 @interface PPEventStore : NSObject
 {
     NSMapTable *_recordLoadingDelegates;
+    NSObject<OS_dispatch_queue> *_serialQueue;
 }
 
 - (void).cxx_destruct;
@@ -26,7 +27,8 @@
 - (BOOL)loadEventNameRecordsAndMonitorChangesWithDelegate:(id)arg1 error:(id *)arg2;
 - (void)_loadEventNameRecordsWithDelegate:(id)arg1;
 - (void)_sendChangesToDelegates:(id)arg1;
-- (void)_resetEventNameRecordsWithDelegate:(id)arg1;
+- (void)_resetAllDelegates;
+- (void)_completeAndResetEventNameRecordsWithDelegate:(id)arg1;
 - (BOOL)iterEventNameRecordsForClient:(id)arg1 error:(id *)arg2 block:(CDUnknownBlockType)arg3;
 - (id)init;
 

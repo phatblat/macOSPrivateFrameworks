@@ -11,7 +11,6 @@
 
 @protocol CNVCardPerson <CNVCardNameDataSource, NSObject>
 @property(readonly) NSArray *unknownProperties;
-@property(readonly) NSString *preferredChannel;
 @property(readonly) NSString *preferredApplePersonaIdentifier;
 @property(readonly) NSString *preferredLikenessSource;
 @property(readonly) NSString *phonemeData;

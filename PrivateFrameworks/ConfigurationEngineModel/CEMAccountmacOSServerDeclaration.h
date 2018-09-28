@@ -18,6 +18,7 @@
     NSString *_payloadCredentials;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withHostName:(id)arg2 withConfiguredAccounts:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withHostName:(id)arg2 withAccountDescription:(id)arg3 withConfiguredAccounts:(id)arg4 withCredentials:(id)arg5;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

@@ -24,7 +24,8 @@
 - (void).cxx_destruct;
 - (void)waitForDiscoveriesToProcess;
 - (void)discoveredRecipients:(id)arg1;
-- (void)discoveredEvents:(id)arg1 store:(id)arg2;
+- (void)undiscoverEvent:(id)arg1 store:(id)arg2;
+- (void)discoverEvent:(id)arg1 store:(id)arg2;
 - (void)waitForScoringData;
 - (double)scoreMergedNameItem:(id)arg1;
 - (double)scoreForFoundOnDeviceContact:(id)arg1 namePrefix:(id)arg2 recipients:(id)arg3;

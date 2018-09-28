@@ -12,12 +12,17 @@
 {
     float _aperture;
     NSNumber *_minimumAperture;
+    NSNumber *_maximumAperture;
+    CDStruct_6ed351db _versionInfo;
 }
 
 + (id)apertureValuesFromImageProperties:(id)arg1 error:(out id *)arg2;
+@property(nonatomic) CDStruct_6ed351db versionInfo; // @synthesize versionInfo=_versionInfo;
+@property(retain, nonatomic) NSNumber *maximumAperture; // @synthesize maximumAperture=_maximumAperture;
 @property(retain, nonatomic) NSNumber *minimumAperture; // @synthesize minimumAperture=_minimumAperture;
 @property(nonatomic) float aperture; // @synthesize aperture=_aperture;
 - (void).cxx_destruct;
+- (id)description;
 
 @end
 

@@ -9,14 +9,14 @@
 #import "CoreTelephonyClientCarrierBundleDelegate.h"
 #import "CoreTelephonyClientDataDelegate.h"
 
-@class CTBundle, CTXPCServiceSubscriptionContext, CoreTelephonyClient, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
+@class CTBundle, CTXPCServiceSubscriptionContext, CoreTelephonyClient, NSHashTable, NSObject<OS_dispatch_queue>, NSString;
 
 @interface PCCarrierBundleHelper : NSObject <CoreTelephonyClientDataDelegate, CoreTelephonyClientCarrierBundleDelegate>
 {
     CoreTelephonyClient *_ctClient;
     NSObject<OS_dispatch_queue> *_queue;
     CTXPCServiceSubscriptionContext *_currentDataContext;
-    NSMutableSet *_delegates;
+    NSHashTable *_delegates;
     CTBundle *_bundle;
 }
 

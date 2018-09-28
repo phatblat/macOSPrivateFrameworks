@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSetSeatSettingsInCarIntent.h"
 
-@class INCodableAttribute, NSString, _INPBInteger, _INPBIntentMetadata;
+@class NSString, _INPBDataString, _INPBInteger, _INPBIntentMetadata;
 
-@interface _INPBSetSeatSettingsInCarIntent : PBCodable <_INPBSetSeatSettingsInCarIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSetSeatSettingsInCarIntent : PBCodable <_INPBSetSeatSettingsInCarIntent, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int enableCooling:1;
@@ -27,12 +26,11 @@
     BOOL _enableMassage;
     int _relativeLevelSetting;
     int _seat;
+    _INPBDataString *_carName;
     _INPBIntentMetadata *_intentMetadata;
     _INPBInteger *_level;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int seat; // @synthesize seat=_seat;
 @property(nonatomic) int relativeLevelSetting; // @synthesize relativeLevelSetting=_relativeLevelSetting;
 @property(retain, nonatomic) _INPBInteger *level; // @synthesize level=_level;
@@ -40,6 +38,7 @@
 @property(nonatomic) BOOL enableMassage; // @synthesize enableMassage=_enableMassage;
 @property(nonatomic) BOOL enableHeating; // @synthesize enableHeating=_enableHeating;
 @property(nonatomic) BOOL enableCooling; // @synthesize enableCooling=_enableCooling;
+@property(retain, nonatomic) _INPBDataString *carName; // @synthesize carName=_carName;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 @property(readonly) unsigned long long hash;
@@ -58,6 +57,7 @@
 @property(nonatomic) BOOL hasEnableMassage;
 @property(nonatomic) BOOL hasEnableHeating;
 @property(nonatomic) BOOL hasEnableCooling;
+@property(readonly, nonatomic) BOOL hasCarName;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

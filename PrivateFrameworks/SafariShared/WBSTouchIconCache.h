@@ -64,6 +64,7 @@
 - (id)_responseForRequest:(id)arg1 withTouchIcon:(id)arg2;
 - (BOOL)_shouldGenerateTouchIconFromTouchIcon:(id)arg1 forRequest:(id)arg2;
 - (void)_removeTouchIconsDataForHost:(id)arg1;
+- (void)removeTouchIconMetadataForHosts:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_updateTouchIconsDataForHost:(id)arg1 image:(id)arg2 requestDidSucceed:(BOOL)arg3 isUserLoadedWebpageRequest:(BOOL)arg4 higherPriorityIconDownloadFailedDueToNetworkError:(BOOL)arg5 UUIDString:(id)arg6;
 - (void)_saveTouchIconToDiskWithResult:(id)arg1 forRequest:(id)arg2;
 - (void)_enumerateRequestsForHost:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
@@ -97,6 +98,7 @@
 - (id)_touchIconForURL:(id)arg1;
 - (void)_ensureCacheDirectory;
 - (void)_setUpImageCacheSettingsSQLiteStore;
+- (id)uuidStringToHost;
 - (void)_openCacheSettingsDatabaseIfNeeded;
 - (void)dealloc;
 - (id)initWithCacheDirectoryURL:(id)arg1 isReadOnly:(BOOL)arg2 protectionType:(long long)arg3 allowFetchingOverCellularNetwork:(BOOL)arg4 fileMappingStyle:(long long)arg5;
@@ -108,6 +110,7 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) BOOL providesFavicons;
 @property(readonly) Class superclass;
 
 @end

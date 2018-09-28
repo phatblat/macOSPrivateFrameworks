@@ -14,8 +14,10 @@ __attribute__((visibility("hidden")))
     ImageView *_imageView;
     BackgroundColorView *_backingView;
     BOOL _suppressVibrancyForTemplateFavicons;
+    BOOL _deemphasizeBacking;
 }
 
+@property(nonatomic) BOOL deemphasizeBacking; // @synthesize deemphasizeBacking=_deemphasizeBacking;
 @property(nonatomic) BOOL suppressVibrancyForTemplateFavicons; // @synthesize suppressVibrancyForTemplateFavicons=_suppressVibrancyForTemplateFavicons;
 - (void).cxx_destruct;
 - (void)_windowChangedKeyState;

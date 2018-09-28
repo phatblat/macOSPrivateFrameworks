@@ -31,6 +31,7 @@
 - (id <MTLIndirectCommandBuffer>)newIndirectCommandBufferWithDescriptor:(MTLIndirectCommandBufferDescriptor *)arg1 maxCommandCount:(unsigned long long)arg2 options:(unsigned long long)arg3;
 - (id <MTLArgumentEncoder>)newArgumentEncoderWithArguments:(NSArray *)arg1;
 - (void)getDefaultSamplePositions:(CDStruct_b2fbf00d *)arg1 count:(unsigned long long)arg2;
+- (unsigned long long)minimumTextureBufferAlignmentForPixelFormat:(unsigned long long)arg1;
 - (unsigned long long)minimumLinearTextureAlignmentForPixelFormat:(unsigned long long)arg1;
 - (BOOL)supportsTextureSampleCount:(unsigned long long)arg1;
 - (BOOL)supportsFeatureSet:(unsigned long long)arg1;
@@ -66,8 +67,5 @@
 - (CDStruct_4bcfbbae)heapTextureSizeAndAlignWithDescriptor:(MTLTextureDescriptor *)arg1;
 - (id <MTLCommandQueue>)newCommandQueueWithMaxCommandBufferCount:(unsigned long long)arg1;
 - (id <MTLCommandQueue>)newCommandQueue;
-
-@optional
-- (unsigned long long)minimumTextureBufferAlignmentForPixelFormat:(unsigned long long)arg1;
 @end
 

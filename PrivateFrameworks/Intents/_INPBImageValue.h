@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBImageValue.h"
 
-@class INCodableAttribute, NSData, NSString, _INPBValueMetadata;
+@class NSData, NSString, _INPBValueMetadata;
 
-@interface _INPBImageValue : PBCodable <_INPBImageValue, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBImageValue : PBCodable <_INPBImageValue, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int height:1;
@@ -27,10 +26,8 @@
     NSString *_uri;
     _INPBValueMetadata *_valueMetadata;
     double _width;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) double width; // @synthesize width=_width;
 @property(retain, nonatomic) _INPBValueMetadata *valueMetadata; // @synthesize valueMetadata=_valueMetadata;
 @property(copy, nonatomic) NSString *uri; // @synthesize uri=_uri;

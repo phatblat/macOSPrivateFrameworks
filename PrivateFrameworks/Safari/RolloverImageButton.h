@@ -20,6 +20,7 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSImage *rolloverImage; // @synthesize rolloverImage=_rolloverImage;
 @property(nonatomic) BOOL allowsVibrancy; // @synthesize allowsVibrancy=_allowsVibrancy;
 - (void).cxx_destruct;
+- (void)_windowChangedKeyState;
 - (void)drawFocusRingMask;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)shouldUseRolloverAppearance;

@@ -149,6 +149,7 @@
 - (BOOL)overwritesPrevious;
 - (BOOL)keepsPrevious;
 - (BOOL)isIdenticalLaunchTo:(id)arg1;
+- (BOOL)overdueAtDate:(id)arg1;
 - (BOOL)timewiseEligibleAtDate:(id)arg1;
 - (BOOL)hasManyConstraints;
 - (double)compatibilityWith:(id)arg1;

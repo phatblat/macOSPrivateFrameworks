@@ -6,21 +6,18 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBCreateNoteIntentResponse.h"
 
-@class INCodableAttribute, NSString, _INPBNote;
+@class NSString, _INPBNote;
 
-@interface _INPBCreateNoteIntentResponse : PBCodable <_INPBCreateNoteIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBCreateNoteIntentResponse : PBCodable <_INPBCreateNoteIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBNote *_createdNote;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBNote *createdNote; // @synthesize createdNote=_createdNote;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

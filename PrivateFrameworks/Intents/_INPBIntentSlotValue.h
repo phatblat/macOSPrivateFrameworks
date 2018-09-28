@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBIntentSlotValue.h"
 
-@class INCodableAttribute, NSArray, NSString;
+@class NSArray, NSString;
 
-@interface _INPBIntentSlotValue : PBCodable <_INPBIntentSlotValue, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBIntentSlotValue : PBCodable <_INPBIntentSlotValue, NSSecureCoding, NSCopying>
 {
     CDStruct_95bda58d _payloadAccountTypes;
     CDStruct_95bda58d _payloadBalanceTypes;
@@ -45,6 +44,7 @@
     CDStruct_95bda58d _payloadMessageTypes;
     CDStruct_95bda58d _payloadNotebookItemTypes;
     CDStruct_95bda58d _payloadPaymentStatus;
+    CDStruct_95bda58d _payloadPersonalPlaceTypes;
     CDStruct_95bda58d _payloadPhotoAttributes;
     CDStruct_95bda58d _payloadPlaybackRepeatModes;
     CDStruct_95bda58d _payloadPreferredCallProviders;
@@ -116,7 +116,6 @@
     NSArray *_payloadTemporalEventTriggers;
     NSArray *_payloadTimers;
     NSArray *_payloadVoiceCommandDeviceInformations;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)payloadVoiceCommandDeviceInformationType;
@@ -172,7 +171,6 @@
 + (Class)payloadBillDetailsValueType;
 + (Class)payloadActivityListType;
 + (Class)payloadActivityType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int type; // @synthesize type=_type;
 @property(copy, nonatomic) NSArray *payloadVoiceCommandDeviceInformations; // @synthesize payloadVoiceCommandDeviceInformations=_payloadVoiceCommandDeviceInformations;
 @property(copy, nonatomic) NSArray *payloadTimers; // @synthesize payloadTimers=_payloadTimers;
@@ -402,6 +400,14 @@
 - (void)clearPayloadPhotoAttributes;
 @property(readonly, nonatomic) int *payloadPhotoAttributes;
 - (void)setPayloadPhotoAttributes:(int *)arg1 count:(unsigned long long)arg2;
+- (int)StringAsPayloadPersonalPlaceTypes:(id)arg1;
+- (id)payloadPersonalPlaceTypesAsString:(int)arg1;
+- (int)payloadPersonalPlaceTypeAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long payloadPersonalPlaceTypesCount;
+- (void)addPayloadPersonalPlaceType:(int)arg1;
+- (void)clearPayloadPersonalPlaceTypes;
+@property(readonly, nonatomic) int *payloadPersonalPlaceTypes;
+- (void)setPayloadPersonalPlaceTypes:(int *)arg1 count:(unsigned long long)arg2;
 - (int)StringAsPayloadPaymentStatus:(id)arg1;
 - (id)payloadPaymentStatusAsString:(int)arg1;
 - (int)payloadPaymentStatusAtIndex:(unsigned long long)arg1;

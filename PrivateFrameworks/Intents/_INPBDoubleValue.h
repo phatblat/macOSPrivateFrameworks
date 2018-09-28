@@ -6,22 +6,19 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBDoubleValue.h"
 
-@class INCodableAttribute, NSString, _INPBValueMetadata;
+@class NSString, _INPBValueMetadata;
 
-@interface _INPBDoubleValue : PBCodable <_INPBDoubleValue, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBDoubleValue : PBCodable <_INPBDoubleValue, NSSecureCoding, NSCopying>
 {
     CDStruct_01ef6375 _has;
     double _value;
     _INPBValueMetadata *_valueMetadata;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBValueMetadata *valueMetadata; // @synthesize valueMetadata=_valueMetadata;
 @property(nonatomic) double value; // @synthesize value=_value;
 - (void).cxx_destruct;

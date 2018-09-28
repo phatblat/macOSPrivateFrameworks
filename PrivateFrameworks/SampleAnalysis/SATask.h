@@ -70,7 +70,7 @@
 @property(readonly) NSDictionary *threads; // @synthesize threads=_threads;
 @property(readonly) NSArray *taskStates; // @synthesize taskStates=_taskStates;
 - (void).cxx_destruct;
-- (void)enumerateFrameTree:(id)arg1 dataGatheringOptions:(unsigned long long)arg2 block:(CDUnknownBlockType)arg3;
+- (void)enumerateFrameTree:(id)arg1 block:(CDUnknownBlockType)arg2;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)cpuTimeNs:(unsigned long long *)arg1 cpuInstructions:(unsigned long long *)arg2 cpuCycles:(unsigned long long *)arg3 betweenStartTime:(id)arg4 endTime:(id)arg5;
@@ -102,7 +102,7 @@
 - (id)initWithKCDataTask:(const struct task_snapshot_v2 *)arg1 withLoadInfos:(const struct dyld_uuid_info_64 *)arg2 numLoadInfos:(unsigned int)arg3 andMachineArchitecture:(struct _CSArchitecture)arg4 sharedCache:(id)arg5;
 - (id)initWithPid:(int)arg1 andUniquePid:(unsigned long long)arg2 andName:(id)arg3 sharedCache:(id)arg4;
 - (id)architectureString;
-@property(copy) NSString *name;
+@property(readonly, copy) NSString *name;
 - (void)setMainBinaryPath:(id)arg1;
 - (id)mainBinaryPath;
 @property(readonly) SABinaryLoadInfo *mainBinaryLoadInfo;

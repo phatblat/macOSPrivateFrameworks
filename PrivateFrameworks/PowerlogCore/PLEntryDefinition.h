@@ -21,6 +21,7 @@
 + (int)cacheCountForEntryDefition:(id)arg1;
 + (double)schemaVersionForEntryDefinition:(id)arg1;
 + (BOOL)overridesEntryDateForEntryDefinition:(id)arg1;
++ (BOOL)isAggregateWallClockBucketForEntryDefinition:(id)arg1;
 + (BOOL)isAggregateForEntryDefinition:(id)arg1;
 + (BOOL)filterEntryLoggingForEntryDefinition:(id)arg1;
 + (BOOL)isOnDemandQueryableForEntryDefinition:(id)arg1;
@@ -44,6 +45,7 @@
 + (int)cacheCountForEntryKey:(id)arg1;
 + (double)schemaVersionForEntryKey:(id)arg1;
 + (BOOL)overridesEntryDateForEntryKey:(id)arg1;
++ (BOOL)isAggregateWallClockBucket:(id)arg1;
 + (BOOL)isAggregateForEntryKey:(id)arg1;
 + (BOOL)filterEntryLoggingForEntryKey:(id)arg1;
 + (BOOL)isOnDemandQueryableForEntryKey:(id)arg1;

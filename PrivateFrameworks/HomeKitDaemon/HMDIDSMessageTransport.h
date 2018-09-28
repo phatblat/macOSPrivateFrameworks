@@ -8,13 +8,14 @@
 
 #import "IDSServiceDelegate.h"
 
-@class IDSService, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
+@class HMFOperationBudget, IDSService, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
 
 @interface HMDIDSMessageTransport : HMDRemoteMessageTransport <IDSServiceDelegate>
 {
     IDSService *_service;
     NSObject<OS_dispatch_queue> *_workQueue;
     NSMutableArray *_messageContexts;
+    HMFOperationBudget *_sendMessageBudget;
     NSMutableDictionary *_pendingResponses;
     NSMutableDictionary *_receivedResponses;
     NSMutableDictionary *_requestedCapabilities;
@@ -22,12 +23,16 @@
     NSMutableDictionary *_pendingResponseTimers;
 }
 
++ (struct _HMFRate)sendMessageRate;
++ (unsigned long long)sendMessageLimit;
++ (long long)priorityForMessage:(id)arg1;
 + (unsigned long long)restriction;
 @property(readonly, nonatomic) NSMutableDictionary *pendingResponseTimers; // @synthesize pendingResponseTimers=_pendingResponseTimers;
 @property(readonly, nonatomic) NSMutableDictionary *destinationAddress; // @synthesize destinationAddress=_destinationAddress;
 @property(readonly, nonatomic) NSMutableDictionary *requestedCapabilities; // @synthesize requestedCapabilities=_requestedCapabilities;
 @property(readonly, nonatomic) NSMutableDictionary *receivedResponses; // @synthesize receivedResponses=_receivedResponses;
 @property(readonly, nonatomic) NSMutableDictionary *pendingResponses; // @synthesize pendingResponses=_pendingResponses;
+@property(readonly) HMFOperationBudget *sendMessageBudget; // @synthesize sendMessageBudget=_sendMessageBudget;
 @property(readonly) NSMutableArray *messageContexts; // @synthesize messageContexts=_messageContexts;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
 @property(readonly, nonatomic) IDSService *service; // @synthesize service=_service;
@@ -39,7 +44,7 @@
 - (void)_startPendingResponseTimer:(id)arg1 responseTimeout:(double)arg2 identifier:(id)arg3;
 - (void)_pendingResponseTimeoutFor:(id)arg1;
 - (void)_restartPendingResponseTimerFor:(id)arg1 withReducedFactor:(unsigned long long)arg2;
-- (id)sendMessage:(id)arg1 fromHandle:(id)arg2 destination:(id)arg3 timeout:(double)arg4 options:(unsigned long long)arg5 error:(id *)arg6;
+- (id)sendMessage:(id)arg1 fromHandle:(id)arg2 destination:(id)arg3 priority:(long long)arg4 timeout:(double)arg5 options:(unsigned long long)arg6 error:(id *)arg7;
 - (void)sendMessage:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 @property(readonly, nonatomic) int awdTransportType;
 - (BOOL)canSendMessage:(id)arg1;

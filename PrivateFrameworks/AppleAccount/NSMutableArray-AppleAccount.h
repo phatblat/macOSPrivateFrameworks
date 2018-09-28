@@ -8,5 +8,6 @@
 
 @interface NSMutableArray (AppleAccount)
 - (id)aa_removeLastObject;
+- (id)aa_removeFirstObject;
 @end
 

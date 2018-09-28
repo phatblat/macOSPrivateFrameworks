@@ -15,6 +15,7 @@
     NSArray *_payloadFilterExtensionPoints;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withFilterExtensionPoints:(id)arg2;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

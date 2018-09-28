@@ -4,14 +4,17 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <LoginUIKit/LUI2Control.h>
+#import <LoginUIKit/LUI2View.h>
 
 #import "NSAccessibilityButton.h"
 
 @class LUI2TextField, NSImageView, NSStackView, NSString;
 
-@interface LUI2UserView : LUI2Control <NSAccessibilityButton>
+@interface LUI2UserView : LUI2View <NSAccessibilityButton>
 {
+    BOOL _enabled;
+    id _target;
+    SEL _action;
     id _representedObject;
     NSImageView *_userPicture;
     LUI2TextField *_userName;
@@ -25,6 +28,9 @@
 @property(readonly) LUI2TextField *userName; // @synthesize userName=_userName;
 @property(readonly) NSImageView *userPicture; // @synthesize userPicture=_userPicture;
 @property(retain) id representedObject; // @synthesize representedObject=_representedObject;
+@property(getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
+@property SEL action; // @synthesize action=_action;
+@property id target; // @synthesize target=_target;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

@@ -8,7 +8,7 @@
 
 #import "WebFrameLoadDelegate.h"
 
-@class NSString;
+@class NSString, WebView;
 
 @interface PRSHTMLSliceViewController : PRSCardSectionSliceViewController <WebFrameLoadDelegate>
 {
@@ -16,6 +16,7 @@
 }
 
 @property double webViewHeight; // @synthesize webViewHeight=_webViewHeight;
+- (void)dealloc;
 - (double)height;
 - (void)webView:(id)arg1 didFinishLoadForFrame:(id)arg2;
 - (id)initWithHTMLCardSection:(id)arg1;
@@ -25,6 +26,7 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
+@property(retain) WebView *view; // @dynamic view;
 
 @end
 

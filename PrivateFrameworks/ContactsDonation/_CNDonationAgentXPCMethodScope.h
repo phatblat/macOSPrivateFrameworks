@@ -6,11 +6,10 @@
 
 #import "NSObject.h"
 
-@class CNPromise, NSXPCConnection;
+@class CNPromise;
 
 @interface _CNDonationAgentXPCMethodScope : NSObject
 {
-    NSXPCConnection *_connection;
     id <DonationAgentProtocol> _proxy;
     CNPromise *_promise;
 }
@@ -18,7 +17,6 @@
 @property(readonly, nonatomic) CNPromise *promise; // @synthesize promise=_promise;
 @property(readonly, nonatomic) id <DonationAgentProtocol> proxy; // @synthesize proxy=_proxy;
 - (void).cxx_destruct;
-- (void)dealloc;
 - (id)initWithPromise:(id)arg1 proxy:(id)arg2;
 - (id)initWithConnection:(id)arg1 promise:(id)arg2 proxy:(id)arg3;
 - (id)init;

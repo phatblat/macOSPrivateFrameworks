@@ -6,21 +6,18 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBRequestRideIntentResponse.h"
 
-@class INCodableAttribute, NSString, _INPBRideStatus;
+@class NSString, _INPBRideStatus;
 
-@interface _INPBRequestRideIntentResponse : PBCodable <_INPBRequestRideIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBRequestRideIntentResponse : PBCodable <_INPBRequestRideIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBRideStatus *_rideStatus;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBRideStatus *rideStatus; // @synthesize rideStatus=_rideStatus;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

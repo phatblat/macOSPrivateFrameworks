@@ -6,7 +6,7 @@
 
 #import "CPLEngineStorageImplementation.h"
 
-@class CPLChangeBatch, CPLRecordChange, CPLScopedIdentifier, NSString;
+@class CPLChangeBatch, CPLRecordChange, CPLScopeFilter, CPLScopedIdentifier, NSString;
 
 @protocol CPLEngineTransientRepositoryImplementation <CPLEngineStorageImplementation>
 - (BOOL)deleteRecordsForScopeIndex:(long long)arg1 maxCount:(long long)arg2 deletedCount:(long long *)arg3 error:(id *)arg4;
@@ -16,13 +16,14 @@
 - (unsigned long long)countOfUnmingledRecords;
 - (BOOL)deleteAllRecordsForScopeWithIdentifier:(NSString *)arg1 error:(id *)arg2;
 - (BOOL)deleteMingledRecordsForScopeWithIdentifier:(NSString *)arg1 error:(id *)arg2;
+- (BOOL)resetMingledRecordsWithScopeFilter:(CPLScopeFilter *)arg1 error:(id *)arg2;
 - (BOOL)resetMingledRecordsForScopeWithIdentifier:(NSString *)arg1 error:(id *)arg2;
 - (BOOL)hasUnmingledRecordsForScopeWithIdentifier:(NSString *)arg1;
 - (BOOL)hasMingledRecordsForScopeWithIdentifier:(NSString *)arg1;
 - (BOOL)popChangeBatchOfChangedRecords:(id *)arg1 ofClass:(Class)arg2 maximumCount:(unsigned long long)arg3 error:(id *)arg4;
 - (BOOL)popChangeBatchOfDeletedRecords:(id *)arg1 ofClass:(Class)arg2 maximumCount:(unsigned long long)arg3 error:(id *)arg4;
 - (BOOL)popChangeBatchOfRemappedRecords:(id *)arg1 maximumCount:(unsigned long long)arg2 error:(id *)arg3;
-- (BOOL)prepareForMinglingWithError:(id *)arg1;
+- (BOOL)prepareForMinglingWithScopeFilter:(CPLScopeFilter *)arg1 error:(id *)arg2;
 - (BOOL)appendBatch:(CPLChangeBatch *)arg1 alreadyMingled:(BOOL)arg2 error:(id *)arg3;
 @end
 

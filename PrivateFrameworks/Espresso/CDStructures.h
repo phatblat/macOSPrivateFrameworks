@@ -85,6 +85,8 @@ struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>
     } __r_;
 };
 
+struct blob<float __attribute__((ext_vector_type(2))), 1>;
+
 struct blob<float, 1>;
 
 struct blob<float, 2>;
@@ -343,6 +345,11 @@ struct shared_ptr<Espresso::abstract_context> {
     struct __shared_weak_count *__cntrl_;
 };
 
+struct shared_ptr<Espresso::blob<float __attribute__((ext_vector_type(2))), 1>> {
+    struct blob<float __attribute__((ext_vector_type(2))), 1> *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
+
 struct shared_ptr<Espresso::blob<float, 1>> {
     struct blob<float, 1> *__ptr_;
     struct __shared_weak_count *__cntrl_;
@@ -401,18 +408,6 @@ struct shared_ptr<Espresso::generic_load_constant_kernel> {
 struct shared_ptr<Espresso::net> {
     struct net *__ptr_;
     struct __shared_weak_count *__cntrl_;
-};
-
-struct unique_ptr<float [] __attribute__((ext_vector_type(2))), std::__1::default_delete<float [] __attribute__((ext_vector_type(2)))>> {
-    struct __compressed_pair<float * __attribute__((ext_vector_type(2))), std::__1::default_delete<float [] __attribute__((ext_vector_type(2)))>> {
-        void *__value_;
-    } __ptr_;
-};
-
-struct unique_ptr<float [], std::__1::default_delete<float []>> {
-    struct __compressed_pair<float *, std::__1::default_delete<float []>> {
-        float *__value_;
-    } __ptr_;
 };
 
 struct v9_noise_kernel;

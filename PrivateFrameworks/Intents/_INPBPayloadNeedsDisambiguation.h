@@ -6,22 +6,19 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBPayloadNeedsDisambiguation.h"
 
-@class INCodableAttribute, NSArray, NSString;
+@class NSArray, NSString;
 
-@interface _INPBPayloadNeedsDisambiguation : PBCodable <_INPBPayloadNeedsDisambiguation, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBPayloadNeedsDisambiguation : PBCodable <_INPBPayloadNeedsDisambiguation, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSArray *_disambiguationItems;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)disambiguationItemsType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *disambiguationItems; // @synthesize disambiguationItems=_disambiguationItems;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

@@ -6,25 +6,23 @@
 
 #import <HMFoundation/HMFObject.h>
 
-@class NSObject<OS_dispatch_queue>;
+@class HMFUnfairLock, NSObject<OS_dispatch_queue>;
 
 @interface HMFPowerManager : HMFObject
 {
-    unsigned int _interestNotification;
+    HMFUnfairLock *_lock;
     BOOL _hasBattery;
     BOOL _running;
     float _batteryLevel;
+    unsigned int _interestNotification;
     long long _batteryState;
     NSObject<OS_dispatch_queue> *_clientQueue;
-    NSObject<OS_dispatch_queue> *_propertyQueue;
     struct IONotificationPort *_notificationPort;
 }
 
 + (id)sharedManager;
-+ (void)initialize;
 @property(readonly, nonatomic) struct IONotificationPort *notificationPort; // @synthesize notificationPort=_notificationPort;
 @property(nonatomic, getter=isRunning) BOOL running; // @synthesize running=_running;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *propertyQueue; // @synthesize propertyQueue=_propertyQueue;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *clientQueue; // @synthesize clientQueue=_clientQueue;
 @property(readonly) BOOL hasBattery; // @synthesize hasBattery=_hasBattery;
 @property(readonly, nonatomic) unsigned int interestNotification; // @synthesize interestNotification=_interestNotification;
@@ -32,10 +30,8 @@
 - (void)_deregisterForPowerSourceNotifications:(BOOL)arg1;
 - (void)_registerForPowerSourceNotifications;
 - (void)updateBatteryState:(unsigned int)arg1;
-- (void)notifyBatteryLevelChange:(float)arg1;
-@property float batteryLevel; // @synthesize batteryLevel=_batteryLevel;
-- (void)notifyBatteryStateChange:(long long)arg1;
-@property long long batteryState; // @synthesize batteryState=_batteryState;
+@property(readonly) float batteryLevel; // @synthesize batteryLevel=_batteryLevel;
+@property(readonly) long long batteryState; // @synthesize batteryState=_batteryState;
 - (void)stop;
 - (void)start;
 - (void)dealloc;

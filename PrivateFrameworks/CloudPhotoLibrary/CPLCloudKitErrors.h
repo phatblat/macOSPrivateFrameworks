@@ -10,7 +10,9 @@
 {
 }
 
++ (BOOL)isFeatureDisabledError:(id)arg1;
 + (BOOL)isRecordNotFoundError:(id)arg1;
++ (id)realErrorForError:(id)arg1;
 + (id)errorsPerZoneIDForPartialFailureError:(id)arg1;
 + (id)errorsPerRecordIDForPartialFailureError:(id)arg1;
 + (id)_filteredPartialFailureError:(id)arg1 itemClass:(Class)arg2;

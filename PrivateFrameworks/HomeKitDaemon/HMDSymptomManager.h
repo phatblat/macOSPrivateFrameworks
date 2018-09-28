@@ -8,7 +8,7 @@
 
 #import "HMFLogging.h"
 
-@class HMFWiFiManager, NSMapTable, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
+@class HMFUnfairLock, HMFWiFiManager, NSMapTable, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSSet, NSString;
 
 @interface HMDSymptomManager : HMFObject <HMFLogging>
 {
@@ -16,6 +16,7 @@
     BOOL _supportsRegisteringAccessories;
     int _deviceProblemNotificationToken;
     NSObject<OS_dispatch_queue> *_workQueue;
+    HMFUnfairLock *_lock;
     id <HMDSharingDeviceDiscovery> _deviceDiscovery;
     id <HMDCompanionLinkClient> _companionLinkClient;
     HMFWiFiManager *_wifiManager;
@@ -37,6 +38,7 @@
 @property(readonly, nonatomic) HMFWiFiManager *wifiManager; // @synthesize wifiManager=_wifiManager;
 @property(readonly, nonatomic) id <HMDCompanionLinkClient> companionLinkClient; // @synthesize companionLinkClient=_companionLinkClient;
 @property(readonly, nonatomic) id <HMDSharingDeviceDiscovery> deviceDiscovery; // @synthesize deviceDiscovery=_deviceDiscovery;
+@property(readonly, nonatomic) HMFUnfairLock *lock; // @synthesize lock=_lock;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
 - (void).cxx_destruct;
 - (void)handleCurrentNetworkDidChangeNotification:(id)arg1;
@@ -50,7 +52,6 @@
 - (void)_updateSymptomsForAllRegisteredAccessories;
 - (void)_updateSymptomsForAccessoryWithIDSIdentifier:(id)arg1;
 - (void)_initiateFixForAccessory:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (id)_symptomsForProblemFlags:(unsigned long long)arg1;
 - (id)_localSymptomsForAccessoryWithIDSIdentifier:(id)arg1;
 - (id)_currentDeviceSymptoms;
 - (void)_stopCompanionLinkClient;
@@ -64,7 +65,7 @@
 - (void)startDiscoveringSymptomsRequiringNearbyInfo;
 - (void)deregisterAccessory:(id)arg1;
 - (void)registerAccessory:(id)arg1 delegate:(id)arg2;
-- (void)currentDeviceSymptomsWithCompletion:(CDUnknownBlockType)arg1;
+@property(readonly, copy, nonatomic) NSSet *currentDeviceSymptoms;
 - (void)dealloc;
 - (id)initWithDeviceDiscovery:(id)arg1 companionLinkClient:(id)arg2 wifiManager:(id)arg3;
 - (id)init;

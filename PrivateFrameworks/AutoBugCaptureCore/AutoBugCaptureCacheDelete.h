@@ -10,10 +10,11 @@
 
 @interface AutoBugCaptureCacheDelete : NSObject
 {
-    DiagnosticStorageManager *storageManager;
     NSString *logArchivePath;
+    DiagnosticStorageManager *_storageManager;
 }
 
+@property(retain, nonatomic) DiagnosticStorageManager *storageManager; // @synthesize storageManager=_storageManager;
 - (void).cxx_destruct;
 - (void)registerCallbacks:(const char *)arg1;
 - (unsigned long long)allowableDiskUsageSizeForUrgency:(int)arg1;

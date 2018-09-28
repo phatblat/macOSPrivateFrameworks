@@ -16,9 +16,11 @@
 - (void).cxx_destruct;
 - (void)forwardCallWithInvocation:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (id)initWithRemoteObject:(id)arg1;
-- (void)forwardInvocation:(id)arg1;
+- (BOOL)respondsToSelector:(SEL)arg1;
 - (id)methodSignatureForSelector:(SEL)arg1;
 - (id)forwardingTargetForSelector:(SEL)arg1;
+- (void)forwardInvocation:(id)arg1;
+- (BOOL)conformsToProtocol:(id)arg1;
 - (id)rockEncodeWithSessionManager:(id)arg1 error:(id *)arg2;
 
 @end

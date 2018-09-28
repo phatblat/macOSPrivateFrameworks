@@ -31,6 +31,7 @@
     BOOL _unschedulePendingUpdateApplyOnWriteSuccess;
     BOOL _schedulePendingUpdateApplyOnWriteSuccess;
     BOOL _scheduleSetupOnWriteSuccess;
+    BOOL _scheduleDisabledFeatureUpdateOnWriteSuccess;
     BOOL _schedulePullFromClient;
     NSObject<OS_dispatch_queue> *_shouldSyncScopeListQueue;
     BOOL _shouldEnableScopeListSyncOnWriteSuccess;
@@ -38,6 +39,7 @@
     BOOL _hasUpdatedDisabledFeatures;
     BOOL _isUpdatingDisabledFeatures;
     BOOL _shouldTriggerCompleteResetSyncAfterDisabledFeaturesUpdate;
+    BOOL _shouldTriggerResetSyncAfterDisabledFeaturesUpdate;
     BOOL _shouldSyncScopeList;
     CPLPlatformObject *_platformObject;
     CPLEngineLibrary *_engineLibrary;
@@ -92,8 +94,9 @@
 @property(readonly, copy) NSString *description;
 - (BOOL)setShouldUpdateDisabledFeaturesWithError:(id *)arg1;
 @property(readonly, nonatomic) BOOL shouldUpdateDisabledFeatures;
+@property(readonly, nonatomic) NSArray *disabledFeatures;
 - (BOOL)isFeatureDisabled:(id)arg1;
-- (BOOL)updateDisabledFeatures:(id)arg1 error:(id *)arg2;
+- (BOOL)updateDisabledFeatures:(id)arg1 didReset:(char *)arg2 error:(id *)arg3;
 - (id)_storedDisabledFeatures;
 - (id)unacknowledgedChangeWithLocalScopedIdentifier:(id)arg1;
 - (void)dropUnacknowledgedBatch;
@@ -127,6 +130,7 @@
 - (unsigned long long)libraryOptions;
 - (BOOL)storeLibraryVersion:(id)arg1 withError:(id *)arg2;
 - (void)closeAndDeactivate:(BOOL)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)performBarrier;
 - (void)performBatchedWriteTransactionBarrier;
 - (void)performBatchedWriteTransactionWithBlock:(CDUnknownBlockType)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_reallyPerformBatchedTransactionsLocked;

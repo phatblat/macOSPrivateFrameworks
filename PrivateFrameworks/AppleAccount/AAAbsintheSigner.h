@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
-@class AAAbsintheSignerContextCache, AAURLSession, NSObject<OS_dispatch_queue>;
+@class AAAbsintheContext, AAAbsintheSignerContextCache, AAURLSession, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
 
 @interface AAAbsintheSigner : NSObject
 {
     struct os_unfair_lock_s _contextLock;
     NSObject<OS_dispatch_queue> *_contextQueue;
+    NSObject<OS_dispatch_source> *_contextTimerSource;
     AAAbsintheSignerContextCache *_contextCache;
     double _cacheTimeout;
     AAURLSession *_session;
@@ -27,9 +28,11 @@
 - (void)_fetchCertificateDataWithCompletion:(CDUnknownBlockType)arg1;
 - (void)_contextQueue_contextWithCompletion:(CDUnknownBlockType)arg1;
 - (void)_contextWithCompletion:(CDUnknownBlockType)arg1;
-- (void)_contextLock_setContext:(id)arg1;
-- (id)_contextLock_contextInvalidatingIfNecessary;
+- (void)_contextLock_enqueueContextCleanup;
+- (void)setContext:(id)arg1;
+@property(readonly, nonatomic) AAAbsintheContext *context;
 - (void)signatureForData:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)dealloc;
 - (id)initWithCacheTimeout:(double)arg1;
 - (id)init;
 

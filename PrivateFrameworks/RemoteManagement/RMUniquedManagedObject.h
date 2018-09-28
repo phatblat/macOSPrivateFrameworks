@@ -12,6 +12,8 @@
 {
 }
 
+- (id)dictionaryRepresentation;
+- (id)externalClassName;
 - (void)updateUniqueIdentifier;
 - (id)computeUniqueIdentifier;
 - (void)awakeFromInsert;

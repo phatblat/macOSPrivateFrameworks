@@ -38,7 +38,6 @@ __attribute__((visibility("hidden")))
 - (void)layout;
 - (void)viewWillMoveToWindow:(id)arg1;
 @property(readonly) FI_TInlineProgressView *progressView; // @dynamic progressView;
-- (void)updateProgressViewColor;
 - (void)removeProgressViewIfNeeded;
 - (void)addProgressViewIfNeeded;
 - (void)initCommon;

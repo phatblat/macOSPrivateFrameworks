@@ -27,7 +27,6 @@
 - (id)safari_stringByReplacingCharactersInSet:(id)arg1 withString:(id)arg2 fromIndex:(long long)arg3;
 - (id)safari_stringByReplacingOccurrencesOfString:(id)arg1 withContentsOfArray:(id)arg2;
 - (id)safari_stringByCapitalizingFirstWord;
-- (id)safari_filenameByFixingIllegalCharacters;
 - (id)safari_stringByStrippingLineEndings;
 - (id)safari_stringByReplacingTabsWithSpaces;
 - (id)_safari_stringByReplacingLineEndingsWithString:(id)arg1;

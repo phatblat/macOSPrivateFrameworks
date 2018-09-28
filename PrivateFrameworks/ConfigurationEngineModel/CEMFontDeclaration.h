@@ -16,6 +16,7 @@
     CEMAssetBaseReference *_payloadReference;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withDescriptor:(id)arg2 withReference:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withDescriptor:(id)arg2 withReference:(id)arg3;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

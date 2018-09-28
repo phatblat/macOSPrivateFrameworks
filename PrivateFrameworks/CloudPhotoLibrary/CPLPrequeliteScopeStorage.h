@@ -41,6 +41,10 @@
 - (void).cxx_destruct;
 - (void)writeTransactionDidFail;
 - (void)writeTransactionDidSucceed;
+- (BOOL)bumpPullFromTransportExpirationIntervalWithError:(id *)arg1;
+- (id)filterForExcludedScopeIdentifiers:(id)arg1;
+- (id)filterForIncludedScopeIdentifiers:(id)arg1;
+- (void)_getLocalIndexes:(id *)arg1 cloudIndexes:(id *)arg2 forScopeIdentifiers:(id)arg3;
 - (void)_noteEndOfResetIfNecessary;
 - (unsigned long long)estimatedAssetCountForScope:(id)arg1;
 - (unsigned long long)estimatedSizeForScope:(id)arg1;
@@ -55,6 +59,7 @@
 - (id)classNameOfRecordsForInitialQueryForScope:(id)arg1;
 - (BOOL)storeTransientSyncAnchor:(struct NSData *)arg1 forScope:(id)arg2 error:(id *)arg3;
 - (struct NSData *)transientSyncAnchorForScope:(id)arg1;
+- (BOOL)discardStagedSyncAnchorWithScopeFilter:(id)arg1 error:(id *)arg2;
 - (BOOL)discardStagedSyncAnchorForScope:(id)arg1 error:(id *)arg2;
 @property(readonly, nonatomic) BOOL hasStagedSyncAnchors;
 - (BOOL)hasStagedSyncAnchorForScope:(id)arg1;
@@ -134,6 +139,8 @@
 - (id)enumeratorForScopesNeedingToPushChangesToTransport;
 - (BOOL)hasScopesNeedingToPushHighPriorityChangesToTransport;
 - (id)enumeratorForScopesNeedingToPushHighPriorityChangesToTransport;
+- (BOOL)forcePushToTransportForActiveScopesWithError:(id *)arg1;
+- (BOOL)forceIdentifyUknownScopesWithError:(id *)arg1;
 - (id)enumeratorForScopesNeedingUpdateFromTransport;
 - (id)enumeratorForScopesIncludeInactive:(BOOL)arg1;
 - (BOOL)_setScope:(id)arg1 hasCompletedTaskItem:(long long)arg2 task:(id)arg3 error:(id *)arg4;
@@ -147,6 +154,7 @@
 - (BOOL)initializeStorage;
 - (BOOL)_createInitialPrimarySyncScope;
 - (BOOL)_addScope:(id)arg1 error:(id *)arg2;
+- (double)_minimalPullFromTranportExpirationInterval;
 - (BOOL)_scopeTypeSupportClientSync:(long long)arg1;
 - (id)initWithAbstractObject:(id)arg1;
 

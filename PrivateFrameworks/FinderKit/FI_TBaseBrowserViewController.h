@@ -60,7 +60,6 @@ __attribute__((visibility("hidden")))
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)cmdRename:(id)arg1;
-- (_Bool)handlesRename:(id)arg1;
 - (_Bool)validateRename:(id)arg1;
 - (void)cmdRemoveLabel7:(id)arg1;
 - (void)cmdRemoveLabel6:(id)arg1;
@@ -160,6 +159,7 @@ __attribute__((visibility("hidden")))
 - (void)cmdShare:(id)arg1;
 - (_Bool)writeSelectionToPasteboard:(id)arg1 types:(id)arg2;
 - (id)validRequestorForSendType:(id)arg1 returnType:(id)arg2;
+- (_Bool)validateImportFromDevice;
 - (_Bool)getSelectionForServices:(struct TFENodeVector *)arg1;
 - (struct CGRect)dragFlockingFrameForDraggingItem:(id)arg1 dropTargetView:(id)arg2 mouseLocationInView:(const struct CGPoint *)arg3;
 - (struct CGRect)dragFlockingFrameForNode:(const struct TFENode *)arg1 dropTargetView:(id)arg2;
@@ -209,7 +209,7 @@ __attribute__((visibility("hidden")))
 - (_Bool)isTypeSelectInProgressWithTime:(double)arg1;
 - (void)clearTypeSelectBuffer;
 - (_Bool)typeSelectEvent:(const struct TString *)arg1 atTime:(double)arg2;
-- (void)selectContextMenuTargetNodes;
+- (void)selectContextMenuTargetNodesForCommand:(SEL)arg1;
 - (void)revealNodes:(const struct TFENodeVector *)arg1 select:(_Bool)arg2;
 - (void)deselectAllNodes;
 - (void)selectAllNodes;

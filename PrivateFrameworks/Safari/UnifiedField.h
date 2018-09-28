@@ -13,7 +13,7 @@
 #import "UnifiedFieldEditorDelegate.h"
 #import "WBSFluidProgressControllerDelegate.h"
 
-@class BackgroundColorView, CALayer, DelayedPopUpRolloverImageButton, InteriorUnifiedField, NSButton, NSColor, NSEvent, NSImage, NSImageView, NSString, NSTimer, NSTrackingArea, NSURL, NSView, OneStepBookmarkingButton, RolloverImageButton, TextFieldThatIgnoresClicks, WBSFaviconRequestsController, WBSFluidProgressState, WebBookmark;
+@class BackgroundColorView, CALayer, DelayedPopUpRolloverImageButton, InteriorUnifiedField, NSButton, NSColor, NSEvent, NSImage, NSImageView, NSString, NSTimer, NSTrackingArea, NSURL, NSView, OneStepBookmarkingButton, RolloverImageButton, TextFieldThatIgnoresClicks, UnifiedFieldBezelView, WBSFaviconRequestsController, WBSFluidProgressState, WebBookmark;
 
 __attribute__((visibility("hidden")))
 @interface UnifiedField : NSTextField <CAAnimationDelegate, CALayerDelegate, DelayedPopUpRolloverImageButtonDelegate, WBSFluidProgressControllerDelegate, NSAnimationDelegate, UnifiedFieldEditorDelegate>
@@ -101,6 +101,7 @@ __attribute__((visibility("hidden")))
     NSTimer *_showOneStepBookmarkingButtonTimer;
     BOOL _shouldLayOutAsFirstResponder;
     WBSFaviconRequestsController *_requestsController;
+    NSColor *_textColor;
     BOOL _showingMagnifyingGlass;
     BOOL _showingSecurityUI;
     BOOL _reflectingSearchTerms;
@@ -109,6 +110,7 @@ __attribute__((visibility("hidden")))
     BOOL _audioIndicatorShowingMutedState;
     BOOL _shouldDirectlyPerformMediaIndicatorAction;
     NSString *_placeholderString;
+    UnifiedFieldBezelView *_bezelView;
     unsigned long long _browsingMode;
     NSURL *_reflectedURL;
     NSString *_authenticationHost;
@@ -117,7 +119,6 @@ __attribute__((visibility("hidden")))
 }
 
 + (unsigned long long)simplificationsForReflectedURL;
-+ (BOOL)shouldDrawBackground;
 + (double)mediaIndicatorYOffset;
 + (double)urlTextYOffset;
 + (double)marginBeforeFirstComponent;
@@ -137,6 +138,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) unsigned long long browsingMode; // @synthesize browsingMode=_browsingMode;
 @property(nonatomic, getter=isShowingSecurityUI) BOOL showingSecurityUI; // @synthesize showingSecurityUI=_showingSecurityUI;
 @property(nonatomic, getter=isShowingMagnifyingGlass) BOOL showingMagnifyingGlass; // @synthesize showingMagnifyingGlass=_showingMagnifyingGlass;
+@property(nonatomic) __weak UnifiedFieldBezelView *bezelView; // @synthesize bezelView=_bezelView;
 - (id)placeholderString;
 - (void).cxx_destruct;
 - (void)updateAudioIndicatorAppearance;
@@ -230,6 +232,7 @@ __attribute__((visibility("hidden")))
 - (id)_createBasicUnifiedFieldButton;
 - (void)_setBasicUnifiedFieldButtonProperties:(id)arg1;
 - (void)_layOutFaviconAndMainContentView;
+- (double)_verticalOffsetToBaselignAlignAnnotationToURLField:(id)arg1;
 - (void)_installOverlayStaticTextFieldFadeOutMaskLayerIfNecessary;
 - (BOOL)_shouldLeftAlignContent;
 - (double)mainContentViewTrailingMarginWithLeadingMargin:(double)arg1;
@@ -255,6 +258,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSColor *pageStatusStringColor;
 - (id)_pageStatusString;
 - (id)_hintStringColor;
+- (id)_detailStringColor;
 - (id)_hintString;
 - (BOOL)_hintStringIsDetailString;
 - (BOOL)_hasHintString;
@@ -294,7 +298,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)_securityPillWillRespondToClick;
 - (void)_drawTopUnifiedField:(struct CGRect)arg1;
 - (void)_drawHintString:(id)arg1 mainString:(id)arg2 textRect:(struct CGRect)arg3 isEditing:(BOOL)arg4;
-- (void)_drawBackgroundInRect:(struct CGRect)arg1;
 - (void)_updateMinimumProgressPosition;
 - (void)_clearOriginalStringIfItMatchesDisplay;
 - (BOOL)_canDragFromSiteIcon;
@@ -303,6 +306,8 @@ __attribute__((visibility("hidden")))
 - (struct UnifiedFieldCompletionController *)_unifiedFieldCompletionController;
 - (id)_unifiedFieldTrackingArea;
 - (void)_updatePlaceholderAppearance;
+- (void)_systemColorsDidChange:(id)arg1;
+- (void)_updateProgressBarColor;
 - (id)fluidProgressController:(id)arg1 windowImageForRect:(struct CGRect)arg2;
 - (void)fluidProgressController:(id)arg1 setProgressToCurrentPosition:(id)arg2;
 - (void)fluidProgressController:(id)arg1 updateFluidProgressBar:(id)arg2;
@@ -322,7 +327,6 @@ __attribute__((visibility("hidden")))
 - (void)updateRightmostButton;
 - (void)setRightmostButtonShowsStopOnTopSites:(BOOL)arg1;
 - (void)setRightmostButtonIsVisible:(BOOL)arg1;
-- (unsigned long long)_effectiveBrowsingMode;
 @property(retain, nonatomic) NSImage *icon;
 - (void)_layOutMessageAndIconContainer:(id)arg1 messageTextField:(id)arg2 iconImageView:(id)arg3 spaceInBetweenMessageAndIcon:(double)arg4;
 - (id)_popUpWindowBlockedButtonDescription;
@@ -378,6 +382,9 @@ __attribute__((visibility("hidden")))
 - (void)textDidChange:(id)arg1;
 - (void)setEditable:(BOOL)arg1;
 - (void)selectText:(id)arg1;
+- (void)_updateTextColor;
+- (BOOL)_shouldHideFieldTextAndOnlyShowOverlayText;
+- (void)setTextColor:(id)arg1;
 - (void)setStringValue:(id)arg1;
 - (void)setAttributedStringValue:(id)arg1;
 - (id)accessibilityRoleDescription;
@@ -417,7 +424,6 @@ __attribute__((visibility("hidden")))
 - (void)updateTrackingAreas;
 - (BOOL)isOpaque;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)drawRect:(struct CGRect)arg1;
 - (BOOL)isFlipped;
 - (void)drawLayer:(id)arg1 inContext:(struct CGContext *)arg2;
 - (id)hitTest:(struct CGPoint)arg1;

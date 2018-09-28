@@ -17,6 +17,7 @@
 @interface _DKKnowledgeStorage : NSObject <_DKCoreDataStorageDelegate, _DKKnowledgeEventStreamDeleting, _DKKnowledgeSaving, _DKKnowledgeDeleting, _DKKnowledgeQuerying>
 {
     NSObject<OS_dispatch_queue> *_executionQueue;
+    NSObject<OS_dispatch_queue> *_readQueue;
     NSObject<OS_dispatch_queue> *_defaultResponseQueue;
     NSString *_directory;
     NSURL *_modelURL;
@@ -30,6 +31,8 @@
     _DKPreferences *_defaults;
 }
 
++ (id)sourceDeviceIdentityFromObject:(id)arg1;
++ (id)sourceDeviceIdentityFromDeviceID:(id)arg1;
 + (id)storageWithDirectory:(id)arg1 readOnly:(BOOL)arg2 localOnly:(BOOL)arg3;
 + (id)storageWithDirectory:(id)arg1 readOnly:(BOOL)arg2;
 + (id)storeWithDirectory:(id)arg1 readOnly:(BOOL)arg2;
@@ -41,8 +44,6 @@
 - (void).cxx_destruct;
 - (id)syncStorageAssertion;
 - (id)sourceDeviceIdentity;
-- (id)sourceDeviceIdentityFromObject:(id)arg1;
-- (id)_sourceDeviceIdentityFromDeviceID:(id)arg1;
 - (void)configureDeviceUUID;
 - (id)deviceUUID;
 - (void)decrementInsertsAndDeletesObserverCount;
@@ -59,8 +60,10 @@
 - (unsigned long long)deleteHistogram:(id)arg1;
 - (void)saveHistogram:(id)arg1 responseQueue:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
 - (BOOL)coreDataStorage:(id)arg1 didAutoMigratePersistentStore:(id)arg2 toManagedObjectModel:(id)arg3 havingVersion:(unsigned long long)arg4 error:(id *)arg5;
+- (BOOL)coreDataStorage:(id)arg1 willAutoMigrateStoreAtURL:(id)arg2 fromManagedObjectModel:(id)arg3 havingVersion:(unsigned long long)arg4 error:(id *)arg5;
 - (id)coreDataStorage:(id)arg1 needsManagedObjectModelNameForVersion:(unsigned long long)arg2;
 - (BOOL)coreDataStorage:(id)arg1 shouldCallDelegateAfterAutoMigrationToManagedObjectModelHavingVersion:(unsigned long long)arg2;
+- (BOOL)coreDataStorage:(id)arg1 shouldCallDelegateBeforeAutoMigrationFromManagedObjectModelHavingVersion:(unsigned long long)arg2;
 - (void)closeSyncStorage;
 - (void)closeStorage;
 - (unsigned long long)deleteObjectsInEventStream:(id)arg1 ifNeededToLimitEventCount:(unsigned long long)arg2 batchLimit:(unsigned long long)arg3;
@@ -78,7 +81,9 @@
 - (void)executeQuery:(id)arg1 responseQueue:(id)arg2;
 - (unsigned long long)_deleteAllEventsMatchingPredicate:(id)arg1 error:(id *)arg2;
 - (unsigned long long)deleteAllEventsMatchingPredicate:(id)arg1 error:(id *)arg2;
+- (void)deleteAllEventsMatchingPredicate:(id)arg1 responseQueue:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
 - (unsigned long long)deleteAllEventsInEventStream:(id)arg1 error:(id *)arg2;
+- (void)deleteAllEventsInEventStream:(id)arg1 responseQueue:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
 - (void)_tombstoneObjects:(id)arg1 error:(id *)arg2;
 - (void)_tombstoneObjectsMatchingPredicate:(id)arg1 batchSize:(unsigned long long)arg2 error:(id *)arg3;
 - (BOOL)_deleteObjects:(id)arg1 error:(id *)arg2;
@@ -110,7 +115,9 @@
 - (id)keyValueStoreForDomain:(id)arg1;
 - (BOOL)copyValueToManagedObject:(id)arg1;
 - (BOOL)updateDataAfterAutoMigrationToVersion:(unsigned long long)arg1 inPersistentStore:(id)arg2 error:(id *)arg3;
+- (BOOL)updateDataBeforeAutoMigrationFromVersion:(unsigned long long)arg1 inStoreAtURL:(id)arg2 error:(id *)arg3;
 - (id)versionsRequiringManualMigration;
+- (id)versionsRequiringManualSetup;
 @property(readonly, nonatomic) unsigned long long finalMigrationVersion;
 - (void)updateToFinalMetadata:(id)arg1;
 

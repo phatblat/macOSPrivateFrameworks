@@ -6,20 +6,21 @@
 
 #import "NSObject.h"
 
-@class DMFPolicyRegistration;
+@class NSUUID;
 
 @interface DMFiCloudPolicyMonitor : NSObject
 {
     long long _iCloudLogoutPolicy;
-    DMFPolicyRegistration *_registration;
+    NSUUID *_policyMonitorIdentifier;
 }
 
 + (BOOL)automaticallyNotifiesObserversOfICloudLogoutPolicy;
-@property(retain, nonatomic) DMFPolicyRegistration *registration; // @synthesize registration=_registration;
+@property(readonly, nonatomic) NSUUID *policyMonitorIdentifier; // @synthesize policyMonitorIdentifier=_policyMonitorIdentifier;
 @property(nonatomic) long long iCloudLogoutPolicy; // @synthesize iCloudLogoutPolicy=_iCloudLogoutPolicy;
 - (void).cxx_destruct;
 - (void)_updateiCloudLogoutFromPolicies:(id)arg1;
 - (void)_updateiCloudLogout;
+- (void)dealloc;
 - (id)init;
 
 @end

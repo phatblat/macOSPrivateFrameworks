@@ -18,6 +18,7 @@
 + (id)sharedMonitor;
 @property(nonatomic) __weak id <CSVoiceTriggerAssetChangeDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)notifyVoiceTriggerAssetChanged;
 - (void)startMonitoring;
 - (id)init;
 

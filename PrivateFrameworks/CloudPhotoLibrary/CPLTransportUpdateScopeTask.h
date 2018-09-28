@@ -9,6 +9,7 @@
 @interface CPLTransportUpdateScopeTask : CPLEngineScopedTask
 {
     id <CPLEngineTransportDeleteTransportScopeTask> _deleteTask;
+    id <CPLEngineTransportUpdateTransportScopeTask> _updateTask;
 }
 
 - (void).cxx_destruct;

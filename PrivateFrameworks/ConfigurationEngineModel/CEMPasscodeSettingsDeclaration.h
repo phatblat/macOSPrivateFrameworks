@@ -31,6 +31,7 @@
     NSNumber *_payloadAllowAutoUnlock;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowSimple:(id)arg2 withForcePIN:(id)arg3 withMaxFailedAttempts:(id)arg4 withMaxInactivity:(id)arg5 withMaxPINAgeInDays:(id)arg6 withMinComplexChars:(id)arg7 withMinLength:(id)arg8 withRequireAlphanumeric:(id)arg9 withPinHistory:(id)arg10 withMaxGracePeriod:(id)arg11 withMinutesUntilFailedLoginReset:(id)arg12 withChangeAtNextAuth:(id)arg13 withManualFetchingWhenRoaming:(id)arg14 withAllowFingerprintForUnlock:(id)arg15 withAllowFingerprintModification:(id)arg16 withAllowPasscodeModification:(id)arg17 withAllowAutoUnlock:(id)arg18;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

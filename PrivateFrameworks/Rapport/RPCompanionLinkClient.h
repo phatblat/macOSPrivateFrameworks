@@ -10,7 +10,7 @@
 #import "RPCompanionLinkXPCClientInterface.h"
 #import "RPMessageable.h"
 
-@class NSArray, NSMutableOrderedSet, NSObject<OS_dispatch_queue>, NSString, NSXPCConnection, RPCompanionLinkDevice;
+@class NSArray, NSDictionary, NSMutableOrderedSet, NSObject<OS_dispatch_queue>, NSString, NSXPCConnection, RPCompanionLinkDevice;
 
 @interface RPCompanionLinkClient : NSObject <NSSecureCoding, RPCompanionLinkXPCClientInterface, RPMessageable>
 {
@@ -23,7 +23,6 @@
     NSMutableOrderedSet *_registeredProfileIDs;
     struct NSMutableDictionary *_requestRegistrations;
     NSXPCConnection *_xpcCnx;
-    BOOL _reportBTPipe;
     unsigned int _flags;
     unsigned long long _controlFlags;
     RPCompanionLinkDevice *_destinationDevice;
@@ -37,10 +36,11 @@
     CDUnknownBlockType _deviceChangedHandler;
     RPCompanionLinkDevice *_localDevice;
     CDUnknownBlockType _localDeviceUpdatedHandler;
+    NSDictionary *_siriInfo;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(nonatomic) BOOL reportBTPipe; // @synthesize reportBTPipe=_reportBTPipe;
+@property(copy, nonatomic) NSDictionary *siriInfo; // @synthesize siriInfo=_siriInfo;
 @property(copy, nonatomic) CDUnknownBlockType localDeviceUpdatedHandler; // @synthesize localDeviceUpdatedHandler=_localDeviceUpdatedHandler;
 @property(retain) RPCompanionLinkDevice *localDevice; // @synthesize localDevice=_localDevice;
 @property(copy, nonatomic) CDUnknownBlockType deviceChangedHandler; // @synthesize deviceChangedHandler=_deviceChangedHandler;
@@ -55,22 +55,23 @@
 @property(retain, nonatomic) RPCompanionLinkDevice *destinationDevice; // @synthesize destinationDevice=_destinationDevice;
 @property(nonatomic) unsigned long long controlFlags; // @synthesize controlFlags=_controlFlags;
 - (void).cxx_destruct;
+- (void)deregisterProfileID:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)_reregisterProfileIDs;
+- (void)_registerProfileID:(id)arg1 reregister:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)registerProfileID:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)companionLinkReceivedRequestID:(id)arg1 request:(id)arg2 options:(id)arg3 responseHandler:(CDUnknownBlockType)arg4;
 - (void)sendRequestID:(id)arg1 request:(id)arg2 destinationID:(id)arg3 options:(id)arg4 responseHandler:(CDUnknownBlockType)arg5;
 - (void)deregisterRequestID:(id)arg1;
 - (void)_reregisterRequests;
 - (void)_registerRequestID:(id)arg1 options:(id)arg2 reregister:(BOOL)arg3;
 - (void)registerRequestID:(id)arg1 options:(id)arg2 handler:(CDUnknownBlockType)arg3;
-- (void)deregisterProfileID:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)_reregisterProfileIDs;
-- (void)_registerProfileID:(id)arg1 reregister:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)registerProfileID:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)companionLinkReceivedEventID:(id)arg1 event:(id)arg2 options:(id)arg3;
 - (void)sendEventID:(id)arg1 event:(id)arg2 destinationID:(id)arg3 options:(id)arg4 completion:(CDUnknownBlockType)arg5;
 - (void)deregisterEventID:(id)arg1;
 - (void)_reregisterEvents;
 - (void)_registerEventID:(id)arg1 options:(id)arg2 reregister:(BOOL)arg3;
 - (void)registerEventID:(id)arg1 options:(id)arg2 handler:(CDUnknownBlockType)arg3;
+- (BOOL)shouldReportDevice:(id)arg1;
 - (void)_lostAllDevices;
 - (void)companionLinkLocalDeviceUpdated:(id)arg1;
 - (void)companionLinkChangedDevice:(id)arg1 changes:(unsigned int)arg2;
@@ -85,6 +86,7 @@
 - (void)_invalidated;
 - (void)invalidate;
 - (void)_interrupted;
+- (void)_invokeBlockActivateSafe:(CDUnknownBlockType)arg1;
 - (void)_ensureXPCStarted;
 - (void)_activateWithCompletion:(CDUnknownBlockType)arg1 reactivate:(BOOL)arg2;
 - (void)activateWithCompletion:(CDUnknownBlockType)arg1;

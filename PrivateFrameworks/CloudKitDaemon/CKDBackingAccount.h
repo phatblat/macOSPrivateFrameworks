@@ -16,11 +16,12 @@
 + (void)ensureCloudKitChildAccountOnParentAccount:(id)arg1 inStore:(id)arg2;
 + (BOOL)_lockedEnsureCloudKitChildAccountOnParentAccount:(id)arg1 inStore:(id)arg2;
 + (id)accountQueue;
-+ (id)fakeAccountWithEmail:(id)arg1 password:(id)arg2 propertyOverrides:(id)arg3;
++ (id)fakeAccountWithEmail:(id)arg1 password:(id)arg2 propertyOverrides:(id)arg3 overridesByDataclass:(id)arg4;
 + (id)primaryAccountInStore:(id)arg1;
 + (id)accountWithIdentifier:(id)arg1 inStore:(id)arg2;
 + (Class)_platformBackingAccountClass;
 @property(readonly, nonatomic) BOOL canAuthWithCloudKit; // @synthesize canAuthWithCloudKit=_canAuthWithCloudKit;
+@property(readonly, nonatomic) NSString *sharingURLHostname;
 @property(readonly, nonatomic) NSURL *privateMetricsServiceURL;
 @property(readonly, nonatomic) NSURL *privateCodeServiceURL;
 @property(readonly, nonatomic) NSURL *privateDeviceServiceURL;

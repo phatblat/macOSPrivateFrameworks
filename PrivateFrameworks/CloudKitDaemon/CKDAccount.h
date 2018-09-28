@@ -45,6 +45,7 @@ __attribute__((visibility("hidden")))
 - (void)noteFailedProtocolRequest;
 - (void)noteFailedNetworkRequest;
 - (void)noteSuccessfulRequestWithNumDownloadedElements:(long long)arg1;
+- (id)sharingURLHostname;
 - (id)displayedHostname;
 - (id)regionCode;
 - (id)languageCode;

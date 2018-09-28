@@ -15,6 +15,7 @@
 // Property attributes: T{?=[4]},V_pose
 
 - (int)analyzeFrameForPose:(struct __CVBuffer *)arg1 withFaceRect:(struct CGRect)arg2 withTimestamp:(CDStruct_1b6d18a9)arg3;
+- (BOOL)updateFocalLengthInPixels:(float)arg1;
 - (id)initWithFocalLengthInPixels:(float)arg1;
 
 @end

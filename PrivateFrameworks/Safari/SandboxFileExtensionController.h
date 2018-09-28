@@ -36,7 +36,7 @@ __attribute__((visibility("hidden")))
 - (id)initWithStore:(id)arg1;
 - (id)initWithURL:(id)arg1;
 - (id)init;
-- (void)_createTokenWithExtensions:(id)arg1 requestURL:(id)arg2 includeRequestURL:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (void)_createTokenWithExtensions:(id)arg1 requestURL:(id)arg2 includeRequestURL:(BOOL)arg3 isRequestURLSecurityScoped:(BOOL)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (id)_createFileExtensionForURL:(id)arg1 permissions:(long long)arg2 error:(id *)arg3;
 - (id)_createGenericExtensionForURL:(id)arg1 extension:(id)arg2 error:(id *)arg3;
 

@@ -6,18 +6,24 @@
 
 #import <CloudPhotoLibrary/CPLEngineMultiscopeSyncTask.h>
 
+@class CPLScopeFilter;
+
 @interface CPLPushToTransportTask : CPLEngineMultiscopeSyncTask
 {
     BOOL _deferredCancel;
     BOOL _highPriority;
+    CPLScopeFilter *_scopeFilter;
 }
 
+@property(retain, nonatomic) CPLScopeFilter *scopeFilter; // @synthesize scopeFilter=_scopeFilter;
 @property(nonatomic) BOOL highPriority; // @synthesize highPriority=_highPriority;
+- (void).cxx_destruct;
 - (id)taskIdentifier;
 - (void)taskDidFinishWithError:(id)arg1;
 - (void)task:(id)arg1 didFinishWithError:(id)arg2;
 - (void)cancel:(BOOL)arg1;
 - (BOOL)shouldSkipScopesWithMissingTransportScope;
+- (BOOL)shouldProcessScope:(id)arg1 inTransaction:(id)arg2;
 - (id)newScopedTaskWithScope:(id)arg1 transportScope:(id)arg2 clientCacheIdentifier:(id)arg3;
 - (id)enumerateScopesForTaskInTransaction:(id)arg1;
 

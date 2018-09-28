@@ -27,15 +27,15 @@
     OITSUNoCopyDictionary *mIndexToStyles;
     OITSUNoCopyDictionary *mIndexToFonts;
     NSMutableDictionary *mPreviousFlowElement;
-    WDDocument *mTargetDocument;
     WBOfficeArtReaderState *mOfficeArtState;
     struct vector<WBTextBoxReaderInfo, std::__1::allocator<WBTextBoxReaderInfo>> *mTextBoxes;
     BOOL mReportProgress;
     id mAnnotationRangeStart;
     NSMutableDictionary *mBookmarkIndexToAnnotationRangeStartMap;
+    WDDocument *mTargetDocument;
 }
 
-@property(retain, nonatomic) WDDocument *targetDocument; // @synthesize targetDocument=mTargetDocument;
+@property(nonatomic) __weak WDDocument *targetDocument; // @synthesize targetDocument=mTargetDocument;
 @property(readonly) NSMutableDictionary *previousFlowElement; // @synthesize previousFlowElement=mPreviousFlowElement;
 - (void).cxx_destruct;
 - (struct WBTextBoxReaderInfo)textBoxInfoAtIndex:(unsigned long long)arg1;

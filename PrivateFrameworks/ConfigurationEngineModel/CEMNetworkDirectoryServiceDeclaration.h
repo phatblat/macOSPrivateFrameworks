@@ -53,6 +53,7 @@
     NSNumber *_payloadADTrustChangePassIntervalDays;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withHostName:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withHostName:(id)arg2 withUserName:(id)arg3 withPassword:(id)arg4 withClientID:(id)arg5 withDescription:(id)arg6 withADOrganizationalUnit:(id)arg7 withADMountStyle:(id)arg8 withADCreateMobileAccountAtLoginFlag:(id)arg9 withADCreateMobileAccountAtLogin:(id)arg10 withADWarnUserBeforeCreatingMAFlag:(id)arg11 withADWarnUserBeforeCreatingMA:(id)arg12 withADForceHomeLocalFlag:(id)arg13 withADForceHomeLocal:(id)arg14 withADUseWindowsUNCPathFlag:(id)arg15 withADUseWindowsUNCPath:(id)arg16 withADAllowMultiDomainAuthFlag:(id)arg17 withADAllowMultiDomainAuth:(id)arg18 withADDefaultUserShellFlag:(id)arg19 withADDefaultUserShell:(id)arg20 withADMapUIDAttributeFlag:(id)arg21 withADMapUIDAttribute:(id)arg22 withADMapGIDAttributeFlag:(id)arg23 withADMapGIDAttribute:(id)arg24 withADMapGGIDAttributeFlag:(id)arg25 withADMapGGIDAttribute:(id)arg26 withADPreferredDCServerFlag:(id)arg27 withADPreferredDCServer:(id)arg28 withADDomainAdminGroupListFlag:(id)arg29 withADDomainAdminGroupList:(id)arg30 withADNamespaceFlag:(id)arg31 withADNamespace:(id)arg32 withADPacketSignFlag:(id)arg33 withADPacketSign:(id)arg34 withADPacketEncryptFlag:(id)arg35 withADPacketEncrypt:(id)arg36 withADRestrictDDNSFlag:(id)arg37 withADRestrictDDNS:(id)arg38 withADTrustChangePassIntervalDaysFlag:(id)arg39 withADTrustChangePassIntervalDays:(id)arg40;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

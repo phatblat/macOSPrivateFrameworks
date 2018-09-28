@@ -4,14 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <OfficeImport/CMMapper.h>
+#import <OfficeImport/CMDocumentMapper.h>
 
 #import "CMMapperRoot.h"
 
 @class NSString, WDDocument;
 
 __attribute__((visibility("hidden")))
-@interface WMDocumentMapper : CMMapper <CMMapperRoot>
+@interface WMDocumentMapper : CMDocumentMapper <CMMapperRoot>
 {
     NSString *mFileName;
 }

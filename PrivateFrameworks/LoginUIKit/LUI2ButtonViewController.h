@@ -18,6 +18,7 @@
 - (void)loadView;
 - (void)addButton:(id)arg1;
 - (void)setEnabled:(BOOL)arg1;
+- (void)_updateBlendingMode:(id)arg1;
 
 @end
 

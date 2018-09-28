@@ -6,24 +6,21 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBShareDestination.h"
 
-@class INCodableAttribute, NSString, _INPBContact;
+@class NSString, _INPBContact;
 
-@interface _INPBShareDestination : PBCodable <_INPBShareDestination, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBShareDestination : PBCodable <_INPBShareDestination, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int deviceType:1;
     } _has;
     int _deviceType;
     _INPBContact *_contact;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int deviceType; // @synthesize deviceType=_deviceType;
 @property(retain, nonatomic) _INPBContact *contact; // @synthesize contact=_contact;
 - (void).cxx_destruct;

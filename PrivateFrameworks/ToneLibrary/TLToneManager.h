@@ -40,10 +40,12 @@
 - (id)_filePathForToneIdentifier:(id)arg1 isValid:(char *)arg2;
 - (id)filePathForToneIdentifier:(id)arg1;
 - (id)_soundForToneIdentifier:(id)arg1;
+- (BOOL)hasSpecificDefaultToneIdentifierForAlertType:(long long)arg1 topic:(id)arg2;
+- (id)_defaultPreferablyNonSilentToneIdentifierForAlertType:(long long)arg1 topic:(id)arg2;
 - (id)_defaultRingtonePath;
 - (id)_defaultRingtoneName;
 - (id)defaultRingtoneIdentifier;
-- (id)_defaultToneIdentifierForAlertType:(long long)arg1 topic:(id)arg2;
+- (id)defaultToneIdentifierForAlertType:(long long)arg1 topic:(id)arg2;
 - (id)defaultToneIdentifierForAlertType:(long long)arg1;
 - (unsigned int)currentToneSoundIDForAlertType:(long long)arg1 topic:(id)arg2;
 - (unsigned int)currentToneSoundIDForAlertType:(long long)arg1;
@@ -64,6 +66,8 @@
 - (id)_aliasForToneIdentifier:(id)arg1;
 - (void)_loadToneIdentifierAliasMap;
 - (void)_loadAlertToneInfo;
+- (id)_systemFaceTimeSoundDirectory;
+- (id)_systemWatchSoundDirectory;
 - (id)_systemNewSoundDirectory;
 - (id)_systemSoundDirectory;
 - (id)_systemEmbeddedModernSoundDirectory;

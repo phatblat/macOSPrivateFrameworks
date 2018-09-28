@@ -16,6 +16,7 @@
     CEMSecurityTimeLimitsDeclaration_TimeLimits *_payloadTimeLimits;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withFamilyControlsEnabled:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withFamilyControlsEnabled:(id)arg2 withTimeLimits:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

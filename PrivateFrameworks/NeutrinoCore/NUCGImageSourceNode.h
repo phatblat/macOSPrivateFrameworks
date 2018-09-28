@@ -60,6 +60,7 @@
 - (long long)sourceOrientation;
 - (void)dealloc;
 - (id)initWithSettings:(id)arg1;
+- (id)initWithURL:(id)arg1 UTI:(id)arg2 settings:(id)arg3;
 - (id)initWithURL:(id)arg1 UTI:(id)arg2;
 - (id)initWithImageSource:(struct CGImageSource *)arg1 identifier:(id)arg2;
 - (void)_init;

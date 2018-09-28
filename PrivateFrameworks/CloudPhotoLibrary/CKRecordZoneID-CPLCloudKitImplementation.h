@@ -7,6 +7,7 @@
 #import "CKRecordZoneID.h"
 
 @interface CKRecordZoneID (CPLCloudKitImplementation)
+- (id)cpl_zoneName;
 - (id)cpl_scopeIdentifier;
 - (id)initWithCPLScopeIdentifier:(id)arg1;
 @end

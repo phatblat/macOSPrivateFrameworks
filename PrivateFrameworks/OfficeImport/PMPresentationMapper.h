@@ -4,14 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <OfficeImport/CMMapper.h>
+#import <OfficeImport/CMDocumentMapper.h>
 
 #import "CMMapperRoot.h"
 
 @class NSMutableArray, NSString, OIXMLDocument, OIXMLElement, PDPresentation;
 
 __attribute__((visibility("hidden")))
-@interface PMPresentationMapper : CMMapper <CMMapperRoot>
+@interface PMPresentationMapper : CMDocumentMapper <CMMapperRoot>
 {
     int mWidth;
     NSMutableArray *mSlideNames;
@@ -32,9 +32,11 @@ __attribute__((visibility("hidden")))
 - (void)startMappingWithState:(id)arg1;
 - (struct CGSize)slideSize;
 - (struct CGSize)pageSizeForDevice;
+- (struct CGSize)pageSizeForDeviceIncludingMargins:(BOOL)arg1;
 - (id)documentTitle;
 - (id)blipAtIndex:(unsigned int)arg1;
 - (id)initWithDocument:(id)arg1 archiver:(id)arg2;
+- (id)defaultStyleSheet;
 - (void)setHtmlDocumentSizeInArchiver;
 
 // Remaining properties

@@ -6,7 +6,7 @@
 
 #import <CoreDuet/_DKSyncCompositeOperation.h>
 
-@class _DKSync2Policy, _DKSyncPeer, _DKSyncType;
+@class _CDMutablePerfMetric, _DKSync2Policy, _DKSyncPeer, _DKSyncType;
 
 @interface _DKPerformSyncUpHistoryOperation : _DKSyncCompositeOperation
 {
@@ -15,9 +15,14 @@
     _DKSyncPeer *_me;
     _DKSync2Policy *_policy;
     _DKSyncType *_type;
+    _CDMutablePerfMetric *_perfMetric;
+    struct _CDPerfEvent _perfEvent;
 }
 
 - (void).cxx_destruct;
+- (void)endPerfMetrics;
+- (void)startPerfMetrics;
+- (void)endOperation;
 - (void)performSyncUpHistory;
 - (void)main;
 - (BOOL)isAsynchronous;

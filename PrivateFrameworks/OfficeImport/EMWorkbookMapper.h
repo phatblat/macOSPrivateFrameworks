@@ -4,14 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <OfficeImport/CMMapper.h>
+#import <OfficeImport/CMDocumentMapper.h>
 
 #import "CMMapperRoot.h"
 
 @class EDWorkbook, NSMutableArray, NSString, OIXMLDocument, OIXMLElement;
 
 __attribute__((visibility("hidden")))
-@interface EMWorkbookMapper : CMMapper <CMMapperRoot>
+@interface EMWorkbookMapper : CMDocumentMapper <CMMapperRoot>
 {
     unsigned long long mRealSheetCount;
     int mWidth;

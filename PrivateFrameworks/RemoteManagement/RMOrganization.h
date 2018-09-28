@@ -6,7 +6,7 @@
 
 #import <RemoteManagement/RMUniquedManagedObject.h>
 
-@class NSSet, NSString;
+@class NSSet, NSString, RMDeclarationTransactionRecord;
 
 @interface RMOrganization : RMUniquedManagedObject
 {
@@ -18,6 +18,7 @@
 
 // Remaining properties
 @property(retain, nonatomic) NSSet *activations; // @dynamic activations;
+@property(retain, nonatomic) RMDeclarationTransactionRecord *currentDeclarationTransaction; // @dynamic currentDeclarationTransaction;
 @property(copy, nonatomic) NSString *identifier; // @dynamic identifier;
 @property(retain, nonatomic) NSSet *users; // @dynamic users;
 

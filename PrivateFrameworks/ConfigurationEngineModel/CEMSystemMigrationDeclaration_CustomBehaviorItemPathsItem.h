@@ -16,6 +16,7 @@
     NSNumber *_payloadTargetPathInUserHome;
 }
 
++ (id)buildRequiredOnlyWithSourcePath:(id)arg1 withSourcePathInUserHome:(id)arg2 withTargetPath:(id)arg3 withTargetPathInUserHome:(id)arg4;
 + (id)buildWithSourcePath:(id)arg1 withSourcePathInUserHome:(id)arg2 withTargetPath:(id)arg3 withTargetPathInUserHome:(id)arg4;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadTargetPathInUserHome; // @synthesize payloadTargetPathInUserHome=_payloadTargetPathInUserHome;

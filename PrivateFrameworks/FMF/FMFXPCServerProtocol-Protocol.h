@@ -9,6 +9,9 @@
 @class FMFDevice, FMFFence, FMFFriendshipRequest, FMFHandle, NSDate, NSNumber, NSSet, NSString;
 
 @protocol FMFXPCServerProtocol <NSObject>
+- (oneway void)removeFavorite:(FMFHandle *)arg1 completion:(void (^)(NSError *))arg2;
+- (oneway void)addFavorite:(FMFHandle *)arg1 completion:(void (^)(NSError *))arg2;
+- (oneway void)getFavoritesWithCompletion:(void (^)(NSArray *, NSError *))arg1;
 - (oneway void)fencesForHandles:(NSSet *)arg1 completion:(void (^)(NSSet *, NSError *))arg2;
 - (oneway void)getFences:(void (^)(NSSet *, NSError *))arg1;
 - (oneway void)deleteFence:(FMFFence *)arg1 completion:(void (^)(NSError *))arg2;

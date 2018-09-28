@@ -10,6 +10,18 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct PLPeripheralDeviceState {
+    unsigned long long _field1;
+    char *_field2;
+    int _field3;
+    unsigned int _field4;
+    unsigned int _field5;
+    unsigned int _field6;
+    unsigned int _field7;
+    _Bool _field8;
+    _Bool _field9;
+};
+
 struct SMCAccumPlatformInfo;
 
 struct coalition_resource_usage {
@@ -37,6 +49,12 @@ struct coalition_resource_usage {
 };
 
 #pragma mark Typedef'd Structures
+
+typedef struct {
+    double _field1;
+    unsigned int _field2;
+    unsigned char _field3;
+} CDStruct_7f7d6714;
 
 typedef struct {
     unsigned int _field1;

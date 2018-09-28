@@ -31,7 +31,7 @@
 @property(nonatomic) __weak id <CRKClassSessionBeaconBrowserDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)delegateDidFailWithError:(id)arg1;
-- (void)delegateDidFindInvitationSessionWithIPAddress:(id)arg1;
+- (void)delegateDidFindInvitationSessionWithEndpoint:(id)arg1;
 - (void)delegateDidFindClassSession:(id)arg1 flags:(unsigned short)arg2;
 - (void)scanner:(id)arg1 foundDevice:(id)arg2 withData:(id)arg3;
 - (void)scanner:(id)arg1 foundRequestedDevices:(id)arg2;

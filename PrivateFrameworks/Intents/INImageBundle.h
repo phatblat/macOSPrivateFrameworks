@@ -14,11 +14,13 @@
 @interface INImageBundle : NSObject <NSSecureCoding, NSCopying>
 {
     NSString *_bundlePath;
+    NSString *_bundleIdentifier;
     unsigned long long _bundleType;
 }
 
 + (BOOL)supportsSecureCoding;
 @property(nonatomic) unsigned long long bundleType; // @synthesize bundleType=_bundleType;
+@property(copy, nonatomic) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 @property(copy, nonatomic) NSString *bundlePath; // @synthesize bundlePath=_bundlePath;
 - (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;

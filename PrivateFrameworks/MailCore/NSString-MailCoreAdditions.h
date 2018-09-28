@@ -11,6 +11,8 @@
 @interface NSString (MailCoreAdditions)
 + (id)contentIDStringFromCidUrl:(id)arg1;
 + (id)messageIDStringWithDomainHint:(id)arg1;
++ (id)htmlForAttachmentWithContentID:(id)arg1;
++ (id)htmlForAttachment:(id)arg1;
 + (id)newURLForContentID:(id)arg1 percentEscaped:(BOOL)arg2;
 @property(readonly) BOOL lastStrongDirectionalityIsLeftToRight;
 @property(readonly) BOOL firstStrongDirectionalityIsLeftToRight;

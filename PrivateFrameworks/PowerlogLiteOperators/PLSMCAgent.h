@@ -17,6 +17,9 @@
 + (id)entryEventNoneDefinitions;
 + (id)entryEventIntervalDefinitions;
 + (id)entryEventBackwardDefinitionAccumulatedKeys;
++ (id)variantKey:(id)arg1;
++ (id)cycleCountKey:(id)arg1;
++ (id)channelValueKey:(id)arg1;
 + (id)entryEventBackwardDefinitions;
 + (id)entryEventForwardDefinitions;
 + (id)entryEventPointDefinitionThermalKeys;
@@ -29,9 +32,13 @@
 - (id)thermalKeys;
 - (id)keyBlacklist;
 - (BOOL)isBlacklisted:(id)arg1;
+- (_Bool)readKeyViaOSAccum:(id)arg1 toOutput:(CDStruct_7f7d6714 *)arg2;
+- (const struct SMCAccumChannelInfo *)getChannelInfo:(unsigned int)arg1;
+- (_Bool)sampleKey:(CDStruct_7f7d6714 *)arg1 forKey:(unsigned int)arg2;
 - (id)readKeyAsNumeric:(id)arg1;
 - (CDStruct_3d4409aa *)smcConnection;
 - (BOOL)accumSupported;
+- (void)logEventBackwardAccumulatedKeys;
 - (void)logEventPointThermalKeys;
 - (void)log;
 - (void)initOperatorDependancies;

@@ -55,6 +55,7 @@
 - (void)realtimeTextDidChange;
 - (void)gaButtonPressed:(id)arg1;
 - (void)deviceDidReceiveCharacter:(unsigned short)arg1 forUtterance:(id)arg2;
+- (id)currentContactPath;
 - (id)cannedResponses;
 - (id)cellAtIndexPath:(id)arg1;
 - (void)setTextViewUtterance:(id)arg1;

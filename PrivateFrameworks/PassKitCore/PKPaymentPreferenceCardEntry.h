@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSString, PKPaymentApplication, PKPaymentPass;
+@class NSString, PKPaymentApplication, PKPaymentPass, PKRemotePaymentInstrument;
 
 @interface PKPaymentPreferenceCardEntry : NSObject
 {
     BOOL _shouldShowCardUI;
     BOOL _isSelectable;
     PKPaymentPass *_pass;
+    PKRemotePaymentInstrument *_remotePaymentInstrument;
     PKPaymentApplication *_paymentApplication;
     NSString *_displayName;
     NSString *_availabilityString;
@@ -25,6 +26,7 @@
 @property(copy, nonatomic) NSString *availabilityString; // @synthesize availabilityString=_availabilityString;
 @property(copy, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 @property(retain, nonatomic) PKPaymentApplication *paymentApplication; // @synthesize paymentApplication=_paymentApplication;
+@property(retain, nonatomic) PKRemotePaymentInstrument *remotePaymentInstrument; // @synthesize remotePaymentInstrument=_remotePaymentInstrument;
 @property(retain, nonatomic) PKPaymentPass *pass; // @synthesize pass=_pass;
 - (void).cxx_destruct;
 

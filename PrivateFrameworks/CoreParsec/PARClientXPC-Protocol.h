@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSError, NSString, PARBag;
+@class NSError, NSString, NSUUID, PARBag;
 
 @protocol PARClientXPC <NSObject>
+- (void)sessionDidChange:(NSUUID *)arg1;
 - (void)didDeleteResource:(NSString *)arg1;
 - (void)didDownloadResource:(NSString *)arg1;
 - (void)bagDidLoad:(PARBag *)arg1 error:(NSError *)arg2;

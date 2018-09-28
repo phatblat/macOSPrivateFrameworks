@@ -21,6 +21,7 @@ __attribute__((visibility("hidden")))
     BOOL _hasBottomBorder;
     BOOL _usesBannerAppearance;
     BOOL _usesModernToolbarAppearance;
+    BOOL _usesMaterialPreferredAppearance;
     BOOL _usesBehindWindowBlending;
     BOOL _usesAppKitBannerView;
     NSColor *_bottomBorderColor;
@@ -34,6 +35,7 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSImage *backgroundImage; // @synthesize backgroundImage=_backgroundImage;
 @property(retain, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
 @property(retain, nonatomic) NSView *contentView; // @synthesize contentView=_contentView;
+@property(nonatomic) BOOL usesMaterialPreferredAppearance; // @synthesize usesMaterialPreferredAppearance=_usesMaterialPreferredAppearance;
 @property(nonatomic) BOOL usesModernToolbarAppearance; // @synthesize usesModernToolbarAppearance=_usesModernToolbarAppearance;
 @property(nonatomic) BOOL usesBannerAppearance; // @synthesize usesBannerAppearance=_usesBannerAppearance;
 @property(retain, nonatomic) NSColor *bottomBorderColor; // @synthesize bottomBorderColor=_bottomBorderColor;
@@ -43,11 +45,13 @@ __attribute__((visibility("hidden")))
 - (BOOL)accessibilityIsIgnored;
 - (id)accessibilityRole;
 - (void)_windowChangedKeyState;
+- (void)_applyUsesMaterialPreferredAppearance;
 - (void)_addBackdropDarkeningViewForModernToolbarAppearance;
 - (void)_addBottomBorderViewForModernToolbarAppearance;
 - (void)_addBackdropViewForModernToolbarAppearance;
 - (BOOL)isOpaque;
 - (void)drawRect:(struct CGRect)arg1;
+- (void)viewDidMoveToWindow;
 - (void)_drawBackgroundInRect:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

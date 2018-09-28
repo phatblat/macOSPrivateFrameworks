@@ -25,10 +25,8 @@ __attribute__((visibility("hidden")))
 - (void).cxx_destruct;
 - (void)handleNodeMDAttributesChanged:(const struct TFENode *)arg1 attributes:(id)arg2 isDisplayAttributes:(_Bool)arg3;
 - (void)handleNodesGoingAway:(const struct TFENodeVector *)arg1;
-- (void)handleBulkNodesDeleted:(const struct TCoalescedNodesAddedMap *)arg1 observedNodes:(const struct TFENodeVector *)arg2;
-- (void)handleBulkNodesChanged:(const struct TCoalescedNodesChangedMap *)arg1 observedNodes:(const struct TFENodeVector *)arg2;
-- (_Bool)performCmd:(SEL)arg1 forSender:(id)arg2;
-- (_Bool)validateCmd:(SEL)arg1 forSender:(id)arg2;
+- (void)handleBulkNodesDeleted:(const map_27534541 *)arg1 observedNodes:(const struct TFENodeVector *)arg2;
+- (void)handleBulkNodesChanged:(const map_253f12d2 *)arg1 observedNodes:(const struct TFENodeVector *)arg2;
 - (_Bool)canModifyNodes:(const struct TFENodeVector *)arg1;
 - (void)flush;
 - (_Bool)isApplicableToNodes:(const struct TFENodeVector *)arg1;

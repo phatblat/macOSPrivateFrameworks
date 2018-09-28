@@ -9,9 +9,9 @@
 @class NSArray, NSDictionary, NSString, NSURL, WBSFormControlMetadata, _WKFrameHandle;
 
 @protocol FormAutoFiller <NSObject>
-- (void)automaticPasswordExplanationDismissedInFrame:(_WKFrameHandle *)arg1 focusedPasswordControlUniqueID:(NSString *)arg2;
+- (void)removeAutomaticPasswordVisualTreatmentInFrame:(_WKFrameHandle *)arg1 formID:(double)arg2 passwordControlUniqueIDs:(NSArray *)arg3;
 - (void)removeAutomaticPasswordElementsInFrame:(_WKFrameHandle *)arg1 formID:(double)arg2 focusedPasswordControlUniqueID:(NSString *)arg3 passwordControlUniqueIDs:(NSArray *)arg4;
-- (void)substitutePasswordElementsWithAutomaticPasswordElementsInFrame:(_WKFrameHandle *)arg1 formID:(double)arg2 focusedPasswordControlUniqueID:(NSString *)arg3 passwordControlUniqueIDs:(NSArray *)arg4 automaticPassword:(NSString *)arg5;
+- (void)substitutePasswordElementsWithAutomaticPasswordElementsInFrame:(_WKFrameHandle *)arg1 formID:(double)arg2 focusedPasswordControlUniqueID:(NSString *)arg3 passwordControlUniqueIDs:(NSArray *)arg4 automaticPassword:(NSString *)arg5 blurAfterSubstitution:(BOOL)arg6;
 - (void)resumeLoadingAfterSavingFormData;
 - (void)textDidChangeDelayCompletedField:(NSString *)arg1 inFrame:(_WKFrameHandle *)arg2;
 - (void)collectMetadataForActiveForm:(void (^)(WBSFormMetadata *))arg1;

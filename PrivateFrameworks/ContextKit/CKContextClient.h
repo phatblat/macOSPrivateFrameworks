@@ -11,15 +11,15 @@
 @interface CKContextClient : NSObject
 {
     NSObject<OS_dispatch_queue> *_notificationsQueue;
+    NSSet *_capabilities;
     NSString *_indexVersionId;
     unsigned long long _defaultRequestType;
-    NSSet *_capabilities;
 }
 
 + (id)clientWithDefaultRequestType:(unsigned long long)arg1;
-@property(readonly, nonatomic) NSSet *capabilities; // @synthesize capabilities=_capabilities;
 @property(readonly, nonatomic) unsigned long long defaultRequestType; // @synthesize defaultRequestType=_defaultRequestType;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSSet *capabilities;
 - (id)indexVersionId;
 - (id)retrieveCapabilites;
 - (void)registerConfigurationUpdateHandler:(CDUnknownBlockType)arg1;

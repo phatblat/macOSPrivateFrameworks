@@ -9,11 +9,12 @@
 @class NSData, NSDictionary, NSString, NSUUID;
 
 @protocol IDSLinkDelegate <NSObject>
-- (BOOL)link:(id)arg1 didReceivePacket:(CDStruct_e844bd1c *)arg2 fromDeviceUniqueID:(NSString *)arg3 cbuuid:(NSString *)arg4;
+- (BOOL)link:(id)arg1 didReceivePacket:(CDStruct_18fdc6f4 *)arg2 fromDeviceUniqueID:(NSString *)arg3 cbuuid:(NSString *)arg4;
 - (void)link:(id)arg1 didDisconnectForDeviceUniqueID:(NSString *)arg2 cbuuid:(NSString *)arg3;
 - (void)link:(id)arg1 didConnectForDeviceUniqueID:(NSString *)arg2 cbuuid:(NSString *)arg3;
 
 @optional
+- (void)link:(id)arg1 didAddQREvent:(NSDictionary *)arg2;
 - (void)link:(id)arg1 didReceiveReportEvent:(NSDictionary *)arg2;
 - (void)link:(id)arg1 didReceiveSessionInfo:(NSDictionary *)arg2 relayGroupID:(NSString *)arg3 relaySessionID:(NSString *)arg4 success:(BOOL)arg5;
 - (void)link:(id)arg1 didCellularMTUChange:(unsigned short)arg2;

@@ -26,12 +26,12 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL shouldEnableFaceZoom; // @synthesize shouldEnableFaceZoom=_shouldEnableFaceZoom;
 @property(retain) VideoAttributes *remoteVideoAttributes; // @synthesize remoteVideoAttributes;
 - (void)handleActiveConnectionChange:(id)arg1;
-- (void)collectChannelMetrics:(CDStruct_1c8e0384 *)arg1;
+- (void)collectChannelMetrics:(CDStruct_1c8e0384 *)arg1 interval:(float)arg2;
 - (void)didSwitchFromStreamID:(unsigned short)arg1 toStreamID:(unsigned short)arg2;
 - (void)handleKeyFrameRequestWithSizeAndFistMBs:(unsigned short *)arg1 count:(int)arg2 didReceiveRTCPFB:(BOOL)arg3 didReceiveFIR:(BOOL)arg4;
 - (void)handleRequestingKeyFrameGenerationWithStreamID:(unsigned short)arg1;
 - (void)handleRemoteFrame:(struct __CVBuffer *)arg1 timestamp:(CDStruct_1b6d18a9)arg2 cameraStatusBits:(unsigned char)arg3;
-- (void)updateSourcePlayoutTimestamp:(unsigned int)arg1;
+- (void)updateSourcePlayoutTimestamp:(CDStruct_1b6d18a9 *)arg1;
 - (void)setEnableRateAdaptation:(BOOL)arg1 maxBitrate:(unsigned int)arg2 minBitrate:(unsigned int)arg3 adaptationInterval:(double)arg4;
 - (double)roundTripTime;
 - (void)setRoundTripTime:(double)arg1;

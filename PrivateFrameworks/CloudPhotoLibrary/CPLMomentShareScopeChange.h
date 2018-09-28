@@ -20,6 +20,7 @@
 @property(copy, nonatomic) CPLMomentShare *momentShare; // @synthesize momentShare=_momentShare;
 - (void).cxx_destruct;
 - (id)description;
+- (id)updatedLibraryInfoFromLibraryInfo:(id)arg1 didUpdate:(char *)arg2;
 - (void)_setupWithLibraryInfo:(id)arg1;
 
 @end

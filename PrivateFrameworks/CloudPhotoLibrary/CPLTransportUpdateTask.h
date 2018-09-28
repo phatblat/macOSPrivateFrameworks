@@ -11,6 +11,7 @@
 }
 
 - (id)taskIdentifier;
+- (BOOL)shouldSkipScopesWithMissingTransportScope;
 - (id)newScopedTaskWithScope:(id)arg1 transportScope:(id)arg2 clientCacheIdentifier:(id)arg3;
 - (id)enumerateScopesForTaskInTransaction:(id)arg1;
 

@@ -43,17 +43,21 @@
     NSObject<OS_dispatch_source> *_openTimer;
     NSObject<OS_dispatch_source> *_staleConnectionTimer;
     unsigned long long _readWriteCounter;
+    double _staleConnectionInterval;
 }
 
 + (void)getMetricsContext:(CDUnknownBlockType)arg1;
 - (void).cxx_destruct;
 - (void)writeData:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)readData:(CDUnknownBlockType)arg1;
+- (void)setStaleInterval:(double)arg1;
 - (void)setEnforceExtendedValidation:(BOOL)arg1;
 - (void)setConnectByPOPMethod:(BOOL)arg1;
 - (void)setPrefersWWAN:(BOOL)arg1;
 - (void)setProviderConnectionPolicy:(id)arg1;
 - (void)setPolicyRoute:(id)arg1;
+- (void)setRetransmitConnectionDropTime:(double)arg1;
+- (void)setKeepAlive:(double)arg1 withInterval:(double)arg2 withCount:(unsigned long long)arg3;
 - (void)setScopeIsWiFiOnly;
 - (BOOL)isCanceled;
 - (BOOL)isReady;

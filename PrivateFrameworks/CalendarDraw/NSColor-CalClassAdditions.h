@@ -7,17 +7,10 @@
 #import "NSColor.h"
 
 @interface NSColor (CalClassAdditions)
-+ (id)_findColorForName:(id)arg1;
-+ (id)_getAlternateNameForColorName:(id)arg1 inAppearance:(id)arg2;
-+ (id)cal_dynamicColorNamed:(id)arg1 forView:(id)arg2;
-+ (id)cal_dynamicColorNamed:(id)arg1 forAppearance:(id)arg2;
-+ (id)cal_dynamicColorNamed:(id)arg1;
 + (id)_adjustColor:(id)arg1 withCurrentLuminance:(double)arg2 toLuminance:(double)arg3 blendFraction:(double)arg4;
 @property(readonly) double cal_luminance;
 @property(readonly) BOOL cal_isLightColor;
 @property(readonly) BOOL cal_isDarkColor;
-- (id)cal_dynamicColorForView:(id)arg1;
-- (id)cal_dynamicColorForAppearance:(id)arg1;
 - (id)cal_adjustedToAtMostLuminance:(double)arg1;
 - (id)cal_adjustedToAtLeastLuminance:(double)arg1;
 @end

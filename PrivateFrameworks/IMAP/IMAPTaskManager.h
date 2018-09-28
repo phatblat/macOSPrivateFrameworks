@@ -6,15 +6,16 @@
 
 #import "MCTaskManager.h"
 
-@class IMAPAccountSyncTask, NSConditionLock, NSCountedSet, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
+@class IMAPAccountSyncTask, NSConditionLock, NSCountedSet, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, _IMAPLock;
 
 @interface IMAPTaskManager : MCTaskManager
 {
+    _IMAPLock *_mailboxSyncLock;
     NSMutableDictionary *_mailboxSyncTasks;
+    NSMutableSet *_inSyncMailboxes;
     NSMutableDictionary *_bodyFetchTasks;
     NSMutableDictionary *_localActionSyncTasks;
     NSMutableArray *_allLocalActions;
-    NSMutableSet *_inSyncMailboxes;
     NSMutableSet *_mailboxesCheckedForIncomplete;
     NSMutableSet *_mailboxesUpdatingUIDValidity;
     NSMutableSet *_dataSourcesWaitingForBodySync;

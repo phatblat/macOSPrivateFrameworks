@@ -31,7 +31,7 @@
 #import "WindowFunctionBarProviderDataSource.h"
 #import "WindowFunctionBarProviderDelegate.h"
 
-@class AutomaticReadingListContentProvider, AutomationTouchBarProvider, BackgroundColorView, BackgroundLoadController, BookmarksSidebarTitleTextView, BrowserTabGroupPersistentState, BrowserTabViewItem, BrowserTitlebarAccessoryViewController, BrowserViewController, BrowserWindow, BrowserWindowContentSplitViewController, BrowserWindowPersistentState, BrowserWindowTabViewController, FavoritesBarView, FavoritesPickerVisibilityManager, FormTextStatusWatcher, NSArray, NSMapTable, NSMenu, NSMutableArray, NSMutableSet, NSPopover, NSString, NSTextView, NSTimer, NSTitlebarAccessoryViewController, NSURL, NSUUID, NSView, OneStepBookmarkingButtonController, OverlayStatusWindowController, PerSitePreferencesPopoverManager, PopupWindowUnifiedField, PopupWindowUnifiedFieldViewController, ReadingListContentProvider, SidebarViewController, StatusMessage, TabBarView, TabContentViewController, TextFieldEditor, ToolbarController, ToolbarNewTabButtonViewController, UnifiedField, UnifiedFieldEditor, UnifiedFieldSecurityUIManager, VisualTabPickerSnapshotCache, VisualTabPickerViewController, WBSFaviconRequestsController, WBSFluidProgressController, WebViewController, WindowFunctionBarProvider;
+@class AutomaticReadingListContentProvider, AutomationTouchBarProvider, BackgroundColorView, BackgroundLoadController, BookmarksSidebarTitleTextView, BrowserTabGroupPersistentState, BrowserTabViewItem, BrowserTitlebarAccessoryViewController, BrowserViewController, BrowserWindow, BrowserWindowContentSplitViewController, BrowserWindowPersistentState, BrowserWindowTabViewController, FavoritesBarView, FavoritesPickerVisibilityManager, FormTextStatusWatcher, NSArray, NSClipView, NSMapTable, NSMenu, NSMutableArray, NSMutableSet, NSPopover, NSString, NSTextView, NSTimer, NSTitlebarAccessoryViewController, NSURL, NSUUID, NSView, OneStepBookmarkingButtonController, OverlayStatusWindowController, PerSitePreferencesPopoverManager, PopupWindowUnifiedField, PopupWindowUnifiedFieldViewController, ReadingListContentProvider, SidebarViewController, StatusMessage, TabBarView, TabContentViewController, TextFieldEditor, ToolbarController, ToolbarNewTabButtonViewController, UnifiedField, UnifiedFieldEditor, UnifiedFieldSecurityUIManager, VisualTabPickerSnapshotCache, VisualTabPickerViewController, WBSFaviconRequestsController, WBSFluidProgressController, WebViewController, WindowFunctionBarProvider;
 
 __attribute__((visibility("hidden")))
 @interface BrowserWindowController : WindowController <BackgroundLoadControllerDelegate, BrowserWindowContentSplitViewControllerDelegate, BrowserWindowTabViewControllerDelegate, FormTextStatusWatcherDelegate, OverlayStatusWindowDelegate, TabDraggingWindowDestination, TabBarViewDelegate, ToolbarControllerDelegate, UnifiedFieldSecurityUIManagerDelegate, VisualTabPickerDelegate, FavoritesPickerVisibilityController, FavoritesPickerVisibilityManagerDataSource, WindowFunctionBarProviderDataSource, WindowFunctionBarProviderDelegate, WBSFluidProgressRocketEffectDelegate, BrowserContentLoaderDelegate, BrowserWindowDelegate, Command1Through9Receiver, ImageHopAnimationDelegate, NSMenuDelegate, NSSplitViewDelegate, SearchableWKViewPlaybackControlsPresenter, UnifiedFieldDelegate, WBSFluidProgressControllerWindowDelegate>
@@ -64,6 +64,7 @@ __attribute__((visibility("hidden")))
     long long _windowType;
     SidebarViewController *_cachedSidebarViewController;
     double _sidebarWidth;
+    NSClipView *_windowContentSplitViewClipView;
     BrowserWindowContentSplitViewController *_windowContentSplitViewController;
     PerSitePreferencesPopoverManager *_perSitePreferencesPopoverManager;
     BOOL _disableSnapshotRestoration;
@@ -251,6 +252,8 @@ __attribute__((visibility("hidden")))
 - (BOOL)_isToolbarBlurringEnabledInFullScreen;
 - (long long)_readerButtonState;
 - (void)_setReaderButtonState:(long long)arg1 animate:(BOOL)arg2;
+- (void)tabContentViewControllerDidChangeCurrentViewController:(id)arg1;
+- (void)tabContentViewControllerWillChangeCurrentViewController:(id)arg1;
 - (void)willStartExitAnimationForVisualTabPickerController:(id)arg1;
 - (void)visualTabPickerController:(id)arg1 selectTab:(id)arg2;
 - (BOOL)createNewTabForVisualTabPickerController:(id)arg1;
@@ -264,8 +267,8 @@ __attribute__((visibility("hidden")))
 - (void)_updateVisualTabPickerButton;
 - (void)_updateVisualTabPickerTabBarSnapshot;
 - (void)_takeOffscreenToolbarSnapshotForVisualTabPickerAnimation;
-- (void)cancelVisualTabPickerSnapshotUpdateForTabContentView:(id)arg1;
-- (void)updateVisualTabPickerSnapshotForTabContentView:(id)arg1;
+- (void)cancelVisualTabPickerSnapshotUpdateForTabContentViewController:(id)arg1;
+- (void)updateVisualTabPickerSnapshotForTabContentViewController:(id)arg1;
 - (void)toggleVisualTabPickerFromMenu:(id)arg1;
 - (void)toggleVisualTabPicker:(id)arg1;
 - (void)focusVisualTabPickerSearchField;
@@ -466,7 +469,7 @@ __attribute__((visibility("hidden")))
 - (void)_closeWindowIfPossible;
 - (void)_closeOtherTabsWithoutConfirming:(id)arg1;
 - (void)_closeTabWithoutConfirming:(id)arg1 allowUndo:(BOOL)arg2;
-- (void)_closeTabWithoutConfirming:(id)arg1;
+- (void)closeTabViewItemWithoutConfirming:(id)arg1;
 - (void)closeTabWithoutConfirmingWithUUID:(id)arg1;
 - (void)_selectTab:(id)arg1;
 - (void)_didSelectNewTab:(id)arg1 withLastSelectedTab:(id)arg2;
@@ -502,8 +505,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)_canToggleTabBarVisibility;
 - (void)_setUpTabBar;
 - (id)_unpinnedTabs;
-- (id)_findTabForBrowserViewController:(id)arg1;
-- (id)_findTabForBrowserViewController:(id)arg1 inTabViewItems:(id)arg2;
 - (struct TabPlacementHint)_currentTabPlacementHint;
 - (void)_applyNewBrowserViewBehavior:(long long)arg1 toBrowserViewController:(id)arg2 usingReferenceBrowserViewController:(id)arg3;
 - (BOOL)_canPrintFromToolbar;
@@ -523,7 +524,6 @@ __attribute__((visibility("hidden")))
 - (id)_attachedSheet;
 - (void)_didReplaceBrowserWKViewInTab:(id)arg1 shouldUpdateFluidProgressController:(BOOL)arg2;
 @property(readonly, nonatomic) BrowserViewController *currentBrowserViewControllerForNavigationPurposes;
-- (id)continuousReadingListViewControllerForBrowserViewController:(id)arg1;
 - (BOOL)continuousPageViewIsHandlingPageTransitionOrLoadingPageItem;
 - (BOOL)isInContinuousMode;
 - (void)_stopPostponingCoalescedUnifiedFieldUpdates;
@@ -580,7 +580,6 @@ __attribute__((visibility("hidden")))
 - (void)toolbarItem:(const struct ExtensionToolbarItem *)arg1 handleNavigationAction:(id)arg2 request:(id)arg3;
 - (void)bar:(const struct ExtensionBar *)arg1 handleNavigationAction:(id)arg2 request:(id)arg3;
 @property(readonly, nonatomic) BrowserTabViewItem *onlyUnpinnedDisposableTab;
-- (BOOL)shouldBlockTabsFromResizing;
 - (BOOL)closeKeyEquivalentClosesTab;
 - (void)dealloc;
 - (void)_updateSecurityUI;
@@ -744,7 +743,6 @@ __attribute__((visibility("hidden")))
 - (void)tryToCloseWindowWhenReady;
 - (void)tryToCloseOtherTabs:(id)arg1;
 - (void)tryToCloseOtherTabsWhenReady:(id)arg1;
-- (void)closeTabForBrowserViewControllerWithoutConfirming:(id)arg1;
 - (void)closeTabOrWindowWithoutConfirming:(id)arg1;
 - (void)tryToCloseTabWhenReady:(id)arg1;
 - (void)_closePageAfterChecks:(id)arg1;
@@ -823,16 +821,14 @@ __attribute__((visibility("hidden")))
 - (void)browserWindowTabViewController:(id)arg1 willSelectTabViewItem:(id)arg2;
 - (id)makeBrowserViewControllerInInactiveTabWithPosition:(int)arg1;
 - (id)makeBrowserViewControllerInTabAtIndex:(unsigned long long)arg1 relatedToPage:(const struct Page *)arg2 withWebsiteDataStore:(id)arg3 andSelect:(BOOL)arg4;
-- (id)makeBrowserViewControllerInTabAtIndex:(unsigned long long)arg1 withWebsiteDataStore:(id)arg2 andSelect:(BOOL)arg3;
 - (id)makeBrowserViewControllerInTabAtIndex:(unsigned long long)arg1 relatedToPage:(const struct Page *)arg2 andSelect:(BOOL)arg3;
+- (id)makeBrowserViewControllerInTabAtIndex:(unsigned long long)arg1 withWebsiteDataStore:(id)arg2 andSelect:(BOOL)arg3;
 - (id)makeBrowserViewControllerInTabAtIndex:(unsigned long long)arg1 andSelect:(BOOL)arg2;
 - (id)makeBrowserViewControllerInTabWithPosition:(int)arg1;
 - (unsigned long long)indexOfTabViewItem:(id)arg1;
 - (unsigned long long)selectedTabIndex;
 - (id)selectedTab;
 @property(readonly, nonatomic) WebViewController *currentBrowserOrOverlayViewController;
-- (id)tabViewItemForBrowserViewController:(id)arg1;
-- (id)_tabViewItemForBrowserViewController:(id)arg1 inTabViewItems:(id)arg2;
 - (void)removeFromOrderedTabViewItemsAtIndex:(unsigned int)arg1;
 - (void)replaceInOrderedTabViewItems:(id)arg1 atIndex:(unsigned int)arg2;
 - (void)insertInOrderedTabViewItems:(id)arg1 atIndex:(unsigned int)arg2;
@@ -864,7 +860,7 @@ __attribute__((visibility("hidden")))
 - (id)_favoritesBarViewController;
 - (BOOL)checkIfBookmarksChangesAreAllowedPromptingIfNecessary;
 - (BOOL)isAvailableForForcedLocationUsingWindowPolicy:(long long)arg1;
-- (void)_updateTabTitlesNow;
+- (void)_updateTabTitlesNowUseFastPath:(BOOL)arg1;
 - (id)toolbarItemExtensionTargetForToolbarController:(id)arg1;
 - (void)mouseDownInVisualTabPickerButtonInToolbarController:(id)arg1;
 - (void)mouseDidExitVisualTabPickerButtonInToolbarController:(id)arg1;
@@ -980,9 +976,6 @@ __attribute__((visibility("hidden")))
 - (void)_startReadingListHopAnimationUsingStartPoint:(struct CGPoint)arg1 withImage:(id)arg2;
 - (void)startReadingListHopAnimationUsingStartPoint:(struct CGPoint)arg1;
 - (void)currentWKViewDidSwipeSnapshotToRect:(struct CGRect)arg1;
-- (void)navigationGestureDidEndWillNavigate:(BOOL)arg1;
-- (void)navigationGestureDidBegin;
-- (BOOL)_navigationGestureWillSwipeBothSidebarAndStartPage;
 - (void)didCollectPageLayoutInformationForSidebarAnimationBeforeResize;
 - (void)forceContentRepaintAndCollectPageLayoutInformationForSidebarAnimationAfterResize;
 - (void)collectPageLayoutInformationForSidebarAnimationBeforeResize;

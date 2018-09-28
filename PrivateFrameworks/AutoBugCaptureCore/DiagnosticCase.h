@@ -66,7 +66,7 @@
 - (void)reportGeneratorEnded:(id)arg1 reportInfo:(id)arg2 error:(id)arg3 isFinalReportGenerator:(BOOL)arg4;
 - (void)startCollectingAllReports;
 - (id)deParametersFromPayloads;
-- (void)startCollectingDiagnosticExtensions;
+- (void)startCollectingDiagnosticExtensions:(id)arg1;
 - (void)collectLogs;
 - (void)finishCase;
 - (void)prepareCase;

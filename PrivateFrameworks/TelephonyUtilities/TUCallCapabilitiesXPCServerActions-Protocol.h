@@ -9,7 +9,7 @@
 @class NSString, NSUUID;
 
 @protocol TUCallCapabilitiesXPCServerActions <NSObject>
-- (oneway void)endEmergencyCallbackModeForSenderIdentityWithUUID:(NSUUID *)arg1;
+- (oneway void)endEmergencyCallbackMode;
 - (oneway void)cancelPinRequestFromPrimaryDevice;
 - (oneway void)requestPinFromPrimaryDevice;
 - (oneway void)invalidateAndRefreshThumperCallingProvisioningURLForSenderIdentityWithUUID:(NSUUID *)arg1;

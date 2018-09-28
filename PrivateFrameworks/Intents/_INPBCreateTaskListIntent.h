@@ -6,25 +6,22 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBCreateTaskListIntent.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBDataString, _INPBIntentMetadata;
+@class NSArray, NSString, _INPBDataString, _INPBIntentMetadata;
 
-@interface _INPBCreateTaskListIntent : PBCodable <_INPBCreateTaskListIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBCreateTaskListIntent : PBCodable <_INPBCreateTaskListIntent, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBDataString *_groupName;
     _INPBIntentMetadata *_intentMetadata;
     NSArray *_taskTitles;
     _INPBDataString *_title;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)taskTitlesType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBDataString *title; // @synthesize title=_title;
 @property(copy, nonatomic) NSArray *taskTitles; // @synthesize taskTitles=_taskTitles;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;

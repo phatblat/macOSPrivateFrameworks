@@ -32,7 +32,7 @@
 
 - (void).cxx_destruct;
 - (id)results;
-- (int)finishAnalysisPass:(CDStruct_e83c9415)arg1;
+- (int)finishAnalysisPass:(CDStruct_e83c9415)arg1 fpsRate:(float)arg2;
 - (void)addSceneClassificationContributionToActivityLevel:(float *)arg1;
 - (float)actionScoreInTimeRange:(CDStruct_e83c9415)arg1;
 - (void)addSceneSwitchFrequencyConstributionToActivityLevel:(float *)arg1;

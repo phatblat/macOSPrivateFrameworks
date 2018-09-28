@@ -37,6 +37,7 @@
 - (void)openAttachmentWithApplication:(id)arg1;
 - (void)openAttachment:(id)arg1;
 - (id)tokenField:(id)arg1 setUpTokenAttachmentCell:(id)arg2 forRepresentedObject:(id)arg3;
+- (BOOL)tokenField:(id)arg1 writeRepresentedObjects:(id)arg2 toPasteboard:(id)arg3;
 - (id)tokenField:(id)arg1 displayStringForRepresentedObject:(id)arg2;
 - (id)init;
 - (BOOL)allowsVibrancy;

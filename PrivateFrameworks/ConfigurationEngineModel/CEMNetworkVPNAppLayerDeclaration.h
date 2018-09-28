@@ -16,14 +16,17 @@
     NSArray *_payloadSafariDomains;
     NSNumber *_payloadOnDemandMatchAppEnabled;
     NSArray *_payloadSMBDomains;
+    NSString *_payloadProviderType;
 }
 
-+ (id)buildWithIdentifier:(id)arg1 withVPNUUID:(id)arg2 withSafariDomains:(id)arg3 withOnDemandMatchAppEnabled:(id)arg4 withSMBDomains:(id)arg5;
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withVPNUUID:(id)arg2;
++ (id)buildWithIdentifier:(id)arg1 withVPNUUID:(id)arg2 withSafariDomains:(id)arg3 withOnDemandMatchAppEnabled:(id)arg4 withSMBDomains:(id)arg5 withProviderType:(id)arg6;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;
 + (id)profileType;
 + (id)registeredIdentifier;
 + (id)registeredClassName;
+@property(copy, nonatomic) NSString *payloadProviderType; // @synthesize payloadProviderType=_payloadProviderType;
 @property(copy, nonatomic) NSArray *payloadSMBDomains; // @synthesize payloadSMBDomains=_payloadSMBDomains;
 @property(copy, nonatomic) NSNumber *payloadOnDemandMatchAppEnabled; // @synthesize payloadOnDemandMatchAppEnabled=_payloadOnDemandMatchAppEnabled;
 @property(copy, nonatomic) NSArray *payloadSafariDomains; // @synthesize payloadSafariDomains=_payloadSafariDomains;

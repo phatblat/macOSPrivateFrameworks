@@ -22,6 +22,8 @@ __attribute__((visibility("hidden")))
     struct TNSRef<FI_TDesktopTitleBubbleView, void> _titleBubbleView;
     struct TNSRef<FI_TTextField, void> _subtitleField;
     struct TICloudStateCoordinator _iCloudStateCoordinator;
+    function_b1fce659 _iCloudDownloadHandler;
+    struct TString _iCloudSubtitleToolTip;
     struct CGSize _iconSize;
     struct TString _titleStr;
     struct TNSRef<NSFont, void> _titleFont;
@@ -32,6 +34,7 @@ __attribute__((visibility("hidden")))
     struct TNSRef<NSColor, void> _subtitleFontColor;
     double _gridSpacing;
     vector_12bd641b _tagColorIndexes;
+    struct TNSRef<NSImage, void> _badgeImage;
     struct TNSRef<NSColor, void> _superViewsBackgroundColor;
     struct TNSRef<NSColor, void> _fontSmoothingBackgroundColor;
     struct TNSRef<NSImage, void> _placeholderTagImage;
@@ -45,6 +48,7 @@ __attribute__((visibility("hidden")))
     _Bool _isEditing;
     _Bool _isSpringBlinkingOff;
     _Bool _useActiveAppearance;
+    _Bool _isOverlappingTitle;
     _Bool _isSelectionBordered;
     _Bool _isTornDown;
     id <TDraggingDestinationDelegate><TSpringLoadingDestinationDelegate> _delegate;
@@ -67,9 +71,8 @@ __attribute__((visibility("hidden")))
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)accessibilityHitTest:(struct CGPoint)arg1;
-- (id)accessibilityCustomActions;
-- (BOOL)accessibilityPerformOpen;
-- (BOOL)accessibilityPerformShowMenu;
+- (void)accessibilityPerformAction:(id)arg1;
+- (id)accessibilityActionNames;
 - (BOOL)isAccessibilitySelected;
 - (id)accessibilityTitle;
 - (id)accessibilityHelp;
@@ -80,10 +83,16 @@ __attribute__((visibility("hidden")))
 - (BOOL)isAccessibilityEnabled;
 - (id)accessibilityLabel;
 - (BOOL)isAccessibilityElement;
-- (void)configureBadgeImageView:(_Bool)arg1;
-- (void)configureSubtitleField;
-- (void)configureTitleBubbleView;
-- (void)configureIconSelectionView;
+- (void)layoutBadgeImageView:(const struct CGRect *)arg1;
+- (void)dirtyLayoutForBadgeImageViewIfNeeded;
+- (void)layoutSubtitleField:(const struct CGRect *)arg1;
+- (void)configureSubtitleFieldBeforeLayout;
+- (void)dirtyLayoutForSubtitleBubbleViewIfNeeded;
+- (void)layoutTitleBubbleView:(const struct CGRect *)arg1;
+- (void)configureTitleBubbleViewBeforeLayout;
+- (void)dirtyLayoutForTitleBubbleViewIfNeeded;
+- (void)layoutIconSelectionView:(struct CGRect)arg1;
+- (void)dirtyLayoutForIconSelectionViewIfNeeded;
 - (void)layoutTitleAndSubtitleInBounds:(const struct CGRect *)arg1 iconViewFrame:(const struct CGRect *)arg2;
 - (void)layout;
 - (_Bool)isAnimating;
@@ -129,6 +138,8 @@ __attribute__((visibility("hidden")))
 - (void)mouseDown:(id)arg1;
 - (struct CGRect)titleEditingFrame;
 - (struct CGRect)titleDraggingFrame;
+- (_Bool)overlappingTitle:(id)arg1 inCollectionView:(id)arg2;
+- (id)titleBubbleView;
 - (struct CGRect)titleBubbleFrame;
 - (struct CGRect)titleFrame;
 - (struct CGRect)_iconFrame;
@@ -140,6 +151,7 @@ __attribute__((visibility("hidden")))
 @property _Bool useActiveAppearance; // @synthesize useActiveAppearance=_useActiveAppearance;
 @property(getter=isDragItem) _Bool dragItem; // @synthesize dragItem=_isDragItem;
 @property(getter=isDropTarget) _Bool dropTarget; // @synthesize dropTarget=_isDropTarget;
+@property(getter=isOverlappingTitle) _Bool overlappingTitle; // @dynamic overlappingTitle;
 @property(getter=isSelectionBordered) _Bool selectionBordered; // @synthesize selectionBordered=_isSelectionBordered;
 @property(getter=isSelected) _Bool selected; // @synthesize selected=_isSelected;
 @property(getter=isDimmed) _Bool dimmed; // @dynamic dimmed;

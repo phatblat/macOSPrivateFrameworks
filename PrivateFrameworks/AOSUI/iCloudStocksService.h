@@ -14,7 +14,7 @@
 {
 }
 
-- (BOOL)hasPreflightAction;
+- (BOOL)isDataService;
 - (id)icon;
 - (void)dealloc;
 

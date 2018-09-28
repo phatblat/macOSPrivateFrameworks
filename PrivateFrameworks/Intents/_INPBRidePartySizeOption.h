@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBRidePartySizeOption.h"
 
-@class INCodableAttribute, NSString, _INPBPriceRangeValue, _INPBRangeValue;
+@class NSString, _INPBPriceRangeValue, _INPBRangeValue;
 
-@interface _INPBRidePartySizeOption : PBCodable <_INPBRidePartySizeOption, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBRidePartySizeOption : PBCodable <_INPBRidePartySizeOption, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBRangeValue *_partySizeRange;
     _INPBPriceRangeValue *_priceRange;
     NSString *_sizeDescription;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *sizeDescription; // @synthesize sizeDescription=_sizeDescription;
 @property(retain, nonatomic) _INPBPriceRangeValue *priceRange; // @synthesize priceRange=_priceRange;
 @property(retain, nonatomic) _INPBRangeValue *partySizeRange; // @synthesize partySizeRange=_partySizeRange;

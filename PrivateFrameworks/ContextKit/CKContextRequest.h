@@ -73,6 +73,8 @@
 @property(retain, nonatomic, setter=setText:) NSString *text; // @synthesize text=_text;
 - (void).cxx_destruct;
 - (void)_executeWithReply:(CDUnknownBlockType)arg1;
+- (void)_postProcessResponse:(id)arg1;
+- (id)execute;
 - (void)executeWithReply:(CDUnknownBlockType)arg1;
 - (id)initForClient:(id)arg1;
 - (id)initWithText:(id)arg1;

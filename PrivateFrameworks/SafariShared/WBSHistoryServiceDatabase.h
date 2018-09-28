@@ -61,10 +61,10 @@
 - (id)_preparePlan:(struct DeletionPlan *)arg1 ageLimit:(double)arg2 itemCountLimit:(unsigned long long)arg3;
 - (id)_deleteOldestItems:(unsigned long long)arg1 forPlan:(struct DeletionPlan *)arg2;
 - (unsigned long long)_countOfItems;
-- (id)_preparePlan:(struct DeletionPlan *)arg1 itemsToDelete:(const unordered_set_da619913 *)arg2 visitsToDelete:(const unordered_set_da619913 *)arg3;
+- (id)_preparePlan:(struct DeletionPlan *)arg1 itemsToDelete:(const unordered_set_da619913 *)arg2 visitsToDelete:(const unordered_set_da619913 *)arg3 afterDate:(id)arg4 beforeDate:(id)arg5;
 - (id)_findObsoleteItemsForPlan:(struct DeletionPlan *)arg1;
 - (id)_findAllRelatedVisitsToItems:(const unordered_set_da619913 *)arg1 forPlan:(struct DeletionPlan *)arg2;
-- (id)_findAllRelatedVisits:(const unordered_set_da619913 *)arg1 forPlan:(struct DeletionPlan *)arg2;
+- (id)_findAllRelatedVisits:(const unordered_set_da619913 *)arg1 forPlan:(struct DeletionPlan *)arg2 afterDate:(id)arg3 beforeDate:(id)arg4;
 - (void)recomputeItemScoresWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (id)_recomputeItemScores:(unordered_set_da619913 *)arg1;
 - (id)_recomputeVisitScores:(unordered_set_da619913 *)arg1;

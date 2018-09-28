@@ -10,6 +10,7 @@
 
 @interface NUIContainerView : NSView
 {
+    BOOL _isRTL;
     id <NUIContainerViewDelegate> _delegate;
     NSMutableArray *_arrangedSubviews;
     NSArray *_visibleArrangedSubviews;
@@ -95,6 +96,7 @@
 - (void)setFrameSize:(struct CGSize)arg1;
 - (struct NSEdgeInsets)effectiveLayoutMargins;
 - (BOOL)isInBatchUpdate;
+- (struct CGRect)effectiveLayoutBounds;
 
 @end
 

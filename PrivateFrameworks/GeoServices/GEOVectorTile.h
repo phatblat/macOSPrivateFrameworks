@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class GEOFeatureStyleAttributes, NSData, NSMutableArray, NSMutableData, NSMutableOrderedSet;
+@class GEOFeatureStyleAttributes, NSData, NSMutableArray, NSMutableData, NSMutableDictionary, NSMutableOrderedSet;
 
 @interface GEOVectorTile : NSObject
 {
@@ -165,8 +165,26 @@
     unsigned long long _transitNodeCollapseIndexCount;
     unsigned long long *_transitNodeCollapseIDs;
     unsigned long long _transitNodeCollapseIDCount;
+    struct GEOsslpmTileInfo *_sslpmTileInfo;
+    unsigned int _tileLabelLinesCount;
+    struct GEOTileLabelLine *_tileLabelLines;
+    unsigned int _labelLineFeatureSectionsCount;
+    struct GEOLabelLineFeatureSection *_labelLineFeatureSections;
+    unsigned int _labelLineAttributesCount;
+    struct GEOLabelLineAttribute *_labelLineAttributes;
+    unsigned int _debugByteCount;
+    NSMutableDictionary *_debugByteCountPerChapter;
 }
 
+@property(readonly, nonatomic) NSMutableDictionary *debugByteCountPerChapter; // @synthesize debugByteCountPerChapter=_debugByteCountPerChapter;
+@property(readonly, nonatomic) unsigned int debugByteCount; // @synthesize debugByteCount=_debugByteCount;
+@property(readonly, nonatomic) struct GEOLabelLineAttribute *labelLineAttributes; // @synthesize labelLineAttributes=_labelLineAttributes;
+@property(readonly, nonatomic) unsigned int labelLineAttributesCount; // @synthesize labelLineAttributesCount=_labelLineAttributesCount;
+@property(readonly, nonatomic) struct GEOLabelLineFeatureSection *labelLineFeatureSections; // @synthesize labelLineFeatureSections=_labelLineFeatureSections;
+@property(readonly, nonatomic) unsigned int labelLineFeatureSectionsCount; // @synthesize labelLineFeatureSectionsCount=_labelLineFeatureSectionsCount;
+@property(readonly, nonatomic) struct GEOTileLabelLine *tileLabelLines; // @synthesize tileLabelLines=_tileLabelLines;
+@property(readonly, nonatomic) unsigned int tileLabelLinesCount; // @synthesize tileLabelLinesCount=_tileLabelLinesCount;
+@property(readonly, nonatomic) struct GEOsslpmTileInfo *sslpmTileInfo; // @synthesize sslpmTileInfo=_sslpmTileInfo;
 @property(readonly, nonatomic) unsigned long long transitNodeCollapseIDCount; // @synthesize transitNodeCollapseIDCount=_transitNodeCollapseIDCount;
 @property(readonly, nonatomic) unsigned long long *transitNodeCollapseIDs; // @synthesize transitNodeCollapseIDs=_transitNodeCollapseIDs;
 @property(readonly, nonatomic) unsigned long long transitNodeCollapseIndexCount; // @synthesize transitNodeCollapseIndexCount=_transitNodeCollapseIndexCount;
@@ -250,6 +268,7 @@
 @property(readonly, nonatomic) unsigned long long linesCount; // @synthesize linesCount=_linesCount;
 @property(readonly, nonatomic) CDStruct_9c468c1c *lines; // @synthesize lines=_lines;
 - (void).cxx_destruct;
+- (struct GEOTileLabelLine *)tileLabelLineforLabelLineID:(unsigned long long)arg1;
 - (CDStruct_8f1ffc8e *)transitSystemInfoForFeatureID:(unsigned long long)arg1;
 - (CDStruct_bb918861 *)transitAccessPointForFeatureID:(unsigned long long)arg1;
 - (struct GEOTransitNodeFeature *)transitNodeForFeatureID:(unsigned long long)arg1;
@@ -292,6 +311,7 @@
 - (BOOL)_readExtendedPointAttributes:(CDStruct_effb527d *)arg1;
 - (BOOL)_readConnectivity:(CDStruct_effb527d *)arg1;
 - (BOOL)_readRoadNetwork:(CDStruct_effb527d *)arg1;
+- (BOOL)_readLabelPlacementMetadata:(CDStruct_effb527d *)arg1;
 - (BOOL)_readLabelAnnotations:(CDStruct_effb527d *)arg1 key:(const struct _GEOTileKey *)arg2 forLines:(BOOL)arg3;
 - (BOOL)_readCoverage:(CDStruct_effb527d *)arg1;
 - (BOOL)_readTransitMZROverride:(CDStruct_effb527d *)arg1;

@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBRequestRideIntent.h"
 
-@class INCodableAttribute, NSString, _INPBDataString, _INPBDateTimeRange, _INPBInteger, _INPBIntentMetadata, _INPBLocation, _INPBPaymentMethod;
+@class NSString, _INPBDataString, _INPBDateTimeRange, _INPBInteger, _INPBIntentMetadata, _INPBLocation, _INPBPaymentMethod;
 
-@interface _INPBRequestRideIntent : PBCodable <_INPBRequestRideIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBRequestRideIntent : PBCodable <_INPBRequestRideIntent, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int usesApplePayForPayment:1;
@@ -28,10 +27,8 @@
     _INPBDateTimeRange *_pickupTime;
     _INPBDataString *_rideOptionName;
     _INPBDateTimeRange *_scheduledPickupTime;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) BOOL usesApplePayForPayment; // @synthesize usesApplePayForPayment=_usesApplePayForPayment;
 @property(retain, nonatomic) _INPBDateTimeRange *scheduledPickupTime; // @synthesize scheduledPickupTime=_scheduledPickupTime;
 @property(retain, nonatomic) _INPBDataString *rideOptionName; // @synthesize rideOptionName=_rideOptionName;

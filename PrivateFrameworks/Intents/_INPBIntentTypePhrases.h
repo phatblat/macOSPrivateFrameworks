@@ -6,22 +6,19 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBIntentTypePhrases.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBIntentType;
+@class NSArray, NSString, _INPBIntentType;
 
-@interface _INPBIntentTypePhrases : PBCodable <_INPBIntentTypePhrases, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBIntentTypePhrases : PBCodable <_INPBIntentTypePhrases, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBIntentType *_intentType;
     NSArray *_intentVocabularyExamples;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *intentVocabularyExamples; // @synthesize intentVocabularyExamples=_intentVocabularyExamples;
 @property(retain, nonatomic) _INPBIntentType *intentType; // @synthesize intentType=_intentType;
 - (void).cxx_destruct;

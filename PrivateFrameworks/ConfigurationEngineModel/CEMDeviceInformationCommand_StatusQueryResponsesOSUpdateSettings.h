@@ -22,6 +22,7 @@
     NSNumber *_statusAutomaticSecurityUpdatesEnabled;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithCatalogURL:(id)arg1 withIsDefaultCatalog:(id)arg2 withPreviousScanDate:(id)arg3 withPreviousScanResult:(id)arg4 withPerformPeriodicCheck:(id)arg5 withAutomaticCheckEnabled:(id)arg6 withBackgroundDownloadEnabled:(id)arg7 withAutomaticAppInstallationEnabled:(id)arg8 withAutomaticOSInstallationEnabled:(id)arg9 withAutomaticSecurityUpdatesEnabled:(id)arg10;
 + (id)allowedStatusKeys;
 @property(copy, nonatomic) NSNumber *statusAutomaticSecurityUpdatesEnabled; // @synthesize statusAutomaticSecurityUpdatesEnabled=_statusAutomaticSecurityUpdatesEnabled;

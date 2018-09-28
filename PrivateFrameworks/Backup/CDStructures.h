@@ -59,13 +59,6 @@ struct TBackupLayerList {
     } _field3;
 };
 
-struct TColor {
-    double _field1;
-    double _field2;
-    double _field3;
-    double _field4;
-};
-
 struct TDate {
     double _field1;
 };
@@ -265,11 +258,6 @@ struct __tree_end_node<std::__1::__tree_node_base<void *>*> {
 
 struct callable_holder_base<void>;
 
-struct function<NSColor *()> {
-    struct type __buf_;
-    struct __base<NSColor *()> *__f_;
-};
-
 struct function<NSComparisonResult (__kindof NSView *, __kindof NSView *)> {
     struct type __buf_;
     struct __base<NSComparisonResult (__kindof NSView *, __kindof NSView *)> *__f_;
@@ -288,11 +276,6 @@ struct function<void (BU_DPRemoteDesktopPicture *)> {
 struct function<void (NSAnimation *, float)> {
     struct type __buf_;
     struct __base<void (NSAnimation *, float)> *__f_;
-};
-
-struct function<void (NSColor *)> {
-    struct type __buf_;
-    struct __base<void (NSColor *)> *__f_;
 };
 
 struct function<void (NSDictionary<NSString *, NSObject *>*)> {
@@ -448,11 +431,6 @@ typedef struct TNSWeakPtr<BU_TRunAfterHelper, void> {
     struct TNSRef<NSValue, void> fWeakObject;
 } TNSWeakPtr_6f98b07a;
 
-typedef struct function<NSColor *()> {
-    struct type __buf_;
-    struct __base<NSColor *()> *__f_;
-} function_2a0da25d;
-
 typedef struct function<NSComparisonResult (__kindof NSView *, __kindof NSView *)> {
     struct type __buf_;
     struct __base<NSComparisonResult (__kindof NSView *, __kindof NSView *)> *__f_;
@@ -472,11 +450,6 @@ typedef struct function<void (NSAnimation *, float)> {
     struct type __buf_;
     struct __base<void (NSAnimation *, float)> *__f_;
 } function_07c9e451;
-
-typedef struct function<void (NSColor *)> {
-    struct type __buf_;
-    struct __base<void (NSColor *)> *__f_;
-} function_b540fb0e;
 
 typedef struct function<void (NSDictionary<NSString *, NSObject *>*)> {
     struct type __buf_;

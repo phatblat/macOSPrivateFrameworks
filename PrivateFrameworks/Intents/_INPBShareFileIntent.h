@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBShareFileIntent.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBIntentMetadata;
+@class NSArray, NSString, _INPBIntentMetadata;
 
-@interface _INPBShareFileIntent : PBCodable <_INPBShareFileIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBShareFileIntent : PBCodable <_INPBShareFileIntent, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int shareMode:1;
@@ -22,12 +21,10 @@
     NSArray *_entityNames;
     _INPBIntentMetadata *_intentMetadata;
     NSArray *_recipients;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)recipientsType;
 + (Class)entityNameType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int shareMode; // @synthesize shareMode=_shareMode;
 @property(copy, nonatomic) NSArray *recipients; // @synthesize recipients=_recipients;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;

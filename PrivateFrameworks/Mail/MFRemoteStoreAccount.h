@@ -8,7 +8,7 @@
 
 #import "MCRemoteStoreAccount.h"
 
-@class MCAuthScheme, MFBehaviorTracker, NSArray, NSOperationQueue, NSString;
+@class MCAuthScheme, NSArray, NSOperationQueue, NSString;
 
 @interface MFRemoteStoreAccount : MFMailAccount <MCRemoteStoreAccount>
 {
@@ -40,7 +40,6 @@
 @property long long cachePolicy;
 - (BOOL)canGoOffline;
 @property(copy) NSString *displayName;
-@property(readonly) MFBehaviorTracker *behaviorTracker;
 
 // Remaining properties
 @property(readonly, copy) NSString *accountTypeString;

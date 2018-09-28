@@ -13,10 +13,11 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class IDSURI, NSString, NSUUID;
+@class CNContact, IDSURI, NSString, NSUUID;
 
 @interface HMDAccountHandle : HMFObject <HMFLogging, HMDBackingStoreObjectProtocol, HMDBackingStoreModelBackedObjectProtocol, HMDRemoteAddressable, NSCopying, NSSecureCoding>
 {
+    BOOL _local;
     BOOL _locallyTracked;
     NSUUID *_modelIdentifier;
     NSUUID *_modelParentIdentifier;
@@ -29,12 +30,14 @@
 + (id)accountHandleForDestination:(id)arg1;
 @property(getter=isLocallyTracked) BOOL locallyTracked; // @synthesize locallyTracked=_locallyTracked;
 @property(readonly, copy) IDSURI *URI; // @synthesize URI=_URI;
+@property(readonly, getter=isLocal) BOOL local; // @synthesize local=_local;
 @property(readonly, copy) NSUUID *identifier; // @synthesize identifier=_identifier;
 @property(retain, nonatomic) NSUUID *modelParentIdentifier; // @synthesize modelParentIdentifier=_modelParentIdentifier;
 @property(readonly, nonatomic) NSUUID *modelIdentifier; // @synthesize modelIdentifier=_modelIdentifier;
 - (void).cxx_destruct;
 - (id)logIdentifier;
 - (id)remoteDestinationString;
+- (BOOL)isBackingStorageEqual:(id)arg1;
 - (id)modelBackedObjects;
 - (id)backingStoreObjectsWithChangeType:(unsigned long long)arg1 version:(long long)arg2;
 - (id)modelObjectWithChangeType:(unsigned long long)arg1 version:(long long)arg2;
@@ -42,14 +45,15 @@
 - (void)transactionObjectRemoved:(id)arg1 message:(id)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+@property(readonly, copy) CNContact *contact;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly) long long type;
 - (id)attributeDescriptions;
 - (id)shortDescription;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
-- (id)initWithURI:(id)arg1 accountModelIdentifier:(id)arg2;
 - (id)initWithObjectModel:(id)arg1;
+- (id)initWithURI:(id)arg1 local:(BOOL)arg2;
 - (id)initWithURI:(id)arg1;
 - (id)init;
 

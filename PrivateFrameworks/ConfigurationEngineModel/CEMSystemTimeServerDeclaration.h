@@ -16,6 +16,7 @@
     NSString *_payloadTimeZone;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withTimeServer:(id)arg2 withTimeZone:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

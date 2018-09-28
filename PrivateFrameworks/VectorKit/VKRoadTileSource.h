@@ -19,6 +19,8 @@ __attribute__((visibility("hidden")))
 
 @property(nonatomic) BOOL trafficEnabled; // @synthesize trafficEnabled=_trafficEnabled;
 @property(retain, nonatomic) VKTrafficTileSource *trafficTileSource; // @synthesize trafficTileSource=_trafficTileSource;
+- (id)stateDescriptionForRenderKey:(const struct VKTileKey *)arg1;
+- (id)_privateInflightTileForKey:(const struct VKTileKey *)arg1;
 - (void)releaseTraffic;
 - (id)tileForData:(id)arg1 downloadKey:(const struct _GEOTileKey *)arg2 sourceKey:(const struct VKTileKey *)arg3 userInfo:(id)arg4;
 - (void)_trafficFailed:(const struct VKTileKey *)arg1;
@@ -32,6 +34,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)minimumZoomLevelBoundsCamera;
 - (void)setMapType:(long long)arg1;
 - (void)dealloc;
+- (id)detailedDescription;
 - (id)initWithTileSet:(id)arg1 resourceManifestConfiguration:(id)arg2 locale:(id)arg3 sharedResources:(id)arg4 taskContext:(shared_ptr_e963992e)arg5;
 
 @end

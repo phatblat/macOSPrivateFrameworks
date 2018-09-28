@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBHomeFilter.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBDataString;
+@class NSArray, NSString, _INPBDataString;
 
-@interface _INPBHomeFilter : PBCodable <_INPBHomeFilter, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBHomeFilter : PBCodable <_INPBHomeFilter, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int entityType:1;
@@ -31,10 +30,8 @@
     _INPBDataString *_room;
     _INPBDataString *_scene;
     _INPBDataString *_service;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int subServiceType; // @synthesize subServiceType=_subServiceType;
 @property(nonatomic) int serviceType; // @synthesize serviceType=_serviceType;
 @property(retain, nonatomic) _INPBDataString *service; // @synthesize service=_service;

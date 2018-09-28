@@ -8,22 +8,21 @@
 
 #import "HMFWiFiManagerDataSourceDelegate.h"
 
-@class HMFMACAddress, NSObject<OS_dispatch_queue>, NSString;
+@class HMFMACAddress, HMFUnfairLock, NSObject<OS_dispatch_queue>, NSString;
 
 @interface HMFWiFiManager : HMFObject <HMFWiFiManagerDataSourceDelegate>
 {
+    HMFUnfairLock *_lock;
     BOOL _shouldAssertWoW;
     NSString *_currentNetworkSSID;
     HMFMACAddress *_MACAddress;
     NSObject<OS_dispatch_queue> *_workQueue;
-    NSObject<OS_dispatch_queue> *_propQueue;
     id <HMFWiFiManagerDataSource> _dataSource;
 }
 
 + (id)sharedManager;
 @property(nonatomic) BOOL shouldAssertWoW; // @synthesize shouldAssertWoW=_shouldAssertWoW;
 @property(readonly, nonatomic) id <HMFWiFiManagerDataSource> dataSource; // @synthesize dataSource=_dataSource;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *propQueue; // @synthesize propQueue=_propQueue;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
 @property(readonly, copy) HMFMACAddress *MACAddress; // @synthesize MACAddress=_MACAddress;
 - (void).cxx_destruct;

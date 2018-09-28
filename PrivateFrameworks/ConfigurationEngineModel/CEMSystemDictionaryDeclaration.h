@@ -15,6 +15,7 @@
     NSNumber *_payloadParentalControl;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withParentalControl:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withParentalControl:(id)arg2;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

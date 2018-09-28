@@ -83,7 +83,7 @@ __attribute__((visibility("hidden")))
 - (id)tableView:(id)arg1 rowViewForRow:(long long)arg2;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (void)_setAttributedStringValuesOnUnifiedFieldTableCellView:(id)arg1 forOriginalStringValue:(id)arg2;
-- (void)_configureParsecCell:(id)arg1 usingCompletionListItem:(struct CompletionListItem *)arg2 skipConfigurationIfCellViewIsAlreadyDisplayingResult:(BOOL)arg3;
+- (void)_configureParsecCell:(id)arg1 usingCompletionListItem:(struct CompletionListItem *)arg2;
 - (void)willUpdateCompletionListFromList:(const Vector_9c080eda *)arg1 toList:(const Vector_9c080eda *)arg2;
 - (void)didUpdateCompletionList;
 - (void)didReloadCompletionList;

@@ -14,7 +14,8 @@
 @interface TUConversationManagerXPCClient : NSObject <TUConversationManagerXPCClient, TUConversationManagerDataSource>
 {
     BOOL _hasRequestedInitialState;
-    int _token;
+    BOOL _shouldConnectToHost;
+    int _shouldConnectToken;
     id <TUConversationManagerDataSourceDelegate> _delegate;
     id <TUConversationMediaControllerDataSourceDelegate> _mediaDelegate;
     NSObject<OS_dispatch_queue> *_queue;
@@ -30,8 +31,9 @@
 + (void)setAsynchronousServer:(id)arg1;
 + (id)asynchronousServer;
 @property(copy, nonatomic) NSDictionary *conversationsByGroupUUID; // @synthesize conversationsByGroupUUID=_conversationsByGroupUUID;
+@property(nonatomic) BOOL shouldConnectToHost; // @synthesize shouldConnectToHost=_shouldConnectToHost;
+@property(nonatomic) int shouldConnectToken; // @synthesize shouldConnectToken=_shouldConnectToken;
 @property(nonatomic) BOOL hasRequestedInitialState; // @synthesize hasRequestedInitialState=_hasRequestedInitialState;
-@property(nonatomic) int token; // @synthesize token=_token;
 @property(retain, nonatomic) NSXPCConnection *xpcConnection; // @synthesize xpcConnection=_xpcConnection;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(nonatomic) __weak id <TUConversationMediaControllerDataSourceDelegate> mediaDelegate; // @synthesize mediaDelegate=_mediaDelegate;

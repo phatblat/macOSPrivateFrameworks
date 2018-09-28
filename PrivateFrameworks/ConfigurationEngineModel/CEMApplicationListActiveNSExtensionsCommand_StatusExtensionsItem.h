@@ -20,6 +20,7 @@
     NSString *_statusUserElection;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withExtensionPoint:(id)arg2 withDisplayName:(id)arg3 withPath:(id)arg4 withVersion:(id)arg5 withUserElection:(id)arg6;
 + (id)buildWithIdentifier:(id)arg1 withExtensionPoint:(id)arg2 withDisplayName:(id)arg3 withContainerDisplayName:(id)arg4 withContainerIdentifier:(id)arg5 withPath:(id)arg6 withVersion:(id)arg7 withUserElection:(id)arg8;
 + (id)allowedStatusKeys;
 @property(copy, nonatomic) NSString *statusUserElection; // @synthesize statusUserElection=_statusUserElection;

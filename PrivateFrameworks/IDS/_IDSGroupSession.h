@@ -64,6 +64,7 @@
 - (void)sessionDidJoinGroup:(id)arg1 participantsInfo:(id)arg2 error:(id)arg3;
 - (void)groupSessionEnded:(id)arg1 withReason:(unsigned int)arg2 error:(id)arg3;
 - (void)groupSessionDidTerminate:(id)arg1;
+- (void)session:(id)arg1 didReceiveReport:(id)arg2;
 - (void)requestActiveParticipants;
 @property(readonly, nonatomic) unsigned int sessionEndedReason;
 - (void)setPreferences:(id)arg1;
@@ -71,6 +72,7 @@
 - (void)joinWithOptions:(id)arg1;
 - (void)joinGroupSession;
 - (void)setParticipantInfo:(id)arg1;
+- (void)updateParticipantData:(id)arg1 withContext:(id)arg2;
 - (void)updateMembers:(id)arg1 withContext:(id)arg2 triggeredLocally:(BOOL)arg3;
 - (void)_cleanupSocketPairConnections;
 @property(readonly, nonatomic) NSString *uniqueID;

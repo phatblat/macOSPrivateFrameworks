@@ -29,7 +29,6 @@ __attribute__((visibility("hidden")))
 - (void)effectiveAppearanceDidChange;
 @property(readonly, nonatomic) id <ReaderBundlePageMessageReceiver> readerBundlePageMessageReceiver;
 - (id)presentingBrowserViewController;
-- (void)viewDidMoveToWindow;
 - (id)tabContentView;
 - (id)accessibilityAttributeValue:(id)arg1;
 - (void)scrollWheel:(id)arg1;

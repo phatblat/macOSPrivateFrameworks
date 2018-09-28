@@ -50,6 +50,8 @@
 - (void)activityStoppedWithParameters:(id)arg1;
 - (void)activityStartedWithParameters:(id)arg1;
 - (void)setMinimumBackgroundFetchInterval:(double)arg1 forApp:(id)arg2;
+- (void)setBalance:(double)arg1 forBudgetWithName:(id)arg2;
+- (double)remainingBalanceForBudgetWithName:(id)arg1;
 - (id)currentPredictions;
 - (void)cancelActivities:(id)arg1;
 - (void)suspendActivities:(id)arg1;

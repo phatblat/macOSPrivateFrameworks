@@ -27,6 +27,7 @@
 - (id)lookupURLCredentialInSystemKeychainForHost:(id)arg1 port:(long long)arg2;
 - (BOOL)configureProgressPhasesAll:(id)arg1;
 - (BOOL)setAppleStagedUpgradeShouldFLORun:(BOOL)arg1;
+- (BOOL)stashAndCommitAPFSFDEKey;
 - (BOOL)commitLoginCredentialsDisablingFLO:(BOOL)arg1 hasBaseSystemUpdates:(BOOL)arg2;
 - (BOOL)stashLoginCredentialsEnablingFLO:(BOOL)arg1;
 - (BOOL)unenrollFromSeedProgram;
@@ -42,6 +43,7 @@
 - (BOOL)setObject:(id)arg1 forAnyUserPreference:(id)arg2;
 - (BOOL)getDigest:(id *)arg1 forPackageAtURL:(id)arg2;
 - (BOOL)removePackagesForLocalReferences:(id)arg1 forProductKey:(id)arg2;
+- (BOOL)removeRecoveryInstallResult;
 - (BOOL)removeProductDirectoryForKey:(id)arg1;
 - (BOOL)removeDistForProductKey:(id)arg1 withFilename:(id)arg2;
 - (BOOL)createDirectoryForProductKey:(id)arg1 Firmware:(BOOL)arg2;

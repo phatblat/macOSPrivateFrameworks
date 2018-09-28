@@ -6,22 +6,19 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBEndWorkoutIntent.h"
 
-@class INCodableAttribute, NSString, _INPBDataString, _INPBIntentMetadata;
+@class NSString, _INPBDataString, _INPBIntentMetadata;
 
-@interface _INPBEndWorkoutIntent : PBCodable <_INPBEndWorkoutIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBEndWorkoutIntent : PBCodable <_INPBEndWorkoutIntent, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBIntentMetadata *_intentMetadata;
     _INPBDataString *_workoutName;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBDataString *workoutName; // @synthesize workoutName=_workoutName;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
 - (void).cxx_destruct;

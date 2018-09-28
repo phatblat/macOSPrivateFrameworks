@@ -4,14 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <UIKitHostAppServices/UHASRemoteObject.h>
 
 #import "UHAToolbarItemInterface.h"
 
-@class NSString;
+@class NSObject<OS_dispatch_queue>, NSString, UHASAccessibilityInfo;
 
-@interface UHASToolbarItem : NSObject <UHAToolbarItemInterface>
+@interface UHASToolbarItem : UHASRemoteObject <UHAToolbarItemInterface>
 {
+    UHASAccessibilityInfo *_accessibilityInfo;
     NSString *_identifier;
     NSString *_label;
     CDUnknownBlockType _changeHandler;
@@ -19,7 +20,8 @@
 
 @property(copy, nonatomic) CDUnknownBlockType changeHandler; // @synthesize changeHandler=_changeHandler;
 @property(copy, nonatomic) NSString *label; // @synthesize label=_label;
-@property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
+@property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
+@property(copy, nonatomic) UHASAccessibilityInfo *accessibilityInfo; // @synthesize accessibilityInfo=_accessibilityInfo;
 - (void).cxx_destruct;
 - (id)initWithIdentifier:(id)arg1;
 
@@ -27,6 +29,8 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) unsigned long long rock_invocationFlags;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *rock_invocationQueue;
 @property(readonly) Class superclass;
 
 @end

@@ -6,9 +6,11 @@
 
 #import "NSViewController.h"
 
+#import "NCMaterialDelegate.h"
+
 @class CALayer, NSArray, _NCCardViewControllerCardView, _NCCardViewControllerContentView;
 
-@interface NCCardViewController : NSViewController
+@interface NCCardViewController : NSViewController <NCMaterialDelegate>
 {
     CALayer *_headerMaterial;
     CALayer *_backgroundMaterial1;
@@ -39,6 +41,8 @@
 - (void)_createLayersLayers;
 - (void)loadView;
 - (void)_updateCardLook;
+- (void)appearanceChanged:(_Bool)arg1;
+- (void)materialChanged:(unsigned char)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 

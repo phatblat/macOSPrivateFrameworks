@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBCopyFileIntentResponse.h"
 
-@class INCodableAttribute, NSString, _INPBString;
+@class NSString, _INPBString;
 
-@interface _INPBCopyFileIntentResponse : PBCodable <_INPBCopyFileIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBCopyFileIntentResponse : PBCodable <_INPBCopyFileIntentResponse, NSSecureCoding, NSCopying>
 {
     CDStruct_be739ab4 _has;
     BOOL _overwrite;
@@ -21,10 +20,8 @@
     int _entityType;
     _INPBString *_destinationName;
     _INPBString *_entityName;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) BOOL success; // @synthesize success=_success;
 @property(nonatomic) BOOL overwrite; // @synthesize overwrite=_overwrite;
 @property(nonatomic) int entityType; // @synthesize entityType=_entityType;

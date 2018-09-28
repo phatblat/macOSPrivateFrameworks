@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>, VCMasterKeyIndex;
+@class NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, VCMasterKeyIndex;
 
 __attribute__((visibility("hidden")))
 @interface VCSecurityKeyManager : NSObject
@@ -24,9 +24,9 @@ __attribute__((visibility("hidden")))
     double _lastKeyIndexNotReceived;
     id _reportingAgentWeak;
     BOOL _isDuplicateKeyReported;
+    NSMutableArray *_unknownKeyIndexList;
 }
 
-- (void)updateSendKeyMaterialWithIndex:(id)arg1 delay:(double)arg2;
 - (struct opaqueRTCReporting *)reportingAgent;
 - (void)pruneRecvKeyMaterialWithDelay:(double)arg1;
 - (void)pruneSendKeyMaterialWithDelay:(double)arg1;

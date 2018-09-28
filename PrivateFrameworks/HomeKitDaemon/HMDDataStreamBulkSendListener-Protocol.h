@@ -8,6 +8,7 @@
 
 @protocol HMDDataStreamBulkSendListener <NSObject>
 - (void)accessoryDidCloseDataStream:(id)arg1;
+- (void)accessoryDidStartListening:(id)arg1;
 - (void)accessory:(id)arg1 didReceiveBulkSessionCandidate:(id <HMDDataStreamBulkSendSessionCandidate>)arg2;
 @end
 

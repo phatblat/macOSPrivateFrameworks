@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBRideOption.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBImageValue, _INPBPriceRangeValue, _INPBTimestamp, _INPBUserActivity;
+@class NSArray, NSString, _INPBImageValue, _INPBPriceRangeValue, _INPBTimestamp, _INPBUserActivity;
 
-@interface _INPBRideOption : PBCodable <_INPBRideOption, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBRideOption : PBCodable <_INPBRideOption, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int usesMeteredFare:1;
@@ -30,12 +29,10 @@
     _INPBImageValue *_specialPricingBadgeImage;
     NSString *_subtitle;
     _INPBUserActivity *_userActivityForBookingInApplication;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)fareLineItemsType;
 + (Class)availablePartySizeOptionsType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) BOOL usesMeteredFare; // @synthesize usesMeteredFare=_usesMeteredFare;
 @property(retain, nonatomic) _INPBUserActivity *userActivityForBookingInApplication; // @synthesize userActivityForBookingInApplication=_userActivityForBookingInApplication;
 @property(copy, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;

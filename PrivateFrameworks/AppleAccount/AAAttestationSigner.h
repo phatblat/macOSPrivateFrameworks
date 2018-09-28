@@ -11,7 +11,8 @@
 }
 
 + (id)sharedSigner;
-- (void)signaturesForData:(id)arg1 options:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)signaturesForDatas:(id)arg1 options:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)signatureForData:(id)arg1 options:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (id)init;
 
 @end

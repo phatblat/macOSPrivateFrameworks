@@ -95,7 +95,8 @@
 - (struct CGSize)sizeForFittingDisplayText;
 - (void)_updateDisplayText;
 - (id)_foregroundColorForTextColorAttribute:(unsigned long long)arg1 textNotImage:(BOOL)arg2;
-@property(readonly, nonatomic) BOOL _shouldDisplaySecondaryKeyText;
+- (BOOL)_shouldDisplaySecondaryKeyText:(id)arg1;
+- (double)_baseFontSizeForSecondaryKeyText:(id)arg1;
 - (id)_textFontForText:(id)arg1 baseFontSize:(double)arg2 frame:(struct CGRect)arg3;
 @property(retain, nonatomic) NSImage *displayImage; // @dynamic displayImage;
 - (id)imageIdentifierToDisplayReturningFunctionKey:(char *)arg1;

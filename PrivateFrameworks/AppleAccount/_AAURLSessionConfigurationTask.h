@@ -28,6 +28,7 @@
 @property(readonly, nonatomic) AAURLSession *session; // @synthesize session=_session;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly, copy) NSString *description;
 - (void)cancel;
 - (void)resume;
 - (void)suspend;
@@ -39,7 +40,6 @@
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

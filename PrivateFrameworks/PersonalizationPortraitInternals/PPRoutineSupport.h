@@ -10,7 +10,8 @@
 {
 }
 
-+ (BOOL)isCoreRoutineEnabled;
++ (id)locationsOfInterestVisitiedBetweenStartDate:(id)arg1 endDate:(id)arg2;
++ (void)fetchLocationsOfInterestMapItemsVisitiedBetweenStartDate:(id)arg1 endDate:(id)arg2 withHandler:(CDUnknownBlockType)arg3;
 + (void)importCoreRoutineData;
 
 @end

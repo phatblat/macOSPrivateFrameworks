@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBRideStatus.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBDateTimeRangeValue, _INPBLocationValue, _INPBRideCompletionStatus, _INPBRideDriver, _INPBRideOption, _INPBRideVehicle, _INPBTimestamp, _INPBUserActivity;
+@class NSArray, NSString, _INPBDateTimeRangeValue, _INPBLocationValue, _INPBRideCompletionStatus, _INPBRideDriver, _INPBRideOption, _INPBRideVehicle, _INPBTimestamp, _INPBUserActivity;
 
-@interface _INPBRideStatus : PBCodable <_INPBRideStatus, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBRideStatus : PBCodable <_INPBRideStatus, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int phase:1;
@@ -33,12 +32,10 @@
     _INPBUserActivity *_userActivityForCancelingInApplication;
     _INPBRideVehicle *_vehicle;
     NSArray *_waypoints;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)waypointsType;
 + (Class)additionalActionItemsType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *waypoints; // @synthesize waypoints=_waypoints;
 @property(retain, nonatomic) _INPBRideVehicle *vehicle; // @synthesize vehicle=_vehicle;
 @property(retain, nonatomic) _INPBUserActivity *userActivityForCancelingInApplication; // @synthesize userActivityForCancelingInApplication=_userActivityForCancelingInApplication;

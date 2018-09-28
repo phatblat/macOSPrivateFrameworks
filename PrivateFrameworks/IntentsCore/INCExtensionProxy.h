@@ -17,6 +17,7 @@
     NSExtension *_extension;
     id <INExtensionContextVending> _vendorRemote;
     CDUnknownBlockType _imageCachingHandler;
+    CDUnknownBlockType _imageProcessingHandler;
     CDUnknownBlockType _responseHandler;
     CDUnknownBlockType _backgroundAppHandler;
 }
@@ -24,6 +25,7 @@
 + (void)initialize;
 @property(copy, nonatomic) CDUnknownBlockType backgroundAppHandler; // @synthesize backgroundAppHandler=_backgroundAppHandler;
 @property(copy, nonatomic) CDUnknownBlockType responseHandler; // @synthesize responseHandler=_responseHandler;
+@property(copy, nonatomic) CDUnknownBlockType imageProcessingHandler; // @synthesize imageProcessingHandler=_imageProcessingHandler;
 @property(copy, nonatomic) CDUnknownBlockType imageCachingHandler; // @synthesize imageCachingHandler=_imageCachingHandler;
 @property(nonatomic) BOOL shouldCache; // @synthesize shouldCache=_shouldCache;
 @property(readonly, nonatomic) id <INExtensionContextVending> _vendorRemote; // @synthesize _vendorRemote;

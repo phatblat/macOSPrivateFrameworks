@@ -21,6 +21,7 @@
     unsigned int _reserved:28;
 }
 
++ (struct CGColor *)newColorByAdjustingLightnessOfColor:(struct CGColor *)arg1 darker:(BOOL)arg2;
 + (id)bestMatchUsingImages:(id)arg1 scaleFactor:(double)arg2 deviceIdiom:(long long)arg3 deviceSubtype:(unsigned long long)arg4 displayGamut:(unsigned long long)arg5 layoutDirection:(unsigned long long)arg6 sizeClassHorizontal:(long long)arg7 sizeClassVertical:(long long)arg8;
 + (id)bestMatchUsingImages:(id)arg1 scaleFactor:(double)arg2 deviceIdiom:(long long)arg3 displayGamut:(unsigned long long)arg4 deviceSubtype:(unsigned long long)arg5 sizeClassHorizontal:(long long)arg6 sizeClassVertical:(long long)arg7;
 + (id)bestMatchUsingImages:(id)arg1 scaleFactor:(double)arg2 deviceIdiom:(long long)arg3 deviceSubtype:(unsigned long long)arg4 sizeClassHorizontal:(long long)arg5 sizeClassVertical:(long long)arg6;
@@ -54,14 +55,15 @@
 - (id)newTextEffectStackForStylePresetName:(id)arg1 styleConfiguration:(id)arg2 foregroundColor:(struct CGColor *)arg3;
 - (id)newShapeEffectPresetForStylePresetName:(id)arg1 styleConfiguration:(id)arg2;
 - (id)renditionKeyForShapeEffectPresetForStylePresetName:(id)arg1 styleConfiguration:(id)arg2;
-- (BOOL)_effectStyle:(unsigned long long *)arg1 state:(long long *)arg2 presentationState:(long long *)arg3 value:(long long *)arg4 resolution:(unsigned long long *)arg5 fromStyleConfiguration:(id)arg6;
-- (id)renditionKeyForShapeEffectPresetWithStylePresetName:(id)arg1 state:(long long)arg2 presentationState:(long long)arg3 value:(long long)arg4 resolution:(unsigned long long)arg5;
-- (id)renditionKeyForShapeEffectPresetWithStyleID:(unsigned long long)arg1 state:(long long)arg2 presentationState:(long long)arg3 value:(long long)arg4 resolution:(unsigned long long)arg5;
+- (BOOL)_effectStyle:(unsigned long long *)arg1 state:(long long *)arg2 presentationState:(long long *)arg3 value:(long long *)arg4 resolution:(unsigned long long *)arg5 dimension1:(unsigned long long *)arg6 fromStyleConfiguration:(id)arg7;
+- (id)renditionKeyForShapeEffectPresetWithStylePresetName:(id)arg1 state:(long long)arg2 presentationState:(long long)arg3 value:(long long)arg4 resolution:(unsigned long long)arg5 dimension1:(unsigned long long)arg6;
+- (id)renditionKeyForShapeEffectPresetWithStyleID:(unsigned long long)arg1 state:(long long)arg2 presentationState:(long long)arg3 value:(long long)arg4 resolution:(unsigned long long)arg5 dimension1:(unsigned long long)arg6;
 - (BOOL)canGetShapeEffectRenditionWithKey:(id)arg1;
 - (id)newShapeEffectPresetWithRenditionKey:(id)arg1;
 - (long long)artVariantIDOrZero;
 - (id)_resolvedRenditionKeyFromThemeRef:(unsigned long long)arg1 withBaseKey:(id)arg2 scaleFactor:(double)arg3 deviceIdiom:(long long)arg4 deviceSubtype:(unsigned long long)arg5 displayGamut:(long long)arg6 layoutDirection:(long long)arg7 sizeClassHorizontal:(long long)arg8 sizeClassVertical:(long long)arg9 memoryClass:(unsigned long long)arg10 graphicsClass:(unsigned long long)arg11 graphicsFallBackOrder:(id)arg12 deviceSubtypeFallBackOrder:(id)arg13 iconSizeIndex:(unsigned long long)arg14 appearanceIdentifier:(unsigned long long)arg15;
 - (id)_resolvedRenditionKeyForName:(id)arg1 scaleFactor:(double)arg2 deviceIdiom:(long long)arg3 deviceSubtype:(unsigned long long)arg4 displayGamut:(long long)arg5 layoutDirection:(long long)arg6 sizeClassHorizontal:(long long)arg7 sizeClassVertical:(long long)arg8 memoryClass:(unsigned long long)arg9 graphicsClass:(unsigned long long)arg10 appearanceIdentifier:(long long)arg11 graphicsFallBackOrder:(id)arg12 deviceSubtypeFallBackOrder:(id)arg13 withBaseKeySelector:(SEL)arg14;
+- (id)_nameForAppearanceIdentifier:(long long)arg1;
 - (long long)_appearanceIdentifierForName:(id)arg1;
 - (id)appearanceNames;
 - (id)_baseMultisizeImageSetKeyForName:(id)arg1;
@@ -83,6 +85,7 @@
 - (id)colorWithName:(id)arg1 displayGamut:(long long)arg2 deviceIdiom:(long long)arg3;
 - (id)colorWithName:(id)arg1 displayGamut:(long long)arg2 deviceIdiom:(long long)arg3 appearanceName:(id)arg4;
 - (id)_colorWithName:(id)arg1 displayGamut:(long long)arg2 deviceIdiom:(long long)arg3 appearanceName:(id)arg4;
+- (id)_baseColorKeyForName:(id)arg1;
 - (id)iconImageWithName:(id)arg1 scaleFactor:(double)arg2 displayGamut:(unsigned long long)arg3 layoutDirection:(long long)arg4 desiredSize:(struct CGSize)arg5 appearanceName:(id)arg6;
 - (id)iconImageWithName:(id)arg1 scaleFactor:(double)arg2 displayGamut:(unsigned long long)arg3 layoutDirection:(long long)arg4 desiredSize:(struct CGSize)arg5;
 - (id)namedTextureWithName:(id)arg1 scaleFactor:(double)arg2 displayGamut:(long long)arg3;

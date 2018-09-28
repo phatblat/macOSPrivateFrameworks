@@ -6,21 +6,18 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBGetVisualCodeIntentResponse.h"
 
-@class INCodableAttribute, NSString, _INPBImageValue;
+@class NSString, _INPBImageValue;
 
-@interface _INPBGetVisualCodeIntentResponse : PBCodable <_INPBGetVisualCodeIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBGetVisualCodeIntentResponse : PBCodable <_INPBGetVisualCodeIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBImageValue *_visualCodeImage;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBImageValue *visualCodeImage; // @synthesize visualCodeImage=_visualCodeImage;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

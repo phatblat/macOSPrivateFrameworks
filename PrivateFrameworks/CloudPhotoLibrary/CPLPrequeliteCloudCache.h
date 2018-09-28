@@ -25,6 +25,7 @@
 - (id)allRecordsIsFinal:(BOOL)arg1;
 - (id)recordsOfClass:(Class)arg1 isFinal:(BOOL)arg2;
 - (BOOL)remapAllRecordsWithPreviousScopedIdentifier:(id)arg1 newScopedIdentifier:(id)arg2 error:(id *)arg3;
+- (BOOL)discardStagedChangesWithScopeFilter:(id)arg1 error:(id *)arg2;
 - (BOOL)discardStagedChangesForScopeWithIdentifier:(id)arg1 error:(id *)arg2;
 - (BOOL)commitStagedChangesForScopeWithIdentifier:(id)arg1 error:(id *)arg2;
 - (BOOL)confirmAllRecordsWithError:(id *)arg1;

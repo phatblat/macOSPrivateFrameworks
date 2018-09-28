@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBCallRecordValue.h"
 
-@class INCodableAttribute, NSString, _INPBCallMetrics, _INPBContactValue, _INPBDateTime;
+@class NSString, _INPBCallMetrics, _INPBContactValue, _INPBDateTime;
 
-@interface _INPBCallRecordValue : PBCodable <_INPBCallRecordValue, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBCallRecordValue : PBCodable <_INPBCallRecordValue, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int callCapability:1;
@@ -27,10 +26,8 @@
     _INPBContactValue *_caller;
     _INPBDateTime *_dateCreated;
     NSString *_identifier;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) BOOL unseen; // @synthesize unseen=_unseen;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(retain, nonatomic) _INPBDateTime *dateCreated; // @synthesize dateCreated=_dateCreated;

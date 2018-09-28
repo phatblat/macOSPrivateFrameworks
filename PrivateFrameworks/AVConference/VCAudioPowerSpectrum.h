@@ -25,7 +25,7 @@ __attribute__((visibility("hidden")))
     struct _VCAudioPowerSpectrumChannel *_channelSettings;
     float *_lerpIdxs;
     unsigned int _outputBinCount;
-    BOOL _powerSpectrumConfigured;
+    // Error parsing type: AB, name: _powerSpectrumConfigured
     id <VCAudioPowerSpectrumDelegate> _delegate;
     long long _streamToken;
 }

@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBHomeContent.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBHomeFilter;
+@class NSArray, NSString, _INPBHomeFilter;
 
-@interface _INPBHomeContent : PBCodable <_INPBHomeContent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBHomeContent : PBCodable <_INPBHomeContent, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSArray *_actions;
     _INPBHomeFilter *_filter;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)actionsType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBHomeFilter *filter; // @synthesize filter=_filter;
 @property(copy, nonatomic) NSArray *actions; // @synthesize actions=_actions;
 - (void).cxx_destruct;

@@ -6,14 +6,38 @@
 
 #import "NSObject.h"
 
-@interface CSSpIdSpeakerVectorGenerator : NSObject
+#import "EARPSRAudioProcessorDelegate.h"
+
+@class EARPSRAudioProcessor, NSObject<OS_dispatch_queue>, NSString;
+
+@interface CSSpIdSpeakerVectorGenerator : NSObject <EARPSRAudioProcessorDelegate>
 {
+    unsigned long long _spIdType;
+    NSString *_spIdTypeStr;
+    id <CSSpIdSpeakerVectorGeneratorDelegate> _delegate;
+    EARPSRAudioProcessor *_psrAudioProcessor;
+    NSObject<OS_dispatch_queue> *_queue;
 }
 
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
+@property(retain, nonatomic) EARPSRAudioProcessor *psrAudioProcessor; // @synthesize psrAudioProcessor=_psrAudioProcessor;
+@property(nonatomic) __weak id <CSSpIdSpeakerVectorGeneratorDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain, nonatomic) NSString *spIdTypeStr; // @synthesize spIdTypeStr=_spIdTypeStr;
+@property(nonatomic) unsigned long long spIdType; // @synthesize spIdType=_spIdType;
+- (void).cxx_destruct;
+@property(readonly, copy) NSString *description;
+- (void)psrAudioProcessor:(id)arg1 finishedWithFinalSpeakerVector:(id)arg2 speakerVectorSize:(unsigned long long)arg3 processedAudioDurationMs:(unsigned long long)arg4;
+- (void)psrAudioProcessor:(id)arg1 hasSpeakerVector:(id)arg2 speakerVectorSize:(unsigned long long)arg3 processedAudioDurationMs:(unsigned long long)arg4;
+- (BOOL)_isSpeakerVectorValid:(id)arg1 speakerVectorSize:(unsigned long long)arg2 fromPsrAudioProcessor:(id)arg3;
 - (void)endAudio;
 - (void)processAudioData:(id)arg1;
-@property(readonly, nonatomic) unsigned long long spIdType;
-- (id)initWithCSspIdType:(unsigned long long)arg1 withSysConfigFile:(id)arg2 sysConfigRoot:(id)arg3 delegate:(id)arg4;
+- (void)dealloc;
+- (id)initWithCSSpIdType:(unsigned long long)arg1 withSysConfigFilepath:(id)arg2 sysConfigRoot:(id)arg3 delegate:(id)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

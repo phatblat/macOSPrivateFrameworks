@@ -18,7 +18,6 @@
     IDSAccountController *_accountController;
     NSMutableDictionary *_uniqueIDToConnection;
     NSSet *_commands;
-    NSString *_rerouteService;
     NSMapTable *_delegateToInfo;
     id _delegateContext;
     NSMutableDictionary *_protobufSelectors;
@@ -96,6 +95,7 @@
 @property(readonly, nonatomic) IDSAccount *iCloudAccount;
 @property(readonly, copy, nonatomic) NSString *serviceDomain;
 @property(nonatomic, getter=isPretendingToBeFull) BOOL pretendingToBeFull;
+- (void)connection:(id)arg1 account:(id)arg2 receivedGroupSessionParticipantDataUpdate:(id)arg3;
 - (void)connection:(id)arg1 account:(id)arg2 receivedGroupSessionParticipantUpdate:(id)arg3;
 - (void)connection:(id)arg1 account:(id)arg2 sessionInviteReceived:(id)arg3 fromID:(id)arg4 transportType:(id)arg5 options:(id)arg6 context:(id)arg7 messageContext:(id)arg8;
 - (void)connection:(id)arg1 identifier:(id)arg2 fromID:(id)arg3 hasBeenDeliveredWithContext:(id)arg4;

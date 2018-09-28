@@ -31,6 +31,7 @@
     NSString *_label;
     NSString *_value;
     NSString *_shortValue;
+    NSString *_documentID;
     NSDictionary *_addressComponents;
     NSString *_source;
     NSString *_trigger;
@@ -45,6 +46,7 @@
 @property(copy, nonatomic) NSString *trigger; // @synthesize trigger=_trigger;
 @property(copy, nonatomic) NSString *source; // @synthesize source=_source;
 @property(copy, nonatomic) NSDictionary *addressComponents; // @synthesize addressComponents=_addressComponents;
+@property(copy, nonatomic) NSString *documentID; // @synthesize documentID=_documentID;
 @property(nonatomic) BOOL shouldAggregate; // @synthesize shouldAggregate=_shouldAggregate;
 @property(copy, nonatomic) NSString *shortValue; // @synthesize shortValue=_shortValue;
 @property(copy, nonatomic) NSString *value; // @synthesize value=_value;

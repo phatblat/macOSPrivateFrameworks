@@ -23,6 +23,7 @@
     BOOL _mediaStalled;
     BOOL _videoDegraded;
     BOOL _videoPaused;
+    BOOL _videoMirrored;
     BOOL _blocked;
     BOOL _emergency;
     BOOL _sos;
@@ -56,6 +57,8 @@
     NSData *_localFrequency;
     NSData *_remoteFrequency;
     long long _videoStreamToken;
+    long long _inputAudioPowerSpectrumToken;
+    long long _outputAudioPowerSpectrumToken;
     long long _remoteScreenOrientation;
     NSUUID *_callGroupUUID;
     NSDictionary *_providerContext;
@@ -93,6 +96,8 @@
 @property(copy, nonatomic) NSUUID *callGroupUUID; // @synthesize callGroupUUID=_callGroupUUID;
 @property(nonatomic) long long remoteScreenOrientation; // @synthesize remoteScreenOrientation=_remoteScreenOrientation;
 - (BOOL)requiresRemoteVideo;
+@property(nonatomic) long long outputAudioPowerSpectrumToken; // @synthesize outputAudioPowerSpectrumToken=_outputAudioPowerSpectrumToken;
+@property(nonatomic) long long inputAudioPowerSpectrumToken; // @synthesize inputAudioPowerSpectrumToken=_inputAudioPowerSpectrumToken;
 @property(nonatomic) long long videoStreamToken; // @synthesize videoStreamToken=_videoStreamToken;
 @property(nonatomic) float remoteMeterLevel; // @synthesize remoteMeterLevel=_remoteMeterLevel;
 @property(nonatomic) float localMeterLevel; // @synthesize localMeterLevel=_localMeterLevel;
@@ -117,6 +122,7 @@
 @property(nonatomic) long long cameraType; // @synthesize cameraType=_cameraType;
 @property(nonatomic) struct CGRect remoteVideoContentRect; // @synthesize remoteVideoContentRect=_remoteVideoContentRect;
 @property(nonatomic) struct CGSize remoteAspectRatio; // @synthesize remoteAspectRatio=_remoteAspectRatio;
+@property(nonatomic, getter=isVideoMirrored) BOOL videoMirrored; // @synthesize videoMirrored=_videoMirrored;
 @property(nonatomic, getter=isVideoPaused) BOOL videoPaused; // @synthesize videoPaused=_videoPaused;
 @property(nonatomic, getter=isVideoDegraded) BOOL videoDegraded; // @synthesize videoDegraded=_videoDegraded;
 @property(nonatomic, getter=isMediaStalled) BOOL mediaStalled; // @synthesize mediaStalled=_mediaStalled;

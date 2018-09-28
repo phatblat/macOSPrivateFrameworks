@@ -90,7 +90,7 @@
 - (void)buildRenderCacheForStrokes:(id)arg1;
 - (unsigned long long)clearAndRenderStrokes:(id)arg1 clippedToStrokeSpaceRect:(struct CGRect)arg2 strokeTransform:(struct CGAffineTransform)arg3 stopBlock:(CDUnknownBlockType)arg4;
 - (unsigned long long)_renderStrokes:(id)arg1 clippedToStrokeSpaceRect:(struct CGRect)arg2 strokeTransform:(struct CGAffineTransform)arg3 stopBlock:(CDUnknownBlockType)arg4;
-- (id)renderCommandEncoderForCommandBuffer:(id)arg1 backBufferLoadAction:(unsigned long long)arg2 backBufferStoreAction:(unsigned long long)arg3 paintBufferLoadAction:(unsigned long long)arg4 accumulatorBufferLoadAction:(unsigned long long)arg5 destinationLoadAction:(unsigned long long)arg6;
+- (id)renderCommandEncoderForCommandBuffer:(id)arg1 backBufferLoadAction:(unsigned long long)arg2 backBufferStoreAction:(unsigned long long)arg3 paintBufferLoadAction:(unsigned long long)arg4 accumulatorBufferLoadAction:(unsigned long long)arg5 accumulatorBufferStoreAction:(unsigned long long)arg6 destinationLoadAction:(unsigned long long)arg7;
 - (unsigned long long)renderParticleStroke:(struct _PKStrokePointSlice)arg1 animatingStroke:(struct AnimatingStroke *)arg2 starts:(BOOL)arg3 ends:(BOOL)arg4 combinedRendering:(BOOL)arg5 renderEncoder:(id)arg6;
 - (id)generateParticleCacheForStroke:(struct _PKStrokePointSlice)arg1 animatingStroke:(struct AnimatingStroke *)arg2 starts:(BOOL)arg3 ends:(BOOL)arg4;
 - (id)generatePaintCacheForStroke:(struct _PKStrokePointSlice)arg1 animatingStroke:(struct AnimatingStroke *)arg2;
@@ -140,7 +140,8 @@
 - (void)copyIntoPaintFromTexture:(id)arg1 clipRect:(struct CGRect)arg2 renderEncoder:(id)arg3;
 - (void)copyFromFramebuffer:(id)arg1 toFramebuffer:(id)arg2 clipRect:(struct CGRect)arg3 renderEncoder:(id)arg4;
 - (unsigned long long)colorAttachmentIndexFromFramebuffer:(id)arg1;
-- (void)resetPaintFramebufferAccumulateIfNeeded;
+- (void)resetPaintFramebufferAccumulate:(BOOL)arg1;
+- (BOOL)shouldAccumulateLiveStroke;
 - (void)disableClippingForRenderEncoder:(id)arg1;
 - (void)renderWithTransform:(struct CGAffineTransform)arg1 animatingStroke:(struct AnimatingStroke *)arg2 mode:(long long)arg3 clipped:(BOOL)arg4 renderBufferSize:(struct CGSize)arg5 renderEncoder:(id)arg6;
 - (void)renderAnimatingStrokesWithTransform:(struct CGAffineTransform)arg1 renderBufferSize:(struct CGSize)arg2;
@@ -153,7 +154,7 @@
 - (void)teardownRenderStateIfNecessary;
 - (void)setupRenderStateForStrokeRendering;
 - (void)setupRenderStateForStrokeRenderingNeedPaintBuffer:(BOOL)arg1;
-- (void)setupRenderStateForLiveRenderingDestinationTexture:(id)arg1 destinationLoadAction:(unsigned long long)arg2 accumLoadAction:(unsigned long long)arg3;
+- (void)setupRenderStateForLiveRenderingDestinationTexture:(id)arg1 destinationLoadAction:(unsigned long long)arg2 accumLoadAction:(unsigned long long)arg3 accumStoreAction:(unsigned long long)arg4;
 - (unsigned long long)renderStrokes:(id)arg1 stopBlock:(CDUnknownBlockType)arg2;
 - (unsigned long long)renderStrokes:(id)arg1 clippedToStrokeSpaceRect:(struct CGRect)arg2 strokeTransform:(struct CGAffineTransform)arg3 stopBlock:(CDUnknownBlockType)arg4;
 - (BOOL)applyStrokeSpaceClipRect:(struct CGRect)arg1 strokeTransform:(struct CGAffineTransform)arg2;

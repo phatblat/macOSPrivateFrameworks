@@ -13,10 +13,9 @@
 @interface AKCropAnnotation : AKAnnotation <AKRectangularAnnotationProtocol>
 {
     BOOL _hidden;
-    BOOL _buttonHighlighted;
     BOOL _cropApplied;
     BOOL _showHandles;
-    double _maskAlpha;
+    struct CGColor *_color;
     struct CGRect _rectangle;
 }
 
@@ -24,10 +23,9 @@
 + (id)displayNameForUndoablePropertyChangeWithKey:(id)arg1;
 + (id)keyPathsForValuesAffectingDrawingBounds;
 + (id)keyPathsForValuesAffectingHitTestBounds;
+@property(nonatomic) struct CGColor *color; // @synthesize color=_color;
 @property BOOL showHandles; // @synthesize showHandles=_showHandles;
-@property double maskAlpha; // @synthesize maskAlpha=_maskAlpha;
 @property BOOL cropApplied; // @synthesize cropApplied=_cropApplied;
-@property BOOL buttonHighlighted; // @synthesize buttonHighlighted=_buttonHighlighted;
 @property BOOL hidden; // @synthesize hidden=_hidden;
 @property struct CGRect rectangle; // @synthesize rectangle=_rectangle;
 - (id)initWithCoder:(id)arg1;
@@ -40,6 +38,7 @@
 - (id)keysForValuesToObserveForRedrawing;
 - (id)keysForValuesToObserveForUndo;
 - (id)displayName;
+- (void)dealloc;
 - (id)init;
 
 // Remaining properties

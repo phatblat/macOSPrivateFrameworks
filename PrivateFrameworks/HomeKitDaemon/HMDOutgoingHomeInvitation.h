@@ -28,6 +28,7 @@
 @property(readonly, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
 - (void).cxx_destruct;
 - (id)modelObjectWithChangeType:(unsigned long long)arg1 version:(long long)arg2;
+- (id)emptyModelObjectWithChangeType:(unsigned long long)arg1;
 - (void)transactionObjectRemoved:(id)arg1 message:(id)arg2;
 - (void)_transactionOutgoingInvitiationUpdated:(id)arg1 newValues:(id)arg2 message:(id)arg3;
 - (void)transactionObjectUpdated:(id)arg1 newValues:(id)arg2 message:(id)arg3;
@@ -36,6 +37,7 @@
 @property(retain, nonatomic) NSArray *operationIdentifiers; // @synthesize operationIdentifiers=_operationIdentifiers;
 @property(readonly, nonatomic) NSArray *operations;
 - (void)updateInvitationState:(long long)arg1;
+- (void)notifyStateChangedForMessage:(id)arg1;
 - (BOOL)refreshDisplayName;
 - (void)updateUser:(id)arg1;
 - (id)describeWithFormat;

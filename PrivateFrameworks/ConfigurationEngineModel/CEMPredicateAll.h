@@ -15,6 +15,7 @@
     NSArray *_payloadPredicates;
 }
 
++ (id)buildRequiredOnlyWithPredicates:(id)arg1;
 + (id)buildWithPredicates:(id)arg1;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

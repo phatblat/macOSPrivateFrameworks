@@ -27,6 +27,10 @@
     BOOL _aggregateFramesByOffsetIntoBinary;
     BOOL _systemstatsFormat;
     BOOL _includeUserIdleAndBatteryStateInStacks;
+    BOOL _omitStacksOnBattery;
+    BOOL _omitStacksOnAC;
+    BOOL _omitStacksWithUserIdle;
+    BOOL _omitStacksWithUserActive;
     BOOL _displayHeader;
     BOOL _displayBody;
     BOOL _displayFooter;
@@ -52,6 +56,8 @@
     BOOL _displayTasksWithZeroCount;
     BOOL _displayStacksWithZeroCount;
     BOOL _displayAllTaskSizeChanges;
+    int _omitStacksBelowBasePriority;
+    int _omitStacksAboveBasePriority;
     long long _omitTasksBelowSampleCount;
     long long _omitStacksBelowSampleCount;
     long long _omitFramesBelowSampleCount;
@@ -87,6 +93,12 @@
 @property BOOL displayFooter; // @synthesize displayFooter=_displayFooter;
 @property BOOL displayBody; // @synthesize displayBody=_displayBody;
 @property BOOL displayHeader; // @synthesize displayHeader=_displayHeader;
+@property int omitStacksAboveBasePriority; // @synthesize omitStacksAboveBasePriority=_omitStacksAboveBasePriority;
+@property int omitStacksBelowBasePriority; // @synthesize omitStacksBelowBasePriority=_omitStacksBelowBasePriority;
+@property BOOL omitStacksWithUserActive; // @synthesize omitStacksWithUserActive=_omitStacksWithUserActive;
+@property BOOL omitStacksWithUserIdle; // @synthesize omitStacksWithUserIdle=_omitStacksWithUserIdle;
+@property BOOL omitStacksOnAC; // @synthesize omitStacksOnAC=_omitStacksOnAC;
+@property BOOL omitStacksOnBattery; // @synthesize omitStacksOnBattery=_omitStacksOnBattery;
 @property BOOL includeUserIdleAndBatteryStateInStacks; // @synthesize includeUserIdleAndBatteryStateInStacks=_includeUserIdleAndBatteryStateInStacks;
 @property BOOL systemstatsFormat; // @synthesize systemstatsFormat=_systemstatsFormat;
 @property BOOL aggregateFramesByOffsetIntoBinary; // @synthesize aggregateFramesByOffsetIntoBinary=_aggregateFramesByOffsetIntoBinary;

@@ -16,6 +16,7 @@
     NSUUID *_UUID;
     _DKSource *_source;
     NSDate *_creationDate;
+    NSDate *_localCreationDate;
 }
 
 + (BOOL)supportsSecureCoding;
@@ -23,6 +24,7 @@
 + (id)objectFromManagedObject:(id)arg1 readMetadata:(BOOL)arg2 cache:(id)arg3;
 + (id)fetchObjectWithUUID:(id)arg1 context:(id)arg2;
 + (id)entityName;
+@property(retain) NSDate *localCreationDate; // @synthesize localCreationDate=_localCreationDate;
 @property(retain) NSDate *creationDate; // @synthesize creationDate=_creationDate;
 @property(retain) _DKSource *source; // @synthesize source=_source;
 @property(retain) NSUUID *UUID; // @synthesize UUID=_UUID;

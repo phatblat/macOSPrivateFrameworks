@@ -25,7 +25,7 @@
 - (void)setCGImage:(struct CGImage *)arg1 atIndex:(int)arg2;
 - (void)setData:(id)arg1 withElementType:(unsigned int)arg2;
 - (BOOL)addCGImage:(struct CGImage *)arg1 scale:(unsigned int)arg2 error:(id *)arg3;
-- (BOOL)addARGBData:(id)arg1 iconIndex:(int)arg2;
+- (BOOL)addImageData:(id)arg1 iconIndex:(int)arg2;
 - (id)initWithType:(unsigned int)arg1 imageProviderBlock:(CDUnknownBlockType)arg2;
 
 // Remaining properties

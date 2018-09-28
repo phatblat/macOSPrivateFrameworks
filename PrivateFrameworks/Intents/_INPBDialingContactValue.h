@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBDialingContactValue.h"
 
-@class INCodableAttribute, NSString, _INPBContactValue, _INPBStringValue;
+@class NSString, _INPBContactValue, _INPBStringValue;
 
-@interface _INPBDialingContactValue : PBCodable <_INPBDialingContactValue, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBDialingContactValue : PBCodable <_INPBDialingContactValue, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBContactValue *_dialingContact;
     _INPBStringValue *_dialingPhoneLabel;
     _INPBStringValue *_dialingPhoneNumber;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBStringValue *dialingPhoneNumber; // @synthesize dialingPhoneNumber=_dialingPhoneNumber;
 @property(retain, nonatomic) _INPBStringValue *dialingPhoneLabel; // @synthesize dialingPhoneLabel=_dialingPhoneLabel;
 @property(retain, nonatomic) _INPBContactValue *dialingContact; // @synthesize dialingContact=_dialingContact;

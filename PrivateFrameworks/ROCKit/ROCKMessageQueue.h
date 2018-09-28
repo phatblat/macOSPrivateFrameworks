@@ -11,6 +11,7 @@
 __attribute__((visibility("hidden")))
 @interface ROCKMessageQueue : NSObject
 {
+    unsigned int _semaphore;
     ROCKConnection *_connection;
     unsigned long long _invocationMode;
     NSObject<OS_dispatch_queue> *_messageFlushQueue;
@@ -22,11 +23,13 @@ __attribute__((visibility("hidden")))
 + (id)messageQueueWithConnection:(id)arg1 invocationMode:(unsigned long long)arg2;
 @property(retain, nonatomic) NSPointerArray *notifiers; // @synthesize notifiers=_notifiers;
 @property(retain, nonatomic) NSObject<OS_xpc_object> *messages; // @synthesize messages=_messages;
+@property(nonatomic) unsigned int semaphore; // @synthesize semaphore=_semaphore;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *messageHandlerQueue; // @synthesize messageHandlerQueue=_messageHandlerQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *messageFlushQueue; // @synthesize messageFlushQueue=_messageFlushQueue;
 @property(nonatomic) unsigned long long invocationMode; // @synthesize invocationMode=_invocationMode;
 @property(retain, nonatomic) ROCKConnection *connection; // @synthesize connection=_connection;
 - (void).cxx_destruct;
+- (void)dealloc;
 - (id)initWithConnection:(id)arg1 invocationMode:(unsigned long long)arg2;
 
 @end

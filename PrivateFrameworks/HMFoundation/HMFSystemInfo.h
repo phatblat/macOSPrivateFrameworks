@@ -6,42 +6,53 @@
 
 #import <HMFoundation/HMFObject.h>
 
-@class HMFSoftwareVersion, NSObject<OS_dispatch_queue>, NSString;
+#import "HMFSystemInfoMigrationDataSourceDelegate.h"
+#import "HMFSystemInfoNameDataSourceDelegate.h"
 
-@interface HMFSystemInfo : HMFObject
+@class HMFMACAddress, HMFSoftwareVersion, NSString;
+
+@interface HMFSystemInfo : HMFObject <HMFSystemInfoNameDataSourceDelegate, HMFSystemInfoMigrationDataSourceDelegate>
 {
-    BOOL _supportsBLE;
-    NSString *_name;
-    NSString *_model;
-    NSString *_serialNumber;
-    NSString *_regionInfo;
-    long long _productPlatform;
-    long long _productClass;
-    long long _productVariant;
-    HMFSoftwareVersion *_softwareVersion;
-    NSString *_wifiInterfaceMACAddress;
-    NSObject<OS_dispatch_queue> *_workQueue;
-    NSObject<OS_dispatch_queue> *_propertyQueue;
+    id <HMFSystemInfoNameDataSource> _nameDataSource;
+    id <HMFSystemInfoMarketingInformationDataSource> _marketingDataSource;
+    id <HMFSystemInfoSerialNumberDataSource> _serialNumberDataSource;
+    id <HMFSystemInfoProductInfoDataSource> _productInfoDataSource;
+    id <HMFSystemInfoSoftwareVersionDataSource> _softwareVersionDataSource;
+    id <HMFSystemInfoMigrationDataSource> _migrationDataSource;
+    id <HMFSystemInfoWiFiDataSource> _WiFiDataSource;
+    id <HMFSystemInfoBluetoothLEDataSource> _bluetoothLEDataSource;
 }
 
++ (id)allocWithZone:(struct _NSZone *)arg1;
 + (id)systemInfo;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *propertyQueue; // @synthesize propertyQueue=_propertyQueue;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
-@property(copy) NSString *wifiInterfaceMACAddress; // @synthesize wifiInterfaceMACAddress=_wifiInterfaceMACAddress;
+@property(readonly, nonatomic) id <HMFSystemInfoBluetoothLEDataSource> bluetoothLEDataSource; // @synthesize bluetoothLEDataSource=_bluetoothLEDataSource;
+@property(readonly, nonatomic) id <HMFSystemInfoWiFiDataSource> WiFiDataSource; // @synthesize WiFiDataSource=_WiFiDataSource;
+@property(readonly, nonatomic) id <HMFSystemInfoMigrationDataSource> migrationDataSource; // @synthesize migrationDataSource=_migrationDataSource;
+@property(readonly, nonatomic) id <HMFSystemInfoSoftwareVersionDataSource> softwareVersionDataSource; // @synthesize softwareVersionDataSource=_softwareVersionDataSource;
+@property(readonly, nonatomic) id <HMFSystemInfoProductInfoDataSource> productInfoDataSource; // @synthesize productInfoDataSource=_productInfoDataSource;
+@property(readonly, nonatomic) id <HMFSystemInfoSerialNumberDataSource> serialNumberDataSource; // @synthesize serialNumberDataSource=_serialNumberDataSource;
+@property(readonly, nonatomic) id <HMFSystemInfoMarketingInformationDataSource> marketingDataSource; // @synthesize marketingDataSource=_marketingDataSource;
+@property(readonly, nonatomic) id <HMFSystemInfoNameDataSource> nameDataSource; // @synthesize nameDataSource=_nameDataSource;
 - (void).cxx_destruct;
-@property BOOL supportsBLE; // @synthesize supportsBLE=_supportsBLE;
-@property(copy) HMFSoftwareVersion *softwareVersion; // @synthesize softwareVersion=_softwareVersion;
-@property long long productVariant; // @synthesize productVariant=_productVariant;
-@property long long productClass; // @synthesize productClass=_productClass;
-@property long long productPlatform; // @synthesize productPlatform=_productPlatform;
-@property(copy) NSString *serialNumber; // @synthesize serialNumber=_serialNumber;
-@property(copy) NSString *regionInfo; // @synthesize regionInfo=_regionInfo;
-@property(copy) NSString *model; // @synthesize model=_model;
-- (void)notifyNameUpdated:(id)arg1;
-@property(copy) NSString *name; // @synthesize name=_name;
-- (void)startMonitoringSystemChanges;
-- (void)__initialize;
-- (id)init;
+@property(readonly) BOOL supportsBLE;
+@property(readonly, copy) HMFMACAddress *WiFiInterfaceMACAddress;
+- (void)dataSource:(id)arg1 didUpdateMigrating:(BOOL)arg2;
+@property(readonly, getter=isMigrating) BOOL migrating;
+@property(readonly, copy) HMFSoftwareVersion *softwareVersion;
+@property(readonly) long long productVariant;
+@property(readonly) long long productClass;
+@property(readonly) long long productPlatform;
+@property(readonly, copy) NSString *serialNumber;
+@property(readonly, copy) NSString *regionInfo;
+@property(readonly, copy) NSString *model;
+- (void)dataSource:(id)arg1 didUpdateName:(id)arg2;
+@property(readonly, copy) NSString *name;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

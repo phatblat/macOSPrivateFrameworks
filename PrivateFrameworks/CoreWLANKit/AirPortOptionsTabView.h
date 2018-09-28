@@ -41,6 +41,8 @@
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (void)tableViewSelectionDidChange:(id)arg1;
+- (id)_longestLocalizedSecurityTypeString;
+- (void)_customSizeToFitTable;
 - (void)showDupicateAlertWithEntry:(id)arg1;
 - (void)removePreferredNetworksWithIndexSet:(id)arg1 selectionIndexSet:(id)arg2 requireUserConfirmation:(BOOL)arg3 modifierFlags:(unsigned long long)arg4;
 - (void)setHasUnsavedChanges:(BOOL)arg1;

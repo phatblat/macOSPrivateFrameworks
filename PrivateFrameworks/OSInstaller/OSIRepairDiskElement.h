@@ -18,10 +18,10 @@
 @property(retain) NSError *error; // @synthesize error=_error;
 - (void).cxx_destruct;
 - (double)estimatedTimeToComplete;
-- (void)enableDefragOnDisk:(id)arg1;
 - (BOOL)_isVolumeInComplexAPFSContainer:(id)arg1;
 - (void)_disableQuotasForDiskWithMountPoint:(id)arg1;
-- (BOOL)_isKextCacheRunning;
+- (id)_skManager;
+- (id)_disksToUnmountForDisk:(id)arg1;
 - (BOOL)_checkFilesystemAndRepair:(BOOL)arg1;
 - (BOOL)_attemptVerify;
 - (BOOL)_attemptRepair;

@@ -38,8 +38,6 @@ __attribute__((visibility("hidden")))
 - (id)root;
 - (id)init;
 - (id)initWithParent:(id)arg1;
-- (void)dealloc;
-- (id)initWithDocument:(id)arg1 archiver:(id)arg2;
 
 @end
 

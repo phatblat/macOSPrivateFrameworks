@@ -23,6 +23,9 @@
 @property(nonatomic) unsigned long long batchSize; // @synthesize batchSize=_batchSize;
 @property(retain, nonatomic) _CDEventIndexerBookmark *bookmark; // @synthesize bookmark=_bookmark;
 - (void).cxx_destruct;
+- (id)description;
+- (BOOL)isBookmarkValidInRecoverableThreshold;
+- (BOOL)isBookmarkValid;
 - (id)init;
 
 @end

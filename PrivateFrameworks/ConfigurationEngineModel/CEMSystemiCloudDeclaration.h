@@ -14,6 +14,7 @@
 {
     NSNumber *_payloadAllowCloudBackup;
     NSNumber *_payloadAllowCloudDocumentSync;
+    NSNumber *_payloadAllowFindMyFriendsModification;
     NSNumber *_payloadAllowPhotoStream;
     NSNumber *_payloadAllowSharedStream;
     NSNumber *_payloadAllowCloudPhotoLibrary;
@@ -27,7 +28,8 @@
     NSNumber *_payloadAllowCloudKeychainSync;
 }
 
-+ (id)buildWithIdentifier:(id)arg1 withAllowCloudBackup:(id)arg2 withAllowCloudDocumentSync:(id)arg3 withAllowPhotoStream:(id)arg4 withAllowSharedStream:(id)arg5 withAllowCloudPhotoLibrary:(id)arg6 withAllowCloudBookmarks:(id)arg7 withAllowCloudMail:(id)arg8 withAllowCloudCalendar:(id)arg9 withAllowCloudReminders:(id)arg10 withAllowCloudAddressBook:(id)arg11 withAllowCloudNotes:(id)arg12 withAllowCloudDesktopAndDocuments:(id)arg13 withAllowCloudKeychainSync:(id)arg14;
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
++ (id)buildWithIdentifier:(id)arg1 withAllowCloudBackup:(id)arg2 withAllowCloudDocumentSync:(id)arg3 withAllowFindMyFriendsModification:(id)arg4 withAllowPhotoStream:(id)arg5 withAllowSharedStream:(id)arg6 withAllowCloudPhotoLibrary:(id)arg7 withAllowCloudBookmarks:(id)arg8 withAllowCloudMail:(id)arg9 withAllowCloudCalendar:(id)arg10 withAllowCloudReminders:(id)arg11 withAllowCloudAddressBook:(id)arg12 withAllowCloudNotes:(id)arg13 withAllowCloudDesktopAndDocuments:(id)arg14 withAllowCloudKeychainSync:(id)arg15;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;
 + (id)profileType;
@@ -44,6 +46,7 @@
 @property(copy, nonatomic) NSNumber *payloadAllowCloudPhotoLibrary; // @synthesize payloadAllowCloudPhotoLibrary=_payloadAllowCloudPhotoLibrary;
 @property(copy, nonatomic) NSNumber *payloadAllowSharedStream; // @synthesize payloadAllowSharedStream=_payloadAllowSharedStream;
 @property(copy, nonatomic) NSNumber *payloadAllowPhotoStream; // @synthesize payloadAllowPhotoStream=_payloadAllowPhotoStream;
+@property(copy, nonatomic) NSNumber *payloadAllowFindMyFriendsModification; // @synthesize payloadAllowFindMyFriendsModification=_payloadAllowFindMyFriendsModification;
 @property(copy, nonatomic) NSNumber *payloadAllowCloudDocumentSync; // @synthesize payloadAllowCloudDocumentSync=_payloadAllowCloudDocumentSync;
 @property(copy, nonatomic) NSNumber *payloadAllowCloudBackup; // @synthesize payloadAllowCloudBackup=_payloadAllowCloudBackup;
 - (void).cxx_destruct;

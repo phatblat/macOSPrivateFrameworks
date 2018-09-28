@@ -40,7 +40,9 @@
 - (void)addButtonAction:(id)arg1;
 - (id)createUNNotificationCategory;
 - (id)createUNNotificationContent;
+- (id)createNSUserNotification;
 - (id)initWithUNNotification:(id)arg1 center:(id)arg2;
+- (id)initWithNSUserNotification:(id)arg1 center:(id)arg2;
 - (id)initWithTitle:(id)arg1 intent:(long long)arg2;
 - (id)initWithTitle:(id)arg1;
 

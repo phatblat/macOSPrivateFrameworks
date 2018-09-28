@@ -11,6 +11,7 @@
 @interface CPLEngineSyncTask : NSObject
 {
     BOOL _foreground;
+    BOOL _forceSync;
     BOOL _cancelled;
     id <CPLEngineSyncTaskDelegate> _delegate;
     CPLEngineLibrary *_engineLibrary;
@@ -19,6 +20,7 @@
 
 + (id)taskWithEngineLibrary:(id)arg1;
 @property(getter=isCancelled, setter=_setCancelled:) BOOL cancelled; // @synthesize cancelled=_cancelled;
+@property(nonatomic) BOOL forceSync; // @synthesize forceSync=_forceSync;
 @property(nonatomic) BOOL foreground; // @synthesize foreground=_foreground;
 @property(retain, nonatomic) id <NSCoding> transportUserIdentifier; // @synthesize transportUserIdentifier=_transportUserIdentifier;
 @property(readonly, nonatomic) CPLEngineLibrary *engineLibrary; // @synthesize engineLibrary=_engineLibrary;

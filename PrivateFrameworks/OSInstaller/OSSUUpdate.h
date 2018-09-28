@@ -10,7 +10,7 @@
 
 @interface OSSUUpdate : NSObject
 {
-    NSString *__productKey;
+    NSString *_productKey;
     PKDistribution *__distribution;
     PKDistributionController *__distributionController;
     PKDistributionChoice *__choice;
@@ -27,7 +27,7 @@
 @property(retain, nonatomic) PKDistributionChoice *_choice; // @synthesize _choice=__choice;
 @property(retain, nonatomic) PKDistributionController *_distributionController; // @synthesize _distributionController=__distributionController;
 @property(retain, nonatomic) PKDistribution *_distribution; // @synthesize _distribution=__distribution;
-@property(retain, nonatomic) NSString *_productKey; // @synthesize _productKey=__productKey;
+@property(readonly, nonatomic) NSString *productKey; // @synthesize productKey=_productKey;
 - (void).cxx_destruct;
 - (void)insertIntoJournal;
 - (void)setTargetJournalPath:(id)arg1;

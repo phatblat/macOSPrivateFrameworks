@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBConflictingParameter.h"
 
-@class INCodableAttribute, NSArray, NSString;
+@class NSArray, NSString;
 
-@interface _INPBConflictingParameter : PBCodable <_INPBConflictingParameter, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBConflictingParameter : PBCodable <_INPBConflictingParameter, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSArray *_alternateItems;
     NSString *_keyPath;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)alternateItemsType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *keyPath; // @synthesize keyPath=_keyPath;
 @property(copy, nonatomic) NSArray *alternateItems; // @synthesize alternateItems=_alternateItems;
 - (void).cxx_destruct;

@@ -21,6 +21,7 @@
 - (void).cxx_destruct;
 - (void)xpcObject:(id)arg1 objectContext:(id)arg2;
 - (void)resetKeysForGroup:(id)arg1;
+- (void)sendMKMRecoveryRequestToGroup:(id)arg1;
 - (void)requestMasterKeyMaterialForGroup:(id)arg1;
 - (void)sendMasterKeyMaterialToGroup:(id)arg1;
 - (void)requestPublicKeys;

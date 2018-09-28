@@ -15,19 +15,11 @@
 {
     long long _modifier;
     NSString *_propertyName;
-    INCodableAttribute *_associatedAttribute;
-    INCodableAttribute *_primaryAttribute;
-    NSNumber *_runtimeTag;
-    NSNumber *_runtimeDisplayPriorityRank;
     NSNumber *_displayPriorityRank;
 }
 
 + (BOOL)supportsSecureCoding;
 @property(copy, nonatomic) NSNumber *displayPriorityRank; // @synthesize displayPriorityRank=_displayPriorityRank;
-@property(copy, nonatomic) NSNumber *runtimeDisplayPriorityRank; // @synthesize runtimeDisplayPriorityRank=_runtimeDisplayPriorityRank;
-@property(copy, nonatomic) NSNumber *runtimeTag; // @synthesize runtimeTag=_runtimeTag;
-@property(nonatomic) __weak INCodableAttribute *primaryAttribute; // @synthesize primaryAttribute=_primaryAttribute;
-@property(retain, nonatomic) INCodableAttribute *associatedAttribute; // @synthesize associatedAttribute=_associatedAttribute;
 @property(copy, nonatomic) NSString *propertyName; // @synthesize propertyName=_propertyName;
 @property(nonatomic) long long modifier; // @synthesize modifier=_modifier;
 - (void).cxx_destruct;

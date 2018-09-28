@@ -36,7 +36,6 @@
 @property(readonly, nonatomic) NSString *icaAltDSID;
 @property(readonly, nonatomic) NSString *icaAppleID;
 @property(readonly, nonatomic) NSString *icaAppleIDProtocolVersion;
-- (BOOL)primaryEmailVerified;
 @property(readonly, nonatomic) NSString *icaPrimaryEmail; // @dynamic icaPrimaryEmail;
 @property(readonly, nonatomic) iCloudRegionInfo *icaRegionInfo;
 @property(readonly, nonatomic) BOOL icaHasOptionalTerms;

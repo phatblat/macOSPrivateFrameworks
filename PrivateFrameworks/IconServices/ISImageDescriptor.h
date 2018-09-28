@@ -22,6 +22,9 @@
 @property(nonatomic) unsigned long long variantOptions; // @synthesize variantOptions=_variantOptions;
 @property(nonatomic) double scale; // @synthesize scale=_scale;
 @property(nonatomic) struct CGSize size; // @synthesize size=_size;
+- (id)description;
+@property(readonly) double sanitizedScale;
+@property(readonly) struct CGSize sanitizedSize;
 @property(nonatomic) BOOL drawBorder;
 @property(nonatomic) BOOL shouldApplyMask;
 @property(nonatomic) unsigned long long shape;

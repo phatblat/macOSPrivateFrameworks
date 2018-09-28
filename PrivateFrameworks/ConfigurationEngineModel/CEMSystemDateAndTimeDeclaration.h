@@ -15,6 +15,7 @@
     NSNumber *_payloadForceAutomaticDateAndTime;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withForceAutomaticDateAndTime:(id)arg2;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

@@ -23,6 +23,7 @@
     NSString *_payloadProxyAutoConfigURLString;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithHTTPEnable:(id)arg1 withHTTPPort:(id)arg2 withHTTPProxy:(id)arg3 withHTTPProxyPassword:(id)arg4 withHTTPProxyUsername:(id)arg5 withHTTPSEnable:(id)arg6 withHTTPSPort:(id)arg7 withHTTPSProxy:(id)arg8 withProxyAutoConfigEnable:(id)arg9 withProxyAutoDiscoveryEnable:(id)arg10 withProxyAutoConfigURLString:(id)arg11;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadProxyAutoConfigURLString; // @synthesize payloadProxyAutoConfigURLString=_payloadProxyAutoConfigURLString;

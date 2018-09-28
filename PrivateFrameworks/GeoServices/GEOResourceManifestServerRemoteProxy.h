@@ -29,6 +29,7 @@
 @property(nonatomic) __weak id <GEOResourceManifestServerProxyDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)_handleMessage:(id)arg1 xpcMessage:(id)arg2;
+- (unsigned long long)maximumZoomLevelForStyle:(int)arg1 scale:(int)arg2;
 - (void)deactivateResourceScenario:(int)arg1;
 - (void)activateResourceScenario:(int)arg1;
 - (void)deactivateResourceScale:(int)arg1;

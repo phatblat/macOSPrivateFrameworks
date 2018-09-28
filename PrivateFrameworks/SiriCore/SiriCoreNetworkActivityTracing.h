@@ -17,13 +17,13 @@
 
 + (id)sharedNetworkActivityTracing;
 - (void).cxx_destruct;
-- (void)_networkActivityRemoveNWConnection:(id)arg1;
+- (void)_networkActivityRemoveNWConnection:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_networkActivityAddNWConnection:(id)arg1;
 - (void)_networkActivityTracingCancel;
 - (void)_networkActivityStop:(long long)arg1;
 - (void)_networkActivityActivate:(long long)arg1;
 - (void)_networkActivityStart:(long long)arg1 activate:(BOOL)arg2;
-- (void)networkActivityRemoveNWConnection:(id)arg1;
+- (void)networkActivityRemoveNWConnection:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)networkActivityAddNWConnection:(id)arg1;
 - (void)networkActivityTracingCancel;
 - (void)networkActivityStop:(long long)arg1;

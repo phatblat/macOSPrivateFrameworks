@@ -16,6 +16,7 @@
     NSArray *_statusApplications;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithFirewallEnabled:(id)arg1 withBlockAllIncoming:(id)arg2 withStealthMode:(id)arg3 withApplications:(id)arg4;
 + (id)allowedStatusKeys;
 @property(copy, nonatomic) NSArray *statusApplications; // @synthesize statusApplications=_statusApplications;

@@ -21,6 +21,7 @@
     NSNumber *_payloadCCPEnabled;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithAuthName:(id)arg1 withAuthPassword:(id)arg2 withTokenCard:(id)arg3 withCommRemoteAddress:(id)arg4 withAuthEAPPlugins:(id)arg5 withAuthProtocol:(id)arg6 withCCPMPPE40Enabled:(id)arg7 withCCPMPPE128Enabled:(id)arg8 withCCPEnabled:(id)arg9;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadCCPEnabled; // @synthesize payloadCCPEnabled=_payloadCCPEnabled;

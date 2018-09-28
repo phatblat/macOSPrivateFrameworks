@@ -20,11 +20,13 @@ __attribute__((visibility("hidden")))
 - (void)assignCurrentTables;
 - (id)audioRepairStreamIDsForStreamIDs;
 - (id)videoRepairStreamIDsForStreamIDs;
-- (id)videoRepairStreamIDsforTargetBitrate:(unsigned int)arg1;
+- (id)videoRepairStreamIDsforTargetBitrate:(unsigned int)arg1 ignorePausedOnDemandStreams:(BOOL)arg2;
 - (id)audioRepairStreamIDsforTargetBitrate:(unsigned int)arg1;
-- (id)videoStreamIDsforTargetBitrate:(unsigned int)arg1;
+- (id)videoStreamIDsforTargetBitrate:(unsigned int)arg1 ignorePausedOnDemandStreams:(BOOL)arg2;
 - (id)audioStreamIDsforTargetBitrate:(unsigned int)arg1;
-- (id)videoEntriesForTargetBitrate:(unsigned int)arg1;
+- (id)videoEntriesForTargetBitrate:(unsigned int)arg1 ignorePausedOnDemandStreams:(BOOL)arg2;
+- (BOOL)isAvailableStreamConfiguration:(id)arg1;
+- (BOOL)enableVideoStream:(BOOL)arg1 streamID:(unsigned short)arg2;
 - (id)audioEntriesForTargetBitrate:(unsigned int)arg1;
 @property(nonatomic, getter=isRedundancyEnabled) BOOL redundancyEnabled;
 @property(nonatomic, getter=isVideoEnabled) BOOL videoEnabled; // @synthesize videoEnabled=_videoEnabled;

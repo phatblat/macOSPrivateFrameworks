@@ -8,28 +8,26 @@
 
 #import "HMFMerging.h"
 
-@class CBCharacteristic, HAPCharacteristicMetadata, HAPService, NSDate, NSNumber, NSString;
+@class CBCharacteristic, HAPCharacteristicMetadata, HAPService, HMFUnfairLock, NSDate, NSNumber, NSString;
 
 @interface HAPCharacteristic : HMFObject <HMFMerging>
 {
+    HMFUnfairLock *_lock;
     BOOL _eventNotificationsEnabled;
     BOOL _shouldValidateValueAfterReading;
+    NSDate *_valueUpdatedTime;
+    id _value;
+    NSNumber *_stateNumber;
     NSString *_type;
     NSNumber *_instanceID;
     HAPService *_service;
     unsigned long long _properties;
     HAPCharacteristicMetadata *_metadata;
-    id _value;
-    NSDate *_valueUpdatedTime;
-    NSNumber *_stateNumber;
     HAPCharacteristicMetadata *_accessoryMetadata;
 }
 
 @property(readonly, nonatomic) HAPCharacteristicMetadata *accessoryMetadata; // @synthesize accessoryMetadata=_accessoryMetadata;
 @property(nonatomic) BOOL shouldValidateValueAfterReading; // @synthesize shouldValidateValueAfterReading=_shouldValidateValueAfterReading;
-@property(readonly, nonatomic) NSNumber *stateNumber; // @synthesize stateNumber=_stateNumber;
-@property(retain, nonatomic) NSDate *valueUpdatedTime; // @synthesize valueUpdatedTime=_valueUpdatedTime;
-@property(copy, nonatomic, setter=setValue:) id value; // @synthesize value=_value;
 @property(copy, nonatomic) HAPCharacteristicMetadata *metadata; // @synthesize metadata=_metadata;
 @property(nonatomic) BOOL eventNotificationsEnabled; // @synthesize eventNotificationsEnabled=_eventNotificationsEnabled;
 @property(nonatomic) unsigned long long properties; // @synthesize properties=_properties;
@@ -40,7 +38,10 @@
 - (BOOL)mergeObject:(id)arg1;
 - (BOOL)shouldMergeObject:(id)arg1;
 @property(readonly, nonatomic) BOOL supportsAdditionalAuthorizationData;
+@property(retain, nonatomic) NSDate *valueUpdatedTime; // @synthesize valueUpdatedTime=_valueUpdatedTime;
+@property(readonly, nonatomic) NSNumber *stateNumber; // @synthesize stateNumber=_stateNumber;
 - (void)setStateNumber:(id)arg1;
+@property(copy, nonatomic, setter=setValue:) id value; // @synthesize value=_value;
 - (id)propertiesDescription;
 @property(readonly, copy) NSString *description;
 - (BOOL)isEqualToCharacteristic:(id)arg1;

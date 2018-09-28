@@ -16,6 +16,7 @@
     CEMDeviceListRestrictionsCommand_StatusIntersectionDictionary *_statusUnion;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithRestrictedBool:(id)arg1 withRestrictedValue:(id)arg2 withIntersection:(id)arg3 withUnion:(id)arg4;
 + (id)allowedStatusKeys;
 @property(copy, nonatomic) CEMDeviceListRestrictionsCommand_StatusIntersectionDictionary *statusUnion; // @synthesize statusUnion=_statusUnion;

@@ -13,6 +13,7 @@
 @interface AMSURLRequestEncoder : NSObject <AMSRequestEncoding>
 {
     BOOL _compressRequestBody;
+    BOOL _includeClientVersions;
     BOOL _urlKnownToBeTrusted;
     BOOL _disableAccountMediaTypeComponent;
     ACAccount *_account;
@@ -32,6 +33,7 @@
 @property(retain) id <AMSResponseDecoding> responseDecoder; // @synthesize responseDecoder=_responseDecoder;
 @property long long mescalType; // @synthesize mescalType=_mescalType;
 @property(retain) NSString *logUUID; // @synthesize logUUID=_logUUID;
+@property BOOL includeClientVersions; // @synthesize includeClientVersions=_includeClientVersions;
 @property long long dialogOptions; // @synthesize dialogOptions=_dialogOptions;
 @property long long dataEncoding; // @synthesize dataEncoding=_dataEncoding;
 @property BOOL compressRequestBody; // @synthesize compressRequestBody=_compressRequestBody;

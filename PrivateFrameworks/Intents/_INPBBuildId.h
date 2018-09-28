@@ -6,22 +6,19 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBBuildId.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBBuildId : PBCodable <_INPBBuildId, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBBuildId : PBCodable <_INPBBuildId, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSString *_buildNumber;
     NSString *_versionNumber;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *versionNumber; // @synthesize versionNumber=_versionNumber;
 @property(copy, nonatomic) NSString *buildNumber; // @synthesize buildNumber=_buildNumber;
 - (void).cxx_destruct;

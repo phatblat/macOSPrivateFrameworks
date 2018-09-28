@@ -7,15 +7,18 @@
 #import <RemoteManagement/RMUniquedManagedObject.h>
 
 #import "RMReconcilableObject.h"
+#import "RMSerializableManagedObject.h"
 
 @class NSData, NSSet, NSString, NSUUID, RMCloudOrganization;
 
-@interface RMCloudActivation : RMUniquedManagedObject <RMReconcilableObject>
+@interface RMCloudActivation : RMUniquedManagedObject <RMReconcilableObject, RMSerializableManagedObject>
 {
 }
 
 + (BOOL)reconcileWithManagedObjectContext:(id)arg1 andUpdateLosers:(id)arg2 error:(id *)arg3;
 + (id)fetchRequest;
+- (id)dictionaryRepresentation;
+- (BOOL)updateWithDictionaryRepresentation:(id)arg1;
 - (id)computeUniqueIdentifier;
 - (void)didChangeValueForKey:(id)arg1;
 
@@ -25,9 +28,13 @@
 @property(copy, nonatomic) NSString *ckRecordID; // @dynamic ckRecordID;
 @property(retain, nonatomic) NSData *ckRecordSystemFields; // @dynamic ckRecordSystemFields;
 @property(retain, nonatomic) NSSet *configurations; // @dynamic configurations;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(copy, nonatomic) NSString *identifier; // @dynamic identifier;
 @property(retain, nonatomic) RMCloudOrganization *organization; // @dynamic organization;
 @property(copy, nonatomic) NSUUID *sortKey; // @dynamic sortKey;
+@property(readonly) Class superclass;
 
 @end
 

@@ -27,6 +27,7 @@ __attribute__((visibility("hidden")))
     NSObject<OS_os_activity> *_Activity;
     NSMutableArray *_associatedEventMetrics;
     BOOL _finished;
+    BOOL _nonDiscretionary;
     NSObject<OS_dispatch_queue> *_callbackQueue;
     BRCThrottle *_operationThrottle;
     BRCThrottle *_operationFailureThrottle;
@@ -36,6 +37,7 @@ __attribute__((visibility("hidden")))
     CKOperationGroup *_operationGroup;
 }
 
+@property(nonatomic) BOOL nonDiscretionary; // @synthesize nonDiscretionary=_nonDiscretionary;
 @property(retain, nonatomic) CKOperationGroup *group; // @synthesize group=_operationGroup;
 @property(readonly, nonatomic) BRCSyncContext *syncContext; // @synthesize syncContext=_syncContext;
 @property(readonly, nonatomic) NSDate *startDate; // @synthesize startDate=_startDate;

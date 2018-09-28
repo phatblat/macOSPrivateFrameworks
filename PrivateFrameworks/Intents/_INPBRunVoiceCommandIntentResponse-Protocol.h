@@ -11,6 +11,8 @@
 @protocol _INPBRunVoiceCommandIntentResponse <NSObject>
 @property(readonly, nonatomic) BOOL hasVerb;
 @property(copy, nonatomic) NSString *verb;
+@property(readonly, nonatomic) BOOL hasUnderlyingIntentTitle;
+@property(copy, nonatomic) NSString *underlyingIntentTitle;
 @property(readonly, nonatomic) BOOL hasUnderlyingIntentResponse;
 @property(retain, nonatomic) _INPBArchivedObject *underlyingIntentResponse;
 @property(readonly, nonatomic) BOOL hasUnderlyingIntent;
@@ -23,10 +25,14 @@
 @property(retain, nonatomic) _INPBDictionary *parameters;
 @property(readonly, nonatomic) BOOL hasLocalizedAppName;
 @property(copy, nonatomic) NSString *localizedAppName;
+@property(nonatomic) BOOL hasInterstitialDisabled;
+@property(nonatomic) BOOL interstitialDisabled;
 @property(nonatomic) BOOL hasIntentCategory;
 @property(nonatomic) int intentCategory;
 @property(nonatomic) BOOL hasCustomResponsesDisabled;
 @property(nonatomic) BOOL customResponsesDisabled;
+@property(nonatomic) BOOL hasContinueRunning;
+@property(nonatomic) BOOL continueRunning;
 @property(readonly, nonatomic) BOOL hasAppBundleId;
 @property(copy, nonatomic) NSString *appBundleId;
 - (int)StringAsToggleState:(NSString *)arg1;

@@ -16,6 +16,7 @@
     NSNumber *_payloadAllowDeviceNameModification;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withName:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withName:(id)arg2 withAllowDeviceNameModification:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

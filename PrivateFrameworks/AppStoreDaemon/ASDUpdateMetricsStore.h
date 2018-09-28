@@ -6,16 +6,18 @@
 
 #import "NSObject.h"
 
-@class NSArray;
+@class NSArray, NSDate;
 
 @interface ASDUpdateMetricsStore : NSObject
 {
-    NSArray *_metrics;
     double _averagePollTime;
+    NSArray *_metrics;
+    NSDate *_lastAutoPollDate;
 }
 
-@property(readonly, nonatomic) double averagePollTime; // @synthesize averagePollTime=_averagePollTime;
+@property(readonly, nonatomic) NSDate *lastAutoPollDate; // @synthesize lastAutoPollDate=_lastAutoPollDate;
 @property(readonly, nonatomic) NSArray *metrics; // @synthesize metrics=_metrics;
+@property(readonly, nonatomic) double averagePollTime; // @synthesize averagePollTime=_averagePollTime;
 - (void).cxx_destruct;
 - (void)synchronize;
 - (void)addPoll:(id)arg1;

@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
     id controlChannelWeak;
 }
 
+- (void)controlChannel:(id)arg1 clearTransactionCacheForParticipant:(id)arg2;
 - (void)controlChannel:(id)arg1 sendReliableMessage:(id)arg2 didSucceed:(BOOL)arg3 toParticipant:(id)arg4;
 - (void)controlChannel:(id)arg1 receivedMessage:(id)arg2 transactionID:(unsigned int)arg3 fromParticipant:(id)arg4;
 - (id)newDictionaryFromUnpackedMomentsMessage:(id)arg1;

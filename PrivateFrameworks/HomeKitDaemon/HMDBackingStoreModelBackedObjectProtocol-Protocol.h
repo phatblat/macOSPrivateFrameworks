@@ -14,5 +14,8 @@
 - (NSArray *)modelBackedObjects;
 - (NSArray *)backingStoreObjectsWithChangeType:(unsigned long long)arg1 version:(long long)arg2;
 - (HMDBackingStoreModelObject *)modelObjectWithChangeType:(unsigned long long)arg1 version:(long long)arg2;
+
+@optional
+- (BOOL)isBackingStorageEqual:(id)arg1;
 @end
 

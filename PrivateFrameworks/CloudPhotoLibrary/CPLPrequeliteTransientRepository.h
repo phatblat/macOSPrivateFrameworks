@@ -8,18 +8,21 @@
 
 #import "CPLEngineTransientRepositoryImplementation.h"
 
-@class NSString;
+@class CPLPrequeliteScopeFilter, NSString;
 
 @interface CPLPrequeliteTransientRepository : CPLPrequeliteStorage <CPLEngineTransientRepositoryImplementation>
 {
+    CPLPrequeliteScopeFilter *_scopeFilter;
 }
 
+- (void).cxx_destruct;
 - (BOOL)deleteRecordsForScopeIndex:(long long)arg1 maxCount:(long long)arg2 deletedCount:(long long *)arg3 error:(id *)arg4;
 - (id)status;
 - (unsigned long long)countOfUnmingledRecords;
 - (unsigned long long)countOfAssetChanges;
 - (BOOL)deleteAllRecordsForScopeWithIdentifier:(id)arg1 error:(id *)arg2;
 - (BOOL)deleteMingledRecordsForScopeWithIdentifier:(id)arg1 error:(id *)arg2;
+- (BOOL)resetMingledRecordsWithScopeFilter:(id)arg1 error:(id *)arg2;
 - (BOOL)resetMingledRecordsForScopeWithIdentifier:(id)arg1 error:(id *)arg2;
 - (BOOL)hasUnmingledRecordsForScopeWithIdentifier:(id)arg1;
 - (BOOL)hasMingledRecordsForScopeWithIdentifier:(id)arg1;
@@ -35,7 +38,7 @@
 - (id)_enumeratorForRecordsWithTransientType:(int)arg1 class:(Class)arg2 maximumCount:(unsigned long long)arg3;
 - (id)_enumeratorForRecordsWithTransientType:(int)arg1 maximumCount:(unsigned long long)arg2;
 - (BOOL)_markChangesWithScopedIdentifiersAsMingled:(id)arg1 error:(id *)arg2;
-- (BOOL)prepareForMinglingWithError:(id *)arg1;
+- (BOOL)prepareForMinglingWithScopeFilter:(id)arg1 error:(id *)arg2;
 - (BOOL)appendBatch:(id)arg1 alreadyMingled:(BOOL)arg2 error:(id *)arg3;
 - (BOOL)_appendChange:(id)arg1 alreadyMingled:(BOOL)arg2 error:(id *)arg3;
 - (BOOL)upgradeStorageToVersion:(long long)arg1;

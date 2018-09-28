@@ -17,6 +17,7 @@
     NSArray *_payloadAppIdentifierMatches;
 }
 
++ (id)buildRequiredOnlyWithRealm:(id)arg1;
 + (id)buildWithPrincipalName:(id)arg1 withPayloadCertificateUUID:(id)arg2 withRealm:(id)arg3 withURLPrefixMatches:(id)arg4 withAppIdentifierMatches:(id)arg5;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSArray *payloadAppIdentifierMatches; // @synthesize payloadAppIdentifierMatches=_payloadAppIdentifierMatches;

@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class NSUUID;
+@class NSString, NSUUID;
 
 @interface ISGenerationRequest : NSObject <NSSecureCoding>
 {
@@ -30,6 +30,7 @@
 - (CDStruct_cbacfc36)validationToken;
 - (void)enumerateIconResourceInfoWithOptions:(id)arg1 block:(CDUnknownBlockType)arg2;
 @property(readonly) NSUUID *resourceUUID; // @dynamic resourceUUID;
+@property(readonly) NSString *fallbackType;
 - (BOOL)isEqual:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

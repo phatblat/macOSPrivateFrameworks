@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSetRadioStationIntent.h"
 
-@class INCodableAttribute, NSString, _INPBDouble, _INPBInteger, _INPBIntentMetadata, _INPBString;
+@class NSString, _INPBDouble, _INPBInteger, _INPBIntentMetadata, _INPBString;
 
-@interface _INPBSetRadioStationIntent : PBCodable <_INPBSetRadioStationIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSetRadioStationIntent : PBCodable <_INPBSetRadioStationIntent, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int radioType:1;
@@ -24,10 +23,8 @@
     _INPBIntentMetadata *_intentMetadata;
     _INPBInteger *_presetNumber;
     _INPBString *_stationName;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBString *stationName; // @synthesize stationName=_stationName;
 @property(nonatomic) int radioType; // @synthesize radioType=_radioType;
 @property(retain, nonatomic) _INPBInteger *presetNumber; // @synthesize presetNumber=_presetNumber;

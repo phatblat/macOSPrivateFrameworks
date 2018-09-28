@@ -6,25 +6,22 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBGenericIntent.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBIntentMetadata;
+@class NSArray, NSString, _INPBIntentMetadata;
 
-@interface _INPBGenericIntent : PBCodable <_INPBGenericIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBGenericIntent : PBCodable <_INPBGenericIntent, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSString *_domain;
     _INPBIntentMetadata *_metadata;
     NSArray *_parameters;
     NSString *_verb;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)parametersType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *verb; // @synthesize verb=_verb;
 @property(copy, nonatomic) NSArray *parameters; // @synthesize parameters=_parameters;
 @property(retain, nonatomic) _INPBIntentMetadata *metadata; // @synthesize metadata=_metadata;

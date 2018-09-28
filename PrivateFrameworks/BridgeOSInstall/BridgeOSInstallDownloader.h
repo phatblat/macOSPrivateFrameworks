@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class BOSDevice, BOSPredicateUpdateProductManager, MSUProduct, NSArray, NSURL, PKDistribution;
+@class BOSDevice, BOSPredicateUpdateProductManager, MSUProduct, NSArray, NSString, NSURL, PKDistribution;
 
 @interface BridgeOSInstallDownloader : NSObject
 {
@@ -25,6 +25,7 @@
 - (void)setMacOSInstallationAuxInfo:(id)arg1;
 - (void)setCatalogURL:(id)arg1 isDevelopmentCatalog:(BOOL)arg2;
 @property(readonly) NSURL *bridgeOSSoftwareUpdateEventRecordingServiceURL;
+@property(readonly) NSString *productBridgeVersion;
 @property(readonly) MSUProduct *product;
 @property(readonly) PKDistribution *distribution;
 @property(readonly) NSArray *remotePackageSpecifiers;

@@ -33,6 +33,7 @@ __attribute__((visibility("hidden")))
     double _builtViewUnitsPerPoint;
 }
 
+@property(readonly, nonatomic) VKPolylineOverlayRenderRegion *renderRegion; // @synthesize renderRegion=_renderRegion;
 @property(nonatomic) id <VKRouteLineObserverProtocol> observer; // @synthesize observer=_observer;
 @property(nonatomic) double simplificationEpsilonPoints; // @synthesize simplificationEpsilonPoints=_simplificationEpsilonPoints;
 @property BOOL hasNewRoadMatches; // @synthesize hasNewRoadMatches=_hasNewRoadMatches;

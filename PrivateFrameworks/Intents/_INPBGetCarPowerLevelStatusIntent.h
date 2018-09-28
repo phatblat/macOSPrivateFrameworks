@@ -6,22 +6,19 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBGetCarPowerLevelStatusIntent.h"
 
-@class INCodableAttribute, NSString, _INPBDataString, _INPBIntentMetadata;
+@class NSString, _INPBDataString, _INPBIntentMetadata;
 
-@interface _INPBGetCarPowerLevelStatusIntent : PBCodable <_INPBGetCarPowerLevelStatusIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBGetCarPowerLevelStatusIntent : PBCodable <_INPBGetCarPowerLevelStatusIntent, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBDataString *_carName;
     _INPBIntentMetadata *_intentMetadata;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
 @property(retain, nonatomic) _INPBDataString *carName; // @synthesize carName=_carName;
 - (void).cxx_destruct;

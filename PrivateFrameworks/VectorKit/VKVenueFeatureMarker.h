@@ -13,6 +13,7 @@
     _Bool _localize;
 }
 
+- (id)shortName;
 - (id)name;
 @property(readonly, nonatomic) NSArray *buildings;
 @property(readonly, nonatomic) GEOMapItemIdentifier *mapIdentifier;

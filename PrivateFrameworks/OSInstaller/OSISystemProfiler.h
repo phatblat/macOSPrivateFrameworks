@@ -28,7 +28,7 @@
 - (void)populateStats;
 - (id)modelName;
 - (void)setTarget:(id)arg1;
-- (id)initWithDisk:(id)arg1;
+- (id)initWithOptions:(id)arg1;
 
 @end
 

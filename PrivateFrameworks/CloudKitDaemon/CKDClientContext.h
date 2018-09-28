@@ -166,6 +166,7 @@
 - (void)clearAssetCache;
 - (void)setFakeResponseOperationResult:(id)arg1 forNextRequestOfClassName:(id)arg2 forItemID:(id)arg3 withLifetime:(int)arg4;
 - (void)setFakeError:(id)arg1 forNextRequestOfClassName:(id)arg2;
+@property(nonatomic) BOOL hasNonLegacyShareURLEntitlement;
 @property(retain, nonatomic) NSString *clientPrefixEntitlement;
 @property(retain, nonatomic) NSString *applicationIdentifier;
 @property(readonly, nonatomic) NSString *encryptionServiceName;

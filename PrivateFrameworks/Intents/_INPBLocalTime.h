@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBLocalTime.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBLocalTime : PBCodable <_INPBLocalTime, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBLocalTime : PBCodable <_INPBLocalTime, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int hourOfDay:1;
@@ -25,15 +24,12 @@
     long long _millisOfSecond;
     long long _minuteOfHour;
     long long _secondOfMinute;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) long long secondOfMinute; // @synthesize secondOfMinute=_secondOfMinute;
 @property(nonatomic) long long minuteOfHour; // @synthesize minuteOfHour=_minuteOfHour;
 @property(nonatomic) long long millisOfSecond; // @synthesize millisOfSecond=_millisOfSecond;
 @property(nonatomic) long long hourOfDay; // @synthesize hourOfDay=_hourOfDay;
-- (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;

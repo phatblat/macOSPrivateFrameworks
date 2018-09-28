@@ -12,16 +12,16 @@
 {
     NSURL *mLocation;
     OCPPackageRelationshipCollection *mRelationships;
-    OCPPackage *mPackage;
     struct _xmlDoc *mDocument;
     NSMutableDictionary *mAlternateContentMap;
+    OCPPackage *mPackage;
 }
 
+@property(readonly) __weak OCPPackage *package; // @synthesize package=mPackage;
 - (void).cxx_destruct;
 - (void)setFallbackNode:(struct _xmlNode *)arg1 forChoiceNode:(struct _xmlNode *)arg2;
 - (struct _xmlNode *)fallbackNodeForChoiceNode:(struct _xmlNode *)arg1;
 - (id)contentType;
-- (id)package;
 - (id)firstPartWithRelationshipOfType:(id)arg1;
 - (id)relationshipsByType:(id)arg1;
 - (id)relationshipForIdentifier:(id)arg1;

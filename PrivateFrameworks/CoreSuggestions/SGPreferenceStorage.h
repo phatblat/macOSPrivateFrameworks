@@ -23,6 +23,7 @@
 + (void)setProactiveEnabledForTests:(BOOL)arg1;
 + (void)setShowCancelledEventsForTests:(BOOL)arg1;
 + (void)setHidePastEventsForTests:(BOOL)arg1;
++ (BOOL)hidePastEventsForTests;
 + (void)setCloudKitPersistedState:(id)arg1;
 + (id)cloudKitPersistedState;
 + (BOOL)shouldHarvestEvents;

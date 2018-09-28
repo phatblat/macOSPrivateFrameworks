@@ -8,6 +8,7 @@
 
 @protocol SandboxExtensionToken
 @property(readonly, nonatomic) NSURL *shortestAccessibleURL;
+@property(readonly, nonatomic) BOOL stopAccessingRequestURLWhenDone;
 @property(readonly, nonatomic) NSURL *requestURL;
 @property(readonly, copy, nonatomic) NSSet *urls;
 - (BOOL)isValid;

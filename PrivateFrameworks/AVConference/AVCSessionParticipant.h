@@ -23,6 +23,7 @@
     long long _videoToken;
     unsigned char _videoQuality;
     unsigned int _visibilityIndex;
+    unsigned int _prominenceIndex;
     NSMutableDictionary *_participantConfig;
     BOOL _audioMuted;
     BOOL _audioEnabled;
@@ -45,6 +46,7 @@
 @property(nonatomic, getter=isAudioEnabled) BOOL audioEnabled; // @synthesize audioEnabled=_audioEnabled;
 @property(nonatomic, getter=isAudioMuted) BOOL audioMuted; // @synthesize audioMuted=_audioMuted;
 @property(readonly, nonatomic) NSData *frequencyLevels; // @synthesize frequencyLevels=_frequencyLevels;
+@property(nonatomic) unsigned int prominenceIndex; // @synthesize prominenceIndex=_prominenceIndex;
 @property(nonatomic) unsigned int visibilityIndex; // @synthesize visibilityIndex=_visibilityIndex;
 @property(nonatomic) unsigned char videoQuality; // @synthesize videoQuality=_videoQuality;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *delegateNotificationQueue; // @synthesize delegateNotificationQueue=_delegateNotificationQueue;

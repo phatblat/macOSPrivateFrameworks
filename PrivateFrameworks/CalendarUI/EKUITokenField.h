@@ -19,7 +19,6 @@
     struct CGSize _intrinsicContentSize;
 }
 
-+ (Class)cellClass;
 @property BOOL isInsideExpandableContainer; // @synthesize isInsideExpandableContainer=_isInsideExpandableContainer;
 @property BOOL isExpanded; // @synthesize isExpanded=_isExpanded;
 @property struct CGSize intrinsicContentSize; // @synthesize intrinsicContentSize=_intrinsicContentSize;

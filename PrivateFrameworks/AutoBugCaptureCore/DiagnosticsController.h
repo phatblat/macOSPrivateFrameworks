@@ -26,8 +26,8 @@
 @property(retain, nonatomic) NSNumber *autoBugCaptureGID; // @synthesize autoBugCaptureGID=_autoBugCaptureGID;
 @property(retain, nonatomic) NSString *autoBugCapturePath; // @synthesize autoBugCapturePath=_autoBugCapturePath;
 - (void).cxx_destruct;
-- (unsigned long long)collectDignosticExtensionFilesForDiagnosticCase:(id)arg1 parameters:(id)arg2 queue:(id)arg3 reply:(CDUnknownBlockType)arg4;
-- (id)diagnosticExtensionsForDiagnosticCase:(id)arg1;
+- (unsigned long long)collectDignosticExtensionFilesForDiagnosticCase:(id)arg1 parameters:(id)arg2 options:(id)arg3 queue:(id)arg4 reply:(CDUnknownBlockType)arg5;
+- (id)diagnosticExtensionsForDiagnosticCase:(id)arg1 enableCommonActions:(id)arg2;
 - (void)lowerLoggingForDiagnosticCase:(id)arg1;
 - (void)raiseLoggingForDiagnosticCase:(id)arg1;
 - (void)applyLogLevel:(id)arg1 forIdentifier:(id)arg2 logSettingType:(unsigned long long)arg3;
@@ -36,6 +36,7 @@
 - (void)lowerLoggingForIdentifier:(id)arg1;
 - (void)raiseLoggingForActions:(id)arg1 identifier:(id)arg2;
 - (void)consolidateLoggingLevelsIntoSet:(id)arg1 withCurrentState:(id)arg2;
+- (id)diagActionsForSignature:(id)arg1 commonActions:(id)arg2;
 - (id)diagActionsForSignature:(id)arg1;
 - (id)consolidatedLogLevelSetsFromActions:(id)arg1;
 - (id)actionsDictionaryForProcess:(id)arg1 logLevel:(id)arg2 diagnosticExtensions:(id)arg3;

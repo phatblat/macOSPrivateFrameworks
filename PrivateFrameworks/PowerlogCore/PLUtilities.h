@@ -28,6 +28,7 @@
 + (BOOL)isEduMode;
 + (BOOL)isAppAnalyticsEnabled;
 + (BOOL)isSiriEnabled;
++ (BOOL)isHeySiriEnabled;
 + (double)defaultBatteryEnergyCapacity;
 + (BOOL)hasBatteryUI;
 + (BOOL)hasGasGauge;

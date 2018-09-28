@@ -15,6 +15,7 @@
     NSNumber *_payloadAllowTVProviderModification;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowTVProviderModification:(id)arg2;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

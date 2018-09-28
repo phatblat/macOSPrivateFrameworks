@@ -53,7 +53,6 @@ __attribute__((visibility("hidden")))
 - (id)delegate;
 - (void)initilizeStreamInfoMapWithStreamInfos:(id)arg1;
 - (id)anchorStreamIDWithCappedVideoStreamIDs:(id)arg1;
-- (void)updatePendingStreamWithCappedVideoStreamIDs:(id)arg1;
 - (void)generateKeyFrameWithStreamID:(unsigned int)arg1;
 - (void)setIsLocalOnCellular:(BOOL)arg1 cappedVideoStreamIDs:(id)arg2;
 - (void)dealloc;

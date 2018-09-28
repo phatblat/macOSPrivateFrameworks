@@ -27,6 +27,7 @@
 @property(retain) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 @property(retain) NSData *auditTokenData; // @synthesize auditTokenData=_auditTokenData;
 - (void).cxx_destruct;
+- (id)generateConfigurationFromBagContract:(id)arg1;
 - (id)generateConfiguration;
 @property(retain) NSString *partnerHeader;
 - (id)initWithBundleIdentifier:(id)arg1;

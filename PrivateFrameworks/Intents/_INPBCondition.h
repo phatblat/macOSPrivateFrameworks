@@ -6,25 +6,21 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBCondition.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBCondition : PBCodable <_INPBCondition, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBCondition : PBCodable <_INPBCondition, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int conditionalOperator:1;
     } _has;
     int _conditionalOperator;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int conditionalOperator; // @synthesize conditionalOperator=_conditionalOperator;
-- (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;

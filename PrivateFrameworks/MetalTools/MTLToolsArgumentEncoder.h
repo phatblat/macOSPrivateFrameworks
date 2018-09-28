@@ -19,8 +19,6 @@
 - (id)newArgumentEncoderForBufferAtIndex:(unsigned long long)arg1;
 - (void)setIndirectCommandBuffers:(const id *)arg1 withRange:(struct _NSRange)arg2;
 - (void)setIndirectCommandBuffer:(id)arg1 atIndex:(unsigned long long)arg2;
-- (void)setComputePipelineStates:(const id *)arg1 withRange:(struct _NSRange)arg2;
-- (void)setComputePipelineState:(id)arg1 atIndex:(unsigned long long)arg2;
 - (void)setRenderPipelineStates:(const id *)arg1 withRange:(struct _NSRange)arg2;
 - (void)setRenderPipelineState:(id)arg1 atIndex:(unsigned long long)arg2;
 - (void)setSamplerStates:(const id *)arg1 withRange:(struct _NSRange)arg2;

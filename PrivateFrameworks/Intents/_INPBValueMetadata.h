@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBValueMetadata.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBValueMetadata : PBCodable <_INPBValueMetadata, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBValueMetadata : PBCodable <_INPBValueMetadata, NSSecureCoding, NSCopying>
 {
     CDStruct_95bda58d _requiredEntitlements;
     struct {
@@ -25,10 +24,8 @@
     NSString *_source;
     NSString *_sourceAppBundleIdentifier;
     NSString *_uuid;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
 @property(copy, nonatomic) NSString *sourceAppBundleIdentifier; // @synthesize sourceAppBundleIdentifier=_sourceAppBundleIdentifier;
 @property(copy, nonatomic) NSString *source; // @synthesize source=_source;

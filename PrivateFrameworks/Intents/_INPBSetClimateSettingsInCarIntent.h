@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSetClimateSettingsInCarIntent.h"
 
-@class INCodableAttribute, NSString, _INPBDouble, _INPBInteger, _INPBIntentMetadata, _INPBTemperature;
+@class NSString, _INPBDataString, _INPBDouble, _INPBInteger, _INPBIntentMetadata, _INPBTemperature;
 
-@interface _INPBSetClimateSettingsInCarIntent : PBCodable <_INPBSetClimateSettingsInCarIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSetClimateSettingsInCarIntent : PBCodable <_INPBSetClimateSettingsInCarIntent, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int airCirculationMode:1;
@@ -33,14 +32,13 @@
     int _climateZone;
     int _relativeFanSpeedSetting;
     int _relativeTemperatureSetting;
+    _INPBDataString *_carName;
     _INPBInteger *_fanSpeedIndex;
     _INPBDouble *_fanSpeedPercentage;
     _INPBIntentMetadata *_intentMetadata;
     _INPBTemperature *_temperature;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBTemperature *temperature; // @synthesize temperature=_temperature;
 @property(nonatomic) int relativeTemperatureSetting; // @synthesize relativeTemperatureSetting=_relativeTemperatureSetting;
 @property(nonatomic) int relativeFanSpeedSetting; // @synthesize relativeFanSpeedSetting=_relativeFanSpeedSetting;
@@ -52,6 +50,7 @@
 @property(nonatomic) BOOL enableAutoMode; // @synthesize enableAutoMode=_enableAutoMode;
 @property(nonatomic) BOOL enableAirConditioner; // @synthesize enableAirConditioner=_enableAirConditioner;
 @property(nonatomic) int climateZone; // @synthesize climateZone=_climateZone;
+@property(retain, nonatomic) _INPBDataString *carName; // @synthesize carName=_carName;
 @property(nonatomic) int airCirculationMode; // @synthesize airCirculationMode=_airCirculationMode;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;
@@ -77,6 +76,7 @@
 - (int)StringAsClimateZone:(id)arg1;
 - (id)climateZoneAsString:(int)arg1;
 @property(nonatomic) BOOL hasClimateZone;
+@property(readonly, nonatomic) BOOL hasCarName;
 - (int)StringAsAirCirculationMode:(id)arg1;
 - (id)airCirculationModeAsString:(int)arg1;
 @property(nonatomic) BOOL hasAirCirculationMode;

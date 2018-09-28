@@ -10,21 +10,35 @@
 
 @interface CSSpIdSATAnalyzer : NSObject
 {
-    NSString *_sysConfigFilepath;
+    void *_novDetect;
+    unsigned long long _spIdType;
+    NSString *_userName;
+    NSString *_satModelDir;
+    NSString *_satAudioDir;
+    NSString *_spIdTypeStr;
+    unsigned long long _satRunMode;
+    NSString *_satRunModeStr;
 }
 
-@property(readonly, nonatomic) NSString *sysConfigFilepath; // @synthesize sysConfigFilepath=_sysConfigFilepath;
++ (id)createSATAnalyzersForCSSpIdType:(unsigned long long)arg1 withAsset:(id)arg2;
+@property(retain, nonatomic) NSString *satRunModeStr; // @synthesize satRunModeStr=_satRunModeStr;
+@property(nonatomic) unsigned long long satRunMode; // @synthesize satRunMode=_satRunMode;
+@property(retain, nonatomic) NSString *spIdTypeStr; // @synthesize spIdTypeStr=_spIdTypeStr;
+@property(retain, nonatomic) NSString *satAudioDir; // @synthesize satAudioDir=_satAudioDir;
+@property(retain, nonatomic) NSString *satModelDir; // @synthesize satModelDir=_satModelDir;
+@property(retain, nonatomic) NSString *userName; // @synthesize userName=_userName;
+@property(nonatomic) unsigned long long spIdType; // @synthesize spIdType=_spIdType;
 - (void).cxx_destruct;
+- (void)deleteVectorAtIndex:(int)arg1;
 - (void)updateSAT;
-- (float)analyzeSpeakerVector:(id)arg1 numElements:(unsigned long long)arg2;
+- (float)analyzeSpeakerVector:(id)arg1 numVectors:(unsigned long long)arg2;
 @property(readonly, nonatomic) float satScoreThreshold;
-@property(readonly, nonatomic) NSString *satAudioDir;
-@property(readonly, nonatomic) NSString *satModelDir;
 @property(readonly, nonatomic) NSString *sysConfigRoot;
-- (id)sysConfigFile;
-@property(readonly, nonatomic) NSString *userName;
-@property(readonly, nonatomic) unsigned long long spIdType;
-- (id)initWithCSspIdType:(unsigned long long)arg1 userName:(id)arg2 assetResourcePath:(id)arg3 satDirectory:(id)arg4 assetHash:(id)arg5;
+@property(readonly, nonatomic) NSString *sysConfigFilepath;
+- (id)_getValueForNDAPIConfigOption:(id)arg1;
+- (double)_getFloatValueForNDAPIConfigOption:(id)arg1 defaultValue:(double)arg2;
+- (void)dealloc;
+- (id)initWithCSSpIdType:(unsigned long long)arg1 forRunMode:(unsigned long long)arg2 profile:(id)arg3 locale:(id)arg4 assetResourcePath:(id)arg5 assetHash:(id)arg6;
 
 @end
 

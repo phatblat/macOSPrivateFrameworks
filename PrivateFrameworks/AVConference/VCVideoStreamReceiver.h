@@ -37,6 +37,7 @@ __attribute__((visibility("hidden")))
     VideoAttributes *_remoteVideoAttributes;
     VCMediaStreamSynchronizer *_mediaStreamSynchronizer;
     int _remoteVideoCamera;
+    BOOL _remoteVideoMirrored;
     BOOL _enableCVO;
     unsigned long long _cvoExtensionID;
     unsigned long long _lastKeyFrameSampleBufferSize;
@@ -76,7 +77,7 @@ __attribute__((visibility("hidden")))
 - (void *)networkReceivePackets;
 - (int)stopNetworkReceiveThread;
 - (int)startNetworkReceiveThread;
-- (void)updateSourcePlayoutTimestamp:(unsigned int)arg1;
+- (void)updateSourcePlayoutTimestamp:(CDStruct_1b6d18a9 *)arg1;
 - (void)setSyncSource:(id)arg1;
 - (id)syncSource;
 - (void)stopSynchronization;

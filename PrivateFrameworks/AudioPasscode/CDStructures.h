@@ -34,30 +34,11 @@ struct BufferedInputBus {
     struct AudioBufferList *mutableAudioBufferList;
 };
 
-struct CAAudioChannelLayout {
-    struct RefCountedLayout *mLayout;
-};
-
 struct CABufferList;
 
 struct CAExtAudioFile {
     CDUnknownFunctionPointerType *_vptr$CAExtAudioFile;
     struct OpaqueExtAudioFile *mExtAudioFile;
-    struct CAStreamBasicDescription mFileDataFormat;
-    struct CAAudioChannelLayout mFileChannelLayout;
-    struct CAStreamBasicDescription mClientDataFormat;
-};
-
-struct CAStreamBasicDescription {
-    double mSampleRate;
-    unsigned int mFormatID;
-    unsigned int mFormatFlags;
-    unsigned int mBytesPerPacket;
-    unsigned int mFramesPerPacket;
-    unsigned int mBytesPerFrame;
-    unsigned int mChannelsPerFrame;
-    unsigned int mBitsPerChannel;
-    unsigned int mReserved;
 };
 
 struct DecodedDataMessage;
@@ -72,8 +53,6 @@ struct OpaqueExtAudioFile;
 
 struct RealtimeMessenger;
 
-struct RefCountedLayout;
-
 struct _NSRange {
     unsigned long long location;
     unsigned long long length;
@@ -83,13 +62,13 @@ struct __tree_end_node<std::__1::__tree_node_base<void *>*> {
     struct __tree_node_base<void *> *__left_;
 };
 
-struct map<unsigned int, float, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, float>>> {
-    struct __tree<std::__1::__value_type<unsigned int, float>, std::__1::__map_value_compare<unsigned int, std::__1::__value_type<unsigned int, float>, std::__1::less<unsigned int>, true>, std::__1::allocator<std::__1::__value_type<unsigned int, float>>> {
+struct map<unsigned int, apc::Any, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, apc::Any>>> {
+    struct __tree<std::__1::__value_type<unsigned int, apc::Any>, std::__1::__map_value_compare<unsigned int, std::__1::__value_type<unsigned int, apc::Any>, std::__1::less<unsigned int>, true>, std::__1::allocator<std::__1::__value_type<unsigned int, apc::Any>>> {
         struct __tree_end_node<std::__1::__tree_node_base<void *>*> *__begin_node_;
-        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<unsigned int, float>, void *>>> {
+        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<unsigned int, apc::Any>, void *>>> {
             struct __tree_end_node<std::__1::__tree_node_base<void *>*> __value_;
         } __pair1_;
-        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<unsigned int, std::__1::__value_type<unsigned int, float>, std::__1::less<unsigned int>, true>> {
+        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<unsigned int, std::__1::__value_type<unsigned int, apc::Any>, std::__1::less<unsigned int>, true>> {
             unsigned long long __value_;
         } __pair3_;
     } __tree_;
@@ -144,17 +123,17 @@ struct vector<unsigned char, std::__1::allocator<unsigned char>> {
 #pragma mark Typedef'd Structures
 
 // Template types
-typedef struct map<unsigned int, float, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, float>>> {
-    struct __tree<std::__1::__value_type<unsigned int, float>, std::__1::__map_value_compare<unsigned int, std::__1::__value_type<unsigned int, float>, std::__1::less<unsigned int>, true>, std::__1::allocator<std::__1::__value_type<unsigned int, float>>> {
+typedef struct map<unsigned int, apc::Any, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, apc::Any>>> {
+    struct __tree<std::__1::__value_type<unsigned int, apc::Any>, std::__1::__map_value_compare<unsigned int, std::__1::__value_type<unsigned int, apc::Any>, std::__1::less<unsigned int>, true>, std::__1::allocator<std::__1::__value_type<unsigned int, apc::Any>>> {
         struct __tree_end_node<std::__1::__tree_node_base<void *>*> *__begin_node_;
-        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<unsigned int, float>, void *>>> {
+        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<unsigned int, apc::Any>, void *>>> {
             struct __tree_end_node<std::__1::__tree_node_base<void *>*> __value_;
         } __pair1_;
-        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<unsigned int, std::__1::__value_type<unsigned int, float>, std::__1::less<unsigned int>, true>> {
+        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<unsigned int, std::__1::__value_type<unsigned int, apc::Any>, std::__1::less<unsigned int>, true>> {
             unsigned long long __value_;
         } __pair3_;
     } __tree_;
-} map_8903fe1c;
+} map_fc0e2ca7;
 
 typedef struct unique_ptr<APCDecoderBase, std::__1::default_delete<APCDecoderBase>> {
     struct __compressed_pair<APCDecoderBase *, std::__1::default_delete<APCDecoderBase>> {

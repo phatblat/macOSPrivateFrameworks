@@ -23,6 +23,7 @@
 - (id)fetchResultForDayOfWeek:(long long)arg1;
 - (id)fetchResult;
 - (void)executeWithStorage:(id)arg1 referenceDate:(id)arg2;
+- (id)histogramForDate:(id)arg1 withReference:(id)arg2 andUpdate:(id)arg3;
 - (void)executeWithStorage:(id)arg1;
 - (id)_predicateForDeletedEventsWithReferenceDate:(id)arg1;
 - (long long)_computeSlotForDate:(id)arg1;

@@ -23,11 +23,13 @@
     MNLocation *_lastLocationUsedForReroute;
     unsigned long long _consecutiveOffRouteCount;
     MNLocation *_lastKnownGoodLocationOnRoute;
+    BOOL _isNavigatingInLowGuidance;
 }
 
 @property(copy, nonatomic) NSData *serverSessionState; // @synthesize serverSessionState=_serverSessionState;
 - (void).cxx_destruct;
 - (void)forceOnRoute:(id)arg1 atLocation:(id)arg2;
+- (void)_setIsNavigatingInLowGuidance:(BOOL)arg1;
 - (id)_alternateRouteForOffRouteLocation:(id)arg1;
 - (BOOL)_allowSwitchToTransportType:(int)arg1 forLocation:(id)arg2;
 - (int)_detectedMotionForLocation:(id)arg1;

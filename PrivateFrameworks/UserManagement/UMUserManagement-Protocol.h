@@ -11,6 +11,7 @@
 @protocol UMUserManagement <NSObject>
 @property(readonly, nonatomic) unsigned long long maxNumberOfUsers;
 @property(readonly, nonatomic) BOOL isLoginSession;
+@property(readonly, copy, nonatomic) UMUser *loginUser;
 @property(readonly, copy, nonatomic) UMUser *currentUser;
 @property(readonly, nonatomic) BOOL isMultiUser;
 - (void)registerUserListUpdateObserver:(id <UMUserListUpdateObserver>)arg1;

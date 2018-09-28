@@ -7,9 +7,10 @@
 #import "JSExport.h"
 #import "NSObject.h"
 
-@class NSMeasurement, NSNumber;
+@class INSpeakableString, NSMeasurement, NSNumber;
 
 @protocol INSetClimateSettingsInCarIntentExport <NSObject, JSExport>
+@property(copy) INSpeakableString *carName;
 @property long long climateZone;
 @property long long relativeTemperatureSetting;
 @property(copy) NSMeasurement *temperature;

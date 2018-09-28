@@ -16,6 +16,7 @@
 
 - (void).cxx_destruct;
 - (id)legacyExecutionHistory;
+- (void)dealloc;
 - (id)init;
 
 @end

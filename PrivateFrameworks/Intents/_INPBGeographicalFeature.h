@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBGeographicalFeature.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBString;
+@class NSArray, NSString, _INPBString;
 
-@interface _INPBGeographicalFeature : PBCodable <_INPBGeographicalFeature, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBGeographicalFeature : PBCodable <_INPBGeographicalFeature, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSArray *_geographicalFeatureDescriptors;
     _INPBString *_geographicalFeatureType;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)geographicalFeatureDescriptorsType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBString *geographicalFeatureType; // @synthesize geographicalFeatureType=_geographicalFeatureType;
 @property(copy, nonatomic) NSArray *geographicalFeatureDescriptors; // @synthesize geographicalFeatureDescriptors=_geographicalFeatureDescriptors;
 - (void).cxx_destruct;

@@ -8,7 +8,7 @@
 
 #import "NSFilePresenter.h"
 
-@class BrowserWindowController, DownloadFile, DownloadFileUnarchiver, NSArray, NSDate, NSDictionary, NSError, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, NSProgress, NSSet, NSString, NSTimer, NSURL, NSURLDownload, NSURLRequest, NSURLResponse, WBSCoalescedAsynchronousWriter;
+@class BrowserWindowController, DownloadFile, NSArray, NSDate, NSDictionary, NSError, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, NSProgress, NSSet, NSString, NSTimer, NSURL, NSURLDownload, NSURLRequest, NSURLResponse, WBSCoalescedAsynchronousWriter, WBSDownloadFileUnarchiver;
 
 __attribute__((visibility("hidden")))
 @interface DownloadProgressEntry : NSObject <NSFilePresenter>
@@ -28,7 +28,7 @@ __attribute__((visibility("hidden")))
     NSString *_identifier;
     NSDictionary *_resumeInformation;
     NSURLDownload *_download;
-    DownloadFileUnarchiver *_fileUnarchiver;
+    WBSDownloadFileUnarchiver *_fileUnarchiver;
     WBSCoalescedAsynchronousWriter *_plistWriter;
     NSDate *_startDate;
     BOOL _openWhenDone;

@@ -15,6 +15,7 @@
     id <SDRDiagnosticReporterDelegate> _delegate;
 }
 
++ (BOOL)isABCEnabled;
 + (void)initialize;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(nonatomic) __weak id <SDRDiagnosticReporterDelegate> delegate; // @synthesize delegate=_delegate;

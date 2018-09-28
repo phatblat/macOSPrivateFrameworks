@@ -15,5 +15,6 @@
 @property(readonly, copy, nonatomic) NSArray *items;
 - (void)takePotentialDropOperation:(unsigned long long)arg1;
 - (void)setHandler:(id <UHADropSessionHandlerInterface>)arg1;
+- (void)takeHandler:(id <UHADropSessionHandlerInterface>)arg1;
 @end
 

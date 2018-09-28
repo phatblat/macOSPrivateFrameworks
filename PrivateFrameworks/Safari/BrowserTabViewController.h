@@ -6,18 +6,22 @@
 
 #import "NSViewController.h"
 
+@class BrowserTabViewItem;
+
 __attribute__((visibility("hidden")))
 @interface BrowserTabViewController : NSViewController
 {
+    BrowserTabViewItem *_tabViewItem;
     NSViewController *_contentViewController;
 }
 
 @property(retain, nonatomic) NSViewController *contentViewController; // @synthesize contentViewController=_contentViewController;
+@property(readonly, nonatomic) __weak BrowserTabViewItem *tabViewItem; // @synthesize tabViewItem=_tabViewItem;
 - (void).cxx_destruct;
 - (void)_updateViewHierarchy;
 - (void)viewDidLoad;
 - (void)loadView;
-- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (id)initWithTabViewItem:(id)arg1;
 
 @end
 

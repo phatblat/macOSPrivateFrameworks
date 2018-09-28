@@ -53,6 +53,7 @@
 - (void)evaluateJavaScriptFunction:(NSString *)arg1 withArguments:(NSArray *)arg2 expectingImplicitCallbackArgument:(BOOL)arg3 completionHandler:(void (^)(NSError *, id))arg4;
 - (void)takeScreenshotOfElement:(WDRemoteElement *)arg1 scrollIntoView:(BOOL)arg2 completionHandler:(void (^)(NSError *, NSString *))arg3;
 - (void)takeScreenshotWithBounds:(long long)arg1 completionHandler:(void (^)(NSError *, NSString *))arg2;
+- (void)waitForPendingNavigationsWithCompletionHandler:(void (^)(NSError *))arg1;
 - (void)reloadWithCompletionHandler:(void (^)(NSError *))arg1;
 - (void)goForwardWithCompletionHandler:(void (^)(NSError *))arg1;
 - (void)goBackWithCompletionHandler:(void (^)(NSError *))arg1;

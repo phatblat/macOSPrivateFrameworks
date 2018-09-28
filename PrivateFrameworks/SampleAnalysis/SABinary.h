@@ -17,6 +17,10 @@
     unsigned long long _alreadyAttempted;
     _Bool _attemptedToGetBundleInfo;
     NSString *_name;
+    unsigned long long _numInstructionsWhenLastSymbolicated;
+    unsigned long long _optionsWhenLastSymbolicated;
+    _Bool _hadSymbolOwnerWhenLastSymbolicated;
+    _Bool _symbolOwnerWasDsymWhenLastSymbolicated;
     BOOL _hasTextExecSegment;
     NSUUID *_uuid;
     unsigned long long _textSegmentLength;
@@ -35,7 +39,8 @@
 + (id)_dsymPaths;
 + (void)_addDsymPath:(id)arg1;
 + (void)_doDsymPathsWork:(CDUnknownBlockType)arg1;
-+ (id)binaryWithCSSymbolOwner:(struct _CSTypeRef)arg1 dataGatheringOptions:(unsigned long long)arg2;
++ (id)binaryWithCSSymbolOwner:(struct _CSTypeRef)arg1;
++ (id)binaryWithCSSymbolOwner:(struct _CSTypeRef)arg1 isSparse:(BOOL)arg2;
 + (id)binaryWithUUID:(id)arg1;
 + (void)enableImmediateCleanupOfCSSymbolOwners;
 + (void)clearCoreSymbolicationCaches;
@@ -58,11 +63,14 @@
 @property(readonly, copy) NSString *debugDescription;
 - (void)clearSymbolCache;
 - (void)clearCoreSymbolicationCache;
+- (void)symbolicateAllInstructionsWithOptions:(unsigned long long)arg1 pid:(int)arg2;
 - (id)addSymbolWithOffsetIntoTextSegment:(unsigned long long)arg1 length:(unsigned long long)arg2 name:(id)arg3;
 - (void)gatherInfoWithDataGatheringOptions:(unsigned long long)arg1 pid:(int)arg2;
 - (void)gatherBundleInfo;
 - (id)symbolOwnerWrapperWithOptions:(unsigned long long)arg1 pid:(int)arg2;
-- (BOOL)setSymbolOwner:(struct _CSTypeRef)arg1 dataGatheringOptions:(unsigned long long)arg2;
+- (BOOL)findPathViaBinaryLocator;
+- (BOOL)setSymbolOwner:(struct _CSTypeRef)arg1;
+- (BOOL)setSymbolOwner:(struct _CSTypeRef)arg1 isSparse:(BOOL)arg2;
 - (id)symbolWithOffsetIntoTextSegment:(unsigned long long)arg1;
 - (id)instructionAtOffsetIntoTextSegment:(unsigned long long)arg1;
 - (void)checkForNewSymbolForInstruction:(id)arg1;

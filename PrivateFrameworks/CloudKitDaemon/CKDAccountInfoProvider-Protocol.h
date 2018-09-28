@@ -23,6 +23,7 @@
 - (void)iCloudAuthTokenWithCompletionHandler:(void (^)(NSString *, NSError *))arg1;
 - (void)renewCloudKitAuthTokenWithReason:(NSString *)arg1 shouldForce:(BOOL)arg2 failedToken:(NSString *)arg3 completionHandler:(void (^)(BOOL, NSError *))arg4;
 - (void)cloudKitAuthTokenWithCompletionHandler:(void (^)(NSString *, NSError *))arg1;
+- (NSString *)sharingURLHostname;
 - (NSString *)displayedHostname;
 - (NSString *)regionCode;
 - (NSString *)languageCode;

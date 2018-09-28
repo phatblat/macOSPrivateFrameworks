@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, _INPBString;
+@class NSArray, NSString, _INPBString;
 
 @protocol _INPBPlace <NSObject>
 + (Class)placeDescriptorsType;
@@ -16,8 +16,12 @@
 @property(retain, nonatomic) _INPBString *placeSubType;
 @property(readonly, nonatomic) unsigned long long placeDescriptorsCount;
 @property(copy, nonatomic) NSArray *placeDescriptors;
+@property(nonatomic) BOOL hasPersonalPlaceType;
+@property(nonatomic) int personalPlaceType;
 - (_INPBString *)placeDescriptorsAtIndex:(unsigned long long)arg1;
 - (void)addPlaceDescriptors:(_INPBString *)arg1;
 - (void)clearPlaceDescriptors;
+- (int)StringAsPersonalPlaceType:(NSString *)arg1;
+- (NSString *)personalPlaceTypeAsString:(int)arg1;
 @end
 

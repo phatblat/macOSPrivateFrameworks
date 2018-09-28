@@ -24,7 +24,7 @@ __attribute__((visibility("hidden")))
 + (id)_moveAnimationWithStartingRect:(struct CGRect)arg1 endingRect:(struct CGRect)arg2;
 + (id)_fadeAnimationWithStartingOpacity:(double)arg1 endingOpacity:(double)arg2;
 @property(copy) CDUnknownBlockType deactivationAnimationDidFinishBlock; // @synthesize deactivationAnimationDidFinishBlock=_deactivationAnimationDidFinishBlock;
-@property(nonatomic) __weak ReaderViewController *readerViewController; // @synthesize readerViewController=_readerViewController;
+@property(retain, nonatomic) ReaderViewController *readerViewController; // @synthesize readerViewController=_readerViewController;
 @property(nonatomic) long long theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
 @property(readonly) NSColor *backgroundColor;

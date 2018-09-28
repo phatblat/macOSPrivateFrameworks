@@ -9,16 +9,18 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class INImage, INIntent, NSUserActivity;
+@class INImage, INIntent, NSString, NSUserActivity;
 
 @interface INShortcut : NSObject <NSSecureCoding, NSCopying>
 {
     INIntent *_intent;
     NSUserActivity *_userActivity;
     INImage *_activityImage;
+    NSString *_activitySubtitle;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(copy) NSString *activitySubtitle; // @synthesize activitySubtitle=_activitySubtitle;
 @property(copy) INImage *activityImage; // @synthesize activityImage=_activityImage;
 @property(readonly) NSUserActivity *userActivity; // @synthesize userActivity=_userActivity;
 @property(copy) INIntent *intent; // @synthesize intent=_intent;

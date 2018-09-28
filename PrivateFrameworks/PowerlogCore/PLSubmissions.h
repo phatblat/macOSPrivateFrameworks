@@ -11,6 +11,7 @@
 @interface PLSubmissions : NSObject
 {
     BOOL _eplEnabled;
+    BOOL _enableRestartAtEPL;
     PLStorageOperator *_storageOperator;
     PLSQLiteConnection *_connection;
     PLTimer *_watchdog;
@@ -33,6 +34,7 @@
 + (void)generateSubmissionTag;
 + (BOOL)submissionDisabled;
 + (id)sharedInstance;
+@property BOOL enableRestartAtEPL; // @synthesize enableRestartAtEPL=_enableRestartAtEPL;
 @property(retain) NSNumber *capValue; // @synthesize capValue=_capValue;
 @property(retain) NSString *onDemandTasking; // @synthesize onDemandTasking=_onDemandTasking;
 @property(retain) NSString *filterQuery; // @synthesize filterQuery=_filterQuery;
@@ -71,6 +73,7 @@
 - (void)generateInternalOTASubmission;
 - (void)generateSubmissionWithPayload:(id)arg1;
 - (void)registerEPLNotification;
+- (void)restartAtEPLEnable;
 - (BOOL)isTaskFullEPLMode;
 - (id)init;
 - (id)workQueue;

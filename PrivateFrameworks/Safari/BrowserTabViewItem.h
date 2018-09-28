@@ -15,7 +15,7 @@
 __attribute__((visibility("hidden")))
 @interface BrowserTabViewItem : NSTabViewItem <DelayedPopUpRolloverImageButtonDelegate, FormTextStatusWatcherDelegate, TabBarViewItem>
 {
-    BrowserViewController *_browserViewController;
+    BrowserViewController *_currentBrowserViewController;
     struct RefPtr<Safari::BrowserTab, WTF::DumbPtrTraits<Safari::BrowserTab>> _browserTab;
     struct RefPtr<Safari::WebPageProxy, WTF::DumbPtrTraits<Safari::WebPageProxy>> _webPageProxy;
     struct RefPtr<Safari::ReaderControllerProxy, WTF::DumbPtrTraits<Safari::ReaderControllerProxy>> _readerControllerProxy;
@@ -50,7 +50,6 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)findTabInAnyWindowWithUUID:(id)arg1;
-+ (id)findTabForBrowserViewController:(id)arg1;
 + (id)findTabForPage:(const struct Page *)arg1;
 @property(retain, nonatomic) ContinuousReadingListViewController *continuousReadingListViewController; // @synthesize continuousReadingListViewController=_continuousReadingListViewController;
 @property(nonatomic) int muteButtonState; // @synthesize muteButtonState=_muteButtonState;
@@ -80,6 +79,7 @@ __attribute__((visibility("hidden")))
 - (void)_resetCurrentPinnedTabIconType;
 - (void)_setPinnedTabIcon:(id)arg1 ofType:(unsigned long long)arg2;
 - (BOOL)_shouldUpdatePinnedTabIcon;
+- (void)updateSiteIconIgnoringPinnedTabState:(BOOL)arg1;
 - (void)updateSiteIconNow;
 - (void)updateSiteIconSoonIfNecessary;
 - (void)setImage:(id)arg1;
@@ -95,8 +95,6 @@ __attribute__((visibility("hidden")))
 - (void)toggleMediaCapture;
 - (void)mutableMediaPlayingStateDidChange;
 - (void)_updateMuteButtonImageAndTooltip;
-@property(readonly, nonatomic) BrowserViewController *cachedBrowserViewControllerInContinuousMode;
-- (void)exitContinuousMode;
 - (BOOL)continuousPageViewIsHandlingPageTransitionOrLoadingPageItem;
 @property(readonly, nonatomic, getter=isInContinuousMode) BOOL inContinuousMode;
 - (id)currentContinuousReadingListPageItem;
@@ -144,6 +142,8 @@ __attribute__((visibility("hidden")))
 - (void)willOpen;
 @property(readonly, nonatomic, getter=isFrontmost) BOOL frontmost;
 @property(readonly, nonatomic) BrowserWindowController *representedTabBrowserWindowController;
+@property(readonly, nonatomic) BrowserViewController *currentBrowserViewController;
+@property(readonly, nonatomic) id <VisualTabPickerThumbnailSnapshotProviding> visualTabPickerThumbnailSnapshotProvider;
 @property(readonly, nonatomic) BrowserViewController *browserViewController;
 @property(readonly, nonatomic) TabContentViewController *representedTabContentViewController;
 - (id)computeTabLabel;

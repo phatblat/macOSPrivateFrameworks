@@ -6,21 +6,18 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBTextNoteContent.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBTextNoteContent : PBCodable <_INPBTextNoteContent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBTextNoteContent : PBCodable <_INPBTextNoteContent, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSString *_text;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *text; // @synthesize text=_text;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

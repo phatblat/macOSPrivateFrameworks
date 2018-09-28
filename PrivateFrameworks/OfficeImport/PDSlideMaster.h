@@ -10,7 +10,6 @@
 
 @interface PDSlideMaster : PDSlideBase
 {
-    PDPresentation *mPresentation;
     NSMutableArray *mSlideLayouts;
     OADTheme *mTheme;
     OADColorMap *mColorMap;
@@ -21,6 +20,7 @@
     BOOL mFooterPlaceholderIsVisible;
     BOOL mSlideNumberPlaceholderIsVisible;
     BOOL mDateTimePlaceholderIsVisible;
+    PDPresentation *mPresentation;
 }
 
 @property(nonatomic) BOOL dateTimePlaceholderIsVisible; // @synthesize dateTimePlaceholderIsVisible=mDateTimePlaceholderIsVisible;
@@ -28,7 +28,7 @@
 @property(nonatomic) BOOL footerPlaceholderIsVisible; // @synthesize footerPlaceholderIsVisible=mFooterPlaceholderIsVisible;
 @property(nonatomic) BOOL headerPlaceholderIsVisible; // @synthesize headerPlaceholderIsVisible=mHeaderPlaceholderIsVisible;
 @property(retain, nonatomic) NSMutableArray *slideLayouts; // @synthesize slideLayouts=mSlideLayouts;
-@property(readonly, nonatomic) PDPresentation *presentation; // @synthesize presentation=mPresentation;
+@property(readonly, nonatomic) __weak PDPresentation *presentation; // @synthesize presentation=mPresentation;
 - (void).cxx_destruct;
 - (id)description;
 - (void)removeUnnecessaryOverrides;

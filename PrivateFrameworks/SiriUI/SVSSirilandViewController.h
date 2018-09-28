@@ -158,7 +158,6 @@ __attribute__((visibility("hidden")))
 - (id)_identifierOfPreviousConversation;
 - (id)_conversationIdentifiers;
 - (id)microphoneErrorExplanation;
-- (id)preferredMicrophoneIdentifier;
 - (BOOL)hasNoMicrophone;
 - (void)inputDeviceChanged:(id)arg1;
 - (void)viewWillDisappear;

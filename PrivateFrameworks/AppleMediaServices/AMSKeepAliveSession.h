@@ -7,13 +7,13 @@
 #import "NSObject.h"
 
 #import "BKSProcessDelegate.h"
-#import "NSCopying.h"
 
 @class BKSProcess, BKSProcessAssertion, NSCountedSet, NSObject<OS_os_transaction>, NSString;
 
 __attribute__((visibility("hidden")))
-@interface AMSKeepAliveSession : NSObject <NSCopying, BKSProcessDelegate>
+@interface AMSKeepAliveSession : NSObject <BKSProcessDelegate>
 {
+    BOOL _interrupted;
     NSString *_assertionName;
     NSCountedSet *_activeNames;
     NSString *_logKey;
@@ -27,6 +27,7 @@ __attribute__((visibility("hidden")))
 + (void)_reapplyAssertion;
 + (void)_deactivateSession;
 + (void)_afterDelay:(long long)arg1 coalesce:(BOOL)arg2 handler:(CDUnknownBlockType)arg3;
++ (void)interrupt;
 + (void)removeKeepAliveForName:(id)arg1;
 + (void)addKeepAliveForName:(id)arg1;
 @property long long timerId; // @synthesize timerId=_timerId;
@@ -34,12 +35,12 @@ __attribute__((visibility("hidden")))
 @property(retain) NSObject<OS_os_transaction> *osTransaction; // @synthesize osTransaction=_osTransaction;
 @property(retain) BKSProcessAssertion *taskAssertion; // @synthesize taskAssertion=_taskAssertion;
 @property(readonly) NSString *logKey; // @synthesize logKey=_logKey;
+@property BOOL interrupted; // @synthesize interrupted=_interrupted;
 @property(retain) NSCountedSet *activeNames; // @synthesize activeNames=_activeNames;
 @property(readonly) NSString *assertionName; // @synthesize assertionName=_assertionName;
 - (void).cxx_destruct;
 - (void)_invalidate;
 - (void)processWillExpire:(id)arg1;
-- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
 - (id)init;
 

@@ -17,6 +17,7 @@
     NSString *_bootSessionUUID;
     CDUnknownBlockType instantHandler;
     CDUnknownBlockType historicalHandler;
+    CDUnknownBlockType shutdownHandler;
     NSDate *lastUpdate;
     _DKEvent *_currentEvent;
     NSMutableDictionary *_instantState;
@@ -39,10 +40,13 @@
 @property(readonly, nonatomic) NSMutableDictionary *historicalState; // @synthesize historicalState=_historicalState;
 @property(readonly, nonatomic) NSMutableDictionary *instantState; // @synthesize instantState=_instantState;
 @property(retain, nonatomic) NSDate *lastUpdate; // @synthesize lastUpdate;
+@property(copy, nonatomic) CDUnknownBlockType shutdownHandler; // @synthesize shutdownHandler;
 @property(copy, nonatomic) CDUnknownBlockType historicalHandler; // @synthesize historicalHandler;
 @property(copy, nonatomic) CDUnknownBlockType instantHandler; // @synthesize instantHandler;
 - (void).cxx_destruct;
+- (void)systemClockDidChange:(id)arg1;
 - (void)update;
+- (void)invalidateInstantState;
 @property(retain, nonatomic) _DKEvent *currentEvent; // @synthesize currentEvent=_currentEvent;
 - (void)setCurrentEvent:(id)arg1 inferHistoricalState:(BOOL)arg2;
 - (BOOL)instantMonitorNeedsDeactivation;

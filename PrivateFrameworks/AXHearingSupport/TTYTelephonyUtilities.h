@@ -8,7 +8,7 @@
 
 #import "CoreTelephonyClientCarrierBundleDelegate.h"
 
-@class CTXPCServiceSubscriptionContext, CoreTelephonyClient, NSString;
+@class CTXPCServiceSubscriptionContext, CoreTelephonyClient, NSObject<OS_dispatch_queue>, NSString;
 
 @interface TTYTelephonyUtilities : NSObject <CoreTelephonyClientCarrierBundleDelegate>
 {
@@ -16,6 +16,7 @@
     CTXPCServiceSubscriptionContext *_defaultVoiceContext;
     unsigned long long _activeContextCount;
     CoreTelephonyClient *_telephonyClient;
+    NSObject<OS_dispatch_queue> *_telephonyUpdateQueue;
 }
 
 + (id)relayPhoneNumberForContext:(id)arg1;
@@ -38,6 +39,7 @@
 + (BOOL)TTYHardwareEnabledForAnyActiveContext;
 + (BOOL)isAppleInternalBuild;
 + (id)sharedUtilityProvider;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *telephonyUpdateQueue; // @synthesize telephonyUpdateQueue=_telephonyUpdateQueue;
 @property(retain, nonatomic) CoreTelephonyClient *telephonyClient; // @synthesize telephonyClient=_telephonyClient;
 @property(nonatomic) BOOL headphoneJackSupportsTTY; // @synthesize headphoneJackSupportsTTY=_headphoneJackSupportsTTY;
 @property(nonatomic) unsigned long long activeContextCount; // @synthesize activeContextCount=_activeContextCount;
@@ -50,10 +52,15 @@
 - (id)getCarrierValueForKey:(id)arg1 andContext:(id)arg2;
 - (void)reloadDefaultVoiceContext;
 - (void)reloadRelayPhoneNumbers;
+- (id)subscriptionContexts;
 - (void)simLessSubscriptionsDidChange;
 - (void)activeSubscriptionsDidChange;
 - (void)subscriptionInfoDidChange;
 - (void)carrierSettingsDidChange;
+- (id)phoneNumberFromUUID:(id)arg1;
+- (BOOL)contactPathIsMe:(id)arg1;
+- (id)phoneNumberForContext:(id)arg1;
+- (id)myPhoneNumber;
 - (BOOL)relayIsSupported;
 - (BOOL)contactIsTTYContact:(id)arg1;
 - (unsigned long long)currentPreferredTransportMethod;

@@ -120,14 +120,14 @@
 @property(copy, nonatomic) NSString *_DKNowPlayingMetadataKey__title; // @dynamic _DKNowPlayingMetadataKey__title;
 @property(copy, nonatomic) NSDate *_DKPeriodMetadataKey__periodEnd; // @dynamic _DKPeriodMetadataKey__periodEnd;
 @property(copy, nonatomic) NSDate *_DKPeriodMetadataKey__periodStart; // @dynamic _DKPeriodMetadataKey__periodStart;
-@property(retain, nonatomic) NSData *_DKRelevantActionMetadataKey__encodedRelevanceProviders; // @dynamic _DKRelevantActionMetadataKey__encodedRelevanceProviders;
-@property(copy, nonatomic) NSString *_DKRelevantActionMetadataKey__templateSubtitle; // @dynamic _DKRelevantActionMetadataKey__templateSubtitle;
-@property(copy, nonatomic) NSString *_DKRelevantActionMetadataKey__templateTitle; // @dynamic _DKRelevantActionMetadataKey__templateTitle;
+@property(copy, nonatomic) NSString *_DKRelevantShortcutMetadataKey__keyImageProxyIdentifier; // @dynamic _DKRelevantShortcutMetadataKey__keyImageProxyIdentifier;
+@property(retain, nonatomic) NSData *_DKRelevantShortcutMetadataKey__serializedRelevantShortcut; // @dynamic _DKRelevantShortcutMetadataKey__serializedRelevantShortcut;
 @property(copy, nonatomic) NSString *_DKSafariHistoryMetadataKey__title; // @dynamic _DKSafariHistoryMetadataKey__title;
 @property(copy, nonatomic) NSString *_DKSearchFeedbackMetadataKey__client; // @dynamic _DKSearchFeedbackMetadataKey__client;
 @property(copy, nonatomic) NSString *_DKSearchFeedbackMetadataKey__contactID; // @dynamic _DKSearchFeedbackMetadataKey__contactID;
 @property(nonatomic) long long _DKSearchFeedbackMetadataKey__interactionType; // @dynamic _DKSearchFeedbackMetadataKey__interactionType;
 @property(nonatomic) long long _DKSearchFeedbackMetadataKey__suggestionType; // @dynamic _DKSearchFeedbackMetadataKey__suggestionType;
+@property(copy, nonatomic) NSString *_DKTombstoneMetadataKey__eventSourceDeviceID; // @dynamic _DKTombstoneMetadataKey__eventSourceDeviceID;
 @property(copy, nonatomic) NSString *_DKTombstoneMetadataKey__eventStreamName; // @dynamic _DKTombstoneMetadataKey__eventStreamName;
 @property(retain, nonatomic) NSData *_QPMetricsMetadataKey__CandidateList; // @dynamic _QPMetricsMetadataKey__CandidateList;
 @property(copy, nonatomic) NSString *_QPMetricsMetadataKey__Query; // @dynamic _QPMetricsMetadataKey__Query;

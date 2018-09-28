@@ -6,22 +6,26 @@
 
 #import "HMFObject.h"
 
+#import "APSConnectionDelegate.h"
 #import "HMDAccountManager.h"
 #import "HMFLogging.h"
+#import "HMFMessageReceiver.h"
 #import "HMFTimerDelegate.h"
+#import "IDSAccountDelegate.h"
+#import "IDSAccountRegistrationDelegate.h"
 #import "IDSServiceDelegate.h"
 
-@class ACAccountStore, HMDAccount, HMDAppleAccountContext, HMDBackingStore, HMDDevice, HMFExponentialBackoffTimer, HMFTimer, IDSService, NSObject<OS_dispatch_queue>, NSString;
+@class ACAccountStore, APSConnection, HMDAccount, HMDAppleAccountContext, HMDAppleAccountSettings, HMDBackingStore, HMDDevice, HMFExponentialBackoffTimer, HMFTimer, HMFUnfairLock, IDSService, NSObject<OS_dispatch_queue>, NSString, NSUUID;
 
-@interface HMDAppleAccountManager : HMFObject <HMDAccountManager, HMFLogging, HMFTimerDelegate, IDSServiceDelegate>
+@interface HMDAppleAccountManager : HMFObject <APSConnectionDelegate, HMDAccountManager, HMFLogging, HMFMessageReceiver, HMFTimerDelegate, IDSAccountDelegate, IDSAccountRegistrationDelegate, IDSServiceDelegate>
 {
+    HMFUnfairLock *_lock;
     BOOL _monitoring;
-    BOOL _resolved;
     HMDAccount *_account;
     HMDAppleAccountContext *_accountContext;
     ACAccountStore *_accountStore;
     NSObject<OS_dispatch_queue> *_clientQueue;
-    NSObject<OS_dispatch_queue> *_propertyQueue;
+    APSConnection *_pushConnection;
     HMFExponentialBackoffTimer *_accountChangeBackoffTimer;
     HMFTimer *_devicesChangeBackoffTimer;
     IDSService *_service;
@@ -29,24 +33,29 @@
 }
 
 + (id)logCategory;
-+ (id)cloudOptions;
 + (id)sharedManager;
 @property(retain, nonatomic) HMDBackingStore *backingStore; // @synthesize backingStore=_backingStore;
 @property(readonly, nonatomic) IDSService *service; // @synthesize service=_service;
-@property(nonatomic, getter=isResolved) BOOL resolved; // @synthesize resolved=_resolved;
 @property(nonatomic, getter=isMonitoring) BOOL monitoring; // @synthesize monitoring=_monitoring;
 @property(readonly, nonatomic) HMFTimer *devicesChangeBackoffTimer; // @synthesize devicesChangeBackoffTimer=_devicesChangeBackoffTimer;
 @property(readonly, nonatomic) HMFExponentialBackoffTimer *accountChangeBackoffTimer; // @synthesize accountChangeBackoffTimer=_accountChangeBackoffTimer;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *propertyQueue; // @synthesize propertyQueue=_propertyQueue;
+@property(readonly, nonatomic) APSConnection *pushConnection; // @synthesize pushConnection=_pushConnection;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *clientQueue; // @synthesize clientQueue=_clientQueue;
 @property(readonly) ACAccountStore *accountStore; // @synthesize accountStore=_accountStore;
 - (void).cxx_destruct;
 - (void)service:(id)arg1 devicesChanged:(id)arg2;
 - (void)service:(id)arg1 activeAccountsChanged:(id)arg2;
+- (void)account:(id)arg1 aliasesChanged:(id)arg2;
+- (void)account:(id)arg1 isActiveChanged:(BOOL)arg2;
 - (void)timerDidFire:(id)arg1;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *messageReceiveQueue;
+@property(readonly, nonatomic) NSUUID *messageTargetUUID;
+- (void)connection:(id)arg1 didReceivePublicToken:(id)arg2;
+@property(readonly, nonatomic) HMDAppleAccountSettings *settings;
 - (void)processAccountModelRemove:(id)arg1 message:(id)arg2;
 - (void)processAccountModel:(id)arg1 message:(id)arg2;
 - (BOOL)isModelCurrentAccount:(id)arg1;
+- (id)primaryHandleForAccount:(id)arg1;
 - (BOOL)shouldDevice:(id)arg1 processModel:(id)arg2 actions:(id)arg3;
 - (BOOL)shouldAccount:(id)arg1 pushbackModel:(id)arg2 actions:(id)arg3;
 - (BOOL)shouldSyncDevice:(id)arg1;
@@ -56,9 +65,11 @@
 - (void)__deviceRemovedFromCurrentAccount:(id)arg1;
 - (void)__deviceAddedToCurrentAccount:(id)arg1;
 @property(retain) HMDAccount *account; // @synthesize account=_account;
-- (void)updateAccountContext;
-- (void)setAccountContext:(id)arg1;
 @property(readonly) HMDAppleAccountContext *accountContext; // @synthesize accountContext=_accountContext;
+- (void)__handleMigrationUpdated:(id)arg1;
+- (void)__handleUpdatedName:(id)arg1;
+- (void)__handleRemovedAccount:(id)arg1;
+- (void)__handleModifiedAccount:(id)arg1;
 - (void)stop;
 - (void)start;
 - (id)initWithIDSService:(id)arg1;

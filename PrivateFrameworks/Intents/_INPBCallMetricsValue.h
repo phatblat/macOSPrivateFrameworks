@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBCallMetricsValue.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBCallMetricsValue : PBCodable <_INPBCallMetricsValue, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBCallMetricsValue : PBCodable <_INPBCallMetricsValue, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int callDuration:1;
@@ -21,13 +20,10 @@
     } _has;
     double _callDuration;
     double _timeToEstablish;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) double timeToEstablish; // @synthesize timeToEstablish=_timeToEstablish;
 @property(nonatomic) double callDuration; // @synthesize callDuration=_callDuration;
-- (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
