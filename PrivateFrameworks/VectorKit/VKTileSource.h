@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class GEOResourceManifestConfiguration, NSError, NSLocale, NSString, VKSharedResources, VKTileKeyList, VKTileKeyMap, VKTilePool;
+@class GEOResourceManifestConfiguration, GEOTileKeyList, NSError, NSLocale, NSString, VKSharedResources, VKTileKeyList, VKTileKeyMap, VKTilePool;
 
 __attribute__((visibility("hidden")))
 @interface VKTileSource : NSObject
@@ -15,20 +15,21 @@ __attribute__((visibility("hidden")))
     VKTilePool *_tilePool;
     VKTilePool *_preliminaryTilePool;
     VKTileKeyMap *_pendingLoads;
+    GEOTileKeyList *_pendingDownloadRequests;
     VKTileKeyList *_decoding;
     VKTileKeyList *_decodingPreliminary;
     VKTileKeyList *_failedTiles;
     shared_ptr_a3c46825 _styleManager;
     double _contentScale;
     VKSharedResources *_sharedResources;
-    int _loadingTiles;
+    int _loadingTilesFromNetwork;
     NSError *_recentError;
     GEOResourceManifestConfiguration *_manifestConfiguration;
     NSLocale *_locale;
     NSString *_tileLoaderClientIdentifier;
     BOOL _preloadOnly;
     BOOL _requireWiFi;
-    BOOL _allowPreliminary;
+    BOOL _enablePreliminary;
     long long _mapType;
     unsigned char _targetDisplay;
     shared_ptr_e963992e _taskContext;
@@ -36,7 +37,7 @@ __attribute__((visibility("hidden")))
 
 @property(nonatomic) unsigned char targetDisplay; // @synthesize targetDisplay=_targetDisplay;
 @property(nonatomic) long long mapType; // @synthesize mapType=_mapType;
-@property(nonatomic) BOOL allowPreliminary; // @synthesize allowPreliminary=_allowPreliminary;
+@property(nonatomic) BOOL enablePreliminary; // @synthesize enablePreliminary=_enablePreliminary;
 @property(nonatomic) BOOL requireWiFi; // @synthesize requireWiFi=_requireWiFi;
 @property(nonatomic) BOOL preloadOnly; // @synthesize preloadOnly=_preloadOnly;
 @property(nonatomic) double contentScale; // @synthesize contentScale=_contentScale;
@@ -45,6 +46,9 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) id <VKTileSourceClient> client; // @synthesize client=_client;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL allowPreliminaryTiles;
+- (id)stateDescriptionForRenderKey:(const struct VKTileKey *)arg1;
+- (BOOL)tileHasLoadingIssue:(const struct VKTileKey *)arg1;
 - (void)forceDownload;
 - (void)didFailToLoadTileKey:(const struct _GEOTileKey *)arg1 error:(id)arg2;
 - (void)didFinishWithNetwork;
@@ -60,7 +64,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)_shouldDecodeTile:(const struct VKTileKey *)arg1;
 - (void)cancelAllDownloads;
 - (void)cancelDownload:(const struct _GEOTileKey *)arg1;
-- (void)performDownload:(const struct _GEOTileKey *)arg1 isPrefetch:(BOOL)arg2;
+- (void)performDownload:(const struct _GEOTileKey *)arg1 isPrefetch:(BOOL)arg2 requestPreliminary:(BOOL)arg3;
 - (BOOL)cancelFetchForKey:(const struct VKTileKey *)arg1;
 - (BOOL)cancelFetchForKey:(const struct VKTileKey *)arg1 sourceKey:(const struct VKTileKey *)arg2;
 - (void)fetchTileForKey:(const struct VKTileKey *)arg1 isPrefetch:(BOOL)arg2;
@@ -88,8 +92,8 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) long long tileSize;
 - (id)detailedDescriptionDictionaryRepresentation;
 - (id)detailedDescription;
-- (void)foreachTileInPool:(CDUnknownBlockType)arg1;
 - (void)clearCaches;
+- (struct TaskQueue *)tileDecodeQueue;
 - (void)dealloc;
 - (id)initWithTaskContext:(shared_ptr_e963992e)arg1;
 - (id)initWithResourceManifestConfiguration:(id)arg1 locale:(id)arg2 sharedResources:(id)arg3 taskContext:(shared_ptr_e963992e)arg4;

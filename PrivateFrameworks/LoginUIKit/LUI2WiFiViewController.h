@@ -6,7 +6,7 @@
 
 #import <LoginUIKit/LUI2ViewController.h>
 
-@class CWInterface, CWWiFiClient, NSImageView;
+@class CWInterface, CWWiFiClient, NSImageView, NSObject<OS_dispatch_queue>;
 
 @interface LUI2WiFiViewController : LUI2ViewController
 {
@@ -14,8 +14,10 @@
     NSImageView *_wifiImageView;
     CWInterface *_interface;
     CWWiFiClient *_client;
+    NSObject<OS_dispatch_queue> *_serialQueue;
 }
 
+@property(retain) NSObject<OS_dispatch_queue> *serialQueue; // @synthesize serialQueue=_serialQueue;
 @property BOOL paused; // @synthesize paused=_paused;
 @property(retain) CWWiFiClient *client; // @synthesize client=_client;
 @property(retain) CWInterface *interface; // @synthesize interface=_interface;

@@ -26,6 +26,8 @@
 @property(copy, nonatomic) CNContact *contact; // @synthesize contact=_contact;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
+- (BOOL)isEqualToContact:(id)arg1;
+- (unsigned long long)hash;
 - (id)nonGregorianBirthday;
 - (id)birthday;
 - (id)organizationName;

@@ -14,13 +14,13 @@ __attribute__((visibility("hidden")))
 @interface AMSURLProtocolAuthorizationDialog : AMSURLProtocolDialog <AMSURLProtocolDialogHandling>
 {
     BOOL _authorizationIsForced;
-    NSError *_error;
     ACAccount *_authenticatedAccount;
+    NSError *_error;
 }
 
-@property(readonly) ACAccount *authenticatedAccount; // @synthesize authenticatedAccount=_authenticatedAccount;
 @property(readonly) NSError *error; // @synthesize error=_error;
 @property(readonly) BOOL authorizationIsForced; // @synthesize authorizationIsForced=_authorizationIsForced;
+@property(readonly) ACAccount *authenticatedAccount; // @synthesize authenticatedAccount=_authenticatedAccount;
 - (void).cxx_destruct;
 - (BOOL)_shouldAuthenticateForButton:(id)arg1;
 - (id)_findActionableButton;

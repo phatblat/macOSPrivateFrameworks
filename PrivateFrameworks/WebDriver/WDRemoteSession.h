@@ -74,6 +74,7 @@
 - (void)evaluateJavaScriptFunction:(id)arg1 withArguments:(id)arg2 expectingImplicitCallbackArgument:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)takeScreenshotOfElement:(id)arg1 scrollIntoView:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)takeScreenshotWithBounds:(long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)waitForPendingNavigationsWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)reloadWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)goForwardWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)goBackWithCompletionHandler:(CDUnknownBlockType)arg1;

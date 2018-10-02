@@ -71,6 +71,7 @@
 - (id)actionWithUUID:(id)arg1;
 - (void)invalidate;
 - (void)removeAccessory:(id)arg1;
+@property(readonly, nonatomic) NSUUID *spiClientIdentifier;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *messageReceiveQueue;
 - (id)messageDestination;
 @property(readonly, nonatomic) NSUUID *messageTargetUUID;
@@ -87,6 +88,7 @@
 - (void)removeService:(id)arg1;
 - (void)executeWithTriggerSource:(id)arg1 captureCurrentState:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)execute:(id)arg1;
+- (id)isAccessValidForExecutionWithMessage:(id)arg1;
 - (id)dumpState;
 @property(readonly, copy) NSString *description;
 - (void)dealloc;

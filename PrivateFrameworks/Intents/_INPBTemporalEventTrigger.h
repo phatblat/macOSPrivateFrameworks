@@ -6,21 +6,18 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBTemporalEventTrigger.h"
 
-@class INCodableAttribute, NSString, _INPBDateTimeRangeValue;
+@class NSString, _INPBDateTimeRangeValue;
 
-@interface _INPBTemporalEventTrigger : PBCodable <_INPBTemporalEventTrigger, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBTemporalEventTrigger : PBCodable <_INPBTemporalEventTrigger, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBDateTimeRangeValue *_dateTime;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBDateTimeRangeValue *dateTime; // @synthesize dateTime=_dateTime;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

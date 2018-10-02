@@ -15,6 +15,7 @@
     NSString *_payloadEcho;
 }
 
++ (id)buildRequiredOnlyWithEcho:(id)arg1;
 + (id)buildWithEcho:(id)arg1;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

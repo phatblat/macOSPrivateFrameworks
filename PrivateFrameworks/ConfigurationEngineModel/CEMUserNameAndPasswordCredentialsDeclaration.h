@@ -14,6 +14,7 @@
     NSString *_payloadPassword;
 }
 
++ (id)buildRequiredOnlyWithUserName:(id)arg1 withPassword:(id)arg2;
 + (id)buildWithUserName:(id)arg1 withPassword:(id)arg2;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadPassword; // @synthesize payloadPassword=_payloadPassword;

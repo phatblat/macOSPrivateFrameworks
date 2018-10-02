@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBPlayMediaIntent.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBIntentMetadata, _INPBMediaItemValue, _INPBTimestamp;
+@class NSArray, NSString, _INPBIntentMetadata, _INPBMediaItemValue, _INPBTimestamp;
 
-@interface _INPBPlayMediaIntent : PBCodable <_INPBPlayMediaIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBPlayMediaIntent : PBCodable <_INPBPlayMediaIntent, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int playShuffled:1;
@@ -29,12 +28,10 @@
     _INPBMediaItemValue *_mediaContainer;
     NSArray *_mediaItems;
     NSString *_recoID;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)mediaItemsType;
 + (Class)bucketType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) BOOL resumePlayback; // @synthesize resumePlayback=_resumePlayback;
 @property(copy, nonatomic) NSString *recoID; // @synthesize recoID=_recoID;
 @property(nonatomic) int playbackRepeatMode; // @synthesize playbackRepeatMode=_playbackRepeatMode;

@@ -18,6 +18,7 @@
 - (void)waitForFence:(id)arg1;
 - (void)generateMotionVectorsForTexture:(id)arg1 previousTexture:(id)arg2 resultBuffer:(id)arg3 bufferOffset:(unsigned long long)arg4;
 - (void)setMotionEstimationPipeline:(id)arg1;
+- (void)acceptVisitor:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBDateTime.h"
 
-@class INCodableAttribute, NSString, _INPBLocalDate, _INPBLocalTime;
+@class NSString, _INPBLocalDate, _INPBLocalTime;
 
-@interface _INPBDateTime : PBCodable <_INPBDateTime, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBDateTime : PBCodable <_INPBDateTime, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int calendarSystem:1;
@@ -22,10 +21,8 @@
     _INPBLocalDate *_date;
     _INPBLocalTime *_time;
     NSString *_timeZoneID;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *timeZoneID; // @synthesize timeZoneID=_timeZoneID;
 @property(retain, nonatomic) _INPBLocalTime *time; // @synthesize time=_time;
 @property(retain, nonatomic) _INPBLocalDate *date; // @synthesize date=_date;

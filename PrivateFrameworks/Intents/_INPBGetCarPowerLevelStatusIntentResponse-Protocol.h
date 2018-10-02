@@ -6,13 +6,17 @@
 
 #import "NSObject.h"
 
-@class _INPBDistance, _INPBDouble;
+@class _INPBDistance, _INPBDouble, _INPBInteger;
 
 @protocol _INPBGetCarPowerLevelStatusIntentResponse <NSObject>
+@property(readonly, nonatomic) BOOL hasMinutesToFull;
+@property(retain, nonatomic) _INPBInteger *minutesToFull;
 @property(readonly, nonatomic) BOOL hasFuelPercentRemaining;
 @property(retain, nonatomic) _INPBDouble *fuelPercentRemaining;
 @property(readonly, nonatomic) BOOL hasDistanceRemaining;
 @property(retain, nonatomic) _INPBDistance *distanceRemaining;
+@property(nonatomic) BOOL hasCharging;
+@property(nonatomic) BOOL charging;
 @property(readonly, nonatomic) BOOL hasChargePercentRemaining;
 @property(retain, nonatomic) _INPBDouble *chargePercentRemaining;
 @end

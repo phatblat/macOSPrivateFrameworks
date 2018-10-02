@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
     NSString *_name;
 }
 
++ (void)interrupt;
 + (void)removeKeepAliveForName:(id)arg1;
 + (void)addKeepAliveForName:(id)arg1;
 + (id)keepAliveWithName:(id)arg1;

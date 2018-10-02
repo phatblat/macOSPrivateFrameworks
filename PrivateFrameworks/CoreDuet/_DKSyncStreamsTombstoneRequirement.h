@@ -10,6 +10,9 @@
 {
 }
 
+- (void)assignPropertiesToTombstone:(id)arg1 extractedFromPartialEvent:(id)arg2;
+- (void)assignPropertiesToTombstone:(id)arg1 extractedFromEvent:(id)arg2;
+- (id)propertiesToFetch;
 - (id)eventPredicate;
 - (id)predicate;
 

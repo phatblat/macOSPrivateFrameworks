@@ -16,6 +16,7 @@
 - (void).cxx_destruct;
 - (void)resetKeysForGroup:(id)arg1;
 - (void)requestMasterKeyMaterialForGroup:(id)arg1;
+- (void)sendMKMRecoveryRequestToGroup:(id)arg1;
 - (void)sendMasterKeyMaterialToGroup:(id)arg1;
 - (void)requestPublicKeys;
 - (void)sendPrekeyToGroup:(id)arg1;

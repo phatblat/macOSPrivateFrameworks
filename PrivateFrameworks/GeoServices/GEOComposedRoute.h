@@ -64,7 +64,6 @@
     GEORouteInitializerData *_routeInitializerData;
 }
 
-@property(readonly, nonatomic) NSArray *ticketedSegments; // @synthesize ticketedSegments=_ticketedSegments;
 @property(readonly, nonatomic) NSDate *startDate; // @synthesize startDate=_startDate;
 @property(readonly, nonatomic) BOOL isWalkingOnlyTransitRoute; // @synthesize isWalkingOnlyTransitRoute=_isWalkingOnlyTransitRoute;
 @property(nonatomic) BOOL shouldShowSchedule; // @synthesize shouldShowSchedule=_shouldShowSchedule;
@@ -106,6 +105,7 @@
 @property(readonly, nonatomic) GEORoute *geoRoute; // @synthesize geoRoute=_geoRoute;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL allowsNetworkTileLoad;
+- (id)ticketingSegmentsForSelectedRides;
 - (void)updateRouteWithRideSelections:(id)arg1;
 - (void)_rebuildRouteForRideChange;
 - (void)selectRide:(unsigned long long)arg1 forBoardStep:(id)arg2;
@@ -224,7 +224,6 @@
 - (id)initWithRoute:(id)arg1 initializerData:(id)arg2;
 - (id)initWithRoute:(id)arg1 origin:(id)arg2 destination:(id)arg3;
 - (id)initWithRoute:(id)arg1;
-- (id)ticketingSegments;
 - (id)initWithCompanionRoute:(id)arg1;
 
 // Remaining properties

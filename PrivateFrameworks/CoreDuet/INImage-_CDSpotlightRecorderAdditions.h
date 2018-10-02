@@ -10,5 +10,6 @@
 
 @interface INImage (_CDSpotlightRecorderAdditions)
 @property(readonly, copy, nonatomic) NSData *cd_encodedDataImage;
+@property(readonly, copy, nonatomic) INImage *cd_dataImage;
 @end
 

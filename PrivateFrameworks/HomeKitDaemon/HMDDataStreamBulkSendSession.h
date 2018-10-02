@@ -34,7 +34,7 @@
 - (void)asyncHandleRemoteCloseWithError:(id)arg1;
 - (void)asyncHandleIncomingPackets:(id)arg1 isEof:(BOOL)arg2;
 - (void)read:(CDUnknownBlockType)arg1;
-- (void)cancelWithReason:(unsigned char)arg1;
+- (void)cancelWithReason:(unsigned short)arg1;
 @property(readonly) BOOL hasMoreData;
 - (void)dealloc;
 - (id)initWithProtocol:(id)arg1 sessionIdentifier:(id)arg2 queue:(id)arg3;

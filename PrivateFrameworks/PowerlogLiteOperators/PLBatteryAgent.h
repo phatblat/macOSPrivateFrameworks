@@ -10,11 +10,12 @@
 
 @interface PLBatteryAgent : PLAgent
 {
-    BOOL _deviceIsPluggedIn;
     _Bool _isPingPongCharging;
     _Bool _isFirstTimeCheckingPingPong;
+    _Bool _lifetimeDataLogged;
     BOOL _allowGasGaugeRead;
     _Bool _inPenaltyBox;
+    BOOL _rejudgeBattery;
     int _presentMaxRa;
     int _lifetimeMaxRa;
     int _previousCurrentAccumulator;
@@ -28,8 +29,10 @@
     int _presentBatteryHealthMetric;
     int _presentPeakPerformanceCapacity;
     int _lastUILevel;
-    PLIOKitOperatorComposition *_iokit;
+    PLIOKitOperatorComposition *_iokitPowerSource;
+    PLIOKitOperatorComposition *_iokitPPM;
     PLEntryNotificationOperatorComposition *_batteryLevelChanged;
+    NSNumber *_deviceIsPluggedIn;
     double _batteryLevelPercent;
     double _rawBatteryVoltageVolt;
     NSDictionary *_lastITMiscStatus;
@@ -40,6 +43,8 @@
     NSString *_entryKeyEAPencilStats;
     double _EAEnergyDrained;
     NSNumber *_lastkIOPSAppleBatteryCaseCumulativeCurrentKey;
+    PLTimer *_periodicAggdTimer;
+    PLEntry *_lastBatteryConfigEntry;
     PLXPCResponderOperatorComposition *_batteryInfoResponder;
     PLXPCResponderOperatorComposition *_batteryTemperatureResponder;
     PLXPCResponderOperatorComposition *_batteryDischargeCurrentResponder;
@@ -64,6 +69,8 @@
     NSDate *_lastTimeInPenaltyBox;
     NSNumber *_prevGGResetCount;
     NSNumber *_mitigatedUPOCount;
+    long long _ppmEventLoggingCount;
+    PLTimer *_ppmEventThresholdTimer;
 }
 
 + (id)defaults;
@@ -91,17 +98,22 @@
 + (id)entryEventPointDefinitionGasGaugeReconnect;
 + (id)entryEventPointDefinitionPPMClientMetrics;
 + (id)entryEventPointDefinitionPPMDebug;
++ (BOOL)shouldLogPPMDebugDetail;
 + (id)entryEventPointDefinitions;
 + (id)entryEventNoneDefinitionBatteryConfig;
 + (id)entryEventNoneDefinitions;
 + (id)entryEventIntervalDefinitionGasGauge;
 + (id)entryEventIntervalDefinitions;
 + (void)load;
++ (BOOL)supportsxFlags;
 + (BOOL)hasWirelessCharger;
 + (BOOL)hasPuckCharger;
 + (BOOL)hasLightning;
 + (BOOL)hasExternalAccessory;
+@property(retain) PLTimer *ppmEventThresholdTimer; // @synthesize ppmEventThresholdTimer=_ppmEventThresholdTimer;
+@property long long ppmEventLoggingCount; // @synthesize ppmEventLoggingCount=_ppmEventLoggingCount;
 @property int lastUILevel; // @synthesize lastUILevel=_lastUILevel;
+@property BOOL rejudgeBattery; // @synthesize rejudgeBattery=_rejudgeBattery;
 @property(retain) NSNumber *mitigatedUPOCount; // @synthesize mitigatedUPOCount=_mitigatedUPOCount;
 @property int presentPeakPerformanceCapacity; // @synthesize presentPeakPerformanceCapacity=_presentPeakPerformanceCapacity;
 @property int presentBatteryHealthMetric; // @synthesize presentBatteryHealthMetric=_presentBatteryHealthMetric;
@@ -136,6 +148,9 @@
 @property(retain) PLXPCResponderOperatorComposition *batteryDischargeCurrentResponder; // @synthesize batteryDischargeCurrentResponder=_batteryDischargeCurrentResponder;
 @property(retain) PLXPCResponderOperatorComposition *batteryTemperatureResponder; // @synthesize batteryTemperatureResponder=_batteryTemperatureResponder;
 @property(retain) PLXPCResponderOperatorComposition *batteryInfoResponder; // @synthesize batteryInfoResponder=_batteryInfoResponder;
+@property(retain) PLEntry *lastBatteryConfigEntry; // @synthesize lastBatteryConfigEntry=_lastBatteryConfigEntry;
+@property(retain) PLTimer *periodicAggdTimer; // @synthesize periodicAggdTimer=_periodicAggdTimer;
+@property _Bool lifetimeDataLogged; // @synthesize lifetimeDataLogged=_lifetimeDataLogged;
 @property _Bool isFirstTimeCheckingPingPong; // @synthesize isFirstTimeCheckingPingPong=_isFirstTimeCheckingPingPong;
 @property _Bool isPingPongCharging; // @synthesize isPingPongCharging=_isPingPongCharging;
 @property(retain) NSNumber *lastkIOPSAppleBatteryCaseCumulativeCurrentKey; // @synthesize lastkIOPSAppleBatteryCaseCumulativeCurrentKey=_lastkIOPSAppleBatteryCaseCumulativeCurrentKey;
@@ -152,10 +167,13 @@
 @property int presentMaxRa; // @synthesize presentMaxRa=_presentMaxRa;
 @property double rawBatteryVoltageVolt; // @synthesize rawBatteryVoltageVolt=_rawBatteryVoltageVolt;
 @property double batteryLevelPercent; // @synthesize batteryLevelPercent=_batteryLevelPercent;
-@property BOOL deviceIsPluggedIn; // @synthesize deviceIsPluggedIn=_deviceIsPluggedIn;
+@property(retain) NSNumber *deviceIsPluggedIn; // @synthesize deviceIsPluggedIn=_deviceIsPluggedIn;
 @property(retain) PLEntryNotificationOperatorComposition *batteryLevelChanged; // @synthesize batteryLevelChanged=_batteryLevelChanged;
-@property(readonly) PLIOKitOperatorComposition *iokit; // @synthesize iokit=_iokit;
+@property(readonly) PLIOKitOperatorComposition *iokitPPM; // @synthesize iokitPPM=_iokitPPM;
+@property(readonly) PLIOKitOperatorComposition *iokitPowerSource; // @synthesize iokitPowerSource=_iokitPowerSource;
 - (void).cxx_destruct;
+- (long long)xFlags;
+- (BOOL)shouldWaitForLifetimeDataWithRawData:(id)arg1;
 - (_Bool)isNewBattery:(id)arg1;
 - (_Bool)isOldServiceBatteryDefaultSet;
 - (short)serviceBatteryDefaultValue;
@@ -164,6 +182,9 @@
 - (int)getMaximumCapacityPercentageValue;
 - (void)setMaximumCapacityPercentageDefaults:(int)arg1;
 - (void)checkBatteryHealthForBUISuggestion:(id)arg1;
+- (BOOL)shouldRejudgeBatteryWithDevice:(int)arg1 withPreviousOption:(short)arg2;
+- (int)raForDevice:(int)arg1 withRawData:(id)arg2;
+- (int)raThresholdForDevice:(int)arg1;
 - (short)getBatteryServiceOptionWithRawBatteryData:(id)arg1 withPreviousOption:(short)arg2;
 - (int)getMitigationDefaults;
 - (void)setMitigationStateDefault:(unsigned long long)arg1;
@@ -179,6 +200,7 @@
 - (void)logEventNoneBatteryConfigWithRawData:(id)arg1;
 - (void)logEventPointBatteryShutdown;
 - (void)logBatteryConfigToAggd:(id)arg1;
+- (void)aggdTimerFired;
 - (void)logBatteryShutdownToAggd:(id)arg1;
 - (void)setAggdIntegerValueFromEntry:(id)arg1 forKey:(id)arg2 withPrefix:(id)arg3;
 - (id)getBatteryShutdownData;
@@ -232,6 +254,7 @@
 - (BOOL)hasAppleSmartBattery;
 - (void)dealloc;
 - (id)init;
+- (void)updateLastChargeLevel:(int)arg1 withTimestamp:(double)arg2;
 
 @end
 

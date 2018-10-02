@@ -22,6 +22,7 @@
 - (id)init;
 - (id)windowNumbers;
 - (void)showWindows;
+- (void)setUsesDesktopLayer:(BOOL)arg1;
 - (void)setBackgroundImages:(id)arg1;
 - (void)setWindowLevels:(long long)arg1;
 - (void)setWindowAlphaValues:(double)arg1 animate:(BOOL)arg2;

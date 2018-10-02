@@ -40,6 +40,7 @@
 - (id)autocompletionSources;
 - (void)runWithLockLoadingExistingAccountsIfNecessary:(CDUnknownBlockType)arg1;
 - (id)sources;
+- (id)defaultAccountTypeInfo;
 - (void)makeNextAvailableAccountTheDefault;
 - (void)setDefaultAccount:(id)arg1;
 @property(readonly) ABAccount *defaultAccount;

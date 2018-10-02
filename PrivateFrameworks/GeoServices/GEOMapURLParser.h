@@ -46,6 +46,7 @@
     long long _favoritesType;
     BOOL _tester;
     GEOURLExtraStorage *_extraStorage;
+    NSString *_label;
 }
 
 + (BOOL)isValidMapsURLForAppendingSharedSessionID:(id)arg1;
@@ -71,6 +72,7 @@
 @property(readonly) int searchProviderID; // @synthesize searchProviderID=_searchProviderID;
 @property(readonly) CDStruct_90e2a262 searchRegion; // @synthesize searchRegion=_searchRegion;
 @property(readonly) CDStruct_c3b9c2ee searchCoordinate; // @synthesize searchCoordinate=_searchCoordinate;
+@property(readonly) NSString *label; // @synthesize label=_label;
 @property(readonly) NSString *searchQuery; // @synthesize searchQuery=_searchQuery;
 @property(readonly) NSString *directionsDestinationAddressString; // @synthesize directionsDestinationAddressString=_directionsDestinationAddressString;
 @property(readonly) NSString *directionsSourceAddressString; // @synthesize directionsSourceAddressString=_directionsSourceAddressString;

@@ -10,39 +10,40 @@
 {
 }
 
++ (id)versionVector;
++ (id)utility;
++ (id)userNotifications;
 + (id)usage;
-+ (id)transport;
 + (id)transaction;
 + (id)tool;
 + (id)test;
-+ (id)serverConduit;
-+ (id)persistence;
-+ (id)personalTransport;
-+ (id)personalServerConduit;
-+ (id)personalOrganizationController;
-+ (id)personalClientConduit;
++ (id)screenTimeOrganizationController;
++ (id)screentime;
++ (id)restrictionsMigrator;
++ (id)requestManager;
 + (id)personal;
++ (id)persistence;
 + (id)payloadQueue;
++ (id)payloadManager;
 + (id)payload;
-+ (id)organizationController;
++ (id)mirroring;
 + (id)metadata;
-+ (id)userNotifications;
 + (id)idsTransport;
 + (id)http;
-+ (id)familyUsage;
-+ (id)familyServerConduit;
-+ (id)familyOrganizationController;
-+ (id)familyClientConduit;
-+ (id)familyCheckinManager;
++ (id)familySettingsManager;
++ (id)familyScreenTimeManager;
++ (id)familyMonitor;
 + (id)family;
++ (id)deviceState;
 + (id)daemon;
 + (id)configuration;
 + (id)conduit;
 + (id)cloudkit;
-+ (id)clientConduit;
 + (id)capabilities;
-+ (id)apns;
++ (id)blueprint;
 + (id)ask;
++ (id)apns;
++ (id)appMonitor;
 + (id)logCategories;
 
 @end

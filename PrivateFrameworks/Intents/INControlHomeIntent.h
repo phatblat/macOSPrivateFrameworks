@@ -29,8 +29,8 @@
 - (void)_setMetadata:(id)arg1;
 - (id)_metadata;
 - (id)_typedBackingStore;
-- (id)_subtitleForLanguage:(id)arg1;
-- (id)_titleForLanguage:(id)arg1;
+- (id)_subtitleForLanguage:(id)arg1 fromBundleURL:(id)arg2;
+- (id)_titleForLanguage:(id)arg1 fromBundleURL:(id)arg2;
 - (BOOL)_hasTitle;
 
 // Remaining properties

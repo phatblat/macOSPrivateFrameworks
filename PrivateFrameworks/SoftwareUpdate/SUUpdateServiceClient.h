@@ -50,6 +50,7 @@
 - (void)evaluateProducts:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)suspendBackgroundTasksTemporarily:(BOOL)arg1 desiredDuration:(long long)arg2 reply:(CDUnknownBlockType)arg3;
 - (void)preparationRequiredForProductKeys:(id)arg1 reply:(CDUnknownBlockType)arg2;
+- (void)adminDeferredAvailableUpdatesWithReply:(CDUnknownBlockType)arg1;
 - (void)combinedStatusForUpdatesWithProductKeys:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)conditionsMetForNonUserInitiatedUpdatesWithReply:(CDUnknownBlockType)arg1;
 - (void)statusForUpdateWithProductKey:(id)arg1 reply:(CDUnknownBlockType)arg2;
@@ -57,6 +58,7 @@
 - (void)registerRequestsToInstallAfterPostLogoutUpdates:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)productKeysToAutomaticallyInstallLaterWithReply:(CDUnknownBlockType)arg1;
 - (void)setAutomaticallyInstallLater:(BOOL)arg1 forProductKeys:(id)arg2 replyWhenDone:(CDUnknownBlockType)arg3;
+- (void)stashAndCommitFDEKeyReplyingWithResult:(CDUnknownBlockType)arg1;
 - (void)consumeUUIDForToken:(id)arg1 replyWithResult:(CDUnknownBlockType)arg2;
 - (void)adoptManualProductArchiveByReadingFromFileHandle:(id)arg1 archiveName:(id)arg2 displayName:(id)arg3 displayVersion:(id)arg4 allowDevSigning:(BOOL)arg5 replyWithResult:(CDUnknownBlockType)arg6;
 - (void)stringRepresentationOfLongDescriptionForProductKey:(id)arg1 reply:(CDUnknownBlockType)arg2;
@@ -65,6 +67,7 @@
 - (void)configureProgressPhasesWithFinishBlock:(CDUnknownBlockType)arg1;
 - (void)commitLoginCredentialsDisablingFLO:(BOOL)arg1 hasArmedBaseSystemUpdates:(BOOL)arg2 finishBlock:(CDUnknownBlockType)arg3;
 - (void)stashLoginCredentialsEnablingFLO:(BOOL)arg1 reply:(CDUnknownBlockType)arg2;
+- (void)performBaseSystemInstallCleanupTasks:(CDUnknownBlockType)arg1;
 - (void)productKeysToInstallAfterLogoutWithReply:(CDUnknownBlockType)arg1;
 - (void)registerToInstallAfterLogoutForProductKeys:(id)arg1 nowIsLater:(BOOL)arg2 restartNow:(BOOL)arg3 shouldStashCredentials:(BOOL)arg4 reply:(CDUnknownBlockType)arg5;
 - (void)cancelUpdatesForProductKeys:(id)arg1 reply:(CDUnknownBlockType)arg2;

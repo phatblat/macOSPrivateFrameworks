@@ -17,6 +17,8 @@ __attribute__((visibility("hidden")))
     int currentHeight;
     int currentFrameRate;
     int _maxFrameRate;
+    int _encodingWidth;
+    int _encodingHeight;
     int previewFrameCount;
     int captureFrameCount;
     NSObject<OS_dispatch_source> *cameraHealthMonitor;
@@ -110,11 +112,13 @@ __attribute__((visibility("hidden")))
 - (void)addStickerWithURL:(id)arg1 isFaceSticker:(BOOL)arg2 atPosition:(struct CGPoint)arg3 identifier:(id)arg4;
 - (void)setMemoji:(id)arg1;
 - (void)setAnimoji:(id)arg1;
-- (void)onCaptureVideoFrame:(struct opaqueCMSampleBuffer *)arg1 frameTime:(CDStruct_1b6d18a9)arg2 preview:(BOOL)arg3 shouldEnqueueFrame:(BOOL)arg4 droppedFrames:(int)arg5 switching:(BOOL)arg6 orientation:(int)arg7 camera:(int)arg8;
+- (void)onCaptureFramerateChange:(unsigned int)arg1;
+- (void)onCaptureVideoFrame:(struct opaqueCMSampleBuffer *)arg1 frameTime:(CDStruct_1b6d18a9)arg2 preview:(BOOL)arg3 shouldEnqueueFrame:(BOOL)arg4 droppedFrames:(int)arg5 switching:(BOOL)arg6 orientation:(int)arg7 camera:(int)arg8 videoMirrored:(BOOL)arg9;
 - (BOOL)enqueueFrameToQueueFront:(BOOL)arg1 frame:(struct __CVBuffer *)arg2 frameTime:(CDStruct_1b6d18a9)arg3;
 - (BOOL)captureVideoWidth:(int *)arg1 height:(int *)arg2 frameRate:(int *)arg3;
 - (void)previewVideoWidth:(int *)arg1 height:(int *)arg2 frameRate:(int *)arg3;
 - (void)reconnectClientLayerFront:(BOOL)arg1;
+- (void)handleCaptureEvent:(id)arg1 subType:(id)arg2;
 - (void)handleCaptureEvent:(id)arg1;
 - (void)handleAVCaptureError:(int)arg1 error:(id)arg2;
 - (int)createVideoCaptureWithWidth:(int)arg1 height:(int)arg2 frameRate:(int)arg3 useBackFacingCamera:(BOOL)arg4;

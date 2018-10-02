@@ -8,15 +8,27 @@
 
 #import "CSSpIdSpeakerRecognizer.h"
 
-@class NSDictionary, NSString;
+@class CSPlainAudioFileWriter, CSSpIdContext, NSDictionary, NSObject<OS_dispatch_queue>, NSString;
 
 @interface CSSpIdTrainingParallelRecorder : NSObject <CSSpIdSpeakerRecognizer>
 {
+    CSSpIdContext *_spIdCtx;
+    NSString *_invocationStyle;
+    CSPlainAudioFileWriter *_parallelRecordingUttLogger;
+    NSObject<OS_dispatch_queue> *_queue;
+    NSDictionary *_lastSpeakerIdInfo;
 }
 
-@property(readonly, nonatomic) NSDictionary *lastSpeakerIdInfo;
+@property(retain, nonatomic) NSDictionary *lastSpeakerIdInfo; // @synthesize lastSpeakerIdInfo=_lastSpeakerIdInfo;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
+@property(retain, nonatomic) CSPlainAudioFileWriter *parallelRecordingUttLogger; // @synthesize parallelRecordingUttLogger=_parallelRecordingUttLogger;
+@property(retain, nonatomic) NSString *invocationStyle; // @synthesize invocationStyle=_invocationStyle;
+@property(retain, nonatomic) CSSpIdContext *spIdCtx; // @synthesize spIdCtx=_spIdCtx;
+- (void).cxx_destruct;
+- (void)processMyriadDecision:(unsigned long long)arg1;
 - (void)recordingStoppedForReason:(long long)arg1;
 - (void)processAudioChunk:(id)arg1;
+- (void)dealloc;
 - (id)initWithContext:(id)arg1 delegate:(id)arg2;
 
 // Remaining properties

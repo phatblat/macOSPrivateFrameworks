@@ -13,14 +13,16 @@ __attribute__((visibility("hidden")))
 {
     unsigned int _destinationFramerate;
     unsigned int _sourceFramerate;
-    unsigned char _throttleRate;
-    unsigned int _frameCount;
+    double _throttleRate;
+    unsigned int _sourceFrameCount;
+    unsigned int _lastDestinationFrameCount;
     BOOL _isThrottling;
     id _delegate;
 }
 
 @property(nonatomic) unsigned int destinationFramerate; // @synthesize destinationFramerate=_destinationFramerate;
 @property(nonatomic) unsigned int sourceFramerate; // @synthesize sourceFramerate=_sourceFramerate;
+- (void)sourceFrameRateDidChange:(unsigned int)arg1;
 - (void)thermalLevelDidChange:(int)arg1;
 - (id)clientCaptureRule;
 - (void)avConferencePreviewError:(id)arg1;

@@ -6,39 +6,28 @@
 
 #import "NSObject.h"
 
-#import "UNUserNotificationCenterDelegate.h"
+@class NSArray, NSString;
 
-@class NSArray, NSString, UNUserNotificationCenter;
-
-@interface AMSUserNotificationCenter : NSObject <UNUserNotificationCenterDelegate>
+@interface AMSUserNotificationCenter : NSObject
 {
     BOOL _runningInDaemon;
-    id <AMSUserNotificationCenterDelegate> _delegate;
     NSString *_bundleIdentifier;
-    UNUserNotificationCenter *_center;
+    id <AMSUserNotificationCenterDelegate> _delegate;
+    id <AMSUserNotificationStrategy> _strategy;
 }
 
++ (Class)_determineStrategyForBundleId:(id)arg1;
 + (id)currentCenter;
-@property(readonly) UNUserNotificationCenter *center; // @synthesize center=_center;
-@property(readonly) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
-@property __weak id <AMSUserNotificationCenterDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly) id <AMSUserNotificationStrategy> strategy; // @synthesize strategy=_strategy;
 @property(readonly) BOOL runningInDaemon; // @synthesize runningInDaemon=_runningInDaemon;
+@property __weak id <AMSUserNotificationCenterDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 - (void).cxx_destruct;
-- (BOOL)_requestPermission;
-- (id)_createUNNotificationFromNotification:(id)arg1;
-- (void)userNotificationCenter:(id)arg1 didReceiveNotificationResponse:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
-- (void)userNotificationCenter:(id)arg1 willPresentNotification:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
-- (void)removeNotification:(id)arg1;
-- (void)postNotification:(id)arg1;
+- (id)removeNotification:(id)arg1;
+- (id)postNotification:(id)arg1;
 @property(readonly) NSArray *activeNotifications;
 - (id)initWithBundleIdentifier:(id)arg1 runningInDaemon:(BOOL)arg2;
 - (id)initWithBundleIdentifier:(id)arg1;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

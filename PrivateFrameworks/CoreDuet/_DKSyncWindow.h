@@ -17,7 +17,8 @@
 
 + (id)linearDescriptionOfSortedWindows:(id)arg1;
 + (id)unionOfSortedSyncWindows:(id)arg1;
-+ (id)lastWindowMissingFromWindowMinimumDate:(id)arg1 windowMaximumDate:(id)arg2 sortedSyncWindows:(id)arg3;
++ (id)redundantWindowsFromSortedWindows:(id)arg1 olderThanDate:(id)arg2;
++ (id)lastWindowMissingFromSortedWindows:(id)arg1 windowMinimumDate:(id)arg2 windowMaximumDate:(id)arg3;
 + (id)windowsThatOverlapWithWindowMinimumDate:(id)arg1 windowMaximumDate:(id)arg2 sortedSyncWindows:(id)arg3;
 + (id)syncWindowWithStartDate:(id)arg1 endDate:(id)arg2;
 @property(retain, nonatomic) NSDate *endDate; // @synthesize endDate=_endDate;
@@ -26,6 +27,7 @@
 - (void).cxx_destruct;
 - (id)debugDescription;
 - (id)description;
+- (long long)compare:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToWindow:(id)arg1;
 - (unsigned long long)hash;

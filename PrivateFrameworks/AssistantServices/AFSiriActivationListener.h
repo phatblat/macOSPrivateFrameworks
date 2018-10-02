@@ -23,6 +23,7 @@
 - (void)_invalidate;
 - (void)_stop;
 - (void)_startWithDelegate:(id)arg1;
+- (oneway void)handleIntent:(id)arg1 inBackgroundAppWithBundleId:(id)arg2 reply:(CDUnknownBlockType)arg3;
 - (oneway void)activateWithRequestInfo:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (oneway void)prewarmForRequestInfo:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (BOOL)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;

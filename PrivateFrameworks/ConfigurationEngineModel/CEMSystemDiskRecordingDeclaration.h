@@ -16,6 +16,7 @@
     NSNumber *_payloadProhibitBurn;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withBurnSupport:(id)arg2 withProhibitBurn:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withBurnSupport:(id)arg2 withProhibitBurn:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

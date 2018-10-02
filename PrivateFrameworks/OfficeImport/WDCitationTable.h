@@ -10,10 +10,11 @@
 
 @interface WDCitationTable : NSObject
 {
-    WDDocument *mDocument;
     NSMutableDictionary *mCitations;
+    WDDocument *mDocument;
 }
 
+@property(readonly) __weak WDDocument *document; // @synthesize document=mDocument;
 - (void).cxx_destruct;
 - (id)description;
 - (id)citationIDs;
@@ -21,7 +22,6 @@
 - (id)citationFor:(id)arg1;
 - (unsigned long long)count;
 - (id)initWithDocument:(id)arg1;
-- (id)document;
 
 @end
 

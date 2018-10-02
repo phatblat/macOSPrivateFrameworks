@@ -10,5 +10,7 @@
 
 @protocol TCollectionViewItemViewProtocol <TMarkTornDown>
 @property(copy) NSImage *iconImage;
+- (NSImage *)dragFlockingTitleImage:(struct CGRect *)arg1;
+- (NSImage *)dragFlockingIconImage:(struct CGRect *)arg1;
 @end
 

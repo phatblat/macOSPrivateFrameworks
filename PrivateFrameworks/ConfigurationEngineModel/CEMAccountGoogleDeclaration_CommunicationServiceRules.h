@@ -13,6 +13,7 @@
     CEMAccountGoogleDeclaration_CommunicationServiceRulesDefaultServiceHandlers *_payloadDefaultServiceHandlers;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithDefaultServiceHandlers:(id)arg1;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) CEMAccountGoogleDeclaration_CommunicationServiceRulesDefaultServiceHandlers *payloadDefaultServiceHandlers; // @synthesize payloadDefaultServiceHandlers=_payloadDefaultServiceHandlers;

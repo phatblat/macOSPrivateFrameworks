@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBNoteContent.h"
 
-@class INCodableAttribute, NSString, _INPBImageNoteContent, _INPBTextNoteContent;
+@class NSString, _INPBImageNoteContent, _INPBTextNoteContent;
 
-@interface _INPBNoteContent : PBCodable <_INPBNoteContent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBNoteContent : PBCodable <_INPBNoteContent, NSSecureCoding, NSCopying>
 {
     CDStruct_f953fb60 _has;
     int _type;
     _INPBImageNoteContent *_image;
     _INPBTextNoteContent *_text;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int type; // @synthesize type=_type;
 @property(retain, nonatomic) _INPBTextNoteContent *text; // @synthesize text=_text;
 @property(retain, nonatomic) _INPBImageNoteContent *image; // @synthesize image=_image;

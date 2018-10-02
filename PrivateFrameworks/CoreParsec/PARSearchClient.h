@@ -36,7 +36,6 @@
 - (void)getImageMap:(CDUnknownBlockType)arg1;
 - (void)fileHandleAndAttributesForResource:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)listSessions:(CDUnknownBlockType)arg1;
-- (void)listenToFlusher:(CDUnknownBlockType)arg1;
 - (void)reportFeedback:(id)arg1 feedback:(id)arg2 queryId:(unsigned long long)arg3;
 - (unsigned long long)request:(id)arg1 request:(id)arg2 reply:(CDUnknownBlockType)arg3;
 - (unsigned long long)_queryId:(unsigned long long)arg1 forObject:(id)arg2;

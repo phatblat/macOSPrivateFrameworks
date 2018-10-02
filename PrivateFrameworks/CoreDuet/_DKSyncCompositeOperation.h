@@ -11,20 +11,21 @@
 @interface _DKSyncCompositeOperation : _DKSyncOperation
 {
     _DKSyncCompositeOperation *_parent;
-    BOOL _isReadyToStart;
+    // Error parsing type: Ac, name: _isReadyToStart
     NSHashTable *_children;
+    struct os_unfair_lock_s _lock;
     NSMutableArray *_errors;
 }
 
 @property(readonly) NSMutableArray *errors; // @synthesize errors=_errors;
 - (void).cxx_destruct;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)cancelOperation;
+- (void)cancel;
 - (void)endOperation;
 - (void)_shutdownOperation;
 - (void)childOperation:(id)arg1 didEndWithErrors:(id)arg2;
 - (void)childOperationWasAdded:(id)arg1;
 - (BOOL)isReady;
+- (void)setReadyToStart:(BOOL)arg1;
 - (BOOL)isAsynchronous;
 - (void)dealloc;
 - (id)initWithParent:(id)arg1;

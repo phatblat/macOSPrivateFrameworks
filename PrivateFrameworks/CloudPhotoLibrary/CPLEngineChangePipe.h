@@ -17,7 +17,10 @@
 - (id)allChangeBatches;
 - (id)popAllChangeBatchesWithError:(id *)arg1;
 - (BOOL)compactChangeBatchesWithError:(id *)arg1;
+- (BOOL)deleteAllChangesWithScopeFilter:(id)arg1 error:(id *)arg2;
 - (BOOL)deleteAllChangeBatchesWithError:(id *)arg1;
+- (BOOL)hasSomeChangeWithScopeFilter:(id)arg1;
+- (BOOL)hasSomeChangeInScopesWithIdentifiers:(id)arg1;
 - (BOOL)hasSomeChangeWithScopedIdentifier:(id)arg1;
 - (BOOL)popNextBatchWithError:(id *)arg1;
 - (id)nextBatch;

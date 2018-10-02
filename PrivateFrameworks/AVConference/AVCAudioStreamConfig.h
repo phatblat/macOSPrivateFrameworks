@@ -27,6 +27,7 @@
     unsigned long long _numRedundantPayloads;
     unsigned long long _txRedPayloadType;
     unsigned long long _rxRedPayloadType;
+    float _volume;
 }
 
 + (long long)clientCodecRateModeForCodecRateMode:(int)arg1;
@@ -37,6 +38,7 @@
 + (long long)streamModeWithClientStreamMode:(long long)arg1;
 + (long long)clientCodecTypeWithCodecType:(long long)arg1;
 + (long long)codecTypeWithClientCodecType:(long long)arg1;
+@property(nonatomic) float volume; // @synthesize volume=_volume;
 @property(nonatomic) BOOL enableMaxBitrateOnNoChangeCMR; // @synthesize enableMaxBitrateOnNoChangeCMR=_enableMaxBitrateOnNoChangeCMR;
 @property(nonatomic) unsigned long long rxRedPayloadType; // @synthesize rxRedPayloadType=_rxRedPayloadType;
 @property(nonatomic) unsigned long long txRedPayloadType; // @synthesize txRedPayloadType=_txRedPayloadType;

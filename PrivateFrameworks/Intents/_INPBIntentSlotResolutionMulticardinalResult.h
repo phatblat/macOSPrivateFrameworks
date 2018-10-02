@@ -6,22 +6,19 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBIntentSlotResolutionMulticardinalResult.h"
 
-@class INCodableAttribute, NSArray, NSString;
+@class NSArray, NSString;
 
-@interface _INPBIntentSlotResolutionMulticardinalResult : PBCodable <_INPBIntentSlotResolutionMulticardinalResult, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBIntentSlotResolutionMulticardinalResult : PBCodable <_INPBIntentSlotResolutionMulticardinalResult, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSArray *_resolutionResults;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)resolutionResultsType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *resolutionResults; // @synthesize resolutionResults=_resolutionResults;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

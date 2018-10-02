@@ -13,6 +13,7 @@
     NSDictionary *_statusANY;
 }
 
++ (id)buildRequiredOnly;
 + (id)build;
 + (id)allowedStatusKeys;
 @property(copy, nonatomic) NSDictionary *statusANY; // @synthesize statusANY=_statusANY;

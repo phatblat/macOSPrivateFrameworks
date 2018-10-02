@@ -6,24 +6,21 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBPlatformSupport.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBPlatformSupport : PBCodable <_INPBPlatformSupport, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBPlatformSupport : PBCodable <_INPBPlatformSupport, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int supportedPlatform:1;
     } _has;
     int _supportedPlatform;
     NSString *_minimumOsVersion;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int supportedPlatform; // @synthesize supportedPlatform=_supportedPlatform;
 @property(copy, nonatomic) NSString *minimumOsVersion; // @synthesize minimumOsVersion=_minimumOsVersion;
 - (void).cxx_destruct;

@@ -6,21 +6,18 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBCallMetrics.h"
 
-@class INCodableAttribute, NSString, _INPBCallMetricsValue;
+@class NSString, _INPBCallMetricsValue;
 
-@interface _INPBCallMetrics : PBCodable <_INPBCallMetrics, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBCallMetrics : PBCodable <_INPBCallMetrics, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBCallMetricsValue *_value;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBCallMetricsValue *value; // @synthesize value=_value;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

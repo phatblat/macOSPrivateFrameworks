@@ -66,6 +66,7 @@
 - (BOOL)_switchToSpecializationIfPossibleForMetadata:(id)arg1 URL:(id)arg2;
 - (BOOL)_switchToSpecializationIfPossibleForMIMEType:(id)arg1 URL:(id)arg2;
 - (void)_fetchMetadataFromWebView;
+- (id)_createFetcherWebView;
 - (void)_startWatchdogTimer;
 - (void)startFetchingSubresourcesForPartialMetadata:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)startFetchingMetadataForWebView:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;

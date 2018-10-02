@@ -35,6 +35,7 @@
 - (void)addToSession:(id)arg1 event:(id)arg2 payload:(id)arg3 reply:(CDUnknownBlockType)arg4;
 - (void)startSessionWithSignature:(id)arg1 duration:(unsigned long long)arg2 events:(id)arg3 payload:(id)arg4 actions:(id)arg5 wantsRemoteCase:(BOOL)arg6 reply:(CDUnknownBlockType)arg7;
 - (void)snapshotWithSignature:(id)arg1 duration:(unsigned long long)arg2 events:(id)arg3 payload:(id)arg4 actions:(id)arg5 wantsRemoteCase:(BOOL)arg6 reply:(CDUnknownBlockType)arg7;
+- (void)abcEnabledAndReadyWithReply:(CDUnknownBlockType)arg1;
 - (BOOL)validateSignature:(id)arg1;
 - (id)responseDictWithSuccess:(BOOL)arg1 sessionId:(id)arg2;
 - (id)responseDictWithSuccess:(BOOL)arg1 reasonCode:(long long)arg2;

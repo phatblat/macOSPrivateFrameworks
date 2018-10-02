@@ -6,21 +6,18 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSendPaymentIntentResponse.h"
 
-@class INCodableAttribute, NSString, _INPBPaymentRecord;
+@class NSString, _INPBPaymentRecord;
 
-@interface _INPBSendPaymentIntentResponse : PBCodable <_INPBSendPaymentIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSendPaymentIntentResponse : PBCodable <_INPBSendPaymentIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBPaymentRecord *_paymentRecord;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBPaymentRecord *paymentRecord; // @synthesize paymentRecord=_paymentRecord;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

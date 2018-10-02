@@ -6,16 +6,22 @@
 
 #import "NSManagedObject.h"
 
-@class NSSet, RMUser;
+@class NSSet, NSString, RMUser;
 
 @interface RMManagementSettings : NSManagedObject
 {
 }
 
 + (id)fetchRequestMatchingManagementSettingsForLocalUserAndDeviceForOrganization:(id)arg1;
++ (id)fetchManagementSettingsForLocalUserForOrganization:(id)arg1;
+@property(nonatomic) BOOL isContentAndPrivacyEnabled; // @dynamic isContentAndPrivacyEnabled;
+@property(nonatomic) BOOL isScreenTimeEnabled; // @dynamic isScreenTimeEnabled;
 
 // Remaining properties
-@property(nonatomic) BOOL isEnabled; // @dynamic isEnabled;
+@property(nonatomic) BOOL isContentAndPrivacyCloudSyncEnabled; // @dynamic isContentAndPrivacyCloudSyncEnabled;
+@property(nonatomic) BOOL isPreviouslyEnabled; // @dynamic isPreviouslyEnabled;
+@property(nonatomic) BOOL isScreenTimeCloudSyncEnabled; // @dynamic isScreenTimeCloudSyncEnabled;
+@property(copy, nonatomic) NSString *passcode; // @dynamic passcode;
 @property(retain, nonatomic) RMUser *user; // @dynamic user;
 @property(retain, nonatomic) NSSet *userDevicePairs; // @dynamic userDevicePairs;
 

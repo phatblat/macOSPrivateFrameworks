@@ -16,6 +16,7 @@
     CEMSecurityTimeLimitsDeclaration_Allowance *_payloadWeekendCurfew;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithWeekdayAllowance:(id)arg1 withWeekdayCurfew:(id)arg2 withWeekendAllowance:(id)arg3 withWeekendCurfew:(id)arg4;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) CEMSecurityTimeLimitsDeclaration_Allowance *payloadWeekendCurfew; // @synthesize payloadWeekendCurfew=_payloadWeekendCurfew;

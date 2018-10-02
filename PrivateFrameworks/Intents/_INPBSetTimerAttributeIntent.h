@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSetTimerAttributeIntent.h"
 
-@class INCodableAttribute, NSString, _INPBIntentMetadata, _INPBTimer;
+@class NSString, _INPBIntentMetadata, _INPBTimer;
 
-@interface _INPBSetTimerAttributeIntent : PBCodable <_INPBSetTimerAttributeIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSetTimerAttributeIntent : PBCodable <_INPBSetTimerAttributeIntent, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int toDuration:1;
@@ -21,10 +20,8 @@
     _INPBIntentMetadata *_intentMetadata;
     _INPBTimer *_targetTimer;
     double _toDuration;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) double toDuration; // @synthesize toDuration=_toDuration;
 @property(retain, nonatomic) _INPBTimer *targetTimer; // @synthesize targetTimer=_targetTimer;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;

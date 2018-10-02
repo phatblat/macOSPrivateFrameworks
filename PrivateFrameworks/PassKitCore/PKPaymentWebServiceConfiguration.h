@@ -28,6 +28,7 @@
 - (BOOL)_queue_supportedForOSVersion:(id)arg1 inRegion:(id)arg2 deviceClass:(id)arg3 platform:(id)arg4;
 - (id)marketGeoRegionNotificationNetworkThresholdsForRegion:(id)arg1;
 - (id)marketGeoRegionNotificationTimeRangeForRegion:(id)arg1;
+- (BOOL)browseProvisioningBankAppsManualEntryDisabledForRegion:(id)arg1;
 - (BOOL)browseProvisioningBankAppsEnabledForRegion:(id)arg1;
 - (id)marketGeoRegionNotificationHourForRegion:(id)arg1;
 - (id)marketGeoRegionNotificationSendLimitForRegion:(id)arg1;
@@ -38,7 +39,8 @@
 - (id)supportedRegionsForOSVersion:(id)arg1 deviceClass:(id)arg2;
 - (id)maxRefreshIntervalForRegion:(id)arg1;
 - (id)maxRefreshIntervalForUnsupportedRegion;
-- (id)betaTransitPaymentNetworksForRegion:(id)arg1;
+- (id)betaPaymentNetworkVersionsForRegion:(id)arg1;
+- (id)betaPaymentNetworksForRegion:(id)arg1;
 - (BOOL)userCanResetCloudStoreApplePayViewForRegion:(id)arg1;
 - (BOOL)peerPaymentEnabledForRegion:(id)arg1;
 - (double)provisioningEnablementPercentageForRegion:(id)arg1;

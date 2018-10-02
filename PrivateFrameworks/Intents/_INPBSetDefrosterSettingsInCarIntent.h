@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSetDefrosterSettingsInCarIntent.h"
 
-@class INCodableAttribute, NSString, _INPBIntentMetadata;
+@class NSString, _INPBDataString, _INPBIntentMetadata;
 
-@interface _INPBSetDefrosterSettingsInCarIntent : PBCodable <_INPBSetDefrosterSettingsInCarIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSetDefrosterSettingsInCarIntent : PBCodable <_INPBSetDefrosterSettingsInCarIntent, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int defroster:1;
@@ -21,14 +20,14 @@
     } _has;
     BOOL _enable;
     int _defroster;
+    _INPBDataString *_carName;
     _INPBIntentMetadata *_intentMetadata;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
 @property(nonatomic) BOOL enable; // @synthesize enable=_enable;
 @property(nonatomic) int defroster; // @synthesize defroster=_defroster;
+@property(retain, nonatomic) _INPBDataString *carName; // @synthesize carName=_carName;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 @property(readonly) unsigned long long hash;
@@ -41,6 +40,7 @@
 - (int)StringAsDefroster:(id)arg1;
 - (id)defrosterAsString:(int)arg1;
 @property(nonatomic) BOOL hasDefroster;
+@property(readonly, nonatomic) BOOL hasCarName;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

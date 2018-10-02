@@ -10,7 +10,7 @@
 {
 }
 
-- (_Bool)publishReportForCase:(id)arg1 options:(id)arg2;
+- (BOOL)publishReportForCase:(id)arg1 options:(id)arg2;
 - (id)descriptiveFilenameWithPrefix:(id)arg1 domain:(id)arg2 process:(id)arg3;
 
 @end

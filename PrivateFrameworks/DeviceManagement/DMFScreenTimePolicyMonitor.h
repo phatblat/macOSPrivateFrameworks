@@ -6,21 +6,22 @@
 
 #import "NSObject.h"
 
-@class DMFPolicyRegistration;
+@class NSUUID;
 
 @interface DMFScreenTimePolicyMonitor : NSObject
 {
     long long _screenTimePolicy;
-    DMFPolicyRegistration *_registration;
+    NSUUID *_policyMonitorIdentifier;
 }
 
 + (BOOL)automaticallyNotifiesObserversOfScreenTimePolicy;
-@property(retain, nonatomic) DMFPolicyRegistration *registration; // @synthesize registration=_registration;
+@property(readonly, nonatomic) NSUUID *policyMonitorIdentifier; // @synthesize policyMonitorIdentifier=_policyMonitorIdentifier;
 @property(nonatomic) long long screenTimePolicy; // @synthesize screenTimePolicy=_screenTimePolicy;
 - (void).cxx_destruct;
 - (void)_updateScreenTimeFromPolicies:(id)arg1;
 - (BOOL)askPermissionForScreenTimeWithError:(id *)arg1;
 - (void)_updateScreenTime;
+- (void)dealloc;
 - (id)init;
 
 @end

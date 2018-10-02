@@ -53,6 +53,7 @@
 @property(nonatomic) double score; // @synthesize score=_score;
 @property(retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
+- (long long)compare:(id)arg1;
 - (BOOL)isEqualToContactNameRecord:(id)arg1;
 - (BOOL)hasScoreSimilarToRecord:(id)arg1;
 - (BOOL)isEqual:(id)arg1;

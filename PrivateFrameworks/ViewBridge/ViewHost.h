@@ -27,13 +27,14 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)ultimateAncestor:(struct NSMutableDictionary *)arg1 forProcessIdentifier:(int)arg2;
++ (id)ultimateAncestorOfWindow:(unsigned int)arg1 inDictionaryOfHostsAndServices:(struct NSMutableDictionary *)arg2;
++ (id)ultimateAncestorOfWindow:(unsigned int)arg1 inDictionaryOfHostsAndServices:(struct NSMutableDictionary *)arg2 consideringEachViewHost:(CDUnknownBlockType)arg3;
 @property(readonly) unsigned char hostWindowBase; // @synthesize hostWindowBase=_hostWindowBase;
 @property(readonly) unsigned char hostWindowKind; // @synthesize hostWindowKind=_hostWindowKind;
 @property(copy) NSString *rendezvousWindowIdentifier; // @synthesize rendezvousWindowIdentifier=_rendezvousWindowIdentifier;
 @property struct CGRect frameInScreenCoords; // @synthesize frameInScreenCoords=_frameInScreenCoords;
 - (void)dealloc;
 - (struct __LSASN *)ultimateHostAppSerialNumber;
-- (id)ultimateAncestor:(struct NSMutableDictionary *)arg1 consideringEachViewHost:(CDUnknownBlockType)arg2;
 - (void)invalidate:(struct NSMutableDictionary *)arg1;
 - (void)forwardEventToAccessoryView:(struct __CGEvent *)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)potentialCommandEquivalentHitRemoteView:(id)arg1 reply:(CDUnknownBlockType)arg2;

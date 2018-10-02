@@ -9,6 +9,8 @@
 @class AFAudioPlaybackRequest, AFRequestInfo, AFVoiceInfo, NSArray, NSData, NSDictionary, NSString, NSURL;
 
 @protocol AFSettingsService <NSObject>
+- (oneway void)configOverrides:(void (^)(NSDictionary *))arg1;
+- (oneway void)setConfigOverrides:(NSDictionary *)arg1 completion:(void (^)(void))arg2;
 - (oneway void)getStereoPairState:(void (^)(BOOL, NSError *))arg1;
 - (oneway void)getStereoPartnerLastMyriadWinDate:(void (^)(NSDate *, NSError *))arg1;
 - (oneway void)getDevicesWithAvailablePHSAssetsForLanguage:(NSString *)arg1 completion:(void (^)(NSArray *))arg2;

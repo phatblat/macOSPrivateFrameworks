@@ -7,8 +7,6 @@
 #import "NSObject.h"
 
 @protocol TPropertyThumbnailExtractorDelegate <NSObject>
-- (void)propertyThumbnailExtractorOpEnd;
-- (void)propertyThumbnailExtractorOpStart:(const struct TString *)arg1;
 - (void)waitForThumbnail:(const struct TFENode *)arg1;
 - (_Bool)wantsToWaitForThumbnails;
 @end

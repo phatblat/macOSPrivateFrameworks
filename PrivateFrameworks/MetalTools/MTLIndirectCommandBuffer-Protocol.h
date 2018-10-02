@@ -9,5 +9,6 @@
 @protocol MTLIndirectCommandBuffer <MTLResource>
 @property(readonly) unsigned long long size;
 - (id <MTLIndirectRenderCommand>)indirectRenderCommandAtIndex:(unsigned long long)arg1;
+- (void)resetWithRange:(struct _NSRange)arg1;
 @end
 

@@ -16,6 +16,7 @@
     NSNumber *_payloadAssistiveTouch;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithVoiceOver:(id)arg1 withZoom:(id)arg2 withInvertColors:(id)arg3 withAssistiveTouch:(id)arg4;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadAssistiveTouch; // @synthesize payloadAssistiveTouch=_payloadAssistiveTouch;

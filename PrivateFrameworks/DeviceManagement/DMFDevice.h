@@ -58,6 +58,7 @@
     NSString *_MEID;
     NSString *_modemFirmwareVersion;
     NSString *_phoneNumber;
+    NSDictionary *_serviceSubscriptions;
     NSArray *_skippedSetupPanes;
     NSString *_subscriberCarrierNetwork;
     NSString *_subscriberMCC;
@@ -90,6 +91,7 @@
 @property(readonly, nonatomic) NSString *subscriberMCC; // @synthesize subscriberMCC=_subscriberMCC;
 @property(readonly, nonatomic) NSString *subscriberCarrierNetwork; // @synthesize subscriberCarrierNetwork=_subscriberCarrierNetwork;
 @property(readonly, nonatomic) NSArray *skippedSetupPanes; // @synthesize skippedSetupPanes=_skippedSetupPanes;
+@property(readonly, nonatomic) NSDictionary *serviceSubscriptions; // @synthesize serviceSubscriptions=_serviceSubscriptions;
 @property(readonly, nonatomic) NSString *phoneNumber; // @synthesize phoneNumber=_phoneNumber;
 @property(readonly, nonatomic) NSString *modemFirmwareVersion; // @synthesize modemFirmwareVersion=_modemFirmwareVersion;
 @property(readonly, nonatomic) NSString *MEID; // @synthesize MEID=_MEID;

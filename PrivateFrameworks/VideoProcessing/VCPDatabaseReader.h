@@ -23,6 +23,7 @@
 - (id)queryAnalysisForAsset:(id)arg1 withTypes:(id)arg2;
 - (id)queryAnalysisPropertiesForAsset:(id)arg1;
 - (id)queryAnalysisForAsset:(id)arg1;
+- (id)blacklistedLocalIdentifiersFromAssets:(id)arg1;
 - (BOOL)isAssetBlacklisted:(id)arg1 blacklistDate:(id *)arg2;
 - (int)executeDatabaseBlock:(CDUnknownBlockType)arg1;
 - (int)queryResultsForAssets:(id)arg1 withTypes:(id)arg2 batchResults:(id)arg3;

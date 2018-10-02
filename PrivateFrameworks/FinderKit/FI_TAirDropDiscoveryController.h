@@ -18,7 +18,6 @@ __attribute__((visibility("hidden")))
     long long _discoverableMode;
     _Bool _isLegacyModeEnabled;
     _Bool _isLegacyModeSettable;
-    struct TNotificationCenterObserver _forceIsLegacyMachinePrefObserver;
 }
 
 + (id)controller;
@@ -34,7 +33,6 @@ __attribute__((visibility("hidden")))
 - (void)updateState;
 - (void)_setLegacyModeSettableForUpdateState:(_Bool)arg1;
 - (void)_setLegacyMachineForUpdateState:(_Bool)arg1;
-- (void)forceLegacyMachineState:(_Bool)arg1;
 - (void)_setLegacyModeEnabledForUpdateState:(_Bool)arg1;
 - (void)_setDiscoverableModeForUpdateState:(long long)arg1;
 - (void)dealloc;

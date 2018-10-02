@@ -9,10 +9,16 @@
 __attribute__((visibility("hidden")))
 @interface FI_TColumnQLPreviewViewController : FI_TPropertyQLPreviewViewController
 {
+    _Bool _isApplicableToUI;
 }
 
++ (id)keyPathsForValuesAffectingShouldBeVisible;
+@property(nonatomic, getter=isApplicableToUI) _Bool applicableToUI; // @synthesize applicableToUI=_isApplicableToUI;
+- (_Bool)shouldBeVisible;
+- (_Bool)isApplicableToNodes:(const struct TFENodeVector *)arg1;
 - (void)dealloc;
 - (void)viewLoaded;
+- (void)initCommon;
 
 @end
 

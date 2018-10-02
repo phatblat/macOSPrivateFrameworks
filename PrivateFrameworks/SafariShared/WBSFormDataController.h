@@ -67,6 +67,7 @@
 - (void)willSubmitFormWithCredentials:(id)arg1 atURL:(id)arg2 username:(id *)arg3 password:(id *)arg4;
 - (BOOL)isPasswordFieldForUserCredentialsWithMetadata:(id)arg1 formMetadata:(id)arg2;
 - (BOOL)hasCredentialsForPageWithMainFrame:(id)arg1;
+- (id)metadataOfBestFormForStreamlinedLogin:(id)arg1 frame:(struct OpaqueFormAutoFillFrame **)arg2;
 - (id)metadataOfActiveFormOrBestFormForPageLevelAutoFill:(id)arg1 frame:(struct OpaqueFormAutoFillFrame **)arg2 forPrefillingCredentials:(BOOL)arg3;
 - (id)activeOrFirstAutoFillableFormFromProvider:(id)arg1 frame:(struct OpaqueFormAutoFillFrame **)arg2 forPrefillingCredentials:(BOOL)arg3;
 - (id)_credentialMatchesWithCriteria:(id)arg1 protectionSpaceMatches:(id)arg2;

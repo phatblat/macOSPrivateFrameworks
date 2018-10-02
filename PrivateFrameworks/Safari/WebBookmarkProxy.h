@@ -11,7 +11,6 @@
 }
 
 - (id)_mutableDictionaryRepresentation;
-- (BOOL)shouldOmitFromUI;
 - (id)icon;
 - (id)iconURLString;
 - (long long)bookmarkType;

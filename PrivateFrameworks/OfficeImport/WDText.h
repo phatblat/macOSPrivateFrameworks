@@ -11,11 +11,12 @@
 @interface WDText : NSObject
 {
     NSMutableArray *mBlocks;
-    WDDocument *mDocument;
     int mTextType;
+    WDDocument *mDocument;
     WDTableCell *mTableCell;
 }
 
+@property(readonly) __weak WDDocument *document; // @synthesize document=mDocument;
 - (void).cxx_destruct;
 - (id)description;
 - (id)content;
@@ -33,9 +34,8 @@
 - (id)firstParagraph;
 - (id)addParagraphAtIndex:(int)arg1;
 - (id)addParagraph;
-- (id)tableCell;
+@property(readonly) __weak WDTableCell *tableCell; // @synthesize tableCell=mTableCell;
 - (int)textType;
-- (id)document;
 - (void)addBlock:(id)arg1;
 - (unsigned long long)indexOfBlock:(id)arg1;
 - (id)lastBlock;

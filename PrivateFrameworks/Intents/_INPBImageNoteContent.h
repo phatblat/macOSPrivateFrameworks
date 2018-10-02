@@ -6,21 +6,18 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBImageNoteContent.h"
 
-@class INCodableAttribute, NSString, _INPBImageValue;
+@class NSString, _INPBImageValue;
 
-@interface _INPBImageNoteContent : PBCodable <_INPBImageNoteContent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBImageNoteContent : PBCodable <_INPBImageNoteContent, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBImageValue *_image;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBImageValue *image; // @synthesize image=_image;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

@@ -13,11 +13,13 @@
 @interface CEMSystemSiriDeclaration : CEMConfigurationBase <CEMRegisteredTypeProtocol>
 {
     NSNumber *_payloadAllowAssistant;
+    NSNumber *_payloadAllowDictation;
     NSNumber *_payloadAllowAssistantUserGeneratedContent;
     NSNumber *_payloadForceAssistantProfanityFilter;
 }
 
-+ (id)buildWithIdentifier:(id)arg1 withAllowAssistant:(id)arg2 withAllowAssistantUserGeneratedContent:(id)arg3 withForceAssistantProfanityFilter:(id)arg4;
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
++ (id)buildWithIdentifier:(id)arg1 withAllowAssistant:(id)arg2 withAllowDictation:(id)arg3 withAllowAssistantUserGeneratedContent:(id)arg4 withForceAssistantProfanityFilter:(id)arg5;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;
 + (id)profileType;
@@ -25,6 +27,7 @@
 + (id)registeredClassName;
 @property(copy, nonatomic) NSNumber *payloadForceAssistantProfanityFilter; // @synthesize payloadForceAssistantProfanityFilter=_payloadForceAssistantProfanityFilter;
 @property(copy, nonatomic) NSNumber *payloadAllowAssistantUserGeneratedContent; // @synthesize payloadAllowAssistantUserGeneratedContent=_payloadAllowAssistantUserGeneratedContent;
+@property(copy, nonatomic) NSNumber *payloadAllowDictation; // @synthesize payloadAllowDictation=_payloadAllowDictation;
 @property(copy, nonatomic) NSNumber *payloadAllowAssistant; // @synthesize payloadAllowAssistant=_payloadAllowAssistant;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;

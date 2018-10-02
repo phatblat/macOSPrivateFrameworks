@@ -9,15 +9,8 @@
 @interface NSColor (SocialUIAdditions)
 + (id)progressBarBusinessColor;
 + (id)progressBariMessageColor;
-+ (id)inputLineTextColor;
 + (id)progressBarSMSColor;
 + (id)mapViewContainerBorderColor;
-+ (id)inputLineInsertionPointColor;
-+ (id)inputLineWaveformPlayedBarColor;
-+ (id)inputLineWaveformBarColor;
-+ (id)inputLineWaveformBackgroundColor;
-+ (id)inputLineBorderColor;
-+ (id)inputLineBackgroundColor;
 + (id)primaryContrastColorForBusinessChat:(id)arg1;
 + (id)secondaryBrandColorForBusinessChat:(id)arg1;
 + (id)primaryBrandColorForBusinessChat:(id)arg1;

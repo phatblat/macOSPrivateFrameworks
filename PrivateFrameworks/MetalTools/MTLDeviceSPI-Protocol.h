@@ -91,6 +91,7 @@
 - (unsigned long long)minLinearTextureAlignmentForPixelFormat:(unsigned long long)arg1;
 - (BOOL)deviceOrFeatureProfileSupportsFeatureSet:(unsigned long long)arg1;
 - (BOOL)deviceSupportsFeatureSet:(unsigned long long)arg1;
+- (id <MTLDevice>)_deviceWrapper;
 - (void)_setDeviceWrapper:(id <MTLDeviceSPI>)arg1;
 - (void)compilerPropagatesThreadPriority:(_Bool)arg1;
 - (NSString *)productName;

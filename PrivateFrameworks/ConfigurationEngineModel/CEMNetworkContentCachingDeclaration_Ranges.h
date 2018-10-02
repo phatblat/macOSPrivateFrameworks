@@ -15,6 +15,7 @@
     NSString *_payloadLast;
 }
 
++ (id)buildRequiredOnlyWithFirst:(id)arg1 withLast:(id)arg2;
 + (id)buildWithType:(id)arg1 withFirst:(id)arg2 withLast:(id)arg3;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadLast; // @synthesize payloadLast=_payloadLast;

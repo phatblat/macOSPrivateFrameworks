@@ -11,12 +11,14 @@
 @interface _DKObjectFromMOCache : NSObject
 {
     NSMutableDictionary *_cache;
+    NSMutableDictionary *_cacheEntries;
     NSMutableDictionary *_cacheHits;
     NSMutableDictionary *_cacheMisses;
 }
 
 @property(retain) NSMutableDictionary *cacheMisses; // @synthesize cacheMisses=_cacheMisses;
 @property(retain) NSMutableDictionary *cacheHits; // @synthesize cacheHits=_cacheHits;
+@property(retain) NSMutableDictionary *cacheEntries; // @synthesize cacheEntries=_cacheEntries;
 @property(retain) NSMutableDictionary *cache; // @synthesize cache=_cache;
 - (void).cxx_destruct;
 - (id)deduplicateString:(id)arg1;

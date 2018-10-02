@@ -18,9 +18,12 @@ __attribute__((visibility("hidden")))
     struct os_unfair_lock_s _bitmapIDByImageDescriptorLock;
 }
 
-+ (id)asyncQueue;
 + (id)sharedValidationQueue;
++ (id)genericAppIcon;
++ (id)genericFolderIcon;
++ (id)genericDocumentIcon;
 + (id)placeholderIcon;
++ (id)notLoadedIcon;
 @property(readonly) struct os_unfair_lock_s bitmapIDByImageDescriptorLock; // @synthesize bitmapIDByImageDescriptorLock=_bitmapIDByImageDescriptorLock;
 @property(readonly) NSMapTable *bitmapIDByImageDescriptor; // @synthesize bitmapIDByImageDescriptor=_bitmapIDByImageDescriptor;
 @property CDStruct_cbacfc36 validationToken; // @synthesize validationToken=_validationToken;

@@ -8,22 +8,31 @@
 
 #import "NSCopying.h"
 
+@class NSMutableArray;
+
 @interface GEOCacheMiss : PBCodable <NSCopying>
 {
     unsigned int _bytes;
     unsigned int _count;
+    NSMutableArray *_errors;
+    unsigned int _httpStatus;
     int _missType;
     int _requestorType;
     struct {
         unsigned int bytes:1;
         unsigned int count:1;
+        unsigned int httpStatus:1;
         unsigned int missType:1;
         unsigned int requestorType:1;
     } _has;
 }
 
++ (Class)errorsType;
+@property(nonatomic) unsigned int httpStatus; // @synthesize httpStatus=_httpStatus;
+@property(retain, nonatomic) NSMutableArray *errors; // @synthesize errors=_errors;
 @property(nonatomic) unsigned int bytes; // @synthesize bytes=_bytes;
 @property(nonatomic) unsigned int count; // @synthesize count=_count;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -33,6 +42,11 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasHttpStatus;
+- (id)errorsAtIndex:(unsigned long long)arg1;
+- (unsigned long long)errorsCount;
+- (void)addErrors:(id)arg1;
+- (void)clearErrors;
 @property(nonatomic) BOOL hasBytes;
 @property(nonatomic) BOOL hasCount;
 - (int)StringAsMissType:(id)arg1;

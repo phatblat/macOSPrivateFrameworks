@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBIntentResponsePayloadSuccess.h"
 
-@class INCodableAttribute, NSData, NSString;
+@class NSData, NSString;
 
-@interface _INPBIntentResponsePayloadSuccess : PBCodable <_INPBIntentResponsePayloadSuccess, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBIntentResponsePayloadSuccess : PBCodable <_INPBIntentResponsePayloadSuccess, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int shouldOpenContainingApplication:1;
@@ -21,10 +20,8 @@
     BOOL _shouldOpenContainingApplication;
     NSData *_responseMessageData;
     NSString *_responseTypeName;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) BOOL shouldOpenContainingApplication; // @synthesize shouldOpenContainingApplication=_shouldOpenContainingApplication;
 @property(copy, nonatomic) NSString *responseTypeName; // @synthesize responseTypeName=_responseTypeName;
 @property(copy, nonatomic) NSData *responseMessageData; // @synthesize responseMessageData=_responseMessageData;

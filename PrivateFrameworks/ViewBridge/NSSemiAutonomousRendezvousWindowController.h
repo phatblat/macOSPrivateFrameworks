@@ -13,7 +13,7 @@ __attribute__((visibility("hidden")))
 
 + (void)addBridgeKeys:(id)arg1;
 + (unsigned long long)acceptableStyleMask;
-- (id)appearanceName;
+- (id)appearance;
 - (id)objectToObserveForKey:(id)arg1 withWindow:(id)arg2;
 - (void)_viewDidChangeAppearance:(id)arg1;
 - (BOOL)_shouldNormalizeAppearance;
@@ -24,6 +24,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)allowsImplicitResizeRequests;
 - (BOOL)allowsWindowFrameOriginChanges;
 - (struct CGRect)_serviceWindowFrameForRemoteViewFrame:(struct CGRect)arg1;
+- (void)windowWillOrder:(long long)arg1 relativeTo:(long long)arg2;
 
 @end
 

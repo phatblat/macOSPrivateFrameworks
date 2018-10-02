@@ -8,22 +8,23 @@
 
 #import "NSSecureCoding.h"
 
-@class NSMutableSet;
+@class HMCameraStreamAudioPreferences, HMCameraStreamVideoPreferences;
 
 @interface HMCameraStreamPreferences : NSObject <NSSecureCoding>
 {
-    NSMutableSet *_preferredVideoResolutions;
-    NSMutableSet *_preferredAudioCodecs;
+    HMCameraStreamAudioPreferences *_audioPreferences;
+    HMCameraStreamVideoPreferences *_videoPreferences;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(readonly, nonatomic) NSMutableSet *preferredAudioCodecs; // @synthesize preferredAudioCodecs=_preferredAudioCodecs;
-@property(readonly, nonatomic) NSMutableSet *preferredVideoResolutions; // @synthesize preferredVideoResolutions=_preferredVideoResolutions;
+@property(readonly, nonatomic) HMCameraStreamVideoPreferences *videoPreferences; // @synthesize videoPreferences=_videoPreferences;
+@property(readonly, nonatomic) HMCameraStreamAudioPreferences *audioPreferences; // @synthesize audioPreferences=_audioPreferences;
 - (void).cxx_destruct;
+- (BOOL)isEqual:(id)arg1;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)init;
+- (id)initWithAudioPreferences:(id)arg1 videoPreferences:(id)arg2;
 
 @end
 

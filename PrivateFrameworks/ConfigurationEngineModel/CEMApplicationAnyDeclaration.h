@@ -16,6 +16,7 @@
     NSString *_payloadBundleIdentifier;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withDescriptor:(id)arg2 withBundleIdentifier:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withDescriptor:(id)arg2 withBundleIdentifier:(id)arg3;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

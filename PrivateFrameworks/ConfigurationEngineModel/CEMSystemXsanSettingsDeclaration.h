@@ -19,6 +19,7 @@
     NSString *_payloadSharedSecret;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withSanName:(id)arg2 withSanConfigURLs:(id)arg3 withFsnameservers:(id)arg4 withSharedSecret:(id)arg5;
 + (id)buildWithIdentifier:(id)arg1 withSanName:(id)arg2 withSanConfigURLs:(id)arg3 withFsnameservers:(id)arg4 withSanAuthMethod:(id)arg5 withSharedSecret:(id)arg6;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

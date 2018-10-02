@@ -25,14 +25,13 @@
 - (void)audioControl:(id)arg1 didUpdateMuted:(BOOL)arg2;
 - (void)audioControl:(id)arg1 didUpdateVolume:(float)arg2;
 - (BOOL)_mergeWithNewObject:(id)arg1 operations:(id)arg2;
-- (id)clientQueue;
 - (void)updateMuted:(BOOL)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)updateVolume:(float)arg1 completionHandler:(CDUnknownBlockType)arg2;
 @property(getter=isMuted) BOOL muted;
 @property float volume;
-- (void)configure:(id)arg1;
 @property(readonly, nonatomic) NSUUID *uniqueIdentifier;
-- (id)initWithMediaSession:(id)arg1 propertyQueue:(id)arg2;
+- (void)__configureWithContext:(id)arg1;
+- (id)initWithMediaSession:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

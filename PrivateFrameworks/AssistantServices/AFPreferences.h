@@ -22,6 +22,10 @@
 
 + (id)sharedPreferences;
 - (void).cxx_destruct;
+- (id)configOverrides;
+- (void)setConfigOverrides:(id)arg1;
+- (void)removeConfigOverrideForKey:(id)arg1;
+- (void)setConfigOverrideWithValue:(id)arg1 forKey:(id)arg2;
 - (BOOL)cardLoggingEnabled;
 - (void)setCardLoggingEnabled:(BOOL)arg1;
 - (BOOL)shouldLogForQA;
@@ -60,14 +64,8 @@
 - (BOOL)applySASToFirstPartyDomains;
 - (void)setUseSASAutoSelectionFeature:(BOOL)arg1;
 - (BOOL)useSASAutoSelectionFeature;
-- (void)setSiriKitEnabledForNativeNotes:(BOOL)arg1;
-- (BOOL)siriKitEnabledForNativeNotes;
-- (void)setSiriKitEnabledForNativeCalling:(BOOL)arg1;
-- (BOOL)siriKitEnabledForNativeCalling;
 - (void)setShouldLoadNativeMessagesExtensionAsBundle:(BOOL)arg1;
 - (BOOL)shouldLoadNativeMessagesExtensionAsBundle;
-- (void)setSiriKitEnabledForNativeMessages:(BOOL)arg1;
-- (BOOL)siriKitEnabledForNativeMessages;
 - (void)setSiriSpeakerGradingDebugUIEnabled:(BOOL)arg1;
 - (BOOL)siriSpeakerGradingDebugUIEnabled;
 - (void)setSiriDebugUIEnabled:(BOOL)arg1;
@@ -90,8 +88,12 @@
 - (double)myriadDeviceDelay;
 - (void)setMyriadDeviceAdjust:(float)arg1;
 - (float)myriadDeviceAdjust;
+- (void)setMyriadConstantGoodness:(int)arg1;
+- (int)myriadConstantGoodness;
 - (void)setMyriadDeviceClass:(unsigned char)arg1;
 - (unsigned char)myriadDeviceClass;
+- (void)setMyriadServerProvisioning:(BOOL)arg1;
+- (BOOL)myriadServerProvisioning;
 - (void)setMyriadServerHasProvisioned:(BOOL)arg1;
 - (BOOL)myriadServerHasProvisioned;
 - (void)setMyriadDeviceGroup:(id)arg1;

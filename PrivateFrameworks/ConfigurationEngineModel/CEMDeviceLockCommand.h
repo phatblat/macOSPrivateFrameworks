@@ -16,6 +16,7 @@
     NSString *_payloadPhoneNumber;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withMessage:(id)arg2 withPhoneNumber:(id)arg3;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

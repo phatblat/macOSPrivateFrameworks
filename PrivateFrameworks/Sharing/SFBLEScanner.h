@@ -22,6 +22,7 @@
     BOOL _invalidateCalled;
     BOOL _needDups;
     long long _payloadType;
+    _Bool _poweredOffSleep;
     NSObject<OS_dispatch_source> *_rescanTimer;
     struct __sFILE {
         char *_field1;
@@ -137,6 +138,8 @@
 - (void)_rssiLogOpen;
 - (void)_restartIfNeeded;
 - (void)_rescanTimerFired;
+- (void)_removeAllDevicesWithReason:(id)arg1;
+- (void)_poweredOn;
 - (void)_poweredOff;
 - (BOOL)_needDups;
 - (BOOL)_needActiveScan;

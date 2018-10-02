@@ -12,7 +12,6 @@
 
 @interface WDParagraphProperties : NSObject <NSCopying>
 {
-    WDDocument *mDocument;
     WDCharacterProperties *mCharacterProperties;
     BOOL mCharacterPropertiesOverridden;
     unsigned int mOriginal:1;
@@ -20,8 +19,10 @@
     unsigned int mResolved:1;
     WDParagraphPropertiesValues *mOriginalProperties;
     WDParagraphPropertiesValues *mTrackedProperties;
+    WDDocument *mDocument;
 }
 
+@property(readonly) __weak WDDocument *document; // @synthesize document=mDocument;
 - (void).cxx_destruct;
 - (void)copyPropertiesInto:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -205,7 +206,6 @@
 - (void)setCharacterProperties:(id)arg1;
 - (id)mutableCharacterProperties;
 - (id)characterProperties;
-- (id)document;
 - (id)initWithDocument:(id)arg1;
 - (id)description;
 - (BOOL)isAnythingOverriddenIn:(id)arg1;

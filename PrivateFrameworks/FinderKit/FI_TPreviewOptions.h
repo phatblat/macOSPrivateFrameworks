@@ -26,10 +26,12 @@ __attribute__((visibility("hidden")))
     _Bool _quickActionsSupported;
     function_4af4fa10 _saveOptionsCallback;
     _Bool _suppressSaving;
+    _Bool _editing;
 }
 
 + (id)keyPathsForValuesAffectingOrderedDisplayAttributes;
 + (id)keyPathsForValuesAffectingSpotlightQueryAttributes;
+@property(nonatomic, getter=isEditing) _Bool editing; // @synthesize editing=_editing;
 @property(nonatomic) _Bool showQuickActions; // @synthesize showQuickActions=_showQuickActions;
 @property(readonly, nonatomic) _Bool quickActionsSupported; // @synthesize quickActionsSupported=_quickActionsSupported;
 @property(nonatomic) _Bool suppressSaving; // @synthesize suppressSaving=_suppressSaving;

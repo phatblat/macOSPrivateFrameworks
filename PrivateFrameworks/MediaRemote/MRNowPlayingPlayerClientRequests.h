@@ -8,7 +8,7 @@
 
 #import "MRNowPlayingClientState.h"
 
-@class MRPlaybackQueuePlayerClient, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, _MRNowPlayingPlayerPathProtobuf, _MRPlaybackQueueProtobuf;
+@class MRPlaybackQueueSubscriptionController, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, _MRNowPlayingPlayerPathProtobuf, _MRPlaybackQueueProtobuf;
 
 __attribute__((visibility("hidden")))
 @interface MRNowPlayingPlayerClientRequests : NSObject <MRNowPlayingClientState>
@@ -23,10 +23,10 @@ __attribute__((visibility("hidden")))
     NSOperationQueue *_enquedNowPlayingInfoRequests;
     NSOperationQueue *_enquedNowPlayingInfoAssetRequests;
     _MRNowPlayingPlayerPathProtobuf *_playerPath;
-    MRPlaybackQueuePlayerClient *_playbackQueueClient;
+    MRPlaybackQueueSubscriptionController *_subscriptionController;
 }
 
-@property(readonly, nonatomic) MRPlaybackQueuePlayerClient *playbackQueueClient; // @synthesize playbackQueueClient=_playbackQueueClient;
+@property(readonly, nonatomic) MRPlaybackQueueSubscriptionController *subscriptionController; // @synthesize subscriptionController=_subscriptionController;
 @property(readonly, nonatomic) _MRNowPlayingPlayerPathProtobuf *playerPath; // @synthesize playerPath=_playerPath;
 - (void).cxx_destruct;
 - (void)_registerDefaultCallbacks;

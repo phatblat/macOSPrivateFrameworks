@@ -15,6 +15,7 @@
 
 + (long long)sessionModeWithClientSessionMode:(long long)arg1;
 + (long long)clientSessionModeWithSessionMode:(long long)arg1;
+@property(copy, nonatomic) id reportingHierarchyToken; // @synthesize reportingHierarchyToken=_reportingHierarchyToken;
 @property(nonatomic) long long sessionMode; // @synthesize sessionMode=_sessionMode;
 @property(nonatomic) unsigned long long maxRemoteParticipants; // @synthesize maxRemoteParticipants=_maxRemoteParticipants;
 - (id)dictionary;

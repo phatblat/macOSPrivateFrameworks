@@ -6,7 +6,7 @@
 
 #import <HomeKitDaemon/HMDBackingStoreModelObject.h>
 
-@class IDSURI;
+@class IDSURI, NSNumber;
 
 @interface HMDAccountHandleModel : HMDBackingStoreModelObject
 {
@@ -16,6 +16,7 @@
 
 // Remaining properties
 @property(retain, nonatomic) IDSURI *idsURI; // @dynamic idsURI;
+@property(retain, nonatomic) NSNumber *local; // @dynamic local;
 
 @end
 

@@ -15,6 +15,7 @@
     NSDictionary *_payloadANY;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

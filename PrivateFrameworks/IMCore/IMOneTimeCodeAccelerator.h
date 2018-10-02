@@ -10,10 +10,12 @@
 
 @interface IMOneTimeCodeAccelerator : NSObject
 {
+    BOOL _requestedOneTimeCodeStatusForConnection;
     IMDaemonController<IMRemoteDaemonProtocol> *_daemon;
     CDUnknownBlockType _updateBlock;
 }
 
+@property(nonatomic) BOOL requestedOneTimeCodeStatusForConnection; // @synthesize requestedOneTimeCodeStatusForConnection=_requestedOneTimeCodeStatusForConnection;
 @property(copy, nonatomic) CDUnknownBlockType updateBlock; // @synthesize updateBlock=_updateBlock;
 @property(retain, nonatomic) IMDaemonController<IMRemoteDaemonProtocol> *daemon; // @synthesize daemon=_daemon;
 - (void).cxx_destruct;

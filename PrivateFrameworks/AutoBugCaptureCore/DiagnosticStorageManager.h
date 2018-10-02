@@ -22,7 +22,7 @@
     SymptomsFileCleaner *_abcCleaner;
 }
 
-@property(retain) SymptomsFileCleaner *abcCleaner; // @synthesize abcCleaner=_abcCleaner;
+@property(retain, nonatomic) SymptomsFileCleaner *abcCleaner; // @synthesize abcCleaner=_abcCleaner;
 - (void).cxx_destruct;
 - (void)purgeAttachmentsAtPaths:(id)arg1;
 - (void)didSaveDiagnosticCases;

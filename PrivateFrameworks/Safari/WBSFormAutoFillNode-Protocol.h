@@ -9,7 +9,7 @@
 @protocol WBSFormAutoFillNode <NSObject>
 - (long long)htmlInputElementLastAutoFillButtonType;
 - (long long)htmlInputElementAutoFillButtonType;
-- (void)setHTMLInputElementAutoFilledWithAutomaticStrongPassword:(BOOL)arg1 inputElementIsPasswordConfirmation:(BOOL)arg2;
+- (void)setHTMLInputElementAutoFilledWithAutomaticStrongPassword:(BOOL)arg1;
 - (BOOL)isHTMLTextAreaElementUserEdited;
 - (BOOL)isHTMLInputElementUserEdited;
 - (void)setHTMLInputElementAutofilled:(BOOL)arg1;

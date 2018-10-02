@@ -16,6 +16,7 @@
     CEMEventSubscriptionDeclaration_Schedule *_payloadSchedule;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withEvents:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withEvents:(id)arg2 withSchedule:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

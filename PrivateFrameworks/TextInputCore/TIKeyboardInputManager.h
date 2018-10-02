@@ -140,7 +140,7 @@
 - (id)nonstopPunctuationCharacters;
 - (void)updateForRevisitedString:(id)arg1;
 - (id)autocorrectionRecordForWord:(id)arg1;
-- (void)recordRejectedAutocorrectionForAcceptedText:(id)arg1;
+- (void)recordRejectedAutocorrectionForAcceptedText:(id)arg1 fromPredictiveInputBar:(BOOL)arg2;
 - (void)recordAcceptedAutocorrection:(id)arg1 fromPredictiveInputBar:(BOOL)arg2;
 - (id)revisionListFromAutocorrectionList:(id)arg1 afterAcceptingCandidate:(id)arg2;
 - (void)recordSuggestedAutocorrectionList:(id)arg1;
@@ -258,6 +258,7 @@
 - (void)syncToKeyboardState:(id)arg1;
 - (BOOL)documentState:(id)arg1 matchesDocumentState:(id)arg2;
 - (void)resume;
+- (void)releaseMRLBuffers;
 - (void)suspend;
 - (id)currentInputModeIdentifier;
 - (void)acceptCurrentCandidateIfSelectedWithContext:(id)arg1;
@@ -304,8 +305,8 @@
 - (id)newInputManagerState;
 @property(readonly, nonatomic) TIKeyboardFeatureSpecialization *keyboardFeatureSpecialization;
 - (void)dealloc;
-- (id)initWithConfig:(id)arg1;
-- (id)initWithInputMode:(id)arg1;
+- (id)initWithConfig:(id)arg1 keyboardState:(id)arg2;
+- (id)initWithInputMode:(id)arg1 keyboardState:(id)arg2;
 - (BOOL)supportsNumberKeySelection;
 - (id)indexTitlesForGroupTitles:(id)arg1 sortingMethod:(id)arg2;
 - (void)groupedCandidatesFromCandidates:(id)arg1 usingSortingMethod:(id)arg2 completion:(CDUnknownBlockType)arg3;

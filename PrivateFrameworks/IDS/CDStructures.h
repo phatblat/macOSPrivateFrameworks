@@ -50,5 +50,6 @@ typedef struct {
         unsigned short _field4;
         unsigned short _field5;
     } _field9;
-} CDStruct_0cfcf451;
+    double _field10;
+} CDStruct_920a6c75;
 

@@ -23,6 +23,10 @@
     struct CGPoint _oldEraseLocation;
     unsigned long long _maxNumPredictionPoints;
     NSMutableOrderedSet *_strokesToErase;
+    BOOL _shouldPresentInDidMoveToWindow;
+    CDUnknownBlockType _purgeResourcesBlock;
+    PKDrawing *_drawingAboutToBeSet;
+    unsigned long long _numSkippedDoubleBufferedFrames;
     BOOL _isDrawing;
     BOOL _disableWideGamut;
     BOOL _zooming;
@@ -30,10 +34,10 @@
     BOOL _editable;
     BOOL _fullySetup;
     BOOL _layerFixedPixelSize;
+    PKDrawing *_drawing;
     PKSelectionController *_selectionController;
     id <PKInternalDrawingViewDelegate> _delegate;
     long long _cachedOrientation;
-    PKDrawing *_drawing;
     PKInk *_ink;
     PKController *_drawingController;
     id _undoTarget;
@@ -73,7 +77,6 @@
 @property(nonatomic) BOOL disableWideGamut; // @synthesize disableWideGamut=_disableWideGamut;
 @property(nonatomic) BOOL isDrawing; // @synthesize isDrawing=_isDrawing;
 @property(retain, nonatomic) PKInk *ink; // @synthesize ink=_ink;
-@property(retain, nonatomic) PKDrawing *drawing; // @synthesize drawing=_drawing;
 @property(nonatomic) struct CGSize drawingSize; // @synthesize drawingSize=_drawingSize;
 @property(nonatomic) long long cachedOrientation; // @synthesize cachedOrientation=_cachedOrientation;
 @property(nonatomic) struct CGAffineTransform strokeTransform; // @synthesize strokeTransform=_strokeTransform;
@@ -106,7 +109,9 @@
 - (void)eraseStrokesForPoint:(struct CGPoint)arg1 prevPoint:(struct CGPoint)arg2;
 - (void)eraseStrokesForPoint:(struct CGPoint)arg1;
 @property(readonly, nonatomic) BOOL isRendering;
+- (void)viewDidMoveToWindow;
 - (void)setDrawing:(id)arg1 image:(id)arg2 imageDrawing:(id)arg3 completion:(CDUnknownBlockType)arg4 fullyRenderedCompletionBlock:(CDUnknownBlockType)arg5;
+@property(retain, nonatomic) PKDrawing *drawing; // @synthesize drawing=_drawing;
 - (void)delayCompletionBlockUntilPresentation:(CDUnknownBlockType)arg1;
 - (void)rotate:(id)arg1;
 - (void)rotateIfNeeded;

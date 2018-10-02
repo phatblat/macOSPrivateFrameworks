@@ -32,8 +32,10 @@
 - (oneway void)stopAllAudioPlaybackRequests:(BOOL)arg1;
 - (oneway void)stopAudioPlaybackRequest:(AFAudioPlaybackRequest *)arg1 immediately:(BOOL)arg2;
 - (oneway void)startAudioPlaybackRequest:(AFAudioPlaybackRequest *)arg1 options:(unsigned long long)arg2 reply:(void (^)(NSError *))arg3;
+- (oneway void)getRemoteClockTimerSnapshotWithCompletion:(void (^)(AFClockTimerSnapshot *, NSError *))arg1;
 - (oneway void)getSerializedCachedObjectsWithIdentifiers:(NSSet *)arg1 completion:(void (^)(NSDictionary *))arg2;
 - (oneway void)getDeferredObjectsWithIdentifiers:(NSArray *)arg1 completion:(void (^)(NSArray *, NSError *))arg2;
+- (oneway void)recordAWDSuccessMetrics;
 - (oneway void)recordCancellationMetrics;
 - (oneway void)recordFailureMetricsForError:(NSError *)arg1;
 - (oneway void)recordUIMetrics:(AFMetrics *)arg1;
@@ -62,7 +64,6 @@
 - (oneway void)willPresentUIWithReply:(void (^)(void))arg1;
 - (oneway void)setConfiguration:(AFClientConfiguration *)arg1;
 - (oneway void)setCarDNDActive:(BOOL)arg1;
-- (oneway void)setIsStark:(BOOL)arg1;
 - (oneway void)setLockState:(BOOL)arg1 showingLockScreen:(BOOL)arg2;
 - (oneway void)resumeInterruptedAudioPlaybackIfNeeded;
 - (oneway void)forceAudioSessionInactiveWithOptions:(unsigned long long)arg1 completion:(void (^)(void))arg2;

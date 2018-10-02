@@ -15,7 +15,8 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (void)requestProxyByStoringImage:(id)arg1 completion:(CDUnknownBlockType)arg2;
++ (id)proxyImageSynchronously:(id)arg1 usingService:(id)arg2 error:(id *)arg3;
++ (void)requestProxyByStoringImage:(id)arg1 qualityOfService:(unsigned int)arg2 scaled:(BOOL)arg3 storeType:(unsigned long long)arg4 completion:(CDUnknownBlockType)arg5;
 @property(copy, nonatomic, setter=_setProxyIdentifier:) NSString *_proxyIdentifier; // @synthesize _proxyIdentifier;
 @property(copy, nonatomic, setter=_setStorageServiceIdentifier:) NSString *_storageServiceIdentifier; // @synthesize _storageServiceIdentifier;
 - (void).cxx_destruct;
@@ -23,12 +24,16 @@
 - (id)initWithCoder:(id)arg1;
 - (id)_dictionaryRepresentation;
 - (void)_retrieveImageDataWithReply:(CDUnknownBlockType)arg1;
+- (id)retrieveProxiedImageSynchronouslyUsingService:(id)arg1 error:(id *)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (id)_copyWithSubclass:(Class)arg1;
 @property(readonly, nonatomic) BOOL isValid;
+- (void)unproxyImageFromService:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)purgeStoredImageWithCompletion:(CDUnknownBlockType)arg1;
+- (id)_identifier;
 - (id)_URLRepresentation;
 - (id)_initWithURLRepresentation:(id)arg1;
+- (void)_loadImageDataAndSizeWithHelper:(id)arg1 accessSpecifier:(id)arg2 completion:(CDUnknownBlockType)arg3;
 
 @end
 

@@ -9,15 +9,19 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSError;
+@class NSError, NSNumber;
 
 @interface ASDPurchaseResult : NSObject <NSCopying, NSSecureCoding>
 {
     BOOL _success;
     NSError *_error;
+    NSNumber *_itemID;
 }
 
 + (BOOL)supportsSecureCoding;
++ (id)successfullyPurchasedItemID:(id)arg1;
++ (id)failedToPurchaseItemID:(id)arg1 withError:(id)arg2;
+@property(retain) NSNumber *itemID; // @synthesize itemID=_itemID;
 @property(readonly, nonatomic) NSError *error; // @synthesize error=_error;
 @property(readonly, nonatomic) BOOL success; // @synthesize success=_success;
 - (void).cxx_destruct;

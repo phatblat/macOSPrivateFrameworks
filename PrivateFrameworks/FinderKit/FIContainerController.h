@@ -49,7 +49,7 @@ __attribute__((visibility("hidden")))
 - (_Bool)inBrowseMode;
 - (id)_historySearchTemplateMenu;
 - (void)saveQuery:(_Bool)arg1;
-- (void)viewDidSyncToDataSource:(const vector_ddb76938 *)arg1;
+- (void)viewDidSyncToDataSource:(const vector_274a36ec *)arg1;
 - (void)setViewStyle:(int)arg1;
 - (void)setPreferredViewStyle:(int)arg1;
 - (struct TFENode)_nodeForLastMediaBrowserMode;

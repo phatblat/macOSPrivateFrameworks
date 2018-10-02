@@ -6,10 +6,12 @@
 
 #import "NSError.h"
 
+@class NSString;
+
 @interface NSError (WDNSErrorExtras)
 + (id)webDriver_errorWithCode:(long long)arg1 message:(id)arg2;
 + (id)webDriver_errorWithCode:(long long)arg1;
-- (BOOL)webDriver_isWebDriverError;
-- (id)webDriver_failureDetails;
+@property(readonly, nonatomic) BOOL webDriver_isWebDriverError;
+@property(readonly, copy, nonatomic) NSString *webDriver_failureDetails;
 @end
 

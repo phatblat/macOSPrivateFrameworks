@@ -4,15 +4,19 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "ROCKForwardingInterposableWithRunLoop.h"
 #import "ROCKImpersonateable.h"
 
-@class NSString;
+@class NSDictionary, NSString;
 
-@protocol UHAMenuItemInterface <ROCKImpersonateable>
+@protocol UHAMenuItemInterface <ROCKImpersonateable, ROCKForwardingInterposableWithRunLoop>
 @property(copy, nonatomic) NSString *hostActionName;
 @property(copy, nonatomic) NSString *actionName;
 @property(nonatomic) unsigned long long targetSearchScopeMask;
 @property(retain, nonatomic) id <UHAMenuInterface> submenu;
+@property(readonly, nonatomic) NSDictionary *validatedProperties;
+@property(readonly, nonatomic) NSDictionary *properties;
+@property(nonatomic) long long type;
 @property(nonatomic) long long state;
 @property(nonatomic, getter=isReplacedBySubmenuItems) BOOL replacedBySubmenuItems;
 @property(nonatomic, getter=isSeparatorItem) BOOL separatorItem;

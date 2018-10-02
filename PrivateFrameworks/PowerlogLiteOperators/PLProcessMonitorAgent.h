@@ -32,6 +32,7 @@
 + (id)entryEventBackwardDefinitions;
 + (id)entryEventForwardProcessID;
 + (id)entryEventForwardDefinitions;
++ (id)entryEventPointProcessSnapshot;
 + (id)entryEventPointMemoryTracking;
 + (id)entryEventPointDefinitions;
 + (void)load;
@@ -53,6 +54,7 @@
 - (void)logEventIntervalProcessMonitorInterval;
 - (void)logEventBackwardProcessMonitorUsingCache;
 - (void)logEventBackwardProcessMonitor;
+- (void)logEventPointProcessSnapshot;
 - (void)logEventPointMemoryTracking;
 - (void)log;
 - (id)processMonitorMultiKeyFromProcessID:(id)arg1;
@@ -61,6 +63,7 @@
 - (id)eventForwardProcessIDForPID:(int)arg1;
 - (BOOL)isCachedForProcessID:(int)arg1;
 - (BOOL)isCachedForProcessID:(int)arg1 andName:(id)arg2;
+- (void)initTaskOperatorDependancies;
 - (void)initOperatorDependancies;
 - (void)processesOfInterest:(id)arg1;
 - (id)init;

@@ -12,7 +12,7 @@
 #import "CSTimerMonitorDelegate.h"
 #import "CSVoiceTriggerDelegate.h"
 
-@class CSAsset, NSObject<OS_dispatch_queue>, NSString, NSUserDefaults;
+@class CSAsset, CSSmartSiriVolumeEnablePolicy, NSObject<OS_dispatch_queue>, NSString, NSUserDefaults;
 
 @interface CSSmartSiriVolume : NSObject <CSMediaPlayingMonitorDelegate, CSAlarmMonitorDelegate, CSTimerMonitorDelegate, CSSpeechManagerDelegate, CSVoiceTriggerDelegate>
 {
@@ -21,6 +21,7 @@
     struct unique_ptr<SmartSiriVolume, std::__1::default_delete<SmartSiriVolume>> _smartSiriVolumeLKFS;
     struct vector<float, std::__1::allocator<float>> _floatBuffer;
     NSUserDefaults *_defaults;
+    CSSmartSiriVolumeEnablePolicy *_ssvEnablePolicy;
     unsigned long long _startAnalyzeSampleCount;
     unsigned long long _samplesFed;
     unsigned long long _processedSampleCount;
@@ -59,8 +60,10 @@
     float _TTSVolumeLowerLimitDB;
     float _TTSVolumeUpperLimitDB;
     float _noiseWeight;
+    id <CSSmartSiriVolumeDelegate> _delegate;
 }
 
+@property(nonatomic) __weak id <CSSmartSiriVolumeDelegate> delegate; // @synthesize delegate=_delegate;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (float)_getMusicVolumeDB:(float)arg1;
@@ -83,8 +86,8 @@
 - (void)speechManagerRecordBufferAvailable:(id)arg1 buffer:(id)arg2;
 - (void)speechManagerLPCMRecordBufferAvailable:(id)arg1 chunk:(id)arg2;
 - (void)reset;
-- (void)resumeSSVProcessing;
-- (void)pauseSSVProcessing;
+- (void)_resumeSSVProcessing;
+- (void)_pauseSSVProcessing;
 - (float)estimateSoundLevelbySoundType:(long long)arg1;
 - (void)_processAudioChunk:(id)arg1 soundType:(long long)arg2;
 - (void)prepareSoundLevelBufferFromSamples:(id)arg1 soundType:(long long)arg2 firedVoiceTriggerEvent:(BOOL)arg3 triggerStartTimeSampleOffset:(unsigned long long)arg4 triggerEndTimeSampleOffset:(unsigned long long)arg5;

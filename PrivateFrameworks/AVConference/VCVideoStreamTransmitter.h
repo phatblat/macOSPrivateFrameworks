@@ -62,6 +62,7 @@ __attribute__((visibility("hidden")))
 - (void)encodeVideoFrame:(struct opaqueCMSampleBuffer *)arg1;
 - (struct __CFDictionary *)forceKeyFrameProperties;
 - (void)initVideoCompressionWithWidth:(unsigned int)arg1 height:(unsigned int)arg2 bitrate:(unsigned int)arg3 keyFrameIntervalDuration:(unsigned int)arg4;
+- (void)setFECRatio:(double)arg1;
 - (void)setStreamIDs:(unsigned short *)arg1 numOfStreamIDs:(unsigned char)arg2 repairedStreamIDs:(unsigned short *)arg3 numOfRepairedStreamIDs:(unsigned char)arg4;
 - (void)setKeyFrameOnlyStreamID:(unsigned short)arg1;
 - (unsigned int)setTemporaryMaximumBitrate:(unsigned int)arg1;

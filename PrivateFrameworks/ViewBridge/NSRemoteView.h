@@ -32,7 +32,6 @@
 + (id)_findFirstKeyViewInDirection:(unsigned long long)arg1 forKeyLoopGroupingView:(id)arg2;
 + (id)_remoteViewForIdentifier:(id)arg1;
 + (void)initialize;
-+ (void)load;
 + (void)_addFreeWindow:(id)arg1 parameters:(const CDStruct_d1b93830 *)arg2 listenerEndpoint:(id)arg3 reply:(CDUnknownBlockType)arg4;
 + (BOOL)automaticallyNotifiesObserversOfTouchBar;
 - (BOOL)_windowGeometryChangingAtRequestOfService;
@@ -95,7 +94,7 @@
 - (void)_lastCallImpliedByAdvancingToPhase:(unsigned char)arg1;
 - (id)_associateMouseAndMouseCursorPosition:(BOOL)arg1;
 - (id)_addChildWindow:(id)arg1 remoteView:(id *)arg2;
-- (unsigned long long)_filterStyleMask:(unsigned long long)arg1 forChildWindowBase:(unsigned char)arg2;
+- (unsigned long long)_filterStyleMask:(unsigned long long)arg1 forWindowBase:(unsigned char)arg2;
 - (void)_endWaitForPrivateEventLoopInService;
 - (void)_waitForPrivateEventLoopInService;
 - (BOOL)maintainAssociation;
@@ -123,12 +122,12 @@
 - (void)retreatToConfigPhase;
 - (void)discloseAccessoryView:(BOOL)arg1 withVerticalOffset:(double)arg2 andAnimationState:(int)arg3 andDuration:(double)arg4;
 - (BOOL)_hasValidKeyViewInDirection:(unsigned long long)arg1;
-- (void)_serviceViewReceivedLeftMouseDown;
+- (void)_serviceViewReceivedLeftMouseDown:(long long)arg1;
 - (id)serviceMarshalForRemoteViewWindow:(id)arg1;
 - (void)_serviceWindowReceivedScrollWheel:(id)arg1 eventOwner:(unsigned int)arg2;
 - (void)_serviceWindowWouldActivate;
 - (void)maintainWindowEventMonitor:(unsigned int)arg1;
-- (void)_sendWindowFakeClick:(const char *)arg1;
+- (void)_sendWindowFakeClick:(long long)arg1 why:(const char *)arg2;
 - (void)updateContentMinSize:(struct CGSize)arg1 maxSize:(struct CGSize)arg2;
 - (void)updateAccessibilityChildren:(id)arg1;
 - (void)endModalSession:(id)arg1;
@@ -192,10 +191,10 @@
 - (id)wrapProxyForAnimationFencing:(id)arg1;
 - (struct NSObject *)_viewServiceMarshalProxy:(const char *)arg1;
 - (void)_advanceToConfigPhaseLegacy;
+- (void)_signalAndClearLegacyAdvanceSemaphores;
 - (void)_copyFromBootstrapParameters:(const CDStruct_e2fa5527 *)arg1;
 - (double)_reportScaleFactor;
 - (double)_backingScaleFactorOrZero;
-- (id)_effectiveAppearanceName;
 - (id)auxiliaryClientListenerEndpoint;
 - (id)auxiliaryServiceListenerEndpoint;
 - (id)auxiliaryListenerEndpointForProtocol:(id)arg1;
@@ -222,7 +221,7 @@
 - (void)viewDidChangeBackingProperties;
 - (void)viewDidMoveToWindow;
 - (BOOL)_windowSupportsVibrancy:(id)arg1;
-- (BOOL)_shouldImposeVibrancySupport;
+- (BOOL)_shouldImposeVibrancySupport:(id)arg1;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)viewDidMoveToSuperview;
 - (BOOL)_isOrBecomingContentView;

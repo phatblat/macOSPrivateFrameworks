@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBMessageLinkMetadata.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBDateTime;
+@class NSArray, NSString, _INPBDateTime;
 
-@interface _INPBMessageLinkMetadata : PBCodable <_INPBMessageLinkMetadata, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBMessageLinkMetadata : PBCodable <_INPBMessageLinkMetadata, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int linkMediaType:1;
@@ -63,10 +62,8 @@
     NSString *_tvEpisodeSeasonName;
     NSString *_tvSeasonGenre;
     NSString *_tvSeasonName;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *tvSeasonName; // @synthesize tvSeasonName=_tvSeasonName;
 @property(copy, nonatomic) NSString *tvSeasonGenre; // @synthesize tvSeasonGenre=_tvSeasonGenre;
 @property(copy, nonatomic) NSString *tvEpisodeSeasonName; // @synthesize tvEpisodeSeasonName=_tvEpisodeSeasonName;

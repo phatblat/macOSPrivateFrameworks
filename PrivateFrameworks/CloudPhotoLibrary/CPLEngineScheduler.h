@@ -34,7 +34,7 @@
     unsigned long long _significantWorkCalls;
     unsigned long long _disablingMinglingCount;
     NSDate *_lastSyncSessionDateCausedByForeground;
-    BOOL _didStartFirstSync;
+    BOOL _protectAgainstFastRelaunch;
     BOOL _didWriteFirstSyncMarker;
     BOOL _delayedFirstSyncBecauseOfRapidLaunch;
     CPLPlatformObject *_platformObject;
@@ -62,6 +62,7 @@
 - (void)openWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)resetBackoffInterval;
 - (void)noteSyncSessionFailedDuringPhase:(unsigned long long)arg1 withError:(id)arg2;
+- (void)_handleResetGlobalAnchorWithError:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_handleResetAnchorWithError:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_handleResetCloudCacheWithError:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_handleResetClientCacheWithError:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
@@ -98,10 +99,12 @@
 - (void)noteScopeNeedsToPullFromTransport;
 - (void)noteScopeNeedsToPushToTransport;
 - (void)noteScopeNeedsToPushHighPriorityToTransport;
+- (void)_disableFastRelaunchProtection;
 - (void)noteScopeNeedsUpdate;
 - (void)noteScopeListNeedsUpdate;
 - (void)noteTransportNeedsUpdate;
 - (void)noteStoreNeedsCleanup;
+- (void)noteStoreNeedsToUpdateDisabledFeatures;
 - (void)noteStoreNeedsSetup;
 - (void)kickOffSyncSession;
 - (void)startRequiredSyncSessionNow;

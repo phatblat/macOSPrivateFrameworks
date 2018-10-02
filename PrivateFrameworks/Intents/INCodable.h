@@ -8,20 +8,16 @@
 
 #import "NSCopying.h"
 
-@class INCodableDescription, NSArray, NSDictionary, NSMutableDictionary, NSString;
+@class INCodableDescription, NSMutableDictionary;
 
 @interface INCodable : PBCodable <NSCopying>
 {
-    NSMutableDictionary *_runtimeAttributesByName;
     INCodableDescription *_objectDescription;
     NSMutableDictionary *_customValueForKeyDictionary;
-    NSMutableDictionary *_runtimeValueDictionary;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(retain, nonatomic) NSMutableDictionary *runtimeValueDictionary; // @synthesize runtimeValueDictionary=_runtimeValueDictionary;
 @property(retain, nonatomic) NSMutableDictionary *customValueForKeyDictionary; // @synthesize customValueForKeyDictionary=_customValueForKeyDictionary;
-@property(readonly, nonatomic, getter=_runtimeAttributesByName) NSDictionary *runtimeAttributesByName; // @synthesize runtimeAttributesByName=_runtimeAttributesByName;
 @property(retain, nonatomic, setter=_setObjectDescription:) INCodableDescription *_objectDescription; // @synthesize _objectDescription;
 - (void).cxx_destruct;
 - (id)_valueForAttribute:(id)arg1 ofClass:(Class)arg2;
@@ -46,13 +42,7 @@
 - (id)_dataWithError:(id *)arg1;
 - (void)_writeTo:(id)arg1 error:(id *)arg2;
 - (BOOL)_readFrom:(id)arg1 error:(id *)arg2;
-- (id)_associatedImageAttributes;
-- (id)_runtimeAttributeValueForKey:(id)arg1;
-- (void)_setRuntimeAttributeValue:(id)arg1 forKey:(id)arg2;
-- (void)_removeRuntimeAttribute:(id)arg1;
-- (void)_addRuntimeAttribute:(id)arg1;
 - (id)_nonNilAttributes;
-@property(readonly, nonatomic, getter=_allAttributes) NSArray *allAttributes;
 - (BOOL)_isStringAttribute:(id)arg1 equalTo:(id)arg2;
 - (BOOL)_isAttribute:(id)arg1 equalTo:(id)arg2;
 - (id)initWithCoder:(id)arg1;
@@ -68,7 +58,6 @@
 - (BOOL)isValidKey:(id)arg1;
 - (id)valueForUndefinedKey:(id)arg1;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
-@property(readonly, copy, nonatomic) NSString *name;
 - (void)setNilValueForAllKeys;
 - (id)_initWithCodableDescription:(id)arg1 data:(id)arg2 error:(id *)arg3;
 - (id)initWithCodableDescription:(id)arg1 data:(id)arg2;

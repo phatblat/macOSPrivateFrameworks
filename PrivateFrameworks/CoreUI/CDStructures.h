@@ -248,10 +248,11 @@ struct CUIDescriptor {
     double _field37;
     double _field38;
     struct CGColor *_field39;
+    struct __CFArray *_field40;
     union {
         struct CGRect _field1[5];
         double _field2[20];
-    } _field40;
+    } _field41;
 };
 
 struct FontValue {
@@ -676,8 +677,9 @@ typedef struct {
     unsigned long long _field2;
     unsigned long long _field3;
     unsigned long long _field4;
-    CDStruct_c57d91d4 _field5[125];
-} CDStruct_32d4b02d;
+    unsigned long long _field5;
+    CDStruct_c57d91d4 _field6[125];
+} CDStruct_35a2250d;
 
 #pragma mark Typedef'd Unions
 

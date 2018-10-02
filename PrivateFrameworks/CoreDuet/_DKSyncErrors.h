@@ -21,6 +21,7 @@
 + (id)unavailableForCurrentUser;
 + (id)disabled;
 + (id)internalFailure;
++ (id)domain;
 
 @end
 

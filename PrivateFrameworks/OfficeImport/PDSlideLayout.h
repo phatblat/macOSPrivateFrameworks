@@ -26,8 +26,7 @@
 - (id)transition;
 - (id)background;
 - (id)defaultTheme;
-- (void)setSlideMaster:(id)arg1;
-- (id)slideMaster;
+@property __weak PDSlideMaster *slideMaster; // @synthesize slideMaster=mSlideMaster;
 - (void)setSlideLayoutType:(int)arg1;
 - (int)slideLayoutType;
 - (id)initWithSlideMaster:(id)arg1;

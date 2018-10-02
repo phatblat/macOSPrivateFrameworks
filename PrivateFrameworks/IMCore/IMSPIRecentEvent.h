@@ -12,12 +12,15 @@
 {
     NSString *_handle;
     NSDate *_date;
+    NSString *_labelID;
 }
 
+@property(retain) NSString *labelID; // @synthesize labelID=_labelID;
 @property(retain) NSDate *date; // @synthesize date=_date;
 @property(retain) NSString *handle; // @synthesize handle=_handle;
 - (void).cxx_destruct;
 - (id)description;
+- (id)initWithLabelID:(id)arg1 date:(id)arg2;
 - (id)initWithHandle:(id)arg1 date:(id)arg2;
 
 @end

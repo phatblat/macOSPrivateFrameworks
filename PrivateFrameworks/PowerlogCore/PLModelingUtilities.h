@@ -10,6 +10,7 @@
 {
 }
 
++ (BOOL)isHeySiriAlwaysOn;
 + (BOOL)isNarrowScreen;
 + (BOOL)isLowPowerModeSupported;
 + (BOOL)isPercentageSupported;

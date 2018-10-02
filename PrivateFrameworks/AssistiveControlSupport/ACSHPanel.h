@@ -86,7 +86,7 @@
 - (id)soundIdentifierForItemAtIndexPath:(id)arg1;
 - (id)spokenDescriptionForItemAtIndexPath:(id)arg1;
 - (void)updateToKeyboardLayout:(id)arg1;
-- (void)updateForModifiers:(unsigned long long)arg1 lockedModifiers:(unsigned long long)arg2 deadKeyState:(unsigned int)arg3;
+- (void)updateForModifiers:(unsigned long long)arg1 lockedModifiers:(unsigned long long)arg2 deadKeyState:(unsigned int)arg3 autoShift:(BOOL)arg4;
 - (BOOL)updateContextButtonRects;
 - (void)_setContextButtons:(id)arg1 forLocalContextButtons:(id *)arg2;
 - (void)setPanelElements:(id)arg1;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSMutableSet, NSObject<OS_dispatch_semaphore>, NSString;
+@class NSCondition, NSMutableSet, NSString;
 
 @interface PLSemaphore : NSObject
 {
@@ -14,11 +14,11 @@
     NSMutableSet *_interestedObjects;
     NSMutableSet *_pendingDoneObjects;
     NSString *_key;
-    NSObject<OS_dispatch_semaphore> *_semaphore;
+    NSCondition *_pendingObjectsLock;
 }
 
 + (id)sharedSemaphoreForKey:(id)arg1;
-@property(retain) NSObject<OS_dispatch_semaphore> *semaphore; // @synthesize semaphore=_semaphore;
+@property(retain) NSCondition *pendingObjectsLock; // @synthesize pendingObjectsLock=_pendingObjectsLock;
 @property(retain) NSString *key; // @synthesize key=_key;
 @property(retain) NSMutableSet *pendingDoneObjects; // @synthesize pendingDoneObjects=_pendingDoneObjects;
 @property(retain) NSMutableSet *interestedObjects; // @synthesize interestedObjects=_interestedObjects;

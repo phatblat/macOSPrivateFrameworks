@@ -192,6 +192,7 @@
 - (id)accountType;
 - (void)setSearchable:(BOOL)arg1;
 - (BOOL)isSearchable;
+@property(readonly) BOOL shouldSyncWithServer;
 @property BOOL enabled;
 @property BOOL primitiveEnabled;
 - (void)_persistValuesAndPostDidChangeNotifcation:(BOOL)arg1;

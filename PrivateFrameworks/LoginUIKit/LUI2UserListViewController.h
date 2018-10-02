@@ -45,6 +45,7 @@
 @property id <LUI2UserListDataSource> dataSource; // @dynamic dataSource;
 - (void)reloadData;
 - (id)viewForPopover;
+- (void)setUserPictureAtIndex:(long long)arg1 hidden:(BOOL)arg2;
 - (void)setUserNameAtIndex:(long long)arg1 hidden:(BOOL)arg2;
 - (void)setUserLoggedInIndicatorAtIndex:(long long)arg1 hidden:(BOOL)arg2;
 @property(readonly) long long selectedUser;

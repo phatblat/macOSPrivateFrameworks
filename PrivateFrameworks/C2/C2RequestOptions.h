@@ -15,6 +15,7 @@
 {
     BOOL __allowsExpensiveAccess;
     BOOL __allowsPowerNapScheduling;
+    BOOL _useAdaptiveTimeouts;
     BOOL _tlsPinning;
     BOOL _allowRouting;
     BOOL _allowExpiredDNSBehavior;
@@ -37,12 +38,14 @@
     unsigned long long _c2MetricsReportFrequencyBase;
     NSString *_originalHost;
     NSURL *_invokedURL;
+    CDUnknownBlockType _testBehavior_sessionGroupCreated;
 }
 
 + (BOOL)supportsSecureCoding;
 + (BOOL)triesteMetricsEnabled;
 + (id)stringForDiscretionaryNetworkBehavior:(unsigned long long)arg1;
 + (id)stringForQualityOfService:(long long)arg1;
+@property(copy, nonatomic) CDUnknownBlockType testBehavior_sessionGroupCreated; // @synthesize testBehavior_sessionGroupCreated=_testBehavior_sessionGroupCreated;
 @property(retain, nonatomic) NSURL *invokedURL; // @synthesize invokedURL=_invokedURL;
 @property(nonatomic) BOOL metricRequest; // @synthesize metricRequest=_metricRequest;
 @property(retain, nonatomic) NSString *originalHost; // @synthesize originalHost=_originalHost;
@@ -61,6 +64,7 @@
 @property(copy, nonatomic) NSString *_appleIDContextSessionIdentifier; // @synthesize _appleIDContextSessionIdentifier=__appleIDContextSessionIdentifier;
 @property(copy, nonatomic) NSString *_sourceApplicationSecondaryIdentifier; // @synthesize _sourceApplicationSecondaryIdentifier=__sourceApplicationSecondaryIdentifier;
 @property(copy, nonatomic) NSString *_sourceApplicationBundleIdentifier; // @synthesize _sourceApplicationBundleIdentifier=__sourceApplicationBundleIdentifier;
+@property(nonatomic) BOOL useAdaptiveTimeouts; // @synthesize useAdaptiveTimeouts=_useAdaptiveTimeouts;
 @property(nonatomic) double _timeoutIntervalForResource; // @synthesize _timeoutIntervalForResource=__timeoutIntervalForResource;
 @property(nonatomic) double _timeoutIntervalForRequest; // @synthesize _timeoutIntervalForRequest=__timeoutIntervalForRequest;
 @property(nonatomic) BOOL _allowsPowerNapScheduling; // @synthesize _allowsPowerNapScheduling=__allowsPowerNapScheduling;

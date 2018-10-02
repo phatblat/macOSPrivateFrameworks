@@ -35,9 +35,9 @@
 @property(nonatomic) BOOL showProgress; // @synthesize showProgress=_showProgress;
 @property(copy, nonatomic) CDUnknownBlockType buttonAction; // @synthesize buttonAction=_buttonAction;
 @property(retain, nonatomic) NSButton *actionButton; // @synthesize actionButton=_actionButton;
-@property(retain, nonatomic) NSString *buttonTitle; // @synthesize buttonTitle=_buttonTitle;
-@property(retain, nonatomic) NSString *message; // @synthesize message=_message;
-@property(retain, nonatomic) NSString *title; // @synthesize title=_title;
+@property(copy, nonatomic) NSString *buttonTitle; // @synthesize buttonTitle=_buttonTitle;
+@property(copy, nonatomic) NSString *message; // @synthesize message=_message;
+@property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
 - (void)layout;
 - (void)_updateProgressLayout;

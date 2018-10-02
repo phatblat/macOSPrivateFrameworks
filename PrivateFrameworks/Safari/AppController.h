@@ -237,6 +237,7 @@ __attribute__((visibility("hidden")))
 - (void)updatePasswordAutoFillEnabled;
 - (void)updatePerformanceTestingBindingsEnabled;
 - (void)updateAddressBookAutoFillEnabled;
+@property(readonly, nonatomic, getter=isDevelopMenuEnabled) BOOL developMenuEnabled;
 @property(readonly, nonatomic, getter=isOverlayStatusBarEnabled) BOOL overlayStatusBarEnabled;
 - (void)toggleStatusBar:(id)arg1;
 - (BOOL)updateMuteOtherTabsMenuItemStateWithNumberOfOtherTabsPlayingMutableMedia:(unsigned long long)arg1 numberOfOtherUnmutedTabsPlayingMutableMedia:(unsigned long long)arg2 isCurrentTabPlayingMutableMedia:(BOOL)arg3;
@@ -354,6 +355,7 @@ __attribute__((visibility("hidden")))
 - (id)parentalControlAuthorization;
 - (void)_historyItemsWereRemoved:(id)arg1;
 - (void)_historyWasCleared:(id)arg1;
+- (void)_clearHistorySandboxTokensPassingTest:(CDUnknownBlockType)arg1;
 - (void)_historyWasLoaded:(id)arg1;
 - (void)_collectWindowsAndTabsDataTimerFired:(id)arg1;
 - (void)sessionStateDidChange;
@@ -457,8 +459,6 @@ __attribute__((visibility("hidden")))
 - (void)toggleTiledFullScreenScalingMode:(id)arg1;
 - (BOOL)validate_toggleDiskCacheSpeculativeValidationDisabled:(id)arg1;
 - (void)toggleDiskCacheSpeculativeValidationDisabled:(id)arg1;
-- (BOOL)validate_toggleNetworkProcessDiskCacheDisabled:(id)arg1;
-- (void)toggleNetworkProcessDiskCacheDisabled:(id)arg1;
 - (BOOL)validate_toggleDOMTimersThrottlingDisabled:(id)arg1;
 - (void)toggleDOMTimersThrottlingDisabled:(id)arg1;
 - (BOOL)validate_toggleBackForwardCacheDisabled:(id)arg1;

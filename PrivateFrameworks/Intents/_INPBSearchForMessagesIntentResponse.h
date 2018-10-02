@@ -6,24 +6,21 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSearchForMessagesIntentResponse.h"
 
-@class INCodableAttribute, NSArray, NSString;
+@class NSArray, NSString;
 
-@interface _INPBSearchForMessagesIntentResponse : PBCodable <_INPBSearchForMessagesIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSearchForMessagesIntentResponse : PBCodable <_INPBSearchForMessagesIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSArray *_messages;
     NSArray *_searchResults;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)searchResultsType;
 + (Class)messagesType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *searchResults; // @synthesize searchResults=_searchResults;
 @property(copy, nonatomic) NSArray *messages; // @synthesize messages=_messages;
 - (void).cxx_destruct;

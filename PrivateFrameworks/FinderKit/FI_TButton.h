@@ -41,7 +41,6 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSColor *titleColor;
 - (void)updateTitleColor;
 - (void)setButtonAction:(const function_b1fce659 *)arg1;
-- (id)description;
 - (void)awakeCommon;
 - (void)initCommon;
 - (void)awakeFromNib;

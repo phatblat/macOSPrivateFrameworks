@@ -152,6 +152,8 @@ struct VCRateControlAlgorithmConfig {
     int maxTierIndex;
     int minTierIndex;
     int lowestNonEmergencyTierIndex;
+    int lowestEffectiveBWETierIndex;
+    int lowestTierIndexReactToNoServerActivity;
     int rampUpTierNumber;
     int rampDownTierNumber;
     int rampUpAdditionalTierAtInitial;
@@ -171,6 +173,7 @@ struct VCRateControlAlgorithmConfig {
     double rampUpOverBandwidthCalmDuration;
     int rampUpOverBandwidthTierNumber;
     int rampDownLossEventThreshold;
+    double rampUpFrozenPLRThreshold;
     double rampUpRateLimitedRatio;
     double unstableRateLimitedDuration;
     double congestionWaitDuration;
@@ -197,6 +200,10 @@ struct VCRateControlAlgorithmConfig {
     double rampUpNBDCDCoolDownTime;
     double rampUpAudioFractionCoolDownTime;
     double autoResumeDurationAfterPaused;
+    char oscillationDetectionEnabled;
+    double oscillationCoolDownTime;
+    int oscillationDeviationTierNumber;
+    int oscillationDeviationCountThreshold;
 };
 
 struct VCRateControlMediaSuggestion {
@@ -279,6 +286,10 @@ struct _RTCP_SEND_CONTROL_PARAMETERS {
 struct _VCAudioEndpointData {
     struct SoundDec_t *converter;
     struct opaqueVCAudioBufferList *converterBuffer;
+    double lastHostTime;
+    unsigned int lastTimestamp;
+    unsigned int timestampOffset;
+    char controllerChanged;
 };
 
 struct _VCAudioIOControllerIOState {
@@ -329,12 +340,19 @@ struct _VCHardwareConfiguration {
 
 struct _VCMediaStreamConfigurationProviderAudio {
     unsigned int _field1;
-    unsigned int _field2;
+    struct _VCMediaStreamConfigurationProviderAudioBitrateInfo _field2;
     unsigned int _field3;
     struct _VCMediaStreamConfigurationProviderAudioPayload _field4[4];
     unsigned int _field5;
     unsigned int _field6[4];
     int _field7;
+};
+
+struct _VCMediaStreamConfigurationProviderAudioBitrateInfo {
+    int _field1;
+    unsigned int _field2;
+    unsigned int _field3;
+    unsigned int _field4;
 };
 
 struct _VCMediaStreamConfigurationProviderAudioPayload {
@@ -351,6 +369,7 @@ struct _VCMediaStreamConfigurationProviderVideo {
     unsigned int _field6;
     int _field7;
     unsigned int _field8;
+    char _field9;
 };
 
 struct _VCMediaStreamTransportSetupInfo {
@@ -984,13 +1003,7 @@ struct tagVCSourceDestinationInfo {
 
 struct tagVCStatisticsCollection {
     CDStruct_bcb9d60a _field1;
-    struct {
-        unsigned int _field1;
-        unsigned int _field2;
-        unsigned int _field3;
-        unsigned int _field4;
-        unsigned int _field5;
-    } _field2;
+    CDStruct_39f36834 _field2;
     CDStruct_38c55c66 _field3;
     struct {
         unsigned int _field1;
@@ -1026,6 +1039,7 @@ struct tagVCVideoReceiverConfig {
     CDUnknownFunctionPointerType _field17;
     CDUnknownFunctionPointerType _field18;
     CDUnknownFunctionPointerType _field19;
+    unsigned long long _field20;
 };
 
 struct tagVCVideoReceiverStreamConfig {
@@ -1229,6 +1243,16 @@ typedef struct {
 } CDStruct_2756d7ac;
 
 typedef struct {
+    double packetLossPercentage;
+    unsigned int burstPacketLoss;
+    unsigned int roundTripTimeMilliseconds;
+    unsigned int isNetworkCongested;
+    unsigned int owrd;
+    unsigned int targetBitrate;
+    unsigned long long statisticsID;
+} CDStruct_39f36834;
+
+typedef struct {
     double lastReceivedPacketTimestamp;
     double lastReportTimestamp;
     double noPacketInterval;
@@ -1281,10 +1305,11 @@ typedef struct {
     unsigned char _field7;
     unsigned short _field8;
     CDStruct_696d2ec8 _field9;
-} CDStruct_630f55d5;
+    double _field10;
+} CDStruct_2f700ce5;
 
 typedef struct {
-    unsigned short streamIDs[8];
+    unsigned short streamIDs[12];
     unsigned char numOfStreamIDs;
     _Bool probingGroupIDIsSet;
     unsigned short probingGroupID;
@@ -1298,7 +1323,7 @@ typedef struct {
     unsigned short statsID;
     CDStruct_696d2ec8 statsPayload;
     _Bool isTransitionPacket;
-} CDStruct_81244b4e;
+} CDStruct_94aa5fb4;
 
 typedef struct {
     unsigned char _field1;
@@ -1306,8 +1331,8 @@ typedef struct {
     unsigned char _field3[1472];
     int _field4;
     int _field5;
-    CDStruct_81244b4e _field6;
-} CDStruct_bb74c5c4;
+    CDStruct_94aa5fb4 _field6;
+} CDStruct_88f6cd69;
 
 typedef struct {
     int type;
@@ -1326,13 +1351,7 @@ typedef struct {
             char bbString[64];
         } baseband;
         CDStruct_bcb9d60a feedback;
-        struct {
-            unsigned int packetLossPercentage;
-            unsigned int burstPacketLoss;
-            unsigned int roundTripTimeMilliseconds;
-            unsigned int isNetworkCongested;
-            unsigned int owrd;
-        } network;
+        CDStruct_39f36834 network;
         CDStruct_4c345eff probing;
         CDStruct_38c55c66 serverStats;
         struct {
@@ -1356,7 +1375,7 @@ typedef struct {
         } config;
         CDStruct_6c8fb11a mediaEvent;
     } ;
-} CDStruct_dd06a755;
+} CDStruct_48a7b5a5;
 
 typedef struct {
     int type;

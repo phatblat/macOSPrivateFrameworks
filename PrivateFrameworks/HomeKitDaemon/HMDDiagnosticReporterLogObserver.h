@@ -20,6 +20,7 @@
 + (id)logCategory;
 + (id)sharedObserver;
 + (id)subTypeForEvent:(id)arg1;
++ (id)typeForEvent:(id)arg1;
 + (BOOL)shouldSubmitEvent:(id)arg1;
 + (id)supportedEventTypes;
 @property(readonly) SDRDiagnosticReporter *reporter; // @synthesize reporter=_reporter;

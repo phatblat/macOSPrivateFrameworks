@@ -8,11 +8,11 @@
 
 #import "NSSecureCoding.h"
 
-@class NSArray, NSString;
+@class NSArray, NSDictionary, NSString;
 
 @interface INCodableEnumAttribute : INCodableAttribute <NSSecureCoding>
 {
-    NSArray *_valuesByIndex;
+    NSDictionary *_valuesByIndex;
     NSString *_enumName;
     NSArray *_enumValues;
     long long _type;

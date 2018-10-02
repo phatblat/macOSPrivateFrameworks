@@ -27,6 +27,8 @@
 - (void)setTargetNote:(id)arg1;
 @property(readonly, copy) INNote *targetNote;
 - (id)initWithTargetNote:(id)arg1 content:(id)arg2;
+- (id)_categoryVerb;
+- (long long)_intentCategory;
 - (void)_setMetadata:(id)arg1;
 - (id)_metadata;
 - (id)_typedBackingStore;

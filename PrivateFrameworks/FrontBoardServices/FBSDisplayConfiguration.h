@@ -32,12 +32,14 @@
     struct CGSize _overscanAmounts;
     struct CGSize _pixelSize;
     struct CGRect _bounds;
+    struct CGPoint _renderingCenter;
     CADisplay *_caDisplay;
     struct CGSize _safeOverscanRatio;
 }
 
 + (BOOL)supportsSecureCoding;
 @property(readonly, nonatomic) long long tags; // @synthesize tags=_tags;
+@property(readonly, nonatomic) struct CGPoint renderingCenter; // @synthesize renderingCenter=_renderingCenter;
 @property(readonly, nonatomic) struct CGRect bounds; // @synthesize bounds=_bounds;
 @property(readonly, nonatomic) struct CGSize pixelSize; // @synthesize pixelSize=_pixelSize;
 @property(readonly, nonatomic) struct CGSize safeOverscanRatio; // @synthesize safeOverscanRatio=_safeOverscanRatio;
@@ -56,6 +58,7 @@
 - (unsigned int)displayID;
 - (BOOL)supportsExtendedColor;
 - (BOOL)isConnected;
+- (struct CGPoint)nativeCenter;
 - (struct CGRect)referenceBounds;
 - (id)caDisplay;
 - (id)uniqueID;
@@ -85,13 +88,12 @@
 @property(readonly, nonatomic) double refreshRate;
 @property(readonly, nonatomic) double scale;
 @property(readonly, nonatomic) double nativeOrientation;
-@property(readonly, nonatomic) struct CGPoint nativeCenter;
 @property(readonly, copy, nonatomic) FBSDisplayMode *preferredMode;
 @property(readonly, nonatomic, getter=isCarInstrumentsDisplay) BOOL carInstrumentsDisplay;
 @property(readonly, nonatomic, getter=isCarDisplay) BOOL carDisplay;
 @property(readonly, nonatomic, getter=isExternal) BOOL external;
 @property(readonly, nonatomic, getter=isMainDisplay) BOOL mainDisplay;
-- (id)_initWithIdentity:(id)arg1 hardwareIdentifier:(id)arg2 name:(id)arg3 deviceName:(id)arg4 seed:(unsigned int)arg5 tags:(long long)arg6 currentMode:(id)arg7 preferredMode:(id)arg8 otherModes:(id)arg9 cloningSupported:(BOOL)arg10 overscanned:(BOOL)arg11 overscanCompensation:(long long)arg12 safeOverscanRatio:(struct CGSize)arg13 pixelSize:(struct CGSize)arg14 bounds:(struct CGRect)arg15 validityCheck:(long long)arg16;
+- (id)_initWithIdentity:(id)arg1 hardwareIdentifier:(id)arg2 name:(id)arg3 deviceName:(id)arg4 seed:(unsigned int)arg5 tags:(long long)arg6 currentMode:(id)arg7 preferredMode:(id)arg8 otherModes:(id)arg9 cloningSupported:(BOOL)arg10 overscanned:(BOOL)arg11 overscanCompensation:(long long)arg12 safeOverscanRatio:(struct CGSize)arg13 pixelSize:(struct CGSize)arg14 bounds:(struct CGRect)arg15 renderingCenter:(struct CGPoint)arg16 validityCheck:(long long)arg17;
 - (id)_initWithDisplay:(id)arg1 assertIfInvalid:(BOOL)arg2;
 - (id)initWithCADisplay:(id)arg1 isMainDisplay:(BOOL)arg2;
 - (id)initWithCADisplay:(id)arg1;

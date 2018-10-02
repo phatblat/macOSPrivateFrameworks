@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBMoveFileIntent.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBIntentMetadata, _INPBString;
+@class NSArray, NSString, _INPBIntentMetadata, _INPBString;
 
-@interface _INPBMoveFileIntent : PBCodable <_INPBMoveFileIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBMoveFileIntent : PBCodable <_INPBMoveFileIntent, NSSecureCoding, NSCopying>
 {
     CDStruct_95bda58d _entityTypes;
     struct {
@@ -27,12 +26,10 @@
     _INPBIntentMetadata *_intentMetadata;
     NSArray *_properties;
     _INPBString *_sourceName;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)propertiesType;
 + (Class)entityNameType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int sourceType; // @synthesize sourceType=_sourceType;
 @property(retain, nonatomic) _INPBString *sourceName; // @synthesize sourceName=_sourceName;
 @property(copy, nonatomic) NSArray *properties; // @synthesize properties=_properties;

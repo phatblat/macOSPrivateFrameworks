@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSelectionItem.h"
 
-@class INCodableAttribute, NSString, _INPBIntentSlotValue;
+@class NSString, _INPBIntentSlotValue;
 
-@interface _INPBSelectionItem : PBCodable <_INPBSelectionItem, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSelectionItem : PBCodable <_INPBSelectionItem, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSString *_uuid;
     _INPBIntentSlotValue *_value;
     NSString *_vocabularyValue;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *vocabularyValue; // @synthesize vocabularyValue=_vocabularyValue;
 @property(retain, nonatomic) _INPBIntentSlotValue *value; // @synthesize value=_value;
 @property(copy, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;

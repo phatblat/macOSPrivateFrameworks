@@ -53,6 +53,7 @@
     NSString *_productVersion;
     NSDate *_postDate;
     NSDate *_deferredEnablementDate;
+    NSDictionary *_updateInfo;
     long long _shouldAutoInstallWithDelayInHours;
     NSString *_customCriticalNotificationTitle;
     NSString *_customCriticalNotificationText;
@@ -71,6 +72,7 @@
 @property(readonly, retain) NSString *customCriticalNotificationText; // @synthesize customCriticalNotificationText=_customCriticalNotificationText;
 @property(readonly, retain) NSString *customCriticalNotificationTitle; // @synthesize customCriticalNotificationTitle=_customCriticalNotificationTitle;
 @property(readonly) long long shouldAutoInstallWithDelayInHours; // @synthesize shouldAutoInstallWithDelayInHours=_shouldAutoInstallWithDelayInHours;
+@property(readonly) NSDictionary *updateInfo; // @synthesize updateInfo=_updateInfo;
 @property(readonly) NSDate *deferredEnablementDate; // @synthesize deferredEnablementDate=_deferredEnablementDate;
 @property(readonly) NSDate *postDate; // @synthesize postDate=_postDate;
 @property(readonly, getter=isAutoUpdateEligible) BOOL autoUpdateEligible; // @synthesize autoUpdateEligible=_autoUpdateEligible;

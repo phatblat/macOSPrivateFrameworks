@@ -16,6 +16,7 @@
     NSArray *_payloadWhiteList;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withWhiteListEnabled:(id)arg2 withWhiteList:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withWhiteListEnabled:(id)arg2 withWhiteList:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

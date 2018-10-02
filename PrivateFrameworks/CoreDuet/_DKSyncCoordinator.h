@@ -108,8 +108,6 @@
 - (id)initWithStorage:(id)arg1;
 - (void)connection:(id)arg1 didReceiveIncomingMessage:(id)arg2;
 - (void)connection:(id)arg1 didReceivePublicToken:(id)arg2;
-- (id)sourceDeviceIdentity;
-- (id)sourceDeviceIdentityFromObject:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

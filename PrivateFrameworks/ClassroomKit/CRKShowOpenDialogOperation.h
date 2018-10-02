@@ -28,7 +28,7 @@
 - (void).cxx_destruct;
 - (void)failWithError:(id)arg1;
 - (void)succeedIfNeeded;
-- (void)transferWithIdentifierWasDeclined:(id)arg1;
+- (void)transferWithIdentifierWasDeclined:(id)arg1 withFailureReason:(unsigned long long)arg2;
 - (void)transferWithIdentifierWasAccepted:(id)arg1;
 - (void)transferDidFinishWithSuccess:(BOOL)arg1 destinationPath:(id)arg2 error:(id)arg3;
 - (void)transferDidProgressWithSuccess:(BOOL)arg1 destinationPath:(id)arg2 error:(id)arg3;

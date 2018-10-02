@@ -6,15 +6,17 @@
 
 #import "NSObject.h"
 
-@class GEOPDModuleLayoutEntry, NSArray;
+@class GEOPDModuleLayoutEntry, NSArray, NSString;
 
 @interface GEOModuleLayoutEntry : NSObject
 {
     GEOPDModuleLayoutEntry *_moduleLayoutEntry;
 }
 
++ (id)moduleLayoutEntryFromArray:(id)arg1;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) NSArray *modules;
+@property(readonly, nonatomic) NSString *debugName;
 - (id)initWithModuleLayoutEntry:(id)arg1;
 
 @end

@@ -18,7 +18,6 @@
 }
 
 + (id)getAppleApps;
-+ (id)appResultForBundleID:(id)arg1;
 + (id)appResultForPath:(id)arg1;
 + (id)_applicationsQueryResults;
 + (id)getUnsupportedAppBundleIds;
@@ -31,8 +30,7 @@
 + (void)_createApplicationsQuery;
 + (id)appToPathMapping;
 + (id)appToFastPathMapping;
-+ (id)appBundleIDList;
-+ (id)appBundleIDtoAppResultMapping;
++ (id)getOrUpdateAppBundleIDList:(BOOL)arg1;
 + (void)loadFastAppsCache;
 + (void)initialize;
 + (BOOL)isQuerySupported:(unsigned long long)arg1;

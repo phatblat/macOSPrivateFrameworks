@@ -6,7 +6,7 @@
 
 #import "RWIProtocolJSONObject.h"
 
-@class NSString, WDProtocolAutomationPoint;
+@class NSArray, NSString, WDProtocolAutomationPoint;
 
 @interface WDProtocolAutomationInputSourceState : RWIProtocolJSONObject
 {
@@ -14,8 +14,10 @@
 
 @property(nonatomic) int duration;
 @property(retain, nonatomic) WDProtocolAutomationPoint *location;
+@property(copy, nonatomic) NSString *nodeHandle;
+@property(nonatomic) long long origin;
 @property(nonatomic) long long pressedButton;
-@property(nonatomic) long long pressedVirtualKey;
+@property(copy, nonatomic) NSArray *pressedVirtualKeys;
 @property(copy, nonatomic) NSString *pressedCharKey;
 @property(copy, nonatomic) NSString *sourceId;
 - (id)initWithSourceId:(id)arg1;

@@ -25,9 +25,13 @@
     CDUnknownBlockType _deviceFoundHandler;
     CDUnknownBlockType _deviceLostHandler;
     CDUnknownBlockType _deviceChangedHandler;
+    unsigned long long _errorFlags;
+    CDUnknownBlockType _errorFlagsChangedHandler;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(copy, nonatomic) CDUnknownBlockType errorFlagsChangedHandler; // @synthesize errorFlagsChangedHandler=_errorFlagsChangedHandler;
+@property(nonatomic) unsigned long long errorFlags; // @synthesize errorFlags=_errorFlags;
 @property(copy, nonatomic) CDUnknownBlockType deviceChangedHandler; // @synthesize deviceChangedHandler=_deviceChangedHandler;
 @property(copy, nonatomic) CDUnknownBlockType deviceLostHandler; // @synthesize deviceLostHandler=_deviceLostHandler;
 @property(copy, nonatomic) CDUnknownBlockType deviceFoundHandler; // @synthesize deviceFoundHandler=_deviceFoundHandler;
@@ -38,6 +42,7 @@
 - (void).cxx_destruct;
 - (BOOL)shouldReportDevice:(id)arg1;
 - (void)_lostAllDevices;
+- (void)remoteDisplayUpdateErrorFlags:(unsigned long long)arg1;
 - (void)remoteDisplayChangedDevice:(id)arg1 changes:(unsigned int)arg2;
 - (void)remoteDisplayLostDevice:(id)arg1;
 - (void)remoteDisplayFoundDevice:(id)arg1;

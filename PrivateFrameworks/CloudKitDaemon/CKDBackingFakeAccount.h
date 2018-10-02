@@ -19,10 +19,12 @@ __attribute__((visibility("hidden")))
     NSDictionary *_accountBag;
     NSDictionary *_propertyOverrides;
     NSObject<OS_dispatch_queue> *_fakeAccountInfoQueue;
+    NSDictionary *_overridesByDataclass;
 }
 
-+ (id)fakeAccountWithEmail:(id)arg1 password:(id)arg2 propertyOverrides:(id)arg3;
++ (id)fakeAccountWithEmail:(id)arg1 password:(id)arg2 propertyOverrides:(id)arg3 overridesByDataclass:(id)arg4;
 + (Class)_platformBackingAccountClass;
+@property(retain, nonatomic) NSDictionary *overridesByDataclass; // @synthesize overridesByDataclass=_overridesByDataclass;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *fakeAccountInfoQueue; // @synthesize fakeAccountInfoQueue=_fakeAccountInfoQueue;
 @property(retain, nonatomic) NSDictionary *propertyOverrides; // @synthesize propertyOverrides=_propertyOverrides;
 @property(retain, nonatomic) NSDictionary *accountBag; // @synthesize accountBag=_accountBag;

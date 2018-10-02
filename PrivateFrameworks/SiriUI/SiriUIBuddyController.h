@@ -6,7 +6,7 @@
 
 #import "NSViewController.h"
 
-@class NSDictionary, NSString, SiriUIBuddyChooseLanguageController, SiriUIBuddyEnableSiriController;
+@class NSDictionary, NSString, SiriUIBuddyChooseLanguageController, SiriUIBuddyEnableSiriController, SiriUIBuddyVoiceTriggerController, SiriUIBuddyVoiceTriggerIntroController, SiriUIBuddyVoiceTriggerOutroController;
 
 @interface SiriUIBuddyController : NSViewController
 {
@@ -14,8 +14,12 @@
     NSViewController *_currentPanelController;
     SiriUIBuddyEnableSiriController *_enableSiriController;
     SiriUIBuddyChooseLanguageController *_chooseLanguageController;
+    SiriUIBuddyVoiceTriggerController *_voiceTriggerController;
+    SiriUIBuddyVoiceTriggerIntroController *_voiceTriggerIntroController;
+    SiriUIBuddyVoiceTriggerOutroController *_voiceTriggerOutroController;
     BOOL _enableSiri;
     BOOL _skippedVoiceTrigger;
+    BOOL _shouldOfferTraining;
     NSString *_userChosenSiriLanguageCode;
     NSString *_effectiveSiriLanguageCode;
     id <MBSecondPartyHost> _host;
@@ -23,21 +27,28 @@
     NSDictionary *_userInfo;
 }
 
+@property BOOL shouldOfferTraining; // @synthesize shouldOfferTraining=_shouldOfferTraining;
 @property(retain) NSDictionary *userInfo; // @synthesize userInfo=_userInfo;
 @property __weak id <SiriUIBuddyDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly) __weak id <MBSecondPartyHost> host; // @synthesize host=_host;
 @property BOOL skippedVoiceTrigger; // @synthesize skippedVoiceTrigger=_skippedVoiceTrigger;
 @property BOOL enableSiri; // @synthesize enableSiri=_enableSiri;
 - (void).cxx_destruct;
-- (void)viewDidLoad;
+- (void)didCloseLid:(id)arg1;
+- (void)didOpenLid:(id)arg1;
 - (void)moveToNextPanel;
 - (void)setState:(long long)arg1;
+- (void)checkShouldOfferTraining;
 - (void)setCurrentPanelController:(id)arg1;
+- (id)voiceTriggerOutroController;
+- (id)voiceTriggerController;
+- (id)voiceTriggerIntroController;
 - (id)chooseLanguageController;
 - (id)enableSiriController;
+- (void)resetController;
+- (void)viewDidLoad;
 - (void)loadView;
-@property(readonly) NSString *effectiveSiriLanguageCode; // @synthesize effectiveSiriLanguageCode=_effectiveSiriLanguageCode;
-@property(readonly) NSString *siriLanguageCode;
+@property(retain) NSString *effectiveSiriLanguageCode; // @synthesize effectiveSiriLanguageCode=_effectiveSiriLanguageCode;
 @property(retain) NSString *userChosenSiriLanguageCode; // @synthesize userChosenSiriLanguageCode=_userChosenSiriLanguageCode;
 - (id)initWithHost:(id)arg1 userInfo:(id)arg2;
 

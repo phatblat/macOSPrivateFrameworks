@@ -6,18 +6,22 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSMutableDictionary;
+@class NSMutableArray, NSMutableDictionary, _DKKnowledgeStorage;
 
 @interface _DKSyncPeerStatusTracker : NSObject
 {
     NSMutableDictionary *_peerInfos;
     NSMutableArray *_observers;
     NSMutableDictionary *_lastSuccessfulActivityDates;
+    _DKKnowledgeStorage *_storage;
 }
 
 + (id)sharedInstance;
+@property(nonatomic) __weak _DKKnowledgeStorage *storage; // @synthesize storage=_storage;
 - (void).cxx_destruct;
 - (void)debugLogPeers;
+- (id)stringForTransports:(long long)arg1;
+- (void)postCloudDeviceCountChangedNotification;
 - (void)_loadPeers;
 - (id)uuidWithUUIDString:(id)arg1;
 - (id)description;
@@ -31,10 +35,11 @@
 - (void)_modifyActiveTransportInPeer:(id)arg1 withNewTransportsBlock:(CDUnknownBlockType)arg2;
 - (long long)activeTransportsForPeer:(id)arg1;
 - (id)_peerInfoForPeer:(id)arg1;
-- (unsigned long long)foreignPeersWithAnyActiveTransportsCount;
+- (unsigned long long)foreignPeersCount;
 - (id)peersWithActiveTransports:(long long)arg1;
 - (id)peersWithAnyActiveTransports;
 - (id)allPeers;
+- (void)removePeer:(id)arg1;
 - (id)pseudoPeerForSyncTransportCloudUp;
 - (id)existingPeerWithSourceDeviceID:(id)arg1;
 - (id)peerWithZoneName:(id)arg1 sourceDeviceID:(id)arg2;
@@ -42,7 +47,7 @@
 - (id)peerWithCompanionLinkDevice:(id)arg1;
 - (void)registerNewPeer:(id)arg1;
 - (void)setSourceDeviceID:(id)arg1 peer:(id)arg2;
-- (id)init;
+- (id)initWithStorage:(id)arg1;
 
 @end
 

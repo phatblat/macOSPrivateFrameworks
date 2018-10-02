@@ -95,6 +95,7 @@
 - (void)loadDynamicValuesIntoEntry:(id)arg1;
 - (void)setAllNullValuesForEntryKey:(id)arg1 forKey:(id)arg2 toValue:(id)arg3 withFilters:(id)arg4;
 - (void)writeAggregateEntry:(id)arg1;
+- (void)writeProportionateAggregateEntry:(id)arg1 withStartDate:(id)arg2 withEndDate:(id)arg3;
 - (void)blockingUpdateEntry:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)updateEntry:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)_updateEntry:(id)arg1 withBlock:(CDUnknownBlockType)arg2;

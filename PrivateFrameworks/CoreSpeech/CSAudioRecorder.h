@@ -29,12 +29,14 @@
     BOOL _needSampleRateConversion;
     CSRemoteRecordClient *_remoteRecordClient;
     CSAudioPowerMeter *_powerMeter;
+    BOOL _shouldUsePowerMeter;
     NSDictionary *_latestContext;
     BOOL _shouldUseRemoteRecord;
     CSAudioDecoder *_opusDecoder;
     CSAudioZeroCounter *_continuousZeroCounter;
     CSAudioFileReader *_audioFileReader;
     unsigned long long _audioFilePathIndex;
+    BOOL _waitingForDidStart;
     id <CSAudioRecorderDelegate> _delegate;
 }
 
@@ -44,6 +46,7 @@
 - (void)audioFileReaderDidStartRecording:(id)arg1 successfully:(BOOL)arg2 error:(id)arg3;
 - (void)audioFileReaderBufferAvailable:(id)arg1 buffer:(id)arg2 atTime:(unsigned long long)arg3;
 - (BOOL)_needResetAudioInjectionIndex:(id)arg1;
+- (void)_createAudioPowerMeterIfNeeded;
 - (void)_createSampleRateConverterIfNeeded;
 - (void)_createDeInterleaverIfNeeded;
 - (id)_deinterleaveBufferIfNeeded:(id)arg1;
@@ -55,6 +58,7 @@
 - (void)remoteRecordDidStartRecordingWithError:(id)arg1;
 - (void)voiceControllerMediaServicesWereReset:(id)arg1;
 - (void)voiceControllerMediaServicesWereLost:(id)arg1;
+- (void)voiceControllerDidFinishAlertPlayback:(id)arg1 ofType:(int)arg2 error:(id)arg3;
 - (void)voiceControllerRecordHardwareConfigurationDidChange:(id)arg1 toConfiguration:(int)arg2;
 - (void)voiceControllerDidStopRecording:(id)arg1 forReason:(long long)arg2;
 - (void)voiceControllerDidStartRecording:(id)arg1 successfully:(BOOL)arg2 error:(id)arg3;
@@ -76,6 +80,7 @@
 - (BOOL)_shouldRunZeroFilter;
 - (id)voiceTriggerInfo;
 - (id)playbackRoute;
+- (id)recordDeviceInfo;
 - (id)recordRoute;
 - (BOOL)isNarrowBand;
 - (float)_recordingSampleRate;

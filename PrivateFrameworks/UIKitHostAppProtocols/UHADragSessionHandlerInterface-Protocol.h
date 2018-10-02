@@ -13,6 +13,7 @@
 - (void)dataTransferSessionFinished;
 - (void)dragFailed;
 - (void)dragEndedWithOperation:(unsigned long long)arg1;
+- (NSString *)fileNameForItemIndex:(unsigned long long)arg1 type:(NSString *)arg2;
 - (NSData *)dataForItemIndex:(unsigned long long)arg1 type:(NSString *)arg2;
 - (id <UHADragImageInterface>)imageForItemIndex:(unsigned long long)arg1;
 - (void)dragDidBegin:(id <UHADragSessionInterface>)arg1;

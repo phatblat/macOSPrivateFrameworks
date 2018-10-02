@@ -62,12 +62,14 @@ __attribute__((visibility("hidden")))
 - (id)_dragCursor;
 - (BOOL)acceptsFirstMouse:(id)arg1;
 - (void)updateConstraints;
+- (void)updateLayer;
 - (void)layout;
 - (void)_checkAppearance;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)viewDidChangeBackingProperties;
 @property(readonly, nonatomic) BOOL isDraggingEdge;
 - (BOOL)isOpaque;
+- (BOOL)wantsUpdateLayer;
 - (BOOL)isFlipped;
 - (void)_updateLayerMasksToBoundsFromView;
 - (BOOL)clipsToBounds;

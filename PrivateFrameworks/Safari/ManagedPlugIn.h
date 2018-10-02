@@ -96,7 +96,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)isUnsafe;
 - (id)blockedPluginHostPoliciesForDisplayIncludingSyntheticPoliciesForOpenURLs:(id)arg1;
 @property(readonly, nonatomic) NSArray *blockedPluginHostPolicies;
-- (id)initWithPlugInInfo:(id)arg1;
 - (id)initWithPlugInInfo:(id)arg1 isSupported:(BOOL)arg2;
 - (id)init;
 

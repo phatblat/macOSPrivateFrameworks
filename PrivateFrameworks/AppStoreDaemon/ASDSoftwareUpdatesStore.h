@@ -24,10 +24,11 @@
 - (void)setAutoUpdateEnabled:(BOOL)arg1;
 - (void)reloadManagedUpdatesWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)reloadFromServerWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (void)refreshUpdatesWithCompletionBlock:(id)arg1 userInitiated:(BOOL)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)refreshUpdatesWithCompletionBlock:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)refreshUpdateCountWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (BOOL)hasEntitlement;
 - (void)getUpdatesWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (BOOL)confirmAgentRequestedUpdateAll;
 - (BOOL)autoUpdateEnabled;
 - (id)_initWithServiceBroker:(id)arg1;
 - (id)init;

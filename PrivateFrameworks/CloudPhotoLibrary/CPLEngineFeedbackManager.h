@@ -16,6 +16,7 @@
     NSArray *_messagesSending;
     NSDate *_lastAttemptDate;
     NSURL *_feedbackMessagesURL;
+    BOOL _opened;
     BOOL _closed;
     BOOL _deactivated;
     CPLEngineLibrary *_engineLibrary;

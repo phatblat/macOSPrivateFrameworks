@@ -24,6 +24,7 @@
     NSArray *_payloadNetworkdisk;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithAllMedia:(id)arg1 withCd:(id)arg2 withDvd:(id)arg3 withBd:(id)arg4 withBlankcd:(id)arg5 withBlankdvd:(id)arg6 withBlankbd:(id)arg7 withDvdram:(id)arg8 withDiskImage:(id)arg9 withHarddiskInternal:(id)arg10 withHarddiskExternal:(id)arg11 withNetworkdisk:(id)arg12;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSArray *payloadNetworkdisk; // @synthesize payloadNetworkdisk=_payloadNetworkdisk;

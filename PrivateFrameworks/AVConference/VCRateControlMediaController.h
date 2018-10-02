@@ -73,6 +73,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) BOOL isVideoStoppedByVCRateControl; // @synthesize isVideoStoppedByVCRateControl=_isVideoStoppedByVCRateControl;
 @property(readonly, nonatomic) int basebandFlushedAudioCount; // @synthesize basebandFlushedAudioCount=_basebandFlushedAudioCount;
 @property(readonly, nonatomic) int basebandFlushedVideoCount; // @synthesize basebandFlushedVideoCount=_basebandFlushedVideoCount;
+@property(nonatomic) int basebandFlushCount; // @synthesize basebandFlushCount=_basebandFlushCount;
 @property(nonatomic) unsigned int targetBitrate; // @synthesize targetBitrate=_targetBitrate;
 @property(nonatomic) unsigned int minTargetBitrate; // @synthesize minTargetBitrate=_minTargetBitrate;
 @property(nonatomic) unsigned int audioSendingBitrate; // @synthesize audioSendingBitrate=_audioSendingBitrate;
@@ -92,14 +93,13 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) unsigned int probingLargeFrameSize; // @synthesize probingLargeFrameSize=_probingLargeFrameSize;
 - (BOOL)rampUpAudioFraction;
 - (BOOL)rampDownAudioFraction;
-@property(readonly, nonatomic) int basebandFlushCount; // @synthesize basebandFlushCount=_basebandFlushCount;
 - (BOOL)didMediaGetFlushedWithPayloadType:(unsigned char)arg1 transactionID:(unsigned short)arg2 packetDropped:(unsigned short)arg3 sequenceNumberArray:(unsigned short *)arg4;
 - (void)decreaseFlushCount:(int)arg1;
 @property(readonly, nonatomic) BOOL isVideoStopped;
 - (void)resumeVideoByVCRateControl;
 - (void)stopVideoByVCRateControl;
 - (void)pauseVideoByUser:(BOOL)arg1;
-- (void)updateBasebandSuggestionWithStatistics:(CDStruct_dd06a755)arg1;
+- (void)updateBasebandSuggestionWithStatistics:(CDStruct_48a7b5a5)arg1;
 - (void)computePacketLossWithTimestamp:(unsigned short)arg1 totalRemoteReceivedPackets:(unsigned int)arg2 packetBurstLoss:(unsigned int)arg3 packetLossRate:(double *)arg4 mostBurstLoss:(unsigned int *)arg5;
 - (void)getMediaQueueRateChangeCounter:(unsigned int *)arg1 rateChangeTime:(double *)arg2;
 - (void)getMediaQueueInVideoBitrate:(double *)arg1 outVideoBitrate:(double *)arg2 inAudioBitrate:(double *)arg3 outAudioBitrate:(double *)arg4;

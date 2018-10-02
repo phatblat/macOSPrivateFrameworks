@@ -15,6 +15,7 @@
     NSString *_payloadLDAPSearchSettingScope;
 }
 
++ (id)buildRequiredOnlyWithLDAPSearchSettingSearchBase:(id)arg1;
 + (id)buildWithLDAPSearchSettingDescription:(id)arg1 withLDAPSearchSettingSearchBase:(id)arg2 withLDAPSearchSettingScope:(id)arg3;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadLDAPSearchSettingScope; // @synthesize payloadLDAPSearchSettingScope=_payloadLDAPSearchSettingScope;

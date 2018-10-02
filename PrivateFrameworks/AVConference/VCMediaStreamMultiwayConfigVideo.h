@@ -23,6 +23,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSSet *payloads; // @synthesize payloads=_payloads;
 @property(nonatomic) unsigned int framerate; // @synthesize framerate=_framerate;
 @property(nonatomic) long long resolution; // @synthesize resolution=_resolution;
+- (id)streamIds;
 - (void)addSubStreamConfig:(id)arg1;
 - (void)addPayload:(int)arg1;
 - (void)dealloc;

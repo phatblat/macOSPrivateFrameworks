@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <UIKitHostAppServices/UHASRemoteObject.h>
 
 #import "UHATouchBarInterface.h"
 
-@class NSArray, NSSet, NSString;
+@class NSArray, NSObject<OS_dispatch_queue>, NSSet, NSString;
 
-@interface UHASTouchBar : NSObject <UHATouchBarInterface>
+@interface UHASTouchBar : UHASRemoteObject <UHATouchBarInterface>
 {
     NSString *_principalItemIdentifier;
     NSSet *_templateItems;
@@ -34,6 +34,8 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) unsigned long long rock_invocationFlags;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *rock_invocationQueue;
 @property(readonly) Class superclass;
 
 @end

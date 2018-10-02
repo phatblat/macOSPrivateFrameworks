@@ -13,6 +13,6 @@
 - (void)remoteDisplayInvalidateSessionID:(NSNumber *)arg1;
 - (void)remoteDisplayActivateSession:(RPRemoteDisplaySession *)arg1 completion:(void (^)(NSError *))arg2;
 - (void)remoteDisplayActivateServer:(RPRemoteDisplayServer *)arg1 completion:(void (^)(NSError *))arg2;
-- (void)remoteDisplayActivateDiscovery:(RPRemoteDisplayDiscovery *)arg1 completion:(void (^)(NSError *))arg2;
+- (void)remoteDisplayActivateDiscovery:(RPRemoteDisplayDiscovery *)arg1 completion:(void (^)(unsigned long long, NSError *))arg2;
 @end
 

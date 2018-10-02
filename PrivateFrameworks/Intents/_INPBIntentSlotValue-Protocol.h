@@ -122,6 +122,8 @@
 @property(copy, nonatomic) NSArray *payloadPlaces;
 @property(readonly, nonatomic) unsigned long long payloadPhotoAttributesCount;
 @property(readonly, nonatomic) int *payloadPhotoAttributes;
+@property(readonly, nonatomic) unsigned long long payloadPersonalPlaceTypesCount;
+@property(readonly, nonatomic) int *payloadPersonalPlaceTypes;
 @property(readonly, nonatomic) unsigned long long payloadPaymentStatusCount;
 @property(readonly, nonatomic) int *payloadPaymentStatus;
 @property(readonly, nonatomic) unsigned long long payloadPaymentMethodValuesCount;
@@ -384,6 +386,12 @@
 - (int)payloadPhotoAttributeAtIndex:(unsigned long long)arg1;
 - (void)addPayloadPhotoAttribute:(int)arg1;
 - (void)clearPayloadPhotoAttributes;
+- (int)StringAsPayloadPersonalPlaceTypes:(NSString *)arg1;
+- (NSString *)payloadPersonalPlaceTypesAsString:(int)arg1;
+- (void)setPayloadPersonalPlaceTypes:(int *)arg1 count:(unsigned long long)arg2;
+- (int)payloadPersonalPlaceTypeAtIndex:(unsigned long long)arg1;
+- (void)addPayloadPersonalPlaceType:(int)arg1;
+- (void)clearPayloadPersonalPlaceTypes;
 - (int)StringAsPayloadPaymentStatus:(NSString *)arg1;
 - (NSString *)payloadPaymentStatusAsString:(int)arg1;
 - (void)setPayloadPaymentStatus:(int *)arg1 count:(unsigned long long)arg2;

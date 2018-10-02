@@ -27,6 +27,7 @@
 @property(copy, nonatomic) NSString *author; // @synthesize author=_author;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
+- (id)description;
 
 @end
 

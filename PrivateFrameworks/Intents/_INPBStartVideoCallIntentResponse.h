@@ -6,24 +6,21 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBStartVideoCallIntentResponse.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBCallMetrics;
+@class NSArray, NSString, _INPBCallMetrics;
 
-@interface _INPBStartVideoCallIntentResponse : PBCodable <_INPBStartVideoCallIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBStartVideoCallIntentResponse : PBCodable <_INPBStartVideoCallIntentResponse, NSSecureCoding, NSCopying>
 {
     CDStruct_fbf2c6cd _has;
     int _audioRoute;
     _INPBCallMetrics *_metrics;
     NSString *_status;
     NSArray *_targetContacts;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *targetContacts; // @synthesize targetContacts=_targetContacts;
 @property(copy, nonatomic) NSString *status; // @synthesize status=_status;
 @property(retain, nonatomic) _INPBCallMetrics *metrics; // @synthesize metrics=_metrics;

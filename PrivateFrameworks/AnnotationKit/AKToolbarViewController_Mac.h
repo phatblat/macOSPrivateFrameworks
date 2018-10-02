@@ -31,6 +31,7 @@
     AKToolbarColorWellItem_Mac *_fillColorWell;
     NSMutableSet *_noteButtons;
     NSMutableSet *_highlightControls;
+    NSView *_applyCropButton;
     NSPopover *_shapesPopover;
     NSPopover *_signaturesPopover;
     NSPopover *_textAttributesPopover;
@@ -55,6 +56,7 @@
 @property(retain) NSView *simpleHighlightButton; // @synthesize simpleHighlightButton=_simpleHighlightButton;
 @property(retain) NSView *fillColorWell; // @synthesize fillColorWell=_fillColorWell;
 @property(retain) NSView *strokeColorWell; // @synthesize strokeColorWell=_strokeColorWell;
+@property(readonly) NSView *applyCropButton; // @synthesize applyCropButton=_applyCropButton;
 @property(retain) NSView *cropButton; // @synthesize cropButton=_cropButton;
 @property(retain) NSView *inkButton; // @synthesize inkButton=_inkButton;
 @property(retain) NSView *variableSketchButton; // @synthesize variableSketchButton=_variableSketchButton;

@@ -33,6 +33,7 @@
     int _renderStrategy;
 }
 
++ (struct CGColor *)newColorByAdjustingLightnessOfColor:(struct CGColor *)arg1 darker:(BOOL)arg2;
 + (id)shapeEffectSingleBlurFrom:(id)arg1 withInteriorFill:(id)arg2 offset:(struct CGPoint)arg3 blurSize:(float)arg4 innerGlowRed:(float)arg5 innerGlowGreen:(float)arg6 innerGlowBlue:(float)arg7 innerGlowOpacity:(float)arg8 innerShadowRed:(float)arg9 innerShadowGreen:(float)arg10 innerShadowBlue:(float)arg11 innerShadowOpacity:(float)arg12 outerGlowRed:(float)arg13 outerGlowGreen:(float)arg14 outerGlowBlue:(float)arg15 outerGlowOpacity:(float)arg16 outerShadowRed:(float)arg17 outerShadowGreen:(float)arg18 outerShadowBlue:(float)arg19 outerShadowOpacity:(float)arg20 hasInsideShadowBlur:(BOOL)arg21 hasOutsideShadowBlur:(BOOL)arg22;
 + (id)hueSaturationFrom:(id)arg1 withCenterAngle:(double)arg2 width:(double)arg3 tintRed:(float)arg4 tintGreen:(float)arg5 tintBlue:(float)arg6;
 + (id)bevelEmbossFrom:(id)arg1 withSize:(unsigned int)arg2 soften:(unsigned int)arg3 angle:(float)arg4 altitude:(float)arg5 highlightRed:(float)arg6 highlightGreen:(float)arg7 highlightBlue:(float)arg8 highlightOpacity:(float)arg9 shadowRed:(float)arg10 shadowGreen:(float)arg11 shadowBlue:(float)arg12 shadowOpacity:(float)arg13 bevelStyle:(unsigned int)arg14;
@@ -88,17 +89,21 @@
 - (struct CGColor *)newColorByProcessingColor:(struct CGColor *)arg1;
 - (id)processedImageFromShapePath:(struct CGPath *)arg1 inRect:(struct CGRect)arg2;
 - (struct CGImage *)newFlattenedImageFromShapeCGImage:(struct CGImage *)arg1;
+- (struct CGImage *)newFlattenedImageFromCGImage:(struct CGImage *)arg1 withScale:(double)arg2 ciContext:(id)arg3;
 - (struct CGImage *)newFlattenedImageFromShapeCGImage:(struct CGImage *)arg1 withScale:(double)arg2 ciContext:(id)arg3;
+- (struct CGImage *)_newFlattenedImageFromShapeCGImage:(struct CGImage *)arg1 withScale:(double)arg2 ciContext:(id)arg3 blendOverImage:(BOOL)arg4;
 - (struct CGImage *)newFlattenedImageFromShapeCGImage:(struct CGImage *)arg1 withScale:(double)arg2 cache:(BOOL)arg3;
 - (struct CGImage *)newFlattenedImageFromShapeCGImage:(struct CGImage *)arg1 withScale:(double)arg2;
 - (id)processedImageFromShapeImage:(id)arg1 withScale:(double)arg2 invertShadows:(BOOL)arg3;
 - (id)processedImageFromShapeImage:(id)arg1 withScale:(double)arg2;
 - (id)processedImageFromShapeImage:(id)arg1;
+- (id)processedImageFromImage:(id)arg1 withScale:(double)arg2;
+- (id)processedImageFromImage:(id)arg1;
 - (CDStruct_3c058996)effectInsetsWithScale:(double)arg1;
 - (struct CGRect)effectPaddingWithScale:(double)arg1;
-- (id)compositeEffectStackWithShapeImage:(id)arg1 withScale:(double)arg2;
+- (id)compositeEffectStackWithShapeImage:(id)arg1 withScale:(double)arg2 blendOntoImage:(BOOL)arg3;
 - (id)optimizedSingleBlurEffectCompositeWithShapeImage:(id)arg1;
-- (id)standardEffectCompositeWithShapeImage:(id)arg1;
+- (id)standardEffectCompositeWithShapeImage:(id)arg1 blendOntoImage:(BOOL)arg2;
 - (void)adjustEffectColorsToTemperature:(int)arg1 onlyTintableColors:(BOOL)arg2;
 - (void)scaleBrightnessOfEffectColorsByAmount:(double)arg1 onlyTintableColors:(BOOL)arg2;
 - (void)applyCustomForegroundColor:(struct CGColor *)arg1 tintEffectColors:(BOOL)arg2;
@@ -115,8 +120,7 @@
 - (id)imageWithInteriorGradientFillOfImage:(id)arg1 effect:(CDStruct_bdea167c)arg2;
 - (id)imageWithHueSaturationOfImage:(id)arg1 effect:(CDStruct_2463d205)arg2;
 - (id)imageWithColorOverlayOfImage:(id)arg1 effect:(CDStruct_2be49d17)arg2;
-- (id)imageWithAdjustedOutputOpacityOfImage:(id)arg1 opacity:(float)arg2;
-- (id)imageWithAdjustedShapeOpacityOfImage:(id)arg1 opacity:(float)arg2;
+- (id)image:(id)arg1 withAdjustedOpacity:(float)arg2;
 - (id)imageWithInnerShadowOfImage:(id)arg1 effect:(CDStruct_a5d4af33)arg2;
 - (id)imageWithInnerGlowOfImage:(id)arg1 effect:(CDStruct_3d979a67)arg2;
 - (id)imageWithSingleBlurShapeEffectOfImage:(id)arg1 withInteriorFill:(id)arg2;
@@ -126,6 +130,7 @@
 - (BOOL)_precompositeColorOverlayInnerGradient;
 - (BOOL)hasHueSaturation;
 - (void)_setHueSaturationAtIndex:(unsigned long long)arg1 fromPreset:(id)arg2 index:(unsigned int)arg3;
+- (BOOL)hasEffects;
 - (BOOL)hasBevelEmboss;
 - (void)_setBevelEmbossAtIndex:(unsigned long long)arg1 fromPreset:(id)arg2 index:(unsigned int)arg3;
 - (BOOL)hasExtraShadow;

@@ -17,22 +17,21 @@
     WDTableRowProperties *mTableRowProperties;
     WDTableCellProperties *mTableCellProperties;
     WDTableStyleOverride *mTableStyleOverrides[12];
-    WDStyleSheet *mStyleSheet;
-    WDStyle *mBaseStyle;
-    WDStyle *mNextStyle;
     BOOL mHidden;
     NSString *mName;
     NSString *mId;
     int mStyleType;
+    WDStyleSheet *mStyleSheet;
+    WDStyle *mBaseStyle;
+    WDStyle *mNextStyle;
 }
 
+@property __weak WDStyle *nextStyle; // @synthesize nextStyle=mNextStyle;
+@property(readonly) __weak WDStyleSheet *styleSheet; // @synthesize styleSheet=mStyleSheet;
 - (void).cxx_destruct;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)setNextStyle:(id)arg1;
-- (id)nextStyle;
-- (void)setBaseStyle:(id)arg1;
-- (id)baseStyle;
+@property __weak WDStyle *baseStyle; // @synthesize baseStyle=mBaseStyle;
 - (id)id;
 - (int)type;
 - (void)setName:(id)arg1;
@@ -44,7 +43,6 @@
 - (BOOL)isAnythingOverridden;
 - (void)setHidden:(BOOL)arg1;
 - (BOOL)hidden;
-- (id)styleSheet;
 - (id)characterProperties;
 - (id)paragraphProperties;
 - (id)initWithStyleSheet:(id)arg1 id:(id)arg2 type:(int)arg3;

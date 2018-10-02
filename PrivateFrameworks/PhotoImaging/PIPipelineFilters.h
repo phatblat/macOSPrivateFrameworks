@@ -22,6 +22,7 @@
 + (id)noRedEyeFilter;
 + (id)sushiLevel1Filter;
 + (id)sourceFilterIncludingOrientation:(BOOL)arg1;
++ (id)rawFaceBalanceFilter;
 + (id)autoCropFilter;
 
 @end

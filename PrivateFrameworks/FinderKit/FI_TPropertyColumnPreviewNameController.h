@@ -4,10 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <FinderKit/FI_TPropertyNameController.h>
+#import <FinderKit/FI_TPropertyTitleBubbleViewController.h>
 
 __attribute__((visibility("hidden")))
-@interface FI_TPropertyColumnPreviewNameController : FI_TPropertyNameController
+@interface FI_TPropertyColumnPreviewNameController : FI_TPropertyTitleBubbleViewController
 {
 }
 

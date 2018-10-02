@@ -16,6 +16,7 @@
     NSNumber *_payloadForceTLS;
 }
 
++ (id)buildRequiredOnlyWithIPAddress:(id)arg1 withResourcePath:(id)arg2;
 + (id)buildWithIPAddress:(id)arg1 withResourcePath:(id)arg2 withPort:(id)arg3 withForceTLS:(id)arg4;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadForceTLS; // @synthesize payloadForceTLS=_payloadForceTLS;

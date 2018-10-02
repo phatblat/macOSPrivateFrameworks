@@ -20,6 +20,7 @@
     NSNumber *_payloadEnforceSmartCard;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withUserPairing:(id)arg2 withAllowSmartCard:(id)arg3 withCheckCertificateTrust:(id)arg4 withOneCardPerUser:(id)arg5 withTokenRemovalAction:(id)arg6 withEnforceSmartCard:(id)arg7;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

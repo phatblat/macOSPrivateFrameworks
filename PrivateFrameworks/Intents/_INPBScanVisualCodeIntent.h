@@ -6,21 +6,18 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBScanVisualCodeIntent.h"
 
-@class INCodableAttribute, NSString, _INPBIntentMetadata;
+@class NSString, _INPBIntentMetadata;
 
-@interface _INPBScanVisualCodeIntent : PBCodable <_INPBScanVisualCodeIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBScanVisualCodeIntent : PBCodable <_INPBScanVisualCodeIntent, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBIntentMetadata *_intentMetadata;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

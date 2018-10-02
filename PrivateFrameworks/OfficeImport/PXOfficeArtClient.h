@@ -25,7 +25,7 @@
 - (void)readClientDataFromGraphicalFramePropertiesNode:(struct _xmlNode *)arg1 toDrawable:(id)arg2 state:(id)arg3;
 - (void)readClientDataFromPictureNode:(struct _xmlNode *)arg1 toImage:(id)arg2 state:(id)arg3;
 - (void)readClientDataFromShapeNode:(struct _xmlNode *)arg1 toShape:(id)arg2 state:(id)arg3;
-- (id)presentationState;
+@property(readonly) __weak PXPresentationState *presentationState; // @synthesize presentationState=mPresentationState;
 - (id)initWithState:(id)arg1;
 
 @end

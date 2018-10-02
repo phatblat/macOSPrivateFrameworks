@@ -8,16 +8,25 @@
 
 @interface LUI2Window : NSWindow
 {
+    BOOL _isCompanionWindow;
+    LUI2Window *_companionWindow;
 }
 
+@property(retain) LUI2Window *companionWindow; // @synthesize companionWindow=_companionWindow;
+@property BOOL isCompanionWindow; // @synthesize isCompanionWindow=_isCompanionWindow;
+- (void)dealloc;
 - (id)initWithContentRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2 backing:(unsigned long long)arg3 defer:(BOOL)arg4 screen:(id)arg5;
 - (id)initWithContentRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2 backing:(unsigned long long)arg3 defer:(BOOL)arg4;
 - (void)sendEvent:(id)arg1;
+- (void)orderOut:(id)arg1;
+- (void)orderFront:(id)arg1;
 - (id)description;
 - (BOOL)canBecomeMainWindow;
 - (BOOL)canBecomeKeyWindow;
 - (id)accessibilityTitle;
 - (id)accessibilityIdentifier;
+@property BOOL usesCompanionWindow;
+- (void)_makeCompanionWindow;
 - (void)_setupContentView;
 
 // Remaining properties

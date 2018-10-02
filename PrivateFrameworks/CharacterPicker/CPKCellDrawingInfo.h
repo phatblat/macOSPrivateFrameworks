@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     CPKFont *_font;
     NSString *_character;
     struct CGRect _frame;
+    struct CGRect _cellFrame;
 }
 
 @property BOOL foundFallback; // @synthesize foundFallback=_foundFallback;
@@ -25,6 +26,7 @@ __attribute__((visibility("hidden")))
 @property unsigned short glyph; // @synthesize glyph=_glyph;
 @property(copy) NSString *character; // @synthesize character=_character;
 @property(retain) CPKFont *font; // @synthesize font=_font;
+@property struct CGRect cellFrame; // @synthesize cellFrame=_cellFrame;
 @property struct CGRect frame; // @synthesize frame=_frame;
 @property long long index; // @synthesize index=_index;
 - (void)dealloc;

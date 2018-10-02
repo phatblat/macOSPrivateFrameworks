@@ -74,7 +74,9 @@
 - (void)dealloc;
 - (void)_closeDB;
 - (void)tearDown;
+- (BOOL)deleteAllDBFiles;
 - (int)_setPragmas;
+- (BOOL)_deleteAllDBFiles;
 - (BOOL)_deleteAllDatabaseFilesIfCorrupt:(int)arg1;
 - (void)_deleteAndReopenDatabaseIfCorrupt:(int)arg1;
 - (void)_createParentDirectory;

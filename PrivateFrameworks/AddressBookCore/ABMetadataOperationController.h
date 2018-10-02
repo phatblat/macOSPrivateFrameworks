@@ -24,6 +24,7 @@
     ABMetadataOperationSanityChecker *_sanityChecker;
 }
 
++ (BOOL)currentProcessIsWhitelistedForMetadataValidation;
 + (BOOL)waitUntilAllOperationsAreFinishedWithTimeout:(double)arg1;
 + (void)waitUntilAllOperationsAreFinished;
 + (void)cancelAllOperations;

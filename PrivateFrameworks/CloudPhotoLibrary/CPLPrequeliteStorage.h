@@ -28,6 +28,8 @@
 - (BOOL)isLocalScopeIndexValid:(long long)arg1;
 - (id)scopedIdentifierForCloudIdentifier:(id)arg1 scopeIndex:(long long)arg2;
 - (id)scopedIdentifierForLocalIdentifier:(id)arg1 scopeIndex:(long long)arg2;
+- (id)filterForExcludedScopeIdentifiers:(id)arg1;
+- (id)filterForIncludedScopeIdentifiers:(id)arg1;
 - (long long)stableScopeIndexForScopeIdentifier:(id)arg1;
 - (long long)cloudScopeIndexForScopeIdentifier:(id)arg1;
 - (long long)localScopeIndexForScopeIdentifier:(id)arg1;

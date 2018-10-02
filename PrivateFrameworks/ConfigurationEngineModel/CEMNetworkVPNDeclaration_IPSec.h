@@ -28,6 +28,7 @@
     NSArray *_payloadOnDemandRules;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithRemoteAddress:(id)arg1 withAuthenticationMethod:(id)arg2 withXAuthName:(id)arg3 withXAuthPassword:(id)arg4 withXAuthEnabled:(id)arg5 withXAuthPasswordEncryption:(id)arg6 withLocalIdentifier:(id)arg7 withLocalIdentifierType:(id)arg8 withSharedSecret:(id)arg9 withPayloadCertificateUUID:(id)arg10 withPromptForVPNPIN:(id)arg11 withOnDemandEnabled:(id)arg12 withOnDemandMatchDomainsAlways:(id)arg13 withOnDemandMatchDomainsNever:(id)arg14 withOnDemandMatchDomainsOnRetry:(id)arg15 withOnDemandRules:(id)arg16;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSArray *payloadOnDemandRules; // @synthesize payloadOnDemandRules=_payloadOnDemandRules;

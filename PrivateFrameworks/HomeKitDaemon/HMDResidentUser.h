@@ -20,7 +20,8 @@
 - (id)encodingRemoteDisplayName;
 - (id)initWithCoder:(id)arg1;
 - (void)transactionObjectUpdated:(id)arg1 newValues:(id)arg2 message:(id)arg3;
-- (id)modelObjectWithChangeType:(unsigned long long)arg1;
+- (id)modelObjectWithChangeType:(unsigned long long)arg1 version:(long long)arg2;
+- (id)legacyUser;
 @property unsigned long long configurationState; // @synthesize configurationState=_configurationState;
 - (BOOL)updateWithDevice:(id)arg1;
 - (void)setDevice:(id)arg1;
@@ -31,6 +32,7 @@
 - (BOOL)refreshDisplayName;
 - (id)deviceIdentifier;
 - (id)userID;
+- (void)configureWithHome:(id)arg1;
 - (id)initWithDevice:(id)arg1 home:(id)arg2 pairingIdentity:(id)arg3 configurationState:(unsigned long long)arg4;
 - (id)initWithModelObject:(id)arg1;
 

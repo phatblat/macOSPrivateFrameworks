@@ -15,6 +15,7 @@
     NSString *_payloadDSID;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithDSID:(id)arg1;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

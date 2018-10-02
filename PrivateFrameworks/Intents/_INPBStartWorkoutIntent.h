@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBStartWorkoutIntent.h"
 
-@class INCodableAttribute, NSString, _INPBDataString, _INPBDouble, _INPBIntentMetadata;
+@class NSString, _INPBDataString, _INPBDouble, _INPBIntentMetadata;
 
-@interface _INPBStartWorkoutIntent : PBCodable <_INPBStartWorkoutIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBStartWorkoutIntent : PBCodable <_INPBStartWorkoutIntent, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int isOpenEnded:1;
@@ -26,10 +25,8 @@
     _INPBDouble *_goalValue;
     _INPBIntentMetadata *_intentMetadata;
     _INPBDataString *_workoutName;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBDataString *workoutName; // @synthesize workoutName=_workoutName;
 @property(nonatomic) int workoutLocationType; // @synthesize workoutLocationType=_workoutLocationType;
 @property(nonatomic) int workoutGoalUnitType; // @synthesize workoutGoalUnitType=_workoutGoalUnitType;

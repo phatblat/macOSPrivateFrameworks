@@ -24,8 +24,8 @@
 
 + (id)_errorsByTaskForTasksByRecordId:(id)arg1 fromUnderlyingError:(id)arg2;
 + (id)_betterErrorForRecordId:(id)arg1 recordError:(id)arg2;
-+ (long long)qualityOfServiceForForegroundOperation:(BOOL)arg1 upload:(BOOL)arg2 metadata:(BOOL)arg3;
-+ (BOOL)serverSupportsCMM;
++ (unsigned long long)networkBehaviorForForegroundOperation:(BOOL)arg1 upload:(BOOL)arg2 metadata:(BOOL)arg3;
++ (BOOL)enableTurboMode;
 + (BOOL)useSandboxEnvironment;
 + (BOOL)allowsSyncOverCellular;
 @property(retain, nonatomic) NSDate *significantWorkBeginDate; // @synthesize significantWorkBeginDate=_significantWorkBeginDate;
@@ -36,6 +36,8 @@
 @property(readonly, nonatomic) CPLCloudKitOperationsTracker *operationTracker; // @synthesize operationTracker=_operationTracker;
 - (void).cxx_destruct;
 - (void)processTaskErrorIfNeeded:(id)arg1;
+@property(readonly, nonatomic) BOOL canBoostBackgroundOperations;
+@property(readonly, nonatomic) BOOL canBoostOperations;
 @property(readonly, nonatomic, getter=isForeground) BOOL foreground;
 @property(readonly, nonatomic, getter=isNetworkConnected) BOOL networkConnected;
 - (void)getStatusDictionaryWithCompletionHandler:(CDUnknownBlockType)arg1;
@@ -55,6 +57,7 @@
 - (id)createGroupForChangeUpload;
 - (id)createGroupForLibraryStateCheck;
 - (id)createGroupForFetchScopeListChanges;
+- (id)createGroupForTransportScopeUpdate;
 - (id)createGroupForTransportScopeDelete;
 - (id)createGroupForFeedback;
 - (id)createGroupForSetup;
@@ -68,7 +71,7 @@
 - (id)transportScopeForUpgradeFromScopeName:(id)arg1;
 - (id)scopeNameForTransportScope:(id)arg1;
 - (id)descriptionForTransportScope:(id)arg1;
-- (void)cancelBlockedTasks;
+- (void)cancelBlockedTasksIncludingBackground:(BOOL)arg1;
 - (void)noteClientIsEndingSignificantWork;
 - (void)noteClientIsBeginningSignificantWork;
 - (void)setShouldOverride:(BOOL)arg1 forSystemBudgets:(unsigned long long)arg2;
@@ -93,6 +96,7 @@
 - (id)queryTaskForCursor:(id)arg1 class:(Class)arg2 transportScope:(id)arg3 scopeIdentifier:(id)arg4 progressHandler:(CDUnknownBlockType)arg5 completionHandler:(CDUnknownBlockType)arg6;
 - (id)fetchTransportScopeForScope:(id)arg1 transportScope:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)getLibraryInfoAndStateWithTransportScope:(id)arg1 scope:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (id)updateTransportScope:(id)arg1 scope:(id)arg2 libraryInfo:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (id)deleteTransportScope:(id)arg1 scope:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)uploadBatchTaskForBatch:(id)arg1 transportScope:(id)arg2 scope:(id)arg3 additionalTransportScopes:(id)arg4 progressHandler:(CDUnknownBlockType)arg5 completionHandler:(CDUnknownBlockType)arg6;
 - (id)checkRecordsExistenceTaskForRecords:(id)arg1 fetchRecordProperties:(id)arg2 transportScope:(id)arg3 scope:(id)arg4 additionalTransportScopes:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;

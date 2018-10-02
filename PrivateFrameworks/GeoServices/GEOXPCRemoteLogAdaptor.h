@@ -8,11 +8,12 @@
 
 #import "GEOProtobufSessionTaskDelegate.h"
 
-@class GEOLogMessageCacheManager, GEOLogMessageCollectionRequest, GEOProtobufSessionTask, NSLock, NSObject<OS_dispatch_queue>, NSString, NSURL;
+@class GEOLogMessageCacheManager, GEOLogMessageCollectionRequest, GEOProtobufSessionTask, NSLock, NSNumber, NSObject<OS_dispatch_queue>, NSString, NSURL;
 
 @interface GEOXPCRemoteLogAdaptor : GEOBaseLogAdaptor <GEOProtobufSessionTaskDelegate>
 {
     NSURL *_remoteURL;
+    NSNumber *_needsProxy;
     NSString *_debugRequestName;
     unsigned long long _retryInterval;
     unsigned long long _backOffRetryInterval;
@@ -47,6 +48,7 @@
 }
 
 @property(retain, nonatomic) NSString *debugRequestName; // @synthesize debugRequestName=_debugRequestName;
+@property(retain, nonatomic) NSNumber *needsProxy; // @synthesize needsProxy=_needsProxy;
 @property(retain, nonatomic) NSURL *remoteURL; // @synthesize remoteURL=_remoteURL;
 - (void).cxx_destruct;
 - (void)_purgeLogMessageCache;
@@ -84,7 +86,7 @@
 - (void)_setupQueueAndNotifications;
 - (void)_initializeAdaptor;
 - (id)initWithAdaptorPolicy:(id)arg1;
-- (id)initWithRemoteURL:(id)arg1 debugRequestName:(id)arg2 supportedTypes:(id)arg3;
+- (id)initWithRemoteURL:(id)arg1 needsProxy:(id)arg2 debugRequestName:(id)arg3 supportedTypes:(id)arg4;
 - (void)incrementXpcActivityTriggerCount;
 @property(nonatomic) long long xpcActivityTriggerCount;
 

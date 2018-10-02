@@ -10,6 +10,8 @@
 
 @protocol _INPBPayloadUnsupported <NSObject>
 + (Class)conflictingParametersType;
+@property(nonatomic) BOOL hasRunWorkflowIntentWorkflowUnsupportedReason;
+@property(nonatomic) int runWorkflowIntentWorkflowUnsupportedReason;
 @property(nonatomic) BOOL hasSetTimerAttributeIntentTargetTimerUnsupportedReason;
 @property(nonatomic) int setTimerAttributeIntentTargetTimerUnsupportedReason;
 @property(nonatomic) BOOL hasSendMessageIntentRecipientUnsupportedReason;
@@ -28,6 +30,8 @@
 @property(nonatomic) int requestPaymentIntentCurrencyAmountUnsupportedReason;
 @property(readonly, nonatomic) unsigned long long conflictingParametersCount;
 @property(copy, nonatomic) NSArray *conflictingParameters;
+- (int)StringAsRunWorkflowIntentWorkflowUnsupportedReason:(NSString *)arg1;
+- (NSString *)runWorkflowIntentWorkflowUnsupportedReasonAsString:(int)arg1;
 - (int)StringAsSetTimerAttributeIntentTargetTimerUnsupportedReason:(NSString *)arg1;
 - (NSString *)setTimerAttributeIntentTargetTimerUnsupportedReasonAsString:(int)arg1;
 - (int)StringAsSendMessageIntentRecipientUnsupportedReason:(NSString *)arg1;

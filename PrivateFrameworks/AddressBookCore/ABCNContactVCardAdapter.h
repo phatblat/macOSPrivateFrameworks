@@ -55,7 +55,7 @@
 @property(readonly) NSString *companyName;
 @property(readonly) NSString *phoneticOrganization;
 @property(readonly) NSString *organization;
-@property(readonly) NSString *preferredChannel;
+- (id)preferredChannel;
 @property(readonly) NSString *pronunciationLastName;
 @property(readonly) NSString *pronunciationFirstName;
 @property(readonly) NSString *phoneticLastName;

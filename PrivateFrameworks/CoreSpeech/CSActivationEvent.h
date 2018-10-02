@@ -10,6 +10,7 @@
 
 @interface CSActivationEvent : NSObject
 {
+    float _vadScore;
     NSString *_UUID;
     unsigned long long _type;
     NSString *_deviceId;
@@ -17,6 +18,8 @@
     unsigned long long _hosttime;
 }
 
++ (id)builtInMicVoiceTriggerEvent:(id)arg1 hostTime:(unsigned long long)arg2;
+@property(nonatomic) float vadScore; // @synthesize vadScore=_vadScore;
 @property(nonatomic) unsigned long long hosttime; // @synthesize hosttime=_hosttime;
 @property(retain, nonatomic) NSDictionary *activationInfo; // @synthesize activationInfo=_activationInfo;
 @property(retain, nonatomic) NSString *deviceId; // @synthesize deviceId=_deviceId;
@@ -26,6 +29,7 @@
 - (id)_activationTypeString;
 @property(readonly, nonatomic) NSString *localizedDescription;
 - (id)initWithType:(unsigned long long)arg1 deviceId:(id)arg2 activationInfo:(id)arg3 hosttime:(unsigned long long)arg4;
+- (id)initWithType:(unsigned long long)arg1 deviceId:(id)arg2 activationInfo:(id)arg3 vadScore:(float)arg4 hosttime:(unsigned long long)arg5;
 
 @end
 

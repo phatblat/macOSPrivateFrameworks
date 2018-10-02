@@ -9,7 +9,7 @@
 #import "CKAccountObserver.h"
 #import "NSSecureCoding.h"
 
-@class CKStoreClient, FRJSAppleAccountStore, FRWKView, NSObject<OS_xpc_object>, NSString;
+@class CKStoreClient, FRJSAppleAccountStore, FRWKView, NSString;
 
 @interface FRJSRootObject : FRJSObject <CKAccountObserver, NSSecureCoding>
 {
@@ -18,10 +18,8 @@
     CKStoreClient *_storeClient;
     FRJSAppleAccountStore *_jsAccountStore;
     id _accountStoreObserverToken;
-    NSObject<OS_xpc_object> *_pluginRelayXPCConnection;
 }
 
-@property(retain, nonatomic) NSObject<OS_xpc_object> *pluginRelayXPCConnection; // @synthesize pluginRelayXPCConnection=_pluginRelayXPCConnection;
 @property(retain, nonatomic) id accountStoreObserverToken; // @synthesize accountStoreObserverToken=_accountStoreObserverToken;
 @property(nonatomic) BOOL startedProgressSpinner; // @synthesize startedProgressSpinner=_startedProgressSpinner;
 @property(readonly, nonatomic) FRJSAppleAccountStore *jsAccountStore; // @synthesize jsAccountStore=_jsAccountStore;
@@ -41,9 +39,6 @@
 - (void)_authenticateForAccount:(id)arg1 withOptions:(id)arg2 callback:(id)arg3;
 - (id)_accountForDSID:(id)arg1;
 - (id)callFunction:(id)arg1 withArguments:(id)arg2;
-- (BOOL)callCameraRedeemFunction:(id)arg1 withArguments:(id)arg2;
-- (void)removeCameraRedeemNotificationObservers;
-- (void)addCameraRedeemNotificationObservers;
 - (void)doDialogXMLWithArgs:(id)arg1;
 - (void)showSharingPickerForServicesNamed:(id)arg1 fromPageRect:(struct CGRect)arg2 sharingOptions:(id)arg3;
 - (void)shareWithServiceNamed:(id)arg1 sharingOptions:(id)arg2;

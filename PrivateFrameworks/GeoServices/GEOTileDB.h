@@ -31,7 +31,7 @@
 - (void)_evictVeryOldTiles;
 - (void)evictVeryOldTilesWithGroup:(id)arg1;
 - (void)_invalidateAllTileData;
-- (void)_dropAllTileData;
+- (BOOL)_deleteAndRecreateDB;
 - (void)_setEdition:(unsigned int)arg1 forTileSet:(unsigned int)arg2;
 - (void)_deleteTileSet:(unsigned int)arg1;
 - (void)_invalidateTileSet:(unsigned int)arg1;
@@ -74,6 +74,7 @@
 - (void)_performInTransaction:(CDUnknownBlockType)arg1;
 - (void)_performOnDBQueue:(CDUnknownBlockType)arg1;
 - (BOOL)_setup:(id)arg1;
+- (id)_setupDB:(id)arg1;
 - (void)tearDown;
 - (id)initWithDBFilePath:(id)arg1 manifestManager:(id)arg2 countryConfiguration:(id)arg3 maximumDatabaseSize:(unsigned long long)arg4;
 - (id)initWithDBFilePath:(id)arg1;

@@ -14,6 +14,7 @@
 @interface TUSenderIdentity : NSObject <NSCopying, NSSecureCoding>
 {
     NSUUID *_UUID;
+    NSUUID *_accountUUID;
     TUHandle *_handle;
     NSString *_localizedName;
     NSString *_localizedShortName;
@@ -23,17 +24,17 @@
 @property(readonly, copy, nonatomic) NSString *localizedShortName; // @synthesize localizedShortName=_localizedShortName;
 @property(readonly, copy, nonatomic) NSString *localizedName; // @synthesize localizedName=_localizedName;
 @property(readonly, nonatomic) TUHandle *handle; // @synthesize handle=_handle;
+@property(readonly, nonatomic) NSUUID *accountUUID; // @synthesize accountUUID=_accountUUID;
 @property(readonly, nonatomic) NSUUID *UUID; // @synthesize UUID=_UUID;
 - (void).cxx_destruct;
+- (BOOL)isEqualToSenderIdentity:(id)arg1;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
+- (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (unsigned long long)hash;
-- (BOOL)isEqualToSenderIdentity:(id)arg1;
-- (BOOL)isEqual:(id)arg1;
-- (id)description;
-- (id)initWithUUID:(id)arg1 handle:(id)arg2 localizedName:(id)arg3 localizedShortName:(id)arg4;
-- (id)initWithUUID:(id)arg1 handle:(id)arg2 localizedName:(id)arg3;
+- (id)initWithUUID:(id)arg1 accountUUID:(id)arg2 localizedName:(id)arg3 localizedShortName:(id)arg4 handle:(id)arg5;
 
 @end
 

@@ -6,11 +6,8 @@
 
 #import "PLAgent.h"
 
-@class PLTimer;
-
 @interface PLConfigAgent : PLAgent
 {
-    PLTimer *_timedTrigger;
 }
 
 + (id)entryEventNoneDefinitionPairedDeviceConfig;
@@ -22,8 +19,6 @@
 + (id)accountingGroupDefinitions;
 + (id)railDefinitions;
 + (void)load;
-@property(retain) PLTimer *timedTrigger; // @synthesize timedTrigger=_timedTrigger;
-- (void).cxx_destruct;
 - (unsigned long long)getEnclosureMaterial;
 - (void)logEventNonePairedDeviceConfig;
 - (void)logEventNoneConfig;

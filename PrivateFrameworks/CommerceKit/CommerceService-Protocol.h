@@ -29,6 +29,8 @@
 - (void)setObserverForDownloadQueueWithIdentifier:(NSString *)arg1;
 - (void)addDownloads:(NSArray *)arg1 toQueueWithIdentifier:(NSString *)arg2;
 - (void)downloadsForQueueWithIdentifier:(NSString *)arg1 reply:(void (^)(NSArray *))arg2;
+- (void)unsetDelegateForPurchaseQueueWithIdentifier:(NSString *)arg1;
+- (void)setDelegateForPurchaseQueueWithIdentifier:(NSString *)arg1;
 - (void)unsetObserverForPurchaseQueueWithIdentifier:(NSString *)arg1;
 - (void)setObserverForPurchaseQueueWithIdentifier:(NSString *)arg1;
 - (void)resumePurchaseTransactionWithResumeData:(NSData *)arg1 storeResponse:(CKStoreResponse *)arg2;
@@ -40,7 +42,7 @@
 - (void)ams_secureTokenForAccountWithDSID:(NSNumber *)arg1 storeClientIdentifier:(NSString *)arg2 replyBlock:(void (^)(NSString *))arg3;
 - (void)ams_saveAccount:(ACAccount *)arg1 storeClientIdentifier:(NSString *)arg2 replyBlock:(void (^)(BOOL, NSError *))arg3;
 - (void)ams_processResponse:(NSHTTPURLResponse *)arg1 forRequest:(NSURLRequest *)arg2 storeClient:(NSString *)arg3 replyBlock:(void (^)(BOOL, NSError *))arg4;
-- (void)ams_authenticateAccountWithUsername:(NSString *)arg1 forBundleID:(NSString *)arg2 storeClientIdentifier:(NSString *)arg3 replyBlock:(void (^)(ACAccount *, NSError *))arg4;
+- (void)ams_authenticateAccountWithUsername:(NSString *)arg1 authenticationType:(unsigned long long)arg2 forBundleID:(NSString *)arg3 storeClientIdentifier:(NSString *)arg4 replyBlock:(void (^)(ACAccount *, NSError *))arg5;
 - (void)ams_accountsWithStoreClientIdentifier:(NSString *)arg1 replyBlock:(void (^)(NSArray *))arg2;
 - (void)unsetAccountObserverForClient:(CKStoreClient *)arg1;
 - (void)setAccountObserverForClient:(CKStoreClient *)arg1;
@@ -54,8 +56,6 @@
 - (void)cookieHeaderForStoreRequest:(CKStoreRequest *)arg1 reply:(void (^)(NSString *, NSError *))arg2;
 - (void)URLRequestForStoreRequest:(CKStoreRequest *)arg1 reply:(void (^)(NSURLRequest *, NSError *))arg2;
 - (void)runStoreRequest:(CKStoreRequest *)arg1 reply:(void (^)(BOOL, CKStoreResponse *, NSError *))arg2;
-- (void)unsetRemoteDialogContextForIdentifier:(NSString *)arg1;
-- (void)setRemoteDialogContextForIdentifier:(NSString *)arg1;
 - (void)bagDictionaryForClient:(CKStoreClient *)arg1 reply:(void (^)(NSDictionary *, NSError *))arg2;
 - (void)bagValuesForKeys:(NSArray *)arg1 client:(CKStoreClient *)arg2 reply:(void (^)(NSDictionary *, NSError *))arg3;
 - (void)setStorefront:(NSString *)arg1 forClient:(CKStoreClient *)arg2;

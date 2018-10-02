@@ -275,8 +275,7 @@ struct NSImageView {
         unsigned int :1;
         unsigned int :1;
         unsigned int :1;
-        unsigned int :1;
-        unsigned int :22;
+        unsigned int :23;
         unsigned int :1;
         unsigned int :1;
         unsigned int :1;

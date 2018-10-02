@@ -7,19 +7,25 @@
 #import "NSAccessibilityElement.h"
 
 #import "AXPTranslationElementProtocol.h"
+#import "NSAccessibilityCustomRotorItemSearchDelegate.h"
+#import "NSAccessibilityElement.h"
 
 @class AXPTranslationObject, NSArray, NSMutableDictionary, NSString;
 
-@interface AXPMacPlatformElement : NSAccessibilityElement <AXPTranslationElementProtocol>
+@interface AXPMacPlatformElement : NSAccessibilityElement <NSAccessibilityCustomRotorItemSearchDelegate, AXPTranslationElementProtocol, NSAccessibilityElement>
 {
     NSMutableDictionary *_selectiveCache;
     AXPTranslationObject *translation;
+    CDUnknownBlockType _nsPostEventTestingCallback;
     NSArray *_cachedCustomActions;
+    NSArray *_cachedCustomRotors;
 }
 
 + (void)initialize;
 + (id)platformElementWithTranslationObject:(id)arg1;
+@property(retain, nonatomic) NSArray *cachedCustomRotors; // @synthesize cachedCustomRotors=_cachedCustomRotors;
 @property(retain, nonatomic) NSArray *cachedCustomActions; // @synthesize cachedCustomActions=_cachedCustomActions;
+@property(copy, nonatomic) CDUnknownBlockType nsPostEventTestingCallback; // @synthesize nsPostEventTestingCallback=_nsPostEventTestingCallback;
 @property(retain, nonatomic) AXPTranslationObject *translation; // @synthesize translation;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
@@ -28,17 +34,25 @@
 - (void)accessibilityPerformAction:(id)arg1;
 - (void)performDecrementAction;
 - (void)performIncrementAction;
+- (BOOL)performEscapeAction;
 - (void)performScrollToVisible;
+- (void)_synthesizeMouseClickAtElementCenter;
 - (id)_convertTranslatorResponse:(id)arg1 forAttribute:(unsigned long long)arg2;
+- (id)_convertTranslatorResponseForSubrole:(id)arg1;
 - (id)_convertTranslatorResponseForRole:(id)arg1;
 - (void)_cacheResultSelectively:(id)arg1 attribute:(unsigned long long)arg2;
 - (id)_postProcessResult:(id)arg1 attributeType:(unsigned long long)arg2;
 - (id)_accessibilityProcessAttribute:(id)arg1 parameter:(id)arg2;
 - (id)_accessibilityProcessAttribute:(id)arg1;
 - (id)_accessibilityProcessImmediateAttributeResult:(id)arg1;
+- (id)_accessibilityTranslationRootParent;
 - (id)accessibilityAttributeValue:(id)arg1;
+- (void)setAccessibilityValue:(id)arg1;
+- (id)accessibilityValue;
+- (id)accessibilityTitle;
 - (id)accessibilityParent;
 - (struct CGRect)accessibilityFrame;
+- (struct CGPoint)accessibilityActivationPoint;
 - (id)accessibilityMultipleAttributes:(id)arg1;
 - (id)accessibilityAttributeValue:(id)arg1 forParameter:(id)arg2;
 - (unsigned long long)_attributeTypeForMacAttribute:(id)arg1;
@@ -52,8 +66,14 @@
 - (int)pid;
 - (id)accessibilityActionNames;
 - (id)accessibilityCustomActions;
+- (id)accessibilityCustomRotors;
+- (id)_customRotorData:(id)arg1;
+- (id)rotor:(id)arg1 resultForSearchParameters:(id)arg2;
+- (id)accessibilityParameterizedAttributeNames;
 - (id)accessibilityAttributeNames;
 - (BOOL)accessibilityPerformPress;
+- (BOOL)accessibilityPerformShowMenu;
+- (id)accessibilityRole;
 - (id)role;
 - (id)_cachedRole;
 

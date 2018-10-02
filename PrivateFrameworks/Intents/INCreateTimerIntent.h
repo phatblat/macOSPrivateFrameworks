@@ -28,6 +28,7 @@
 @property(readonly, copy) INSpeakableString *label;
 - (id)initWithLabel:(id)arg1 duration:(double)arg2;
 - (id)_categoryVerb;
+- (long long)_intentCategory;
 - (void)_setMetadata:(id)arg1;
 - (id)_metadata;
 - (id)_typedBackingStore;

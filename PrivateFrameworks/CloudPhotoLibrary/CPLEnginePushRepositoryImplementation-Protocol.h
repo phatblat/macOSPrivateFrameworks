@@ -6,7 +6,7 @@
 
 #import "CPLEngineStorageImplementation.h"
 
-@class CPLExtractedBatch, CPLRecordChange, CPLScopedIdentifier, NSString;
+@class CPLExtractedBatch, CPLRecordChange, CPLScopeFilter, CPLScopedIdentifier, NSString;
 
 @protocol CPLEnginePushRepositoryImplementation <CPLEngineStorageImplementation>
 - (BOOL)isEmpty;
@@ -26,6 +26,7 @@
 - (BOOL)hasSomeChangeWithScopedIdentifier:(CPLScopedIdentifier *)arg1;
 - (BOOL)reinjectChange:(CPLRecordChange *)arg1 dequeueOrder:(long long)arg2 discardedUploadIdentifier:(id *)arg3 overwrittenRecord:(char *)arg4 error:(id *)arg5;
 - (BOOL)storeChange:(CPLRecordChange *)arg1 uploadIdentifier:(NSString *)arg2 discardedUploadIdentifier:(id *)arg3 error:(id *)arg4;
+- (BOOL)hasChangesWithScopeFilter:(CPLScopeFilter *)arg1;
 - (BOOL)hasChangesInScopeWithIdentifier:(NSString *)arg1;
 - (unsigned long long)countOfChangesInScopeWithIdentifier:(NSString *)arg1;
 @end

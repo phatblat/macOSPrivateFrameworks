@@ -9,13 +9,13 @@
 #import "QLPreviewCustomView.h"
 #import "TMarkTornDown.h"
 
-@class FI_TPropertyColumnPreviewLargeIconController, NSString;
+@class FI_TQLMultiPreviewViewImageStackController, NSString;
 
 __attribute__((visibility("hidden")))
 @interface FI_TQLMultiPreviewView : FI_TUpdateLayerView <QLPreviewCustomView, TMarkTornDown>
 {
-    FI_TPropertyColumnPreviewLargeIconController *_iconController;
-    _Bool _iconControllerNeedsRelease;
+    FI_TQLMultiPreviewViewImageStackController *_imageStackController;
+    _Bool _imageStackControllerNeedsRelease;
     struct TNSRef<FI_TQLMultiPreviewItem, void> _previewItem;
     _Bool _isTornDown;
 }
@@ -31,9 +31,10 @@ __attribute__((visibility("hidden")))
 @property(readonly) BOOL isLoaded;
 - (void)flushCachedMultiIcon;
 @property(retain) id <QLPreviewItem> previewItem; // @dynamic previewItem;
-@property(readonly, retain) FI_TPropertyColumnPreviewLargeIconController *iconController; // @dynamic iconController;
+@property(readonly, nonatomic) vector_2129316b nodeToImageList;
+@property(readonly, retain) FI_TQLMultiPreviewViewImageStackController *iconController; // @dynamic iconController;
 - (void)aboutToTearDown;
-- (void)configureThumbnailer:(double)arg1 andScaleFactor:(double)arg2;
+- (void)configureThumbnailer:(const struct TFENode *)arg1 iconSize:(double)arg2 scaleFactor:(double)arg3;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 

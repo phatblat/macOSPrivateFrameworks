@@ -19,6 +19,7 @@
     NSNumber *_payloadUseDLC;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withOnlyMount:(id)arg2 withDenyMount:(id)arg3 withDenyDLC:(id)arg4 withPreferDLC:(id)arg5 withUseDLC:(id)arg6;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

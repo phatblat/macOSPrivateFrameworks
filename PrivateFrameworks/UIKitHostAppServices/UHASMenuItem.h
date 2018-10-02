@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <UIKitHostAppServices/UHASRemoteObject.h>
 
 #import "UHAMenuItemInterface.h"
 
-@class NSString;
+@class NSDictionary, NSObject<OS_dispatch_queue>, NSString;
 
-@interface UHASMenuItem : NSObject <UHAMenuItemInterface>
+@interface UHASMenuItem : UHASRemoteObject <UHAMenuItemInterface>
 {
     BOOL alternate;
     BOOL enabled;
@@ -24,9 +24,15 @@
     unsigned long long targetSearchScopeMask;
     NSString *actionName;
     NSString *hostActionName;
+    long long type;
+    NSDictionary *properties;
+    NSDictionary *validatedProperties;
 }
 
 + (id)separatorItem;
+@property(readonly, nonatomic) NSDictionary *validatedProperties; // @synthesize validatedProperties;
+@property(readonly, nonatomic) NSDictionary *properties; // @synthesize properties;
+@property(nonatomic) long long type; // @synthesize type;
 @property(copy, nonatomic) NSString *hostActionName; // @synthesize hostActionName;
 @property(copy, nonatomic) NSString *actionName; // @synthesize actionName;
 @property(nonatomic) unsigned long long targetSearchScopeMask; // @synthesize targetSearchScopeMask;
@@ -45,6 +51,8 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) unsigned long long rock_invocationFlags;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *rock_invocationQueue;
 @property(readonly) Class superclass;
 
 @end

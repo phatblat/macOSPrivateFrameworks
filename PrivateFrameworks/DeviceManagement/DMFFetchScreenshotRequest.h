@@ -10,6 +10,7 @@
 
 @interface DMFFetchScreenshotRequest : DMFTaskRequest
 {
+    BOOL _usesPixels;
     unsigned long long _maxWidth;
     unsigned long long _maxHeight;
     NSString *_sessionToken;
@@ -18,6 +19,7 @@
 + (BOOL)supportsSecureCoding;
 + (Class)whitelistedClassForResultObject;
 @property(copy, nonatomic) NSString *sessionToken; // @synthesize sessionToken=_sessionToken;
+@property(nonatomic) BOOL usesPixels; // @synthesize usesPixels=_usesPixels;
 @property(nonatomic) unsigned long long maxHeight; // @synthesize maxHeight=_maxHeight;
 @property(nonatomic) unsigned long long maxWidth; // @synthesize maxWidth=_maxWidth;
 - (void).cxx_destruct;

@@ -37,8 +37,7 @@ __attribute__((visibility("hidden")))
 - (void)cleanUpAfterPersistenceSetUpDidSucceed:(BOOL)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)imageForRequestDuringPersistenceSetUp:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)setUpPersistenceAtPath:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (id)initWithIconDatabasePathURL:(id)arg1 persistenceBaseURL:(id)arg2 persistenceName:(id)arg3 preferredIconSize:(struct CGSize)arg4 atScale:(double)arg5 allScales:(id)arg6;
-- (id)initWithPersistenceBaseURL:(id)arg1 persistenceName:(id)arg2 preferredIconSize:(struct CGSize)arg3 atScale:(double)arg4 allScales:(id)arg5 isReadOnly:(BOOL)arg6;
+- (id)initWithIconDatabasePathURL:(id)arg1 persistenceBaseURL:(id)arg2 persistenceName:(id)arg3 preferredIconSize:(struct CGSize)arg4 atScale:(double)arg5 allScales:(id)arg6 shouldCheckIntegrityWhenOpeningDatabaseBlock:(CDUnknownBlockType)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

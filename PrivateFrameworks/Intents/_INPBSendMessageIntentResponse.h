@@ -6,21 +6,18 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSendMessageIntentResponse.h"
 
-@class INCodableAttribute, NSString, _INPBMessage;
+@class NSString, _INPBMessage;
 
-@interface _INPBSendMessageIntentResponse : PBCodable <_INPBSendMessageIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSendMessageIntentResponse : PBCodable <_INPBSendMessageIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBMessage *_sentMessage;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBMessage *sentMessage; // @synthesize sentMessage=_sentMessage;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

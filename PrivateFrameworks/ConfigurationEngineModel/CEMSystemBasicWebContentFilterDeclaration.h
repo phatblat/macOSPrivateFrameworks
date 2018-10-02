@@ -20,6 +20,7 @@
     NSArray *_payloadFilterBlackList;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withRestrictWeb:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withRestrictWeb:(id)arg2 withUseContentFilter:(id)arg3 withWhiteListEnabled:(id)arg4 withSiteWhiteList:(id)arg5 withFilterWhiteList:(id)arg6 withFilterBlackList:(id)arg7;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

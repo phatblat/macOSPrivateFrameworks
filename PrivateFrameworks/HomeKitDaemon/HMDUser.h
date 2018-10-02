@@ -16,6 +16,7 @@
 
 @interface HMDUser : HMFObject <HMFLogging, HMFDumpState, HMDBackingStoreObjectProtocol, HMDHomeMessageReceiver, NSSecureCoding>
 {
+    NSUUID *_uuid;
     BOOL _remoteAccessAllowed;
     NSMutableArray *_relayAccessTokens;
     HMDAccountHandle *_accountHandle;
@@ -28,7 +29,6 @@
     HAPPairingIdentity *_pairingIdentity;
     NSString *_displayName;
     HMDAssistantAccessControl *_assistantAccessControl;
-    NSUUID *_uuid;
     NSObject<OS_dispatch_queue> *_clientQueue;
     NSObject<OS_dispatch_queue> *_propertyQueue;
 }
@@ -51,11 +51,11 @@
 - (id)backingStoreObjects:(long long)arg1;
 - (void)migrateAfterCloudMerge:(CDUnknownBlockType)arg1;
 - (void)migrateCloudZone:(id)arg1 migrationQueue:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)_migrateRelayAccessTokensCloudZone:(id)arg1 migrationQueue:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)_fixupRelayAccessTokens;
 - (void)transactionObjectRemoved:(id)arg1 message:(id)arg2;
 - (void)_transactionUserUpdated:(id)arg1 newValues:(id)arg2 message:(id)arg3;
 - (void)transactionObjectUpdated:(id)arg1 newValues:(id)arg2 message:(id)arg3;
-- (void)updateRelayAccessTokens:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *encodingRemoteDisplayName;
 - (id)initWithCoder:(id)arg1;
@@ -66,14 +66,15 @@
 - (id)publicKey;
 - (id)pairingUsername;
 @property(copy) NSString *userID; // @synthesize userID=_userID;
-- (id)userCopy;
-- (void)removeRelayAccessTokenForAccessory:(id)arg1;
-- (void)addRelayAccessToken:(id)arg1 accessory:(id)arg2;
+- (void)_removeRelayAccessToken:(id)arg1;
 - (void)removeRelayAccessToken:(id)arg1;
+- (void)_addRelayAccessToken:(id)arg1;
 - (void)addRelayAccessToken:(id)arg1;
 - (id)relayAccessTokenForAccessory:(id)arg1;
+- (id)_relayAccessTokenForIdentifier:(id)arg1;
 - (BOOL)containsRelayAccessToken:(id)arg1;
 - (id)relayAccessTokens;
+- (void)updateRelayIdentifier:(id)arg1;
 @property(copy) NSString *relayIdentifier; // @synthesize relayIdentifier=_relayIdentifier;
 - (void)removeAccessoriesFromAssistantAccessControlList:(id)arg1;
 - (void)_handleAssistantAccessControlUpdate:(id)arg1;
@@ -92,6 +93,7 @@
 - (void)__handleAddedAccount:(id)arg1;
 - (BOOL)requiresMakoSupport;
 - (id)account;
+- (void)_handlePairingIdentityRequest:(id)arg1;
 - (void)deregisterIdentity;
 - (void)registerIdentity;
 @property(copy) HAPPairingIdentity *pairingIdentity; // @synthesize pairingIdentity=_pairingIdentity;

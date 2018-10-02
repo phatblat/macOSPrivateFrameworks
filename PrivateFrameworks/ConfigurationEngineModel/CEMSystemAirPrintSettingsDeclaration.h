@@ -18,6 +18,7 @@
     NSNumber *_payloadAllowAirPrintCredentialsStorage;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowAirPrint:(id)arg2 withForceAirPrintTrustedTLSRequirement:(id)arg3 withAllowAirPrintiBeaconDiscovery:(id)arg4 withAllowAirPrintCredentialsStorage:(id)arg5;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

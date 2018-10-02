@@ -16,6 +16,7 @@
     NSString *_payloadReturnStatus;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withEcho:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withEcho:(id)arg2 withReturnStatus:(id)arg3;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

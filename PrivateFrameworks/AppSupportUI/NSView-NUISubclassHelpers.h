@@ -7,8 +7,6 @@
 #import "NSView.h"
 
 @interface NSView (NUISubclassHelpers)
-- (struct CGSize)_nui_systemLayoutSizeFittingSize:(struct CGSize)arg1 withHorizontalFittingPriority:(float)arg2 verticalFittingPriority:(float)arg3;
-- (struct CGSize)_nui_systemLayoutSizeFittingSize:(struct CGSize)arg1;
 - (struct CGSize)calculateLayoutSizeFittingSize:(struct CGSize)arg1;
 - (BOOL)_nui_wantsAutolayout;
 - (void)_didInvalidateIntrinsicContentSize;

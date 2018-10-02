@@ -6,12 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSObject<OS_dispatch_source>, SGQueryPredictions, SGServiceContext, SGSqlEntityStore;
+@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSObject<OS_dispatch_source>, SGServiceContext, SGSqlEntityStore;
 
 @interface SGDManagerForCTS : NSObject
 {
     SGSqlEntityStore *_harvestStore;
-    SGQueryPredictions *_queryPredictions;
     SGServiceContext *_context;
     NSObject<OS_dispatch_queue> *_harvestQueue;
     NSObject<OS_dispatch_queue> *_frontfillQueue;
@@ -31,7 +30,6 @@
 - (void)resumeFrontfillForTesting;
 - (void)suspendFrontfillForTesting;
 - (void)resetLastFrontfillFinishTimeForTesting;
-- (void)setQueryPredictionsForTesting:(id)arg1;
 - (void)waitForXpcActivityQueue;
 - (void)dealloc;
 - (void)_doFrontfillHarvestOnFrontfillQueue;
@@ -66,7 +64,7 @@
 - (struct SGMEventICSSourceType_)accountTypeFor:(id)arg1;
 - (void)_registerForCollectWeeklyStats;
 - (void)registerForCTS;
-- (id)initWithHarvestStore:(id)arg1 queryPredictions:(id)arg2 xpcActivityManager:(id)arg3;
+- (id)initWithHarvestStore:(id)arg1 xpcActivityManager:(id)arg2;
 
 @end
 

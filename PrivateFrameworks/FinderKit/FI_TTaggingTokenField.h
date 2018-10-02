@@ -24,6 +24,7 @@ __attribute__((visibility("hidden")))
     _Bool _ignoreTextChanged;
     unsigned long long _completionLength;
     _Bool _showSuggestionsTableInMenu;
+    _Bool _wasCancelled;
     TNSWeakPtr_a131d41e _showSuggestionsWindowToken;
     _Bool _isFirstResponder;
     struct TKeyValueObserver _tfWindowFirstResponderObserver;
@@ -33,6 +34,7 @@ __attribute__((visibility("hidden")))
     struct TNSRef<NSTouchBar, void> _editTagsTouchBar;
     struct TNSRef<FI_TDFRAddTagsViewController, void> _dfrAddTagsViewController;
     struct TNSRef<NSSet<NSString *>, void> _dfrTagTokens;
+    struct vector<CGSize, std::__1::allocator<CGSize>> _lastFourIntrinsicContentSizes;
 }
 
 + (Class)cellClass;
@@ -40,6 +42,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) struct CGSize maxSize; // @synthesize maxSize=_maxSize;
 @property(nonatomic) struct CGSize minSize; // @synthesize minSize=_minSize;
 @property(nonatomic) unsigned long long completionLength; // @synthesize completionLength=_completionLength;
+@property(readonly, nonatomic) _Bool wasCancelled; // @synthesize wasCancelled=_wasCancelled;
 @property(nonatomic) _Bool inhibitSuggestions; // @synthesize inhibitSuggestions=_inhibitSuggestions;
 @property(nonatomic) _Bool ignoreTextChanged; // @synthesize ignoreTextChanged=_ignoreTextChanged;
 @property(nonatomic) _Bool showSuggestionsTableInMenu; // @synthesize showSuggestionsTableInMenu=_showSuggestionsTableInMenu;

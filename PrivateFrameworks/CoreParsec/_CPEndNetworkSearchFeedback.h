@@ -26,8 +26,6 @@
     _CPNetworkTimingData *_timingData;
 }
 
-+ (id)_networkTimingFromDictionary:(id)arg1;
-+ (id)_timingDataConnectionCountsFromDictionary:(id)arg1;
 @property(retain, nonatomic) _CPNetworkTimingData *timingData; // @synthesize timingData=_timingData;
 @property(copy, nonatomic) NSString *partialClientIp; // @synthesize partialClientIp=_partialClientIp;
 @property(nonatomic) double duration; // @synthesize duration=_duration;

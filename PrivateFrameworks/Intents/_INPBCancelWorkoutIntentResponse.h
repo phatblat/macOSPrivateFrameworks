@@ -6,21 +6,17 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBCancelWorkoutIntentResponse.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBCancelWorkoutIntentResponse : PBCodable <_INPBCancelWorkoutIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBCancelWorkoutIntentResponse : PBCodable <_INPBCancelWorkoutIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
-- (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;

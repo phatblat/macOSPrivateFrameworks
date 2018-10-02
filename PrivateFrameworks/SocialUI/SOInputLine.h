@@ -172,7 +172,7 @@
 - (void)updateDraggingItemsForDrag:(id)arg1;
 - (BOOL)_applyDragAndDropFormatting:(id)arg1;
 - (void)_commonSOInputLineInit;
-- (void)setNeedsDisplay:(BOOL)arg1;
+- (void)setToDefaultAppearance;
 - (void)awakeFromNib;
 - (unsigned long long)validModesForFontPanel:(id)arg1;
 @property(readonly, nonatomic) NSColor *transferBackgroundColor;

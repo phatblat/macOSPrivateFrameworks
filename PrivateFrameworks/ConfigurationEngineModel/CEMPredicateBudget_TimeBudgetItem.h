@@ -14,6 +14,7 @@
     NSArray *_payloadDays;
 }
 
++ (id)buildRequiredOnlyWithSeconds:(id)arg1;
 + (id)buildWithSeconds:(id)arg1 withDays:(id)arg2;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSArray *payloadDays; // @synthesize payloadDays=_payloadDays;

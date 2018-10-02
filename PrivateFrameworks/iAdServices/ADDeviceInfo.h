@@ -32,7 +32,7 @@
 @property(nonatomic) int interfaceIdiom; // @synthesize interfaceIdiom=_interfaceIdiom;
 @property(nonatomic) int orientation; // @synthesize orientation=_orientation;
 @property(nonatomic) _Bool batteryDischarging; // @synthesize batteryDischarging=_batteryDischarging;
-@property(retain, nonatomic) NSArray *keyboards; // @synthesize keyboards=_keyboards;
+@property(copy, nonatomic) NSArray *keyboards; // @synthesize keyboards=_keyboards;
 @property(retain, nonatomic) NSNumber *screenHeight; // @synthesize screenHeight=_screenHeight;
 @property(retain, nonatomic) NSNumber *screenWidth; // @synthesize screenWidth=_screenWidth;
 @property(retain, nonatomic) NSString *buildVersion; // @synthesize buildVersion=_buildVersion;

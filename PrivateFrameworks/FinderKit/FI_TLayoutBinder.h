@@ -53,8 +53,6 @@ __attribute__((visibility("hidden")))
 - (id)topMasterView;
 - (int)topBindingKind;
 - (void)clearBindings;
-- (id)description;
-- (id)kindToString:(int)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
 - (id)initWithSlaveView:(id)arg1;

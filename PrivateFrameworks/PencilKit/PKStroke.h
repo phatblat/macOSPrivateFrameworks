@@ -53,7 +53,7 @@
 - (struct CGPoint)_splineControlPoint:(long long)arg1;
 - (double)endTimestamp;
 - (double)startTimestamp;
-- (id)substrokeWithRange:(struct _NSRange)arg1;
+- (id)_substrokeWithRange:(struct _NSRange)arg1;
 - (void)enumeratePointsWithDistanceStep:(double)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)enumeratePointsWithTimestep:(double)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (struct CGRect)bounds;

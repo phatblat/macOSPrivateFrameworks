@@ -10,6 +10,7 @@
 {
 }
 
++ (id)eventSourceDeviceID;
 + (id)eventStreamName;
 
 @end

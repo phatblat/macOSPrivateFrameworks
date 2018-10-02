@@ -17,8 +17,8 @@ __attribute__((visibility("hidden")))
 
 @property(nonatomic) struct tagVCMediaQueue *mediaQueue; // @synthesize mediaQueue=_mediaQueue;
 - (void)VCTransportStreamUnblock;
-- (int)receivePacket:(CDStruct_bb74c5c4 *)arg1;
-- (int)VCTransportStreamSendPacket:(CDStruct_bb74c5c4 *)arg1;
+- (int)receivePacket:(CDStruct_88f6cd69 *)arg1;
+- (int)VCTransportStreamSendPacket:(CDStruct_88f6cd69 *)arg1;
 - (void)dealloc;
 - (id)initWithTransportSessionID:(unsigned int)arg1 options:(id)arg2;
 

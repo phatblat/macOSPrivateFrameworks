@@ -25,6 +25,8 @@ __attribute__((visibility("hidden")))
     _Bool _isRetargeting;
     struct TKeyValueObserver _activeOptionsObserver;
     struct TKeyValueObserver _filteredDeltaDidChange;
+    struct TriStateBool _wasCollapsedBeforeEditing;
+    struct TKeyValueObserver _editingOptionsObserver;
 }
 
 @property(nonatomic, getter=isMouseInside) _Bool mouseInside; // @synthesize mouseInside=_mouseInside;
@@ -37,10 +39,11 @@ __attribute__((visibility("hidden")))
 - (_Bool)canShowMoreOrLess;
 - (long long)possibleHiddenAttributes;
 - (void)updateExpandButtonState;
-- (void)showSmallThumbnail:(_Bool)arg1;
+- (void)configureForEditing:(_Bool)arg1;
 - (void)refresh;
 - (void)targetNodesChanged;
 - (void)targetNodesChanging;
+- (void)optionsDidChangeEditMode;
 - (void)userSelectedKeysDidChange;
 @property(retain, nonatomic) FI_TPreviewOptions *previewOptions; // @dynamic previewOptions;
 - (void)updateFilters;

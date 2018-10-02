@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBStartAudioCallIntent.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBIntentMetadata;
+@class NSArray, NSString, _INPBIntentMetadata;
 
-@interface _INPBStartAudioCallIntent : PBCodable <_INPBStartAudioCallIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBStartAudioCallIntent : PBCodable <_INPBStartAudioCallIntent, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int audioRoute:1;
@@ -28,12 +27,10 @@
     NSArray *_contacts;
     _INPBIntentMetadata *_intentMetadata;
     NSArray *_targetContacts;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)targetContactsType;
 + (Class)contactType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int ttyType; // @synthesize ttyType=_ttyType;
 @property(copy, nonatomic) NSArray *targetContacts; // @synthesize targetContacts=_targetContacts;
 @property(nonatomic) int preferredCallProvider; // @synthesize preferredCallProvider=_preferredCallProvider;

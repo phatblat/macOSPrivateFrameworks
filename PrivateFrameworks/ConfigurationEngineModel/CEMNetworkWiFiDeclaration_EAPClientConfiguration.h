@@ -33,6 +33,7 @@
     NSNumber *_payloadEAPSIMAKAEncryptedIdentityEnabled;
 }
 
++ (id)buildRequiredOnlyWithAcceptEAPTypes:(id)arg1;
 + (id)buildWithAcceptEAPTypes:(id)arg1 withUserName:(id)arg2 withUserPassword:(id)arg3 withOneTimePassword:(id)arg4 withPayloadCertificateAnchorUUID:(id)arg5 withTLSTrustedCertificates:(id)arg6 withTLSTrustedServerNames:(id)arg7 withTLSAllowTrustExceptions:(id)arg8 withTLSCertificateIsRequired:(id)arg9 withTTLSInnerAuthentication:(id)arg10 withTLSMinimumVersion:(id)arg11 withTLSMaximumVersion:(id)arg12 withOuterIdentity:(id)arg13 withEAPFASTUsePAC:(id)arg14 withEAPFASTProvisionPAC:(id)arg15 withEAPFASTProvisionPACAnonymously:(id)arg16 withEAPSIMNumberOfRANDs:(id)arg17 withSystemModeCredentialsSource:(id)arg18 withSystemModeUseOpenDirectoryCredentials:(id)arg19 withOneTimeUserPassword:(id)arg20 withEAPSIMAKAEncryptedIdentityEnabled:(id)arg21;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadEAPSIMAKAEncryptedIdentityEnabled; // @synthesize payloadEAPSIMAKAEncryptedIdentityEnabled=_payloadEAPSIMAKAEncryptedIdentityEnabled;

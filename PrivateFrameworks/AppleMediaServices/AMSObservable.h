@@ -29,6 +29,7 @@ __attribute__((visibility("hidden")))
 @property(readonly) unsigned long long behavior; // @synthesize behavior=_behavior;
 - (void).cxx_destruct;
 - (BOOL)_isComplete;
+- (void)unsubscribeAll;
 - (void)unsubscribe:(id)arg1;
 - (void)subscribe:(id)arg1;
 - (BOOL)sendResult:(id)arg1;
@@ -42,6 +43,8 @@ __attribute__((visibility("hidden")))
 - (id)initWithObserver:(id)arg1 behavior:(unsigned long long)arg2;
 - (id)initWithObserver:(id)arg1;
 - (id)init;
+- (id)initWithObject:(id)arg1 keyPath:(id)arg2 options:(unsigned long long)arg3;
+- (id)initWithNotification:(id)arg1 object:(id)arg2;
 
 @end
 

@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBHomeEntity.h"
 
-@class INCodableAttribute, NSString, _INPBString;
+@class NSString, _INPBString;
 
-@interface _INPBHomeEntity : PBCodable <_INPBHomeEntity, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBHomeEntity : PBCodable <_INPBHomeEntity, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int deviceType:1;
@@ -22,10 +21,8 @@
     int _deviceType;
     int _entityType;
     _INPBString *_name;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBString *name; // @synthesize name=_name;
 @property(nonatomic) int entityType; // @synthesize entityType=_entityType;
 @property(nonatomic) int deviceType; // @synthesize deviceType=_deviceType;

@@ -17,6 +17,7 @@
     NSNumber *_payloadAllowOroms;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withNewPassword:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withCurrentPassword:(id)arg2 withNewPassword:(id)arg3 withAllowOroms:(id)arg4;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

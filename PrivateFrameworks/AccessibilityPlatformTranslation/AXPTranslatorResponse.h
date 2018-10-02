@@ -14,6 +14,7 @@
 @interface AXPTranslatorResponse : NSObject <NSCopying, NSSecureCoding>
 {
     id <NSObject><NSCopying><NSSecureCoding> _resultData;
+    unsigned long long _attribute;
     unsigned long long _notification;
     AXPTranslationObject *_associatedNotificationObject;
     unsigned long long _error;
@@ -25,6 +26,7 @@
 @property(nonatomic) unsigned long long error; // @synthesize error=_error;
 @property(retain, nonatomic) AXPTranslationObject *associatedNotificationObject; // @synthesize associatedNotificationObject=_associatedNotificationObject;
 @property(nonatomic) unsigned long long notification; // @synthesize notification=_notification;
+@property(nonatomic) unsigned long long attribute; // @synthesize attribute=_attribute;
 @property(retain, nonatomic) id <NSObject><NSCopying><NSSecureCoding> resultData; // @synthesize resultData=_resultData;
 - (void).cxx_destruct;
 - (id)description;

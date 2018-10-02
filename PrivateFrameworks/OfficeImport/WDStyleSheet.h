@@ -11,7 +11,6 @@
 @interface WDStyleSheet : NSObject
 {
     NSMutableDictionary *mStyleDictionary;
-    WDDocument *mDocument;
     WDCharacterProperties *mDefaultCharacterProperties;
     WDParagraphProperties *mDefaultParagraphProperties;
     WDStyle *mDefaultParagraphStyle;
@@ -20,8 +19,10 @@
     WDStyle *mDefaultListStyle;
     NSMutableArray *mStylesInOrder;
     NSMutableDictionary *mIdDictionaryForName;
+    WDDocument *mDocument;
 }
 
+@property(readonly) __weak WDDocument *document; // @synthesize document=mDocument;
 - (void).cxx_destruct;
 - (id)description;
 - (id)allAliasesForStyleId:(id)arg1 name:(id)arg2;
@@ -49,7 +50,6 @@
 - (id)styleWithId:(id)arg1;
 - (unsigned long long)styleCount;
 - (id)styles;
-- (id)document;
 - (id)initWithDocument:(id)arg1;
 - (void)initializeDefaultProperties;
 

@@ -30,22 +30,11 @@ __attribute__((visibility("hidden")))
     struct TNSRef<FI_TDesktopInlinePreviewController, void> _inlinePreviewController;
     _Bool _isUpdateInlinePreviewSuspended;
     struct shared_ptr<TInfoExtractorController> _infoController;
-    struct TNSRef<NSEvent, void> _mouseDownEventForDrag;
-    struct TFENode _nodeClickedOnMouseDown;
-    _Bool _doubleClickOnMouseUp;
-    _Bool _startEditingOnMouseUp;
-    struct CGPoint _initialClickAt;
     struct TNotificationCenterObserver _iconSizeSliderWillChangeObserver;
     struct TNotificationCenterObserver _iconSizeSliderDidChangeObserver;
     struct TNotificationCenterObserver _gridSpacingSliderWillChangeObserver;
     struct TNotificationCenterObserver _gridSpacingSliderDidChangeObserver;
-    struct TKeyValueObserver _selectionIndexPathsObserver;
     struct vector<TKeyValueBinder, std::__1::allocator<TKeyValueBinder>> _viewSettingsBinders;
-    struct TNSRef<FI_TBrowserImmediateActionGestureRecognizerDelegate, void> _immediateActionGestureRecognizerDelegate;
-    struct TNSRef<NSImmediateActionGestureRecognizer, void> _quickLookImmediateActionGestureRecognizer;
-    struct TNSRef<NSImmediateActionGestureRecognizer, void> _renameImmediateActionGestureRecognizer;
-    _Bool _immediateActionGestureRecognizerDidRecognize;
-    _Bool _shouldSkipRename;
 }
 
 @property(nonatomic) _Bool isUpdateLayoutControllerDirty; // @synthesize isUpdateLayoutControllerDirty=_isUpdateLayoutControllerDirty;
@@ -59,7 +48,7 @@ __attribute__((visibility("hidden")))
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)updateICloudBadgeForIconView:(id)arg1 node:(const struct TFENode *)arg2;
-- (void)_setUpImmediateActionGestureRecognizers;
+- (_Bool)inlinePreviewMouseDown:(id)arg1;
 - (void)updateInlinePreviewEnabledState;
 - (void)inlinePreviewIsVisible:(_Bool)arg1 forItem:(id)arg2;
 - (void)inlinePreviewWillLoadForItem:(id)arg1;
@@ -84,13 +73,11 @@ __attribute__((visibility("hidden")))
 - (void)dataSourceItemsDidChange:(const unordered_map_f886f0c5 *)arg1;
 - (long long)insertOrResortIndexOffset;
 - (void)reusingDataSource;
-- (void)performBatchUpdatesCompletionHandler:(const unordered_set_931aff12 *)arg1:(const unordered_map_f8b1458f *)arg2:(_Bool)arg3:(_Bool)arg4:(unsigned long long)arg5;
+- (void)performBatchUpdatesCompletionHandler:(const unordered_set_931aff12 *)arg1:(_Bool)arg2:(const unordered_map_f8b1458f *)arg3:(_Bool)arg4:(_Bool)arg5:(unsigned long long)arg6;
 - (void)configureGroupNodes:(const unordered_set_931aff12 *)arg1 firstPopulation:(_Bool)arg2;
-- (void)dataSourceChanged_insert:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2:(unordered_set_931aff12 *)arg3:(_Bool *)arg4;
-- (void)dataSourceChanged:(const vector_ddb76938 *)arg1;
+- (void)dataSourceChanged_buildInsert:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2:(map_a2752b13 *)arg3:(map_a2752b13 *)arg4;
+- (void)dataSourceChanged:(const vector_274a36ec *)arg1;
 - (_Bool)handleMouseUp:(id)arg1;
-- (_Bool)handleMouseDragged:(id)arg1;
-- (_Bool)handleMouseDown:(id)arg1;
 - (void)updateSpatialDataAfterGridSizeChange:(const struct CGSize *)arg1 oldFirstIconAnchorPoint:(const struct CGPoint *)arg2;
 - (void)getFreeFormLayoutGridSize:(struct CGSize *)arg1 firstIconAnchorPoint:(struct CGPoint *)arg2;
 - (void)setAllowsDraggingFilesIn:(_Bool)arg1;
@@ -98,11 +85,7 @@ __attribute__((visibility("hidden")))
 - (_Bool)receivePrivateDrag:(id)arg1;
 - (unsigned long long)validateDrop:(id)arg1 proposedIndexPath:(id *)arg2 dropOperation:(long long *)arg3 dropTargetNode:(const struct TFENode *)arg4 outDropTargetNodeAcceptsDrop:(_Bool *)arg5;
 - (_Bool)determineSnapToGridStateForDrag;
-- (id)makeCompleteDragImageForNode:(const struct TFENode *)arg1 outOffset:(struct CGSize *)arg2;
-- (id)makeDragImageForNode:(const struct TFENode *)arg1 forTitle:(_Bool)arg2 outFrame:(struct CGRect *)arg3;
 - (id)makeDragImageIconViewForNode:(const struct TFENode *)arg1;
-- (id)dragFlockIconImageForNode:(const struct TFENode *)arg1 atIconSize:(double)arg2 inView:(id)arg3;
-- (id)dragFlockLabelImageForNode:(const struct TFENode *)arg1 outFrame:(struct CGRect *)arg2 inView:(id)arg3;
 - (struct TFENode)nextNodeInViewAfter:(const struct TFENodeVector *)arg1;
 - (void)unbindViewSettings;
 - (void)privateBindSettings;
@@ -150,6 +133,7 @@ __attribute__((visibility("hidden")))
 - (void)saveScrollPosition;
 - (void)restoreBrowserViewState:(id)arg1;
 - (id)browserViewState;
+- (void)selectionIndexPathsChanged:(id)arg1;
 - (void)registerCollectionViewItemClassOrNib;
 - (id)itemIdentifier;
 - (void)reloadIconsInView;

@@ -6,24 +6,21 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBAppNames.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBAppNames : PBCodable <_INPBAppNames, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBAppNames : PBCodable <_INPBAppNames, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSString *_appName;
     NSString *_axSpokenName;
     NSString *_displayName;
     NSString *_spotlightName;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *spotlightName; // @synthesize spotlightName=_spotlightName;
 @property(copy, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 @property(copy, nonatomic) NSString *axSpokenName; // @synthesize axSpokenName=_axSpokenName;

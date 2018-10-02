@@ -9,7 +9,7 @@
 #import "MRNowPlayingClientState.h"
 #import "MRTransactionSourceDelegate.h"
 
-@class MRNowPlayingArtwork, MRNowPlayingPlayerClientCallbacks, MRPlaybackQueuePlayerClient, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, _MRContentItemProtobuf, _MRNowPlayingPlayerPathProtobuf, _MRPlaybackQueueProtobuf;
+@class MRNowPlayingArtwork, MRNowPlayingPlayerClientCallbacks, MRPlaybackQueueSubscriptionController, NSArray, NSDate, NSDictionary, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, _MRContentItemProtobuf, _MRNowPlayingPlayerPathProtobuf, _MRPlaybackQueueProtobuf;
 
 @interface MRNowPlayingPlayerClient : NSObject <MRNowPlayingClientState, MRTransactionSourceDelegate>
 {
@@ -21,6 +21,7 @@
     unsigned int _playbackState;
     double _playbackStateSetToPlayTimestamp;
     unsigned long long _capabilities;
+    NSDate *_lastReceivedCommandDate;
     BOOL _coalescingInvalidations;
     BOOL _coalescingRequests;
     BOOL _triggerInvalidation;
@@ -29,19 +30,19 @@
     NSMutableArray *_transactionSources;
     NSMutableDictionary *_cachedContentItemUpdates;
     _MRNowPlayingPlayerPathProtobuf *_playerPath;
-    MRPlaybackQueuePlayerClient *_playbackQueueClient;
+    MRPlaybackQueueSubscriptionController *_subscriptionController;
     MRNowPlayingPlayerClientCallbacks *_clientCallbacks;
 }
 
 @property(readonly, nonatomic) MRNowPlayingPlayerClientCallbacks *clientCallbacks; // @synthesize clientCallbacks=_clientCallbacks;
-@property(readonly, nonatomic) MRPlaybackQueuePlayerClient *playbackQueueClient; // @synthesize playbackQueueClient=_playbackQueueClient;
+@property(readonly, nonatomic) MRPlaybackQueueSubscriptionController *subscriptionController; // @synthesize subscriptionController=_subscriptionController;
 @property(retain, nonatomic) _MRNowPlayingPlayerPathProtobuf *playerPath; // @synthesize playerPath=_playerPath;
 - (void).cxx_destruct;
 - (id)debugDescription;
 - (id)description;
 - (void)updatePlaybackQueueWithCachedUpdates:(id)arg1 forPendingRequest:(id)arg2;
 - (void)clearCachedContentItemArtworkForItems:(id)arg1;
-- (void)cacheContentItemUpdates:(id)arg1;
+- (void)cacheContentItemChangesForPendingRequests:(id)arg1;
 - (void)startCachingContentItemUpdatesForItem:(id)arg1 forPendingRequest:(id)arg2;
 - (void)addPendingRequest:(id)arg1;
 - (void)transactionDidEnd:(id)arg1;
@@ -50,6 +51,7 @@
 - (void)endSendingTransactions;
 - (void)beginSendingTransactions;
 - (void)restoreNowPlayingClientState;
+@property(readonly, nonatomic) BOOL hasReceivedCommandRecently;
 - (void)preProcessCommand:(unsigned int)arg1 options:(id)arg2;
 - (void)preProcessChangePlaybackRateCommandWithOptions:(id)arg1;
 - (void)updateCacheWithContentItems:(id)arg1;

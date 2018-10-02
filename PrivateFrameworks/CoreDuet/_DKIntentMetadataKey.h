@@ -10,7 +10,7 @@
 {
 }
 
-+ (id)encodedKeyImage;
++ (id)serializedKeyImage;
 + (id)intentHandlingStatus;
 + (id)donatedBySiri;
 + (id)intentVerb;

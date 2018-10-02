@@ -39,7 +39,7 @@
 - (void)resume;
 - (void)suspend;
 @property(readonly, nonatomic) NSString *currentInputModeIdentifier;
-- (id)initWithInputMode:(id)arg1;
+- (id)initWithInputMode:(id)arg1 keyboardState:(id)arg2;
 - (id)init;
 - (id)configurationPropertyList;
 - (void)storeLanguageModelDynamicDataIncludingCache;

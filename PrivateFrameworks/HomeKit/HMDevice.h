@@ -9,20 +9,19 @@
 #import "HMObjectMerge.h"
 #import "NSSecureCoding.h"
 
-@class NSObject<OS_dispatch_queue>, NSString, NSUUID;
+@class HMFUnfairLock, NSString, NSUUID;
 
 @interface HMDevice : NSObject <HMObjectMerge, NSSecureCoding>
 {
+    HMFUnfairLock *_lock;
     BOOL _currentDevice;
     NSUUID *_uniqueIdentifier;
     NSString *_name;
     NSUUID *_idsIdentifier;
     NSUUID *_uuid;
-    NSObject<OS_dispatch_queue> *_propertyQueue;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *propertyQueue; // @synthesize propertyQueue=_propertyQueue;
 @property(readonly, copy, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
 @property(readonly, copy) NSUUID *idsIdentifier; // @synthesize idsIdentifier=_idsIdentifier;
 @property(readonly, getter=isCurrentDevice) BOOL currentDevice; // @synthesize currentDevice=_currentDevice;

@@ -13,6 +13,7 @@
     NSData *_statusUnlockToken;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithUnlockToken:(id)arg1;
 + (id)allowedReasons;
 + (id)allowedStatusKeys;

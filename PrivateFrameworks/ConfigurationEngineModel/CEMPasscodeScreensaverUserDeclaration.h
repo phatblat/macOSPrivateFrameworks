@@ -16,6 +16,7 @@
     NSNumber *_payloadIdleTime;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withModulePath:(id)arg2 withIdleTime:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

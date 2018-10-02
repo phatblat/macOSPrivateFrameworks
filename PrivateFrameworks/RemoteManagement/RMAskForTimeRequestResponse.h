@@ -6,7 +6,7 @@
 
 #import "NSManagedObject.h"
 
-@class NSDate, NSNumber, NSUUID, RMApp, RMCategory, RMUser, RMWebDomain;
+@class NSDate, NSNumber, NSString, NSUUID, RMCoreUser, RMFamilyOrganization;
 
 @interface RMAskForTimeRequestResponse : NSManagedObject
 {
@@ -20,13 +20,14 @@
 @property(retain, nonatomic) NSNumber *amountGranted; // @dynamic amountGranted;
 @property(retain, nonatomic) NSNumber *answer; // @dynamic answer;
 @property(retain, nonatomic) NSDate *expirationDate; // @dynamic expirationDate;
+@property(retain, nonatomic) RMFamilyOrganization *familyOrganization; // @dynamic familyOrganization;
 @property(retain, nonatomic) NSUUID *identifier; // @dynamic identifier;
 @property(retain, nonatomic) NSDate *requestTimeStamp; // @dynamic requestTimeStamp;
-@property(retain, nonatomic) RMApp *requestedApplication; // @dynamic requestedApplication;
-@property(retain, nonatomic) RMCategory *requestedCategory; // @dynamic requestedCategory;
-@property(retain, nonatomic) RMWebDomain *requestedWebDomain; // @dynamic requestedWebDomain;
-@property(retain, nonatomic) RMUser *requestingUser; // @dynamic requestingUser;
-@property(retain, nonatomic) RMUser *respondingUser; // @dynamic respondingUser;
+@property(copy, nonatomic) NSString *requestedApplicationBundleIdentifier; // @dynamic requestedApplicationBundleIdentifier;
+@property(copy, nonatomic) NSString *requestedCategoryIdentifier; // @dynamic requestedCategoryIdentifier;
+@property(copy, nonatomic) NSString *requestedWebDomain; // @dynamic requestedWebDomain;
+@property(retain, nonatomic) RMCoreUser *requestingUser; // @dynamic requestingUser;
+@property(retain, nonatomic) RMCoreUser *respondingUser; // @dynamic respondingUser;
 @property(retain, nonatomic) NSDate *responseTimeStamp; // @dynamic responseTimeStamp;
 @property(retain, nonatomic) NSNumber *timeRequested; // @dynamic timeRequested;
 @property(nonatomic) long long usageType; // @dynamic usageType;

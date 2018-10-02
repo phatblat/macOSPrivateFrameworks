@@ -12,7 +12,7 @@
 - (oneway void)actOnUserInitiatedSystemShutDown:(unsigned int)arg1 callback:(void (^)(void))arg2;
 - (oneway void)updateBackgroundTagReading:(unsigned int)arg1 callback:(void (^)(NSError *, unsigned int))arg2;
 - (oneway void)disableHeadlessMiniNV:(void (^)(NSError *))arg1;
-- (oneway void)headlessFactoryMode:(void (^)(NSError *, BOOL))arg1;
+- (oneway void)headlessFactoryMode:(void (^)(NSError *, unsigned int))arg1;
 - (oneway void)configureHeadlessFactoryMode:(BOOL)arg1 callback:(void (^)(NSError *))arg2;
 - (oneway void)areNFFeaturesSupported:(unsigned long long)arg1 callback:(void (^)(NSError *))arg2;
 - (oneway void)pushSignedRF:(NSData *)arg1 callback:(void (^)(NSError *))arg2;

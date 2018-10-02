@@ -9,7 +9,7 @@
 #import "NSToolbarDelegate.h"
 #import "RolloverTrackingButtonDelegate.h"
 
-@class BrowserToolbarItem, ButtonPlus, CloudTabStore, NSSegmentedControl, NSString, NSToolbarItem, NSWindow, SafariAppExtensionsController, ToolbarDownloadsButton, UnifiedField, VisualTabPickerToolbarButton;
+@class BrowserToolbarItem, ButtonPlus, CloudTabStore, NSSegmentedControl, NSString, NSToolbarItem, NSWindow, SafariAppExtensionsController, ToolbarDownloadsButton, UnifiedField, UnifiedFieldBezelView, UnifiedFieldContainerView, VisualTabPickerToolbarButton;
 
 __attribute__((visibility("hidden")))
 @interface ToolbarController : NSObject <NSToolbarDelegate, RolloverTrackingButtonDelegate>
@@ -35,6 +35,10 @@ __attribute__((visibility("hidden")))
     BrowserToolbarItem *_unifiedFieldContainerCustomizeItem;
     BrowserToolbarItem *_textSizeCustomizeItem;
     ToolbarDownloadsButton *_showDownloadsButton;
+    UnifiedFieldBezelView *_unifiedFieldBezelView;
+    UnifiedFieldContainerView *_unifiedFieldContainerView;
+    UnifiedFieldBezelView *_unifiedCustomizeFieldBezelView;
+    UnifiedFieldContainerView *_unifiedCustomizeFieldContainerView;
     BOOL _validatingExtensionToolbarItemsSoon;
     BOOL _windowDidClose;
     BOOL _addCloudTabsButtonIfAppropriateHasBeenCalled;
@@ -90,6 +94,8 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) ButtonPlus *sidebarButton; // @synthesize sidebarButton=_sidebarButton;
 @property(readonly, nonatomic) ToolbarDownloadsButton *showDownloadsButton;
 - (id)_createUnifiedField;
+- (id)_unifiedCustomizeFieldContainerView;
+- (id)_unifiedFieldContainerView;
 @property(readonly, nonatomic) UnifiedField *unifiedCustomizeField; // @synthesize unifiedCustomizeField=_unifiedCustomizeField;
 @property(readonly, nonatomic) UnifiedField *unifiedField; // @synthesize unifiedField=_unifiedField;
 - (id)_toolbarItemForTabPicker:(BOOL)arg1;

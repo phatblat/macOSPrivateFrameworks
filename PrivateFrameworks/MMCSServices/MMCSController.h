@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary, NSTimer;
+@class NSMutableDictionary, NSRecursiveLock, NSTimer;
 
 @interface MMCSController : NSObject
 {
@@ -22,9 +22,11 @@
     NSMutableDictionary *_transferToRequestIDsMap;
     NSMutableDictionary *_transfers;
     NSMutableDictionary *_transferIDToContextMap;
+    NSRecursiveLock *_transferIDContextMapLock;
 }
 
 + (void)preMMCSWarm:(id)arg1;
+@property(retain) NSRecursiveLock *transferIDContextMapLock; // @synthesize transferIDContextMapLock=_transferIDContextMapLock;
 @property(readonly) NSMutableDictionary *transferIDToContextMap; // @synthesize transferIDToContextMap=_transferIDToContextMap;
 @property(readonly) NSMutableDictionary *transfers; // @synthesize transfers=_transfers;
 @property long long connectionBehavior; // @synthesize connectionBehavior=_connectionBehavior;
@@ -62,6 +64,8 @@
 - (void)dealloc;
 - (void)_registerPowerAssertionIfNeeded;
 - (void)_unregisterPowerAssertion;
+- (void)_schedulePowerAssertionTimer;
+- (void)_invalidatePowerAssertionTimer;
 - (void)_releasePowerAssertion;
 - (void)_releasePowerAssertionAndSimulateCrash;
 - (id)init;

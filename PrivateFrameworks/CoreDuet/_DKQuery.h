@@ -34,6 +34,7 @@
 + (id)predicateForObjectsWithStructuredMetadataKey:(id)arg1 andValue:(id)arg2;
 + (id)predicateForObjectsWithMetadataKey:(id)arg1;
 + (id)structuredMetadataKeyPathForMetadataKey:(id)arg1;
++ (id)predicateForEventsWithStringValueInValues:(id)arg1;
 + (id)predicateForEventsWithStringValue:(id)arg1;
 + (id)predicateForEventsWithDoubleValueBetween:(double)arg1 and:(double)arg2;
 + (id)predicateForEventsWithDoubleValue:(double)arg1;
@@ -46,6 +47,9 @@
 + (id)predicateForEventsWithStreamName:(id)arg1;
 + (id)predicateForEventsWithCreationInDateRangeFromAfter:(id)arg1 to:(id)arg2;
 + (id)predicateForEventsWithCreationInDateRangeFrom:(id)arg1 toBefore:(id)arg2;
++ (id)localCreationDateSortDescriptorAscending:(BOOL)arg1;
++ (id)predicateForEventsWithLocalCreationInDateRangeFromAfter:(id)arg1 to:(id)arg2;
++ (id)predicateForEventsWithLocalCreationInDateRangeFrom:(id)arg1 toBefore:(id)arg2;
 + (id)predicateForEventsWithMinumumDuration:(double)arg1;
 + (id)predicateForEventsBetweenStartSecondOfDay:(unsigned long long)arg1 endSecondOfDay:(unsigned long long)arg2;
 + (id)predicateForEventsWithDayOfWeek:(unsigned long long)arg1;
@@ -60,6 +64,10 @@
 + (id)predicateForEventsBetweenStartDate:(id)arg1 endDate:(id)arg2;
 + (id)predicateForObjectsWithUUIDs:(id)arg1;
 + (id)predicateForObjectWithUUID:(id)arg1;
++ (id)predicateForSpotlightEventsWithBundleID:(id)arg1 sinceDate:(id)arg2;
++ (id)predicateForSpotlightEventsWithItemIdentifiers:(id)arg1 bundleID:(id)arg2;
++ (id)predicateForSpotlightEventsWithDomainIdentifiers:(id)arg1 bundleID:(id)arg2;
++ (id)predicateForSpotlightEventsWithBundleID:(id)arg1;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

@@ -95,6 +95,8 @@
 - (BOOL)isDescendantOfKindOfClass:(Class)arg1;
 - (BOOL)elementRepresentsElement:(id)arg1;
 - (id)elementsForRepresents;
+- (id)descendantClosestToBounds:(struct CGRect)arg1;
+- (id)childClosestToBounds:(struct CGRect)arg1;
 - (BOOL)elementContainsUIElement:(id)arg1;
 - (BOOL)elementContainsElement:(id)arg1;
 - (BOOL)isDescendantOfElement:(id)arg1;
@@ -106,6 +108,7 @@
 - (id)ancestorOfKindOfClass:(Class)arg1;
 - (id)ancestorConformsToProtocol:(id)arg1;
 - (id)_ancestorMatchStartElement:(id)arg1 matchBlock:(CDUnknownBlockType)arg2;
+- (BOOL)_startReadToEndWithOutputRequest:(id)arg1;
 - (void)addContentToRequest:(id)arg1 visibleOnly:(BOOL)arg2;
 - (BOOL)handleWordWillBeSpokenCallbackForEvent:(id)arg1 request:(id)arg2;
 - (BOOL)handleReadValueChangeCallbackForEvent:(id)arg1 request:(id)arg2;
@@ -140,6 +143,7 @@
 - (id)fullDescription;
 - (id)shortDescription;
 - (id)description;
+- (id)_defaultLocalizedStringForCommandKey:(id)arg1;
 - (id)stringForCommand:(id)arg1 withExtension:(id)arg2;
 - (id)disabledForCommand:(id)arg1;
 - (id)failureForCommand:(id)arg1;
@@ -339,6 +343,7 @@
 - (id)language;
 - (id)titleElementFromUIElement:(id)arg1;
 - (void)_setTitleUIElementRecursionStopper:(id)arg1;
+@property(readonly, nonatomic) BOOL startsMediaSession;
 - (id)overlappingSiblings;
 - (unsigned long long)uiChildrenCount;
 - (id)uiChildrenElements;
@@ -931,6 +936,8 @@
 - (BOOL)canHandleTitleChange;
 - (BOOL)listenForValueChangeWithoutKeyboardFocus;
 - (BOOL)canHandleValueChange;
+- (void)clearAlternateUIIfDisplayed;
+- (void)setAlternateUITriggerElement:(id)arg1;
 - (BOOL)toggleExpandedWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)toggleDisclosureTriangleWithRequest:(id)arg1;
 - (int)transientState;
@@ -951,8 +958,9 @@
 - (void)_performClickAsynchronouslyWithFeedback:(unsigned long long)arg1 isEnabled:(BOOL)arg2;
 - (BOOL)performDefaultActionWithRequest:(id)arg1 allowClick:(BOOL)arg2 feedbackType:(unsigned long long)arg3;
 - (BOOL)performDefaultActionWithRequest:(id)arg1 allowClick:(BOOL)arg2;
+- (BOOL)_rightClickOnElement;
 - (BOOL)doubleClickOnElement;
-- (BOOL)_clickOnElement:(unsigned int)arg1;
+- (BOOL)_clickOnElementWithButton:(int)arg1 clickCount:(unsigned int)arg2;
 - (BOOL)clickOnElement;
 - (void)handleInteractionOutput:(id)arg1 forCommand:(id)arg2 withStatus:(BOOL)arg3;
 - (BOOL)handleDirectInteractionWithEvent:(id)arg1 request:(id)arg2;
@@ -1085,9 +1093,18 @@
 - (BOOL)isMenuBarItem;
 - (BOOL)canActAsObserverTarget;
 - (BOOL)isPopover;
-@property(readonly, nonatomic) BOOL isVisibleiOSElement;
+@property(readonly, nonatomic) BOOL isiOSOpaqueElementProviderGroup;
+- (id)moveiOSFocusToPreviousOpaqueChildElement;
+- (id)moveiOSFocusToNextOpaqueChildElement;
+- (id)lastContainedElement;
+- (id)firstContainedElement;
+- (id)focusedOpaqueElementDescendant;
+- (id)opaqueElementProviderAncestor;
+@property(readonly, copy, nonatomic) NSString *equivalenceTag;
+@property(nonatomic, getter=isAssistiveTechnologyFocused) BOOL assistiveTechnologyFocused;
+@property(readonly, nonatomic) BOOL isiOSVisible;
 @property(readonly, nonatomic) BOOL isiOSElement;
-- (BOOL)isIOSContentGroup;
+- (BOOL)isiOSContentGroup;
 - (id)deepestPotentialChild;
 - (BOOL)isScrollArea;
 - (id)scanElementForMarkerSearch;

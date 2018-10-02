@@ -15,6 +15,7 @@
     NSString *_payloadDefaultBehavior;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withDefaultBehavior:(id)arg2;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

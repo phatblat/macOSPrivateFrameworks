@@ -39,6 +39,7 @@ __attribute__((visibility("hidden")))
 @property(readonly) unsigned short relayChannelNumber;
 @property(readonly) BOOL isReplaceOnly;
 @property(readonly) BOOL isUpgraded;
+@property(readonly) BOOL serverIsDegraded;
 @property(readonly) BOOL isVPN;
 @property(readonly) int connectionId;
 @property(readonly) BOOL isRelay;

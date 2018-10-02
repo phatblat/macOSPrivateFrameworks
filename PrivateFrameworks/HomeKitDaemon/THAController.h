@@ -10,10 +10,7 @@
 
 @interface THAController : NSObject
 {
-    struct __IOHIDEventSystemClient *_hidSystemClient;
-    unsigned long long _lastTimestampDelta;
-    unsigned long long _lastServerTimestamp;
-    unsigned long long _resetTimestampDelta;
+    BOOL _supportsSiri;
     BOOL _reachable;
     BOOL _selected;
     unsigned int _identifier;
@@ -22,18 +19,18 @@
     NSSet *_selectedButtons;
 }
 
-+ (id)selectButtonConfiguration:(id)arg1;
++ (id)selectButtonConfiguration:(id)arg1 supportsSiri:(BOOL)arg2;
 @property(retain, nonatomic) NSSet *selectedButtons; // @synthesize selectedButtons=_selectedButtons;
 @property(nonatomic) BOOL selected; // @synthesize selected=_selected;
 @property(nonatomic) BOOL reachable; // @synthesize reachable=_reachable;
+@property(nonatomic) BOOL supportsSiri; // @synthesize supportsSiri=_supportsSiri;
 @property(nonatomic) unsigned long long ticksPerSecond; // @synthesize ticksPerSecond=_ticksPerSecond;
-@property(nonatomic) unsigned int identifier; // @synthesize identifier=_identifier;
+@property(readonly, nonatomic) unsigned int identifier; // @synthesize identifier=_identifier;
 @property(retain, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
-- (void)_remoteConnectedWithOld:(BOOL)arg1;
-- (void)dispatchButtonEvent:(id)arg1;
+- (BOOL)dispatchButtonEvent:(id)arg1;
 - (void)updateSelectedButtons:(id)arg1;
-- (id)initWithName:(id)arg1 identifier:(unsigned int)arg2 ticksPerSecond:(unsigned long long)arg3 supportedButtons:(id)arg4;
+- (id)initWithName:(id)arg1 identifier:(unsigned int)arg2 ticksPerSecond:(unsigned long long)arg3 supportedButtons:(id)arg4 supportsSiri:(BOOL)arg5;
 
 @end
 

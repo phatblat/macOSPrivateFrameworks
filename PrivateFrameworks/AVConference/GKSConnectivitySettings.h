@@ -24,9 +24,10 @@
 + (int)getLongTermHistoryLength;
 + (int)getShortTermHistoryLength;
 + (int)getAdaptiveLearningState;
++ (int)getNewSessionJoiningInterval;
++ (int)getDecryptionTimeoutInterval;
 + (int)getRateControllerType;
 + (BOOL)supportiRATRecommendation;
-+ (BOOL)isRedStateA;
 + (BOOL)supportsRedAudio;
 + (BOOL)supportsEVSCodec;
 + (BOOL)supportsHEVCEncoding;

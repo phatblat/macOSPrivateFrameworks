@@ -143,6 +143,7 @@
 - (BOOL)ejectWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (BOOL)mountWithOptions:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (BOOL)mountWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (BOOL)unmountWithOptions:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (BOOL)unmountWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (BOOL)enableJournalingWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (BOOL)enablePermissionsWithCompletionBlock:(CDUnknownBlockType)arg1;

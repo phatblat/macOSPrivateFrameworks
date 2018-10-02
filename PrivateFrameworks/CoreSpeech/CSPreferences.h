@@ -14,6 +14,7 @@
 + (id)deviceCategoryStringRepresentationForCategoryType:(unsigned long long)arg1;
 + (BOOL)isCurrentDeviceCompatibleWithVoiceProfileAt:(id)arg1;
 + (id)sharedPreferences;
+- (BOOL)useSiriActivationSPIForHomePod;
 - (unsigned long long)maxNumLoggingFiles;
 - (double)audioSessionActivationDelay;
 - (BOOL)smartSiriVolumeSoftVolumeEnabled;
@@ -34,6 +35,8 @@
 - (id)getUserVoiceProfileUpdateDirectory;
 - (BOOL)_isDirectory:(id)arg1;
 - (void)notifyUserVoiceProfileUploadComplete;
+- (BOOL)_encryptPHSMigratedFileAt:(id)arg1 andSaveTo:(id)arg2 error:(id *)arg3;
+- (BOOL)_decryptFileForPHSMigrationAt:(id)arg1 andSaveTo:(id)arg2 error:(id *)arg3;
 - (id)getUserVoiceProfileUploadPathWithEnrolledLanguageList:(id *)arg1;
 - (id)getUserVoiceProfileUploadPath;
 - (id)getUserVoiceProfileFileList;

@@ -8,18 +8,19 @@
 
 #import "CEMRegisteredTypeProtocol.h"
 
-@class NSNumber, NSString;
+@class NSString;
 
 @interface CEMPredicateOneTime : CEMPredicateBase <CEMRegisteredTypeProtocol>
 {
-    NSNumber *_payloadSeconds;
+    NSString *_payloadDateTime;
 }
 
-+ (id)buildWithSeconds:(id)arg1;
++ (id)buildRequiredOnlyWithDateTime:(id)arg1;
++ (id)buildWithDateTime:(id)arg1;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;
 + (id)registeredClassName;
-@property(copy, nonatomic) NSNumber *payloadSeconds; // @synthesize payloadSeconds=_payloadSeconds;
+@property(copy, nonatomic) NSString *payloadDateTime; // @synthesize payloadDateTime=_payloadDateTime;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)serializePayloadWithAssetProviders:(id)arg1;

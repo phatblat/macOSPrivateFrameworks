@@ -13,6 +13,7 @@
     NSArray *_payloadTunnelConfigurations;
 }
 
++ (id)buildRequiredOnlyWithTunnelConfigurations:(id)arg1;
 + (id)buildWithTunnelConfigurations:(id)arg1;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSArray *payloadTunnelConfigurations; // @synthesize payloadTunnelConfigurations=_payloadTunnelConfigurations;

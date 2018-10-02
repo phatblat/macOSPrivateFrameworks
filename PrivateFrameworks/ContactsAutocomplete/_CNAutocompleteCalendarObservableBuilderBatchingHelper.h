@@ -18,9 +18,10 @@
 @property(retain, nonatomic) _CNAutocompleteObservableBuilderBatchingHelper *helper; // @synthesize helper=_helper;
 - (void).cxx_destruct;
 - (BOOL)batchAtIndexIncludesServer:(unsigned long long)arg1;
-- (void)addDirectoryCacheMissObservable:(id)arg1;
 - (void)addCalendarServerObservable:(id)arg1;
+- (void)addCachedCalendarServerObservable:(id)arg1;
 - (void)addDirectoryServerObservable:(id)arg1;
+- (void)addCachedDirectoryServerObservable:(id)arg1;
 - (void)addSupplementalObservable:(id)arg1;
 - (void)addDuetObservable:(id)arg1;
 - (void)addSuggestionsObservable:(id)arg1;

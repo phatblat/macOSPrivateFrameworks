@@ -17,6 +17,7 @@
     NSString *_statusOrganizationMagic;
 }
 
++ (id)buildRequiredOnlyWithOrganizationName:(id)arg1;
 + (id)buildWithOrganizationName:(id)arg1 withOrganizationAddress:(id)arg2 withOrganizationPhone:(id)arg3 withOrganizationEmail:(id)arg4 withOrganizationMagic:(id)arg5;
 + (id)allowedStatusKeys;
 @property(copy, nonatomic) NSString *statusOrganizationMagic; // @synthesize statusOrganizationMagic=_statusOrganizationMagic;

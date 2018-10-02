@@ -9,7 +9,7 @@
 #import "NSRemoteViewMarshal.h"
 #import "NSVBRedactedProtocol.h"
 
-@class CALayerHost, NSAccessibilityRemoteUIElement, NSArray, NSCFRunLoopSemaphore, NSColor, NSData, NSDictionary, NSFakeServiceResponder, NSMutableArray, NSMutableSet, NSProxy<NSXPCProxyCreating>, NSRemoteView, NSSet, NSString, NSTrackingArea, NSVBAccessoryWindow, NSViewBridge, NSViewRemoteBridge, NSXPCConnection, NSXPCInterface, NSXPCListenerEndpoint;
+@class CALayerHost, NSAccessibilityRemoteUIElement, NSAppearance, NSArray, NSCFRunLoopSemaphore, NSColor, NSData, NSDictionary, NSFakeServiceResponder, NSMutableArray, NSMutableSet, NSProxy<NSXPCProxyCreating>, NSRemoteView, NSSet, NSString, NSTrackingArea, NSVBAccessoryWindow, NSViewBridge, NSViewRemoteBridge, NSXPCConnection, NSXPCInterface, NSXPCListenerEndpoint;
 
 __attribute__((visibility("hidden")))
 @interface NSRemoteViewMarshal : NSObject <NSRemoteViewMarshal, NSVBRedactedProtocol>
@@ -28,6 +28,7 @@ __attribute__((visibility("hidden")))
     id _hostWindowLocalEventMonitor;
     id _processNotificationEventMonitor;
     NSAccessibilityRemoteUIElement *_accessoryViewAccessibilityParent;
+    NSMutableArray *_legacyAdvanceToConfigPhaseSemaphores;
     NSColor *_serviceWindowBackgroundColor;
     NSData *_mostRecentlyReportedAccessibilityParentToken;
     NSDictionary *_remoteAccessibilityChildren;
@@ -52,17 +53,17 @@ __attribute__((visibility("hidden")))
     struct CGSize _windowContentMaxSize;
     struct CGSize _windowContentMinSize;
     NSString *_identifier;
-    NSString *_mostRecentlySentAppearanceName;
+    NSAppearance *_mostRecentlySentAppearance;
     NSString *_serviceName;
     NSString *_serviceSubclassIdentifier;
     NSString *_serviceSubclassName;
     NSTrackingArea *_trackingArea;
-    unsigned long long _serviceWindowStyleMask;
     unsigned long long _wrappedModifySubviewsInProgress;
     NSVBAccessoryWindow *_accessoryWindow;
     unsigned char _bridgePhase;
     NSViewRemoteBridge *_bridge;
     unsigned char _windowBase;
+    unsigned long long _serviceWindowStyleMask;
     long long _serviceWindowLevelAtBootstrap;
     NSXPCConnection *_auxiliaryServiceConnection;
     NSXPCConnection *_serviceMarshalConnection;
@@ -141,7 +142,7 @@ __attribute__((visibility("hidden")))
 - (void)registerBridgeKey:(id)arg1 defaultObject:(id)arg2 owner:(unsigned char)arg3 withReply:(CDUnknownBlockType)arg4;
 - (void)setRemoteObject:(id)arg1 forKey:(id)arg2 withReply:(CDUnknownBlockType)arg3;
 - (void)exceptionSafeSetRemoteObject:(id)arg1 forKey:(id)arg2 withReply:(CDUnknownBlockType)arg3;
-- (void)serviceViewReceivedLeftMouseDown;
+- (void)serviceViewReceivedLeftMouseDown:(long long)arg1;
 - (void)serviceWindowReceivedScrollWheel:(id)arg1 eventOwner:(unsigned int)arg2;
 - (void)serviceWindowWouldActivate;
 - (void)updateContentMinSize:(struct CGSize)arg1 maxSize:(struct CGSize)arg2;

@@ -9,13 +9,13 @@
 @interface STYWakeDetectorDebugInfo : NSObject
 {
     unsigned long long _lastWakeTime;
-    double _physicalWakeAdjustment;
+    unsigned long long _physicalWakeAdjustment;
     unsigned long long _lastHIDWakeEvent;
     CDStruct_e0bc66f8 _state;
 }
 
 @property(nonatomic) unsigned long long lastHIDWakeEvent; // @synthesize lastHIDWakeEvent=_lastHIDWakeEvent;
-@property(nonatomic) double physicalWakeAdjustment; // @synthesize physicalWakeAdjustment=_physicalWakeAdjustment;
+@property(nonatomic) unsigned long long physicalWakeAdjustment; // @synthesize physicalWakeAdjustment=_physicalWakeAdjustment;
 @property(nonatomic) unsigned long long lastWakeTime; // @synthesize lastWakeTime=_lastWakeTime;
 @property(nonatomic) CDStruct_e0bc66f8 state; // @synthesize state=_state;
 - (void)logDebugInfoInSignpost;

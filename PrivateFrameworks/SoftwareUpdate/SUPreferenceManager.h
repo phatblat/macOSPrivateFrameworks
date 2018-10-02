@@ -41,6 +41,7 @@
 - (BOOL)setCatalogURL:(id)arg1;
 - (BOOL)setCatalogToProductionAndNotify;
 @property(readonly) BOOL allowSameOrOlderMajorOSVersion;
+@property(readonly) BOOL isLastScanResultSuccess;
 @property(readonly) long long lastScanResultCode;
 @property(readonly) NSString *baseSystemDiskImageOverridePath;
 @property(readonly) BOOL onlyConsiderStagedUpdates;

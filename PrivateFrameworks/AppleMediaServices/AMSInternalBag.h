@@ -6,13 +6,15 @@
 
 #import "NSObject.h"
 
+#import "AMSDeviceOfferBagContract.h"
+#import "AMSLookupBagContract.h"
 #import "AMSMescalBagContract.h"
 #import "AMSMetricsBagContract.h"
 
 @class AMSBag, AMSBagValue, NSString;
 
 __attribute__((visibility("hidden")))
-@interface AMSInternalBag : NSObject <AMSMetricsBagContract, AMSMescalBagContract>
+@interface AMSInternalBag : NSObject <AMSDeviceOfferBagContract, AMSMetricsBagContract, AMSMescalBagContract, AMSLookupBagContract>
 {
     AMSBag *_bag;
 }
@@ -21,29 +23,37 @@ __attribute__((visibility("hidden")))
 @property(retain) AMSBag *bag; // @synthesize bag=_bag;
 - (void).cxx_destruct;
 @property(readonly) AMSBagValue *trustedDomains;
+@property(readonly) AMSBagValue *TFOSamplingSessionDuration;
+@property(readonly) AMSBagValue *TFOSamplingPercentage;
+@property(readonly) AMSBagValue *TLSSamplingSessionDuration;
+@property(readonly) AMSBagValue *TLSSamplingPercentage;
+@property(readonly) AMSBagValue *storefrontSuffix;
+@property(readonly) id <AMSMetricsBagContract> metricsContract;
 @property(readonly) id <AMSMescalBagContract> mescalContract;
+@property(readonly) AMSBagValue *guidSchemes;
+@property(readonly) AMSBagValue *guidRegexes;
+@property(readonly) AMSBagValue *apsAllowedProductTypes;
+@property(readonly) AMSBagValue *apsSamplingPercent;
+@property(readonly) AMSBagValue *apsEnabledPatterns;
 @property(readonly) AMSBagValue *mescalSignSapResponses;
 @property(readonly) AMSBagValue *mescalSignSapRequests;
 @property(readonly) AMSBagValue *mescalSignedActions;
 @property(readonly) AMSBagValue *mescalSetupURL;
 @property(readonly) AMSBagValue *mescalCertificateURL;
 @property(readonly) AMSBagValue *metricsURL;
+@property(readonly) AMSBagValue *metricsDictionary;
+@property(readonly) AMSBagValue *unpersonalizedLookupURL;
+@property(readonly) AMSBagValue *iCloudDeviceOfferDeepLink;
+@property(readonly) AMSBagValue *appleMusicDeviceOfferDeepLink;
 - (id)init;
 
 // Remaining properties
-@property(readonly) AMSBagValue *apsAllowedProductTypes;
-@property(readonly) AMSBagValue *apsEnabledPatterns;
-@property(readonly) AMSBagValue *apsSamplingPercent;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(readonly) AMSBagValue *guidRegexes;
-@property(readonly) AMSBagValue *guidSchemes;
 @property(readonly) unsigned long long hash;
 @property(readonly) AMSBagValue *mescalPrimingURL;
-@property(readonly) id <AMSMetricsBagContract> metricsContract;
-@property(readonly) AMSBagValue *metricsDictionary;
 @property(readonly) AMSBagValue *metricsUrl;
-@property(readonly) AMSBagValue *storefrontSuffix;
+@property(readonly) AMSBagValue *personalizedLookupURL;
 @property(readonly) Class superclass;
 
 @end

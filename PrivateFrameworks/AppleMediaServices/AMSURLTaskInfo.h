@@ -6,17 +6,18 @@
 
 #import "NSObject.h"
 
-@class AMSURLAction, AMSURLRequestProperties, NSError, NSMutableData, NSURLResponse, NSURLSessionTask, NSURLSessionTaskMetrics;
+@class AMSURLAction, AMSURLRequestProperties, NSError, NSMutableData, NSURLResponse, NSURLSession, NSURLSessionTask, NSURLSessionTaskMetrics;
 
 __attribute__((visibility("hidden")))
 @interface AMSURLTaskInfo : NSObject
 {
-    AMSURLAction *_receivedAction;
     NSMutableData *_data;
     NSError *_error;
     NSURLSessionTaskMetrics *_metrics;
     AMSURLRequestProperties *_properties;
+    AMSURLAction *_receivedAction;
     NSURLResponse *_response;
+    NSURLSession *_session;
     NSURLSessionTask *_task;
     CDUnknownBlockType _completionBlock;
 }
@@ -28,12 +29,13 @@ __attribute__((visibility("hidden")))
 + (id)taskInfoForTask:(id)arg1;
 @property(copy) CDUnknownBlockType completionBlock; // @synthesize completionBlock=_completionBlock;
 @property(retain) NSURLSessionTask *task; // @synthesize task=_task;
+@property __weak NSURLSession *session; // @synthesize session=_session;
 @property(retain) NSURLResponse *response; // @synthesize response=_response;
+@property(retain) AMSURLAction *receivedAction; // @synthesize receivedAction=_receivedAction;
 @property(retain) AMSURLRequestProperties *properties; // @synthesize properties=_properties;
 @property(retain) NSURLSessionTaskMetrics *metrics; // @synthesize metrics=_metrics;
 @property(retain) NSError *error; // @synthesize error=_error;
 @property(retain) NSMutableData *data; // @synthesize data=_data;
-@property(retain) AMSURLAction *receivedAction; // @synthesize receivedAction=_receivedAction;
 - (void).cxx_destruct;
 - (id)initWithTask:(id)arg1;
 

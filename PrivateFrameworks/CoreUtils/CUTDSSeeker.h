@@ -12,6 +12,7 @@
 {
     BOOL _invalidateCalled;
     struct LogCategory *_ucat;
+    BOOL _directedOnly;
     BOOL _passive;
     int _dataLinkType;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
@@ -35,6 +36,7 @@
 @property(copy, nonatomic) CDUnknownBlockType endpointLostHandler; // @synthesize endpointLostHandler=_endpointLostHandler;
 @property(copy, nonatomic) CDUnknownBlockType endpointFoundHandler; // @synthesize endpointFoundHandler=_endpointFoundHandler;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
+@property(nonatomic) BOOL directedOnly; // @synthesize directedOnly=_directedOnly;
 @property(nonatomic) int dataLinkType; // @synthesize dataLinkType=_dataLinkType;
 - (void).cxx_destruct;
 - (void)updateEndpointsForDevices:(struct NSMutableDictionary *)arg1;

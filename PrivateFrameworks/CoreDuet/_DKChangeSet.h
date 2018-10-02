@@ -27,6 +27,7 @@
 + (id)fromPBCodable:(id)arg1;
 + (id)deletionChangeSetEntityName;
 + (id)additionChangeSetEntityName;
++ (id)dataFromCompressedChangeSet:(id)arg1;
 @property(retain, nonatomic) NSString *type; // @synthesize type=_type;
 @property(retain, nonatomic) NSDate *endDate; // @synthesize endDate=_endDate;
 @property(retain, nonatomic) NSDate *startDate; // @synthesize startDate=_startDate;

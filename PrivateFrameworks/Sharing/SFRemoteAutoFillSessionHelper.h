@@ -20,6 +20,7 @@
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     CDUnknownBlockType _interruptionHandler;
     CDUnknownBlockType _invalidationHandler;
+    CDUnknownBlockType _dismissUserNotificationHandler;
     CDUnknownBlockType _pairingResponseHandler;
     CDUnknownBlockType _promptForPINHandler;
     SDAutoFillAgent *_agent;
@@ -29,6 +30,7 @@
 @property(retain, nonatomic) SDAutoFillAgent *agent; // @synthesize agent=_agent;
 @property(copy, nonatomic) CDUnknownBlockType promptForPINHandler; // @synthesize promptForPINHandler=_promptForPINHandler;
 @property(copy, nonatomic) CDUnknownBlockType pairingResponseHandler; // @synthesize pairingResponseHandler=_pairingResponseHandler;
+@property(copy, nonatomic) CDUnknownBlockType dismissUserNotificationHandler; // @synthesize dismissUserNotificationHandler=_dismissUserNotificationHandler;
 @property(copy, nonatomic) CDUnknownBlockType invalidationHandler; // @synthesize invalidationHandler=_invalidationHandler;
 @property(copy, nonatomic) CDUnknownBlockType interruptionHandler; // @synthesize interruptionHandler=_interruptionHandler;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
@@ -37,8 +39,10 @@
 - (void)_ensureXPCStarted;
 - (void)clientPromptForPIN:(unsigned int)arg1 throttleSeconds:(int)arg2;
 - (void)clientPairingSucceeded:(BOOL)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)clientDismissUserNotification;
 - (void)autoFillPromptForPIN:(unsigned int)arg1 throttleSeconds:(int)arg2;
 - (void)autoFillPairingSucceeded:(BOOL)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)autoFillDismissUserNotification;
 - (void)serverUserNotificationDidDismiss:(id)arg1;
 - (void)serverUserNotificationDidActivate:(id)arg1;
 - (void)serverTryPIN:(id)arg1;

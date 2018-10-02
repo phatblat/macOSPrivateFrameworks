@@ -14,6 +14,7 @@
 + (Class)__AVAssetImageGeneratorClass;
 + (Class)__AVURLAssetClass;
 + (id)UTITypes;
++ (id)fetchUTITypes;
 
 @end
 

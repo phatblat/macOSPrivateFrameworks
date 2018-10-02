@@ -6,26 +6,23 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBControlHomeIntent.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBHomeAttribute, _INPBIntentMetadata;
+@class NSArray, NSString, _INPBHomeAttribute, _INPBIntentMetadata;
 
-@interface _INPBControlHomeIntent : PBCodable <_INPBControlHomeIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBControlHomeIntent : PBCodable <_INPBControlHomeIntent, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBHomeAttribute *_attribute;
     NSArray *_contents;
     NSArray *_entities;
     _INPBIntentMetadata *_intentMetadata;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)entitiesType;
 + (Class)contentsType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
 @property(copy, nonatomic) NSArray *entities; // @synthesize entities=_entities;
 @property(copy, nonatomic) NSArray *contents; // @synthesize contents=_contents;

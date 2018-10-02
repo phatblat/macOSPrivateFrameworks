@@ -127,12 +127,12 @@
 }
 
 + (id)descriptorsForModelInputScore;
++ (void)initialize;
 @property(nonatomic) double weightY; // @synthesize weightY=_weightY;
 @property(nonatomic) double weightX; // @synthesize weightX=_weightX;
 @property(retain, nonatomic) PRSL2FeatureVectorProcessingContext *processingContext; // @synthesize processingContext=_processingContext;
 - (void).cxx_destruct;
-- (float)processOutput:(float)arg1;
-- (void)processL2FeatureVector:(id)arg1 populatingValues:(float *)arg2 useExperimental:(BOOL)arg3 scoreValue:(char *)arg4 count:(int)arg5;
+- (void)processL2FeatureVector:(id)arg1 populatingValues:(float *)arg2 scoreValue:(char *)arg3 count:(int)arg4;
 - (void)cleanup;
 - (void)processResultSetValuesWithMap:(id)arg1 serverFeatures:(id)arg2;
 - (void)processDirectives:(id)arg1;

@@ -6,7 +6,13 @@
 
 #import "ROCKImpersonateable.h"
 
+@class NSData;
+
 @protocol UHAHidManagerInterposingInterface <ROCKImpersonateable>
-- (void)registerServiceId:(unsigned long long)arg1 dataHandler:(void (^)(NSData *))arg2;
+@property(readonly) double doubleClickInterval;
+@property(readonly) BOOL forceClickPerformsQuickLook;
+@property(readonly, nonatomic) id <UHAHidSettingsInterface> settings;
+- (NSData *)pullNextEventDataFromQueue;
+- (void)registerEventPingHandler:(void (^)(void))arg1;
 @end
 

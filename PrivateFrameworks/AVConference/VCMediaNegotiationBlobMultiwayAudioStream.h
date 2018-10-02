@@ -13,7 +13,7 @@ __attribute__((visibility("hidden")))
 {
     unsigned int _maxMediaBitrate;
     unsigned int _maxNetworkBitrate;
-    unsigned int _maxPacketsPerSecond;
+    float _maxPacketsPerSecond;
     unsigned int _qualityIndex;
     unsigned int _repairedMaxNetworkBitrate;
     unsigned int _repairedStreamID;
@@ -32,7 +32,7 @@ __attribute__((visibility("hidden")))
 
 @property(nonatomic) unsigned int repairedMaxNetworkBitrate; // @synthesize repairedMaxNetworkBitrate=_repairedMaxNetworkBitrate;
 @property(nonatomic) unsigned int repairedStreamID; // @synthesize repairedStreamID=_repairedStreamID;
-@property(nonatomic) unsigned int maxPacketsPerSecond; // @synthesize maxPacketsPerSecond=_maxPacketsPerSecond;
+@property(nonatomic) float maxPacketsPerSecond; // @synthesize maxPacketsPerSecond=_maxPacketsPerSecond;
 @property(nonatomic) unsigned int maxMediaBitrate; // @synthesize maxMediaBitrate=_maxMediaBitrate;
 @property(nonatomic) unsigned int qualityIndex; // @synthesize qualityIndex=_qualityIndex;
 @property(nonatomic) unsigned int streamID; // @synthesize streamID=_streamID;

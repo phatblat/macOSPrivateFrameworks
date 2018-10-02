@@ -16,8 +16,9 @@
 - (void).cxx_destruct;
 - (id)metadataForActiveFormInPageWithMainFrame:(id)arg1;
 - (void)automaticPasswordSheetDimissedInFrame:(id)arg1 focusedPasswordControlUniqueID:(id)arg2;
+- (void)removeAutomaticPasswordVisualTreatmentInFrame:(id)arg1 passwordControlUniqueIDs:(id)arg2;
 - (void)removeAutomaticPasswordElementsInFrame:(id)arg1 focusedPasswordControlUniqueID:(id)arg2 passwordControlUniqueIDs:(id)arg3 blurAfterRemoval:(BOOL)arg4;
-- (void)substitutePasswordElementsWithAutomaticPasswordElementsInFrame:(id)arg1 formID:(double)arg2 focusedPasswordControlUniqueID:(id)arg3 passwordControlUniqueIDs:(id)arg4 automaticPassword:(id)arg5 blurAfterSubstitution:(BOOL)arg6;
+- (id)substitutePasswordElementsWithAutomaticPasswordElementsInFrame:(id)arg1 formID:(double)arg2 focusedPasswordControlUniqueID:(id)arg3 passwordControlUniqueIDs:(id)arg4 automaticPassword:(id)arg5 blurAfterSubstitution:(BOOL)arg6;
 - (BOOL)shouldAttemptToClassifyFormsWithoutAPasswordFieldAsLoginForms;
 - (BOOL)shouldIncludeNonEmptyFields;
 - (id)visibleNonEmptyTextFieldsInForm:(id)arg1 inFrame:(id)arg2;
@@ -67,10 +68,12 @@
 - (void)focusField:(id)arg1 inFrame:(id)arg2;
 - (void)clearField:(id)arg1 inFrame:(id)arg2;
 - (void)fillField:(id)arg1 inFrame:(id)arg2 withGeneratedPassword:(id)arg3;
-- (void)fillForm:(double)arg1 inFrame:(id)arg2 withPassword:(id)arg3;
+- (id)fillForm:(double)arg1 inFrame:(id)arg2 withPassword:(id)arg3;
 - (void)setFormControls:(id)arg1 inFrame:(id)arg2 asAutoFilled:(BOOL)arg3;
 - (void)finishedAutoFillingForm:(id)arg1 inFrame:(id)arg2;
+- (void)focusFormForStreamlinedLogin:(double)arg1 inFrame:(id)arg2;
 - (void)autoFillOneTimeCodeFieldsInFrame:(id)arg1 withValue:(id)arg2;
+- (void)autoFillFormInFrame:(id)arg1 withValues:(id)arg2 fillSynchronously:(BOOL)arg3 setAutoFilled:(BOOL)arg4 focusFieldAfterFilling:(BOOL)arg5 fieldToFocus:(id)arg6 submitForm:(BOOL)arg7;
 - (void)autoFillFormInFrame:(id)arg1 withValues:(id)arg2 fillSynchronously:(BOOL)arg3 setAutoFilled:(BOOL)arg4 focusFieldAfterFilling:(BOOL)arg5 fieldToFocus:(id)arg6;
 - (void)autoFillFormInFrame:(id)arg1 withValues:(id)arg2 fillSynchronously:(BOOL)arg3 setAutoFilled:(BOOL)arg4 selectFieldAfterFilling:(id)arg5;
 - (void)autoFillFormAsynchronouslyInFrame:(id)arg1 withValues:(id)arg2 selectFieldAfterFilling:(id)arg3;

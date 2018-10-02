@@ -16,6 +16,7 @@
     NSArray *_payloadAPNs;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAttachAPN:(id)arg2 withAPNs:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

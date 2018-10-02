@@ -13,6 +13,7 @@
     NSArray *_statusExtensions;
 }
 
++ (id)buildRequiredOnlyWithExtensions:(id)arg1;
 + (id)buildWithExtensions:(id)arg1;
 + (id)allowedReasons;
 + (id)allowedStatusKeys;

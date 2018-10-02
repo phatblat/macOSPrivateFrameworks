@@ -62,8 +62,6 @@ __attribute__((visibility("hidden")))
 - (void)cmdArrangeByKind:(id)arg1;
 - (void)cmdArrangeByName:(id)arg1;
 - (void)setGroupBy:(int)arg1 menuItem:(id)arg2;
-- (void)cmdUseGroupsOrStacks:(id)arg1;
-- (_Bool)validateUseGroupsOrStacks:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 @property(retain, nonatomic) FI_TNodeViewSettings *viewSettings; // @dynamic viewSettings;
 @property(nonatomic) int sortBy;

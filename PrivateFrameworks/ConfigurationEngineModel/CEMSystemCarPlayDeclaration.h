@@ -15,6 +15,7 @@
     NSNumber *_payloadAllowVehicleUI;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowVehicleUI:(id)arg2;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

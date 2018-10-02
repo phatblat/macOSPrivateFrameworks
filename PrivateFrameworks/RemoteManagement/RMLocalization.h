@@ -10,6 +10,7 @@
 {
 }
 
++ (id)displayNameForUsageLimit:(id)arg1;
 + (id)displayNameForBudget:(id)arg1;
 
 @end

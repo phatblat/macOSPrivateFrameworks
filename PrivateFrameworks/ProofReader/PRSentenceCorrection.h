@@ -6,24 +6,27 @@
 
 #import "NSObject.h"
 
-@class NSArray;
+@class NSArray, NSString;
 
 __attribute__((visibility("hidden")))
 @interface PRSentenceCorrection : NSObject
 {
     int _category;
     struct _NSRange _range;
+    NSString *_word;
     NSArray *_corrections;
 }
 
+- (BOOL)presentAsGrammarError;
+- (BOOL)presentAsAutocorrection;
 - (BOOL)presentAsSpellingError;
 - (id)corrections;
+- (id)word;
 - (struct _NSRange)range;
 - (int)category;
 - (id)description;
 - (void)dealloc;
-- (id)initWithCorrection:(id)arg1 offset:(unsigned long long)arg2;
-- (id)initWithCategory:(int)arg1 range:(struct _NSRange)arg2 corrections:(id)arg3;
+- (id)initWithCategory:(int)arg1 range:(struct _NSRange)arg2 word:(id)arg3 corrections:(id)arg4;
 
 @end
 

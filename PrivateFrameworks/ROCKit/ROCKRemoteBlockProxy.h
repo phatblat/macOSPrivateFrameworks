@@ -6,24 +6,22 @@
 
 #import <ROCKit/ROCKRemoteProxy.h>
 
-@class NSMethodSignature, NSObject<OS_xpc_object>;
+@class NSMethodSignature;
 
 __attribute__((visibility("hidden")))
 @interface ROCKRemoteBlockProxy : ROCKRemoteProxy
 {
-    NSObject<OS_xpc_object> *_signature;
-    NSObject<OS_xpc_object> *_stret;
     NSMethodSignature *_methodSignature;
 }
 
-+ (id)blockProxyWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 signature:(id)arg3 stret:(id)arg4 connectionUUID:(id)arg5;
++ (id)blockProxyWithSessionManager:(id)arg1 xpcDictionary:(id)arg2;
 @property(retain, nonatomic) NSMethodSignature *methodSignature; // @synthesize methodSignature=_methodSignature;
-@property(retain, nonatomic) NSObject<OS_xpc_object> *stret; // @synthesize stret=_stret;
-@property(retain, nonatomic) NSObject<OS_xpc_object> *signature; // @synthesize signature=_signature;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL stret;
+@property(readonly, nonatomic) const char *signature;
 - (id)description;
 - (id)debugDescription;
-- (id)initWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 signature:(id)arg3 stret:(id)arg4 connectionUUID:(id)arg5;
+- (id)initWithSessionManager:(id)arg1 xpcDictionary:(id)arg2;
 
 @end
 

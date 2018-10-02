@@ -37,6 +37,7 @@
     NSNumber *_payloadContentsImmutable;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withOrientation:(id)arg2 withPositionImmutable:(id)arg3 withAutohide:(id)arg4 withAutohideImmutable:(id)arg5 withMinimizeToApplication:(id)arg6 withMinimizeToApplicationImmutable:(id)arg7 withMagnification:(id)arg8 withMagnifyImmutable:(id)arg9 withLargesize:(id)arg10 withMagsizeImmutable:(id)arg11 withShowProcessIndicators:(id)arg12 withLaunchanim:(id)arg13 withLaunchanimImmutable:(id)arg14 withMineffect:(id)arg15 withMineffectImmutable:(id)arg16 withTilesize:(id)arg17 withSizeImmutable:(id)arg18 withMCXDockSpecialFolders:(id)arg19 withAllowDockFixupOverride:(id)arg20 withStaticOnly:(id)arg21 withStaticOthers:(id)arg22 withStaticApps:(id)arg23 withContentsImmutable:(id)arg24;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

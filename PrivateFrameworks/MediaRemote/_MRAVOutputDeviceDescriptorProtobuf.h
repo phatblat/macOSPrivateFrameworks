@@ -22,6 +22,7 @@
     NSString *_modelID;
     NSData *_modelSpecificInfoData;
     NSString *_name;
+    NSString *_parentGroupIdentifier;
     _MRAVOutputDeviceSourceInfoProtobuf *_sourceInfo;
     NSString *_uniqueIdentifier;
     float _volume;
@@ -40,6 +41,7 @@
     BOOL _isProxyGroupPlayer;
     BOOL _isRemoteControllable;
     BOOL _isVolumeControlAvailable;
+    BOOL _parentGroupContainsDiscoverableLeader;
     BOOL _presentsOptimizedUserInterfaceWhenPlayingFetchedAudioOnlyAssets;
     BOOL _requiresAuthorization;
     BOOL _shouldForceRemoteControlabillity;
@@ -65,6 +67,7 @@
         unsigned int isProxyGroupPlayer:1;
         unsigned int isRemoteControllable:1;
         unsigned int isVolumeControlAvailable:1;
+        unsigned int parentGroupContainsDiscoverableLeader:1;
         unsigned int presentsOptimizedUserInterfaceWhenPlayingFetchedAudioOnlyAssets:1;
         unsigned int requiresAuthorization:1;
         unsigned int shouldForceRemoteControlabillity:1;
@@ -73,6 +76,8 @@
     } _has;
 }
 
+@property(nonatomic) BOOL parentGroupContainsDiscoverableLeader; // @synthesize parentGroupContainsDiscoverableLeader=_parentGroupContainsDiscoverableLeader;
+@property(retain, nonatomic) NSString *parentGroupIdentifier; // @synthesize parentGroupIdentifier=_parentGroupIdentifier;
 @property(nonatomic) BOOL isAirPlayReceiverSessionActive; // @synthesize isAirPlayReceiverSessionActive=_isAirPlayReceiverSessionActive;
 @property(nonatomic) BOOL presentsOptimizedUserInterfaceWhenPlayingFetchedAudioOnlyAssets; // @synthesize presentsOptimizedUserInterfaceWhenPlayingFetchedAudioOnlyAssets=_presentsOptimizedUserInterfaceWhenPlayingFetchedAudioOnlyAssets;
 @property(nonatomic) BOOL canFetchMediaDataFromSender; // @synthesize canFetchMediaDataFromSender=_canFetchMediaDataFromSender;
@@ -114,6 +119,8 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasParentGroupContainsDiscoverableLeader;
+@property(readonly, nonatomic) BOOL hasParentGroupIdentifier;
 @property(nonatomic) BOOL hasIsAirPlayReceiverSessionActive;
 @property(nonatomic) BOOL hasPresentsOptimizedUserInterfaceWhenPlayingFetchedAudioOnlyAssets;
 @property(nonatomic) BOOL hasCanFetchMediaDataFromSender;

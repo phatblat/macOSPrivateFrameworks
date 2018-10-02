@@ -24,6 +24,10 @@
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)initWithBeginEvent:(id)arg1 endEvent:(id)arg2;
+- (int)tz_dsttime;
+- (int)tz_minuteswest;
+- (int)tv_usec;
+- (long long)tv_sec;
 - (BOOL)telemetryEnabled;
 - (id)number2Value;
 - (id)number2Name;
@@ -37,11 +41,14 @@
 - (unsigned long long)durationMachContinuousTime;
 - (unsigned long long)endMachContinuousTime;
 - (unsigned long long)startMachContinuousTime;
-- (id)descriptionWithTimeInSeconds:(BOOL)arg1 verbosity:(unsigned char)arg2;
-- (id)descriptionStringForColumn:(unsigned long long)arg1 timeInSeconds:(BOOL)arg2;
+- (void)_adjustEndTimeVal:(struct timeval *)arg1;
+- (void)_adjustBeginTimeVal:(struct timeval *)arg1;
+- (id)descriptionWithTimeFormat:(unsigned long long)arg1 verbosity:(unsigned char)arg2;
+- (id)descriptionStringForColumn:(unsigned long long)arg1 timeFormat:(unsigned long long)arg2;
 @property(readonly, nonatomic) NSString *_intervalTypeString;
+- (id)humanReadableType;
+- (id)_dictionaryRepresentationWithIsHumanReadable:(BOOL)arg1;
 - (id)initWithDictionary:(id)arg1;
-- (id)serializeableDictionary;
 
 @end
 

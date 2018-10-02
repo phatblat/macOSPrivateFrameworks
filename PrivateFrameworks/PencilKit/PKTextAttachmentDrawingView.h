@@ -42,6 +42,8 @@
 - (void).cxx_destruct;
 - (void)_liveResizeDidEnd;
 - (void)_liveResizeWillStart;
+- (void)viewDidEndLiveResize;
+- (void)viewWillStartLiveResize;
 - (void)_textStorageDidProcessEditing;
 - (void)_textClipViewDidChange;
 - (void)_textViewDidChangeSize;
@@ -54,12 +56,14 @@
 - (void)_scheduleTilesForRect:(struct CGRect)arg1;
 - (void)_purgeTilesOutsideRect:(struct CGRect)arg1;
 - (void)_updateTiles;
+- (void)prepareContentInRect:(struct CGRect)arg1;
 - (void)_invalidateTiles;
 - (void)_redraw;
 - (id)tiles;
 - (struct CGRect)drawingBounds;
 - (double)drawingAspectRatio;
 - (void)setFrame:(struct CGRect)arg1;
+- (BOOL)isLiveResizing;
 - (struct CGAffineTransform)fromViewTransform;
 - (struct CGAffineTransform)drawingToViewTransform;
 - (double)drawingScaleFactor;

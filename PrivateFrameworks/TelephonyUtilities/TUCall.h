@@ -198,6 +198,8 @@
 @property(readonly, nonatomic) BOOL isOnHold;
 - (void)answerWithRequest:(id)arg1;
 - (void)_handleStatusChange;
+@property(readonly, nonatomic) long long outputAudioPowerSpectrumToken;
+@property(readonly, nonatomic) long long inputAudioPowerSpectrumToken;
 @property(readonly, nonatomic) long long videoStreamToken;
 @property(readonly, nonatomic) float localMeterLevel;
 @property(readonly, nonatomic) float remoteMeterLevel;
@@ -205,6 +207,7 @@
 @property(readonly, nonatomic) BOOL shouldSuppressInCallUI;
 @property(readonly, nonatomic, getter=isRemoteUplinkMuted) BOOL remoteUplinkMuted;
 @property(readonly, nonatomic) BOOL supportsTTYWithVoice;
+@property(readonly, nonatomic, getter=isVideoMirrored) BOOL videoMirrored;
 @property(readonly, nonatomic, getter=isVideoPaused) BOOL videoPaused;
 @property(readonly, nonatomic, getter=isVideoDegraded) BOOL videoDegraded;
 @property(readonly, nonatomic, getter=isMediaStalled) BOOL mediaStalled;

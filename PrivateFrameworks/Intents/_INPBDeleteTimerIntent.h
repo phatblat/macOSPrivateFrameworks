@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBDeleteTimerIntent.h"
 
-@class INCodableAttribute, NSString, _INPBIntentMetadata, _INPBTimer;
+@class NSString, _INPBIntentMetadata, _INPBTimer;
 
-@interface _INPBDeleteTimerIntent : PBCodable <_INPBDeleteTimerIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBDeleteTimerIntent : PBCodable <_INPBDeleteTimerIntent, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int deleteMultiple:1;
@@ -21,10 +20,8 @@
     BOOL _deleteMultiple;
     _INPBIntentMetadata *_intentMetadata;
     _INPBTimer *_targetTimer;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBTimer *targetTimer; // @synthesize targetTimer=_targetTimer;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
 @property(nonatomic) BOOL deleteMultiple; // @synthesize deleteMultiple=_deleteMultiple;

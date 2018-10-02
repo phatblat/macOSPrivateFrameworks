@@ -6,16 +6,13 @@
 
 #import <RemoteManagement/RMUserNotificationContext.h>
 
-@class NSString;
-
 @interface RMAppLimitWarningUserNotificationContext : RMUserNotificationContext
 {
 }
 
-- (id)localizedUserNotificationBodyKey;
-- (id)localizedUserNotificationTitleKey;
-@property(copy, nonatomic) NSString *limitDisplayName;
-- (id)initWithIdentifier:(id)arg1;
++ (BOOL)supportsSecureCoding;
+- (void)customizeNotificationContent:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
+- (void)setLimitDisplayName:(id)arg1 timeLeft:(double)arg2;
 
 @end
 

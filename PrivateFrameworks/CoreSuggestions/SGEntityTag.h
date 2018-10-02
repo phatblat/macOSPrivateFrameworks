@@ -98,6 +98,7 @@
 - (BOOL)isDomain;
 - (BOOL)isTemplateName;
 - (BOOL)isTemplateShortName;
+- (id)eventMetadata;
 - (BOOL)isEventMetadata;
 - (BOOL)isSchemaOrg;
 - (BOOL)isMessagesAppUsageLevel;

@@ -6,22 +6,19 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBUUIDValue.h"
 
-@class INCodableAttribute, NSString, _INPBValueMetadata;
+@class NSString, _INPBValueMetadata;
 
-@interface _INPBUUIDValue : PBCodable <_INPBUUIDValue, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBUUIDValue : PBCodable <_INPBUUIDValue, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSString *_uuidString;
     _INPBValueMetadata *_valueMetadata;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBValueMetadata *valueMetadata; // @synthesize valueMetadata=_valueMetadata;
 @property(copy, nonatomic) NSString *uuidString; // @synthesize uuidString=_uuidString;
 - (void).cxx_destruct;

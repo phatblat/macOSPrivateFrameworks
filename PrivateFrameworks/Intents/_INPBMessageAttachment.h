@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBMessageAttachment.h"
 
-@class INCodableAttribute, NSString, _INPBString, _INPBURLValue;
+@class NSString, _INPBString, _INPBURLValue;
 
-@interface _INPBMessageAttachment : PBCodable <_INPBMessageAttachment, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBMessageAttachment : PBCodable <_INPBMessageAttachment, NSSecureCoding, NSCopying>
 {
     CDStruct_f953fb60 _has;
     int _type;
     _INPBURLValue *_fileURL;
     _INPBString *_filename;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int type; // @synthesize type=_type;
 @property(retain, nonatomic) _INPBString *filename; // @synthesize filename=_filename;
 @property(retain, nonatomic) _INPBURLValue *fileURL; // @synthesize fileURL=_fileURL;

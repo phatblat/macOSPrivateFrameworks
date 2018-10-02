@@ -30,6 +30,7 @@
     NSString *_longTitle;
     NSString *_ovalIconURLString;
     NSURL *_preflightPackageURL;
+    NSURL *_productURL;
     long long _purchaserDSID;
     NSString *_redownloadParams;
     NSArray *_requiredCapabilities;
@@ -46,6 +47,7 @@
 @property(copy) NSArray *requiredCapabilities; // @synthesize requiredCapabilities=_requiredCapabilities;
 @property(copy) NSString *redownloadParams; // @synthesize redownloadParams=_redownloadParams;
 @property long long purchaserDSID; // @synthesize purchaserDSID=_purchaserDSID;
+@property(copy) NSURL *productURL; // @synthesize productURL=_productURL;
 @property(copy) NSURL *preflightPackageURL; // @synthesize preflightPackageURL=_preflightPackageURL;
 @property(copy) NSString *ovalIconURLString; // @synthesize ovalIconURLString=_ovalIconURLString;
 @property(copy) NSString *longTitle; // @synthesize longTitle=_longTitle;
@@ -66,6 +68,7 @@
 - (int)_bitfieldForBooleanProperties;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (BOOL)isEqual:(id)arg1;
 
 @end
 

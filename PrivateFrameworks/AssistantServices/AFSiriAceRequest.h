@@ -13,11 +13,13 @@
 @interface AFSiriAceRequest : NSObject <AFSiriExternalRequest>
 {
     NSObject<OS_xpc_object> *_startRequestData;
+    unsigned long long _requestOptions;
 }
 
 - (void).cxx_destruct;
 - (void)performRequestWithCompletion:(CDUnknownBlockType)arg1;
 - (id)initWithStartRequest:(id)arg1;
+- (id)initWithStartRequest:(id)arg1 requestOptions:(unsigned long long)arg2;
 
 @end
 

@@ -17,6 +17,7 @@
     CEMAnyPayload *_payloadActivationPredicate;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withRequiredConfigurations:(id)arg2 withStandardConfigurations:(id)arg3;
 + (id)buildWithIdentifier:(id)arg1 withRequiredConfigurations:(id)arg2 withStandardConfigurations:(id)arg3 withActivationPredicate:(id)arg4;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

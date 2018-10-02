@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBRideVehicle.h"
 
-@class GEOLocation, INCodableAttribute, NSString, _INPBImageValue;
+@class GEOLocation, NSString, _INPBImageValue;
 
-@interface _INPBRideVehicle : PBCodable <_INPBRideVehicle, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBRideVehicle : PBCodable <_INPBRideVehicle, NSSecureCoding, NSCopying>
 {
     struct _has;
     GEOLocation *_location;
@@ -21,10 +20,8 @@
     _INPBImageValue *_mapAnnotationImage;
     NSString *_model;
     NSString *_registrationPlate;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *registrationPlate; // @synthesize registrationPlate=_registrationPlate;
 @property(copy, nonatomic) NSString *model; // @synthesize model=_model;
 @property(retain, nonatomic) _INPBImageValue *mapAnnotationImage; // @synthesize mapAnnotationImage=_mapAnnotationImage;

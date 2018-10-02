@@ -9,6 +9,8 @@
 @class NSArray, NSString, PasswordsDetailSheetController;
 
 @protocol PasswordsDetailSheetControllerDecisionHandler <NSObject>
+- (void)passwordsDetailSheetControllerDoesNotWantLockPolicyDeferral:(PasswordsDetailSheetController *)arg1;
+- (void)passwordsDetailSheetControllerWantsLockPolicyDeferral:(PasswordsDetailSheetController *)arg1;
 - (void)passwordsDetailSheetController:(PasswordsDetailSheetController *)arg1 didRemoveSites:(NSArray *)arg2;
 - (BOOL)passwordsDetailSheetController:(PasswordsDetailSheetController *)arg1 canSaveUserName:(NSString *)arg2 password:(NSString *)arg3;
 

@@ -31,7 +31,7 @@
 - (id)duetSource;
 - (id)pasteboardSource;
 - (id)parameters;
-- (id)recentLocationsForConsumer:(unsigned long long)arg1 criteria:(id)arg2 limit:(unsigned long long)arg3 explanationSet:(id)arg4 error:(id *)arg5;
+- (id)recentLocationsForConsumer:(unsigned long long)arg1 criteria:(id)arg2 limit:(unsigned long long)arg3 explanationSet:(id)arg4 timeout:(unsigned long long)arg5 error:(id *)arg6;
 - (id)init;
 
 @end

@@ -55,6 +55,7 @@ __attribute__((visibility("hidden")))
 - (void)setClientFormat:(struct AudioStreamBasicDescription)arg1;
 - (void)releaseConverters;
 - (BOOL)createConverterForSource:(BOOL)arg1 error:(id *)arg2;
+- (unsigned int)computeTimestampForControllerTime:(const struct _VCAudioIOControllerTime *)arg1 hostTime:(double)arg2 endpoint:(struct _VCAudioEndpointData *)arg3;
 @property(nonatomic) unsigned char direction;
 - (void)setMute:(BOOL)arg1;
 @property(nonatomic, getter=isOutputMeteringEnabled) BOOL outputMeteringEnabled;

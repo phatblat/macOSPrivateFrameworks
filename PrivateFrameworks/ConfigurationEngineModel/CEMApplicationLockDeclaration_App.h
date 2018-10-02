@@ -15,6 +15,7 @@
     CEMApplicationLockDeclaration_AppUserEnabledOptions *_payloadUserEnabledOptions;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withOptions:(id)arg2 withUserEnabledOptions:(id)arg3;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) CEMApplicationLockDeclaration_AppUserEnabledOptions *payloadUserEnabledOptions; // @synthesize payloadUserEnabledOptions=_payloadUserEnabledOptions;

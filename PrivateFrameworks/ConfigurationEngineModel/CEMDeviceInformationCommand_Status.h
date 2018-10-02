@@ -14,6 +14,7 @@
     CEMDeviceInformationCommand_StatusErrorResponses *_statusErrorResponses;
 }
 
++ (id)buildRequiredOnlyWithQueryResponses:(id)arg1;
 + (id)buildWithQueryResponses:(id)arg1 withErrorResponses:(id)arg2;
 + (id)allowedReasons;
 + (id)allowedStatusKeys;

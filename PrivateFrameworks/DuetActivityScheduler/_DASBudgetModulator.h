@@ -30,6 +30,7 @@
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(retain, nonatomic) id <_DASBudgetPersisting> persistence; // @synthesize persistence=_persistence;
 - (void).cxx_destruct;
+- (void)updateCapacity:(double)arg1 forBudgetWithName:(id)arg2;
 - (void)_queue_modulateBudgets;
 - (id)usageTimeline;
 - (double)relativeUsageAtDate:(id)arg1 withTimeline:(id)arg2;

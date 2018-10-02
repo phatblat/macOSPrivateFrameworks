@@ -66,7 +66,6 @@
 @property(readonly, nonatomic) unsigned long long displayOptions;
 @property(readonly, nonatomic) long long placementHint;
 @property(readonly, copy, nonatomic) NSString *alternateSectionHeader;
-@property(readonly, nonatomic) NSArray *additionalMapItems;
 @property(readonly, nonatomic) MKMapItem *mapItem;
 @property(readonly, nonatomic) WBSParsecActionButton *actionButton;
 @property(readonly, copy, nonatomic) NSString *referrerForLoadingResult;

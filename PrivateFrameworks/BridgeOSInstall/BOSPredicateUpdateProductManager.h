@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class MSUProduct, MSUProductManager, NSArray, NSDictionary, NSError, NSNumber, NSObject<OS_dispatch_semaphore>, NSURL, PKDistribution, PKDownloader, PKPackageSourceManager;
+@class MSUProduct, MSUProductManager, NSArray, NSDictionary, NSError, NSNumber, NSObject<OS_dispatch_semaphore>, NSString, NSURL, PKDistribution, PKDownloader, PKPackageSourceManager;
 
 @interface BOSPredicateUpdateProductManager : NSObject
 {
     MSUProduct *_product;
+    NSString *_productBridgeVersion;
     NSDictionary *_macOSInstallationAuxInfo;
     MSUProductManager *_productManager;
     PKPackageSourceManager *_sourceManager;
@@ -39,6 +40,7 @@
 @property(retain) PKPackageSourceManager *sourceManager; // @synthesize sourceManager=_sourceManager;
 @property(retain) MSUProductManager *productManager; // @synthesize productManager=_productManager;
 @property(retain) NSDictionary *macOSInstallationAuxInfo; // @synthesize macOSInstallationAuxInfo=_macOSInstallationAuxInfo;
+@property(retain) NSString *productBridgeVersion; // @synthesize productBridgeVersion=_productBridgeVersion;
 @property(retain) MSUProduct *product; // @synthesize product=_product;
 - (void).cxx_destruct;
 - (void)_tryAlternateSourceInvalidatingPackageReference:(id)arg1 reason:(int)arg2 downloader:(id)arg3 error:(id)arg4;

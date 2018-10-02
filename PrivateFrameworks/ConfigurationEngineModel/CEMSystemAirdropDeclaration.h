@@ -15,6 +15,7 @@
     NSNumber *_payloadAllowAirDrop;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowAirDrop:(id)arg2;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

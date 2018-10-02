@@ -41,6 +41,8 @@
     NSMachPort *_clientSecuritySessionPort;
     int _clientUID;
     int _clientGID;
+    CDStruct_4c969caf _clientAuditToken;
+    BOOL _shouldSetResponsibility;
     CDStruct_166d2db6 *_authorizationEnvironment;
     struct AuthorizationOpaqueRef *_defaultAuthorization;
     struct AuthorizationOpaqueRef *_overrideAuthorization;
@@ -56,6 +58,8 @@
 
 + (BOOL)supportsSecureCoding;
 + (id)requestWithPackages:(id)arg1 destination:(id)arg2;
+@property BOOL shouldSetResponsibility; // @synthesize shouldSetResponsibility=_shouldSetResponsibility;
+@property(readonly) CDStruct_4c969caf clientAuditToken; // @synthesize clientAuditToken=_clientAuditToken;
 @property long long installPhases; // @synthesize installPhases=_installPhases;
 @property(retain) NSString *destinationPath; // @synthesize destinationPath=_destinationPath;
 - (BOOL)_restrictedRootEnabled;

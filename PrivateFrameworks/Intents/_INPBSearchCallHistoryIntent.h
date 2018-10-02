@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSearchCallHistoryIntent.h"
 
-@class INCodableAttribute, NSString, _INPBContact, _INPBDateTimeRange, _INPBIntentMetadata;
+@class NSString, _INPBContact, _INPBDateTimeRange, _INPBIntentMetadata;
 
-@interface _INPBSearchCallHistoryIntent : PBCodable <_INPBSearchCallHistoryIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSearchCallHistoryIntent : PBCodable <_INPBSearchCallHistoryIntent, NSSecureCoding, NSCopying>
 {
     CDStruct_95bda58d _callCapabilities;
     CDStruct_95bda58d _callTypes;
@@ -30,10 +29,8 @@
     _INPBIntentMetadata *_intentMetadata;
     _INPBContact *_recipient;
     _INPBContact *_targetContact;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) BOOL unseen; // @synthesize unseen=_unseen;
 @property(retain, nonatomic) _INPBContact *targetContact; // @synthesize targetContact=_targetContact;
 @property(retain, nonatomic) _INPBContact *recipient; // @synthesize recipient=_recipient;

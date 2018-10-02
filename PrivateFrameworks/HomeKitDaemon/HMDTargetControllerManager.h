@@ -41,6 +41,7 @@
 - (void)autoConfigureTargets;
 - (void)_saveTargetUUIDs;
 - (void)__characteristicsChanged:(id)arg1;
+- (void)registerForActiveIdentifierNotifications;
 - (void)_registerForActiveIdentifierNotifications;
 - (void)_handleActiveIdentifierReadResponses:(id)arg1;
 - (void)__handleActiveIdentifierChanges:(id)arg1;
@@ -52,6 +53,7 @@
 - (id)_dataForRemoveTargets:(id)arg1 outError:(id *)arg2;
 - (void)addTargetAccessory:(id)arg1 buttonConfiguration:(id)arg2;
 - (void)_addTargets:(id)arg1;
+- (void)_postSelectionChangeNotification:(BOOL)arg1 object:(id)arg2 userInfo:(id)arg3;
 - (id)_dataForAddTargets:(id)arg1 outError:(id *)arg2;
 - (void)updateTargetAccessory:(id)arg1 name:(id)arg2 buttonConfiguration:(id)arg3;
 - (void)_updateName:(id)arg1 buttonConfiguration:(id)arg2 target:(id)arg3;

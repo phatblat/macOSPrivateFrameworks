@@ -165,6 +165,7 @@
 - (void)_showSelectedCompletionInField;
 - (void)_updateSelectedResultAndShowInField:(id)arg1;
 - (void)_cancelAndCloseCompletion;
+- (void)_closeCompletion;
 - (void)_cancelCompletion;
 - (void)_startCompleting;
 - (void)_updateTrailingConstraints;

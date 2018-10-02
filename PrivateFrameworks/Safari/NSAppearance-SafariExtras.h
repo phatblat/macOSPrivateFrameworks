@@ -7,6 +7,6 @@
 #import "NSAppearance.h"
 
 @interface NSAppearance (SafariExtras)
-@property(readonly, nonatomic) BOOL safari_isAlternateAppearance;
+@property(readonly, nonatomic) BOOL safari_isDarkSystemAppearance;
 @end
 

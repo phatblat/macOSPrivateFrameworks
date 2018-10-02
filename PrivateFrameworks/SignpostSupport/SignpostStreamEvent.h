@@ -22,7 +22,7 @@
 - (void).cxx_destruct;
 - (BOOL)_hasTotalFrames;
 - (id)initWithDictionary:(id)arg1;
-- (id)serializeableDictionary;
+- (id)_dictionaryRepresentationWithIsHumanReadable:(BOOL)arg1;
 
 @end
 

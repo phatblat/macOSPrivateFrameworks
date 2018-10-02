@@ -17,6 +17,7 @@
     NSNumber *_payloadAllowScreenRecording;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowCamera:(id)arg2 withAllowScreenShot:(id)arg3 withAllowScreenRecording:(id)arg4;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

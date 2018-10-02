@@ -6,16 +6,21 @@
 
 #import "PLAgent.h"
 
-@class PLEntryNotificationOperatorComposition;
+@class PLEntryNotificationOperatorComposition, PLIOKitOperatorComposition;
 
 @interface PLMacCPUGPUAgent : PLAgent
 {
+    BOOL _isDiscreteGPUConnected;
     PLEntryNotificationOperatorComposition *_batteryLevelChangedNotifications;
+    PLIOKitOperatorComposition *_graphicsControlComposition;
+    PLIOKitOperatorComposition *_discreteGpuComposition;
 }
 
 + (id)entryAggregateDefinitions;
 + (id)entryEventNoneDefinitions;
 + (id)entryEventIntervalDefinitions;
++ (id)entryEventBackwardDefinitionDiscreteGPUAppList;
++ (id)entryEventForwardDefinitionDiscreteGPUState;
 + (id)entryEventBackwardDefinitions;
 + (id)entryEventForwardDefinitions;
 + (id)entryEventPointDefinitions;
@@ -23,12 +28,17 @@
 + (id)railDefinitions;
 + (id)defaults;
 + (void)load;
+@property BOOL isDiscreteGPUConnected; // @synthesize isDiscreteGPUConnected=_isDiscreteGPUConnected;
+@property(retain) PLIOKitOperatorComposition *discreteGpuComposition; // @synthesize discreteGpuComposition=_discreteGpuComposition;
+@property(retain) PLIOKitOperatorComposition *graphicsControlComposition; // @synthesize graphicsControlComposition=_graphicsControlComposition;
 @property(retain) PLEntryNotificationOperatorComposition *batteryLevelChangedNotifications; // @synthesize batteryLevelChangedNotifications=_batteryLevelChangedNotifications;
 - (void).cxx_destruct;
-- (void)logEventNone;
-- (void)logEventBackwardPStatesAndQos:(id)arg1 Qos:(id)arg2;
+- (void)logEventNoneAndForward;
+- (void)logEventBackwardDiscreteGPUAppList:(unsigned int)arg1 withReason:(int)arg2;
+- (void)logEventBackwardPStates:(id)arg1 Qos:(id)arg2;
 - (void)logEventBackwardPerCoreStats:(id)arg1;
 - (void)logEventBackwardPkgStats:(id)arg1;
+- (void)logEventForwardDiscreteGPUState:(_Bool)arg1;
 - (void)log;
 - (void)initOperatorDependancies;
 - (id)init;

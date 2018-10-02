@@ -26,6 +26,7 @@
     NSObject<OS_dispatch_queue> *_handlesQueue;
 }
 
++ (BOOL)isAnyAccountManaged;
 + (BOOL)isProvisionedForLocationSharing;
 + (BOOL)FMFRestricted;
 + (id)sharedInstance;
@@ -87,6 +88,8 @@
 - (void)_FMFDAgentDidLaunch:(id)arg1;
 - (id)internalConnection;
 - (void)includeDeviceInAutomations:(CDUnknownBlockType)arg1;
+- (void)showShareMyLocationRestrictedAlert;
+- (void)showShareMyLocationiCloudSettingsOffAlert;
 - (void)getDataForPerformanceRequest:(CDUnknownBlockType)arg1;
 - (void)sessionHandleReport:(CDUnknownBlockType)arg1;
 - (void)dumpStateWithCompletion:(CDUnknownBlockType)arg1;
@@ -131,6 +134,9 @@
 - (void)nearbyLocationsWithCompletion:(CDUnknownBlockType)arg1;
 - (void)favoritesForMaxCount:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)getAllLocations:(CDUnknownBlockType)arg1;
+- (void)removeFavorite:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)addFavorite:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)getFavoritesWithCompletion:(CDUnknownBlockType)arg1;
 - (void)getPendingFriendshipRequestsWithCompletion:(CDUnknownBlockType)arg1;
 - (void)stopSharingMyLocationWithHandles:(id)arg1 groupId:(id)arg2 callerId:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)stopSharingMyLocationWithHandle:(id)arg1 groupId:(id)arg2 callerId:(id)arg3 completion:(CDUnknownBlockType)arg4;

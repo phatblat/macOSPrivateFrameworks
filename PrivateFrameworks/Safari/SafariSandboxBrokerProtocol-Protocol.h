@@ -4,11 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSData, NSDictionary, NSURL;
+@class NSData, NSDictionary, NSString, NSURL;
 
 @protocol SafariSandboxBrokerProtocol
 - (void)openWebClipWidgetWithURL:(NSURL *)arg1 positionWidgetAtPoint:(struct CGPoint)arg2 completionHandler:(void (^)(NSError *))arg3;
 - (void)migrateResourcesToSandbox:(NSDictionary *)arg1 completionHandler:(void (^)(NSDictionary *, NSError *))arg2;
+- (void)cancelUnarchivingOperationWithIdentifier:(NSString *)arg1 completionHandler:(void (^)(NSError *))arg2;
+- (void)extractArchiveAtPath:(NSString *)arg1 type:(unsigned long long)arg2 identifier:(NSString *)arg3 completionHandler:(void (^)(NSString *, NSError *))arg4;
 - (void)synchronouslyRemoveQuarantineHardAttributeFromFileAtURL:(NSURL *)arg1 completionHandler:(void (^)(NSError *))arg2;
 - (void)writeWebArchiveWithoutQuarantineFlag:(NSData *)arg1 atURL:(NSURL *)arg2 completionHandler:(void (^)(NSError *))arg3;
 - (void)synchronouslyIssueExtensionForDirectoryContainingDownloadDestinationAtURL:(NSURL *)arg1 completionHandler:(void (^)(NSString *, NSError *))arg2;

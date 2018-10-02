@@ -11,6 +11,7 @@
 __attribute__((visibility("hidden")))
 @interface ROCKConnectionManager : NSObject
 {
+    BOOL _enableMessageQueueSending;
     CDUnknownBlockType _connectionManagerHandler;
     unsigned long long _messageQueueInvocationMode;
     NSObject<OS_dispatch_queue> *_managedConnectionsQueue;
@@ -31,6 +32,7 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *managedRemoteConnectionsQueue; // @synthesize managedRemoteConnectionsQueue=_managedRemoteConnectionsQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *managedConnectionsQueue; // @synthesize managedConnectionsQueue=_managedConnectionsQueue;
 @property(nonatomic) unsigned long long messageQueueInvocationMode; // @synthesize messageQueueInvocationMode=_messageQueueInvocationMode;
+@property(nonatomic) BOOL enableMessageQueueSending; // @synthesize enableMessageQueueSending=_enableMessageQueueSending;
 @property(copy, nonatomic) CDUnknownBlockType connectionManagerHandler; // @synthesize connectionManagerHandler=_connectionManagerHandler;
 - (void).cxx_destruct;
 - (void)dealloc;

@@ -41,6 +41,8 @@
     } _flags;
 }
 
++ (id)resultWithGlobalAPILockOnly:(CDUnknownBlockType)arg1;
++ (void)runWithGlobalAPILockOnly:(CDUnknownBlockType)arg1;
 + (void)abGlobalAPIUnlockInFile:(const char *)arg1 line:(unsigned long long)arg2 contextBlock:(CDUnknownBlockType)arg3 togglingSuddenTermination:(BOOL)arg4;
 + (void)abGlobalAPIUnlockInFile:(const char *)arg1 line:(unsigned long long)arg2 contextBlock:(CDUnknownBlockType)arg3;
 + (void)abGlobalAPILockInFile:(const char *)arg1 line:(unsigned long long)arg2 contextBlock:(CDUnknownBlockType)arg3 togglingSuddenTermination:(BOOL)arg4;
@@ -128,9 +130,9 @@
 - (BOOL)overridesReadOnly;
 - (BOOL)isDirectoryResults;
 - (BOOL)tracksAllSources;
-- (void)runWithDisabledUndoRegistration:(CDUnknownBlockType)arg1;
 - (void)enableUndoRegistration;
 - (void)disableUndoRegistration;
+- (void)runWithDisabledUndoRegistration:(CDUnknownBlockType)arg1;
 - (void)setUndoManager:(id)arg1;
 - (id)undoManager;
 - (void)setAssistantSyncAnchor:(long long)arg1;
@@ -417,6 +419,7 @@
 - (void)abGlobalAPILockInFile:(const char *)arg1 line:(unsigned long long)arg2 togglingSuddenTermination:(BOOL)arg3;
 - (void)abGlobalAPILockInFile:(const char *)arg1 line:(unsigned long long)arg2;
 - (void)abRunWithGlobalAPILockInFile:(const char *)arg1 line:(unsigned long long)arg2 block:(CDUnknownBlockType)arg3;
+- (id)abResultWithGlobalAPILockInFile:(const char *)arg1 line:(unsigned long long)arg2 block:(CDUnknownBlockType)arg3;
 - (id)nts_mailRecentsManagedObjectContext;
 - (id)managedObjectContext;
 - (id)persistentStoreForSourceIdentifier:(id)arg1;

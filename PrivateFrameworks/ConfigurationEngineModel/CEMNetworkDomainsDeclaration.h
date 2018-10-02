@@ -17,6 +17,7 @@
     NSArray *_payloadSafariPasswordAutoFillDomains;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withEmailDomains:(id)arg2 withWebDomains:(id)arg3 withSafariPasswordAutoFillDomains:(id)arg4;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

@@ -8,28 +8,29 @@
 
 #import "NSSecureCoding.h"
 
-@class NSString, NSURL;
+@class NSString, NSURL, NSUUID;
 
 @interface SidecarDevice : NSObject <NSSecureCoding>
 {
-    NSString *_identifier;
+    NSUUID *_identifier;
     NSString *_model;
     NSString *_name;
+    unsigned long long _status;
     NSString *_deviceTypeIdentifier;
     unsigned long long _generation;
 }
 
 + (id)imageURLForDeviceTypeIdentifier:(id)arg1;
-+ (id)localizedDeviceTypes:(id)arg1;
 + (id)allDevices;
 + (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) NSURL *imageURL;
 @property(readonly, nonatomic) NSString *localizedDeviceType;
 @property(readonly, nonatomic) NSString *deviceTypeIdentifier;
+@property(nonatomic) unsigned long long status;
 @property(readonly, nonatomic) NSString *name;
 @property(readonly, nonatomic) NSString *model;
-@property(readonly, nonatomic) NSString *identifier;
+@property(readonly, nonatomic) NSUUID *identifier;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (unsigned long long)hash;

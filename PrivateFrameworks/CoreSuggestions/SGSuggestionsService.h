@@ -28,6 +28,8 @@
 + (id)filteredSearchableItemsFromItems:(id)arg1;
 + (BOOL)isHarvestingSupported;
 + (void)prepareForQuery;
++ (BOOL)hasEntitlement:(id)arg1;
++ (id)_daemonConnectionForMachServiceName:(id)arg1 protocol:(id)arg2 useCache:(BOOL)arg3;
 + (id)serviceForMessages;
 + (id)serviceForFides;
 + (id)serviceForInternal;
@@ -37,7 +39,6 @@
 + (void)initialize;
 - (void).cxx_destruct;
 - (void)suggestionsFromMockData:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
-- (void)dealloc;
 - (void)sleepWithCompletion:(CDUnknownBlockType)arg1;
 - (BOOL)sleep:(id *)arg1;
 - (void)daemonExitWithCompletion:(CDUnknownBlockType)arg1;
@@ -187,7 +188,7 @@
 - (BOOL)isEnabledWithError:(id *)arg1;
 - (void)setManagerForTesting:(id)arg1;
 - (id)_remoteSuggestionManager;
-- (BOOL)hasEntitlement:(id)arg1;
+- (id)initWithMachServiceName:(id)arg1 protocol:(id)arg2 useCache:(BOOL)arg3;
 - (id)initWithMachServiceName:(id)arg1 protocol:(id)arg2;
 
 @end

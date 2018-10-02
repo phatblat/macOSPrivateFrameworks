@@ -6,24 +6,21 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBHomeAttribute.h"
 
-@class INCodableAttribute, NSString, _INPBHomeAttributeValue;
+@class NSString, _INPBHomeAttributeValue;
 
-@interface _INPBHomeAttribute : PBCodable <_INPBHomeAttribute, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBHomeAttribute : PBCodable <_INPBHomeAttribute, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int attributeType:1;
     } _has;
     int _attributeType;
     _INPBHomeAttributeValue *_attributeValue;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBHomeAttributeValue *attributeValue; // @synthesize attributeValue=_attributeValue;
 @property(nonatomic) int attributeType; // @synthesize attributeType=_attributeType;
 - (void).cxx_destruct;

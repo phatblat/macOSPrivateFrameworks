@@ -4,10 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSArray;
+@class NSArray, NSDictionary, NSNumber;
 
 @protocol ASDIAPHistoryServiceProtocol
 - (void)getSubscriptionEntitlementsIgnoreCaches:(BOOL)arg1 forActiveAccountWithReplyHandler:(void (^)(NSArray *, NSError *))arg2;
+- (void)setSubscriptionEntitlementsWithDictionary:(NSDictionary *)arg1 forAccountID:(NSNumber *)arg2;
 - (void)refreshIAPsForActiveAccountWithReplyHandler:(void (^)(NSError *))arg1;
 - (void)getIAPsForActiveAccountWithAdamIDs:(NSArray *)arg1 withReplyHandler:(void (^)(NSArray *, NSError *))arg2;
 - (void)getAllIAPsForActiveAccountWithReplyHandler:(void (^)(NSArray *, NSError *))arg1;

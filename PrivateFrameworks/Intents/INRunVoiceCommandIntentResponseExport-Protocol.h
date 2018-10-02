@@ -10,6 +10,9 @@
 @class INArchivedObject, NSDictionary, NSNumber, NSString;
 
 @protocol INRunVoiceCommandIntentResponseExport <NSObject, JSExport>
+@property(copy) NSString *underlyingIntentTitle;
+@property(copy) NSNumber *interstitialDisabled;
+@property(copy) NSNumber *continueRunning;
 @property long long toggleState;
 @property(copy) INArchivedObject *underlyingIntentResponse;
 @property(copy) NSString *localizedAppName;

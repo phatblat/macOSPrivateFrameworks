@@ -9,6 +9,7 @@
 @class NFApplet, NFPeerPaymentEnrollmentRequest, NFRunScriptParameters, NSArray, NSData, NSDictionary, NSSet, NSString;
 
 @protocol NFSecureElementManagerSessionInterface <NFSessionInterface>
+- (oneway void)getOSUpdateLog:(void (^)(NSData *, NSError *))arg1;
 - (oneway void)powerCycleSEID:(NSString *)arg1 callback:(void (^)(NSError *))arg2;
 - (oneway void)dumpDomain:(unsigned char)arg1 forSEID:(NSString *)arg2 callback:(void (^)(NSDictionary *, NSError *))arg3;
 - (oneway void)getAttackCounterLogForSEID:(NSString *)arg1 callback:(void (^)(NSDictionary *, NSError *))arg2;

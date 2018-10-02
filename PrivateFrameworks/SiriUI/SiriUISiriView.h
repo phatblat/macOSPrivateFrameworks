@@ -67,10 +67,12 @@ __attribute__((visibility("hidden")))
 - (void)_updateControlsAppearance;
 - (void)_updateFlamesAndAuraViewState;
 - (void)viewDidMoveToWindow;
+- (void)viewWillMoveToWindow:(id)arg1;
 - (void)setFrame:(struct CGRect)arg1;
 - (void)_createFlamesView;
 - (void)_createCloseButtonImage;
 - (void)awakeFromNib;
+- (void)cleanupFlames;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 

@@ -33,15 +33,18 @@
     NSArray *_streamNamesToAlwaysSync;
 }
 
-+ (id)disabledFeatures;
++ (id)disabledFeaturesForSyncType:(id)arg1 transports:(long long)arg2;
 + (id)configurationPlistForFilename:(id)arg1;
 + (id)syncPolicyConfigPathForFilename:(id)arg1;
 + (void)handleDownloadSyncPolicyResponse:(id)arg1 data:(id)arg2 error:(id)arg3;
 + (void)possiblyDownloadSyncPolicyWithPolicyDownloadIntervalInDays:(unsigned long long)arg1;
 + (id)policyFromDictionary:(id)arg1;
++ (void)setOkToDownloadPolicyUpdates:(BOOL)arg1;
 + (BOOL)cloudSyncDisabled;
 + (BOOL)rapportSyncDisabled;
++ (id)_policyForSyncTransportType:(long long)arg1;
 + (id)policyForSyncTransportType:(long long)arg1;
++ (id)policyCache;
 + (id)userDefaults;
 @property(retain, nonatomic) NSArray *streamNamesToAlwaysSync; // @synthesize streamNamesToAlwaysSync=_streamNamesToAlwaysSync;
 @property(nonatomic) unsigned long long policyDownloadIntervalInDays; // @synthesize policyDownloadIntervalInDays=_policyDownloadIntervalInDays;
@@ -68,12 +71,13 @@
 - (id)description;
 - (double)hoursBetweenSyncsWhenIsSingleDevice:(BOOL)arg1 urgency:(unsigned long long)arg2;
 - (double)hoursBetweenSyncsWhenIsSingleDevice:(BOOL)arg1;
-- (id)queryStartDateWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3 isSingleDevice:(BOOL)arg4 previousHighWaterMark:(id)arg5;
-- (id)queryStartDateWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3 isSingleDevice:(BOOL)arg4;
-- (BOOL)highPriorityForSyncType:(id)arg1;
-- (BOOL)canPerformSyncOperationWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3 isSingleDevice:(BOOL)arg4 isCharging:(BOOL)arg5;
-- (id)streamNamesToSyncWithSyncType:(id)arg1;
-- (id)_streamNamesToSyncExceptDisabledFeatures:(id)arg1;
+- (id)queryStartDateWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3 previousHighWaterMark:(id)arg4;
+- (id)queryStartDateWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3;
+- (BOOL)highPriorityForSyncType:(id)arg1 lastSyncDate:(id)arg2;
+- (BOOL)canPerformSyncOperationWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3 isCharging:(BOOL)arg4;
+- (BOOL)canDeferSyncOperationWithSyncType:(id)arg1;
+- (id)streamNamesToSyncWithSyncType:(id)arg1 transportType:(long long)arg2;
+- (id)streamNamesToSyncWithDisabledFeatures:(id)arg1;
 - (id)initWithDictionary:(id)arg1;
 
 @end

@@ -16,6 +16,9 @@ __attribute__((visibility("hidden")))
 @interface FI_TBrowserContainerController : FI_TViewController <TNodeObserverProtocol, TMarkTornDown, TTagColumnTableViewControllerDelegate>
 {
     _Bool _containerIsBeingCreated;
+    _Bool _browserViewIsBeingCreated;
+    _Bool _browserViewIsBeingDestroyed;
+    _Bool _switchingViewStyleBeforeRecreatingBrowserView;
     _Bool _isTornDown;
     struct NSObject *_delegate;
     struct TNSRef<FI_TBrowserViewController, void> _browserViewController;
@@ -50,7 +53,6 @@ __attribute__((visibility("hidden")))
     int _smartDiscardViewStyle;
     struct shared_ptr<TNodeObserverCocoaBridge> _publishedFolderNodeObserver;
     unsigned long long _serialID;
-    double _searchStartTime;
     struct TString _suggestionsScopeQuery;
     _Bool _usesSuggestions;
     FI_TContainerLayoutManager *_containerLayoutManager;
@@ -73,7 +75,6 @@ __attribute__((visibility("hidden")))
 + (_Bool)shouldForwardSelectorToViewController:(SEL)arg1;
 + (_Bool)suggestionsFrameworkAvailable;
 + (id)defaultFileSuggesters;
-@property(nonatomic) double searchStartTime; // @synthesize searchStartTime=_searchStartTime;
 @property(nonatomic) _Bool flushDataSourceAllowed; // @synthesize flushDataSourceAllowed=_flushDataSourceAllowed;
 @property(nonatomic) _Bool isSearchInProgress; // @synthesize isSearchInProgress=_isSearchInProgress;
 @property(nonatomic) _Bool isPopulationInProgress; // @synthesize isPopulationInProgress=_isPopulationInProgress;
@@ -337,7 +338,7 @@ __attribute__((visibility("hidden")))
 - (int)sortBy;
 @property(retain, nonatomic) FI_TNodeViewSettings *viewSettings;
 - (void)viewDidFullyPopulate;
-- (void)viewDidSyncToDataSource:(const vector_ddb76938 *)arg1;
+- (void)viewDidSyncToDataSource:(const vector_274a36ec *)arg1;
 @property(readonly, retain, nonatomic) FI_TBrowserViewController *browserViewController; // @dynamic browserViewController;
 
 // Remaining properties

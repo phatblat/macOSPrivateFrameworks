@@ -27,6 +27,8 @@
 }
 
 + (BOOL)supportsSecureCoding;
++ (BOOL)isUpdateRequiredForInvalidationToken:(id)arg1 error:(id *)arg2;
++ (BOOL)isUpdateRequiredForInvalidationData:(id)arg1;
 @property(retain, nonatomic) NSArray *performers; // @synthesize performers=_performers;
 @property(retain, nonatomic) NSArray *hours; // @synthesize hours=_hours;
 @property(retain, nonatomic) NSTimeZone *timeZone; // @synthesize timeZone=_timeZone;
@@ -39,6 +41,7 @@
 @property(retain, nonatomic) GEOMapItemIdentifier *identifier; // @synthesize identifier=_identifier;
 @property(retain, nonatomic) GEOCacheInvalidationData *invalidationData; // @synthesize invalidationData=_invalidationData;
 - (void).cxx_destruct;
+- (id)invalidationToken;
 @property(readonly, nonatomic, getter=isUpdateRequired) BOOL updateRequired; // @synthesize updateRequired=_updateRequired;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

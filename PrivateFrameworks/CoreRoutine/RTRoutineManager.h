@@ -8,7 +8,7 @@
 
 #import "RTFrameworkProtocol.h"
 
-@class NSObject<OS_dispatch_queue>, NSString, NSXPCConnection, RTEventAgentHelper, RTRoutineManagerRegistrantAction, RTRoutineManagerRegistrantApplicationPrediction, RTRoutineManagerRegistrantScenarioTrigger;
+@class NSObject<OS_dispatch_queue>, NSString, NSXPCConnection, RTEventAgentHelper, RTRoutineManagerRegistrantAction, RTRoutineManagerRegistrantApplicationPrediction, RTRoutineManagerRegistrantScenarioTrigger, RTTokenBucket;
 
 @interface RTRoutineManager : NSObject <RTFrameworkProtocol>
 {
@@ -21,6 +21,7 @@
     CDUnknownBlockType _vehicleEventsHandler;
     NSString *_restorationIdentifier;
     RTEventAgentHelper *_eventAgentHelper;
+    RTTokenBucket *_clientThrottle;
     RTRoutineManagerRegistrantAction *_actionRegistrant;
     RTRoutineManagerRegistrantScenarioTrigger *_scenarioTriggerRegistrant;
     NSObject<OS_dispatch_queue> *_queue;
@@ -32,6 +33,7 @@
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(retain, nonatomic) RTRoutineManagerRegistrantScenarioTrigger *scenarioTriggerRegistrant; // @synthesize scenarioTriggerRegistrant=_scenarioTriggerRegistrant;
 @property(retain, nonatomic) RTRoutineManagerRegistrantAction *actionRegistrant; // @synthesize actionRegistrant=_actionRegistrant;
+@property(retain, nonatomic) RTTokenBucket *clientThrottle; // @synthesize clientThrottle=_clientThrottle;
 @property(retain, nonatomic) RTEventAgentHelper *eventAgentHelper; // @synthesize eventAgentHelper=_eventAgentHelper;
 @property(retain, nonatomic) NSString *restorationIdentifier; // @synthesize restorationIdentifier=_restorationIdentifier;
 @property(copy, nonatomic) CDUnknownBlockType vehicleEventsHandler; // @synthesize vehicleEventsHandler=_vehicleEventsHandler;

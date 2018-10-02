@@ -30,8 +30,8 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) id <VCVideoReceiverDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)handleActiveConnectionChange:(id)arg1;
 - (void)setTargetStreamID:(unsigned short)arg1;
-- (void)collectChannelMetrics:(CDStruct_1c8e0384 *)arg1;
-- (void)updateSourcePlayoutTimestamp:(unsigned int)arg1;
+- (void)collectChannelMetrics:(CDStruct_1c8e0384 *)arg1 interval:(float)arg2;
+- (void)updateSourcePlayoutTimestamp:(CDStruct_1b6d18a9 *)arg1;
 - (void)stopSynchronization;
 - (BOOL)startSynchronization:(id)arg1;
 - (void)rtcpSendIntervalElapsed;

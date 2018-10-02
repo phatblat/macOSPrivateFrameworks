@@ -8,7 +8,7 @@
 
 #import "UHAGroupToolbarItemInterface.h"
 
-@class NSArray, NSString;
+@class NSArray, NSObject<OS_dispatch_queue>, NSString;
 
 @interface UHASGroupToolbarItem : UHASToolbarItem <UHAGroupToolbarItemInterface>
 {
@@ -19,12 +19,15 @@
 @property(copy, nonatomic) NSArray *toolbarItems;
 
 // Remaining properties
+@property(copy, nonatomic) id <UHAAccesibilityInfoInterface> accessibilityInfo;
 @property(copy, nonatomic) CDUnknownBlockType changeHandler;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly, copy, nonatomic) NSString *identifier;
 @property(copy, nonatomic) NSString *label;
+@property(readonly, nonatomic) unsigned long long rock_invocationFlags;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *rock_invocationQueue;
 @property(readonly) Class superclass;
 
 @end

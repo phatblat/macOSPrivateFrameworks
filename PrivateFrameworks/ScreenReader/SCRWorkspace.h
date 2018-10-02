@@ -8,7 +8,7 @@
 
 #import "SCRCUserDefaultsDiskArbDelegate.h"
 
-@class NSDate, NSDictionary, NSLock, NSMutableDictionary, NSString, NSTimer, SCRApplicationManager, SCRCTargetSelectorTimer, SCRCThreadKey, SCRDFRFocusManager, SCRDFRManager, SCREventDispatcher, SCREventFactory, SCRGuide, SCRSiriObserver, SCRSpeechAttributeGuide, SCRSystemKeyManager, SCRVisualsManager, SCRWorkspaceApplication;
+@class NSDate, NSDictionary, NSLock, NSMutableDictionary, NSString, NSTimer, SCRApplicationManager, SCRCTargetSelectorTimer, SCRCThreadKey, SCRDFRFocusManager, SCRDFRManager, SCREventDispatcher, SCREventFactory, SCRFocusManager, SCRGuide, SCRSiriObserver, SCRSpeechAttributeGuide, SCRSystemKeyManager, SCRVisualsManager, SCRWorkspaceApplication;
 
 @interface SCRWorkspace : NSObject <SCRCUserDefaultsDiskArbDelegate>
 {
@@ -84,18 +84,21 @@
     BOOL _isKeyboardHelpEnabled;
     BOOL _isLoggedIn;
     BOOL _isScreenCurtainEnabled;
+    unsigned int __sleepAssertionID;
     SCRSpeechAttributeGuide *_speechAttributeGuide;
     SCRDFRManager *_dfrManager;
+    SCRFocusManager *_focusManager;
     NSDate *_lastFocusTimestamp;
     SCRDFRFocusManager *__dfrFocusManager;
     double __lastWorkspaceSummaryTime;
     SCRSiriObserver *__siriObserver;
     SCRWorkspaceApplication *__workspaceApplication;
     SCRVisualsManager *__visualsManager;
+    long long __preventSleepRequestCount;
+    NSTimer *__sleepAssertionFailsafeTimer;
     SCRSystemKeyManager *_systemKeyManager;
 }
 
-+ (void)setVoiceOverInPreferencesEnabled:(BOOL)arg1 updateLoginWindowSettings:(BOOL)arg2;
 + (void)_stopAllSound;
 + (BOOL)isVoiceOverRunning;
 + (void)_invalidateWorkspace;
@@ -111,6 +114,9 @@
 + (id)stringForCommand:(id)arg1 inCategory:(id)arg2 withExtension:(id)arg3 warnOnMissingString:(BOOL)arg4;
 + (id)stringForCommand:(id)arg1 inCategory:(id)arg2 withExtension:(id)arg3;
 @property(retain, nonatomic) SCRSystemKeyManager *systemKeyManager; // @synthesize systemKeyManager=_systemKeyManager;
+@property(retain, nonatomic) NSTimer *_sleepAssertionFailsafeTimer; // @synthesize _sleepAssertionFailsafeTimer=__sleepAssertionFailsafeTimer;
+@property(nonatomic) long long _preventSleepRequestCount; // @synthesize _preventSleepRequestCount=__preventSleepRequestCount;
+@property(nonatomic) unsigned int _sleepAssertionID; // @synthesize _sleepAssertionID=__sleepAssertionID;
 @property(readonly, retain, nonatomic) SCRVisualsManager *_visualsManager; // @synthesize _visualsManager=__visualsManager;
 @property(readonly, retain, nonatomic) SCRWorkspaceApplication *_workspaceApplication; // @synthesize _workspaceApplication=__workspaceApplication;
 @property(retain, nonatomic, setter=_setSiriObserver:) SCRSiriObserver *_siriObserver; // @synthesize _siriObserver=__siriObserver;
@@ -118,6 +124,7 @@
 @property(retain, nonatomic) SCRDFRFocusManager *_dfrFocusManager; // @synthesize _dfrFocusManager=__dfrFocusManager;
 @property(retain, nonatomic) NSDate *lastFocusTimestamp; // @synthesize lastFocusTimestamp=_lastFocusTimestamp;
 @property(nonatomic) BOOL isScreenCurtainEnabled; // @synthesize isScreenCurtainEnabled=_isScreenCurtainEnabled;
+@property(retain, nonatomic) SCRFocusManager *focusManager; // @synthesize focusManager=_focusManager;
 @property(retain, nonatomic) SCRDFRManager *dfrManager; // @synthesize dfrManager=_dfrManager;
 @property(nonatomic, setter=setLoggedIn:) BOOL isLoggedIn; // @synthesize isLoggedIn=_isLoggedIn;
 @property(nonatomic, setter=setKeyboardHelpEnabled:) BOOL isKeyboardHelpEnabled; // @synthesize isKeyboardHelpEnabled=_isKeyboardHelpEnabled;
@@ -196,6 +203,9 @@
 - (BOOL)shouldSkipRedundantLabels;
 - (void)setShouldSkipRedundantLabels:(BOOL)arg1;
 - (BOOL)toggleScreenCurtain;
+@property(nonatomic, getter=isPreventingSleep) BOOL preventSleep; // @dynamic preventSleep;
+- (void)_setPreventSleep:(id)arg1;
+- (void)_disablePreventSleep;
 - (void)updateSystemActivity;
 - (void)_updateSystemActivity;
 - (void)triggerVirtualKeyboardKey:(unsigned short)arg1 withModifierMask:(long long)arg2;
@@ -381,7 +391,6 @@
 - (void)openWindowsGuideEventHandler:(id)arg1;
 - (void)openApplicationsGuideEventHandler:(id)arg1;
 - (void)openGuideEventHandler:(id)arg1;
-- (void)openManualHandler:(id)arg1;
 - (void)virtualKeyboardPressForCommand:(id)arg1 request:(id)arg2;
 - (void)virtualKeyboardPressEventHandler:(id)arg1;
 - (void)virtualKeyboardModifierPressEventHandler:(id)arg1;

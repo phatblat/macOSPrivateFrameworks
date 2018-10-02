@@ -22,6 +22,7 @@
     BOOL _supportsDisplayingFaceTimeVideoCalls;
     BOOL _faceTimeAudioAvailable;
     BOOL _faceTimeVideoAvailable;
+    BOOL _ctCapabilitiesValid;
     BOOL _accountsMatchForSecondaryCalling;
     BOOL _accountsSupportSecondaryCalling;
     BOOL _supportsRelayCalling;
@@ -30,6 +31,7 @@
     BOOL _supportsTelephonyRelayCalling;
     BOOL _supportsFaceTimeAudioRelayCalling;
     BOOL _supportsFaceTimeVideoRelayCalling;
+    BOOL _emergencyCallbackModeEnabled;
     BOOL _emergencyCallbackPossible;
     BOOL _supportsCarrierServices;
     int _relayCallingAvailability;
@@ -43,6 +45,7 @@
 @property(copy, nonatomic) NSDictionary *senderIdentityCapabilitiesStateByUUID; // @synthesize senderIdentityCapabilitiesStateByUUID=_senderIdentityCapabilitiesStateByUUID;
 @property(nonatomic) BOOL supportsCarrierServices; // @synthesize supportsCarrierServices=_supportsCarrierServices;
 @property(nonatomic, getter=isEmergencyCallbackPossible) BOOL emergencyCallbackPossible; // @synthesize emergencyCallbackPossible=_emergencyCallbackPossible;
+@property(nonatomic, getter=isEmergencyCallbackModeEnabled) BOOL emergencyCallbackModeEnabled; // @synthesize emergencyCallbackModeEnabled=_emergencyCallbackModeEnabled;
 @property(copy, nonatomic) NSArray *cloudCallingDevices; // @synthesize cloudCallingDevices=_cloudCallingDevices;
 @property(nonatomic) BOOL supportsFaceTimeVideoRelayCalling; // @synthesize supportsFaceTimeVideoRelayCalling=_supportsFaceTimeVideoRelayCalling;
 @property(nonatomic) BOOL supportsFaceTimeAudioRelayCalling; // @synthesize supportsFaceTimeAudioRelayCalling=_supportsFaceTimeAudioRelayCalling;
@@ -55,6 +58,7 @@
 @property(nonatomic) BOOL supportsRelayCalling; // @synthesize supportsRelayCalling=_supportsRelayCalling;
 @property(nonatomic) BOOL accountsSupportSecondaryCalling; // @synthesize accountsSupportSecondaryCalling=_accountsSupportSecondaryCalling;
 @property(nonatomic) BOOL accountsMatchForSecondaryCalling; // @synthesize accountsMatchForSecondaryCalling=_accountsMatchForSecondaryCalling;
+@property(nonatomic, getter=areCTCapabilitiesValid) BOOL ctCapabilitiesValid; // @synthesize ctCapabilitiesValid=_ctCapabilitiesValid;
 @property(nonatomic, getter=isFaceTimeVideoAvailable) BOOL faceTimeVideoAvailable; // @synthesize faceTimeVideoAvailable=_faceTimeVideoAvailable;
 @property(nonatomic, getter=isFaceTimeAudioAvailable) BOOL faceTimeAudioAvailable; // @synthesize faceTimeAudioAvailable=_faceTimeAudioAvailable;
 @property(nonatomic) BOOL supportsDisplayingFaceTimeVideoCalls; // @synthesize supportsDisplayingFaceTimeVideoCalls=_supportsDisplayingFaceTimeVideoCalls;

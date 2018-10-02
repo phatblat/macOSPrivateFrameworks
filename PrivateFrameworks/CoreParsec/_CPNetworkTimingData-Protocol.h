@@ -10,27 +10,29 @@
 
 @protocol _CPNetworkTimingData <NSObject>
 @property(readonly, nonatomic) NSData *jsonData;
+@property(nonatomic) unsigned int secureConnectStart;
+@property(nonatomic) unsigned int responseEnd;
+@property(nonatomic) unsigned int responseStart;
+@property(nonatomic) unsigned int requestEnd;
+@property(nonatomic) unsigned int requestStart;
+@property(nonatomic) unsigned int redirectEnd;
+@property(nonatomic) unsigned int redirectStart;
+@property(nonatomic) unsigned int fetchStart;
+@property(nonatomic) unsigned int domainLookupEnd;
+@property(nonatomic) unsigned int domainLookupStart;
+@property(nonatomic) unsigned int connectEnd;
+@property(nonatomic) unsigned int connectStart;
 @property(retain, nonatomic) _CPTuscanyConnectionInfo *tuscany;
-@property(nonatomic) double secureConnectStart;
 @property(nonatomic) double timingDataInit;
 @property(nonatomic) BOOL TFOSuccess;
 @property(nonatomic) unsigned int responseHeaderSize;
-@property(nonatomic) double responseEnd;
-@property(nonatomic) double responseStart;
 @property(nonatomic) unsigned int responseBodyBytesReceived;
 @property(nonatomic) unsigned int responseBodyBytesDecoded;
 @property(nonatomic) unsigned int requestHeaderSize;
-@property(nonatomic) double requestEnd;
-@property(nonatomic) double requestStart;
-@property(nonatomic) double redirectEnd;
-@property(nonatomic) double redirectStart;
 @property(nonatomic) unsigned int redirectCountW3C;
 @property(nonatomic) unsigned int redirectCount;
 @property(nonatomic) BOOL QUICWhitelistedDomain;
 @property(copy, nonatomic) NSString *networkProtocolName;
-@property(nonatomic) double fetchStart;
-@property(nonatomic) double domainLookupEnd;
-@property(nonatomic) double domainLookupStart;
 @property(copy, nonatomic) NSString *connectionUUID;
 @property(retain, nonatomic) _CPTCPInfo *stopTimeCounts;
 @property(retain, nonatomic) _CPTCPInfo *startTimeCounts;
@@ -38,8 +40,6 @@
 @property(nonatomic) BOOL connectionRace;
 @property(copy, nonatomic) NSData *peerAddress;
 @property(copy, nonatomic) NSString *interfaceIdentifier;
-@property(nonatomic) double connectEnd;
-@property(nonatomic) double connectStart;
 - (id)initWithDictionary:(NSDictionary *)arg1;
 - (id)initWithJSON:(NSData *)arg1;
 @end

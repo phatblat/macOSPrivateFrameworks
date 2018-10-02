@@ -9,6 +9,7 @@
 @class NSString;
 
 @protocol UHAAuthKitInterface <ROCKImpersonateable>
+@property(retain, nonatomic) id <UHAAnisetteDataProviderInterface> anisetteDataProvider;
 - (void)registerSurrogateWithIdentifier:(NSString *)arg1 completion:(void (^)(BOOL, NSError *))arg2;
 @end
 

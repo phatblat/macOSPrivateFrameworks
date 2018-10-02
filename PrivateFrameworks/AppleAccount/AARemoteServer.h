@@ -10,14 +10,16 @@
 
 @interface AARemoteServer : NSObject
 {
-    AAURLSession *_session;
-    AAURLSession *_absintheSession;
     struct os_unfair_lock_s _configurationLock;
     NSObject<OS_dispatch_queue> *_configurationQueue;
     AARemoteServerConfigurationCache *_configurationCache;
+    AAURLSession *_session;
+    AAURLSession *_signingSession;
 }
 
 + (id)sharedServer;
+@property(retain, nonatomic) AAURLSession *signingSession; // @synthesize signingSession=_signingSession;
+@property(retain, nonatomic) AAURLSession *session; // @synthesize session=_session;
 - (void).cxx_destruct;
 - (void)_fetchConfigurationAndResponseWithCompletion:(CDUnknownBlockType)arg1;
 - (id)_configurationLock_configurationCacheInvalidatingIfNecessary;

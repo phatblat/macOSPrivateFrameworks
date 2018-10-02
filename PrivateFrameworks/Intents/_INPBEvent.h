@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBEvent.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBString;
+@class NSArray, NSString, _INPBString;
 
-@interface _INPBEvent : PBCodable <_INPBEvent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBEvent : PBCodable <_INPBEvent, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSArray *_eventDescriptors;
     _INPBString *_eventType;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)eventDescriptorsType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBString *eventType; // @synthesize eventType=_eventType;
 @property(copy, nonatomic) NSArray *eventDescriptors; // @synthesize eventDescriptors=_eventDescriptors;
 - (void).cxx_destruct;

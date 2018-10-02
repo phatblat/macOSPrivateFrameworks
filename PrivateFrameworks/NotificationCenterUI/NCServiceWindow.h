@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
 @property __weak NCServiceViewService *viewService; // @synthesize viewService=_viewService;
 - (void).cxx_destruct;
 - (void)printViews;
+- (id)screen;
 - (void)setFrame:(struct CGRect)arg1 display:(BOOL)arg2;
 - (void)_updateCursorRectsDueToResigningKey;
 - (BOOL)_shouldAutoFlattenLayerTree;

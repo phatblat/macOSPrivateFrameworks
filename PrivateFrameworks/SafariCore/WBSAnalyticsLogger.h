@@ -18,6 +18,8 @@
 + (id)sharedLogger;
 @property(readonly, nonatomic) AWDServerConnection *awdServer; // @synthesize awdServer=_awdServer;
 - (void).cxx_destruct;
+- (void)userDidReceiveSharedPasswordWithOutcome:(int)arg1;
+- (void)userDidSharePasswordWithOutcome:(int)arg1;
 - (void)submitVersioningMetricWithVersion:(id)arg1 variant:(int)arg2;
 - (void)ckBookmarkSyncFinishedWithResult:(long long)arg1 error:(id)arg2;
 - (void)didFailToMigrateToCKBookmarksAsPrimaryMigrator:(BOOL)arg1 error:(id)arg2;

@@ -15,6 +15,7 @@
     double _assetModificationDate;
     double _date;
     double _quality;
+    unsigned long long _statsFlags;
     NSString *_assetAdjustedFingerprint;
     NSString *_assetIdentifier;
     NSString *_assetMasterFingerprint;
@@ -56,6 +57,7 @@
     unsigned int _version;
     struct {
         unsigned int quality:1;
+        unsigned int statsFlags:1;
     } _has;
 }
 
@@ -131,6 +133,7 @@
 @property(retain, nonatomic) NSString *assetMasterFingerprint; // @synthesize assetMasterFingerprint=_assetMasterFingerprint;
 @property(nonatomic) double assetModificationDate; // @synthesize assetModificationDate=_assetModificationDate;
 @property(retain, nonatomic) NSString *assetIdentifier; // @synthesize assetIdentifier=_assetIdentifier;
+@property(nonatomic) unsigned long long statsFlags; // @synthesize statsFlags=_statsFlags;
 @property(nonatomic) double quality; // @synthesize quality=_quality;
 @property(nonatomic) double date; // @synthesize date=_date;
 @property(nonatomic) unsigned int flags; // @synthesize flags=_flags;
@@ -279,6 +282,7 @@
 - (void)addImageBlurResults:(id)arg1;
 - (void)clearImageBlurResults;
 @property(readonly, nonatomic) BOOL hasAssetAdjustedFingerprint;
+@property(nonatomic) BOOL hasStatsFlags;
 @property(nonatomic) BOOL hasQuality;
 - (id)exportToLegacyDictionary;
 - (BOOL)exportResultsWithPropertyKey:(id)arg1 toLegacyDictionary:(id)arg2 withKey:(id)arg3;

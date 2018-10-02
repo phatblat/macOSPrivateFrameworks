@@ -17,10 +17,10 @@
     NSMutableDictionary *_rerefAssetBatchesByZoneID;
     NSMutableDictionary *_assetBatchesByZoneID;
     NSMutableOrderedSet *_items;
-    NSMutableDictionary *_assetZonesByZoneID;
+    NSMutableDictionary *_assetZoneByKey;
 }
 
-@property(retain, nonatomic) NSMutableDictionary *assetZonesByZoneID; // @synthesize assetZonesByZoneID=_assetZonesByZoneID;
+@property(retain, nonatomic) NSMutableDictionary *assetZoneByKey; // @synthesize assetZoneByKey=_assetZoneByKey;
 @property(retain, nonatomic) NSMutableOrderedSet *items; // @synthesize items=_items;
 @property(retain, nonatomic) NSMutableDictionary *assetBatchesByZoneID; // @synthesize assetBatchesByZoneID=_assetBatchesByZoneID;
 @property(retain, nonatomic) NSMutableDictionary *rerefAssetBatchesByZoneID; // @synthesize rerefAssetBatchesByZoneID=_rerefAssetBatchesByZoneID;

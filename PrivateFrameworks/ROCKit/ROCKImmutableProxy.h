@@ -8,7 +8,7 @@
 
 #import "ROCKMemoizable.h"
 
-@class NSMapTable, NSObject<OS_xpc_object>, NSSet, NSString;
+@class NSMapTable, NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>, NSSet, NSString;
 
 __attribute__((visibility("hidden")))
 @interface ROCKImmutableProxy : ROCKImpersonator <ROCKMemoizable>
@@ -34,6 +34,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *memoizableSerializerQueue;
 @property(readonly) Class superclass;
 
 @end

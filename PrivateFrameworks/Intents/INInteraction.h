@@ -43,6 +43,8 @@
 @property(retain, setter=_setSnippet:) SAUISnippet *_snippet; // @synthesize _snippet;
 - (void).cxx_destruct;
 - (id)parameterValueForParameter:(id)arg1;
+@property(readonly) unsigned long long _indexingHash;
+- (id)_searchableItemIncludingData:(BOOL)arg1;
 @property(readonly, copy) CSSearchableItem *_searchableItem;
 - (id)_dictionaryRepresentation;
 - (id)descriptionAtIndent:(unsigned long long)arg1;

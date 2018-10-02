@@ -24,12 +24,14 @@
 @property(retain) NSString *label; // @synthesize label=_label;
 @property(retain) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
+- (void)_setUserInfoProperty:(id)arg1 forKey:(id)arg2;
 - (id)postMetricsWithBagContract:(id)arg1;
 - (id)performActionsWithContract:(id)arg1 account:(id)arg2;
 - (id)generateAction;
 @property(retain) NSMutableDictionary *userInfo;
 @property BOOL requiresFollowUpUI;
 @property(retain) NSURLRequest *request;
+@property(retain) NSString *preferredClient;
 @property(retain) NSDictionary *metrics;
 @property(retain) NSString *logKey;
 - (id)initWithAction:(id)arg1;

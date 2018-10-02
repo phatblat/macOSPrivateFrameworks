@@ -16,6 +16,7 @@
     NSArray *_payloadPages;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withPages:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withDock:(id)arg2 withPages:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

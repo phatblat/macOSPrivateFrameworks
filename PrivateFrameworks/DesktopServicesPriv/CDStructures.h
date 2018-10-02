@@ -11,15 +11,13 @@
 struct AuthorizationOpaqueRef;
 
 struct TConditionVariable {
-    struct _opaque_pthread_cond_t {
-        long long _field1;
-        char _field2[40];
-    } _field1;
+    struct condition_variable_any _field1;
+    int _field2;
 };
 
 struct TDSHelperContext {
     CDUnknownFunctionPointerType *_field1;
-    struct TDSMutex _field2;
+    struct mutex _field2;
     struct TConditionVariable _field3;
     _Bool _field4;
     unsigned int _field5;
@@ -32,10 +30,7 @@ struct TDSHelperContext {
 };
 
 struct TDSMutex {
-    struct _opaque_pthread_mutex_t {
-        long long __sig;
-        char __opaque[56];
-    } fMutex;
+    struct _opaque_pthread_mutex_t fMutex;
 };
 
 struct TNSRef<FITNode, void> {
@@ -66,5 +61,31 @@ struct TRef<const __CFString *, TRetainReleasePolicy<CFStringRef>> {
 
 struct TUString {
     struct TRef<const __CFString *, TRetainReleasePolicy<CFStringRef>> _field1;
+};
+
+struct _opaque_pthread_mutex_t {
+    long long __sig;
+    char __opaque[56];
+};
+
+struct condition_variable {
+    struct _opaque_pthread_cond_t {
+        long long _field1;
+        char _field2[40];
+    } _field1;
+};
+
+struct condition_variable_any {
+    struct condition_variable _field1;
+    struct shared_ptr<std::__1::mutex> _field2;
+};
+
+struct mutex {
+    struct _opaque_pthread_mutex_t _field1;
+};
+
+struct shared_ptr<std::__1::mutex> {
+    struct mutex *_field1;
+    struct __shared_weak_count *_field2;
 };
 

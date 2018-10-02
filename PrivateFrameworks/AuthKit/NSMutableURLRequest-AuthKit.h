@@ -21,6 +21,7 @@
 - (void)ak_addProxyApp:(id)arg1;
 - (void)ak_addClientApp:(id)arg1;
 - (void)ak_addAcceptedSLAHeaderWithVersion:(unsigned long long)arg1;
+- (void)ak_addPhoneInformationHeaderWithValue:(id)arg1;
 - (void)ak_addPhoneNumberCertificateHeaderWithValue:(id)arg1;
 - (void)ak_addPhoneNumberHeader;
 - (void)ak_addDeviceSerialNumberHeader;
@@ -29,7 +30,7 @@
 - (void)ak_addLocalUserHasAppleIDLoginHeader;
 - (void)ak_addICSCIntentHeader;
 - (void)ak_addPRKRequestHeader;
-- (void)ak_addTimeZoneHeader;
+- (void)ak_addTimeZoneHeaders;
 - (void)ak_addLocaleHeader;
 - (void)ak_addCountryHeader;
 - (void)ak_addPasswordResetKeyHeader:(id)arg1;

@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBAppendToNoteIntent.h"
 
-@class INCodableAttribute, NSString, _INPBIntentMetadata, _INPBNote, _INPBNoteContent;
+@class NSString, _INPBIntentMetadata, _INPBNote, _INPBNoteContent;
 
-@interface _INPBAppendToNoteIntent : PBCodable <_INPBAppendToNoteIntent, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBAppendToNoteIntent : PBCodable <_INPBAppendToNoteIntent, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBNoteContent *_content;
     _INPBIntentMetadata *_intentMetadata;
     _INPBNote *_targetNote;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBNote *targetNote; // @synthesize targetNote=_targetNote;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
 @property(retain, nonatomic) _INPBNoteContent *content; // @synthesize content=_content;

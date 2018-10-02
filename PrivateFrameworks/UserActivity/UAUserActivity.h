@@ -47,6 +47,9 @@
     BOOL _eligibleForPublicIndexing;
     BOOL _eligibleForPrediction;
     NSString *_persistentIdentifier;
+    id <UAUserActivityDelegate> _delegate;
+    unsigned int _userInfoChangeCount;
+    NSDictionary *_savedUserInfo;
     BOOL _invalidated;
     BOOL _userInfoContainsFileURLs;
     BOOL _canCreateStreams;
@@ -54,7 +57,6 @@
     NSSet *_keywords;
     NSSet *_requiredUserInfoKeys;
     NSDictionary *_userInfo;
-    id <UAUserActivityDelegate> _delegate;
     UAUserActivityManager *_manager;
     NSString *_typeIdentifier;
     NSString *_dynamicIdentifier;
@@ -88,6 +90,7 @@
 + (BOOL)currentUserActivityUUIDWithOptions:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 + (id)currentUserActivityUUID;
 + (BOOL)supportsUserActivityAppLinks;
++ (id)_decodeFromEntireString:(id)arg1;
 + (id)_decodeFromString:(id)arg1;
 + (id)_decodeFromScanner:(id)arg1;
 + (id)_encodeKeyAndValueIntoString:(id)arg1 value:(id)arg2;
@@ -106,7 +109,6 @@
 @property(copy) NSString *dynamicIdentifier; // @synthesize dynamicIdentifier=_dynamicIdentifier;
 @property(copy) NSString *typeIdentifier; // @synthesize typeIdentifier=_typeIdentifier;
 @property(readonly) __weak UAUserActivityManager *manager; // @synthesize manager=_manager;
-@property id <UAUserActivityDelegate> delegate; // @synthesize delegate=_delegate;
 @property(copy) NSSet *requiredUserInfoKeys; // @synthesize requiredUserInfoKeys=_requiredUserInfoKeys;
 @property(copy) NSSet *keywords; // @synthesize keywords=_keywords;
 @property BOOL userInfoContainsFileURLs; // @synthesize userInfoContainsFileURLs=_userInfoContainsFileURLs;
@@ -143,15 +145,20 @@
 - (void)_resignCurrent;
 - (void)becomeCurrent;
 - (void)getContinuationStreamsWithCompletionHandler:(CDUnknownBlockType)arg1;
+@property id <UAUserActivityDelegate> delegate; // @dynamic delegate;
 @property BOOL supportsContinuationStreams; // @dynamic supportsContinuationStreams;
 @property(copy) NSData *streamsData;
 @property __weak NSUserActivity *parentUserActivity;
 - (id)teamID;
 @property BOOL needsSave; // @dynamic needsSave;
 @property BOOL dirty; // @dynamic dirty;
-- (void)addUserInfoEntriesFromDictionary:(id)arg1;
 @property(copy) NSURL *referrerURL; // @dynamic referrerURL;
 @property(copy) NSURL *webpageURL; // @dynamic webpageURL;
+- (void)_setWebpageURL:(id)arg1 throwOnFailure:(BOOL)arg2;
+- (BOOL)finishUserInfoUpdate;
+- (unsigned long long)beginUserInfoUpdate:(id)arg1;
+@property(readonly) unsigned long long userInfoChangeCount;
+- (void)addUserInfoEntriesFromDictionary:(id)arg1;
 @property(copy) NSDictionary *userInfo; // @synthesize userInfo=_userInfo;
 @property(copy) NSString *title; // @dynamic title;
 - (void)dealloc;

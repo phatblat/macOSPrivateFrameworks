@@ -35,6 +35,8 @@ __attribute__((visibility("hidden")))
     NSString *_pinnedPageTitle;
 }
 
++ (id)_generateSessionDataForBuiltInURL:(id)arg1;
++ (id)sessionDataWithBuiltInURL:(id)arg1;
 @property(readonly, nonatomic, getter=isMuted) BOOL muted; // @synthesize muted=_muted;
 @property(nonatomic) BOOL restoredFromPersistentData; // @synthesize restoredFromPersistentData=_restoredFromPersistentData;
 @property(readonly, copy, nonatomic) NSString *pinnedPageTitle; // @synthesize pinnedPageTitle=_pinnedPageTitle;

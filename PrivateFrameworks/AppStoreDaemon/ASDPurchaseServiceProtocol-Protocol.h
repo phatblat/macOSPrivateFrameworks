@@ -4,10 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class ASDPurchase, NSNumber, NSURL;
+@class ASDPurchase, NSArray, NSNumber, NSURL;
 
 @protocol ASDPurchaseServiceProtocol
-- (void)checkPreflightForItemIdentifier:(NSNumber *)arg1 atURL:(NSURL *)arg2 withReplyHandler:(void (^)(BOOL, NSError *))arg3;
 - (void)startPurchase:(ASDPurchase *)arg1 withReplyHandler:(void (^)(ASDPurchaseResult *, NSError *))arg2;
+- (void)checkPreflightForItemIdentifier:(NSNumber *)arg1 atURL:(NSURL *)arg2 withReplyHandler:(void (^)(BOOL, NSError *))arg3;
+- (void)adoptableBundleIdentifiersWithReplyHandler:(void (^)(NSArray *))arg1;
+- (void)adopt:(NSArray *)arg1 withReplyHandler:(void (^)(NSError *))arg2;
 @end
 

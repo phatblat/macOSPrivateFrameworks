@@ -36,6 +36,7 @@
 @property(readonly, nonatomic) BOOL hasLTEDataConnection;
 @property(readonly, nonatomic) BOOL has2GDataConnection;
 @property(readonly, nonatomic) BOOL dataConnectionExists;
+- (BOOL)_legacy_inValidSIMState;
 @property(readonly, nonatomic) BOOL inValidSIMState;
 - (void)showSIMUnlock;
 - (id)_telephonyDataSIMStatus;

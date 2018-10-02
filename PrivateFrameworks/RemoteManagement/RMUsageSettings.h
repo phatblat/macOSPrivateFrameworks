@@ -16,6 +16,7 @@
 
 // Remaining properties
 @property(nonatomic) BOOL isEnabled; // @dynamic isEnabled;
+@property(nonatomic) BOOL shareWebUsage; // @dynamic shareWebUsage;
 @property(retain, nonatomic) RMUser *user; // @dynamic user;
 @property(retain, nonatomic) NSSet *userDevicePairs; // @dynamic userDevicePairs;
 

@@ -6,22 +6,19 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBLong.h"
 
-@class INCodableAttribute, NSArray, NSString;
+@class NSArray, NSString;
 
-@interface _INPBLong : PBCodable <_INPBLong, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBLong : PBCodable <_INPBLong, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSArray *_values;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)valueType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *values; // @synthesize values=_values;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

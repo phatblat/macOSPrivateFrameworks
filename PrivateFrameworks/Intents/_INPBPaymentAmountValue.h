@@ -6,24 +6,21 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBPaymentAmountValue.h"
 
-@class INCodableAttribute, NSString, _INPBCurrencyAmountValue;
+@class NSString, _INPBCurrencyAmountValue;
 
-@interface _INPBPaymentAmountValue : PBCodable <_INPBPaymentAmountValue, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBPaymentAmountValue : PBCodable <_INPBPaymentAmountValue, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int amountType:1;
     } _has;
     int _amountType;
     _INPBCurrencyAmountValue *_value;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBCurrencyAmountValue *value; // @synthesize value=_value;
 @property(nonatomic) int amountType; // @synthesize amountType=_amountType;
 - (void).cxx_destruct;

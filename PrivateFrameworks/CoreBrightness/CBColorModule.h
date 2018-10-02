@@ -18,6 +18,8 @@ __attribute__((visibility("hidden")))
 {
     NSMutableArray *_relevantServices;
     void *_callbackContext;
+    CDStruct_ebf15ab2 _colorSample;
+    double _illuminance;
     _Bool _clamshell;
     NSObject<OS_dispatch_source> *_rampTimer;
     NSString *_userName;
@@ -33,6 +35,14 @@ __attribute__((visibility("hidden")))
         _Bool whitePointEnabled;
         double enablementTs;
         _Bool forceSnapping;
+        float currentChromaticitySensitivity;
+        _Bool harmonySupported;
+        _Bool harmonyEnabled;
+        _Bool harmonyActive;
+        _Bool harmonyAvailable;
+        _Bool whitepointAvailable;
+        float harmonyStrength;
+        float harmonyFixedStrength;
     } _colorStruct;
     _Bool _fadeInProgress;
     _Bool _endRamp;
@@ -58,8 +68,14 @@ __attribute__((visibility("hidden")))
 - (void)reportResetTimerWithStop:(BOOL)arg1;
 - (BOOL)startNewTimerWithFreq:(float)arg1;
 - (void)timerRoutine:(id)arg1;
+- (void)inputAmbientColorSample:(CDStruct_ebf15ab2 *)arg1 force:(BOOL)arg2 trust:(BOOL)arg3;
+- (void)activateColorAdaptation;
+- (id)newAdaptationModeMappingDictionary:(float *)arg1 strengthNum:(int)arg2;
+- (id)newAdaptationModeMappingArray:(float *)arg1 strengthNum:(int)arg2;
+- (BOOL)parseAdaptationModeMappingArray:(id)arg1 strengths:(float *)arg2 strengthNum:(int)arg3;
+- (BOOL)parseAdaptationModeMappingDictionary:(id)arg1 strengths:(float *)arg2 strengthNum:(int)arg3;
 - (void)initColorStruct;
-- (void)colorRampRoutine:(const CDStruct_a0d89d44 *)arg1;
+- (void)colorRampRoutine:(const CDStruct_7bd4ac66 *)arg1;
 - (void)sendNotificationForKey:(id)arg1 andValue:(id)arg2;
 - (void)updateActivity;
 - (void)updateAvailability;
@@ -76,8 +92,19 @@ __attribute__((visibility("hidden")))
 - (_Bool)removeHIDServiceClient:(struct __IOHIDServiceClient *)arg1;
 - (_Bool)addHIDServiceClient:(struct __IOHIDServiceClient *)arg1;
 - (_Bool)handleHIDEvent:(struct __IOHIDEvent *)arg1 from:(struct __IOHIDServiceClient *)arg2;
+- (float)absoluteDifferenceForCurrentColor:(CDStruct_b2fbf00d)arg1 andDeltaError:(CDStruct_b2fbf00d)arg2;
+- (BOOL)setColorSensitivity:(float)arg1 forALS:(struct __IOHIDServiceClient *)arg2;
+- (void)updateSensorSensitivity:(struct __IOHIDServiceClient *)arg1;
 - (void)handleHIDEventInternal:(struct __IOHIDEvent *)arg1 from:(struct __IOHIDServiceClient *)arg2;
 - (_Bool)setPropertyInternal:(id)arg1 forKey:(id)arg2;
+- (BOOL)CoreDisplayInitialisedPropertyHandler:(id)arg1;
+- (BOOL)CAModeMapping:(id)arg1;
+- (BOOL)CAWeakestColorAdaptationModeAnimatedPropertyHandler:(id)arg1;
+- (BOOL)CAWeakestColorAdaptationModePropertyHandler:(id)arg1;
+- (void)CAStrengthUpdate:(float)arg1 withPeriod:(float)arg2;
+- (BOOL)CAStrengthPropertyHandler:(id)arg1;
+- (BOOL)CAEnabledPropertyHandler:(id)arg1;
+- (BOOL)CALabShiftPropertyHandler:(id)arg1;
 - (BOOL)BLRCCTTargetPropertyHandler:(id)arg1;
 - (void)BLRFactorUpdate:(float)arg1 withPeriod:(float)arg2;
 - (void)BLRFactorUpdate:(float)arg1;
@@ -88,6 +115,7 @@ __attribute__((visibility("hidden")))
 - (void)dealloc;
 - (void)stop;
 - (BOOL)start;
+- (id)initDFRHarmony;
 - (id)initMain;
 
 // Remaining properties

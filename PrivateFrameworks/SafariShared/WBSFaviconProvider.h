@@ -23,6 +23,7 @@
     long long _providerState;
     unsigned long long _privateDataRetentionCount;
     struct CGSize _scaledPreferredIconSize;
+    CDUnknownBlockType _shouldCheckIntegrityWhenOpeningDatabaseBlock;
     BOOL _isReadOnly;
     id <WBSSiteMetadataProviderDelegate> _providerDelegate;
     NSURL *_baseURL;
@@ -47,6 +48,7 @@
 - (void)_updateOutstandingRequestsAfterSuccessfulSetup;
 - (id)_requestsForHost:(id)arg1;
 - (void)_registerRequest:(id)arg1;
+- (id)_hostFromURL:(id)arg1;
 - (id)_hostFromRequest:(id)arg1;
 - (id)_responseCacheKeyForRequest:(id)arg1;
 - (id)_responseDictionaryKeyForRequest:(id)arg1;
@@ -56,6 +58,7 @@
 - (id)_cachedResponseForRequest:(id)arg1;
 - (void)savePendingChangesBeforeTermination;
 - (void)emptyCaches;
+@property(readonly, nonatomic) BOOL providesFavicons;
 - (void)stopWatchingUpdatesForRequest:(id)arg1;
 - (id)responseForRequest:(id)arg1 willProvideUpdates:(char *)arg2;
 - (void)prepareResponseForRequest:(id)arg1 allowDelayedResponse:(BOOL)arg2;
@@ -81,8 +84,8 @@
 - (long long)providerState;
 - (id)persistenceController;
 - (void)dealloc;
-- (id)initWithPersistenceBaseURL:(id)arg1 persistenceName:(id)arg2 preferredIconSize:(struct CGSize)arg3 atScale:(double)arg4 allScales:(id)arg5 isReadOnly:(BOOL)arg6;
-- (id)initWithPersistenceBaseURL:(id)arg1 persistenceName:(id)arg2 preferredIconSize:(struct CGSize)arg3 atScale:(double)arg4 allScales:(id)arg5;
+- (id)initWithPersistenceBaseURL:(id)arg1 persistenceName:(id)arg2 preferredIconSize:(struct CGSize)arg3 atScale:(double)arg4 allScales:(id)arg5 isReadOnly:(BOOL)arg6 shouldCheckIntegrityWhenOpeningDatabaseBlock:(CDUnknownBlockType)arg7;
+- (id)initWithPersistenceBaseURL:(id)arg1 persistenceName:(id)arg2 preferredIconSize:(struct CGSize)arg3 atScale:(double)arg4 allScales:(id)arg5 shouldCheckIntegrityWhenOpeningDatabaseBlock:(CDUnknownBlockType)arg6;
 - (id)init;
 
 // Remaining properties

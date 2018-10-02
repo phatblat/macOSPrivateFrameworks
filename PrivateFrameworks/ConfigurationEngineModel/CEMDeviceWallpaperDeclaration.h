@@ -17,6 +17,7 @@
     NSNumber *_payloadAllowWallpaperModification;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withLockScreenAsset:(id)arg2 withHomeScreenAsset:(id)arg3 withAllowWallpaperModification:(id)arg4;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

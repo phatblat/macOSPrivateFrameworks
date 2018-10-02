@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSObject<OS_xpc_object>, OSLogEventLiveStream, SignpostIntervalBuilder, SignpostSupportExactProcessNameFilter, SignpostSupportObjectFilter, SignpostSupportPIDFilter, SignpostSupportSubsystemCategoryFilter, SignpostSupportUniquePIDFilter;
+@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, OSLogEventLiveStream, SignpostIntervalBuilder, SignpostSupportExactProcessNameFilter, SignpostSupportObjectFilter, SignpostSupportPIDFilter, SignpostSupportSubsystemCategoryFilter, SignpostSupportUniquePIDFilter;
 
 @interface SignpostSupportObjectExtractor : NSObject
 {
@@ -29,8 +29,8 @@
     unsigned long long _processedEventCount;
     CDUnknownBlockType _timedOutBeginEventProcessingBlock;
     NSObject<OS_dispatch_semaphore> *_completionSemaphore;
+    NSObject<OS_dispatch_semaphore> *_syncSem;
     unsigned long long __notificationTimeout;
-    NSObject<OS_xpc_object> *_notificationConnection;
     NSObject<OS_dispatch_queue> *_notificationProcessingQueue;
     OSLogEventLiveStream *__liveStream;
     CDUnknownBlockType __stopProcessingBlock;
@@ -41,8 +41,8 @@
 @property(copy, nonatomic) CDUnknownBlockType _stopProcessingBlock; // @synthesize _stopProcessingBlock=__stopProcessingBlock;
 @property(retain, nonatomic) OSLogEventLiveStream *_liveStream; // @synthesize _liveStream=__liveStream;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *notificationProcessingQueue; // @synthesize notificationProcessingQueue=_notificationProcessingQueue;
-@property(retain, nonatomic) NSObject<OS_xpc_object> *notificationConnection; // @synthesize notificationConnection=_notificationConnection;
 @property(nonatomic) unsigned long long _notificationTimeout; // @synthesize _notificationTimeout=__notificationTimeout;
+@property(readonly, nonatomic) NSObject<OS_dispatch_semaphore> *syncSem; // @synthesize syncSem=_syncSem;
 @property(readonly, nonatomic) NSObject<OS_dispatch_semaphore> *completionSemaphore; // @synthesize completionSemaphore=_completionSemaphore;
 @property BOOL _shouldStopProcessing; // @synthesize _shouldStopProcessing=__shouldStopProcessing;
 @property(copy, nonatomic) CDUnknownBlockType timedOutBeginEventProcessingBlock; // @synthesize timedOutBeginEventProcessingBlock=_timedOutBeginEventProcessingBlock;
@@ -67,7 +67,6 @@
 - (void)dealloc;
 - (void)_processingCompleted:(id)arg1;
 - (void)stopProcessing;
-- (void)_cleanupState;
 - (id)init;
 @property(nonatomic) BOOL buildAnimationCompositeIntervalTimelines;
 - (BOOL)_processSignpostEvent:(id)arg1 shouldReport:(BOOL)arg2;

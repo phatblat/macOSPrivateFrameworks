@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBTimer.h"
 
-@class INCodableAttribute, NSString, _INPBDataString;
+@class NSString, _INPBDataString;
 
-@interface _INPBTimer : PBCodable <_INPBTimer, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBTimer : PBCodable <_INPBTimer, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int duration:1;
@@ -25,10 +24,8 @@
     NSString *_identifier;
     _INPBDataString *_label;
     double _remainingTime;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int state; // @synthesize state=_state;
 @property(nonatomic) double remainingTime; // @synthesize remainingTime=_remainingTime;
 @property(retain, nonatomic) _INPBDataString *label; // @synthesize label=_label;

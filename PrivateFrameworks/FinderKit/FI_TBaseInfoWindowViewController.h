@@ -6,25 +6,27 @@
 
 #import <FinderKit/FI_TViewController.h>
 
-@class NSArray;
+#import "TMarkTornDown.h"
+
+@class NSArray, NSString;
 
 __attribute__((visibility("hidden")))
-@interface FI_TBaseInfoWindowViewController : FI_TViewController
+@interface FI_TBaseInfoWindowViewController : FI_TViewController <TMarkTornDown>
 {
     struct TFENodeVector _targetNodes;
     struct TNSRef<NSArray<IPropertyValueControllers *>, void> _valueControllers;
     struct TRef<NSObject<OS_dispatch_queue>*, TRetainReleasePolicy<dispatch_queue_t>> _prefetchValuesQueue;
+    _Bool _isTornDown;
 }
 
 + (id)controller;
+@property(readonly, getter=isTornDown) _Bool tornDown; // @synthesize tornDown=_isTornDown;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)nodeMDAttributeChanged:(const struct TFENode *)arg1 attributes:(id)arg2 isDisplayAttributes:(_Bool)arg3;
 - (void)nodesGoingAway:(const struct TFENodeVector *)arg1;
-- (void)bulkNodesDeleted:(const struct TCoalescedNodesAddedMap *)arg1;
-- (_Bool)performCmd:(SEL)arg1 forSender:(id)arg2;
-- (_Bool)validateCmd:(SEL)arg1 forSender:(id)arg2;
-- (void)bulkNodesChanged:(const struct TCoalescedNodesChangedMap *)arg1;
+- (void)bulkNodesDeleted:(const map_27534541 *)arg1;
+- (void)bulkNodesChanged:(const map_253f12d2 *)arg1;
 - (unsigned int)notificationOptionsForNodes:(const struct TFENodeVector *)arg1;
 - (void)refresh;
 - (void)prefetchValues:(const struct TFENodeVector *)arg1;
@@ -36,6 +38,12 @@ __attribute__((visibility("hidden")))
 - (void)loadValueControllers;
 - (void)aboutToTearDown;
 - (void)viewLoaded;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

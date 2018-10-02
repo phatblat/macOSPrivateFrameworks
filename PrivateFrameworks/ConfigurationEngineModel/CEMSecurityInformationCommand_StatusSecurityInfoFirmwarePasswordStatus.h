@@ -15,6 +15,7 @@
     NSNumber *_statusAllowOroms;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithPasswordExists:(id)arg1 withChangePending:(id)arg2 withAllowOroms:(id)arg3;
 + (id)allowedStatusKeys;
 @property(copy, nonatomic) NSNumber *statusAllowOroms; // @synthesize statusAllowOroms=_statusAllowOroms;

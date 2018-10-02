@@ -8,26 +8,31 @@
 
 #import "UHAShareToolbarItemInterface.h"
 
-@class NSArray, NSString;
+@class NSArray, NSObject<OS_dispatch_queue>, NSString;
 
 @interface UHASShareToolbarItem : UHASToolbarItem <UHAShareToolbarItemInterface>
 {
     NSArray *_activityItems;
+    CDUnknownBlockType _completionWithItemsHandler;
     BOOL _enabled;
 }
 
+@property(copy, nonatomic) CDUnknownBlockType completionWithItemsHandler; // @synthesize completionWithItemsHandler=_completionWithItemsHandler;
 - (void).cxx_destruct;
 @property(nonatomic, getter=isEnabled) BOOL enabled;
 @property(copy, nonatomic) NSArray *activityItems;
 - (id)initWithIdentifier:(id)arg1;
 
 // Remaining properties
+@property(copy, nonatomic) id <UHAAccesibilityInfoInterface> accessibilityInfo;
 @property(copy, nonatomic) CDUnknownBlockType changeHandler;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly, copy, nonatomic) NSString *identifier;
 @property(copy, nonatomic) NSString *label;
+@property(readonly, nonatomic) unsigned long long rock_invocationFlags;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *rock_invocationQueue;
 @property(readonly) Class superclass;
 
 @end

@@ -31,11 +31,11 @@
 @property(readonly) NSString *previewItemTitle;
 @property(readonly) NSURL *launchURL;
 @property(readonly) NSURL *previewItemURL;
-@property(readonly, copy) NSString *debugDescription;
 - (struct TFENode)feNodeFollowingAliasChainAsyncWithTarget:(id)arg1 allowInteraction:(_Bool)arg2;
 
 // Remaining properties
 @property(readonly) NSString *applicationBundleIdentifier;
+@property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly, copy) NSString *extensionPath;
 @property(readonly) unsigned long long hash;

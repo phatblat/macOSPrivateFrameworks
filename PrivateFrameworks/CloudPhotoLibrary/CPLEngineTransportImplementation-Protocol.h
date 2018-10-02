@@ -30,6 +30,7 @@
 - (id <CPLEngineTransportGroup>)createGroupForLibraryStateCheck;
 - (id <CPLEngineTransportGroup>)createGroupForFeedback;
 - (id <CPLEngineTransportGroup>)createGroupForFetchScopeListChanges;
+- (id <CPLEngineTransportGroup>)createGroupForTransportScopeUpdate;
 - (id <CPLEngineTransportGroup>)createGroupForTransportScopeDelete;
 - (id <CPLEngineTransportGroup>)createGroupForSetup;
 - (id <CPLEngineTransportGroup>)createGroupForThumbnailPrefetch;
@@ -38,7 +39,7 @@
 - (id <CPLEngineTransportGroup>)createGroupForResetSync;
 - (id <CPLEngineTransportGroup>)createGroupForInitialUpload;
 - (void)getPushEnvironmentWithCompletionHandler:(void (^)(NSString *, NSString *, NSError *))arg1;
-- (void)cancelBlockedTasks;
+- (void)cancelBlockedTasksIncludingBackground:(BOOL)arg1;
 - (void)noteClientIsEndingSignificantWork;
 - (void)noteClientIsBeginningSignificantWork;
 - (void)setShouldOverride:(BOOL)arg1 forSystemBudgets:(unsigned long long)arg2;
@@ -48,6 +49,7 @@
 - (NSError *)bestErrorForUnderlyingError:(NSError *)arg1;
 - (id <CPLEngineTransportFetchTransportScopeTask>)fetchTransportScopeForScope:(CPLEngineScope *)arg1 transportScope:(NSData *)arg2 completionHandler:(void (^)(NSData *, CPLEngineScopeFlagsUpdate *, NSError *))arg3;
 - (id <CPLEngineTransportGetLibraryInfoTask>)getLibraryInfoAndStateWithTransportScope:(NSData *)arg1 scope:(CPLEngineScope *)arg2 completionHandler:(void (^)(long long, CPLLibraryInfo *, CPLLibraryState *, NSError *))arg3;
+- (id <CPLEngineTransportUpdateTransportScopeTask>)updateTransportScope:(NSData *)arg1 scope:(CPLEngineScope *)arg2 libraryInfo:(CPLLibraryInfo *)arg3 completionHandler:(void (^)(NSError *))arg4;
 - (id <CPLEngineTransportDeleteTransportScopeTask>)deleteTransportScope:(NSData *)arg1 scope:(CPLEngineScope *)arg2 completionHandler:(void (^)(NSError *))arg3;
 - (id <CPLEngineTransportSendFeedbackTask>)sendFeedbackTaskForMessages:(NSArray *)arg1 completionHandler:(void (^)(NSError *))arg2;
 - (id <CPLEngineTransportQueryUserIdentitiesTask>)queryUserIdentitiesTaskForParticipants:(NSArray *)arg1 completionHandler:(void (^)(NSArray *, NSError *))arg2;

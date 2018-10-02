@@ -20,6 +20,7 @@
     unsigned long long _defaultPriority;
 }
 
++ (id)unblockableCategoryIdentifiers;
 + (id)unblockableBundleIdentifiers;
 + (BOOL)supportsSecureCoding;
 @property(readonly, nonatomic) unsigned long long defaultPriority; // @synthesize defaultPriority=_defaultPriority;

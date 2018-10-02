@@ -15,7 +15,6 @@ __attribute__((visibility("hidden")))
     int _viewStyleForViewOptions;
     _Bool _shouldShowLibraryFolderButton;
     _Bool _shouldShowLibraryFolder;
-    _Bool _shouldShowPreviewPane;
 }
 
 + (void)tearDownSharedController;

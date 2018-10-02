@@ -97,7 +97,6 @@
 - (void)stopNetworkMigrationServer;
 - (BOOL)startNetworkMigrationServerUsingSourcePath:(id)arg1 andSecretPassword:(id)arg2;
 - (id)safeDestinationForIntendedDestination:(id)arg1 usingPather:(id)arg2;
-- (id)upgradeSIPWhitelistPaths;
 - (void)loadRootlessConfigFromRoot:(id)arg1;
 @property(readonly) NSURL *systemDefenseQuarantinePath;
 - (void)setupSystemDefenseForRequest;

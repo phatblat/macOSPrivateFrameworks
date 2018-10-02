@@ -11,6 +11,7 @@
 @interface OSLogEventLiveStream : OSLogEventStreamBase
 {
     _OSLogStreamFilter *_streamFilter;
+    unsigned long long _reason;
     NSObject<OS_xpc_object> *_diagdconn;
     OSLogEventLiveSource *_source;
     CDUnknownBlockType _dropnoteHandler;

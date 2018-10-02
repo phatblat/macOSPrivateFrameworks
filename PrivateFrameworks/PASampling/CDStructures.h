@@ -273,6 +273,7 @@ struct os_log_message_s {
     char *_field21;
     unsigned char _field22;
     unsigned char _field23;
+    char *_field24;
 };
 
 struct os_trace_message_s {

@@ -19,6 +19,8 @@
 - (void)performBlock:(CDUnknownBlockType)arg1;
 - (id)initWithOptions:(unsigned long long)arg1;
 - (id)init;
+- (void)assertNotOwner;
+- (void)assertOwner;
 - (void)unlock;
 - (void)lock;
 

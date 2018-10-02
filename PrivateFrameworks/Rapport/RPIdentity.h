@@ -19,6 +19,7 @@
     NSData *_deviceIRKData;
     NSData *_edPKData;
     NSData *_edSKData;
+    unsigned long long _featureFlags;
     NSString *_identifier;
     NSString *_idsDeviceID;
     NSString *_model;
@@ -37,6 +38,7 @@
 @property(copy, nonatomic) NSString *model; // @synthesize model=_model;
 @property(copy, nonatomic) NSString *idsDeviceID; // @synthesize idsDeviceID=_idsDeviceID;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
+@property(nonatomic) unsigned long long featureFlags; // @synthesize featureFlags=_featureFlags;
 @property(copy, nonatomic) NSData *edSKData; // @synthesize edSKData=_edSKData;
 @property(copy, nonatomic) NSData *edPKData; // @synthesize edPKData=_edPKData;
 @property(copy, nonatomic) NSData *deviceIRKData; // @synthesize deviceIRKData=_deviceIRKData;

@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "PLEntry.h"
+#import "PLMultiKeyEntry.h"
 
 @class NSArray;
 
-@interface PLEventForwardPowerStateEntry : PLEntry
+@interface PLEventForwardPowerStateEntry : PLMultiKeyEntry
 {
 }
 
@@ -19,7 +19,8 @@
 @property(readonly) short event;
 @property(readonly) short state;
 - (id)initEntryWithIOMessage:(unsigned int)arg1;
-- (id)initEntryWithState:(short)arg1 withEvent:(short)arg2 withReason:(id)arg3 withCurrentKernelWakeTime:(unsigned long long)arg4 withCapabilities:(unsigned int)arg5 withDate:(id)arg6;
+- (id)initEntryWithState:(short)arg1 withEvent:(short)arg2 withReason:(id)arg3 withCurrentMachWakeTime:(unsigned long long)arg4 withDate:(id)arg5;
+- (id)initEntryWithState:(short)arg1 withEvent:(short)arg2 withReason:(id)arg3 withCurrentKernelWakeTime:(unsigned long long)arg4 withCapabilities:(unsigned int)arg5 withWakeTriggerSubclass:(id)arg6 withDate:(id)arg7;
 - (id)initEntryWithState:(short)arg1 withEvent:(short)arg2 withReason:(id)arg3 withKernelSleepDate:(id)arg4 withDate:(id)arg5;
 - (id)initEntryWithState:(short)arg1 withEvent:(short)arg2 withReason:(id)arg3 withDate:(id)arg4;
 

@@ -15,6 +15,7 @@
     NSNumber *_payloadAllowCellularData;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithAppIdentifierMatches:(id)arg1 withAllowRoamingCellularData:(id)arg2 withAllowCellularData:(id)arg3;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadAllowCellularData; // @synthesize payloadAllowCellularData=_payloadAllowCellularData;

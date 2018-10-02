@@ -14,6 +14,7 @@
     NSString *_payloadTeamIdentifier;
 }
 
++ (id)buildRequiredOnlyWithBundleIdentifier:(id)arg1 withTeamIdentifier:(id)arg2;
 + (id)buildWithBundleIdentifier:(id)arg1 withTeamIdentifier:(id)arg2;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadTeamIdentifier; // @synthesize payloadTeamIdentifier=_payloadTeamIdentifier;

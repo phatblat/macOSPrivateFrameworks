@@ -68,6 +68,7 @@
     NSNumber *_isBusiness;
     NSNumber *_isMako;
     NSNumber *_isApple;
+    BOOL _hasCheckedForSuggestions;
     NSString *_personCentricID;
     NSString *_guid;
     MKMapItem *_mapItem;
@@ -93,6 +94,7 @@
 + (void)validHandlesForPersons:(id)arg1 completion:(CDUnknownBlockType)arg2;
 + (void)bestHandlesForPersons:(id)arg1 useExtendedAsyncLookup:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
 + (void)bestHandlesForPersons:(id)arg1 completion:(CDUnknownBlockType)arg2;
+@property(nonatomic) BOOL hasCheckedForSuggestions; // @synthesize hasCheckedForSuggestions=_hasCheckedForSuggestions;
 @property(copy, nonatomic) NSString *suggestedName; // @synthesize suggestedName=_suggestedName;
 @property(retain, nonatomic) id cachedStatusMessageAsURL; // @synthesize cachedStatusMessageAsURL=_cachedStatusMessageAsURL;
 @property(retain, nonatomic) NSURL *statusURL; // @synthesize statusURL=_statusURL;
@@ -124,6 +126,7 @@
 - (void)_fetchMapItemBannerImageDataForMapItem:(id)arg1;
 - (void)_mapItemImageDataFetchedWithResponse:(id)arg1 statusCode:(long long)arg2 resultData:(id)arg3 remoteURLConnectionError:(id)arg4;
 - (void)_fetchMapItemImageDataForMapItem:(id)arg1;
+- (void)_postOnScreenChangedNotificationForProperty:(id)arg1;
 - (void)_mapItemFetchedWithMapItems:(id)arg1 error:(id)arg2;
 - (void)_fetchBusinessInfo;
 - (void)sendNotificationABPersonChanged;
@@ -250,6 +253,7 @@
 @property(readonly, retain, nonatomic) NSString *normalizedID;
 @property(readonly, retain, nonatomic) NSString *displayID;
 - (id)immediateNameWithNeedsSuggestedNameFetch:(char *)arg1 useSuggestedName:(BOOL)arg2;
+- (void)scheduleSuggestedNameFetchIfNecessary;
 @property(readonly, retain, nonatomic) NSString *name;
 - (BOOL)_hasABName;
 - (BOOL)_hasServiceNameProperties;

@@ -16,6 +16,8 @@
 - (void)clearAttributePresent:(int)arg1 withValue:(unsigned short)arg2;
 - (void)setAttributePresent:(int)arg1 withValue:(unsigned short)arg2;
 - (BOOL)diverseContentPresentForAttribute:(int)arg1;
+- (BOOL)contentEqualForAttribute:(int)arg1 withRenditionInfo:(id)arg2;
+- (BOOL)contentPresentForAttribute:(int)arg1;
 - (int)attributePresent:(int)arg1 withValue:(unsigned short)arg2;
 - (id)bitwiseAndWith:(id)arg1;
 - (id)description;

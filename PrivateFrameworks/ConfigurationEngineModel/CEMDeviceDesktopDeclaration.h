@@ -16,6 +16,7 @@
     NSString *_payloadOverridePicturePath;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withLocked:(id)arg2 withOverridePicturePath:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

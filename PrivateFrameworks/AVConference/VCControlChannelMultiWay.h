@@ -8,12 +8,11 @@
 
 #import "VCControlChannelTransactionDelegate.h"
 #import "VCControlChannelencryptionDelegate.h"
-#import "VCSecurityEventHandler.h"
 
-@class NSMutableArray, NSMutableDictionary, NSString;
+@class NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
 
 __attribute__((visibility("hidden")))
-@interface VCControlChannelMultiWay : VCControlChannel <VCControlChannelencryptionDelegate, VCControlChannelTransactionDelegate, VCSecurityEventHandler>
+@interface VCControlChannelMultiWay : VCControlChannel <VCControlChannelencryptionDelegate, VCControlChannelTransactionDelegate>
 {
     unsigned int _transportSessionID;
     int _vfdMessage;
@@ -25,6 +24,7 @@ __attribute__((visibility("hidden")))
     BOOL _isEncryptionEnabled;
     NSMutableDictionary *_cryptors;
     void *_currentSendMKI;
+    NSObject<OS_dispatch_queue> *_sequentialKeyMaterialQueue;
 }
 
 @property(readonly) BOOL isEncryptionEnabled; // @synthesize isEncryptionEnabled=_isEncryptionEnabled;
@@ -32,7 +32,6 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) int vfdCancel; // @synthesize vfdCancel=_vfdCancel;
 @property(nonatomic) int vfdMessage; // @synthesize vfdMessage=_vfdMessage;
 @property(nonatomic) unsigned int transportSessionID; // @synthesize transportSessionID=_transportSessionID;
-- (void)handleEncryptionInfoChange:(id)arg1;
 - (void)flushReportingStats;
 - (void)flushRealTimeReportingStats;
 - (void)deregisterPeriodicTask;
@@ -42,14 +41,16 @@ __attribute__((visibility("hidden")))
 - (BOOL)isParticipantActive:(unsigned long long)arg1;
 - (void)addToReceivedStats:(int)arg1;
 - (void)addToSentStats:(int)arg1;
+- (void)addNewKeyMaterial:(id)arg1;
 - (void)scheduleAfter:(unsigned int)arg1 block:(CDUnknownBlockType)arg2;
+- (void)removeAllActiveParticipants;
 - (void)removeActiveParticipant:(unsigned long long)arg1;
 - (void)addActiveParticipant:(unsigned long long)arg1;
 - (void)broadcastUnreliableMessage:(id)arg1;
 - (void)sendUnreliableMessage:(id)arg1 participantID:(unsigned long long)arg2;
 - (void)sendReliableMessage:(id)arg1 participantID:(unsigned long long)arg2;
 - (BOOL)sendReliableMessageAndWait:(id)arg1 participantID:(unsigned long long)arg2;
-- (void)messageReceived:(id)arg1 participantInfo:(CDStruct_81244b4e *)arg2;
+- (void)messageReceived:(id)arg1 participantInfo:(CDStruct_94aa5fb4 *)arg2;
 - (id)processEncryptedMessage:(id)arg1 sequenceNumber:(id)arg2 MKIData:(id)arg3 participantID:(id)arg4;
 - (BOOL)decryptMessageWithMKI:(void *)arg1 message:(id)arg2 buffer:(char *)arg3 size:(unsigned int)arg4 sequenceNumber:(unsigned short)arg5;
 - (void)flushActiveMessages;
@@ -59,6 +60,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)encryptData:(char *)arg1 size:(int)arg2 sequenceNumber:(unsigned short)arg3;
 - (int)updateEncryption:(CDStruct_5b6da142 *)arg1 derivedSSRC:(unsigned int)arg2;
 - (int)getKeyDerivationCryptoSet:(CDStruct_5b6da142 *)arg1 withKeyMaterial:(id)arg2 derivedSSRC:(unsigned int *)arg3;
+- (void)setCurrentSendMKIWithKeyMaterial:(id)arg1;
 - (void)updateEncryptionWithKeyMaterial:(id)arg1;
 - (void)initializeSRTPInfo:(struct tagSRTPINFO *)arg1;
 - (void)finalizeEncryption;

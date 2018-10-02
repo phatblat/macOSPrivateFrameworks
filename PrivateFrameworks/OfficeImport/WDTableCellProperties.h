@@ -20,6 +20,7 @@
     WDDocument *mDocument;
 }
 
+@property(readonly) __weak WDDocument *document; // @synthesize document=mDocument;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -128,7 +129,6 @@
 - (short)position;
 - (void)setWidth:(short)arg1;
 - (short)width;
-- (id)document;
 - (id)initWithDocument:(id)arg1;
 - (id)init;
 - (id)description;

@@ -15,6 +15,7 @@
     CEMPredicateBase *_payloadPredicate;
 }
 
++ (id)buildRequiredOnlyWithPredicate:(id)arg1;
 + (id)buildWithPredicate:(id)arg1;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

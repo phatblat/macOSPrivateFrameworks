@@ -15,6 +15,7 @@
     NSString *_payloadTitle;
 }
 
++ (id)buildRequiredOnlyWithURL:(id)arg1 withTitle:(id)arg2;
 + (id)buildWithURL:(id)arg1 withBookmarkPath:(id)arg2 withTitle:(id)arg3;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadTitle; // @synthesize payloadTitle=_payloadTitle;

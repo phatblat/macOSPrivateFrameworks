@@ -28,7 +28,7 @@
     CPLPrequeliteVariable *_libraryOptionsVar;
     CPLPrequeliteVariable *_shouldUpdateDisabledFeaturesVar;
     CPLPrequeliteVariable *_disabledFeaturesDataVar;
-    BOOL _shouldUpdateDisabledFeaturesAfterOpen;
+    BOOL _versionHasChanged;
     CPLPrequeliteVariable *_deactivatedVar;
     Class _userIdentifierClass;
     NSObject<OS_dispatch_queue> *_isClientInSyncWithClientCacheQueue;
@@ -51,7 +51,9 @@
 - (void)table:(id)arg1 enumerateCountGroupedByProperty:(id)arg2 block:(CDUnknownBlockType)arg3;
 - (void)table:(id)arg1 enumerateCountGroupedByUnsignedIntegerProperty:(id)arg2 block:(CDUnknownBlockType)arg3;
 - (unsigned long long)table:(id)arg1 countOfRecordsMatchingQuery:(id)arg2;
+- (unsigned long long)tableCountOfRecords:(id)arg1;
 - (BOOL)table:(id)arg1 hasRecordsMatchingQuery:(id)arg2;
+- (BOOL)tableHasRecords:(id)arg1;
 - (void)recordUpgradeEvent:(id)arg1 arguments:(struct __va_list_tag [1])arg2;
 - (void)recordUpgradeEvent:(id)arg1;
 - (id)status;
@@ -86,6 +88,7 @@
 - (id)libraryVersion;
 - (BOOL)updateLibraryOptions:(unsigned long long)arg1 error:(id *)arg2;
 - (unsigned long long)libraryOptions;
+- (void)performBarrier;
 - (void)performBarrierTransaction:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (BOOL)closeWithError:(id *)arg1;
 - (void)performWriteTransaction:(id)arg1 withBlock:(CDUnknownBlockType)arg2 completionHandler:(CDUnknownBlockType)arg3;
@@ -93,7 +96,7 @@
 - (BOOL)executePostOpenWithError:(id *)arg1;
 - (BOOL)openWithError:(id *)arg1;
 - (BOOL)_openWithError:(id *)arg1;
-- (BOOL)_setupPragmas;
+- (BOOL)_setupPragmasAndFunctions;
 - (BOOL)markDatabaseAsDeactivatedWithError:(id *)arg1;
 @property(readonly, nonatomic) id corruptionInfo;
 - (BOOL)_setupDBIfNeeded;

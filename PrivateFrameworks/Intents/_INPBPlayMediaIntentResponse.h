@@ -6,21 +6,18 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBPlayMediaIntentResponse.h"
 
-@class INCodableAttribute, NSString, _INPBDictionary;
+@class NSString, _INPBDictionary;
 
-@interface _INPBPlayMediaIntentResponse : PBCodable <_INPBPlayMediaIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBPlayMediaIntentResponse : PBCodable <_INPBPlayMediaIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBDictionary *_nowPlayingInfo;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBDictionary *nowPlayingInfo; // @synthesize nowPlayingInfo=_nowPlayingInfo;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

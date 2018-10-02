@@ -8,12 +8,13 @@
 
 #import "UHASegmentedControlToolbarItemInterface.h"
 
-@class NSArray, NSMutableDictionary, NSMutableSet, NSString;
+@class NSArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
 
 @interface UHASSegmentedControlToolbarItem : UHASToolbarItem <UHASegmentedControlToolbarItemInterface>
 {
     NSArray *_segmentTitles;
     NSArray *_segmentImageNames;
+    NSArray *_accessibilityInfoSegments;
     long long _trackingMode;
     NSMutableSet *_selectedSegments;
     NSMutableSet *_disabledSegments;
@@ -32,17 +33,21 @@
 - (void)setSelected:(BOOL)arg1 forSegment:(long long)arg2;
 - (BOOL)isSelectedForSegment:(long long)arg1;
 @property(nonatomic) long long trackingMode;
+@property(copy, nonatomic) NSArray *accessibilityInfoSegments;
 @property(copy, nonatomic) NSArray *segmentImageNames;
 @property(copy, nonatomic) NSArray *segmentTitles;
 - (id)initWithIdentifier:(id)arg1;
 
 // Remaining properties
+@property(copy, nonatomic) id <UHAAccesibilityInfoInterface> accessibilityInfo;
 @property(copy, nonatomic) CDUnknownBlockType changeHandler;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly, copy, nonatomic) NSString *identifier;
 @property(copy, nonatomic) NSString *label;
+@property(readonly, nonatomic) unsigned long long rock_invocationFlags;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *rock_invocationQueue;
 @property(readonly) Class superclass;
 
 @end

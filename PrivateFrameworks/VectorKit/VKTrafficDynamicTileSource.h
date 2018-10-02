@@ -14,6 +14,8 @@ __attribute__((visibility("hidden")))
     VKTileCache *_recentTrafficDynamicTiles;
 }
 
+- (BOOL)allowPreliminaryTiles;
+- (id)stateDescriptionForRenderKey:(const struct VKTileKey *)arg1;
 - (void)expireTiles;
 - (void)forceExpireTile:(const struct VKTileKey *)arg1;
 - (void)fetchTileForKey:(const struct VKTileKey *)arg1 isPrefetch:(BOOL)arg2;

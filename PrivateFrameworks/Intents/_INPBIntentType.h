@@ -6,21 +6,18 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBIntentType.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBIntentType : PBCodable <_INPBIntentType, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBIntentType : PBCodable <_INPBIntentType, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSString *_type;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *type; // @synthesize type=_type;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

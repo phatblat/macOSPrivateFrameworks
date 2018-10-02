@@ -6,7 +6,7 @@
 
 #import <SAObjects/SASettingCommand.h>
 
-@class NSString;
+@class NSNumber, NSString;
 
 @interface SASettingShowPassword : SASettingCommand
 {
@@ -16,6 +16,7 @@
 + (id)showPassword;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *spokenAppOrWebsiteName;
+@property(copy, nonatomic) NSNumber *shouldPromptForAuthentication;
 @property(copy, nonatomic) NSString *appOrWebsiteName;
 @property(copy, nonatomic) NSString *appBundleId;
 - (id)encodedClassName;

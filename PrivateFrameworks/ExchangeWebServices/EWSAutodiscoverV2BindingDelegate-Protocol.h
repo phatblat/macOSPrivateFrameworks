@@ -9,7 +9,7 @@
 @class EWSAutodiscoverV2Binding, EWSAutodiscoverV2Response, NSError;
 
 @protocol EWSAutodiscoverV2BindingDelegate <NSObject>
-- (void)autodiscoverBinding:(EWSAutodiscoverV2Binding *)arg1 didFailWithError:(NSError *)arg2;
-- (void)autodiscoverBinding:(EWSAutodiscoverV2Binding *)arg1 didFinishWithResponse:(EWSAutodiscoverV2Response *)arg2;
+- (void)autodiscoverV2Binding:(EWSAutodiscoverV2Binding *)arg1 didFailWithError:(NSError *)arg2;
+- (void)autodiscoverV2Binding:(EWSAutodiscoverV2Binding *)arg1 didFinishWithResponse:(EWSAutodiscoverV2Response *)arg2;
 @end
 

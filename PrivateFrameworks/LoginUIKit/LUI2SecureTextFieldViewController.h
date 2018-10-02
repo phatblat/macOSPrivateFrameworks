@@ -8,17 +8,19 @@
 
 #import "NSTextFieldDelegate.h"
 
-@class LUI2SecureTextField, NSButton, NSStackView, NSString;
+@class LUI2SecureTextField, LUI2TextFieldBackgroundView, NSButton, NSStackView, NSString;
 
 @interface LUI2SecureTextFieldViewController : LUI2ViewController <NSTextFieldDelegate>
 {
     LUI2SecureTextField *_secureTextField;
     NSButton *_hintButton;
     id <LUI2SecureTextFieldViewControllerDelegate> _delegate;
+    LUI2TextFieldBackgroundView *_backgroundView;
     NSStackView *_stackView;
 }
 
 @property(retain) NSStackView *stackView; // @synthesize stackView=_stackView;
+@property(retain) LUI2TextFieldBackgroundView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property id <LUI2SecureTextFieldViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly) NSButton *hintButton; // @synthesize hintButton=_hintButton;
 @property(readonly) LUI2SecureTextField *secureTextField; // @synthesize secureTextField=_secureTextField;
@@ -26,6 +28,7 @@
 - (void)viewDidLoad;
 - (void)loadView;
 - (void)setEnabled:(BOOL)arg1;
+@property long long blendingMode;
 - (void)controlTextDidChange:(id)arg1;
 - (id)_hintButtonImage;
 

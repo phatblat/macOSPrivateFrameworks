@@ -34,6 +34,8 @@
     NSString *_inAppPINRequiredCurrency;
     unsigned long long _paymentType;
     NSString *_displayName;
+    long long _contactlessPriority;
+    long long _inAppPriority;
     NSString *_appletDataFormat;
     PKTransitPassProperties *_transitProperties;
 }
@@ -42,6 +44,8 @@
 + (id)applicationWithProtobuf:(id)arg1;
 @property(copy, nonatomic) PKTransitPassProperties *transitProperties; // @synthesize transitProperties=_transitProperties;
 @property(copy, nonatomic) NSString *appletDataFormat; // @synthesize appletDataFormat=_appletDataFormat;
+@property(nonatomic) long long inAppPriority; // @synthesize inAppPriority=_inAppPriority;
+@property(nonatomic) long long contactlessPriority; // @synthesize contactlessPriority=_contactlessPriority;
 @property(nonatomic, getter=isAuxiliary) BOOL auxiliary; // @synthesize auxiliary=_auxiliary;
 @property(copy, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 @property(nonatomic) unsigned long long paymentType; // @synthesize paymentType=_paymentType;

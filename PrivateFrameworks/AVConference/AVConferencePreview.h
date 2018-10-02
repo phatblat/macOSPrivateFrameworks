@@ -61,6 +61,7 @@
 - (id)init;
 - (void)registerBlocksForDelegateNotifications;
 - (void)connectLayer:(id)arg1 withSlot:(unsigned int)arg2;
+- (void)cameraDidBecomeInterruptedForForUniqueID:(id)arg1 reason:(long long)arg2;
 - (void)cameraDidBecomeAvailableForUniqueID:(id)arg1;
 - (void)didGetSnapshot:(id)arg1;
 - (void)didReceiveCommError;

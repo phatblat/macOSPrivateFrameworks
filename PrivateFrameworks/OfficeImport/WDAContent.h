@@ -22,6 +22,7 @@
 
 + (Class)classForType:(unsigned short)arg1;
 @property(readonly, nonatomic) WDAAnchor *anchor; // @synthesize anchor=mAnchor;
+@property __weak OADDrawable *drawable; // @synthesize drawable=mDrawable;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 - (BOOL)hasText;
@@ -33,8 +34,6 @@
 - (_Bool)isTopLevelObject;
 - (_Bool)isLine;
 - (_Bool)isShape;
-- (void)setDrawable:(id)arg1;
-- (id)drawable;
 - (void)setTextBox:(id)arg1 document:(id)arg2;
 - (id)textBox;
 - (void)setBounds:(struct CGRect)arg1;

@@ -8,6 +8,7 @@
 
 @interface NSXPCConnection (ISIconCache)
 - (void)_ISIconCache_clearCacheWithCompletion:(CDUnknownBlockType)arg1;
+- (void)_ISIconCache_syncRequestImageDataWithGenerationRequest:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_ISIconCache_requestImageDataWithGenerationRequest:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_ISIconCache_fetchCacheURLWithCompletion:(CDUnknownBlockType)arg1;
 @end

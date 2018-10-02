@@ -10,19 +10,21 @@
 #import "NSPasteboardWriting.h"
 #import "NSSecureCoding.h"
 
-@class NSString;
+@class NSArray, NSString;
 
-@interface SidecarPasteboardInfo : NSObject <NSPasteboardWriting, NSSecureCoding, NSPasteboardReading>
+@interface SidecarPasteboardInfo : NSObject <NSSecureCoding, NSPasteboardReading, NSPasteboardWriting>
 {
     NSString *_serviceName;
     NSString *_localizedItemName;
+    NSArray *_preferredTypes;
 }
 
 + (unsigned long long)readingOptionsForType:(id)arg1 pasteboard:(id)arg2;
 + (id)readableTypesForPasteboard:(id)arg1;
 + (BOOL)supportsSecureCoding;
+@property(copy, nonatomic) NSArray *preferredTypes; // @synthesize preferredTypes=_preferredTypes;
 @property(retain, nonatomic) NSString *localizedItemName; // @synthesize localizedItemName=_localizedItemName;
-@property(retain, nonatomic) NSString *serviceName; // @synthesize serviceName=_serviceName;
+@property(copy, nonatomic) NSString *serviceName; // @synthesize serviceName=_serviceName;
 - (void).cxx_destruct;
 - (id)pasteboardPropertyListForType:(id)arg1;
 - (id)writableTypesForPasteboard:(id)arg1;

@@ -8,13 +8,14 @@
 
 @interface CSScreenLockMonitor : CSEventMonitor
 {
+    BOOL _isScreenLocked;
 }
 
 + (id)sharedInstance;
 - (BOOL)isScreenLocked;
 - (void)_notifyObserver:(id)arg1 isScreenLocked:(BOOL)arg2;
-- (void)_didReceiveScreenUnlocked:(id)arg1;
-- (void)_didReceiveScreenLocked:(id)arg1;
+- (BOOL)_queryIsScreenLocked;
+- (void)screenLockStateChanged;
 - (void)_stopMonitoring;
 - (void)_startMonitoringWithQueue:(id)arg1;
 - (void)dealloc;

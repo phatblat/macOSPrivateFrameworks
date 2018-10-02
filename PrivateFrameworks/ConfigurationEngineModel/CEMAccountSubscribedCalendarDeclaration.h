@@ -18,6 +18,7 @@
     NSString *_payloadSubCalAccountCredentials;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withSubCalAccountHostName:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withSubCalAccountDescription:(id)arg2 withSubCalAccountHostName:(id)arg3 withSubCalAccountUseSSL:(id)arg4 withSubCalAccountCredentials:(id)arg5;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

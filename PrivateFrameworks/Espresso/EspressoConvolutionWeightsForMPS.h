@@ -18,9 +18,9 @@ __attribute__((visibility("hidden")))
     shared_ptr_acd4b298 weights_blob;
     struct shared_ptr<Espresso::blob<unsigned short, 4>> weights_f16_blob;
     struct shared_ptr<Espresso::blob<float, 1>> biases_blob;
-    struct unique_ptr<float [] __attribute__((ext_vector_type(2))), std::__1::default_delete<float [] __attribute__((ext_vector_type(2)))>> quantization_ranges;
+    struct shared_ptr<Espresso::blob<float __attribute__((ext_vector_type(2))), 1>> quantization_ranges;
     struct shared_ptr<Espresso::blob<float, 1>> quantization_lut;
-    struct unique_ptr<float [], std::__1::default_delete<float []>> scale_factor_batch_norm;
+    struct shared_ptr<Espresso::blob<float, 1>> scale_factor_batch_norm;
     unsigned int data_type;
 }
 

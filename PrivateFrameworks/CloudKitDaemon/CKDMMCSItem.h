@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CKAsset, CKAssetDownloadPreauthorization, CKDMMCSItemCommandWriter, CKPackage, CKRecordID, NSData, NSDictionary, NSError, NSFileHandle, NSMutableArray, NSNumber, NSString, NSURL;
+@class CKAsset, CKAssetDownloadPreauthorization, CKDAssetZoneKey, CKDMMCSItemCommandWriter, CKPackage, CKRecordID, NSData, NSDictionary, NSError, NSFileHandle, NSMutableArray, NSNumber, NSString, NSURL;
 
 __attribute__((visibility("hidden")))
 @interface CKDMMCSItem : NSObject
@@ -59,6 +59,7 @@ __attribute__((visibility("hidden")))
     unsigned long long _uploadTokenExpiration;
     unsigned long long _downloadTokenExpiration;
     NSDictionary *_assetChunkerOptions;
+    CKDAssetZoneKey *_assetZoneKey;
     NSString *_trackingUUID;
 }
 
@@ -71,6 +72,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL hasOffset; // @synthesize hasOffset=_hasOffset;
 @property(nonatomic) BOOL hasSize; // @synthesize hasSize=_hasSize;
 @property(retain, nonatomic) NSString *trackingUUID; // @synthesize trackingUUID=_trackingUUID;
+@property(retain, nonatomic) CKDAssetZoneKey *assetZoneKey; // @synthesize assetZoneKey=_assetZoneKey;
 @property(retain, nonatomic) NSDictionary *assetChunkerOptions; // @synthesize assetChunkerOptions=_assetChunkerOptions;
 @property(nonatomic) unsigned long long downloadTokenExpiration; // @synthesize downloadTokenExpiration=_downloadTokenExpiration;
 @property(nonatomic) unsigned long long uploadTokenExpiration; // @synthesize uploadTokenExpiration=_uploadTokenExpiration;

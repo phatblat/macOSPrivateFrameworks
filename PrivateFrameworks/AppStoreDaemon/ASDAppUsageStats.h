@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class NSNumber, NSString;
+@class NSDate, NSNumber, NSString;
 
 @interface ASDAppUsageStats : NSObject <NSCopying>
 {
@@ -18,12 +18,14 @@
     NSNumber *_evid;
     NSNumber *_itemID;
     NSString *_itemName;
+    NSDate *_startDate;
     long long _usageTime;
     long long _usageCount;
 }
 
 @property(nonatomic) long long usageCount; // @synthesize usageCount=_usageCount;
 @property(nonatomic) long long usageTime; // @synthesize usageTime=_usageTime;
+@property(copy, nonatomic) NSDate *startDate; // @synthesize startDate=_startDate;
 @property(copy, nonatomic) NSString *itemName; // @synthesize itemName=_itemName;
 @property(copy, nonatomic) NSNumber *itemID; // @synthesize itemID=_itemID;
 @property(copy, nonatomic) NSNumber *evid; // @synthesize evid=_evid;

@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBMessage.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBContact, _INPBCurrencyAmountValue, _INPBDataString, _INPBDateTime, _INPBInteger, _INPBMessageLinkMetadata;
+@class NSArray, NSString, _INPBContact, _INPBCurrencyAmountValue, _INPBDataString, _INPBDateTime, _INPBInteger, _INPBMessageLinkMetadata;
 
-@interface _INPBMessage : PBCodable <_INPBMessage, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBMessage : PBCodable <_INPBMessage, NSSecureCoding, NSCopying>
 {
     CDStruct_95bda58d _attributes;
     struct {
@@ -38,12 +37,10 @@
     _INPBMessage *_referencedMessage;
     _INPBContact *_sender;
     _INPBDataString *_speakableGroupName;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)recipientType;
 + (Class)attachmentType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int type; // @synthesize type=_type;
 @property(retain, nonatomic) _INPBDataString *speakableGroupName; // @synthesize speakableGroupName=_speakableGroupName;
 @property(retain, nonatomic) _INPBContact *sender; // @synthesize sender=_sender;

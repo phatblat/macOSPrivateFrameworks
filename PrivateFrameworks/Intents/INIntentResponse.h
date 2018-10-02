@@ -29,6 +29,7 @@
 + (BOOL)resolveInstanceMethod:(SEL)arg1;
 + (long long)_intentHandlingStatusFromCode:(long long)arg1;
 + (BOOL)_appLaunchRequestedFromCode:(long long)arg1;
++ (long long)_codeFromIntentResponseCode:(long long)arg1;
 + (int)_typeFromCode:(long long)arg1;
 + (long long)_codeFromType:(int)arg1 errorCode:(int)arg2 appLaunchRequested:(BOOL)arg3;
 + (id)responseFailure;
@@ -73,7 +74,7 @@
 @property(readonly, copy, nonatomic) _INPBIntentResponse *backingStore; // @synthesize backingStore=_backingStore;
 - (long long)_code;
 - (void)_setCode:(long long)arg1;
-- (void)_commonInit;
+- (BOOL)_commonInit;
 - (id)initWithBackingStore:(id)arg1;
 - (id)_initWithCode:(long long)arg1 userActivity:(id)arg2;
 - (id)initWithCode:(long long)arg1 userActivity:(id)arg2;
@@ -82,6 +83,7 @@
 - (id)localizeValueOfSlotDescription:(id)arg1 forLanguage:(id)arg2;
 - (id)intentSlotDescriptions;
 @property(readonly) long long _intents_toggleState;
+- (id)_renderedResponseForLanguage:(id)arg1 requiresSiriCompatibility:(BOOL)arg2;
 - (id)_propertiesByNameForLanguage:(id)arg1;
 - (id)_responseTemplateForLanguage:(id)arg1 requiresSiriCompatibility:(BOOL)arg2;
 - (id)_responseTemplateForLanguage:(id)arg1;

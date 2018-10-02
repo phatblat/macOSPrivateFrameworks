@@ -20,6 +20,7 @@ __attribute__((visibility("hidden")))
     WBSFaviconRequestsController *_iconRequestsController;
     WBSSavedPasswordStore *_savedPasswordStore;
     WBSSiteMetadataManager *_siteMetadataManager;
+    BOOL _isWaitingForIconRequestCancellation;
     long long _purpose;
     NSWindow *_windowPresentingCredentialPicker;
     SecureWindowLockPolicyEnforcer *_lockPolicyEnforcer;
@@ -52,7 +53,7 @@ __attribute__((visibility("hidden")))
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (void)_updateFillAndRemoveButtons;
 - (void)_updateCredentialsToDisplay;
-- (void)reloadTableData;
+- (void)_updateDisplayedPasswords;
 - (BOOL)_confirmCredentialRemoval;
 - (void)removeSelectedItems:(id)arg1;
 - (void)focusContentSearchField:(id)arg1;

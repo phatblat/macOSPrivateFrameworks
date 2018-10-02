@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBLocalizedProject.h"
 
-@class INCodableAttribute, NSString, _INPBAppNames, _INPBIntentVocabulary, _INPBLanguageTag;
+@class NSString, _INPBAppNames, _INPBIntentVocabulary, _INPBLanguageTag;
 
-@interface _INPBLocalizedProject : PBCodable <_INPBLocalizedProject, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBLocalizedProject : PBCodable <_INPBLocalizedProject, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBAppNames *_appNames;
     _INPBIntentVocabulary *_intentVocabulary;
     _INPBLanguageTag *_language;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBLanguageTag *language; // @synthesize language=_language;
 @property(retain, nonatomic) _INPBIntentVocabulary *intentVocabulary; // @synthesize intentVocabulary=_intentVocabulary;
 @property(retain, nonatomic) _INPBAppNames *appNames; // @synthesize appNames=_appNames;

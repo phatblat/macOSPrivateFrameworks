@@ -6,12 +6,13 @@
 
 #import "CPLEngineStorageImplementation.h"
 
-@class CPLRecordChange, CPLScopedIdentifier, NSString;
+@class CPLRecordChange, CPLScopeFilter, CPLScopedIdentifier, NSString;
 
 @protocol CPLEngineCloudCacheImplementation <CPLEngineStorageImplementation>
 - (BOOL)deleteRecordsForScopeIndex:(long long)arg1 maxCount:(long long)arg2 deletedCount:(long long *)arg3 error:(id *)arg4;
 - (id <NSFastEnumeration>)allRecordsIsFinal:(BOOL)arg1;
 - (id <NSFastEnumeration>)recordsOfClass:(Class)arg1 isFinal:(BOOL)arg2;
+- (BOOL)discardStagedChangesWithScopeFilter:(CPLScopeFilter *)arg1 error:(id *)arg2;
 - (BOOL)discardStagedChangesForScopeWithIdentifier:(NSString *)arg1 error:(id *)arg2;
 - (BOOL)commitStagedChangesForScopeWithIdentifier:(NSString *)arg1 error:(id *)arg2;
 - (BOOL)confirmAllRecordsWithError:(id *)arg1;

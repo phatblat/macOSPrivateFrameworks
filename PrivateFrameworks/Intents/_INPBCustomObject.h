@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBCustomObject.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBCustomObject : PBCodable <_INPBCustomObject, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBCustomObject : PBCodable <_INPBCustomObject, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSString *_displayString;
     NSString *_identifier;
     NSString *_pronunciationHint;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *pronunciationHint; // @synthesize pronunciationHint=_pronunciationHint;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(copy, nonatomic) NSString *displayString; // @synthesize displayString=_displayString;

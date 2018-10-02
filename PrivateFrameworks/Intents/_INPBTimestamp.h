@@ -6,25 +6,21 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBTimestamp.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBTimestamp : PBCodable <_INPBTimestamp, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBTimestamp : PBCodable <_INPBTimestamp, NSSecureCoding, NSCopying>
 {
     CDStruct_85a1ec51 _has;
     int _nanos;
     long long _seconds;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) long long seconds; // @synthesize seconds=_seconds;
 @property(nonatomic) int nanos; // @synthesize nanos=_nanos;
-- (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;

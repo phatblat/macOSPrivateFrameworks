@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBDistanceValue.h"
 
-@class INCodableAttribute, NSString, _INPBValueMetadata;
+@class NSString, _INPBValueMetadata;
 
-@interface _INPBDistanceValue : PBCodable <_INPBDistanceValue, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBDistanceValue : PBCodable <_INPBDistanceValue, NSSecureCoding, NSCopying>
 {
     CDStruct_74078a21 _has;
     int _unit;
     double _magnitude;
     _INPBValueMetadata *_valueMetadata;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBValueMetadata *valueMetadata; // @synthesize valueMetadata=_valueMetadata;
 @property(nonatomic) int unit; // @synthesize unit=_unit;
 @property(nonatomic) double magnitude; // @synthesize magnitude=_magnitude;

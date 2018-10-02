@@ -58,8 +58,8 @@
 - (id)initWithStackshotTaskV1:(const struct task_snapshot *)arg1 machTimebase:(struct mach_timebase_info)arg2 startTimestamp:(id)arg3 endTimestamp:(id)arg4 startSampleIndex:(unsigned long long)arg5 endSampleIndex:(unsigned long long)arg6;
 - (id)initWithKCDataDeltaTask:(const struct task_delta_snapshot_v2 *)arg1 andTerminatedThreadsInstructionCycles:(const struct instrs_cycles_snapshot *)arg2 machTimebase:(struct mach_timebase_info)arg3 andDonatingUniquePids:(id)arg4 startTimestamp:(id)arg5 endTimestamp:(id)arg6 startSampleIndex:(unsigned long long)arg7 endSampleIndex:(unsigned long long)arg8;
 - (id)initWithKCDataTask:(const struct task_snapshot_v2 *)arg1 andTerminatedThreadsInstructionCycles:(const struct instrs_cycles_snapshot *)arg2 machTimebase:(struct mach_timebase_info)arg3 andDonatingUniquePids:(id)arg4 startTimestamp:(id)arg5 endTimestamp:(id)arg6 startSampleIndex:(unsigned long long)arg7 endSampleIndex:(unsigned long long)arg8;
-- (BOOL)correspondsToKCDataDeltaTask:(const struct task_delta_snapshot_v2 *)arg1 terminatedThreadsInstructionCycles:(const struct instrs_cycles_snapshot *)arg2 machTimebase:(struct mach_timebase_info)arg3;
-- (BOOL)correspondsToKCDataTask:(const struct task_snapshot_v2 *)arg1 terminatedThreadsInstructionCycles:(const struct instrs_cycles_snapshot *)arg2 machTimebase:(struct mach_timebase_info)arg3;
+- (BOOL)correspondsToKCDataDeltaTask:(const struct task_delta_snapshot_v2 *)arg1 terminatedThreadsInstructionCycles:(const struct instrs_cycles_snapshot *)arg2 machTimebase:(struct mach_timebase_info)arg3 donatingUniquePids:(id)arg4;
+- (BOOL)correspondsToKCDataTask:(const struct task_snapshot_v2 *)arg1 terminatedThreadsInstructionCycles:(const struct instrs_cycles_snapshot *)arg2 machTimebase:(struct mach_timebase_info)arg3 donatingUniquePids:(id)arg4;
 @property(readonly) unsigned long long terminatedThreadsCpuTimeNs;
 @property(readonly) BOOL wqExceededTotalThreadLimit;
 @property(readonly) BOOL wqExceededConstrainedThreadLimit;

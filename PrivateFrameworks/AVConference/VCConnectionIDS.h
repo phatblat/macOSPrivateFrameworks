@@ -34,7 +34,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)matchesSourceDestinationInfo:(struct tagVCSourceDestinationInfo *)arg1;
 @property(readonly) unsigned char linkID;
 - (BOOL)isOnSameInterfacesWithConnection:(id)arg1;
-- (BOOL)isOnSameInterfacesWithConnection:(id)arg1 isMultiwaySession:(BOOL)arg2;
 - (BOOL)isSameAsConnection:(id)arg1;
 @property int remoteCellTech;
 @property int localCellTech;
@@ -48,6 +47,7 @@ __attribute__((visibility("hidden")))
 - (int)networkOverheadInBytesWithNumOfStreamId:(int)arg1 isPriorityIncluded:(BOOL)arg2;
 @property int connectionMTU;
 - (id)connectionQRSessionID;
+@property(readonly) BOOL serverIsDegraded;
 @property(readonly) BOOL isRelay;
 @property(readonly) BOOL isVPN;
 @property(readonly) int connectionId;

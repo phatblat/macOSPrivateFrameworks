@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
 + (void)unsubscribe:(id)arg1;
 + (void)subscribe:(id)arg1;
 + (id)observable;
++ (id)lastKnownStatus;
 + (void)initialize;
 
 @end

@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBLocalDate.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBLocalDate : PBCodable <_INPBLocalDate, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBLocalDate : PBCodable <_INPBLocalDate, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int dayOfMonth:1;
@@ -25,15 +24,12 @@
     long long _dayOfMonth;
     long long _month;
     long long _year;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) long long year; // @synthesize year=_year;
 @property(nonatomic) long long month; // @synthesize month=_month;
 @property(nonatomic) int dayOfWeek; // @synthesize dayOfWeek=_dayOfWeek;
 @property(nonatomic) long long dayOfMonth; // @synthesize dayOfMonth=_dayOfMonth;
-- (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;

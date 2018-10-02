@@ -93,8 +93,6 @@
 }
 
 + (id)characteristicsUUIDs;
-@property(nonatomic) unsigned int rightPresetBitmask; // @synthesize rightPresetBitmask=_rightPresetBitmask;
-@property(nonatomic) unsigned int leftPresetBitmask; // @synthesize leftPresetBitmask=_leftPresetBitmask;
 @property(retain, nonatomic) NSDate *rightBatteryLowDate; // @synthesize rightBatteryLowDate=_rightBatteryLowDate;
 @property(retain, nonatomic) NSDate *leftBatteryLowDate; // @synthesize leftBatteryLowDate=_leftBatteryLowDate;
 @property(nonatomic) unsigned long long rightWriteResponseProperties; // @synthesize rightWriteResponseProperties=_rightWriteResponseProperties;
@@ -110,6 +108,8 @@
 @property(nonatomic) short leftStreamVolumeSteps; // @synthesize leftStreamVolumeSteps=_leftStreamVolumeSteps;
 @property(nonatomic) short rightMicrophoneVolumeSteps; // @synthesize rightMicrophoneVolumeSteps=_rightMicrophoneVolumeSteps;
 @property(nonatomic) short leftMicrophoneVolumeSteps; // @synthesize leftMicrophoneVolumeSteps=_leftMicrophoneVolumeSteps;
+@property(nonatomic) unsigned int rightPresetBitmask; // @synthesize rightPresetBitmask=_rightPresetBitmask;
+@property(nonatomic) unsigned int leftPresetBitmask; // @synthesize leftPresetBitmask=_leftPresetBitmask;
 @property(nonatomic) unsigned int rightProgramVersion; // @synthesize rightProgramVersion;
 @property(nonatomic) unsigned int leftProgramVersion; // @synthesize leftProgramVersion;
 @property(nonatomic) unsigned long long rightWriteRequestProperties; // @synthesize rightWriteRequestProperties;

@@ -14,6 +14,7 @@
 {
 }
 
+- (void)acceptVisitor:(id)arg1;
 @property(readonly, nonatomic) unsigned long long textureHeight;
 @property(readonly, nonatomic) unsigned long long textureWidth;
 

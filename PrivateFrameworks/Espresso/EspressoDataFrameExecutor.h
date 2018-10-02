@@ -23,6 +23,7 @@
 - (int)bindOutputsFromFrame:(id)arg1 toNetwork:(CDStruct_2bc666a5)arg2;
 - (int)bindOutputsFromFrame:(id)arg1 toNetwork:(CDStruct_2bc666a5)arg2 referenceNetwork:(CDStruct_2bc666a5)arg3;
 - (int)bindInputsFromFrame:(id)arg1 toNetwork:(CDStruct_2bc666a5)arg2;
+- (_Bool)useCVPixelBuffers;
 
 @end
 

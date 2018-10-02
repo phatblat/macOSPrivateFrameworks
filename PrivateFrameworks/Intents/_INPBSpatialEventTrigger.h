@@ -6,24 +6,21 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSpatialEventTrigger.h"
 
-@class INCodableAttribute, NSString, _INPBLocationValue;
+@class NSString, _INPBLocationValue;
 
-@interface _INPBSpatialEventTrigger : PBCodable <_INPBSpatialEventTrigger, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSpatialEventTrigger : PBCodable <_INPBSpatialEventTrigger, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int event:1;
     } _has;
     int _event;
     _INPBLocationValue *_location;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBLocationValue *location; // @synthesize location=_location;
 @property(nonatomic) int event; // @synthesize event=_event;
 - (void).cxx_destruct;

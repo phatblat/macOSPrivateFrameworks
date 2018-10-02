@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "ROCKForwardingInterposableWithRunLoop.h"
 #import "UHAToolbarItemInterface.h"
 
 @class NSString;
 
-@protocol UHAPopupButtonToolbarItemInterface <UHAToolbarItemInterface>
+@protocol UHAPopupButtonToolbarItemInterface <UHAToolbarItemInterface, ROCKForwardingInterposableWithRunLoop>
 @property(nonatomic) BOOL showsArrow;
 @property(retain, nonatomic) id <UHAMenuInterface> menu;
 @property(nonatomic, getter=isEnabled) BOOL enabled;

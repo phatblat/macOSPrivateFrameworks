@@ -15,9 +15,10 @@
 
 - (void).cxx_destruct;
 - (void)paymentHardwareStatusWithCompletion:(CDUnknownBlockType)arg1;
-- (BOOL)paymentHardwareStatus:(unsigned long long *)arg1;
+- (void)secureElementStatusWithCompletion:(CDUnknownBlockType)arg1;
+- (BOOL)secureElementStatus:(unsigned long long *)arg1;
 - (void)paymentServicesMerchantURLForAPIType:(unsigned long long)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)merchantStatusCheck:(id)arg1 merchantDomain:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)merchantStatusCheck:(id)arg1 merchantDomain:(id)arg2 sourceApplicationSecondaryIdentifier:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)presentInAppPaymentInterfaceWithPaymentRequest:(id)arg1 forHostIdentifier:(id)arg2 orientation:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)retrievePaymentListenerEndpointForHostIdentifier:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)registerPaymentListenerEndpoint:(id)arg1 forHostIdentifier:(id)arg2 completion:(CDUnknownBlockType)arg3;

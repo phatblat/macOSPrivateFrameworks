@@ -118,6 +118,7 @@
 - (id)currentPageController;
 - (BOOL)shouldDrawVariableStrokeDoodles;
 - (BOOL)_validateCutCopyDelete;
+- (BOOL)isDFRInitialized;
 - (void)removeNoteFromAnnotation:(id)arg1;
 - (void)addPopupToAnnotation:(id)arg1 openPopup:(BOOL)arg2;
 - (void)highlightableSelectionDidEndChanging;
@@ -145,9 +146,13 @@
 - (BOOL)validateUndo:(id)arg1;
 - (void)undo:(id)arg1;
 - (void)delayedUndoControllerSetup;
+- (void)clearUndoStack;
 - (id)toolbarButtonItemOfType:(unsigned long long)arg1 style:(unsigned long long)arg2;
 - (id)signaturesMenu;
+- (void)applyCurrentCrop;
 - (void)resetToDefaultToolMode;
+- (void)setToolMode:(unsigned long long)arg1;
+- (unsigned long long)toolMode;
 - (BOOL)handleEvent:(id)arg1;
 - (struct CGRect)contentAlignedRectForRect:(struct CGRect)arg1 onPageAtIndex:(unsigned long long)arg2;
 - (double)currentModelBaseScaleFactorForPageAtIndex:(unsigned long long)arg1;

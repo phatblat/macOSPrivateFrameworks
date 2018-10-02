@@ -8,16 +8,20 @@
 
 #import "USSXPCEncodable.h"
 
-@class NSObject<OS_xpc_object>, NSURL;
+@class NSObject<OS_xpc_object>, NSString, NSURL;
 
 @interface USSServicesClientCheckinRequest : NSObject <USSXPCEncodable>
 {
+    BOOL _isDaemonClient;
     int _parentProcessIdentifier;
     NSURL *_parentBundleURL;
     NSObject<OS_xpc_object> *_notificationEndpoint;
+    NSString *_daemonName;
     struct CGSize _initialSceneSize;
 }
 
+@property(copy, nonatomic) NSString *daemonName; // @synthesize daemonName=_daemonName;
+@property(nonatomic) BOOL isDaemonClient; // @synthesize isDaemonClient=_isDaemonClient;
 @property(retain, nonatomic) NSObject<OS_xpc_object> *notificationEndpoint; // @synthesize notificationEndpoint=_notificationEndpoint;
 @property(nonatomic) struct CGSize initialSceneSize; // @synthesize initialSceneSize=_initialSceneSize;
 @property(retain, nonatomic) NSURL *parentBundleURL; // @synthesize parentBundleURL=_parentBundleURL;
@@ -25,7 +29,7 @@
 - (void).cxx_destruct;
 - (void)encodeWithXPCDictionary:(id)arg1;
 - (id)initWithXPCDictionary:(id)arg1;
-- (id)initWithNotificationEndpoint:(id)arg1 parentProcessIdentifier:(int)arg2 parentBundleURL:(id)arg3 initialSceneSize:(struct CGSize)arg4;
+- (id)initWithNotificationEndpoint:(id)arg1 parentProcessIdentifier:(int)arg2 parentBundleURL:(id)arg3 initialSceneSize:(struct CGSize)arg4 isDaemonClient:(BOOL)arg5 daemonName:(id)arg6;
 
 @end
 

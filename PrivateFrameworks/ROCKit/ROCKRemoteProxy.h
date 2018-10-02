@@ -4,36 +4,37 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <ROCKit/ROCKRemoteImpersonator.h>
+#import <ROCKit/ROCKImpersonatableProxy.h>
 
-#import "NSRemoteInvocationInterface.h"
+#import "ROCKRemoteInvocationInterface.h"
 
 @class NSMapTable, NSObject<OS_xpc_object>, NSSet;
 
 __attribute__((visibility("hidden")))
-@interface ROCKRemoteProxy : ROCKRemoteImpersonator <NSRemoteInvocationInterface>
+@interface ROCKRemoteProxy : ROCKImpersonatableProxy <ROCKRemoteInvocationInterface>
 {
     NSSet *_protocols;
+    unsigned long long _invocationFlags;
     NSObject<OS_xpc_object> *_connectionUUID;
     NSMapTable *_selectorsToMethodSignatures;
 }
 
-+ (id)remoteProxyWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 protocols:(id)arg3 forwardingInterposerClass:(Class)arg4 connectionUUID:(id)arg5;
++ (id)remoteProxyWithSessionManager:(id)arg1 xpcDictionary:(id)arg2;
 @property(retain, nonatomic) NSMapTable *selectorsToMethodSignatures; // @synthesize selectorsToMethodSignatures=_selectorsToMethodSignatures;
 @property(retain, nonatomic) NSObject<OS_xpc_object> *connectionUUID; // @synthesize connectionUUID=_connectionUUID;
-@property(retain, nonatomic) NSSet *protocols; // @synthesize protocols=_protocols;
+@property(nonatomic) unsigned long long invocationFlags; // @synthesize invocationFlags=_invocationFlags;
+@property(readonly, nonatomic) NSSet *protocols; // @synthesize protocols=_protocols;
 - (void).cxx_destruct;
 - (void)remoteInvocation:(id)arg1 sessionManager:(id)arg2 invocationHandler:(CDUnknownBlockType)arg3;
 - (id)description;
 - (id)debugDescription;
 - (void)dealloc;
 - (BOOL)checkIn;
-- (id)initWithSessionManager:(id)arg1 remoteImpersonatorUUID:(id)arg2 protocols:(id)arg3 forwardingInterposerClass:(Class)arg4 connectionUUID:(id)arg5;
+- (id)initWithSessionManager:(id)arg1 xpcDictionary:(id)arg2;
 - (void)_forwardStackInvocation:(id)arg1;
 - (BOOL)respondsToSelector:(SEL)arg1;
 - (id)methodSignatureForSelector:(SEL)arg1;
 - (void)forwardInvocation:(id)arg1;
-- (BOOL)conformsToProtocol:(id)arg1;
 
 @end
 

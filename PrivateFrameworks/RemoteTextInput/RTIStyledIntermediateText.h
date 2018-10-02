@@ -16,12 +16,14 @@
     NSString *_inputString;
     NSAttributedString *_displayString;
     NSString *_searchString;
+    long long _cursorVisibility;
 }
 
 + (id)intermediateTextWithInputString:(id)arg1 displayString:(id)arg2 selectionLocation:(unsigned long long)arg3 searchString:(id)arg4;
 + (id)intermediateTextWithInputString:(id)arg1 displayString:(id)arg2 selectionLocation:(unsigned long long)arg3;
 + (id)intermediateTextWithInputString:(id)arg1 displayString:(id)arg2;
 + (BOOL)supportsSecureCoding;
+@property(nonatomic) long long cursorVisibility; // @synthesize cursorVisibility=_cursorVisibility;
 @property(readonly, nonatomic) NSString *searchString; // @synthesize searchString=_searchString;
 @property(readonly, nonatomic) NSAttributedString *displayString; // @synthesize displayString=_displayString;
 @property(readonly, nonatomic) NSString *inputString; // @synthesize inputString=_inputString;

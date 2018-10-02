@@ -10,6 +10,6 @@
 @property __weak id <STYWakeDataConsumer> consumer;
 - (unsigned long long)sleepType;
 - (unsigned long long)firstHidWakeEventAfter:(unsigned long long)arg1 before:(unsigned long long)arg2;
-- (double)lastWakeTime:(double *)arg1;
+- (unsigned long long)lastWakeTime:(unsigned long long *)arg1;
 @end
 

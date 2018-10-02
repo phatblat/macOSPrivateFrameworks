@@ -63,8 +63,10 @@ __attribute__((visibility("hidden")))
 - (void)updateTextInputForLockedScreen:(BOOL)arg1;
 - (void)didUnlockDevice:(id)arg1;
 - (void)didLockDevice:(id)arg1;
+- (void)dealloc;
 - (void)initInputMode;
 - (void)awakeFromNib;
+- (void)initOrbVideoLayerIfNecesary;
 - (id)initWithCoder:(id)arg1;
 
 // Remaining properties

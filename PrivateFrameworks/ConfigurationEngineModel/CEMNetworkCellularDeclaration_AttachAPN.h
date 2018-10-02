@@ -17,6 +17,7 @@
     NSNumber *_payloadAllowedProtocolMask;
 }
 
++ (id)buildRequiredOnlyWithName:(id)arg1;
 + (id)buildWithName:(id)arg1 withAuthenticationType:(id)arg2 withUsername:(id)arg3 withPassword:(id)arg4 withAllowedProtocolMask:(id)arg5;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadAllowedProtocolMask; // @synthesize payloadAllowedProtocolMask=_payloadAllowedProtocolMask;

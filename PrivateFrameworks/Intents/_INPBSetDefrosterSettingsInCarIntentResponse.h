@@ -6,21 +6,17 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSetDefrosterSettingsInCarIntentResponse.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBSetDefrosterSettingsInCarIntentResponse : PBCodable <_INPBSetDefrosterSettingsInCarIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSetDefrosterSettingsInCarIntentResponse : PBCodable <_INPBSetDefrosterSettingsInCarIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
-- (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;

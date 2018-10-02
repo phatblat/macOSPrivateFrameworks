@@ -23,6 +23,7 @@
 - (void)launch;
 - (void)_fetchTransportScope;
 - (void)_getLibraryInfo;
+- (void)_markScopeAsFeatureDisabledWithFlags:(id)arg1;
 - (void)_markScopeAsDeletedAndSucceedTaskWithFlags:(id)arg1;
 - (id)initWithEngineLibrary:(id)arg1 clientCacheIdentifier:(id)arg2 scope:(id)arg3 transportScope:(id)arg4;
 

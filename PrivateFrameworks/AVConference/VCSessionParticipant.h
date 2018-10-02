@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <AVConference/VCObject.h>
 
 #import "VCAudioIODelegate.h"
 #import "VCAudioIOSink.h"
 #import "VCAudioIOSource.h"
+#import "VCAudioPowerSpectrumSourceDelegate.h"
 #import "VCConnectionChangedHandler.h"
 #import "VCMediaStreamDelegate.h"
 #import "VCRedundancyControllerDelegate.h"
@@ -17,7 +18,7 @@
 @class AVCBasebandCongestionDetector, AVCStatisticsCollector, NSArray, NSData, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSString, VCAudioIO, VCAudioPowerSpectrumSource, VCAudioRuleCollection, VCCallInfoBlob, VCMediaNegotiator, VCRedundancyControllerAudio, VCRedundancyControllerVideo;
 
 __attribute__((visibility("hidden")))
-@interface VCSessionParticipant : NSObject <VCMediaStreamDelegate, VCSecurityEventHandler, VCAudioIOSink, VCAudioIOSource, VCAudioIODelegate, VCConnectionChangedHandler, VCRedundancyControllerDelegate>
+@interface VCSessionParticipant : VCObject <VCMediaStreamDelegate, VCSecurityEventHandler, VCAudioIOSink, VCAudioIOSource, VCAudioIODelegate, VCConnectionChangedHandler, VCRedundancyControllerDelegate, VCAudioPowerSpectrumSourceDelegate>
 {
     unsigned int _state;
     union tagNTP _creationTime;
@@ -36,6 +37,7 @@ __attribute__((visibility("hidden")))
     NSDictionary *_participantInfo;
     unsigned int _transportSessionID;
     VCAudioRuleCollection *_supportedAudioRules;
+    BOOL _isContinuity;
     NSMutableSet *_startingAudioStreams;
     NSMutableSet *_stoppingAudioStreams;
     NSMutableSet *_runningAudioStreams;
@@ -53,6 +55,7 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *_streamMap;
     AVCStatisticsCollector *_statisticsCollector;
     AVCBasebandCongestionDetector *_basebandCongestionDetector;
+    unsigned int _cellularUniqueTag;
     float _volume;
     float _audioPosition;
     BOOL _isMuted;
@@ -79,6 +82,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) VCMediaNegotiator *mediaNegotiator; // @synthesize mediaNegotiator=_mediaNegotiator;
 @property(readonly, nonatomic) unsigned long long idsParticipantID; // @synthesize idsParticipantID=_idsParticipantID;
 @property(readonly, nonatomic) VCAudioRuleCollection *supportedAudioRules; // @synthesize supportedAudioRules=_supportedAudioRules;
+@property(nonatomic) unsigned int cellularUniqueTag; // @synthesize cellularUniqueTag=_cellularUniqueTag;
 @property(retain, nonatomic) AVCBasebandCongestionDetector *basebandCongestionDetector; // @synthesize basebandCongestionDetector=_basebandCongestionDetector;
 @property(retain, nonatomic) AVCStatisticsCollector *statisticsCollector; // @synthesize statisticsCollector=_statisticsCollector;
 @property(readonly, nonatomic) float audioPosition; // @synthesize audioPosition=_audioPosition;
@@ -91,6 +95,9 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) union tagNTP creationTime; // @synthesize creationTime=_creationTime;
 @property(readonly, nonatomic) NSData *opaqueData; // @synthesize opaqueData=_opaqueData;
 @property(readonly, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
+- (void)audioPowerSpectrumSinkDidUnregister;
+- (void)audioPowerSpectrumSinkDidRegister;
+- (void)sendAudioPowerSpectrumSourceRegistration:(BOOL)arg1;
 - (void)redundancyController:(id)arg1 redundancyPercentageDidChange:(unsigned int)arg2;
 - (void)redundancyController:(id)arg1 redundancyIntervalDidChange:(double)arg2;
 - (void)handleActiveConnectionChange:(id)arg1;
@@ -98,7 +105,8 @@ __attribute__((visibility("hidden")))
 - (void)pullAudioSamples:(struct opaqueVCAudioBufferList *)arg1;
 - (void)didResumeAudioIO:(id)arg1;
 - (void)didSuspendAudioIO:(id)arg1;
-- (void)handleEncryptionInfoChange:(id)arg1;
+- (void)resetDecryptionTimeout;
+- (BOOL)handleEncryptionInfoChange:(id)arg1;
 - (void)vcMediaStream:(id)arg1 requestKeyFrameGenerationWithStreamID:(unsigned short)arg2;
 - (void)vcMediaStream:(id)arg1 didResumeStream:(BOOL)arg2 error:(id)arg3;
 - (void)vcMediaStream:(id)arg1 didPauseStream:(BOOL)arg2 error:(id)arg3;
@@ -123,7 +131,8 @@ __attribute__((visibility("hidden")))
 - (void)dealloc;
 - (id)initWithIDSDestination:(id)arg1 delegate:(id)arg2 processId:(int)arg3 sessionUUID:(id)arg4;
 - (BOOL)configureWithIsContinuity:(BOOL)arg1;
-- (BOOL)configureAudioIO;
+- (BOOL)updateConfigurationWithIsContinuity:(BOOL)arg1;
+- (BOOL)configureAudioIOWithContinuity:(BOOL)arg1;
 - (void)completeStreamSetup:(id)arg1;
 - (void)setupNetworkAddressesForMediaConfig:(id)arg1;
 - (void)processPausedStream:(id)arg1 didPause:(BOOL)arg2;
@@ -137,6 +146,7 @@ __attribute__((visibility("hidden")))
 - (void)stopVideoStreams;
 - (void)stopAudioStreams;
 - (void)stopAudioStreamsCompletion;
+- (void)stopAudioIOCompletion;
 - (void)startVideoStreams;
 - (void)startAudioStreams;
 - (void)startAudioIO;
@@ -162,6 +172,8 @@ __attribute__((visibility("hidden")))
 - (void)dispatchedStream:(id)arg1 didStart:(BOOL)arg2 error:(id)arg3;
 - (void)dispatchedStop;
 - (void)dispatchedStart;
+- (void)callStreamDelegateWithBlock:(CDUnknownBlockType)arg1;
+- (void)callDelegateWithBlock:(CDUnknownBlockType)arg1;
 @property(nonatomic) struct opaqueRTCReporting *reportingAgent;
 
 // Remaining properties

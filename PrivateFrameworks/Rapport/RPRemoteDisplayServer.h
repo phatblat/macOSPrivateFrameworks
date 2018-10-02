@@ -53,7 +53,7 @@
 - (void)remoteDisplayReceivedRequestID:(id)arg1 request:(id)arg2 options:(id)arg3 responseHandler:(CDUnknownBlockType)arg4 sessionID:(id)arg5;
 - (void)remoteDisplayReceivedEventID:(id)arg1 event:(id)arg2 options:(id)arg3 sessionID:(id)arg4;
 - (void)remoteDisplaySessionEndedWithID:(id)arg1;
-- (void)remoteDisplayStartServerSessionID:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)remoteDisplayStartServerSessionID:(id)arg1 device:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)tryPassword:(id)arg1;
 - (void)_invalidated;
 - (void)invalidate;

@@ -6,23 +6,34 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSExtension, NSObject<OS_dispatch_queue>;
+@class NSArray, NSExtension, NSHashTable, NSObject<OS_dispatch_queue>;
 
 @interface ILClassificationController : NSObject
 {
     NSExtension *_electedExtension;
     NSArray *_extensions;
     NSObject<OS_dispatch_queue> *_queue;
+    id _matchingExtensionToken;
+    NSHashTable *_delegates;
+    CDUnknownBlockType _firstMatchCompletionBlock;
 }
 
++ (BOOL)shouldActivate;
 + (id)electedExtensionFromExtensions:(id)arg1;
 + (id)sharedInstance;
+@property(copy, nonatomic) CDUnknownBlockType firstMatchCompletionBlock; // @synthesize firstMatchCompletionBlock=_firstMatchCompletionBlock;
+@property(readonly, nonatomic) NSHashTable *delegates; // @synthesize delegates=_delegates;
+@property(readonly, nonatomic) id matchingExtensionToken; // @synthesize matchingExtensionToken=_matchingExtensionToken;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(copy, nonatomic) NSArray *extensions; // @synthesize extensions=_extensions;
 - (void).cxx_destruct;
+- (void)dealloc;
+- (void)removeDelegate:(id)arg1;
+- (void)addDelegate:(id)arg1;
 @property(copy, nonatomic) NSExtension *electedExtension; // @synthesize electedExtension=_electedExtension;
 @property(readonly, nonatomic, getter=isClassificationAvailable) BOOL classificationAvailable;
-- (void)updateExtensions:(id)arg1;
+- (void)updateExtensions:(id)arg1 electedExtensions:(id)arg2;
+- (void)beginMatchingExtensionsWithFirstCompletion:(CDUnknownBlockType)arg1;
 - (void)activateWithCompletion:(CDUnknownBlockType)arg1;
 - (id)init;
 

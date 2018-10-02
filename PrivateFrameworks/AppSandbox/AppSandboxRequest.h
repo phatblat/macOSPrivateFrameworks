@@ -46,8 +46,6 @@
 - (BOOL)_profileTimestampsAreValid;
 - (id)_makeSandboxProfileWithValidationInfo:(id)arg1 error:(id *)arg2;
 - (id)_makeSandboxProfileValidationInfoWithContainerId:(id)arg1 containerRootPath:(id)arg2 error:(id *)arg3;
-- (void)_errorLog:(id)arg1;
-- (void)_debugLog:(id)arg1;
 - (id)initWithCodeIdentity:(id)arg1;
 - (id)initWithCodeIdentity:(id)arg1 entitlements:(id)arg2;
 

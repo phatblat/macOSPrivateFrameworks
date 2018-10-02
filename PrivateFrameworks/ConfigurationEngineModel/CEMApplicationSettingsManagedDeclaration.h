@@ -18,6 +18,7 @@
     NSNumber *_payloadAllowManagedAppsCloudSync;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowOpenFromManagedToUnmanaged:(id)arg2 withAllowOpenFromUnmanagedToManaged:(id)arg3 withForceAirDropUnmanaged:(id)arg4 withAllowManagedAppsCloudSync:(id)arg5;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

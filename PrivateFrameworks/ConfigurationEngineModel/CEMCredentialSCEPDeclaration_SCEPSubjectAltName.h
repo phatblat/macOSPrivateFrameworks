@@ -16,6 +16,7 @@
     NSString *_payloadNtPrincipalName;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithRfc822Name:(id)arg1 withDNSName:(id)arg2 withUniformResourceIdentifier:(id)arg3 withNtPrincipalName:(id)arg4;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadNtPrincipalName; // @synthesize payloadNtPrincipalName=_payloadNtPrincipalName;

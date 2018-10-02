@@ -51,7 +51,6 @@
 - (BOOL)_shouldShowAddAttachmentsLabel;
 - (void)_launchFilePicker:(id)arg1;
 - (BOOL)performDragOperation:(id)arg1;
-- (BOOL)tableView:(id)arg1 writeRowsWithIndexes:(id)arg2 toPasteboard:(id)arg3;
 - (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (long long)rowHeight;

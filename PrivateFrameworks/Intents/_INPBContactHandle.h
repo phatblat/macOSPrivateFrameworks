@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBContactHandle.h"
 
-@class INCodableAttribute, NSString;
+@class NSString;
 
-@interface _INPBContactHandle : PBCodable <_INPBContactHandle, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBContactHandle : PBCodable <_INPBContactHandle, NSSecureCoding, NSCopying>
 {
     CDStruct_f953fb60 _has;
     int _type;
     NSString *_label;
     NSString *_value;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *value; // @synthesize value=_value;
 @property(nonatomic) int type; // @synthesize type=_type;
 @property(copy, nonatomic) NSString *label; // @synthesize label=_label;

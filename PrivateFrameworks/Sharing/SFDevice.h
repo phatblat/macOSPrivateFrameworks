@@ -17,13 +17,14 @@
     unsigned char _deviceActionType;
     unsigned char _deviceClassCode;
     unsigned char _deviceModelCode;
+    BOOL _duetSync;
     BOOL _hasProblem;
     BOOL _needsAWDL;
     BOOL _needsKeyboard;
-    BOOL _needsNAN;
     BOOL _needsSetup;
     BOOL _wakeDevice;
     BOOL _watchLocked;
+    BOOL _wifiP2P;
     unsigned char _osVersion;
     BOOL _paired;
     unsigned int _deviceFlags;
@@ -44,13 +45,13 @@
 + (BOOL)supportsSecureCoding;
 @property(nonatomic) BOOL paired; // @synthesize paired=_paired;
 @property(nonatomic) unsigned char osVersion; // @synthesize osVersion=_osVersion;
+@property(readonly, nonatomic) BOOL wifiP2P; // @synthesize wifiP2P=_wifiP2P;
 @property(nonatomic) BOOL watchLocked; // @synthesize watchLocked=_watchLocked;
 @property(nonatomic) BOOL wakeDevice; // @synthesize wakeDevice=_wakeDevice;
 @property(nonatomic) unsigned int systemPairState; // @synthesize systemPairState=_systemPairState;
 @property(copy, nonatomic) NSString *requestSSID; // @synthesize requestSSID=_requestSSID;
 @property(readonly, nonatomic) unsigned long long problemFlags; // @synthesize problemFlags=_problemFlags;
 @property(nonatomic) BOOL needsSetup; // @synthesize needsSetup=_needsSetup;
-@property(readonly, nonatomic) BOOL needsNAN; // @synthesize needsNAN=_needsNAN;
 @property(readonly, nonatomic) BOOL needsKeyboard; // @synthesize needsKeyboard=_needsKeyboard;
 @property(readonly, nonatomic) BOOL needsAWDL; // @synthesize needsAWDL=_needsAWDL;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
@@ -58,6 +59,7 @@
 @property(copy, nonatomic) NSString *idsIdentifier; // @synthesize idsIdentifier=_idsIdentifier;
 @property(copy, nonatomic) NSUUID *identifier; // @synthesize identifier=_identifier;
 @property(nonatomic) BOOL hasProblem; // @synthesize hasProblem=_hasProblem;
+@property(readonly, nonatomic) BOOL duetSync; // @synthesize duetSync=_duetSync;
 @property(nonatomic) long long distance; // @synthesize distance=_distance;
 @property(readonly, nonatomic) long long deviceType; // @synthesize deviceType=_deviceType;
 @property(readonly, nonatomic) unsigned char deviceModelCode; // @synthesize deviceModelCode=_deviceModelCode;

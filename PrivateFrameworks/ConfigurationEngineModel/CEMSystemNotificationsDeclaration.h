@@ -16,6 +16,7 @@
     NSNumber *_payloadAllowNotificationsModification;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withNotificationSettings:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withNotificationSettings:(id)arg2 withAllowNotificationsModification:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

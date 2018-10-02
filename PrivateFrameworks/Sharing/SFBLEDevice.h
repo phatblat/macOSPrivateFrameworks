@@ -20,6 +20,7 @@
     BOOL _triggered;
     int _rssiEstimate;
     unsigned int _connectedServices;
+    unsigned int _productID2;
     NSData *_advertisementData;
     NSDictionary *_advertisementFields;
     NSData *_bluetoothAddress;
@@ -44,6 +45,7 @@
 @property(nonatomic) BOOL triggered; // @synthesize triggered=_triggered;
 @property(retain, nonatomic) SFProximityEstimator *setupProximityEstimator; // @synthesize setupProximityEstimator=_setupProximityEstimator;
 @property(retain, nonatomic) SFProximityEstimator *proxPairProximityEstimator; // @synthesize proxPairProximityEstimator=_proxPairProximityEstimator;
+@property(nonatomic) unsigned int productID2; // @synthesize productID2=_productID2;
 @property(nonatomic) BOOL paired; // @synthesize paired=_paired;
 @property(nonatomic) double pairCheckTime; // @synthesize pairCheckTime=_pairCheckTime;
 @property(nonatomic) double lastSeen; // @synthesize lastSeen=_lastSeen;

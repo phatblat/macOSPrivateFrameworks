@@ -14,6 +14,7 @@
     NSString *_statusServerHash;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withServerHash:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withServerHash:(id)arg2;
 + (id)allowedStatusKeys;
 @property(copy, nonatomic) NSString *statusServerHash; // @synthesize statusServerHash=_statusServerHash;

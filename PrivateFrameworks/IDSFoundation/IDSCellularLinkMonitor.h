@@ -24,7 +24,7 @@
 - (void)registerCellularDataStatusNotification:(BOOL)arg1;
 - (void)currentCellularSignalStrength:(int *)arg1 signalStrength:(int *)arg2 signalGrade:(int *)arg3;
 - (void)updateProtocolQualityOfService:(BOOL)arg1 localAddress:(struct sockaddr *)arg2;
-- (BOOL)dropIPPackets:(id)arg1 localAddress:(struct sockaddr *)arg2 remoteAddress:(struct sockaddr *)arg3 isRelay:(BOOL)arg4;
+- (BOOL)dropIPPackets:(id)arg1 localAddress:(struct sockaddr *)arg2 remoteAddress:(struct sockaddr *)arg3 isRelay:(BOOL)arg4 channelNumberMSB:(unsigned char)arg5;
 - (BOOL)setPacketNotificationFilter:(struct sockaddr *)arg1 remote:(struct sockaddr *)arg2 uniqueTag:(unsigned int)arg3 callType:(unsigned char)arg4;
 - (void)removePacketNotificationFilter;
 @property(readonly) BOOL dataUsable; // @synthesize dataUsable=_dataUsable;

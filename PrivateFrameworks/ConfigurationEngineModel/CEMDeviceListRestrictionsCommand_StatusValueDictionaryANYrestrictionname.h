@@ -13,6 +13,7 @@
     NSNumber *_statusValue;
 }
 
++ (id)buildRequiredOnlyWithValue:(id)arg1;
 + (id)buildWithValue:(id)arg1;
 + (id)allowedStatusKeys;
 @property(copy, nonatomic) NSNumber *statusValue; // @synthesize statusValue=_statusValue;

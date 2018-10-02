@@ -13,6 +13,7 @@
     NSString *_payloadDeviceID;
 }
 
++ (id)buildRequiredOnlyWithDeviceID:(id)arg1;
 + (id)buildWithDeviceID:(id)arg1;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSString *payloadDeviceID; // @synthesize payloadDeviceID=_payloadDeviceID;

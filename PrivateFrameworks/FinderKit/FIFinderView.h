@@ -33,7 +33,6 @@
 - (void)cacheTagsButton:(id)arg1;
 - (BOOL)shouldEnableShareButton;
 - (void)cacheShareButton:(id)arg1;
-- (void)associateWithLocationPopUp:(id)arg1;
 - (void)setMediaBrowserShownTypes:(unsigned long long)arg1;
 - (void)endPreviewPanelControl:(id)arg1;
 - (void)beginPreviewPanelControl:(id)arg1;
@@ -71,6 +70,7 @@
 @property int viewStyle;
 @property(retain) NSURL *rootDirectoryURL;
 @property(retain) NSURL *directoryURL;
+- (void)setTopAccessory:(id)arg1;
 - (id)whereLabelTrailingLayoutAnchor;
 - (id)whereLabelLeadingLayoutAnchor;
 - (id)locationAreaTrailingLayoutAnchor;

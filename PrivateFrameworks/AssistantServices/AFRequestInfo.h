@@ -6,14 +6,16 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
 
 @class AFSpeechRequestOptions, NSData, NSDictionary, NSNumber, NSString, SAStartLocalRequest, SAStartRequest;
 
-@interface AFRequestInfo : NSObject <NSSecureCoding>
+@interface AFRequestInfo : NSObject <NSSecureCoding, NSCopying>
 {
     BOOL _handoffRequiresUserInteraction;
-    BOOL _suppressAlert;
+    unsigned long long _timestamp;
+    unsigned long long _options;
     NSNumber *_notifyState;
     NSString *_text;
     NSString *_directAction;
@@ -50,7 +52,6 @@
 @property(copy, nonatomic) NSNumber *combinedRank; // @synthesize combinedRank=_combinedRank;
 @property(copy, nonatomic) AFSpeechRequestOptions *speechRequestOptions; // @synthesize speechRequestOptions=_speechRequestOptions;
 @property(nonatomic) long long activationEvent; // @synthesize activationEvent=_activationEvent;
-@property(nonatomic) BOOL suppressAlert; // @synthesize suppressAlert=_suppressAlert;
 @property(copy, nonatomic) SAStartLocalRequest *startLocalRequest; // @synthesize startLocalRequest=_startLocalRequest;
 @property(copy, nonatomic) SAStartRequest *startRequest; // @synthesize startRequest=_startRequest;
 @property(copy, nonatomic) NSDictionary *correctedSpeechContext; // @synthesize correctedSpeechContext=_correctedSpeechContext;
@@ -63,11 +64,17 @@
 @property(copy, nonatomic) NSString *directAction; // @synthesize directAction=_directAction;
 @property(copy, nonatomic) NSString *text; // @synthesize text=_text;
 @property(copy, nonatomic) NSNumber *notifyState; // @synthesize notifyState=_notifyState;
+@property(nonatomic) unsigned long long options; // @synthesize options=_options;
+@property(readonly, nonatomic) unsigned long long timestamp; // @synthesize timestamp=_timestamp;
 - (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)description;
+- (BOOL)isSpeechRequest;
 - (BOOL)requiresUserInteraction;
+- (id)initWithTimestamp:(unsigned long long)arg1;
+- (id)init;
 
 @end
 

@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <AVConference/VCObject.h>
 
 @class IDSDataChannelLinkContext, IDSDatagramChannel, NSArray, NSString;
 
 __attribute__((visibility("hidden")))
-@interface VCDatagramChannelIDS : NSObject
+@interface VCDatagramChannelIDS : VCObject
 {
     unsigned int _token;
     IDSDatagramChannel *_idsChannel;
@@ -30,7 +30,7 @@ __attribute__((visibility("hidden")))
 - (void)requestSessionInfoWithOptions:(id)arg1;
 - (void)setChannelPreferences:(id)arg1;
 - (void)writeDatagrams:(const void **)arg1 datagramsSize:(unsigned int *)arg2 datagramsInfo:(CDStruct_54fea20c *)arg3 datagramsCount:(int)arg4 options:(struct **)arg5 completionHandler:(CDUnknownBlockType)arg6;
-- (void)writeDatagram:(const void *)arg1 datagramSize:(unsigned int)arg2 datagramInfo:(CDStruct_54fea20c)arg3 options:(CDStruct_630f55d5 *)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)writeDatagram:(const void *)arg1 datagramSize:(unsigned int)arg2 datagramInfo:(CDStruct_54fea20c)arg3 options:(CDStruct_2f700ce5 *)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)readyToRead;
 - (void)setEventHandler:(CDUnknownBlockType)arg1;
 - (void)setReadHandler:(CDUnknownBlockType)arg1;

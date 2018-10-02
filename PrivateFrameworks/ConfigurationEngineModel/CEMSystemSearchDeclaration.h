@@ -16,6 +16,7 @@
     NSNumber *_payloadAllowDefinitionLookup;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowSpotlightInternetResults:(id)arg2 withAllowDefinitionLookup:(id)arg3;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

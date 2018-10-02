@@ -16,7 +16,6 @@
     OAXTableStyleCache *mTableStyleCache;
     NSMutableDictionary *mShapeIdMap;
     NSMutableDictionary *mDrawableIdToVmlShapeIdMap;
-    id mDocumentState;
     OADBlipCollection *mTgtBlipCollection;
     NSMutableDictionary *mSrcURLToTgtBlipIndexMap;
     NSMutableArray *mTgtBulletBlips;
@@ -37,6 +36,7 @@
     CXNamespace *mOAXDrawing2010Namespace;
     CXNamespace *mOAXChart2012Namespace;
     CXNamespace *mOAXMathNamespace;
+    id mDocumentState;
     CDUnknownBlockType _clientChartGraphicPropertyDefaultsBlock;
 }
 
@@ -76,8 +76,7 @@
 - (id)colorScheme;
 - (void)setOavState:(id)arg1;
 - (id)oavState;
-- (void)setDocumentState:(id)arg1;
-- (id)documentState;
+@property __weak id documentState; // @synthesize documentState=mDocumentState;
 - (void)resetForNewDrawing;
 - (void)setVmlShapeId:(id)arg1 forDrawableId:(unsigned int)arg2;
 - (id)vmlShapeIdForDrawableId:(unsigned int)arg1;

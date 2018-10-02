@@ -30,7 +30,7 @@
     BOOL _isInvalidated;
     double _lastDestinationSent;
     double _lastDestinationReceived;
-    CDStruct_e844bd1c *_incomingPacketBuffer;
+    CDStruct_18fdc6f4 *_incomingPacketBuffer;
     unsigned long long _state;
     unsigned long long _totalBytesSent;
     unsigned long long _totalPacketsSent;
@@ -64,9 +64,9 @@
 - (BOOL)setTrafficClass:(int)arg1;
 - (id)generateLinkReport:(double)arg1 isCurrentLink:(BOOL)arg2;
 - (unsigned long long)sendPacketBufferArray:(CDStruct_183601bc **)arg1 arraySize:(int)arg2 toDeviceUniqueID:(id)arg3 cbuuid:(id)arg4;
-- (unsigned long long)sendPacketBuffer:(CDStruct_e844bd1c *)arg1 sourceInterface:(id)arg2 destination:(id)arg3 toDeviceID:(id)arg4;
-- (unsigned long long)sendPacketBuffer:(CDStruct_e844bd1c *)arg1 destination:(id)arg2 toDeviceID:(id)arg3;
-- (unsigned long long)sendPacketBuffer:(CDStruct_e844bd1c *)arg1 toDeviceUniqueID:(id)arg2 cbuuid:(id)arg3;
+- (unsigned long long)sendPacketBuffer:(CDStruct_18fdc6f4 *)arg1 sourceInterface:(id)arg2 destination:(id)arg3 toDeviceID:(id)arg4;
+- (unsigned long long)sendPacketBuffer:(CDStruct_18fdc6f4 *)arg1 destination:(id)arg2 toDeviceID:(id)arg3;
+- (unsigned long long)sendPacketBuffer:(CDStruct_18fdc6f4 *)arg1 toDeviceUniqueID:(id)arg2 cbuuid:(id)arg3;
 - (id)copyCurrentNetworkInterfaces;
 - (id)newSocketWithIPVersion:(unsigned long long)arg1 wantsAWDL:(BOOL)arg2 wantsWiFi:(BOOL)arg3 wantsCellular:(BOOL)arg4;
 - (id)newSocketWithIPVersion:(unsigned long long)arg1 wantsAWDL:(BOOL)arg2 wantsWiFi:(BOOL)arg3 wantsCellular:(BOOL)arg4 clientUUID:(unsigned char [16])arg5;

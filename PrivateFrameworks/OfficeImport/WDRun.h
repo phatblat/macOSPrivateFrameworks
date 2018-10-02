@@ -13,13 +13,13 @@
     WDParagraph *mParagraph;
 }
 
+@property(readonly) __weak WDParagraph *paragraph; // @synthesize paragraph=mParagraph;
 - (void).cxx_destruct;
 - (id)description;
 - (void)clearProperties;
 - (BOOL)isEmpty;
 - (id)initWithParagraph:(id)arg1;
 - (id)init;
-- (id)paragraph;
 - (int)runType;
 
 @end

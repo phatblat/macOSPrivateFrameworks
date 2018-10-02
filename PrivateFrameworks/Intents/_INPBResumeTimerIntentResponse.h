@@ -6,22 +6,19 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBResumeTimerIntentResponse.h"
 
-@class INCodableAttribute, NSArray, NSString;
+@class NSArray, NSString;
 
-@interface _INPBResumeTimerIntentResponse : PBCodable <_INPBResumeTimerIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBResumeTimerIntentResponse : PBCodable <_INPBResumeTimerIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSArray *_resumedTimers;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)resumedTimersType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *resumedTimers; // @synthesize resumedTimers=_resumedTimers;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;

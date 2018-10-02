@@ -28,7 +28,9 @@ __attribute__((visibility("hidden")))
     NSTextField *_whereLabel;
     NSView *_toolbarButtonArea;
     NSVisualEffectView *_visualEffectView;
-    struct TNSRef<FILocationPopUp, void> _associatedLocationPopup;
+    NSView *_topAccessoryContainerView;
+    NSLayoutConstraint *_topAccessoryContainerCollapsingConstraint;
+    NSView *_topAccessory;
     struct TNSRef<FITopBarTitlebarAccessoryViewController, void> _topBarTitlebarAccessoryViewController;
     FI_TBrowserContentViewController *_contentViewController;
     FIContainerController *_activeContainer;
@@ -142,7 +144,6 @@ __attribute__((visibility("hidden")))
 - (_Bool)shouldEnableShareButton;
 - (void)shareWithSharingService:(id)arg1;
 - (void)cacheShareButton:(id)arg1;
-- (void)associateWithLocationPopUp:(id)arg1;
 - (void)setMediaBrowserShownTypes:(unsigned long long)arg1;
 - (BOOL)previewPanel:(id)arg1 shouldShowOpenButtonForItem:(id)arg2;
 - (id)seamlessOpener:(id)arg1 transitionImageForPreviewItem:(id)arg2 contentRect:(struct CGRect *)arg3;
@@ -276,6 +277,7 @@ __attribute__((visibility("hidden")))
 - (void)windowWillOrderOnScreen;
 - (void)prepareToHide;
 - (void)prepareToShow;
+- (void)setTopAccessory:(id)arg1;
 - (id)whereLabelTrailingLayoutAnchor;
 - (id)whereLabelLeadingLayoutAnchor;
 - (id)locationAreaTrailingLayoutAnchor;
@@ -286,7 +288,6 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) _Bool showsNewDocumentButton; // @dynamic showsNewDocumentButton;
 - (_Bool)shouldShowRecents;
 - (_Bool)sidebarInitiallyVisible;
-- (id)activeLocationPopUp;
 - (void)viewLoaded;
 - (void)initCommon;
 - (id)initWithView:(id)arg1;

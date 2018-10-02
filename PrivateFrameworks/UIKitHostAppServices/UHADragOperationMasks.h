@@ -8,7 +8,7 @@
 
 #import "UHADragOperationMasksInterface.h"
 
-@class NSString;
+@class NSObject<OS_dispatch_queue>, NSString;
 
 @interface UHADragOperationMasks : NSObject <UHADragOperationMasksInterface>
 {
@@ -24,6 +24,7 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *memoizableSerializerQueue;
 @property(readonly) Class superclass;
 
 @end

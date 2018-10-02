@@ -31,11 +31,13 @@
     MTLToolsPointerArray *_indirectArgumentEncoders;
     MTLToolsPointerArray *_argumentEncoders;
     MTLToolsPointerArray *_indirectCommandBuffers;
+    MTLToolsPointerArray *_motionEstimationPipelines;
 }
 
 + (id)newTextureDescriptorFromIOSurface:(struct __IOSurface *)arg1;
 + (id)newTextureDescriptorFromIOSurfaceProperties:(id)arg1;
 + (void)registerDevices;
+@property(readonly, nonatomic) MTLToolsPointerArray *motionEstimationPipelines; // @synthesize motionEstimationPipelines=_motionEstimationPipelines;
 @property(readonly, nonatomic) MTLToolsPointerArray *indirectCommandBuffers; // @synthesize indirectCommandBuffers=_indirectCommandBuffers;
 @property(readonly, nonatomic) MTLToolsPointerArray *argumentEncoders; // @synthesize argumentEncoders=_argumentEncoders;
 @property(readonly, nonatomic) MTLToolsPointerArray *indirectArgumentEncoders; // @synthesize indirectArgumentEncoders=_indirectArgumentEncoders;
@@ -54,6 +56,7 @@
 @property(readonly, nonatomic) MTLToolsPointerArray *heaps; // @synthesize heaps=_heaps;
 @property(readonly) unsigned long long memorySize; // @synthesize memorySize=_memorySize;
 @property(readonly, getter=isIntegrated) BOOL integrated; // @synthesize integrated=_integrated;
+- (void).cxx_destruct;
 - (id)newMotionEstimationPipelineWithDescriptor:(id)arg1;
 - (id)motionEstimatorCapabilities;
 @property(readonly) unsigned long long currentAllocatedSize;
@@ -135,6 +138,7 @@
 - (BOOL)_registerInterestNotification;
 - (void)_wasRemoved;
 - (void)_removeRequested;
+- (id)_deviceWrapper;
 - (void)_setDeviceWrapper:(id)arg1;
 - (void)getDefaultSamplePositions:(CDStruct_b2fbf00d *)arg1 count:(unsigned long long)arg2;
 @property(readonly, getter=areProgrammableSamplePositionsSupported) BOOL programmableSamplePositionsSupported;

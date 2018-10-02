@@ -18,20 +18,27 @@ __attribute__((visibility("hidden")))
     _Bool _isDragItem;
     _Bool _useActiveAppearance;
     _Bool _useDesktopSelectionColor;
+    _Bool _useAutoLayoutInPreviewPane;
     _Bool _includeShadowPadding;
     _Bool _drawAntiAliased;
+    _Bool _isOverlappingTitle;
     struct TNSRef<NSColor, void> _superViewsBackgroundColor;
     vector_12bd641b _tagColorIndexes;
-    struct TNSRef<FI_TICloudBadgePlaceholderView, void> _iCloudBadgeView;
+    TNSRef_aed84f5d _iCloudBadgeView;
     _Bool _isDimmed;
 }
 
 + (id)iconViewAppearanceSelectionColor:(_Bool)arg1;
 + (id)desktopAppearanceSelectionColor:(_Bool)arg1;
 @property _Bool useDesktopSelectionColor; // @synthesize useDesktopSelectionColor=_useDesktopSelectionColor;
+@property(nonatomic) _Bool useAutoLayoutInPreviewPane; // @synthesize useAutoLayoutInPreviewPane=_useAutoLayoutInPreviewPane;
 @property _Bool drawAntiAliased; // @synthesize drawAntiAliased=_drawAntiAliased;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (void)setICloudBadge:(int)arg1 keepPlaceHolder:(_Bool)arg2 placeHolder:(TNSRef_aed84f5d *)arg3 clickHandler:(const function_b1fce659 *)arg4 context:(int)arg5;
+- (void)invalidateIntrinsicContentSize;
+- (struct CGSize)intrinsicContentSize;
+- (id)iCloudBadgePlaceholderView;
 - (id)view:(id)arg1 stringForToolTip:(long long)arg2 point:(struct CGPoint)arg3 userData:(void *)arg4;
 - (void)setToolTip:(id)arg1;
 - (id)toolTip;
@@ -41,7 +48,8 @@ __attribute__((visibility("hidden")))
 - (_Bool)intersectsRect:(struct CGRect)arg1;
 - (id)hitTest:(struct CGPoint)arg1;
 - (void)updateICloudBadge;
-- (void)setICloudBadgeClickHandler:(const function_b1fce659 *)arg1 context:(int)arg2;
+- (void)removeICloudBadgeView;
+- (_Bool)setICloudBadgeClickHandler:(const function_b1fce659 *)arg1 context:(int)arg2;
 - (_Bool)isICloudBadgeVisible;
 - (void)mouseDragged:(id)arg1;
 - (void)mouseUp:(id)arg1;
@@ -50,6 +58,7 @@ __attribute__((visibility("hidden")))
 @property(getter=isDimmed) _Bool dimmed; // @dynamic dimmed;
 @property NSColor *superViewsBackgroundColor; // @dynamic superViewsBackgroundColor;
 @property _Bool includeShadowPadding; // @dynamic includeShadowPadding;
+@property(getter=isOverlappingTitle) _Bool overlappingTitle; // @dynamic overlappingTitle;
 @property _Bool useActiveAppearance; // @dynamic useActiveAppearance;
 @property(getter=isDragItem) _Bool dragItem; // @dynamic dragItem;
 - (void)setTagColorIndexes:(const vector_12bd641b *)arg1;

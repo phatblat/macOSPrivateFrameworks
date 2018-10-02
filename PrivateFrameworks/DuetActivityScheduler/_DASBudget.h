@@ -14,6 +14,7 @@
 @interface _DASBudget : NSObject <NSCopying, NSSecureCoding>
 {
     unsigned char _allocationType;
+    struct os_unfair_lock_s _lock;
     NSString *_name;
     double _capacity;
     double _balance;
@@ -24,6 +25,8 @@
 
 + (BOOL)supportsSecureCoding;
 + (id)budgetWithName:(id)arg1 capacity:(double)arg2 allocationType:(unsigned char)arg3;
++ (id)budgetWithName:(id)arg1 capacity:(double)arg2 balance:(double)arg3 allocationType:(unsigned char)arg4;
+@property(nonatomic) struct os_unfair_lock_s lock; // @synthesize lock=_lock;
 @property(nonatomic) double minBudgetValue; // @synthesize minBudgetValue=_minBudgetValue;
 @property(nonatomic) double maxBudgetValue; // @synthesize maxBudgetValue=_maxBudgetValue;
 @property(copy, nonatomic) CDUnknownBlockType callback; // @synthesize callback=_callback;
@@ -38,12 +41,14 @@
 - (id)description;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
+- (void)setCapacity:(double)arg1;
 - (void)setBalance:(double)arg1;
 - (void)incrementBy:(double)arg1;
 - (void)decrementBy:(double)arg1;
+- (BOOL)unlockedDecrementBy:(double)arg1;
 - (BOOL)isPositive;
 - (void)registerSignificantBudgetChangeCallback:(CDUnknownBlockType)arg1;
-- (id)initWithName:(id)arg1 capacity:(double)arg2 allocationType:(unsigned char)arg3;
+- (id)initWithName:(id)arg1 capacity:(double)arg2 balance:(double)arg3 allocationType:(unsigned char)arg4;
 
 @end
 

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSString, SKDisk;
+@class NSString, NSURL, SKDisk;
 
 @interface OSInstallOptions : NSObject
 {
@@ -18,19 +18,28 @@
     BOOL _shouldConvertToAPFS;
     BOOL _enableSUFLO;
     BOOL _didRequestEraseInstall;
+    BOOL _isAppleInternal;
     NSString *_alternateBlessVolumeUUID;
-    NSString *_distributionPath;
-    NSString *_choiceChangesPath;
-    NSString *_baseSystemPath;
-    NSString *_payloadImagePath;
-    NSString *_appleDiagnosticsPath;
     NSString *_baseSystemMountPoint;
     NSString *_payloadImageMountPoint;
     SKDisk *_target;
     long long _installType;
+    NSString *_volumeUUIDToErase;
+    NSURL *_distributionURL;
+    NSURL *_choiceChangesURL;
+    NSURL *_baseSystemURL;
+    NSURL *_payloadImageURL;
+    NSURL *_appleDiagnosticsURL;
 }
 
 + (BOOL)isBeingInstalledInternally;
+@property(retain) NSURL *appleDiagnosticsURL; // @synthesize appleDiagnosticsURL=_appleDiagnosticsURL;
+@property(retain) NSURL *payloadImageURL; // @synthesize payloadImageURL=_payloadImageURL;
+@property(retain) NSURL *baseSystemURL; // @synthesize baseSystemURL=_baseSystemURL;
+@property(retain) NSURL *choiceChangesURL; // @synthesize choiceChangesURL=_choiceChangesURL;
+@property(retain) NSURL *distributionURL; // @synthesize distributionURL=_distributionURL;
+@property(retain) NSString *volumeUUIDToErase; // @synthesize volumeUUIDToErase=_volumeUUIDToErase;
+@property BOOL isAppleInternal; // @synthesize isAppleInternal=_isAppleInternal;
 @property BOOL didRequestEraseInstall; // @synthesize didRequestEraseInstall=_didRequestEraseInstall;
 @property BOOL enableSUFLO; // @synthesize enableSUFLO=_enableSUFLO;
 @property BOOL shouldConvertToAPFS; // @synthesize shouldConvertToAPFS=_shouldConvertToAPFS;
@@ -42,13 +51,16 @@
 @property(retain) SKDisk *target; // @synthesize target=_target;
 @property(retain) NSString *payloadImageMountPoint; // @synthesize payloadImageMountPoint=_payloadImageMountPoint;
 @property(retain) NSString *baseSystemMountPoint; // @synthesize baseSystemMountPoint=_baseSystemMountPoint;
-@property(retain) NSString *appleDiagnosticsPath; // @synthesize appleDiagnosticsPath=_appleDiagnosticsPath;
-@property(retain) NSString *payloadImagePath; // @synthesize payloadImagePath=_payloadImagePath;
-@property(retain) NSString *baseSystemPath; // @synthesize baseSystemPath=_baseSystemPath;
-@property(retain) NSString *choiceChangesPath; // @synthesize choiceChangesPath=_choiceChangesPath;
-@property(retain) NSString *distributionPath; // @synthesize distributionPath=_distributionPath;
 @property(retain) NSString *alternateBlessVolumeUUID; // @synthesize alternateBlessVolumeUUID=_alternateBlessVolumeUUID;
 - (void).cxx_destruct;
+- (id)_fileDiskURLForPath:(id)arg1;
+- (id)_mountPointForDiskWithUUID:(id)arg1;
+- (id)_pathFromFileDiskURL:(id)arg1;
+@property(retain) NSString *appleDiagnosticsPath;
+@property(retain) NSString *payloadImagePath;
+@property(retain) NSString *baseSystemPath;
+@property(retain) NSString *choiceChangesPath;
+@property(retain) NSString *distributionPath;
 - (void)_resolveTargetWithPath:(id)arg1 name:(id)arg2 orUUID:(id)arg3;
 - (id)alternateBlessTarget;
 - (id)initWithDefaultSettings;

@@ -6,22 +6,22 @@
 
 #import <StorageKit/SKDisk.h>
 
-@class NSArray, NSString;
+@class NSArray, NSDictionary, NSString;
 
 @interface SKRAIDDisk : SKDisk
 {
     BOOL _isRAIDSet;
     NSString *_raidUUID;
-    SKDisk *_contentDisk;
     NSArray *_setMemberUUIDs;
     NSArray *_setSpareUUIDs;
     NSString *_status;
+    NSDictionary *_contentDiskDictionary;
 }
 
+@property(retain) NSDictionary *contentDiskDictionary; // @synthesize contentDiskDictionary=_contentDiskDictionary;
 @property(retain) NSString *status; // @synthesize status=_status;
 @property(retain) NSArray *setSpareUUIDs; // @synthesize setSpareUUIDs=_setSpareUUIDs;
 @property(retain) NSArray *setMemberUUIDs; // @synthesize setMemberUUIDs=_setMemberUUIDs;
-@property(retain) SKDisk *contentDisk; // @synthesize contentDisk=_contentDisk;
 @property BOOL isRAIDSet; // @synthesize isRAIDSet=_isRAIDSet;
 @property(retain) NSString *raidUUID; // @synthesize raidUUID=_raidUUID;
 - (void).cxx_destruct;
@@ -30,6 +30,7 @@
 - (void)repairRAIDWithDisk:(id)arg1 progress:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)addDisksToRAID:(id)arg1 withType:(id)arg2 progress:(CDUnknownBlockType)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (id)contentDiskIdentifier;
+@property(readonly, retain) SKDisk *contentDisk;
 - (BOOL)canResize;
 - (id)description;
 - (id)supportedFilesystems;

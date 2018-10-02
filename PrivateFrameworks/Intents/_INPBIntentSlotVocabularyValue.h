@@ -6,23 +6,20 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBIntentSlotVocabularyValue.h"
 
-@class INCodableAttribute, NSArray, NSString;
+@class NSArray, NSString;
 
-@interface _INPBIntentSlotVocabularyValue : PBCodable <_INPBIntentSlotVocabularyValue, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBIntentSlotVocabularyValue : PBCodable <_INPBIntentSlotVocabularyValue, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSArray *_examples;
     NSString *_phrase;
     NSString *_pronunciation;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *pronunciation; // @synthesize pronunciation=_pronunciation;
 @property(copy, nonatomic) NSString *phrase; // @synthesize phrase=_phrase;
 @property(copy, nonatomic) NSArray *examples; // @synthesize examples=_examples;

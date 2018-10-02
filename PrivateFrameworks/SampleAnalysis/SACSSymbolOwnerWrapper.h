@@ -10,15 +10,17 @@ __attribute__((visibility("hidden")))
 @interface SACSSymbolOwnerWrapper : NSObject
 {
     BOOL _hasTextExecSegment;
+    BOOL _isSparse;
     struct _CSTypeRef _symbolOwner;
     struct _CSRange _textSegmentRange;
 }
 
+@property(readonly) BOOL isSparse; // @synthesize isSparse=_isSparse;
 @property(readonly) BOOL hasTextExecSegment; // @synthesize hasTextExecSegment=_hasTextExecSegment;
 @property(readonly) struct _CSRange textSegmentRange; // @synthesize textSegmentRange=_textSegmentRange;
 @property(readonly) struct _CSTypeRef symbolOwner; // @synthesize symbolOwner=_symbolOwner;
 - (void)dealloc;
-- (id)initWithCSSymbolOwner:(struct _CSTypeRef)arg1;
+- (id)initWithCSSymbolOwner:(struct _CSTypeRef)arg1 isSparse:(BOOL)arg2;
 
 @end
 

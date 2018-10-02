@@ -15,6 +15,7 @@
     NSArray *_payloadAutoLaunchedApplicationDictionaryManaged;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1 withAutoLaunchedApplicationDictionaryManaged:(id)arg2;
 + (id)buildWithIdentifier:(id)arg1 withAutoLaunchedApplicationDictionaryManaged:(id)arg2;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

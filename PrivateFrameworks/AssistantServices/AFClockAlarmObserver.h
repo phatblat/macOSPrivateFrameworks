@@ -9,12 +9,12 @@
 #import "AFClockItemStorageDelegate.h"
 #import "AFInvalidating.h"
 
-@class AFClockAlarmSnapshot, AFClockItemStorage, NSMutableOrderedSet, NSObject<OS_dispatch_queue>, NSString, NSUUID;
+@class AFClockAlarmSnapshot, AFClockItemStorage, NSHashTable, NSMutableOrderedSet, NSObject<OS_dispatch_queue>, NSString, NSUUID;
 
 @interface AFClockAlarmObserver : NSObject <AFClockItemStorageDelegate, AFInvalidating>
 {
     NSObject<OS_dispatch_queue> *_queue;
-    id <AFClockAlarmObserverDelegate> _delegate;
+    NSHashTable *_listeners;
     AFClockAlarmSnapshot *_alarmSnapshot;
     AFClockItemStorage *_alarmStorage;
     NSMutableOrderedSet *_notifiedFiringAlarmIDs;
@@ -23,6 +23,7 @@
 
 + (void)initialize;
 - (void).cxx_destruct;
+- (void)_enumerateListenersUsingBlock:(CDUnknownBlockType)arg1;
 - (void)_handleFetchAlarmsForReason:(id)arg1 error:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)_fetchAlarmsForReason:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_tearDown;
@@ -38,9 +39,12 @@
 - (void)alarmsAdded:(id)arg1;
 - (void)clockItemStorageDidUpdate:(id)arg1 insertedItemIDs:(id)arg2 updatedItemIDs:(id)arg3 deletedItemIDs:(id)arg4;
 - (void)invalidate;
+- (void)getNotifiedFiringAlarmIDsWithCompletion:(CDUnknownBlockType)arg1;
 - (void)getAlarmSnapshotWithCompletion:(CDUnknownBlockType)arg1;
-- (id)initWithDelegate:(id)arg1;
+- (void)removeListener:(id)arg1;
+- (void)addListener:(id)arg1;
 - (void)dealloc;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

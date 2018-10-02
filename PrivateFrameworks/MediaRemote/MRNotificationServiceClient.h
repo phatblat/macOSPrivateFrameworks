@@ -31,6 +31,7 @@
 - (void)_handlePlayerDidUnregisterNotification:(id)arg1;
 - (void)_handlePlayerDidRegisterNotification:(id)arg1;
 - (void)_handleActivePlayerDidChangeNotification:(id)arg1;
+- (void)_handleApplicationDidForegroundNotification:(id)arg1;
 - (void)_handleApplicationDisplayNameDidChangeNotification:(id)arg1;
 - (void)_handleApplicationClientStateDidChangeNotification:(id)arg1;
 - (void)_handleAnyApplicationIsPlayingDidChangeNotification:(id)arg1;

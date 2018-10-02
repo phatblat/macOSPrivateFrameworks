@@ -30,6 +30,7 @@ __attribute__((visibility("hidden")))
 - (void)reset;
 - (void)updateSelectedMediaEntriesForClientWithUUID:(id)arg1;
 - (id)distributeBitrate:(unsigned int)arg1;
+- (unsigned long long)simultaneousTalkers;
 - (void)updateClient:(id)arg1 bandwidthConstrained:(BOOL)arg2 decoderConstrained:(BOOL)arg3;
 - (void)updateHighestAudioBitrates:(id)arg1 bitrate:(unsigned int)arg2;
 - (unsigned int)requiredAudioBitrate:(unsigned int)arg1 highestAudioBitrates:(id)arg2;

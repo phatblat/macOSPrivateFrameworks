@@ -32,7 +32,6 @@
     BOOL _supportsWLAN;
     BOOL _supportsNonWiFiFaceTime;
     BOOL _supportsCellularData;
-    BOOL _shouldUseSIMState;
     BOOL _simBecameNotReady;
     long long _simInserted;
     BOOL _wantsForcedCellularQueries;
@@ -62,6 +61,8 @@
 @property(readonly, nonatomic) BOOL supportsHandoff; // @synthesize supportsHandoff=_supportsHandoff;
 @property(readonly, nonatomic) BOOL isGreenTea; // @synthesize isGreenTea=_isGreenTea;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL supportsFunCam;
+@property(readonly, nonatomic) BOOL lowRAMDevice;
 @property(readonly, nonatomic) BOOL supportsApplePay;
 @property(readonly, nonatomic) BOOL isInMultiUserMode;
 @property(readonly, nonatomic) BOOL nonWifiCallingAvailable;
@@ -87,7 +88,8 @@
 - (void)_updateCTNetworkDictionary:(id)arg1 key:(id)arg2 withTelephonyNetworkValue:(id)arg3 telephonyError:(id)arg4;
 @property(readonly, nonatomic) NSDictionary *CTNetworkInformation;
 - (void)_handlePotentialPhoneNumberRegistrationStateChanged;
-- (void)noteSelectedPhoneNumberRegistrationSubscriptionNumberDidChange;
+- (void)_invalidateValuesCachedForSelectedPhoneNumberRegistration;
+- (void)noteSelectedPhoneNumberRegistrationSubscriptionDidChange;
 - (void)_handleCarrierSettingsChanged;
 - (void)_handleSIMStatusChangedToStatus:(id)arg1;
 - (void)simStatusDidChange:(id)arg1 status:(id)arg2;
@@ -96,6 +98,7 @@
 - (void)phoneNumberChanged:(id)arg1;
 - (void)pnrReadyStateNotification:(id)arg1 regState:(BOOL)arg2;
 - (id)registrationState;
+- (BOOL)isInDualPhoneIdentityMode;
 @property(readonly, nonatomic) NSString *enclosureColor;
 @property(readonly, nonatomic) NSString *deviceColor;
 @property(readonly, nonatomic) NSString *deviceName;

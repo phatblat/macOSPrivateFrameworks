@@ -6,25 +6,22 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBSearchCallHistoryIntentResponse.h"
 
-@class INCodableAttribute, NSArray, NSString;
+@class NSArray, NSString;
 
-@interface _INPBSearchCallHistoryIntentResponse : PBCodable <_INPBSearchCallHistoryIntentResponse, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBSearchCallHistoryIntentResponse : PBCodable <_INPBSearchCallHistoryIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSArray *_callRecords;
     NSString *_dateCreated;
     NSString *_status;
     NSString *_targetContact;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)callRecordsType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSString *targetContact; // @synthesize targetContact=_targetContact;
 @property(copy, nonatomic) NSString *status; // @synthesize status=_status;
 @property(copy, nonatomic) NSString *dateCreated; // @synthesize dateCreated=_dateCreated;

@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBAppBundleInfo.h"
 
-@class INCodableAttribute, NSArray, NSString, _INPBAppId, _INPBBuildId;
+@class NSArray, NSString, _INPBAppId, _INPBBuildId;
 
-@interface _INPBAppBundleInfo : PBCodable <_INPBAppBundleInfo, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBAppBundleInfo : PBCodable <_INPBAppBundleInfo, NSSecureCoding, NSCopying>
 {
     struct _has;
     _INPBAppId *_appId;
@@ -21,13 +20,11 @@
     NSArray *_intentSupports;
     NSArray *_localizedProjects;
     NSArray *_supportedPlatforms;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
 + (Class)supportedPlatformsType;
 + (Class)localizedProjectsType;
 + (Class)intentSupportType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(copy, nonatomic) NSArray *supportedPlatforms; // @synthesize supportedPlatforms=_supportedPlatforms;
 @property(copy, nonatomic) NSArray *localizedProjects; // @synthesize localizedProjects=_localizedProjects;
 @property(copy, nonatomic) NSArray *intentSupports; // @synthesize intentSupports=_intentSupports;

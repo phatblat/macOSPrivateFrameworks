@@ -13,6 +13,7 @@
     NSString *_statusEcho;
 }
 
++ (id)buildRequiredOnlyWithEcho:(id)arg1;
 + (id)buildWithEcho:(id)arg1;
 + (id)allowedReasons;
 + (id)allowedStatusKeys;

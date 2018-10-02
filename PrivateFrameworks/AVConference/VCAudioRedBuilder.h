@@ -26,6 +26,7 @@ __attribute__((visibility("hidden")))
     int _payloadBufferHistoryIndex;
 }
 
++ (unsigned int)redOverheadForNumPayloads:(unsigned int)arg1;
 @property(readonly, nonatomic) int redPayloadType; // @synthesize redPayloadType=_redPayloadType;
 @property(nonatomic) unsigned int numPayloads; // @synthesize numPayloads=_numPayloads;
 @property(nonatomic) unsigned int maxDelay; // @synthesize maxDelay=_maxDelay;

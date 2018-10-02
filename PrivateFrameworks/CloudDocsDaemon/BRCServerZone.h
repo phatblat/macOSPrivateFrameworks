@@ -49,7 +49,7 @@
 @property(readonly) BOOL isCloudDocsZone;
 - (void)clearStateBits:(unsigned int)arg1;
 - (BOOL)setStateBits:(unsigned int)arg1;
-- (void)destroyPendingChangesDB;
+- (void)destroyPendingChangesDBOnQueue:(BOOL)arg1;
 - (void)saveQueryRecords:(id)arg1;
 - (void)forceMoveToCloudDocs;
 - (BOOL)serverZoneIsCreated;

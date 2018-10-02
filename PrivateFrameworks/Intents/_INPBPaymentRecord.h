@@ -6,14 +6,13 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBPaymentRecord.h"
 
-@class INCodableAttribute, NSString, _INPBContact, _INPBCurrencyAmount, _INPBPaymentMethodValue, _INPBString;
+@class NSString, _INPBContact, _INPBCurrencyAmount, _INPBPaymentMethodValue, _INPBString;
 
-@interface _INPBPaymentRecord : PBCodable <_INPBPaymentRecord, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBPaymentRecord : PBCodable <_INPBPaymentRecord, NSSecureCoding, NSCopying>
 {
     CDStruct_47fe53f2 _has;
     int _status;
@@ -23,10 +22,8 @@
     _INPBContact *_payee;
     _INPBContact *_payer;
     _INPBPaymentMethodValue *_paymentMethod;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(nonatomic) int status; // @synthesize status=_status;
 @property(retain, nonatomic) _INPBPaymentMethodValue *paymentMethod; // @synthesize paymentMethod=_paymentMethod;
 @property(retain, nonatomic) _INPBContact *payer; // @synthesize payer=_payer;

@@ -76,9 +76,11 @@ __attribute__((visibility("hidden")))
 + (id)keyPathsForValuesAffectingCanBeSortedByDate;
 + (id)keyPathsForValuesAffectingCanBeSortedBySnapToGrid;
 + (id)keyPathsForValuesAffectingCanBeSortedByNone;
++ (id)keyPathsForValuesAffectingCanBeSortedByName;
 + (id)keyPathsForValuesAffectingIsDesktop;
 + (id)keyPathsForValuesAffectingIsAirDrop;
 + (id)keyPathsForValuesAffectingIsSearch;
++ (id)keyPathsForValuesAffectingGroupBy;
 + (id)keyPathsForValuesAffectingFxShowArrangeByAndSortByPopups;
 + (void)setViewStyleInPrefs:(int)arg1 forName:(struct TString)arg2;
 + (int)viewStyleFromPrefsForName:(struct TString)arg1;
@@ -141,6 +143,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) _Bool canBeSortedByDate; // @dynamic canBeSortedByDate;
 @property(readonly, nonatomic) _Bool canBeSortedBySnapToGrid; // @dynamic canBeSortedBySnapToGrid;
 @property(readonly, nonatomic) _Bool canBeSortedByNone; // @dynamic canBeSortedByNone;
+@property(readonly, nonatomic) _Bool canBeSortedByName; // @dynamic canBeSortedByName;
 - (void)setBackgroundType;
 - (int)backgroundType;
 @property(copy, nonatomic) NSDictionary *listViewColumnSettings; // @dynamic listViewColumnSettings;

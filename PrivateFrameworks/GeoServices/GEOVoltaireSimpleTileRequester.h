@@ -19,6 +19,7 @@
 - (id)localizationURLForTileKey:(const struct _GEOTileKey *)arg1;
 - (id)_localizationURLForTileKey:(const struct _GEOTileKey *)arg1;
 - (unsigned char)_authTypeForTileKey:(const struct _GEOTileKey *)arg1;
+- (BOOL)useProxyAuthForTileKey:(const struct _GEOTileKey *)arg1;
 - (id)urlForTileKey:(const struct _GEOTileKey *)arg1;
 - (unsigned int)tileEditionForKey:(const struct _GEOTileKey *)arg1;
 - (int)checksumMethodForIncomingTileDataWithKey:(const struct _GEOTileKey *)arg1;

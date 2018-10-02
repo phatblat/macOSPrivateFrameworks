@@ -17,6 +17,7 @@
     NSNumber *_payloadAllowAddingGameCenterFriends;
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1 withAllowGameCenter:(id)arg2 withAllowMultiplayerGaming:(id)arg3 withAllowAddingGameCenterFriends:(id)arg4;
 + (id)restrictionPayloadKeys;
 + (id)allowedPayloadKeys;

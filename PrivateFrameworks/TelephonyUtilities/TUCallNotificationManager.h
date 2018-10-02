@@ -24,6 +24,7 @@
 - (void)remoteScreenAspectRatioChangedForCall:(id)arg1;
 - (void)remoteScreenOrientationChangedForCall:(id)arg1;
 - (void)remoteCameraOrientationChangedForCall:(id)arg1;
+- (void)videoMirroredChangedForCall:(id)arg1;
 - (void)cameraTypeChangedForCall:(id)arg1;
 - (void)remoteVideoContentRectChangedForCall:(id)arg1;
 - (void)remoteAspectRatioChangedForCall:(id)arg1;
@@ -35,6 +36,7 @@
 - (void)videoDegradedChangedForCall:(id)arg1;
 - (void)mediaStalledChangedForCall:(id)arg1;
 - (void)isThirdPartyVideoChangedForCall:(id)arg1;
+- (void)isSendingVideoChangedForCall:(id)arg1;
 - (void)isSendingAudioChangedForCall:(id)arg1;
 - (void)isEmergencyChangedForCall:(id)arg1;
 - (void)displayContextChangedForCall:(id)arg1;

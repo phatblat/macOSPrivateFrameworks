@@ -20,6 +20,7 @@
 - (void)joinWithOptions:(id)arg1;
 - (void)joinGroupSession;
 - (void)setParticipantInfo:(id)arg1;
+- (void)updateParticipantData:(id)arg1 withContext:(id)arg2;
 - (void)updateMembers:(id)arg1 withContext:(id)arg2 triggeredLocally:(BOOL)arg3;
 - (id)_internal;
 - (void)setDelegate:(id)arg1 queue:(id)arg2;

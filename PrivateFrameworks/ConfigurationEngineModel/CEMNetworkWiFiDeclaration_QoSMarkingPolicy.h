@@ -15,6 +15,7 @@
     NSNumber *_payloadQoSMarkingEnabled;
 }
 
++ (id)buildRequiredOnly;
 + (id)buildWithQoSMarkingWhitelistedAppIdentifiers:(id)arg1 withQoSMarkingAppleAudioVideoCalls:(id)arg2 withQoSMarkingEnabled:(id)arg3;
 + (id)allowedPayloadKeys;
 @property(copy, nonatomic) NSNumber *payloadQoSMarkingEnabled; // @synthesize payloadQoSMarkingEnabled=_payloadQoSMarkingEnabled;

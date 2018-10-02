@@ -7,6 +7,7 @@
 #import "NSViewController.h"
 
 #import "AggregatedPasswordsAuditingTableCellViewDelegate.h"
+#import "NSSharingServiceDelegate.h"
 #import "PasswordsAuditingHandler.h"
 #import "PasswordsDetailSheetControllerDecisionHandler.h"
 #import "PreferencesViewController.h"
@@ -14,10 +15,10 @@
 #import "TableViewPlusDelegate.h"
 #import "TableViewPlusScrollDelegate.h"
 
-@class AddPasswordSheetController, NSArray, NSButton, NSCache, NSImageView, NSSearchField, NSString, NSTextField, PasswordsAuditingPopoverViewController, PasswordsDetailSheetController, TableViewPlus, WBSFaviconRequestsController, WBSSavedPasswordStore, WBSSiteMetadataManager;
+@class AddPasswordSheetController, NSArray, NSButton, NSCache, NSImageView, NSSearchField, NSSharingService, NSString, NSTextField, PasswordsAuditingPopoverViewController, PasswordsDetailSheetController, TableViewPlus, WBSFaviconRequestsController, WBSSavedPasswordStore, WBSSiteMetadataManager;
 
 __attribute__((visibility("hidden")))
-@interface AggregatedPasswordsViewController : NSViewController <AggregatedPasswordsAuditingTableCellViewDelegate, PasswordsDetailSheetControllerDecisionHandler, PasswordsAuditingHandler, TableViewPlusDelegate, TableViewPlusDataSource, TableViewPlusScrollDelegate, PreferencesViewController>
+@interface AggregatedPasswordsViewController : NSViewController <NSSharingServiceDelegate, AggregatedPasswordsAuditingTableCellViewDelegate, PasswordsDetailSheetControllerDecisionHandler, PasswordsAuditingHandler, TableViewPlusDelegate, TableViewPlusDataSource, TableViewPlusScrollDelegate, PreferencesViewController>
 {
     WBSSavedPasswordStore *_passwordsStore;
     NSArray *_savedPasswords;
@@ -28,8 +29,11 @@ __attribute__((visibility("hidden")))
     PasswordsDetailSheetController *_detailSheetController;
     AddPasswordSheetController *_addPasswordSheetController;
     BOOL _recoverAddPasswordSheetWhenViewAppears;
+    BOOL _isWaitingForFaviconRequestCancellation;
     PasswordsAuditingPopoverViewController *_passwordsAuditingPopoverViewController;
     NSCache *_savedPasswordIsReusedPassword;
+    NSSharingService *_sharingService;
+    id <AggregatedPasswordsViewControllerDelegate> _delegate;
     NSTextField *_emptyTablePlaceholderText;
     NSSearchField *_searchField;
     TableViewPlus *_tableView;
@@ -50,6 +54,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) __weak TableViewPlus *tableView; // @synthesize tableView=_tableView;
 @property(nonatomic) __weak NSSearchField *searchField; // @synthesize searchField=_searchField;
 @property(nonatomic) __weak NSTextField *emptyTablePlaceholderText; // @synthesize emptyTablePlaceholderText=_emptyTablePlaceholderText;
+@property(nonatomic) __weak id <AggregatedPasswordsViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)_window;
 - (BOOL)_isDuplicatedPassword:(id)arg1;
@@ -71,11 +76,13 @@ __attribute__((visibility("hidden")))
 - (void)_showHelpPage:(id)arg1;
 - (id)_highLegibilityAttributedStringForString:(id)arg1 font:(id)arg2;
 - (void)_didToggleAutoFillUserNamesAndPasswords:(id)arg1;
-- (void)_performBlockPreservingPasswordsSelection:(CDUnknownBlockType)arg1;
+- (void)_selectAndScrollToSavedPasswords:(id)arg1;
+- (id)_selectedSavedPasswords;
 - (void)_updateDisplayedPasswords;
-- (void)_reloadPasswordsFromPasswordsStore;
-- (void)_reloadTableData;
-- (void)_search:(id)arg1;
+- (void)_reloadPasswordsFromPasswordsStorePreservingPasswordsSelection:(BOOL)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)_reloadTableDataPreservingPasswordsSelection:(BOOL)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)controlTextDidChange:(id)arg1;
+- (void)_search;
 - (id)_filterStringFromSearchField;
 - (id)_displayedPasswordForSavedPassword:(id)arg1 isSelected:(BOOL)arg2;
 - (void)_updateRows:(id)arg1 selected:(BOOL)arg2;
@@ -85,6 +92,8 @@ __attribute__((visibility("hidden")))
 - (void)_updateDuplicatedPasswordsWarningVisibility:(BOOL)arg1;
 - (BOOL)_isPasswordsAuditingEnabled;
 - (void)aggregatedPasswordsAuditingTableCellViewAuditingButtonWasClicked:(id)arg1;
+- (void)passwordsDetailSheetControllerDoesNotWantLockPolicyDeferral:(id)arg1;
+- (void)passwordsDetailSheetControllerWantsLockPolicyDeferral:(id)arg1;
 - (void)passwordsDetailSheetController:(id)arg1 didRemoveSites:(id)arg2;
 - (void)passwordsDetailSheetController:(id)arg1 didDismissSheetWithUserName:(id)arg2 password:(id)arg3;
 - (BOOL)passwordsDetailSheetController:(id)arg1 canSaveUserName:(id)arg2 password:(id)arg3;
@@ -94,6 +103,13 @@ __attribute__((visibility("hidden")))
 - (void)tableView:(id)arg1 rowSelectionWillChangeFromSelection:(id)arg2 toSelection:(id)arg3;
 - (void)tableViewCopy:(id)arg1;
 - (BOOL)tableViewCanCopy:(id)arg1;
+- (void)sharingServiceWindowDidResignMain:(id)arg1;
+- (void)sharingServiceWindowDidBecomeMain:(id)arg1;
+- (void)sharingService:(id)arg1 didFailToShareItems:(id)arg2 error:(id)arg3;
+- (void)sharingService:(id)arg1 didShareItems:(id)arg2;
+- (id)sharingService:(id)arg1 sourceWindowForShareItems:(id)arg2 sharingContentScope:(long long *)arg3;
+- (void)_sharePassword;
+- (void)willLock;
 - (id)tableView:(id)arg1 menuForEvent:(id)arg2 inRow:(long long)arg3 tableColumn:(id)arg4;
 - (BOOL)tableView:(id)arg1 keyDown:(id)arg2;
 - (BOOL)tableView:(id)arg1 shouldEditTableColumn:(id)arg2 row:(long long)arg3;

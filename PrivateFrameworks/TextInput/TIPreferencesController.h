@@ -14,6 +14,7 @@
 {
     NSMutableDictionary *_configuredDomains;
     NSMutableDictionary *_configuredPreferences;
+    NSMutableDictionary *_cachedMCRestrictedValue;
     NSTimer *_synchronizePreferencesTimer;
     double _lastSynchronizePreferencesTime[5];
     BOOL isInternalInstall;

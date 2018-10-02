@@ -6,22 +6,19 @@
 
 #import "PBCodable.h"
 
-#import "INCodableAttributeAssociating.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "_INPBPayloadSuccess.h"
 
-@class INCodableAttribute, NSString, _INPBIntentSlotValue;
+@class NSString, _INPBIntentSlotValue;
 
-@interface _INPBPayloadSuccess : PBCodable <_INPBPayloadSuccess, NSSecureCoding, NSCopying, INCodableAttributeAssociating>
+@interface _INPBPayloadSuccess : PBCodable <_INPBPayloadSuccess, NSSecureCoding, NSCopying>
 {
     struct _has;
     NSString *_resolvedKeyPath;
     _INPBIntentSlotValue *_resolvedValue;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
 @property(retain, nonatomic) _INPBIntentSlotValue *resolvedValue; // @synthesize resolvedValue=_resolvedValue;
 @property(copy, nonatomic) NSString *resolvedKeyPath; // @synthesize resolvedKeyPath=_resolvedKeyPath;
 - (void).cxx_destruct;

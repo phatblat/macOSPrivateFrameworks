@@ -12,16 +12,14 @@
 
 @interface USSSceneActiveRequest : NSObject <USSXPCEncodable>
 {
-    BOOL _isOnActiveSpace;
-    BOOL _isVisible;
-    BOOL _isAppHidden;
+    BOOL _isForegroundApp;
+    BOOL _isActiveApp;
     NSString *_identifier;
 }
 
-+ (id)sceneActiveRequestForScene:(id)arg1 isOnActiveSpace:(BOOL)arg2 isVisible:(BOOL)arg3 isAppHidden:(BOOL)arg4;
-@property(nonatomic) BOOL isAppHidden; // @synthesize isAppHidden=_isAppHidden;
-@property(nonatomic) BOOL isVisible; // @synthesize isVisible=_isVisible;
-@property(nonatomic) BOOL isOnActiveSpace; // @synthesize isOnActiveSpace=_isOnActiveSpace;
++ (id)sceneActiveRequestForScene:(id)arg1 isForegroundApp:(BOOL)arg2 isActiveApp:(BOOL)arg3;
+@property(nonatomic) BOOL isActiveApp; // @synthesize isActiveApp=_isActiveApp;
+@property(nonatomic) BOOL isForegroundApp; // @synthesize isForegroundApp=_isForegroundApp;
 @property(retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (void)encodeWithXPCDictionary:(id)arg1;

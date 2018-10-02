@@ -14,6 +14,7 @@
 {
 }
 
++ (id)buildRequiredOnlyWithIdentifier:(id)arg1;
 + (id)buildWithIdentifier:(id)arg1;
 + (id)allowedPayloadKeys;
 + (id)registeredIdentifier;

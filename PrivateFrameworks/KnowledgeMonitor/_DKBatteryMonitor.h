@@ -13,6 +13,7 @@
     unsigned int _powerService;
     unsigned int _batteryNotification;
     struct IONotificationPort *_notifyPort;
+    int _immediateShutdownThreshold;
     NSObject<OS_os_log> *_log;
     double _previousPercentage;
 }
@@ -22,6 +23,7 @@
 + (id)entitlements;
 + (id)eventStream;
 @property(nonatomic) double previousPercentage; // @synthesize previousPercentage=_previousPercentage;
+@property(nonatomic) int immediateShutdownThreshold; // @synthesize immediateShutdownThreshold=_immediateShutdownThreshold;
 @property(retain, nonatomic) NSObject<OS_os_log> *log; // @synthesize log=_log;
 - (void).cxx_destruct;
 - (void)_handleBatteryNotification;
@@ -37,6 +39,7 @@
 - (BOOL)percentage:(id)arg1 differsFrom:(id)arg2;
 - (id)getBatteryProperties;
 - (void)synchronouslyReflectCurrentValue;
+- (void)postImminentShutdownNotification:(double)arg1;
 - (void)stop;
 - (void)start;
 

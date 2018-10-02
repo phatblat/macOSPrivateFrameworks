@@ -16,9 +16,6 @@
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)setPlaceholderString:(id)arg1;
 - (id)designatedFocusRingView;
-- (void)_setupSecureTextField;
-- (id)_textColor;
-- (id)_placeholderTextColor;
 
 @end
 
