@@ -98,7 +98,9 @@
 - (void)transactionsCheckboxActions:(id)arg1;
 - (id)nibBundle;
 - (void)_fetchTransactions;
+- (void)_configureContentView;
 - (void)viewWillAppear;
+- (void)viewDidLoad;
 - (void)_updateForStoreDemoIfNecessary;
 - (void)awakeFromNib;
 

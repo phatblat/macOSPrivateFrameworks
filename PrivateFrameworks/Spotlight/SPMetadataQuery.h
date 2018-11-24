@@ -37,7 +37,6 @@
     NSString *_queryCorrection;
 }
 
-+ (id)filterQueryForRegions;
 + (id)defaultPrefetchedAttributesKeySet;
 + (id)defaultValuelistAttributes;
 + (id)defaultPrefetchedAttributes;

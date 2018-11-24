@@ -27,6 +27,7 @@
     BOOL _canRetry;
     BOOL _cancelled;
     BOOL _isAsync;
+    BOOL _isBackground;
     CDUnknownFunctionPointerType _assetCacheServicesFn;
     long long _successfullyDownloadedBytes;
     CDUnknownBlockType _finishedBlock;
@@ -61,6 +62,7 @@
 - (void)startDownloadingPackagesWithIdentifiers:(id)arg1;
 - (BOOL)_contentLocatorURLForOriginalURL:(id)arg1 outModifiedURL:(id *)arg2;
 - (void)_retryDownloadForPackageIdentifier:(id)arg1 withPackageRef:(id)arg2 originalIdentifier:(unsigned long long)arg3 resumable:(BOOL)arg4;
+- (void)_setSessionAppropriateTaskPriority:(id)arg1;
 - (id)_backgroundConfiguration;
 - (void)setInitialAlreadyDownloadedAmount:(unsigned long long)arg1;
 - (void)dealloc;

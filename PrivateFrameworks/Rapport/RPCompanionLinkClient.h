@@ -7,12 +7,13 @@
 #import "NSObject.h"
 
 #import "NSSecureCoding.h"
+#import "RPAuthenticatable.h"
 #import "RPCompanionLinkXPCClientInterface.h"
 #import "RPMessageable.h"
 
 @class NSArray, NSDictionary, NSMutableOrderedSet, NSObject<OS_dispatch_queue>, NSString, NSXPCConnection, RPCompanionLinkDevice;
 
-@interface RPCompanionLinkClient : NSObject <NSSecureCoding, RPCompanionLinkXPCClientInterface, RPMessageable>
+@interface RPCompanionLinkClient : NSObject <NSSecureCoding, RPCompanionLinkXPCClientInterface, RPAuthenticatable, RPMessageable>
 {
     BOOL _activateCalled;
     struct NSMutableSet *_assertions;
@@ -23,14 +24,20 @@
     NSMutableOrderedSet *_registeredProfileIDs;
     struct NSMutableDictionary *_requestRegistrations;
     NSXPCConnection *_xpcCnx;
+    unsigned int _pairSetupFlags;
+    unsigned int _pairVerifyFlags;
+    int _passwordType;
     unsigned int _flags;
+    NSString *_password;
+    CDUnknownBlockType _authCompletionHandler;
+    CDUnknownBlockType _showPasswordHandler;
+    CDUnknownBlockType _hidePasswordHandler;
+    CDUnknownBlockType _promptForPasswordHandler;
     unsigned long long _controlFlags;
     RPCompanionLinkDevice *_destinationDevice;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     CDUnknownBlockType _interruptionHandler;
     CDUnknownBlockType _invalidationHandler;
-    NSString *_password;
-    CDUnknownBlockType _promptForPasswordHandler;
     CDUnknownBlockType _deviceFoundHandler;
     CDUnknownBlockType _deviceLostHandler;
     CDUnknownBlockType _deviceChangedHandler;
@@ -46,14 +53,20 @@
 @property(copy, nonatomic) CDUnknownBlockType deviceChangedHandler; // @synthesize deviceChangedHandler=_deviceChangedHandler;
 @property(copy, nonatomic) CDUnknownBlockType deviceLostHandler; // @synthesize deviceLostHandler=_deviceLostHandler;
 @property(copy, nonatomic) CDUnknownBlockType deviceFoundHandler; // @synthesize deviceFoundHandler=_deviceFoundHandler;
-@property(copy, nonatomic) CDUnknownBlockType promptForPasswordHandler; // @synthesize promptForPasswordHandler=_promptForPasswordHandler;
-@property(copy, nonatomic) NSString *password; // @synthesize password=_password;
 @property(copy, nonatomic) CDUnknownBlockType invalidationHandler; // @synthesize invalidationHandler=_invalidationHandler;
 @property(copy, nonatomic) CDUnknownBlockType interruptionHandler; // @synthesize interruptionHandler=_interruptionHandler;
 @property(nonatomic) unsigned int flags; // @synthesize flags=_flags;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
 @property(retain, nonatomic) RPCompanionLinkDevice *destinationDevice; // @synthesize destinationDevice=_destinationDevice;
 @property(nonatomic) unsigned long long controlFlags; // @synthesize controlFlags=_controlFlags;
+@property(copy, nonatomic) CDUnknownBlockType promptForPasswordHandler; // @synthesize promptForPasswordHandler=_promptForPasswordHandler;
+@property(copy, nonatomic) CDUnknownBlockType hidePasswordHandler; // @synthesize hidePasswordHandler=_hidePasswordHandler;
+@property(copy, nonatomic) CDUnknownBlockType showPasswordHandler; // @synthesize showPasswordHandler=_showPasswordHandler;
+@property(copy, nonatomic) CDUnknownBlockType authCompletionHandler; // @synthesize authCompletionHandler=_authCompletionHandler;
+@property(nonatomic) int passwordType; // @synthesize passwordType=_passwordType;
+@property(copy, nonatomic) NSString *password; // @synthesize password=_password;
+@property(nonatomic) unsigned int pairVerifyFlags; // @synthesize pairVerifyFlags=_pairVerifyFlags;
+@property(nonatomic) unsigned int pairSetupFlags; // @synthesize pairSetupFlags=_pairSetupFlags;
 - (void).cxx_destruct;
 - (void)deregisterProfileID:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_reregisterProfileIDs;

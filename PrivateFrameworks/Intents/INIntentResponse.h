@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 #import "INCacheableContainer.h"
+#import "INFileURLEnumerable.h"
 #import "INGenericIntentResponse.h"
 #import "INImageProxyInjecting.h"
 #import "INIntentResponseExport.h"
@@ -17,7 +18,7 @@
 
 @class INIntentResponseCodableCode, INIntentResponseDescription, NSDictionary, NSString, NSUserActivity, PBCodable, _INPBIntentResponse;
 
-@interface INIntentResponse : NSObject <INImageProxyInjecting, INIntentSlotComposing, INCacheableContainer, INIntentResponseExport, INGenericIntentResponse, INRuntimeObject, NSCopying, NSSecureCoding>
+@interface INIntentResponse : NSObject <INImageProxyInjecting, INIntentSlotComposing, INFileURLEnumerable, INCacheableContainer, INIntentResponseExport, INGenericIntentResponse, INRuntimeObject, NSCopying, NSSecureCoding>
 {
     BOOL __userConfirmationRequired;
     long long _code;
@@ -82,6 +83,7 @@
 - (void)_injectProxiesForImages:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)localizeValueOfSlotDescription:(id)arg1 forLanguage:(id)arg2;
 - (id)intentSlotDescriptions;
+- (void)_enumerateFileURLsWithMutatingBlock:(CDUnknownBlockType)arg1;
 @property(readonly) long long _intents_toggleState;
 - (id)_renderedResponseForLanguage:(id)arg1 requiresSiriCompatibility:(BOOL)arg2;
 - (id)_propertiesByNameForLanguage:(id)arg1;

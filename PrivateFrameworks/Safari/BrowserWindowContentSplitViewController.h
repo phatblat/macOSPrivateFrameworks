@@ -8,7 +8,7 @@
 
 #import "NSSplitViewDelegate.h"
 
-@class BrowserWindowController, NSClipView, NSColor, NSSplitViewItem, NSString, NSView, NSVisualEffectView, SidebarViewController;
+@class BrowserWindowController, NSColor, NSSplitViewItem, NSString, NSView, NSVisualEffectView, SidebarViewController;
 
 __attribute__((visibility("hidden")))
 @interface BrowserWindowContentSplitViewController : NSSplitViewController <NSSplitViewDelegate>
@@ -23,12 +23,12 @@ __attribute__((visibility("hidden")))
     NSVisualEffectView *_visualEffectViewForHidingSeparator;
     unsigned long long _fakeSidebarTransitionDepth;
     SidebarViewController *_sidebarViewController;
-    NSClipView *_sidebarClipView;
+    NSView *_sidebarClipView;
     id <BrowserWindowContentSplitViewControllerDelegate> _delegate;
 }
 
 @property(nonatomic) __weak id <BrowserWindowContentSplitViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic) NSClipView *sidebarClipView; // @synthesize sidebarClipView=_sidebarClipView;
+@property(readonly, nonatomic) NSView *sidebarClipView; // @synthesize sidebarClipView=_sidebarClipView;
 @property(retain, nonatomic) SidebarViewController *sidebarViewController; // @synthesize sidebarViewController=_sidebarViewController;
 - (void).cxx_destruct;
 - (id)_performanceOperationName;

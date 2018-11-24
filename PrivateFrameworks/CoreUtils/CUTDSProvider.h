@@ -6,12 +6,18 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSString;
+#import "CUTDSXPCClientInterface.h"
+#import "NSSecureCoding.h"
 
-@interface CUTDSProvider : NSObject
+@class NSObject<OS_dispatch_queue>, NSString, NSXPCConnection;
+
+@interface CUTDSProvider : NSObject <CUTDSXPCClientInterface, NSSecureCoding>
 {
+    BOOL _activateCalled;
     BOOL _invalidateCalled;
+    BOOL _invalidateDone;
     struct LogCategory *_ucat;
+    NSXPCConnection *_xpcCnx;
     BOOL _directedOnly;
     BOOL _triggered;
     int _dataLinkType;
@@ -22,17 +28,20 @@
     NSString *_label;
     NSString *_serviceType;
     CDUnknownBlockType _stateChangedHandler;
+    NSString *_xpcServiceName;
     unsigned long long _tdsHashActivate;
     unsigned long long _tdsHashProvide;
     unsigned long long _tdsHashSeek;
 }
 
++ (BOOL)supportsSecureCoding;
 @property(nonatomic) unsigned long long tdsHashSeek; // @synthesize tdsHashSeek=_tdsHashSeek;
 @property(nonatomic) unsigned long long tdsHashProvide; // @synthesize tdsHashProvide=_tdsHashProvide;
 @property(nonatomic) unsigned long long tdsHashActivate; // @synthesize tdsHashActivate=_tdsHashActivate;
-@property(nonatomic) BOOL triggered; // @synthesize triggered=_triggered;
+@property(copy, nonatomic) NSString *xpcServiceName; // @synthesize xpcServiceName=_xpcServiceName;
+@property(readonly, nonatomic) BOOL triggered; // @synthesize triggered=_triggered;
 @property(copy, nonatomic) CDUnknownBlockType stateChangedHandler; // @synthesize stateChangedHandler=_stateChangedHandler;
-@property(nonatomic) unsigned int state; // @synthesize state=_state;
+@property(readonly, nonatomic) unsigned int state; // @synthesize state=_state;
 @property(copy, nonatomic) NSString *serviceType; // @synthesize serviceType=_serviceType;
 @property(copy, nonatomic) NSString *label; // @synthesize label=_label;
 @property(copy, nonatomic) CDUnknownBlockType invalidationHandler; // @synthesize invalidationHandler=_invalidationHandler;
@@ -41,13 +50,22 @@
 @property(nonatomic) BOOL directedOnly; // @synthesize directedOnly=_directedOnly;
 @property(nonatomic) int dataLinkType; // @synthesize dataLinkType=_dataLinkType;
 - (void).cxx_destruct;
+- (void)xpcTDSSeekerEndpointLost:(id)arg1;
+- (void)xpcTDSSeekerEndpointFound:(id)arg1;
+- (void)xpcTDSProviderStateChanged:(unsigned int)arg1;
 - (BOOL)updateForDevices:(struct NSMutableDictionary *)arg1;
 - (void)updateDeviceActivateHash:(const char *)arg1;
+- (void)_invalidated;
 - (void)_invalidate;
 - (void)invalidate;
-- (void)_activateWithCompletion:(CDUnknownBlockType)arg1;
+- (void)_interrupted;
+- (void)_ensureXPCStarted;
+- (void)_activateXPCWithCompletion:(CDUnknownBlockType)arg1 reactivate:(BOOL)arg2;
+- (void)_activateDirectWithCompletion:(CDUnknownBlockType)arg1;
 - (void)activateWithCompletion:(CDUnknownBlockType)arg1;
 - (void)dealloc;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)init;
 
 @end

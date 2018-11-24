@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "AXHeardServer.h"
+#import "HCServer.h"
 
 @class NSLock, NSMutableDictionary, NSObject<OS_dispatch_queue>;
 
-@interface TTYServer : AXHeardServer
+@interface TTYServer : HCServer
 {
     NSLock *_dataResponseBlocksLock;
     NSMutableDictionary *_databaseResponseBlocks;

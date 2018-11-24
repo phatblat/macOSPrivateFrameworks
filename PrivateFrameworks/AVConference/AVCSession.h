@@ -9,7 +9,7 @@
 #import "AVCSessionParticipantControlProtocol.h"
 #import "AVCSessionParticipantDelegate.h"
 
-@class AVCSessionConfiguration, AVCSessionParticipant, NSArray, NSData, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, VCXPCClientShared;
+@class AVCSessionConfiguration, AVCSessionParticipant, NSArray, NSData, NSDictionary, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, VCXPCClientShared;
 
 @interface AVCSession : NSObject <AVCSessionParticipantDelegate, AVCSessionParticipantControlProtocol>
 {
@@ -23,11 +23,13 @@
     NSObject<OS_dispatch_queue> *_stateQueue;
     VCXPCClientShared *_connection;
     long long _sessionToken;
+    NSDictionary *_capabilities;
     NSString *_uuid;
     NSData *_frequencyLevels;
     int _activeConfigurationCount;
 }
 
+@property(retain, nonatomic) NSDictionary *capabilities; // @synthesize capabilities=_capabilities;
 @property(readonly, nonatomic) long long sessionToken; // @synthesize sessionToken=_sessionToken;
 @property(readonly, nonatomic) VCXPCClientShared *xpcConnection; // @synthesize xpcConnection=_connection;
 @property(readonly, nonatomic) AVCSessionParticipant *localParticipant; // @synthesize localParticipant=_localParticipant;
@@ -44,7 +46,7 @@
 - (void)setupNotificationQueue:(id)arg1;
 - (void)deregisterFromNotifications;
 - (void)registerBlocksForNotifications;
-- (void)didDetectErrorHandler:(id)arg1;
+- (id)newNSErrorWithErrorDictionary:(id)arg1;
 - (void)endParticipantConfiguration;
 - (void)beginParticipantConfiguration;
 - (void)updateConfiguration:(id)arg1;

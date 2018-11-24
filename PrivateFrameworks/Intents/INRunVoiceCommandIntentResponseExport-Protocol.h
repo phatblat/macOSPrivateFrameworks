@@ -7,9 +7,10 @@
 #import "JSExport.h"
 #import "NSObject.h"
 
-@class INArchivedObject, NSDictionary, NSNumber, NSString;
+@class INArchivedObject, NSArray, NSDictionary, NSNumber, NSString;
 
 @protocol INRunVoiceCommandIntentResponseExport <NSObject, JSExport>
+@property(copy) NSArray *steps;
 @property(copy) NSString *underlyingIntentTitle;
 @property(copy) NSNumber *interstitialDisabled;
 @property(copy) NSNumber *continueRunning;

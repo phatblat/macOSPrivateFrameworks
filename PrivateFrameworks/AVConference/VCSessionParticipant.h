@@ -76,6 +76,7 @@ __attribute__((visibility("hidden")))
     VCRedundancyControllerAudio *_audioRedundancyController;
     VCRedundancyControllerVideo *_videoRedundancyController;
     id _reportingAgentWeak;
+    unsigned int _pullAudioSamplesCount;
 }
 
 @property(nonatomic, getter=isLocalOnWiFi) BOOL localOnWiFi; // @synthesize localOnWiFi=_localOnWiFi;
@@ -95,9 +96,9 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) union tagNTP creationTime; // @synthesize creationTime=_creationTime;
 @property(readonly, nonatomic) NSData *opaqueData; // @synthesize opaqueData=_opaqueData;
 @property(readonly, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
+- (void)sendAudioPowerSpectrumSourceRegistration:(BOOL)arg1;
 - (void)audioPowerSpectrumSinkDidUnregister;
 - (void)audioPowerSpectrumSinkDidRegister;
-- (void)sendAudioPowerSpectrumSourceRegistration:(BOOL)arg1;
 - (void)redundancyController:(id)arg1 redundancyPercentageDidChange:(unsigned int)arg2;
 - (void)redundancyController:(id)arg1 redundancyIntervalDidChange:(double)arg2;
 - (void)handleActiveConnectionChange:(id)arg1;
@@ -135,6 +136,9 @@ __attribute__((visibility("hidden")))
 - (BOOL)configureAudioIOWithContinuity:(BOOL)arg1;
 - (void)completeStreamSetup:(id)arg1;
 - (void)setupNetworkAddressesForMediaConfig:(id)arg1;
+- (void)stopAudioDump;
+- (void)startAudioDump;
+- (id)getAudioDumpName;
 - (void)processPausedStream:(id)arg1 didPause:(BOOL)arg2;
 - (void)processResumedStream:(id)arg1 didResume:(BOOL)arg2;
 - (void)processStoppedStream:(id)arg1;
@@ -153,7 +157,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)isVideoStream:(id)arg1;
 - (BOOL)isAudioStream:(id)arg1;
 - (BOOL)shouldStartAudioIO;
-- (BOOL)isAnyStreamRunning;
+- (BOOL)isAnyStreamRunningOrPaused;
 - (BOOL)allPausingStreamsPaused;
 - (BOOL)allResumingStreamsResumed;
 - (BOOL)allStartingStreamsStarted;

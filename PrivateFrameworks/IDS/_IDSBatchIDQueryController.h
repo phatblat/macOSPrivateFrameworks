@@ -20,6 +20,7 @@
     NSMutableArray *_destinationsToQuery;
     NSTimer *_nextQueryTimer;
     NSDate *_timeOfDeath;
+    id _negativeTTLCache;
     int _numberOfQueriesDone;
     BOOL _isDead;
 }

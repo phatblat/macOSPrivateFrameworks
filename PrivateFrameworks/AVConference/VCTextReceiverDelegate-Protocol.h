@@ -7,6 +7,6 @@
 #import "NSObject.h"
 
 @protocol VCTextReceiverDelegate <NSObject>
-- (void)didReceiveCharacter:(unsigned short)arg1;
+- (void)didReceiveText:(struct NSString *)arg1;
 @end
 

@@ -23,11 +23,12 @@
 + (BOOL)supportCircularBuffer;
 + (BOOL)shouldDeinterleaveAudioOnCS;
 + (BOOL)supportPacketDecoding;
++ (id)boardID;
++ (BOOL)hasRemoteBuiltInMic;
 + (BOOL)hasRemoteCoreSpeech;
 + (BOOL)supportPremiumModel;
 + (BOOL)supportRaiseToSpeak;
 + (BOOL)supportSAT;
-+ (BOOL)canLookupVoiceTriggerModelFromMobileAsset;
 + (BOOL)supportImplicitTraining;
 + (BOOL)supportSmartVolume;
 + (BOOL)supportHybridEndpointer;

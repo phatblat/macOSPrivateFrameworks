@@ -45,6 +45,7 @@
     unsigned long long _activeChannel;
 }
 
++ (BOOL)isSmartSiriVolumeAvailable;
 + (id)sharedController;
 @property(nonatomic) BOOL myriadPreventingTwoShotFeedback; // @synthesize myriadPreventingTwoShotFeedback=_myriadPreventingTwoShotFeedback;
 @property(nonatomic) BOOL isSoundPlaying; // @synthesize isSoundPlaying=_isSoundPlaying;
@@ -74,6 +75,7 @@
 - (void)endWaitingForMyriadWithDecision:(unsigned long long)arg1;
 - (void)beginWaitingForMyriad;
 - (float)getSmartSiriVolume;
+- (BOOL)isSmartSiriVolumeAvailable;
 - (void)shouldAcceptEagerResultForDuration:(double)arg1 resultsCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)updateEndpointerDelayedTrigger:(BOOL)arg1;
 - (void)updateEndpointerThreshold:(float)arg1;

@@ -7,9 +7,10 @@
 #import "JSExport.h"
 #import "NSObject.h"
 
-@class INArchivedObject, NSNumber, NSString;
+@class INArchivedObject, NSArray, NSNumber, NSString;
 
 @protocol INRunWorkflowIntentResponseExport <NSObject, JSExport>
+@property(copy) NSArray *steps;
 @property(copy) NSNumber *continueRunning;
 @property(copy) NSNumber *waitingForResume;
 @property(copy) NSString *utterance;

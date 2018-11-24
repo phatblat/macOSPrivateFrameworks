@@ -6,10 +6,14 @@
 
 #import "NSObject.h"
 
-@class CoreTelephonyClient, NSObject<OS_dispatch_queue>;
+#import "TUCoreTelephonyClient.h"
+#import "TUEmergencyCoreTelephonyClient.h"
+#import "TUTTYCoreTelephonyClient.h"
+
+@class CoreTelephonyClient, NSObject<OS_dispatch_queue>, NSString;
 
 __attribute__((visibility("hidden")))
-@interface TUCoreTelephonyClient : NSObject
+@interface TUCoreTelephonyClient : NSObject <TUTTYCoreTelephonyClient, TUEmergencyCoreTelephonyClient, TUCoreTelephonyClient>
 {
     NSObject<OS_dispatch_queue> *_queue;
     CoreTelephonyClient *_client;
@@ -18,13 +22,40 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) CoreTelephonyClient *client; // @synthesize client=_client;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 - (void).cxx_destruct;
-- (BOOL)isWhitelistedEmergencyNumberForDigits:(id)arg1 subscriptionUUID:(id)arg2 error:(id *)arg3;
-- (BOOL)isWhitelistedEmergencyNumberForDigits:(id)arg1 subscription:(id)arg2 error:(id *)arg3;
-- (BOOL)isEmergencyNumberForDigits:(id)arg1 subscriptionUUID:(id)arg2 error:(id *)arg3;
-- (BOOL)isEmergencyNumberForDigits:(id)arg1 subscription:(id)arg2 error:(id *)arg3;
-- (id)subscriptionContextForSubscriptionUUID:(id)arg1;
+- (id)subscriptionForUUID:(id)arg1;
+- (id)subscriptionForLabelID:(id)arg1;
 - (id)initWithQueue:(id)arg1;
 - (id)init;
+- (BOOL)isTTYSoftwareSupportedForSubscriptionUUID:(id)arg1;
+- (BOOL)isTTYSoftwareSupportedForSubscription:(id)arg1;
+- (BOOL)isTTYSoftwareEnabledForSubscriptionUUID:(id)arg1;
+- (BOOL)isTTYSoftwareEnabledForSubscription:(id)arg1;
+- (BOOL)isTTYSoftwareAvailableForSubscriptionUUID:(id)arg1;
+- (BOOL)isTTYSoftwareAvailableForSubscription:(id)arg1;
+- (BOOL)isTTYHardwareSupportedForSubscriptionUUID:(id)arg1;
+- (BOOL)isTTYHardwareSupportedForSubscription:(id)arg1;
+- (BOOL)isTTYHardwareEnabledForSubscriptionUUID:(id)arg1;
+- (BOOL)isTTYHardwareEnabledForSubscription:(id)arg1;
+- (BOOL)isTTYHardwareAvailableForSubscriptionUUID:(id)arg1;
+- (BOOL)isTTYHardwareAvailableForSubscription:(id)arg1;
+- (BOOL)isTTYSupportedForSubscriptionUUID:(id)arg1;
+- (BOOL)isTTYSupportedForSubscription:(id)arg1;
+- (BOOL)isTTYEnabledForSubscriptionUUID:(id)arg1;
+- (BOOL)isTTYEnabledForSubscription:(id)arg1;
+- (BOOL)isRTTSupportedForSubscriptionUUID:(id)arg1;
+- (BOOL)isRTTSupportedForSubscription:(id)arg1;
+- (BOOL)shouldShowEmergencyCallbackModeAlertForSubscriptionLabelID:(id)arg1 error:(id *)arg2;
+- (BOOL)shouldShowEmergencyCallbackModeAlertForSubscription:(id)arg1 error:(id *)arg2;
+- (BOOL)isWhitelistedEmergencyNumberForDigits:(id)arg1 subscriptionLabelID:(id)arg2 error:(id *)arg3;
+- (BOOL)isWhitelistedEmergencyNumberForDigits:(id)arg1 subscription:(id)arg2 error:(id *)arg3;
+- (BOOL)isEmergencyNumberForDigits:(id)arg1 subscriptionLabelID:(id)arg2 error:(id *)arg3;
+- (BOOL)isEmergencyNumberForDigits:(id)arg1 subscription:(id)arg2 error:(id *)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

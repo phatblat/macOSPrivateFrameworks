@@ -126,6 +126,7 @@
 @property(readonly, nonatomic) BOOL iMessageSupported;
 @property(readonly, nonatomic) BOOL iMessageBlocked;
 @property(readonly, nonatomic) BOOL iMessageAvailable;
+- (BOOL)inProcess_isCallingSupported;
 @property(readonly, nonatomic) BOOL callingSupported;
 @property(readonly, nonatomic) BOOL callingBlocked;
 @property(readonly, nonatomic) BOOL multiwaySupported;

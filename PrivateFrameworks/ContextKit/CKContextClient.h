@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSSet, NSString;
+@class NSMutableArray, NSObject<OS_dispatch_queue>, NSSet, NSString;
 
 @interface CKContextClient : NSObject
 {
     NSObject<OS_dispatch_queue> *_notificationsQueue;
     NSSet *_capabilities;
     NSString *_indexVersionId;
+    NSMutableArray *_updateHandlers;
     unsigned long long _defaultRequestType;
 }
 
@@ -26,6 +27,7 @@
 - (void)capabilitiesWithReply:(CDUnknownBlockType)arg1;
 - (id)newRequest;
 - (void)_updateCachedCapabilites;
+- (void)_handleConfigurationUpdate;
 - (id)initWithDefaultRequestType:(unsigned long long)arg1;
 
 @end

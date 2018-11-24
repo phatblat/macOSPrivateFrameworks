@@ -8,12 +8,14 @@
 
 #import "VCTextSender.h"
 
-@class NSLock, NSMutableArray, NSObject<OS_dispatch_source>, NSString, VCAudioRedBuilder;
+@class NSLock, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, VCAudioRedBuilder;
 
 __attribute__((visibility("hidden")))
 @interface VCTextTransmitter : NSObject <VCTextSender>
 {
     struct _VCTextTransmitterConfiguration _config;
+    double _txIntervalMin;
+    NSObject<OS_dispatch_queue> *_dispatchQueue;
     double _startTime;
     VCAudioRedBuilder *_redBuilder;
     int _redPayloadType;
@@ -23,14 +25,16 @@ __attribute__((visibility("hidden")))
     NSMutableArray *_textFramesSendQueue;
     NSObject<OS_dispatch_source> *_heartbeat;
     double _idleDuration;
-    unsigned int _emptyFramesSent;
+    unsigned int _emptyFramesToBeSent;
 }
 
 - (void)stopHeartbeat;
 - (BOOL)startHeartbeat;
 - (void)heartbeat;
+- (void)updatePayloadHistory:(id)arg1 timestamp:(unsigned int)arg2 payloadType:(int *)arg3 payload:(char **)arg4 payloadLength:(int *)arg5;
 - (void)sendTextFrameWithRedundancy:(id)arg1 marker:(int)arg2;
 - (unsigned int)getCharTimestampForSystemTime:(double)arg1;
+- (void)sendText:(struct NSString *)arg1;
 - (void)sendCharacter:(unsigned short)arg1;
 - (void)stop;
 - (BOOL)start;

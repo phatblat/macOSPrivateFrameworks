@@ -6,7 +6,7 @@
 
 #import "NSView.h"
 
-@class BrowserWKView, ContinuousPageView, NSClipView, ReaderContainerView, ReaderWKView, TabDialogInstaller;
+@class BrowserWKView, ContinuousPageView, ReaderContainerView, ReaderWKView, TabDialogInstaller;
 
 __attribute__((visibility("hidden")))
 @interface TabContentView : NSView
@@ -15,13 +15,14 @@ __attribute__((visibility("hidden")))
     ReaderContainerView *_readerContainerView;
     ReaderWKView *_readerWKView;
     NSView *_responsiveDesignModeView;
-    NSClipView *_startPageClipView;
+    NSView *_startPageClipView;
     BOOL _shouldClipStartPageViewDuringSwipe;
     TabDialogInstaller *_tabDialogInstaller;
     NSView *_firstResponderViewBeforeDimmingViewPresentation;
     ContinuousPageView *_continuousBrowserPageView;
     BOOL _canInvalidateSnapshotImage;
     BrowserWKView *_browserWKView;
+    NSView *_backgroundView;
     NSView *_startPageView;
     NSView *_bookmarksView;
     NSView *_snapshotView;
@@ -34,6 +35,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSView *snapshotView; // @synthesize snapshotView=_snapshotView;
 @property(readonly, nonatomic) NSView *bookmarksView; // @synthesize bookmarksView=_bookmarksView;
 @property(readonly, nonatomic) NSView *startPageView; // @synthesize startPageView=_startPageView;
+@property(readonly, nonatomic) NSView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(readonly) BrowserWKView *browserWKView; // @synthesize browserWKView=_browserWKView;
 - (void).cxx_destruct;
 - (id)_browserWindowController;

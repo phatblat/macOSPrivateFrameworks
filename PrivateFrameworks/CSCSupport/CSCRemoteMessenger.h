@@ -6,16 +6,18 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_os_log>, OS_remote_device, OS_remote_service;
+@class NSObject<OS_dispatch_queue>, NSObject<OS_os_log>, OS_remote_device, OS_remote_service;
 
 @interface CSCRemoteMessenger : NSObject
 {
     NSObject<OS_os_log> *logger;
     OS_remote_device *device;
     OS_remote_service *service;
+    NSObject<OS_dispatch_queue> *_dq;
 }
 
 + (id)createErrorWithCode:(int)arg1 message:(const char *)arg2;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *dq; // @synthesize dq=_dq;
 @property(retain, nonatomic) OS_remote_service *service; // @synthesize service;
 @property(retain, nonatomic) OS_remote_device *device; // @synthesize device;
 @property(retain, nonatomic) NSObject<OS_os_log> *logger; // @synthesize logger;

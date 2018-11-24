@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 @protocol VCTextSender <NSObject>
+- (void)sendText:(struct NSString *)arg1;
 - (void)sendCharacter:(unsigned short)arg1;
 @end
 

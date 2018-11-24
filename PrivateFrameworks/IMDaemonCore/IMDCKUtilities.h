@@ -52,7 +52,7 @@
 - (id)metricForPCSReportManateeStatusWithReason:(id)arg1;
 - (BOOL)logDumpIsNecessaryAfterSync;
 - (void)noteAllSyncedItemsPriorToSync;
-- (id)_ckStatisticCaluclations;
+- (id)ckStatisticCalculations;
 - (void)logDumpAndSendMessageTo:(id)arg1 forHours:(int)arg2 reason:(id)arg3 isInitialSync:(BOOL)arg4 requirePreviousPrompt:(BOOL)arg5 willSendBlock:(CDUnknownBlockType)arg6;
 - (void)logDumpAndSendMessageTo:(id)arg1 forHours:(int)arg2 reason:(id)arg3 requirePreviousPrompt:(BOOL)arg4 willSendBlock:(CDUnknownBlockType)arg5;
 - (void)logDumpAndSendMessageTo:(id)arg1 forHours:(int)arg2 reason:(id)arg3;
@@ -96,7 +96,7 @@
 - (BOOL)_isCKErrorPartialFailure:(id)arg1;
 - (unsigned long long)_mocEnabledStateFromAccountStatus:(long long)arg1;
 - (void)fetchMOCEnabledStateWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (id)syncFailureMetricString:(id)arg1 error:(id)arg2;
+- (id)syncFailureMetricString:(id)arg1 isRecoverable:(BOOL)arg2 error:(id)arg3;
 - (id)recordNameForMessageWithGUID:(id)arg1 usingSalt:(id)arg2;
 - (void)_askToTapToRadarWithString:(id)arg1 internalOnly:(BOOL)arg2;
 - (void)reportMOCDebuggingErrorWithString:(id)arg1 internalOnly:(BOOL)arg2 initialSync:(BOOL)arg3 sendToHandle:(id)arg4 reasonString:(id)arg5;

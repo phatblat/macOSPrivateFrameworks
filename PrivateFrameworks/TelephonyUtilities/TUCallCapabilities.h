@@ -18,7 +18,6 @@
 + (id)_senderIdentityCapabilitiesByUUID;
 + (id)senderIdentityCapabilitiesWithUUID:(id)arg1;
 + (id)senderIdentityCapabilities;
-+ (BOOL)supportsCarrierServices;
 + (BOOL)isEmergencyCallbackPossible;
 + (void)endEmergencyCallbackMode;
 + (BOOL)isEmergencyCallbackModeEnabled;
@@ -84,7 +83,9 @@
 + (int)telephonyCallSupport;
 + (BOOL)supportsBasebandCalling;
 + (BOOL)supportsPrimaryCalling;
++ (BOOL)canAttemptEmergencyCallsWithoutCellularConnectionWithUUID:(id)arg1;
 + (BOOL)canAttemptEmergencyCallsWithoutCellularConnection;
++ (BOOL)canAttemptTelephonyCallsWithoutCellularConnectionWithSenderIdentityCapabilities:(id)arg1;
 + (BOOL)canAttemptTelephonyCallsWithoutCellularConnection;
 + (BOOL)supportsFaceTimeVideoCalls;
 + (BOOL)supportsFaceTimeAudioCalls;

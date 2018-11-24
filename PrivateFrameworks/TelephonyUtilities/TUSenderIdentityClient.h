@@ -6,30 +6,52 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, TUCoreTelephonyClient;
+@class NSObject<OS_dispatch_queue>;
 
 @interface TUSenderIdentityClient : NSObject
 {
     NSObject<OS_dispatch_queue> *_queue;
-    TUCoreTelephonyClient *_client;
+    id <TUCoreTelephonyClient> _client;
 }
 
-@property(readonly, nonatomic) TUCoreTelephonyClient *client; // @synthesize client=_client;
+@property(retain, nonatomic) id <TUCoreTelephonyClient> client; // @synthesize client=_client;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 - (void).cxx_destruct;
-- (BOOL)isWhitelistedEmergencyNumberForDigits:(id)arg1 senderIdentityUUID:(id)arg2 error:(id *)arg3;
-- (BOOL)isWhitelistedEmergencyNumberForDigits:(id)arg1 senderIdentityUUID:(id)arg2;
+- (id)init;
+- (BOOL)isTTYSoftwareSupportedForSenderIdentities:(id)arg1;
+- (BOOL)isTTYSoftwareSupportedForSenderIdentity:(id)arg1;
+- (BOOL)isTTYSoftwareEnabledForSenderIdentities:(id)arg1;
+- (BOOL)isTTYSoftwareEnabledForSenderIdentity:(id)arg1;
+- (BOOL)isTTYSoftwareAvailableForSenderIdentity:(id)arg1;
+- (BOOL)isTTYHardwareSupportedForSenderIdentities:(id)arg1;
+- (BOOL)isTTYHardwareSupportedForSenderIdentity:(id)arg1;
+- (BOOL)isTTYHardwareEnabledForSenderIdentities:(id)arg1;
+- (BOOL)isTTYHardwareEnabledForSenderIdentity:(id)arg1;
+- (BOOL)isTTYHardwareAvailableForSenderIdentity:(id)arg1;
+- (BOOL)isTTYSupportedForSenderIdentities:(id)arg1;
+- (BOOL)isTTYSupportedForSenderIdentity:(id)arg1;
+- (BOOL)isTTYEnabledForSenderIdentities:(id)arg1;
+- (BOOL)isTTYEnabledForSenderIdentity:(id)arg1;
+- (BOOL)isTTYAvailableForSenderIdentities:(id)arg1;
+- (BOOL)isTTYAvailableForSenderIdentity:(id)arg1;
+- (BOOL)isRTTSupportedForSenderIdentities:(id)arg1;
+- (BOOL)isRTTSupportedForSenderIdentity:(id)arg1;
+- (BOOL)isRTTAvailableForSenderIdentities:(id)arg1;
+- (BOOL)isRTTAvailableForSenderIdentity:(id)arg1;
+- (BOOL)shouldShowEmergencyCallbackModeAlertForSenderIdentityAccountUUID:(id)arg1 error:(id *)arg2;
+- (BOOL)shouldShowEmergencyCallbackModeAlertForSenderIdentityAccountUUID:(id)arg1;
 - (BOOL)isWhitelistedEmergencyNumberForDigits:(id)arg1 senderIdentities:(id)arg2 error:(id *)arg3;
+- (BOOL)isWhitelistedEmergencyNumberForDigits:(id)arg1 senderIdentityAccountUUID:(id)arg2 error:(id *)arg3;
+- (BOOL)isWhitelistedEmergencyNumberForDigits:(id)arg1 senderIdentityAccountUUID:(id)arg2;
 - (BOOL)isWhitelistedEmergencyNumberForDigits:(id)arg1 senderIdentities:(id)arg2;
 - (BOOL)isWhitelistedEmergencyNumberForDigits:(id)arg1 senderIdentity:(id)arg2 error:(id *)arg3;
 - (BOOL)isWhitelistedEmergencyNumberForDigits:(id)arg1 senderIdentity:(id)arg2;
-- (BOOL)isEmergencyNumberForDigits:(id)arg1 senderIdentityUUID:(id)arg2 error:(id *)arg3;
-- (BOOL)isEmergencyNumberForDigits:(id)arg1 senderIdentityUUID:(id)arg2;
 - (BOOL)isEmergencyNumberForDigits:(id)arg1 senderIdentities:(id)arg2 error:(id *)arg3;
 - (BOOL)isEmergencyNumberForDigits:(id)arg1 senderIdentities:(id)arg2;
+- (BOOL)isEmergencyNumberForDigits:(id)arg1 senderIdentityAccountUUID:(id)arg2 error:(id *)arg3;
+- (BOOL)isEmergencyNumberForDigits:(id)arg1 senderIdentityAccountUUID:(id)arg2;
 - (BOOL)isEmergencyNumberForDigits:(id)arg1 senderIdentity:(id)arg2 error:(id *)arg3;
 - (BOOL)isEmergencyNumberForDigits:(id)arg1 senderIdentity:(id)arg2;
-- (id)init;
 
 @end
 

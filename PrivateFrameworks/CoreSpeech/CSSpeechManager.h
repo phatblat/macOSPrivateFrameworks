@@ -6,18 +6,18 @@
 
 #import "NSObject.h"
 
-#import "CSAssetManagerDelegate.h"
 #import "CSAudioRecorderDelegate.h"
 #import "CSAudioServerCrashMonitorGibraltarDelegate.h"
 #import "CSLanguageCodeUpdateMonitorDelegate.h"
 #import "CSSiriEnabledMonitorDelegate.h"
 #import "CSSmartSiriVolumeDelegate.h"
 #import "CSStateMachineDelegate.h"
+#import "CSVoiceTriggerAssetDownloadMonitorDelegate.h"
 #import "CSVoiceTriggerDelegate.h"
 
 @class CSAsset, CSAudioCircularBuffer, CSAudioRecorder, CSContinuousVoiceTrigger, CSKeywordDetector, CSMyriadPHash, CSSelfTriggerDetector, CSSmartSiriVolume, CSStateMachine, CSVoiceTriggerEventNotifier, CSVoiceTriggerFidesClient, CSVoiceTriggerFileLogger, CSVoiceTriggerFirstPass, CSVoiceTriggerSecondPass, NSDictionary, NSHashTable, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, NSUUID;
 
-@interface CSSpeechManager : NSObject <CSAudioRecorderDelegate, CSStateMachineDelegate, CSVoiceTriggerDelegate, CSSiriEnabledMonitorDelegate, CSAudioServerCrashMonitorGibraltarDelegate, CSSmartSiriVolumeDelegate, CSAssetManagerDelegate, CSLanguageCodeUpdateMonitorDelegate>
+@interface CSSpeechManager : NSObject <CSAudioRecorderDelegate, CSStateMachineDelegate, CSVoiceTriggerDelegate, CSSiriEnabledMonitorDelegate, CSAudioServerCrashMonitorGibraltarDelegate, CSSmartSiriVolumeDelegate, CSVoiceTriggerAssetDownloadMonitorDelegate, CSLanguageCodeUpdateMonitorDelegate>
 {
     BOOL _isSiriEnabled;
     BOOL _deviceRoleIsStereo;
@@ -103,7 +103,7 @@
 - (void)_reinitializeVoiceTriggerWithAsset:(id)arg1;
 - (void)_reinitializeVoiceTriggerIfNeeded;
 - (void)CSLanguageCodeUpdateMonitor:(id)arg1 didReceiveLanguageCodeChanged:(id)arg2;
-- (void)CSAssetManagerDidDownloadNewAsset:(id)arg1;
+- (void)CSVoiceTriggerAssetDownloadMonitor:(id)arg1 didInstallNewAsset:(BOOL)arg2;
 - (void)voiceTriggerDidDetectTwoShotAtTime:(double)arg1;
 - (void)voiceTriggerDidDetectKeyword:(id)arg1;
 - (void)audioRecorderDisconnected:(id)arg1;
@@ -144,6 +144,7 @@
 - (void)startRecordingAsyncWithSetting:(id)arg1 event:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (BOOL)_handleVoiceTriggerSwitchAOP2APEvent:(unsigned long long)arg1 settings:(id)arg2 error:(id *)arg3;
 - (BOOL)_handleAOPFirstPassTriggerEvent:(unsigned long long)arg1 settings:(id)arg2 error:(id *)arg3;
+- (void)_enableMiniDucking:(BOOL)arg1;
 - (BOOL)_setCurrentContext:(id)arg1 error:(id *)arg2;
 - (void)_performPendingSetRecordModeToRecordingForReason:(id)arg1;
 - (void)_cancelPendingSetRecordModeToRecordingForReason:(id)arg1;
