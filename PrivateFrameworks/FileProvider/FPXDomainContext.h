@@ -6,27 +6,37 @@
 
 #import "NSObject.h"
 
-@class FPXExtensionContext, NSFileProviderDomain, NSFileProviderExtension;
+@class FPXExtensionContext, FPXSpotlightIndexer, NSFileProviderDomain, NSFileProviderExtension, NSObject<OS_os_log>;
 
 __attribute__((visibility("hidden")))
 @interface FPXDomainContext : NSObject
 {
+    BOOL _usesFPFS;
+    unsigned long long _extensionCapabilities;
     FPXExtensionContext *_extensionContext;
     NSFileProviderExtension *_vendorInstance;
     NSFileProviderDomain *_domain;
+    NSObject<OS_os_log> *_log;
+    FPXSpotlightIndexer *_spotlightIndexer;
 }
 
+@property(readonly, nonatomic) FPXSpotlightIndexer *spotlightIndexer; // @synthesize spotlightIndexer=_spotlightIndexer;
+@property(retain, nonatomic) NSObject<OS_os_log> *log; // @synthesize log=_log;
+@property(readonly, nonatomic) BOOL usesFPFS; // @synthesize usesFPFS=_usesFPFS;
 @property(readonly, nonatomic) NSFileProviderDomain *domain; // @synthesize domain=_domain;
 @property(readonly, nonatomic) NSFileProviderExtension *vendorInstance; // @synthesize vendorInstance=_vendorInstance;
 @property(readonly, nonatomic) __weak FPXExtensionContext *extensionContext; // @synthesize extensionContext=_extensionContext;
+@property(readonly, nonatomic) unsigned long long extensionCapabilities; // @synthesize extensionCapabilities=_extensionCapabilities;
 - (void).cxx_destruct;
+- (void)invalidate;
 - (id)itemIDsFromVendorItemIDs:(id)arg1;
 - (id)itemsFromVendorItems:(id)arg1;
 - (id)itemIDFromVendorItemID:(id)arg1;
 - (id)itemFromVendorItem:(id)arg1;
 - (id)internalErrorFromVendorError:(id)arg1;
 - (void)prepareForDomainRemovalWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (id)initWithVendorInstance:(id)arg1 domain:(id)arg2 extensionContext:(id)arg3;
+- (void)updateCapabilities;
+- (id)initWithVendorInstance:(id)arg1 domain:(id)arg2 extensionContext:(id)arg3 usesFPFS:(BOOL)arg4;
 
 @end
 

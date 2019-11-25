@@ -6,11 +6,9 @@
 
 #import "NSObject.h"
 
-#import "PKRendererControllerProtocol.h"
+@class CAMetalLayer, NSArray, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, PKLinedPaper, PKMetalRenderer, PKStrokeGenerator;
 
-@class CAMetalLayer, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString, PKLinedPaper, PKMetalRenderer, PKStrokeGenerator;
-
-@interface PKMetalRendererController : NSObject <PKRendererControllerProtocol>
+@interface PKMetalRendererController : NSObject
 {
     NSObject<OS_dispatch_queue> *_renderQueue;
     // Error parsing type: Ai, name: _cancelLongRunningRenderingCount
@@ -30,9 +28,16 @@
     double _presentationMaxDelay;
     CDUnknownBlockType _vSyncTimeoutBlock;
     struct PKRunningStat _strokeLatencyStat;
+    id <MTLTexture> _currentTextureTarget;
     id <CAMetalDrawable> _currentDrawable;
+    struct CGImage *_paperTextureImage;
+    BOOL _liveStrokeMode;
+    id <PKMetalRendererControllerDelegate> _delegate;
     PKStrokeGenerator *_inputController;
     PKLinedPaper *_linedPaper;
+    NSArray *_liveStrokeStrokes;
+    double _liveStrokeElapsedTime;
+    double _liveStrokeDuration;
     CAMetalLayer *_presentationLayer;
     PKMetalRenderer *_renderer;
     double _inputScale;
@@ -46,6 +51,10 @@
 @property struct CGAffineTransform renderTransform; // @synthesize renderTransform=_renderTransform;
 @property(retain, nonatomic) PKMetalRenderer *renderer; // @synthesize renderer=_renderer;
 @property(nonatomic) __weak CAMetalLayer *presentationLayer; // @synthesize presentationLayer=_presentationLayer;
+@property(nonatomic) double liveStrokeDuration; // @synthesize liveStrokeDuration=_liveStrokeDuration;
+@property(nonatomic) double liveStrokeElapsedTime; // @synthesize liveStrokeElapsedTime=_liveStrokeElapsedTime;
+@property(copy, nonatomic) NSArray *liveStrokeStrokes; // @synthesize liveStrokeStrokes=_liveStrokeStrokes;
+@property(nonatomic) BOOL liveStrokeMode; // @synthesize liveStrokeMode=_liveStrokeMode;
 @property(readonly, nonatomic) struct CGSize pixelSize; // @synthesize pixelSize=_pixelSize;
 @property(readonly, nonatomic) struct CGSize actualSize; // @synthesize actualSize=_actualSize;
 @property(nonatomic) struct CGAffineTransform paperTransform; // @synthesize paperTransform=_paperTransform;
@@ -54,13 +63,17 @@
 @property(readonly, nonatomic) PKStrokeGenerator *inputController; // @synthesize inputController=_inputController;
 @property(nonatomic) struct CGAffineTransform strokeTransform; // @synthesize strokeTransform=_strokeTransform;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *renderQueue; // @synthesize renderQueue=_renderQueue;
+@property(nonatomic) __weak id <PKMetalRendererControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL invertColors;
+- (void)replaceInkTexture:(id)arg1 image:(struct CGImage *)arg2;
 - (BOOL)setupCurrentDrawable;
 - (BOOL)_renderAheadWithTransform:(struct CGAffineTransform)arg1 at:(double)arg2;
 - (void)callBlockAfterPresenting:(CDUnknownBlockType)arg1;
 - (void)didFinishRendering:(CDUnknownBlockType)arg1;
 - (BOOL)prerenderWithTransform:(struct CGAffineTransform)arg1 inputScale:(double)arg2 at:(double)arg3;
+- (void)renderWithTransform:(struct CGAffineTransform)arg1 inputScale:(double)arg2 at:(double)arg3;
 - (void)pokeEventDispatcher;
 - (void)_renderLiveStrokeAndPresentWithTransform:(struct CGAffineTransform)arg1 at:(double)arg2;
 - (void)_present:(double)arg1;
@@ -82,20 +95,23 @@
 - (struct CGImage *)newCGImage;
 - (void)drawImage:(struct CGImage *)arg1 andMask:(struct CGImage *)arg2 clippedToStrokeSpaceRect:(struct CGRect)arg3;
 - (void)drawImage:(struct CGImage *)arg1 andMask:(struct CGImage *)arg2;
+- (void)drawTexture:(id)arg1;
 - (void)renderTilesIntoTiles:(id)arg1;
 - (void)renderTiles:(id)arg1 tileTransform:(struct CGAffineTransform)arg2;
 - (void)_copyIntoTilesFromRenderQueue:(id)arg1 tileTransform:(struct CGAffineTransform)arg2;
 - (void)copyIntoTiles:(id)arg1;
 - (BOOL)drawStrokes:(id)arg1 intoTile:(id)arg2 renderCount:(long long)arg3;
-- (void)didTeardownTile;
 @property(nonatomic) double backboardPaperMultiply;
+- (void)setLiveRenderingOverrideColor:(struct CGColor *)arg1;
 - (void)setBackgroundColor:(struct CGColor *)arg1;
-- (void)setBackgroundImage:(struct CGImage *)arg1;
+- (void)setPaperTextureImage:(struct CGImage *)arg1;
+- (void)setResourceCacheSize:(unsigned long long)arg1;
+- (void)testLiveStrokeToFrame:(struct CGRect)arg1 texture:(struct CGImage *)arg2 strokeInterval:(float)arg3;
+- (unsigned long long)_drawStrokesAfterClear:(id)arg1 clippedToStrokeSpaceRect:(struct CGRect)arg2 strokeTransform:(struct CGAffineTransform)arg3 useLayerContext:(BOOL)arg4 progress:(id)arg5;
 - (void)_drawStrokesAfterClear:(id)arg1 clippedToStrokeSpaceRect:(struct CGRect)arg2 strokeTransform:(struct CGAffineTransform)arg3 useLayerContext:(BOOL)arg4 renderCompletion:(CDUnknownBlockType)arg5;
 - (void)buildRenderCacheForStrokes:(id)arg1;
 - (void)renderStrokes:(id)arg1 clippedToStrokeSpaceRect:(struct CGRect)arg2 strokeTransform:(struct CGAffineTransform)arg3 imageClipRect:(struct CGRect)arg4 completion:(CDUnknownBlockType)arg5;
-- (void)enableRendering;
-- (void)disableRendering;
+- (struct CGImage *)renderStrokesSync:(id)arg1 clippedToStrokeSpaceRect:(struct CGRect)arg2 strokeTransform:(struct CGAffineTransform)arg3 imageClipRect:(struct CGRect)arg4;
 - (BOOL)isAllRenderingCancelled;
 - (void)cancelAllRendering;
 - (BOOL)isLongRunningRenderingCancelled;
@@ -103,17 +119,15 @@
 - (void)resumeLongRunningRenders;
 - (void)cancelLongRunningRenders;
 - (void)cancelVSyncTimeoutBlock;
+- (void)setupSync;
 - (void)setup;
 - (void)dealloc;
 - (void)teardown;
+- (void)teardownSync;
 - (void)setPixelSize:(struct CGSize)arg1 actualSize:(struct CGSize)arg2;
-- (id)initWithPixelSize:(struct CGSize)arg1 actualSize:(struct CGSize)arg2 renderQueue:(id)arg3;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+@property(readonly, nonatomic) id <MTLCommandQueue> commandQueue;
+@property(readonly, nonatomic) id <MTLDevice> device; // @dynamic device;
+- (id)initWithPixelSize:(struct CGSize)arg1 actualSize:(struct CGSize)arg2 renderQueue:(id)arg3 usePrivateResourceHandler:(BOOL)arg4;
 
 @end
 

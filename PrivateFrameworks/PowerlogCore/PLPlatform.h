@@ -16,12 +16,14 @@
 + (BOOL)seedBuild;
 + (BOOL)carrierBuild;
 + (BOOL)internalBuild;
++ (BOOL)isHomePod;
 + (BOOL)isMac;
 + (BOOL)isWatch;
 + (BOOL)isiOS;
 + (BOOL)isiPhone;
 + (BOOL)isiPad;
 + (BOOL)isiPod;
++ (BOOL)hasAOT;
 + (BOOL)hasBaseband;
 + (BOOL)hasOrb;
 + (BOOL)hasNFC;

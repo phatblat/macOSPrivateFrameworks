@@ -15,11 +15,14 @@
 @interface _INPBConflictingParameter : PBCodable <_INPBConflictingParameter, NSSecureCoding, NSCopying>
 {
     struct _has;
+    BOOL __encodeLegacyGloryData;
     NSArray *_alternateItems;
     NSString *_keyPath;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)alternateItemsType;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(copy, nonatomic) NSString *keyPath; // @synthesize keyPath=_keyPath;
 @property(copy, nonatomic) NSArray *alternateItems; // @synthesize alternateItems=_alternateItems;
 - (void).cxx_destruct;
@@ -27,6 +30,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(readonly, nonatomic) BOOL hasKeyPath;

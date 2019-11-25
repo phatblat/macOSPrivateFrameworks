@@ -19,6 +19,7 @@
 @property(readonly) NSString *stringValue;
 @property(readonly) NSString *type;
 - (void)dealloc;
+- (id)initWithImageReaderOutput:(id)arg1;
 - (id)init;
 
 @end

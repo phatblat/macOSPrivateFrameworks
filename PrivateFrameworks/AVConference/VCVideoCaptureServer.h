@@ -8,7 +8,7 @@
 
 #import "VideoCaptureServer.h"
 
-@class NSMutableArray, NSObject<AVConferencePreviewDelegate>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSObject<VideoCaptureProtocol>, NSString, VCImageQueue, VideoAttributes;
+@class BKSApplicationStateMonitor, NSMutableArray, NSMutableDictionary, NSObject<AVConferencePreviewDelegate>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSObject<VideoCaptureProtocol>, NSString, VCImageQueue, VideoAttributes;
 
 __attribute__((visibility("hidden")))
 @interface VCVideoCaptureServer : NSObject <VideoCaptureServer>
@@ -30,7 +30,8 @@ __attribute__((visibility("hidden")))
     int snapshotRequestCount;
     NSMutableArray *cameraClients;
     NSMutableArray *screenCaptureClients;
-    NSMutableArray *_cameraPreviewClients;
+    NSMutableDictionary *_cameraPreviewClients;
+    BKSApplicationStateMonitor *_cameraPreviewClientMonitor;
     VideoAttributes *localVideoAttributes;
     struct CGSize localScreenPortraitAspectRatio;
     struct CGSize localScreenLandscapeAspectRatio;
@@ -39,6 +40,7 @@ __attribute__((visibility("hidden")))
     NSObject<OS_dispatch_queue> *captureServerQueue;
     NSObject<OS_dispatch_queue> *captureClientQueue;
     NSObject<OS_dispatch_queue> *captureCameraQueue;
+    NSObject<OS_dispatch_queue> *_cameraPreviewClientMonitorQueue;
     NSObject<OS_dispatch_queue> *_xpcCommandQueue;
     NSObject<OS_dispatch_queue> *delegateNotificationQueue;
     NSObject<OS_dispatch_queue> *variablesQueue;
@@ -52,7 +54,6 @@ __attribute__((visibility("hidden")))
     double falteredRenderingtimeStamp;
     VCImageQueue *frontQueue;
     VCImageQueue *backQueue;
-    unsigned int _previewSlot;
     int _thermalNotificationToken;
     int _thermalLevel;
     int _newThermalLevel;
@@ -66,6 +67,7 @@ __attribute__((visibility("hidden")))
 + (id)VCVideoCaptureServerSingleton;
 @property(retain) NSString *currentCameraUniqueID; // @synthesize currentCameraUniqueID=_currentCameraUniqueID;
 @property(retain, nonatomic) NSObject<AVConferencePreviewDelegate> *appDelegate; // @synthesize appDelegate;
+- (void)setCameraZoomAvailable:(BOOL)arg1 currentZoomFactor:(double)arg2 maxZoomFactor:(double)arg3;
 - (BOOL)cameraSupportsWidth:(int)arg1 height:(int)arg2;
 - (void)resetCameraToPreviewSettingsForced:(BOOL)arg1;
 - (void)setCaptureWidth:(int)arg1 height:(int)arg2 rate:(int)arg3;
@@ -92,9 +94,11 @@ __attribute__((visibility("hidden")))
 - (BOOL)setLocalVideoAttributes:(id)arg1;
 - (void)updateImageQueueFrameRate:(int)arg1;
 - (void)setCurrentFrameRate:(int)arg1;
+- (void)updateViewPointThermalLevel:(int)arg1;
 - (void)setCaptureFrameRate:(int)arg1;
 - (BOOL)isClientRegisteredForVideoFrames:(id)arg1 fromSource:(int)arg2;
 - (BOOL)deregisterForVideoFramesFromSource:(int)arg1 withClient:(id)arg2;
+- (BOOL)registerForVideoFramesFromSource:(int)arg1 withClient:(id)arg2 width:(int)arg3 height:(int)arg4 frameRate:(int)arg5 unpausing:(BOOL)arg6 clientPID:(int)arg7 screenDisplayID:(unsigned int)arg8;
 - (BOOL)registerForVideoFramesFromSource:(int)arg1 withClient:(id)arg2 width:(int)arg3 height:(int)arg4 frameRate:(int)arg5 unpausing:(BOOL)arg6;
 - (BOOL)registerForFrames:(id)arg1 unpausing:(BOOL)arg2;
 - (struct __CFDictionary *)copyCameraColorInfo;
@@ -108,6 +112,8 @@ __attribute__((visibility("hidden")))
 - (int)getFrameRateForPeakPowerLevel:(int)arg1;
 - (int)getFrameRateForThermalLevel:(int)arg1;
 - (void)applyPressureLevelChanges;
+- (void)setCameraZoomFactor:(double)arg1 withRate:(double)arg2;
+- (void)setCameraZoomFactor:(double)arg1;
 - (void)clearAllStickers:(BOOL)arg1;
 - (void)addStickerWithURL:(id)arg1 isFaceSticker:(BOOL)arg2 atPosition:(struct CGPoint)arg3 identifier:(id)arg4;
 - (void)setMemoji:(id)arg1;

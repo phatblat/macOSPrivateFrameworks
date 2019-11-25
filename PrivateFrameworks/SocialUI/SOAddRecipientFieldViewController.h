@@ -14,7 +14,7 @@
 #import "NSTextFieldDelegate.h"
 #import "NSTouchBarDelegate.h"
 
-@class CNAutocompleteResult, CNAutocompleteStore, CNExtendedAutocompleteResultWindow, IDSBatchIDQueryController, IMAccount, IMHandle, NSCandidateListTouchBarItem, NSDate, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSProgressIndicator, NSString, NSTextField, NSTimer;
+@class CNAutocompleteResult, CNAutocompleteStore, CNExtendedAutocompleteResultWindow, IDSBatchIDQueryController, IMAccount, IMHandle, NSCandidateListTouchBarItem, NSColor, NSDate, NSImageView, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSProgressIndicator, NSString, NSTextField, NSTimer;
 
 @interface SOAddRecipientFieldViewController : SOChatViewController <NSCandidateListTouchBarItemDelegate, NSTouchBarDelegate, CNAutocompleteFetchDelegate, IDSBatchIDQueryControllerDelegate, NSTextFieldDelegate, NSControlTextEditingDelegate, CNAutocompleteResultWindowDelegate>
 {
@@ -26,6 +26,8 @@
     BOOL _skipCompletionRebuilding;
     BOOL _userIsDeleting;
     BOOL _completionWindowVisible;
+    BOOL _isBlockedForDowntime;
+    BOOL _shouldShowDowntimeErrorAppearance;
     CDUnknownBlockType _autocompleteResultComparator;
     NSString *_searchString;
     CNExtendedAutocompleteResultWindow *_completionWindow;
@@ -39,7 +41,11 @@
     NSMutableOrderedSet *_searchResults;
     id <CNCancelable> _currentFetchRequest;
     id _showingMenuForRepresentedObject;
+    NSImageView *_screenTimeGlyphView;
     NSMutableDictionary *_lastMessageDateCache;
+    NSTextField *_blockedForDowntimeTextField;
+    NSImageView *_blockedForDowntimeImageView;
+    NSColor *_textFieldNormalColor;
 }
 
 + (id)_stringForAutocompleteResultSourceType:(unsigned long long)arg1;
@@ -48,7 +54,13 @@
 + (void)_presentUnregisteredErrorForHandle:(id)arg1;
 + (id)activeLegacyIMAccountsForABProperty:(id)arg1;
 + (void)initialize;
+@property(nonatomic) BOOL shouldShowDowntimeErrorAppearance; // @synthesize shouldShowDowntimeErrorAppearance=_shouldShowDowntimeErrorAppearance;
+@property(retain, nonatomic) NSColor *textFieldNormalColor; // @synthesize textFieldNormalColor=_textFieldNormalColor;
+@property(nonatomic) BOOL isBlockedForDowntime; // @synthesize isBlockedForDowntime=_isBlockedForDowntime;
+@property(retain, nonatomic) NSImageView *blockedForDowntimeImageView; // @synthesize blockedForDowntimeImageView=_blockedForDowntimeImageView;
+@property(retain, nonatomic) NSTextField *blockedForDowntimeTextField; // @synthesize blockedForDowntimeTextField=_blockedForDowntimeTextField;
 @property(retain) NSMutableDictionary *lastMessageDateCache; // @synthesize lastMessageDateCache=_lastMessageDateCache;
+@property(retain, nonatomic) NSImageView *screenTimeGlyphView; // @synthesize screenTimeGlyphView=_screenTimeGlyphView;
 @property(retain) id showingMenuForRepresentedObject; // @synthesize showingMenuForRepresentedObject=_showingMenuForRepresentedObject;
 @property(retain, nonatomic) id <CNCancelable> currentFetchRequest; // @synthesize currentFetchRequest=_currentFetchRequest;
 @property(retain, nonatomic) NSMutableOrderedSet *searchResults; // @synthesize searchResults=_searchResults;
@@ -72,7 +84,7 @@
 - (void)viewDidLoad;
 - (void)chatDisplayControllerWillChange:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)idStatusUpdatedForDestinations:(id)arg1;
+- (void)batchQueryController:(id)arg1 updatedDestinationsStatus:(id)arg2 onService:(id)arg3 error:(id)arg4;
 - (id)control:(id)arg1 textView:(id)arg2 completions:(id)arg3 forPartialWordRange:(struct _NSRange)arg4 indexOfSelectedItem:(long long *)arg5;
 - (void)controlTextDidChange;
 - (void)controlTextDidChange:(id)arg1;
@@ -119,6 +131,7 @@
 - (void)dismissCompletionUI;
 - (struct _NSRange)rangeForUserCompletionInFieldEditor:(id)arg1;
 - (id)autocompleteStringForFieldEditor:(id)arg1;
+- (BOOL)isHandleIDAllowedToJoinConversation:(id)arg1;
 - (void)didSelectResult:(id)arg1;
 - (void)selectedResult:(id)arg1;
 @property(readonly) CDUnknownBlockType autocompleteResultComparator; // @synthesize autocompleteResultComparator=_autocompleteResultComparator;

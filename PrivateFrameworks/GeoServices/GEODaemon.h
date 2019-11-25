@@ -13,6 +13,7 @@
     NSMutableSet *_servers;
     NSMutableSet *_peers;
     NSObject<OS_dispatch_source> *_sigInfoSrc;
+    NSObject<OS_dispatch_source> *_sigTermSrc;
     NSObject<OS_xpc_object> *_listener;
 }
 
@@ -21,6 +22,7 @@
 - (id)description;
 - (void)_localeChanged:(id)arg1;
 - (void)dealloc;
+- (void)startServerClassIfNecessary:(Class)arg1;
 - (void)addServerClass:(Class)arg1;
 - (void)addServerInstance:(id)arg1;
 - (void)peerDidDisconnect:(id)arg1;
@@ -29,6 +31,7 @@
 - (void)_handleNewConnection:(id)arg1;
 - (id)_createPeerForConnection:(id)arg1;
 - (id)_createListenerWithQueue:(id)arg1 onPort:(const char *)arg2;
+- (void)start;
 - (id)initWithPort:(const char *)arg1;
 - (id)init;
 

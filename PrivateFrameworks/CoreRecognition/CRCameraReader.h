@@ -9,7 +9,7 @@
 #import "AVCaptureVideoDataOutputSampleBufferDelegate.h"
 #import "CALayerDelegate.h"
 
-@class CRAlignmentLayer, CRBoxLayer, CRMLModel, CRPollingTimer, DiagnosticHUDLayer, NSArray, NSCache, NSDate, NSDictionary, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSPointerArray, NSString;
+@class CATextLayer, CRAlignmentLayer, CRBoxLayer, CRImageReader, CRMLCCModel, CRPollingTimer, DiagnosticHUDLayer, NSArray, NSCache, NSDate, NSDictionary, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSPointerArray, NSString;
 
 @interface CRCameraReader : NSViewController <AVCaptureVideoDataOutputSampleBufferDelegate, CALayerDelegate>
 {
@@ -21,7 +21,6 @@
     BOOL _didSendEndOrCancel;
     BOOL _didSendFindBox;
     BOOL _configUseJPEGForColor;
-    BOOL _configExperimentalMode;
     BOOL _configUseFastScanning;
     BOOL _previousIdleState;
     BOOL _sessionIsStopping;
@@ -29,6 +28,7 @@
     BOOL _captureMode;
     BOOL _showDiagnosticHUD;
     float _borderPaddingIDCard;
+    float _ocrOverlayBackgroundOpacity;
     NSArray *_outputObjectTypes;
     id <CRCameraReaderDelegate> _callbackDelegate;
     struct __CVBuffer *_correctedCardBuffer;
@@ -55,11 +55,16 @@
     NSMutableArray *_nameCutRects;
     NSDictionary *_contactsCache;
     NSCache *_previousContactMatches;
-    CRMLModel *_flatPrintedModel;
-    CRMLModel *_embossedNumberModel;
-    CRMLModel *_embossedExpirationModel;
-    CRMLModel *_embossedCardholderModel;
+    CRMLCCModel *_flatPrintedModel;
+    CRMLCCModel *_embossedNumberModel;
+    CRMLCCModel *_embossedExpirationModel;
+    CRMLCCModel *_embossedCardholderModel;
     NSMutableArray *_cardBlurValues;
+    NSMutableDictionary *_optionsDictionary;
+    CRImageReader *_ocrImageReader;
+    CATextLayer *_overlayTextLayer;
+    NSMutableArray *_textDetectorRTFeedback;
+    NSString *_ocrOverlayFontName;
     unsigned long long _captureCount;
     double _sessionTimeout;
     long long _whiteBalanceMode;
@@ -80,9 +85,9 @@
 + (id)findCodeInImage:(struct vImage_Buffer)arg1 maxStage:(unsigned long long)arg2 roi:(struct CGRect)arg3;
 + (id)findCodeInImage:(struct vImage_Buffer)arg1 maxStage:(unsigned long long)arg2;
 + (id)findCodeInImage:(struct vImage_Buffer)arg1 maxStage:(unsigned long long)arg2 outputObjectTypes:(id)arg3;
-+ (id)extractCardImage:(id)arg1 fromPixelBuffer:(struct __CVBuffer *)arg2 withCardBuffer:(struct __CVBuffer *)arg3 withPoints:(id)arg4 pixelFocalLength:(id)arg5 padding:(float)arg6;
-+ (id)extractCardImage:(id)arg1 fromPixelBuffer:(struct __CVBuffer *)arg2 withCardBuffer:(struct __CVBuffer *)arg3 withPoints:(id)arg4 pixelFocalLength:(id)arg5;
-+ (id)extractCardImage:(id)arg1 fromPixelBuffer:(struct __CVBuffer *)arg2 withCardBuffer:(struct __CVBuffer *)arg3 pixelFocalLength:(id)arg4;
++ (id)extractCardImage:(id)arg1 fromPixelBuffer:(struct __CVBuffer *)arg2 withCardBuffer:(struct __CVBuffer *)arg3 withPoints:(id)arg4 cameraIntrinsicData:(id)arg5 padding:(float)arg6 inputOrientation:(int)arg7;
++ (id)extractCardImage:(id)arg1 fromPixelBuffer:(struct __CVBuffer *)arg2 withCardBuffer:(struct __CVBuffer *)arg3 withPoints:(id)arg4 cameraIntrinsicData:(id)arg5;
++ (id)extractCardImage:(id)arg1 fromPixelBuffer:(struct __CVBuffer *)arg2 withCardBuffer:(struct __CVBuffer *)arg3 cameraIntrinsicData:(id)arg4;
 + (void)loadFonts;
 + (unsigned long long)supportedCameraCount;
 + (unsigned long long)supportedCameraCountForTypes:(id)arg1;
@@ -98,11 +103,17 @@
 @property unsigned long long captureCount; // @synthesize captureCount=_captureCount;
 @property(getter=isCaptureMode) BOOL captureMode; // @synthesize captureMode=_captureMode;
 @property BOOL continousMode; // @synthesize continousMode=_continousMode;
+@property float ocrOverlayBackgroundOpacity; // @synthesize ocrOverlayBackgroundOpacity=_ocrOverlayBackgroundOpacity;
+@property(retain) NSString *ocrOverlayFontName; // @synthesize ocrOverlayFontName=_ocrOverlayFontName;
+@property(retain, nonatomic) NSMutableArray *textDetectorRTFeedback; // @synthesize textDetectorRTFeedback=_textDetectorRTFeedback;
+@property(retain, nonatomic) CATextLayer *overlayTextLayer; // @synthesize overlayTextLayer=_overlayTextLayer;
+@property(retain, nonatomic) CRImageReader *ocrImageReader; // @synthesize ocrImageReader=_ocrImageReader;
+@property(retain, nonatomic) NSMutableDictionary *optionsDictionary; // @synthesize optionsDictionary=_optionsDictionary;
 @property(retain) NSMutableArray *cardBlurValues; // @synthesize cardBlurValues=_cardBlurValues;
-@property(retain) CRMLModel *embossedCardholderModel; // @synthesize embossedCardholderModel=_embossedCardholderModel;
-@property(retain) CRMLModel *embossedExpirationModel; // @synthesize embossedExpirationModel=_embossedExpirationModel;
-@property(retain) CRMLModel *embossedNumberModel; // @synthesize embossedNumberModel=_embossedNumberModel;
-@property(retain) CRMLModel *flatPrintedModel; // @synthesize flatPrintedModel=_flatPrintedModel;
+@property(retain) CRMLCCModel *embossedCardholderModel; // @synthesize embossedCardholderModel=_embossedCardholderModel;
+@property(retain) CRMLCCModel *embossedExpirationModel; // @synthesize embossedExpirationModel=_embossedExpirationModel;
+@property(retain) CRMLCCModel *embossedNumberModel; // @synthesize embossedNumberModel=_embossedNumberModel;
+@property(retain) CRMLCCModel *flatPrintedModel; // @synthesize flatPrintedModel=_flatPrintedModel;
 @property BOOL sessionIsStopping; // @synthesize sessionIsStopping=_sessionIsStopping;
 @property(retain) NSCache *previousContactMatches; // @synthesize previousContactMatches=_previousContactMatches;
 @property(retain) NSDictionary *contactsCache; // @synthesize contactsCache=_contactsCache;
@@ -120,7 +131,6 @@
 @property(retain) NSObject<OS_dispatch_semaphore> *processingImage; // @synthesize processingImage=_processingImage;
 @property struct opaqueCMSampleBuffer *lastBuffer; // @synthesize lastBuffer=_lastBuffer;
 @property BOOL configUseFastScanning; // @synthesize configUseFastScanning=_configUseFastScanning;
-@property BOOL configExperimentalMode; // @synthesize configExperimentalMode=_configExperimentalMode;
 @property(retain) CRPollingTimer *boxLayerHideTimer; // @synthesize boxLayerHideTimer=_boxLayerHideTimer;
 @property(retain) NSPointerArray *captureBuffer; // @synthesize captureBuffer=_captureBuffer;
 @property BOOL configUseJPEGForColor; // @synthesize configUseJPEGForColor=_configUseJPEGForColor;
@@ -146,6 +156,7 @@
 @property BOOL hidePlacementText; // @synthesize hidePlacementText=_hidePlacementText;
 @property __weak id <CRCameraReaderDelegate> callbackDelegate; // @synthesize callbackDelegate=_callbackDelegate;
 - (void).cxx_destruct;
+- (void)mergeInfo:(id)arg1 intoFindInfo:(id)arg2;
 - (void)updateContactsCache:(id)arg1;
 - (void)reportAcceptedString:(id)arg1 forOutput:(id)arg2 withClientID:(id)arg3;
 - (id)generateStringFromDate:(id)arg1;
@@ -153,6 +164,9 @@
 - (void)sendDidEndWithErrorDomain:(id)arg1 code:(long long)arg2 userInfo:(id)arg3;
 - (void)sendDidFindTarget:(id)arg1 frameTime:(CDStruct_1b6d18a9)arg2;
 - (void)sendDidDisplayMessageStyle:(long long)arg1;
+- (void)showTextDetectorObjects:(id)arg1;
+- (id)createTextLayerForRecognizedObject:(id)arg1;
+- (id)attributedStringWithFrame:(struct CGSize)arg1 withFont:(id)arg2 withString:(id)arg3 color:(struct CGColor *)arg4;
 - (void)sendDidEndWithError:(id)arg1;
 - (void)sendDidEndAnimation;
 - (void)sendDidRecognizeNewObjects:(id)arg1;
@@ -167,22 +181,26 @@
 - (void)removeLayerTree;
 - (id)findCCExpDateInImageEmbossed:(id)arg1;
 - (id)findCCNameInImageEmbossed:(id)arg1;
+- (id)findCCNumberInImageEmbossed:(id)arg1 withFinalDigit:(id)arg2;
 - (id)findCCNumberInImageEmbossed:(id)arg1;
 - (id)findCCResultsInImageFlat:(id)arg1 usingTextFeatures:(id)arg2 invert:(BOOL)arg3;
 - (id)findCCObjectsEmbossed:(id)arg1 inImage:(id)arg2 numberRects:(id)arg3 nameRects:(id)arg4 dateRects:(id)arg5;
 - (id)findObjectsFlat:(id)arg1 inImage:(id)arg2 numberRects:(id)arg3 invert:(BOOL)arg4;
 - (id)findCCObjectEmbossed:(id)arg1 inImage:(id)arg2 forRect:(id)arg3;
 - (id)findObjectsEmbossed:(id)arg1 inImage:(id)arg2;
-- (void)findObjects:(id)arg1 inPixelBuffer:(struct __CVBuffer *)arg2 attachments:(id)arg3 frameTime:(CDStruct_1b6d18a9)arg4;
-- (void)findIDObjects:(id)arg1 inPixelBuffer:(struct __CVBuffer *)arg2 attachments:(id)arg3 frameTime:(CDStruct_1b6d18a9)arg4;
+- (void)findObjects:(id)arg1 inPixelBuffer:(struct __CVBuffer *)arg2 cameraIntrinsicData:(id)arg3 frameTime:(CDStruct_1b6d18a9)arg4;
+- (void)findIDObjects:(id)arg1 inPixelBuffer:(struct __CVBuffer *)arg2 cameraIntrinsicData:(id)arg3 frameTime:(CDStruct_1b6d18a9)arg4;
 - (unsigned long long)getFirstTimeFrameIndexForPinnedField:(id)arg1;
 - (void)setFirstTimeFrameIndexForPinnedField:(id)arg1;
 - (void)updatePinnedInfoFrameIndex;
 - (id)findObjects:(id)arg1 inImage:(id)arg2 properties:(id)arg3;
+- (void)findOCRTextObjects:(id)arg1 inPixelBuffer:(struct __CVBuffer *)arg2 attachments:(id)arg3 frameTime:(CDStruct_1b6d18a9)arg4;
+- (void)sendProvideOverlayObjects:(id)arg1;
 - (void)findCodeInSampleBuffer:(struct opaqueCMSampleBuffer *)arg1;
 - (void)captureImageFromSampleBuffer:(struct opaqueCMSampleBuffer *)arg1;
 - (void)flashScreenAndPlayCaptureSound;
 - (void)captureOutput:(id)arg1 didOutputSampleBuffer:(struct opaqueCMSampleBuffer *)arg2 fromConnection:(id)arg3;
+- (id)cameraIntrinsicDataForSampleBuffer:(struct opaqueCMSampleBuffer *)arg1 width:(unsigned long long)arg2 height:(unsigned long long)arg3;
 - (void)stopSession;
 - (void)startSession;
 - (void)cancel;
@@ -193,6 +211,7 @@
 @property(readonly) long long currentCameraIdentifier;
 - (void)switchToCameraWithDeviceID:(id)arg1;
 - (void)toggleCamera;
+- (void)setupInitialLayerConfiguration;
 - (void)dealloc;
 - (void)createCorrectedCardBuffer;
 - (void)releaseCorrectedCardBuffer;
@@ -203,8 +222,10 @@
 - (struct __CVBuffer *)createFastAccessPixelBufferWithSize:(struct CGSize)arg1 videoFormat:(int)arg2;
 - (void)orientationDidChange:(id)arg1;
 - (void)setDelegate:(id)arg1;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2 options:(id)arg3;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)init;
+- (id)initWithOptions:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

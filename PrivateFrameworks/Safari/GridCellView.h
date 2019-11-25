@@ -43,6 +43,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) __weak id <GridCellViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)_didRecognizeImmediateAction:(id)arg1;
+- (BOOL)accessibilityPerformShowMenu;
 - (BOOL)accessibilityPerformPress;
 - (id)accessibilityRoleDescription;
 - (id)accessibilityChildren;
@@ -57,7 +58,6 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL drawsImageBorder;
 @property(nonatomic) long long highlightState;
 - (void)controlTextDidEndEditing:(id)arg1;
-- (void)_hideMenus;
 - (void)_endEditing;
 - (void)_unregisterForEditingTermination;
 - (void)_registerForEditingTermination;
@@ -70,6 +70,7 @@ __attribute__((visibility("hidden")))
 - (id)_gridView;
 - (void)_activate;
 - (void)keyDown:(id)arg1;
+- (void)_hideMenus;
 - (id)menuForEvent:(id)arg1;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)setHidden:(BOOL)arg1;

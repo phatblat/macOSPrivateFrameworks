@@ -6,14 +6,18 @@
 
 #import "NSTextField.h"
 
+@class UnifiedField;
+
 __attribute__((visibility("hidden")))
 @interface UnifiedFieldContainerView : NSTextField
 {
+    UnifiedField *_unifiedField;
 }
 
 + (void)initialize;
+@property(retain, nonatomic) UnifiedField *unifiedField; // @synthesize unifiedField=_unifiedField;
+- (void).cxx_destruct;
 - (id)accessibilityChildren;
-- (id)accessibilityRole;
 - (void)_finishInitialization;
 - (BOOL)allowsVibrancy;
 - (id)initWithCoder:(id)arg1;

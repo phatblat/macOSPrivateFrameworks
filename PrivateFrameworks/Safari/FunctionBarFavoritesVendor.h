@@ -8,11 +8,12 @@
 
 #import "FunctionBarFavoritesVending.h"
 
-@class NSString, WebBookmarkList;
+@class CombinedFavoritesController, NSString, WebBookmarkList;
 
 __attribute__((visibility("hidden")))
 @interface FunctionBarFavoritesVendor : NSObject <FunctionBarFavoritesVending>
 {
+    CombinedFavoritesController *_combinedFavoritesController;
     id <FunctionBarFavoritesClient> _client;
     WebBookmarkList *_vendedFolder;
 }
@@ -26,7 +27,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) BOOL canNavigateUp;
 @property(retain, nonatomic) WebBookmarkList *vendedFolder; // @synthesize vendedFolder=_vendedFolder;
 - (void)dealloc;
-- (id)init;
+- (id)initWithCombinedFavoritesController:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

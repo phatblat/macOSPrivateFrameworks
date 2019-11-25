@@ -10,16 +10,18 @@
 #import "RTCPReportProvider.h"
 #import "VCConnectionChangedHandler.h"
 #import "VCMediaStreamNotification.h"
+#import "VCMomentTransportDelegate.h"
 #import "VCNetworkFeedbackControllerDelegate.h"
 #import "VCRateControlMediaControllerDelegate.h"
 #import "VCSecurityEventHandler.h"
 #import "VCSessionParticipantDelegate.h"
 #import "VCSessionParticipantStreamDelegate.h"
+#import "VCSessionStatsControllerDelegate.h"
 
-@class AVCRateController, NSArray, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, VCControlChannelMultiWay, VCNetworkFeedbackController, VCRateControlMediaController, VCSecurityKeyManager, VCSessionConfiguration, VCSessionDownlinkBandwidthAllocator, VCSessionMessaging, VCSessionParticipant, VCSessionParticipantLocal, VCSessionStatsController, VCTransportSession;
+@class AVCRateController, NSArray, NSDictionary, NSError, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, VCControlChannelMultiWay, VCNetworkFeedbackController, VCRateControlMediaController, VCSecurityKeyManager, VCSessionConfiguration, VCSessionDownlinkBandwidthAllocator, VCSessionMessaging, VCSessionParticipant, VCSessionParticipantLocal, VCSessionStatsController, VCTransportSession;
 
 __attribute__((visibility("hidden")))
-@interface VCSession : NSObject <VCSessionParticipantStreamDelegate, AVCRateControllerDelegate, VCRateControlMediaControllerDelegate, VCMediaStreamNotification, RTCPReportProvider, VCSecurityEventHandler, VCSessionParticipantDelegate, VCNetworkFeedbackControllerDelegate, VCConnectionChangedHandler>
+@interface VCSession : NSObject <VCSessionParticipantStreamDelegate, AVCRateControllerDelegate, VCRateControlMediaControllerDelegate, VCMediaStreamNotification, RTCPReportProvider, VCSecurityEventHandler, VCSessionParticipantDelegate, VCNetworkFeedbackControllerDelegate, VCSessionStatsControllerDelegate, VCConnectionChangedHandler, VCMomentTransportDelegate>
 {
     unsigned int _state;
     NSObject<OS_dispatch_queue> *_sessionQueue;
@@ -75,6 +77,9 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
 @property(readonly, nonatomic) NSString *idsDestination; // @synthesize idsDestination=_idsDestination;
 @property(readonly, nonatomic) VCSessionParticipant *localParticipant; // @synthesize localParticipant=_localParticipant;
+- (void)didReceiveMomentsRequest:(id)arg1;
+- (void)moments:(id)arg1 shouldProcessRequest:(id)arg2 recipientID:(id)arg3;
+- (void)reportingIntervalChanged:(double)arg1;
 - (void)recommendedSettingsChanged:(id)arg1;
 - (void)unregisterReportingTask;
 - (void)registerReportingTask;
@@ -90,12 +95,14 @@ __attribute__((visibility("hidden")))
 - (void)dispatchedAddParticipantWithConfig:(id)arg1 processID:(int)arg2;
 - (void)reportingSessionRemoteParticipantEvent:(unsigned short)arg1 withParticipant:(id)arg2 value:(id)arg3;
 - (void)collectSessionEventKeyFields:(struct __CFDictionary *)arg1 eventType:(unsigned short)arg2 withParticipant:(id)arg3 keyChangeReason:(id)arg4 newMKI:(id)arg5 withStreamID:(unsigned short)arg6;
+- (void)reportingMomentsWithRequest:(id)arg1 recipientID:(id)arg2;
 - (void)reportingSessionParticipantEvent:(unsigned short)arg1 withParticipant:(id)arg2 keyChangeReason:(id)arg3 newMKI:(id)arg4 withStreamID:(unsigned short)arg5;
 - (void)reportingSessionParticipantEvent:(unsigned short)arg1 withParticipant:(id)arg2 keyChangeReason:(id)arg3 newMKI:(id)arg4;
 - (void)reportingSessionParticipantEvent:(unsigned short)arg1 keyChangeReason:(id)arg2 newMKI:(id)arg3;
 - (void)reportingSessionParticipantEvent:(unsigned short)arg1 withParticipant:(id)arg2;
 - (void)reportingSessionParticipantEvent:(unsigned short)arg1 withStreamID:(unsigned short)arg2;
 - (struct __CFDictionary *)getClientSpecificUserInfo;
+- (void)resetDecryptionTimeout;
 - (BOOL)handleEncryptionInfoChange:(id)arg1;
 - (BOOL)generateReceptionReportList:(struct _RTCP_RECEPTION_REPORT *)arg1 reportCount:(char *)arg2;
 - (void)mediaStream:(id)arg1 didReceiveNewMasterKeyIndex:(id)arg2;
@@ -106,6 +113,7 @@ __attribute__((visibility("hidden")))
 - (void)registerMediaStreamNotificationDelegateForParticipant:(id)arg1;
 - (void)setupVideoRedundancyMessages;
 - (void)generateKeyFrameWithReceivedMessage:(id)arg1;
+- (void)setupMomentsMessages;
 - (void)setupSymptomEnabledMessages;
 - (void)setupKeyFrameGenerationMessages;
 - (void)setupVideoPausedMessages;
@@ -143,6 +151,11 @@ __attribute__((visibility("hidden")))
 - (int)flushBasebandWithPayloads:(id)arg1;
 - (void)mediaController:(void *)arg1 mediaSuggestionDidChange:(struct VCRateControlMediaSuggestion)arg2;
 - (void)rateController:(void *)arg1 targetBitrateDidChange:(unsigned int)arg2 rateChangeCounter:(unsigned int)arg3;
+- (void)updateNetworkFeedbackControllerReport:(CDStruct_4b4d87a1 *)arg1;
+- (void)didReceivedSessionStatsAtTime:(double)arg1;
+- (void)vcSessionParticipant:(id)arg1 spatialAudioSourceIDDidChange:(unsigned long long)arg2;
+- (void)vcSessionParticipant:(id)arg1 didDetectError:(id)arg2;
+- (void)vcSessionParticipantDidMediaDecryptionTimeOut:(id)arg1;
 - (void)vcSessionParticipantDidChangeReceivingStreams:(id)arg1;
 - (void)vcSessionParticipantDidChangeSendingStreams:(id)arg1;
 - (void)vcSessionParticipant:(id)arg1 didRequestVideoRedundancy:(BOOL)arg2;
@@ -171,7 +184,7 @@ __attribute__((visibility("hidden")))
 - (void)mediaStateChangedForParticipant:(id)arg1;
 - (id)participantForID:(id)arg1;
 - (void)updateConfiguration:(id)arg1;
-- (void)stop;
+- (void)stopWithError:(id)arg1;
 - (void)start;
 - (void)removeParticipant:(id)arg1;
 - (void)addParticipantConfigurations:(id)arg1 processID:(int)arg2;
@@ -183,7 +196,7 @@ __attribute__((visibility("hidden")))
 - (void)setupTransportSessionWithDestination:(id)arg1;
 @property(readonly, nonatomic) NSDictionary *capabilities;
 - (void)dealloc;
-- (id)initWithIDSDestination:(id)arg1 configurationDict:(id)arg2 delegate:(id)arg3 processId:(int)arg4;
+- (id)initWithIDSDestination:(id)arg1 configurationDict:(id)arg2 negotiationData:(id)arg3 delegate:(id)arg4 processId:(int)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

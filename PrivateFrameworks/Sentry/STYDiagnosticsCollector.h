@@ -6,24 +6,19 @@
 
 #import "NSObject.h"
 
-@class ABCStats, NSObject<OS_dispatch_queue>, NSObject<OS_os_log>, SDRDiagnosticReporter;
+@class NSObject<OS_dispatch_queue>, NSObject<OS_os_log>;
 
 @interface STYDiagnosticsCollector : NSObject
 {
     NSObject<OS_dispatch_queue> *_serialUtilityQueue;
-    SDRDiagnosticReporter *_symptomsReporter;
     NSObject<OS_os_log> *_logger;
-    ABCStats *_stats;
 }
 
 + (id)sharedDiagnosticsCollector;
-@property(retain) ABCStats *stats; // @synthesize stats=_stats;
 @property(retain) NSObject<OS_os_log> *logger; // @synthesize logger=_logger;
-@property(retain) SDRDiagnosticReporter *symptomsReporter; // @synthesize symptomsReporter=_symptomsReporter;
 @property(retain) NSObject<OS_dispatch_queue> *serialUtilityQueue; // @synthesize serialUtilityQueue=_serialUtilityQueue;
 - (void).cxx_destruct;
 - (void)collectTailspinForScenarioReport:(id)arg1 tailspinFileDescriptor:(int)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (void)tailspinCollectedForScenarioReport:(id)arg1 tailspinFilepath:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 
 @end
 

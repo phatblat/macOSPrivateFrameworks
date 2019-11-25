@@ -17,7 +17,10 @@
     long long _ivarQueue_status;
     double _ivarQueue_progress;
     NSError *_ivarQueue_error;
-    CDStruct_d0cf029a _ivarQueue_delegateFlags;
+    struct {
+        char respondsToProgressDidChange;
+        char respondsToStatusDidChange;
+    } _ivarQueue_delegateFlags;
     NSString *_temporaryFilesDirectory;
 }
 

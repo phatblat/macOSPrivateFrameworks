@@ -15,6 +15,9 @@
 + (id)syncChannel;
 + (id)communicatorChannel;
 + (id)admissionCheckChannel;
++ (id)dataCollectionChannel;
++ (id)contentProviderChannel;
++ (id)spotlightReceiverChannel;
 + (id)contextChannel;
 + (id)autoSUChannel;
 + (id)instrumentationChannel;

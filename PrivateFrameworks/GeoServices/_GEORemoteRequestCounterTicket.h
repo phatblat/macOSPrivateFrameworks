@@ -8,24 +8,28 @@
 
 #import "GEORequestCounterTicket.h"
 
-@class GEORequestCounterRemoteProxy, NSString;
+@class GEORequestCounterRemoteProxy, NSObject<OS_nw_activity>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface _GEORemoteRequestCounterTicket : NSObject <GEORequestCounterTicket>
 {
     unsigned char _type;
     NSString *_appId;
-    long long _requestId;
+    NSString *_requestId;
     GEORequestCounterRemoteProxy *_remoteProxy;
+    NSObject<OS_nw_activity> *_nwActivity;
+    BOOL _complete;
 }
 
-+ (id)requestCounterTicketForType:(unsigned char)arg1 appId:(id)arg2 requestId:(long long)arg3 remoteProxy:(id)arg4;
++ (id)requestCounterTicketForType:(unsigned char)arg1 appId:(id)arg2 remoteProxy:(id)arg3;
++ (id)requestCounterTicketForType:(unsigned char)arg1 appId:(id)arg2;
 - (void).cxx_destruct;
-- (void)requestCompletedWithResult:(unsigned char)arg1 mode:(unsigned char)arg2 xmitBytes:(long long)arg3 recvBytes:(long long)arg4;
+@property(readonly, copy) NSString *description;
+- (void)requestCompletedWithResult:(unsigned char)arg1 xmitBytes:(long long)arg2 recvBytes:(long long)arg3;
+- (void)startingRequestWithTask:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

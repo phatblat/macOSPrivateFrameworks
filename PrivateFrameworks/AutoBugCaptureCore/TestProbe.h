@@ -8,6 +8,7 @@
 
 @class NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, NSUUID;
 
+__attribute__((visibility("hidden")))
 @interface TestProbe : NSObject
 {
     BOOL _running;

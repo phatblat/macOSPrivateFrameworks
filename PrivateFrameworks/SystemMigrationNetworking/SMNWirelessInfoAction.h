@@ -19,10 +19,12 @@
 @property long long swapProcess; // @synthesize swapProcess=_swapProcess;
 @property(retain) NSSet *supportedChannels; // @synthesize supportedChannels=_supportedChannels;
 - (void).cxx_destruct;
+- (id)setOfClassesToDecodeInTheResult;
 - (BOOL)returnsData;
-- (BOOL)setResultFromData:(id)arg1;
+- (BOOL)setResultFromDict:(id)arg1;
 - (id)resultData;
 - (id)description;
+- (id)requestPayload;
 
 @end
 

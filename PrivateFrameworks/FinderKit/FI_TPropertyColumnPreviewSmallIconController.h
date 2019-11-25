@@ -6,20 +6,19 @@
 
 #import <FinderKit/FI_TPropertyImageViewController.h>
 
+#import "TDraggingSource.h"
 #import "TPropertyThumbnailExtractorDelegate.h"
 #import "TThumbnailExtractorDelegate.h"
 
 @class NSString;
 
 __attribute__((visibility("hidden")))
-@interface FI_TPropertyColumnPreviewSmallIconController : FI_TPropertyImageViewController <TPropertyThumbnailExtractorDelegate, TThumbnailExtractorDelegate>
+@interface FI_TPropertyColumnPreviewSmallIconController : FI_TPropertyImageViewController <TPropertyThumbnailExtractorDelegate, TDraggingSource, TThumbnailExtractorDelegate>
 {
     struct TFENodeVector _nodes;
-    struct unordered_map<TFENode, std::__1::unordered_set<TFENode, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<TFENode>>, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, std::__1::unordered_set<TFENode, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<TFENode>>>>> _thumbnailTargetNodesToNodesToThumbnail;
     unordered_set_931aff12 _pendingKeyNodes;
     TNSWeakPtr_a131d41e _pendingKeyNodesToken;
     _Bool _wantsToWaitForThumbnails;
-    struct TNotificationCenterObserver _rotateObserver;
     struct vector<TNotificationCenterObserver, std::__1::allocator<TNotificationCenterObserver>> _viewObservers;
     struct TKeyValueObserver _effectiveAppearanceObserver;
     TNSWeakPtr_a131d41e _updateAfterResizeToken;
@@ -32,19 +31,23 @@ __attribute__((visibility("hidden")))
 @property _Bool wantsToWaitForThumbnails; // @synthesize wantsToWaitForThumbnails=_wantsToWaitForThumbnails;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (id)dragFlockingImageComponentsForNode:(const struct TFENode *)arg1;
+- (unsigned long long)draggingSession:(id)arg1 sourceOperationMaskForDraggingContext:(long long)arg2;
+- (id)beginDraggingNodes:(const struct TFENodeVector *)arg1 mouseDownEvent:(id)arg2;
+- (void)draggingSession:(id)arg1 endedAtPoint:(struct CGPoint)arg2 operation:(unsigned long long)arg3;
+- (void)startDragInView:(id)arg1 withEvent:(id)arg2;
+- (_Bool)isAllowedToDragNodes:(const struct TFENodeVector *)arg1;
 - (void)waitForThumbnail:(const struct TFENode *)arg1;
 - (void)timesUpWaitingForThumbs;
 - (struct TFENode)thumbnailTargetNodeForNode:(const struct TFENode *)arg1;
 - (void)invalidateThumbnailForKeyNodes:(const struct TFENodeVector *)arg1;
 - (_Bool)fetchIconifiedThumbnails;
-- (void)configureThumbnailer:(double)arg1 andScaleFactor:(double)arg2;
+@property(readonly, nonatomic) vector_2129316b nodeToImageList;
+- (void)configureThumbnailer:(const struct TFENode *)arg1 iconSize:(double)arg2 scaleFactor:(double)arg3;
+@property(nonatomic) struct TFENode browserTargetNode;
 - (void)flushCachedValue;
 - (void)flush;
 - (void)updateWithNodes:(const struct TFENodeVector *)arg1;
-- (void)registerOrUnregisterWithThumbnailCache:(_Bool)arg1;
-- (void)unregisterWithThumbnailCache;
-- (void)registerWithThumbnailCache;
-- (struct TFENodeVector)thumbnailTargetNodes;
 - (id)thumbnailValueExtractor;
 - (void)imageViewEffectiveAppearanceChanged;
 - (void)imageViewBackingPropertiesChanged;

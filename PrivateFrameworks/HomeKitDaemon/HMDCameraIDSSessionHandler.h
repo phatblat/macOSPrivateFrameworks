@@ -10,12 +10,12 @@
 #import "HMFLogging.h"
 #import "IDSServiceDelegate.h"
 
-@class HMDCameraSessionID, IDSService, IDSSession, NSObject<OS_dispatch_queue>, NSString;
+@class HMDCameraStreamSessionID, IDSService, IDSSession, NSObject<OS_dispatch_queue>, NSString;
 
 @interface HMDCameraIDSSessionHandler : HMFObject <HMFLogging, IDSServiceDelegate, HMDCameraRemoteStreamProtocol>
 {
     NSObject<OS_dispatch_queue> *_workQueue;
-    HMDCameraSessionID *_sessionID;
+    HMDCameraStreamSessionID *_sessionID;
     IDSService *_idsStreamService;
     IDSSession *_idsSession;
 }
@@ -23,7 +23,7 @@
 + (id)logCategory;
 @property(retain, nonatomic) IDSSession *idsSession; // @synthesize idsSession=_idsSession;
 @property(readonly, nonatomic) IDSService *idsStreamService; // @synthesize idsStreamService=_idsStreamService;
-@property(readonly, nonatomic) HMDCameraSessionID *sessionID; // @synthesize sessionID=_sessionID;
+@property(readonly, nonatomic) HMDCameraStreamSessionID *sessionID; // @synthesize sessionID=_sessionID;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
 - (void).cxx_destruct;
 - (void)startKeepAlive;

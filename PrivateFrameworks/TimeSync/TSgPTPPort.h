@@ -18,6 +18,7 @@
     NSObject<OS_dispatch_queue> *_internalPropertyUpdateQueue;
     unsigned short _portNumber;
     int _portRole;
+    unsigned long long _clockIdentifier;
     NSObject<OS_dispatch_queue> *_propertyUpdateQueue;
 }
 
@@ -25,10 +26,15 @@
 + (id)diagnosticDescriptionForService:(unsigned int)arg1 withIndent:(id)arg2;
 + (id)gPTPPortWithService:(unsigned int)arg1;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *propertyUpdateQueue; // @synthesize propertyUpdateQueue=_propertyUpdateQueue;
+@property(nonatomic) unsigned long long clockIdentifier; // @synthesize clockIdentifier=_clockIdentifier;
 @property(nonatomic) int portRole; // @synthesize portRole=_portRole;
 @property(nonatomic) unsigned short portNumber; // @synthesize portNumber=_portNumber;
 - (void)dealloc;
+- (struct IONotificationPort *)_notificationPort;
+- (id)_portForNotification;
+- (id)_notificationQueue;
 @property(readonly, nonatomic) int portType; // @dynamic portType;
+- (unsigned long long)_clockIdentifier;
 - (int)_portRole;
 - (unsigned short)_portNumber;
 - (void)serviceTerminated;

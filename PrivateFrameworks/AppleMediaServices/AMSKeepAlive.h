@@ -6,23 +6,36 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSObject<OS_os_transaction>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface AMSKeepAlive : NSObject
 {
+    NSObject<OS_os_transaction> *_transaction;
+    NSString *_logKey;
     NSString *_name;
+    long long _style;
 }
 
-+ (void)interrupt;
-+ (void)removeKeepAliveForName:(id)arg1;
-+ (void)addKeepAliveForName:(id)arg1;
++ (void)_handleAssertionExpiration;
++ (void)_accessAssertionCache:(CDUnknownBlockType)arg1;
++ (void)keepAliveWithName:(id)arg1 style:(long long)arg2 block:(CDUnknownBlockType)arg3;
++ (id)keepAliveWithName:(id)arg1 style:(long long)arg2;
 + (id)keepAliveWithName:(id)arg1;
 + (id)keepAliveWithFormat:(id)arg1;
+@property(readonly) long long style; // @synthesize style=_style;
 @property(readonly) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
-- (id)description;
+- (void)_takeProcessAssertion;
+- (void)_takeOSTransaction;
+- (void)_startLogTimer;
+- (void)_removeProcessAssertion;
+- (void)_removeOSTransaction;
+- (id)_cacheKey;
+- (id)_assertionName;
+- (void)invalidate;
 - (void)dealloc;
+- (id)initWithName:(id)arg1 style:(long long)arg2;
 - (id)initWithName:(id)arg1;
 
 @end

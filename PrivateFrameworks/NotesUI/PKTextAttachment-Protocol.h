@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
-@class PKDrawing;
+@class NSView<PKTextAttachmentView>, PKDrawing;
 
 @protocol PKTextAttachment <NSObject>
 
 @optional
 - (void)resetZoom;
 - (void)drawingDataDidChange:(PKDrawing *)arg1;
+- (void)drawingDataDidChange:(PKDrawing *)arg1 view:(NSView<PKTextAttachmentView> *)arg2;
 @end
 

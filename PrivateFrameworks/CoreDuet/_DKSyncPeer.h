@@ -6,23 +6,29 @@
 
 #import "NSObject.h"
 
-@class NSString, NSUUID;
+@class NSDate, NSString, NSUUID;
 
 @interface _DKSyncPeer : NSObject
 {
+    BOOL _companion;
     BOOL _me;
     NSString *_sourceDeviceID;
     NSString *_idsDeviceIdentifier;
     NSString *_zoneName;
+    NSDate *_lastSeenDate;
     NSString *_name;
     NSString *_model;
+    NSString *_version;
     NSUUID *_uuid;
 }
 
 @property(copy, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
 @property(nonatomic) BOOL me; // @synthesize me=_me;
+@property(copy, nonatomic) NSString *version; // @synthesize version=_version;
+@property(nonatomic, getter=isCompanion) BOOL companion; // @synthesize companion=_companion;
 @property(copy, nonatomic) NSString *model; // @synthesize model=_model;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
+@property(copy, nonatomic) NSDate *lastSeenDate; // @synthesize lastSeenDate=_lastSeenDate;
 @property(copy, nonatomic) NSString *zoneName; // @synthesize zoneName=_zoneName;
 @property(copy, nonatomic) NSString *idsDeviceIdentifier; // @synthesize idsDeviceIdentifier=_idsDeviceIdentifier;
 @property(copy, nonatomic) NSString *sourceDeviceID; // @synthesize sourceDeviceID=_sourceDeviceID;

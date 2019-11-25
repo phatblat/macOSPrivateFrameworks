@@ -47,7 +47,7 @@
 @property(readonly, nonatomic) __weak HMDHome *home; // @synthesize home=_home;
 @property(readonly, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
 @property(retain, nonatomic) NSString *configuredName; // @synthesize configuredName=_configuredName;
-@property(retain, nonatomic) NSString *name; // @synthesize name=_name;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 @property(readonly, copy) NSSet *messageReceiverChildren;
 - (id)modelObjectWithChangeType:(unsigned long long)arg1;
@@ -68,14 +68,15 @@
 @property(retain, nonatomic) HMDApplicationData *appData; // @synthesize appData=_appData;
 @property(retain, nonatomic) HMDMediaSession *mediaSession; // @synthesize mediaSession=_mediaSession;
 @property(readonly, nonatomic) NSArray *accessories;
-@property(retain, nonatomic) NSArray *components; // @synthesize components=_components;
+@property(copy, nonatomic) NSArray *components; // @synthesize components=_components;
 - (id)serialize;
 - (void)handleRemovedAccessory:(id)arg1;
-- (void)handleHomeDataFetchedNotification:(id)arg1;
+- (void)handleHomeCloudZoneReadyNotification:(id)arg1;
 - (void)_updateAppData:(id)arg1;
 - (void)_handleAppData:(id)arg1;
 - (void)_updateMediaSystem:(id)arg1;
 - (void)_handleUpdateMediaSystem:(id)arg1;
+- (void)_registerForNotifications;
 - (void)_registerForMessages;
 - (void)timerDidFire:(id)arg1;
 - (void)auditMediaComponents;

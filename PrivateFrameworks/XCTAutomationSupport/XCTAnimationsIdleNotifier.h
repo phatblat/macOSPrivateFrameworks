@@ -6,16 +6,30 @@
 
 #import "NSObject.h"
 
-@interface XCTAnimationsIdleNotifier : NSObject
+#import "XCTCapabilitiesProviding.h"
+
+@class NSString;
+
+@interface XCTAnimationsIdleNotifier : NSObject <XCTCapabilitiesProviding>
 {
 }
 
 + (void)addAnimationIdleHandler:(CDUnknownBlockType)arg1;
 + (void)handleAnimationsIdle;
++ (BOOL)isAnimationInProgress;
 + (void)animationDidStop;
 + (void)animationDidStart;
++ (BOOL)swizzleUIViewAnimationStateMethodsWithError:(id *)arg1;
++ (void)provideCapabilitiesToBuilder:(id)arg1;
++ (BOOL)supportsAnimationsIdleNotification;
 + (void)initialize;
 - (void)notifyWhenIdle:(CDUnknownBlockType)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

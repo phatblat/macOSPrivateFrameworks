@@ -14,8 +14,8 @@
 {
     unsigned short _port;
     NSArray *_resourceURLs;
-    id _serverIdentity;
-    NSArray *_trustedAnchorCertificates;
+    id <CRKIdentity> _serverIdentity;
+    NSArray *_trustedCertificates;
     unsigned long long _maximumAllowedDownloads;
     NSObject<CRKIPAddressProviding> *_IPAddressProvider;
 }
@@ -23,12 +23,13 @@
 @property(retain, nonatomic) NSObject<CRKIPAddressProviding> *IPAddressProvider; // @synthesize IPAddressProvider=_IPAddressProvider;
 @property(nonatomic) unsigned short port; // @synthesize port=_port;
 @property(nonatomic) unsigned long long maximumAllowedDownloads; // @synthesize maximumAllowedDownloads=_maximumAllowedDownloads;
-@property(readonly, copy, nonatomic) NSArray *trustedAnchorCertificates; // @synthesize trustedAnchorCertificates=_trustedAnchorCertificates;
-@property(readonly, nonatomic) id serverIdentity; // @synthesize serverIdentity=_serverIdentity;
+@property(readonly, copy, nonatomic) NSArray *trustedCertificates; // @synthesize trustedCertificates=_trustedCertificates;
+@property(readonly, nonatomic) id <CRKIdentity> serverIdentity; // @synthesize serverIdentity=_serverIdentity;
 @property(readonly, copy, nonatomic) NSArray *resourceURLs; // @synthesize resourceURLs=_resourceURLs;
 - (void).cxx_destruct;
-- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithResourceURLs:(id)arg1 serverIdentity:(id)arg2 trustedAnchorCertificates:(id)arg3;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)initWithResourceURLs:(id)arg1 serverIdentity:(id)arg2 trustedCertificates:(id)arg3;
 
 @end
 

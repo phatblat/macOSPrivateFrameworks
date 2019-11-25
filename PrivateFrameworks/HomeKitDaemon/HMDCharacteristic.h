@@ -14,6 +14,7 @@
 
 @interface HMDCharacteristic : HMFObject <HMDBulletinIdentifiers, NSSecureCoding, HMFDumpState>
 {
+    id <HMFLocking> _lock;
     BOOL _broadcastNotificationEnabled;
     BOOL _notificationRegisteredWithRemoteGateway;
     NSSet *_hapCharacteristicTuples;
@@ -33,6 +34,7 @@
 
 + (BOOL)supportsSecureCoding;
 + (BOOL)value:(id)arg1 differentThan:(id)arg2;
++ (CDUnknownBlockType)sortComparatorForCharacteristicDictionary;
 @property(nonatomic) BOOL notificationRegisteredWithRemoteGateway; // @synthesize notificationRegisteredWithRemoteGateway=_notificationRegisteredWithRemoteGateway;
 @property(retain, nonatomic) NSDate *notificationEnabledTime; // @synthesize notificationEnabledTime=_notificationEnabledTime;
 @property(retain, nonatomic) NSMutableSet *notificationRegistrations; // @synthesize notificationRegistrations=_notificationRegistrations;
@@ -59,6 +61,7 @@
 - (BOOL)isNonHomeNotificationsEnabled;
 - (BOOL)isClientNotificationEnabled;
 - (BOOL)isNotificationEnabled;
+- (BOOL)supportsWrite;
 - (BOOL)supportsRead;
 - (BOOL)supportsNotification;
 - (id)validateValue:(id)arg1 outValue:(id *)arg2;
@@ -75,7 +78,6 @@
 @property(readonly, copy, nonatomic) NSString *type;
 - (void)unconfigureForServerIdentifier:(id)arg1 linkType:(long long)arg2;
 - (void)unconfigure;
-- (id)initWithCharacteristic:(id)arg1 service:(id)arg2 accessory:(id)arg3;
 - (void)configureWithCharacteristic:(id)arg1;
 - (id)getCharacteristicDictionary;
 - (BOOL)updateWithDictionary:(id)arg1;
@@ -84,8 +86,10 @@
 - (id)dumpState;
 - (id)characteristicTypeDescription;
 - (id)shortTypeDescription;
-@property(readonly, copy) NSString *description;
 @property(retain, nonatomic) NSSet *hapCharacteristicTuples; // @synthesize hapCharacteristicTuples=_hapCharacteristicTuples;
+@property(readonly, copy) NSString *description;
+- (id)initWithCharacteristic:(id)arg1 service:(id)arg2 accessory:(id)arg3;
+- (id)init;
 @property(readonly, nonatomic) NSDictionary *bulletinContext;
 @property(readonly, copy, nonatomic) NSUUID *contextSPIUniqueIdentifier;
 @property(readonly, copy, nonatomic) NSString *contextID;

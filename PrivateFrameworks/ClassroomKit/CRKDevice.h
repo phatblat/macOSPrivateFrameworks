@@ -9,16 +9,18 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSArray, NSDate, NSDictionary, NSString;
+@class NSArray, NSDictionary, NSString;
 
 @interface CRKDevice : NSObject <NSSecureCoding, NSCopying>
 {
     BOOL _supervised;
     BOOL _ephemeralMultiUser;
-    BOOL _orientationLocked;
+    BOOL _screenSaverActive;
+    BOOL _muted;
     BOOL _appLocked;
     BOOL _passcodeEnabled;
     BOOL _requestingUnenroll;
+    BOOL _orientationLocked;
     float _batteryLevel;
     float _volume;
     float _displayBackingScaleFactor;
@@ -38,13 +40,11 @@
     unsigned long long _availableBytes;
     unsigned long long _deviceOrientation;
     unsigned long long _interfaceOrientation;
-    NSDate *_internetDateAndTime;
-    double _uptimeAtInternetDateAndTimeFetch;
+    NSArray *_displays;
     NSString *_primaryOpenApplication;
     NSString *_secondaryOpenApplication;
-    NSString *_pipOpenApplication;
     NSArray *_allOpenApplications;
-    NSArray *_installedApplications;
+    NSArray *_installedApplicationInfo;
     NSString *_stagedAdHocIdentityCertificateFingerprint;
     NSArray *_trustedAnchorCertificateFingerprints;
     NSString *_userIdentifier;
@@ -57,19 +57,24 @@
     unsigned long long _loginState;
     NSString *_studentImageIdentifier;
     NSString *_instructorImageIdentifier;
+    NSString *_currentLocaleIdentifier;
     NSDictionary *_activeAirPlayRoute;
     NSArray *_availableAirPlayRoutes;
     NSString *_managementLockPasscode;
+    NSString *_pipOpenApplication;
 }
 
-+ (id)bootDate;
++ (id)applicationInfoFromBundleIdentifiers:(id)arg1;
 + (BOOL)supportsSecureCoding;
 + (id)allPropertyKeys;
 + (id)CRKKeyForDMFKey:(id)arg1;
 + (id)keyTranslations;
+@property(copy, nonatomic) NSString *pipOpenApplication; // @synthesize pipOpenApplication=_pipOpenApplication;
+@property(nonatomic, getter=isOrientationLocked) BOOL orientationLocked; // @synthesize orientationLocked=_orientationLocked;
 @property(copy, nonatomic) NSString *managementLockPasscode; // @synthesize managementLockPasscode=_managementLockPasscode;
 @property(copy, nonatomic) NSArray *availableAirPlayRoutes; // @synthesize availableAirPlayRoutes=_availableAirPlayRoutes;
 @property(copy, nonatomic) NSDictionary *activeAirPlayRoute; // @synthesize activeAirPlayRoute=_activeAirPlayRoute;
+@property(copy, nonatomic) NSString *currentLocaleIdentifier; // @synthesize currentLocaleIdentifier=_currentLocaleIdentifier;
 @property(nonatomic, getter=isRequestingUnenroll) BOOL requestingUnenroll; // @synthesize requestingUnenroll=_requestingUnenroll;
 @property(copy, nonatomic) NSString *instructorImageIdentifier; // @synthesize instructorImageIdentifier=_instructorImageIdentifier;
 @property(copy, nonatomic) NSString *studentImageIdentifier; // @synthesize studentImageIdentifier=_studentImageIdentifier;
@@ -84,22 +89,21 @@
 @property(copy, nonatomic) NSString *userIdentifier; // @synthesize userIdentifier=_userIdentifier;
 @property(copy, nonatomic) NSArray *trustedAnchorCertificateFingerprints; // @synthesize trustedAnchorCertificateFingerprints=_trustedAnchorCertificateFingerprints;
 @property(copy, nonatomic) NSString *stagedAdHocIdentityCertificateFingerprint; // @synthesize stagedAdHocIdentityCertificateFingerprint=_stagedAdHocIdentityCertificateFingerprint;
-@property(copy, nonatomic) NSArray *installedApplications; // @synthesize installedApplications=_installedApplications;
+@property(copy, nonatomic) NSArray *installedApplicationInfo; // @synthesize installedApplicationInfo=_installedApplicationInfo;
 @property(nonatomic, getter=isAppLocked) BOOL appLocked; // @synthesize appLocked=_appLocked;
 @property(copy, nonatomic) NSArray *allOpenApplications; // @synthesize allOpenApplications=_allOpenApplications;
-@property(copy, nonatomic) NSString *pipOpenApplication; // @synthesize pipOpenApplication=_pipOpenApplication;
 @property(copy, nonatomic) NSString *secondaryOpenApplication; // @synthesize secondaryOpenApplication=_secondaryOpenApplication;
 @property(copy, nonatomic) NSString *primaryOpenApplication; // @synthesize primaryOpenApplication=_primaryOpenApplication;
-@property(nonatomic) double uptimeAtInternetDateAndTimeFetch; // @synthesize uptimeAtInternetDateAndTimeFetch=_uptimeAtInternetDateAndTimeFetch;
-@property(retain, nonatomic) NSDate *internetDateAndTime; // @synthesize internetDateAndTime=_internetDateAndTime;
 @property(nonatomic) float displayHeight; // @synthesize displayHeight=_displayHeight;
 @property(nonatomic) float displayWidth; // @synthesize displayWidth=_displayWidth;
 @property(nonatomic) float displayBackingScaleFactor; // @synthesize displayBackingScaleFactor=_displayBackingScaleFactor;
-@property(nonatomic, getter=isOrientationLocked) BOOL orientationLocked; // @synthesize orientationLocked=_orientationLocked;
+@property(copy, nonatomic) NSArray *displays; // @synthesize displays=_displays;
 @property(nonatomic) unsigned long long interfaceOrientation; // @synthesize interfaceOrientation=_interfaceOrientation;
 @property(nonatomic) unsigned long long deviceOrientation; // @synthesize deviceOrientation=_deviceOrientation;
 @property(nonatomic) unsigned long long availableBytes; // @synthesize availableBytes=_availableBytes;
+@property(nonatomic, getter=isMuted) BOOL muted; // @synthesize muted=_muted;
 @property(nonatomic) float volume; // @synthesize volume=_volume;
+@property(nonatomic, getter=isScreenSaverActive) BOOL screenSaverActive; // @synthesize screenSaverActive=_screenSaverActive;
 @property(nonatomic) unsigned long long screenState; // @synthesize screenState=_screenState;
 @property(nonatomic) unsigned long long lockState; // @synthesize lockState=_lockState;
 @property(nonatomic) unsigned long long chargingState; // @synthesize chargingState=_chargingState;
@@ -124,9 +128,10 @@
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)description;
-- (id)initWithIdentifier:(id)arg1;
 - (BOOL)isApplicationInstalled:(id)arg1;
 - (BOOL)isApplicationOpen:(id)arg1;
+@property(copy, nonatomic) NSArray *installedApplications;
+- (id)initWithIdentifier:(id)arg1;
 
 @end
 

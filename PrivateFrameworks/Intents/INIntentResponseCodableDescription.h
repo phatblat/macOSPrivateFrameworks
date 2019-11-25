@@ -4,21 +4,32 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <Intents/INCodableDescription.h>
+#import <Intents/INRootCodableDescription.h>
 
-@class NSArray, NSMutableDictionary;
+@class INCodableAttribute, NSArray, NSMutableDictionary, NSString;
 
-@interface INIntentResponseCodableDescription : INCodableDescription
+@interface INIntentResponseCodableDescription : INRootCodableDescription
 {
     NSMutableDictionary *_intentResponseCodableCodes;
+    NSString *_outputAttributeName;
+    NSString *_attributeKeyPrefix;
+    NSString *_attributesKeyPrefix;
     NSArray *_responseCodes;
 }
 
 + (BOOL)supportsSecureCoding;
 @property(copy, nonatomic) NSArray *responseCodes; // @synthesize responseCodes=_responseCodes;
+@property(retain, nonatomic, setter=_setOutputAttributeName:) NSString *_outputAttributeName; // @synthesize _outputAttributeName;
 - (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (id)dictionaryRepresentationForLanguage:(id)arg1;
+- (void)updateWithDictionary:(id)arg1;
+- (id)_attributesKeyPrefix;
+- (id)_attributeKeyPrefix;
+- (id)keyPrefix;
+- (id)_ignoredAttributeTags;
+@property(readonly, nonatomic) INCodableAttribute *outputAttribute;
 - (id)attributes;
 - (id)intentResponseCodeWithCode:(long long)arg1;
 

@@ -6,25 +6,23 @@
 
 #import "NSPopover.h"
 
-@class NSWindow, SidecarRequest;
+@class SidecarRequest;
 
 @interface SidecarPopover : NSPopover
 {
     SidecarRequest *_request;
-    unsigned int _isModal:1;
 }
 
 + (id)sidecarPopoverWithRequest:(id)arg1;
 - (void).cxx_destruct;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)stop:(id)arg1;
 - (long long)runModal;
-- (void)_stopRequestObserver;
-- (void)_startRequestObserver;
+- (void)popoverWillClose:(id)arg1;
+- (void)performClose:(id)arg1;
+- (void)cancelOperation:(id)arg1;
+- (void)cancel:(id)arg1;
 - (void)_stopEventMonitor:(id)arg1;
 - (id)_startEventMonitor;
-@property(readonly) NSWindow *window;
-- (void)dealloc;
+- (id)window;
 - (id)initWithRequest:(id)arg1;
 
 @end

@@ -12,6 +12,7 @@
 
 @class NSObject<OS_dispatch_io>, NSObject<OS_dispatch_queue>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface TSUFileIOChannel : NSObject <TSUReadChannel, TSUStreamWriteChannel, TSURandomWriteChannel>
 {
     NSObject<OS_dispatch_queue> *_ioQueue;

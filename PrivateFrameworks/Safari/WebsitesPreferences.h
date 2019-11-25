@@ -50,8 +50,12 @@ __attribute__((visibility("hidden")))
     NSButton *_allowPromptingForNotificationsCheckbox;
     NSLayoutConstraint *_tableContainerWidth;
     NSTextField *_whenVisitingOtherWebsitesPreferenceLabel;
+    NSBox *_preferencesBorderBox;
+    NSBox *_notificationsPolicyBorderBox;
 }
 
+@property(nonatomic) __weak NSBox *notificationsPolicyBorderBox; // @synthesize notificationsPolicyBorderBox=_notificationsPolicyBorderBox;
+@property(nonatomic) __weak NSBox *preferencesBorderBox; // @synthesize preferencesBorderBox=_preferencesBorderBox;
 @property(nonatomic) __weak NSTextField *whenVisitingOtherWebsitesPreferenceLabel; // @synthesize whenVisitingOtherWebsitesPreferenceLabel=_whenVisitingOtherWebsitesPreferenceLabel;
 @property(retain, nonatomic) NSLayoutConstraint *tableContainerWidth; // @synthesize tableContainerWidth=_tableContainerWidth;
 @property(retain, nonatomic) NSButton *allowPromptingForNotificationsCheckbox; // @synthesize allowPromptingForNotificationsCheckbox=_allowPromptingForNotificationsCheckbox;
@@ -100,6 +104,7 @@ __attribute__((visibility("hidden")))
 - (id)_domainsForCurrentlyOpenTabs;
 - (void)_getCurrentlyOpenAndConfiguredDomainsForPreference:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (double)_bestWidthOfPreferenceContent;
+- (id)_selectedRowsAfterRestoringPreviousSelection:(id)arg1;
 - (void)_updatePolicies;
 - (void)_updateTableContainerWidth;
 - (void)_updatePreferencePaneForSelectedPreference;
@@ -127,7 +132,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)tableView:(id)arg1 isGroupRow:(long long)arg2;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
-- (id)helpAnchor;
+- (id)safariHelpAnchor;
 - (void)_showWebsitesPreferences;
 - (void)openPreference:(id)arg1;
 - (void)clearSelectedPreferenceValues:(id)arg1;

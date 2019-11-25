@@ -9,6 +9,8 @@
 @class CNContactStore, CNUIIDSContactPropertyResolver;
 
 @protocol CNUIUserActionDiscoveringEnvironment <NSObject>
+@property(readonly, nonatomic) id <CNUIUserActionTargetDiscovering> targetDiscoveringHelper;
+@property(readonly, nonatomic) id <CNUIRTTUtilities> ttyUtilities;
 @property(readonly, nonatomic) id <CNUIDefaultUserActionFetcher> defaultUserActionFetcher;
 @property(readonly, nonatomic) id <CNSchedulerProvider> highLatencySchedulerProvider;
 @property(readonly, nonatomic) id <CNSchedulerProvider> schedulerProvider;

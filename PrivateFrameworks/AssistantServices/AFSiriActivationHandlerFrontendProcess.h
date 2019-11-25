@@ -6,16 +6,19 @@
 
 #import "NSObject.h"
 
+#import "AFNotifyObserverDelegate.h"
 #import "AFSiriActivationHandling.h"
 
-@class AFSiriActivationConnection, NSString;
+@class AFSiriActivationConnection, NSObject<OS_dispatch_queue>, NSString;
 
-@interface AFSiriActivationHandlerFrontendProcess : NSObject <AFSiriActivationHandling>
+@interface AFSiriActivationHandlerFrontendProcess : NSObject <AFNotifyObserverDelegate, AFSiriActivationHandling>
 {
+    NSObject<OS_dispatch_queue> *_queue;
     AFSiriActivationConnection *_connection;
 }
 
 - (void).cxx_destruct;
+- (void)notifyObserver:(id)arg1 didChangeStateFrom:(unsigned long long)arg2 to:(unsigned long long)arg3;
 - (BOOL)handleContext:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)initWithConnection:(id)arg1;
 - (id)init;

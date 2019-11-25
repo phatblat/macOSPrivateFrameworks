@@ -27,12 +27,15 @@
     BOOL _completed;
     BOOL _missedPickup;
     BOOL _outstanding;
+    BOOL __encodeLegacyGloryData;
     _INPBUserActivity *_completionUserActivity;
     NSArray *_defaultTippingOptions;
     _INPBCurrencyAmountValue *_paymentAmount;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)defaultTippingOptionsType;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(retain, nonatomic) _INPBCurrencyAmountValue *paymentAmount; // @synthesize paymentAmount=_paymentAmount;
 @property(nonatomic) BOOL outstanding; // @synthesize outstanding=_outstanding;
 @property(nonatomic) BOOL missedPickup; // @synthesize missedPickup=_missedPickup;
@@ -46,6 +49,9 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (void)dealloc;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(readonly, nonatomic) BOOL hasPaymentAmount;

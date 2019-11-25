@@ -6,25 +6,51 @@
 
 #import <FileProvider/FPActionOperation.h>
 
-@class NSArray, NSFileCoordinator, NSMutableSet, NSObject<OS_dispatch_source>;
+#import "FPDaemonActionOperationClient.h"
 
-@interface FPDownloadOperation : FPActionOperation
+@class FPDownloadInfo, NSArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_source>, NSObservation;
+
+@interface FPDownloadOperation : FPActionOperation <FPDaemonActionOperationClient>
 {
     NSArray *_items;
-    NSMutableSet *_itemsPendingCoordination;
+    FPDownloadInfo *_info;
+    NSMutableSet *_itemsPendingDownload;
     NSObject<OS_dispatch_source> *_stitchingTimer;
-    NSFileCoordinator *_fileCoordinator;
+    id <NSXPCProxyCreating><FPDaemonActionOperation> _remoteMoveOperation;
+    NSMutableDictionary *_progressByRoot;
+    NSObservation *_observation;
+    NSMutableDictionary *_childProxies;
+    NSMutableDictionary *_globalChildProxies;
+    BOOL _recursively;
     CDUnknownBlockType _downloadCompletionBlock;
+    CDUnknownBlockType __t_patchActionOperationInfo;
 }
 
+@property(copy, nonatomic) CDUnknownBlockType _t_patchActionOperationInfo; // @synthesize _t_patchActionOperationInfo=__t_patchActionOperationInfo;
 @property(copy, nonatomic) CDUnknownBlockType downloadCompletionBlock; // @synthesize downloadCompletionBlock=_downloadCompletionBlock;
+@property(nonatomic) BOOL recursively; // @synthesize recursively=_recursively;
 - (void).cxx_destruct;
-- (void)presendNotifications;
+- (void)_retrieveChildProgressForItem:(id)arg1 childProxies:(id)arg2 parentSetup:(CDUnknownBlockType)arg3;
+- (void)_removeProgressWithItemID:(id)arg1;
+- (void)_updateGlobalParentProgressForItem:(id)arg1;
+- (void)_updateParentProgressForItem:(id)arg1;
+- (void)_setupParentProgress;
+- (void)_updateProgressWithUpdatedFileCountForItem:(id)arg1;
 - (void)showItemsAsDownloadingEvenIfDownloaded:(BOOL)arg1;
+- (void)_runWithRemoteOperation:(id)arg1;
+- (void)remoteOperationProgressesAreReady;
+- (void)remoteOperationFinishedSendingPastUpdates;
+- (void)remoteOperationCreatedRoot:(id)arg1 resultingItem:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)remoteOperationCompletedRoot:(id)arg1 resultingItem:(id)arg2 error:(id)arg3 completion:(CDUnknownBlockType)arg4;
+- (id)initWithRemoteOperation:(id)arg1 info:(id)arg2;
 - (void)finishWithResult:(id)arg1 error:(id)arg2;
-- (oneway void)cancel;
-- (void)main;
+- (void)completedWithResult:(id)arg1 error:(id)arg2;
+- (void)_completedWithResultsByRoot:(id)arg1 errorsByRoot:(id)arg2 error:(id)arg3;
+- (void)actionMain;
+- (id)fp_prettyDescription;
+- (void)presendNotifications;
 - (id)initWithItems:(id)arg1;
+- (void)_recomputeDownloadInfoIfNecessary;
 
 @end
 

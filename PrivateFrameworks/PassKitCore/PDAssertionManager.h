@@ -20,6 +20,8 @@
 }
 
 - (void).cxx_destruct;
+- (id)_processNameWithPID:(int)arg1;
+- (id)_coordinatorsBundleIdentifier;
 - (void)_removeAllAssertionCoordinators;
 - (void)_removeAssertionCoordinator:(id)arg1;
 - (void)_addAssertionCoordinator:(id)arg1 forProcessIdentifier:(id)arg2;
@@ -32,6 +34,8 @@
 - (BOOL)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
 - (void)dealloc;
 - (id)init;
+- (void)invalidateAssertionOfType:(unsigned long long)arg1 withIdentifier:(id)arg2 handler:(CDUnknownBlockType)arg3;
+- (void)acquireAssertionOfType:(unsigned long long)arg1 withIdentifier:(id)arg2 reason:(id)arg3 handler:(CDUnknownBlockType)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

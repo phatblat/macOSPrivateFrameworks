@@ -15,36 +15,32 @@
     double _screenTime;
     NSDateInterval *_longestSession;
     NSArray *_categoryUsage;
-    NSDictionary *_userNotificationsByBundleIdentifier;
-    NSDictionary *_pickupsByBundleIdentifier;
     unsigned long long _pickupsWithoutApplicationUsage;
     NSDate *_firstPickup;
     NSDateInterval *_interval;
     NSTimeZone *_timeZone;
     NSDate *_lastEventDate;
-    unsigned long long _deviceUnlocks;
-    unsigned long long _screenWakes;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(readonly) unsigned long long screenWakes; // @synthesize screenWakes=_screenWakes;
-@property(readonly) unsigned long long deviceUnlocks; // @synthesize deviceUnlocks=_deviceUnlocks;
-@property(readonly) NSDate *lastEventDate; // @synthesize lastEventDate=_lastEventDate;
-@property(readonly) NSTimeZone *timeZone; // @synthesize timeZone=_timeZone;
-@property(readonly) NSDateInterval *interval; // @synthesize interval=_interval;
-@property(readonly) NSDate *firstPickup; // @synthesize firstPickup=_firstPickup;
+@property(readonly, copy) NSDate *lastEventDate; // @synthesize lastEventDate=_lastEventDate;
+@property(readonly, copy) NSTimeZone *timeZone; // @synthesize timeZone=_timeZone;
+@property(readonly, copy) NSDateInterval *interval; // @synthesize interval=_interval;
+@property(readonly, copy) NSDate *firstPickup; // @synthesize firstPickup=_firstPickup;
 @property(readonly) unsigned long long pickupsWithoutApplicationUsage; // @synthesize pickupsWithoutApplicationUsage=_pickupsWithoutApplicationUsage;
-@property(readonly, copy) NSDictionary *pickupsByBundleIdentifier; // @synthesize pickupsByBundleIdentifier=_pickupsByBundleIdentifier;
-@property(readonly, copy) NSDictionary *userNotificationsByBundleIdentifier; // @synthesize userNotificationsByBundleIdentifier=_userNotificationsByBundleIdentifier;
 @property(readonly, copy) NSArray *categoryUsage; // @synthesize categoryUsage=_categoryUsage;
-@property(readonly) NSDateInterval *longestSession; // @synthesize longestSession=_longestSession;
+@property(readonly, copy) NSDateInterval *longestSession; // @synthesize longestSession=_longestSession;
 @property(readonly) double screenTime; // @synthesize screenTime=_screenTime;
 - (void).cxx_destruct;
 - (id)description;
+@property(readonly, copy) NSDictionary *pickupsByBundleIdentifier;
+@property(readonly, copy) NSDictionary *userNotificationsByBundleIdentifier;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)_usUsageReportCommonInitWithScreenTime:(double)arg1 longestSession:(id)arg2 categoryUsage:(id)arg3 deviceUnlocks:(unsigned long long)arg4 screenWakes:(unsigned long long)arg5 notifications:(id)arg6 pickupsByBundleIdentifier:(id)arg7 pickupsWithoutApplicationUsage:(unsigned long long)arg8 firstPickup:(id)arg9 interval:(id)arg10 timeZone:(id)arg11 lastEventDate:(id)arg12;
-- (id)initWithScreenTime:(double)arg1 longestSession:(id)arg2 categoryUsage:(id)arg3 deviceUnlocks:(unsigned long long)arg4 screenWakes:(unsigned long long)arg5 notifications:(id)arg6 pickupsByBundleIdentifier:(id)arg7 pickupsWithoutApplicationUsage:(unsigned long long)arg8 firstPickup:(id)arg9 interval:(id)arg10 timeZone:(id)arg11 lastEventDate:(id)arg12;
+- (void)_usUsageReportCommonInitWithScreenTime:(double)arg1 longestSession:(id)arg2 categoryUsage:(id)arg3 pickupsWithoutApplicationUsage:(unsigned long long)arg4 firstPickup:(id)arg5 interval:(id)arg6 timeZone:(id)arg7 lastEventDate:(id)arg8;
+- (id)initWithScreenTime:(double)arg1 longestSession:(id)arg2 categoryUsage:(id)arg3 pickupsWithoutApplicationUsage:(unsigned long long)arg4 firstPickup:(id)arg5 interval:(id)arg6 timeZone:(id)arg7 lastEventDate:(id)arg8;
+- (id)_addNotifications:(id)arg1 andPickups:(id)arg2 toApplicationUsageInCategoryUsage:(id)arg3;
+- (id)initWithScreenTime:(double)arg1 longestSession:(id)arg2 categoryUsage:(id)arg3 notifications:(id)arg4 pickupsByBundleIdentifier:(id)arg5 pickupsWithoutApplicationUsage:(unsigned long long)arg6 firstPickup:(id)arg7 interval:(id)arg8 timeZone:(id)arg9 lastEventDate:(id)arg10;
 
 @end
 

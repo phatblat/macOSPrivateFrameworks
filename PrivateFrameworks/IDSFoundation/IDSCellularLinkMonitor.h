@@ -13,7 +13,7 @@
     BOOL _dataUsable;
     NSString *_dataIndicator;
     NSString *_cellularDataInterfaceName;
-    unsigned long long _radioAccessTechnology;
+    unsigned int _radioAccessTechnology;
     unsigned int _cellularMTU;
     NSHashTable *_cellularLinkDelegates;
     NSMutableDictionary *_notificationRegInfo;
@@ -29,13 +29,13 @@
 - (void)removePacketNotificationFilter;
 @property(readonly) BOOL dataUsable; // @synthesize dataUsable=_dataUsable;
 @property(readonly) unsigned int cellularMTU; // @synthesize cellularMTU=_cellularMTU;
-@property(readonly) unsigned long long radioAccessTechnology; // @synthesize radioAccessTechnology=_radioAccessTechnology;
+@property(readonly) unsigned int radioAccessTechnology; // @synthesize radioAccessTechnology=_radioAccessTechnology;
 @property(readonly) NSString *cellularDataInterfaceName; // @synthesize cellularDataInterfaceName=_cellularDataInterfaceName;
 - (void)reset;
 - (void)_updateDataStatus;
 - (BOOL)_updateCellularMTU;
 - (BOOL)_updateRadioAccessTechnology;
-- (BOOL)_updateCellularDataInterface;
+- (BOOL)_updateCellularDataInterface:(BOOL)arg1;
 - (void)_setupCTServerConnection;
 - (void)removeCellularLinkDelegate:(id)arg1;
 - (void)addCellularLinkDelegate:(id)arg1;

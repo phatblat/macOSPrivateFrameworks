@@ -6,7 +6,7 @@
 
 #import "EKProtocolObject.h"
 
-@class NSColor, NSSet, NSString, NSURL;
+@class NSSet, NSString, NSURL;
 
 @protocol CalendarModelProtocol <EKProtocolObject>
 @property(readonly, nonatomic) NSSet *defaultAlarmsForAllDayEvents;
@@ -22,6 +22,7 @@
 @property(readonly, nonatomic) NSString *defaultOrganizerNameForNewItems;
 @property(readonly, nonatomic) NSSet *sharedOwnerAddresses;
 @property(readonly, nonatomic) NSString *sharedOwnerAddress;
+@property(readonly, nonatomic) BOOL isAffectingAvailability;
 @property(readonly, nonatomic) BOOL isDistinguishedExchangeCalendar;
 @property(readonly, nonatomic) BOOL isDefaultSchedulingCalendar;
 @property(readonly, nonatomic) NSString *sharedOwnerName;
@@ -38,6 +39,7 @@
 @property(readonly, nonatomic) BOOL isFacebookBirthdayCalendar;
 @property(readonly, nonatomic) BOOL isBirthday;
 @property(readonly, nonatomic) BOOL cachedHasSharees;
+@property(readonly) long long maxAttendees;
 @property(readonly) BOOL isMarkedImmutableSharees;
 @property(readonly) BOOL isMarkedUndeletable;
 @property(readonly, nonatomic) BOOL isFamilyCalendar;
@@ -52,10 +54,9 @@
 - (BOOL)suppressEventSchedulingNotifications;
 - (NSSet *)alarms;
 - (NSSet *)sharees;
-- (BOOL)isAffectingAvailability;
 - (BOOL)isColorEditable;
 - (BOOL)isRenameable;
-- (NSColor *)color;
+- (NSString *)color;
 - (int)displayOrder;
 - (NSString *)title;
 @end

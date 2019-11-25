@@ -13,21 +13,22 @@
 #import "WDSessionProvider.h"
 #import "WDXPCService.h"
 
-@class NSArray, NSMutableArray, NSString, NSTimer, WDHTTPDriverInterface, WDRemoteSessionManager;
+@class NSArray, NSObject<OS_os_transaction>, NSString, NSXPCConnection, WDHTTPDriverInterface, WDRemoteSessionManager;
 
 @interface WDHTTPService : NSObject <RWIManagerDelegate, RWIDriverInterfaceDelegate, WDSessionProvider, WDServiceHost, NSXPCListenerDelegate, WDXPCService>
 {
     WDRemoteSessionManager *_sessionManager;
-    NSTimer *_inactivityAfterDisconnectTimer;
+    NSObject<OS_os_transaction> *_clientTransaction;
     WDHTTPDriverInterface *_driver;
-    NSMutableArray *_driverClients;
+    NSXPCConnection *_clientConnection;
 }
 
 + (void)initialize;
-@property(readonly, nonatomic) NSMutableArray *driverClients; // @synthesize driverClients=_driverClients;
+@property(readonly, nonatomic) NSXPCConnection *clientConnection; // @synthesize clientConnection=_clientConnection;
 @property(readonly, nonatomic) WDHTTPDriverInterface *driver; // @synthesize driver=_driver;
 - (void).cxx_destruct;
-- (void)fetchAttributesForLocalFiles:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)fetchContentsOfLocalFiles:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)fetchAttributesOfLocalFiles:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)launchApplication:(id)arg1 forHost:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)destroySession:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)requestSessionWithOptions:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
@@ -42,12 +43,9 @@
 - (void)configureServerWithOptions:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)getServerStatusWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (BOOL)_allowIncomingClientConnection:(id)arg1;
-- (void)_inactivityAfterDisconnectTimerFired:(id)arg1;
-- (void)_startInactivityAfterDisconnectTimer;
 - (void)_removeDriverClient:(id)arg1;
 - (void)_addDriverClient:(id)arg1;
 - (CDUnknownBlockType)_defaultErrorHandler;
-- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

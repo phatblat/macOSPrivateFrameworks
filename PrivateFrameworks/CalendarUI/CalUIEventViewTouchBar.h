@@ -9,7 +9,7 @@
 #import "CalUIDatePickerTouchBarDelegate.h"
 #import "NSTouchBarProvider.h"
 
-@class CNUserActionTouchBar, CalUICalendarPickerTouchBarItemController, CalUIDatePickerTouchBar, CalUIEventViewReportJunkControl, EKEvent, NSButton, NSButtonGroupTouchBarItem, NSCustomTouchBarItem, NSLayoutConstraint, NSPopoverTouchBarItem, NSSegmentedControl, NSString, NSTouchBar;
+@class CNUserActionTouchBar, CalUICalendarPickerTouchBarItemController, CalUIDatePickerTouchBar, CalUIEventViewReportJunkControl, EKEvent, NSButton, NSCustomTouchBarItem, NSGroupTouchBarItem, NSLayoutConstraint, NSPopoverTouchBarItem, NSSegmentedControl, NSString, NSTouchBar;
 
 @interface CalUIEventViewTouchBar : NSObject <CalUIDatePickerTouchBarDelegate, NSTouchBarProvider>
 {
@@ -23,7 +23,7 @@
     NSCustomTouchBarItem *_escButtonTouchBarItem;
     CalUICalendarPickerTouchBarItemController *_calendarPickerController;
     NSButton *_inspectorToggleButton;
-    NSButtonGroupTouchBarItem *_inspectorFieldsTouchBarItem;
+    NSGroupTouchBarItem *_inspectorFieldsTouchBarItem;
     NSPopoverTouchBarItem *_locationPopoverTouchBarItem;
     NSPopoverTouchBarItem *_eventTimePopoverTouchBarItem;
     NSPopoverTouchBarItem *_inviteesPopoverTouchBarItem;
@@ -47,7 +47,7 @@
 @property(retain) NSPopoverTouchBarItem *inviteesPopoverTouchBarItem; // @synthesize inviteesPopoverTouchBarItem=_inviteesPopoverTouchBarItem;
 @property(retain) NSPopoverTouchBarItem *eventTimePopoverTouchBarItem; // @synthesize eventTimePopoverTouchBarItem=_eventTimePopoverTouchBarItem;
 @property(retain) NSPopoverTouchBarItem *locationPopoverTouchBarItem; // @synthesize locationPopoverTouchBarItem=_locationPopoverTouchBarItem;
-@property(retain) NSButtonGroupTouchBarItem *inspectorFieldsTouchBarItem; // @synthesize inspectorFieldsTouchBarItem=_inspectorFieldsTouchBarItem;
+@property(retain) NSGroupTouchBarItem *inspectorFieldsTouchBarItem; // @synthesize inspectorFieldsTouchBarItem=_inspectorFieldsTouchBarItem;
 @property(retain) NSButton *inspectorToggleButton; // @synthesize inspectorToggleButton=_inspectorToggleButton;
 @property(retain) CalUICalendarPickerTouchBarItemController *calendarPickerController; // @synthesize calendarPickerController=_calendarPickerController;
 @property(retain) NSCustomTouchBarItem *escButtonTouchBarItem; // @synthesize escButtonTouchBarItem=_escButtonTouchBarItem;
@@ -90,7 +90,6 @@
 - (id)_responseImageForParticipantStatus:(long long)arg1 state:(long long)arg2;
 - (id)createInvitationResponseControl;
 - (id)createUserActionTouchBar;
-- (id)_addButtonOrPopoverWithIdentifier:(id)arg1 popoverTouchBar:(id)arg2 title:(id)arg3 image:(id)arg4 target:(id)arg5 action:(SEL)arg6 toGroupItem:(id)arg7;
 - (id)createInspectorFieldsTouchBarItem;
 - (id)createDatePickerTouchBar;
 - (id)createInspectorToggleButton;

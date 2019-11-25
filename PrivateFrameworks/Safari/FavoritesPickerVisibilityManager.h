@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSTextInputContext;
+@class BlockCoalescer, NSTextInputContext;
 
 __attribute__((visibility("hidden")))
 @interface FavoritesPickerVisibilityManager : NSObject
 {
     BOOL _observingKeyboardInputSourceOverlayVisibility;
     NSTextInputContext *_textInputContextBeingObserved;
+    BlockCoalescer *_visibilityUpdateCoalescer;
     id <FavoritesPickerVisibilityController> _pickerVisibilityController;
     id <FavoritesPickerVisibilityManagerDataSource> _dataSource;
 }
@@ -28,6 +29,8 @@ __attribute__((visibility("hidden")))
 - (void)_dismissFavoritesPicker:(id)arg1;
 - (void)_showFavoritesPickerFromFavoritesBeingInstalledNotification:(id)arg1;
 - (void)_showFavoritesPickerFromUnifiedFieldNotification:(id)arg1;
+- (void)_scheduleFavoritesPickerToBeDismissed;
+- (void)_scheduleFavoritesPickerToBeShown;
 - (void)browserViewControllerDidFirstVisuallyNonEmptyLayout:(id)arg1;
 - (void)backgroundLoadControllerDidCommitBackgroundLoad;
 - (void)stopObservingKeyboardMethodsBarVisibility;
@@ -36,6 +39,7 @@ __attribute__((visibility("hidden")))
 - (void)registerForNotificationsForUnifiedFieldCompletionController:(id)arg1;
 - (void)unregisterFromWindowNotifications;
 - (void)registerForWindowNotifications;
+- (id)init;
 
 @end
 

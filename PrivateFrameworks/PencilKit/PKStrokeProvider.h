@@ -8,27 +8,31 @@
 
 #import "CHStrokeProvider.h"
 
-@class NSArray, NSString, PKDrawing;
+@class NSArray, NSMutableOrderedSet, NSString, PKDrawing;
 
 @interface PKStrokeProvider : NSObject <CHStrokeProvider>
 {
     BOOL _disabled;
+    NSMutableOrderedSet *_strokeSlices;
     PKDrawing *_drawing;
 }
 
 @property(readonly, nonatomic) PKDrawing *drawing; // @synthesize drawing=_drawing;
 - (void).cxx_destruct;
+- (id)sliceForIdentifier:(id)arg1;
 - (id)strokeForIdentifier:(id)arg1;
+- (BOOL)isStroke:(id)arg1 versionOfStrokeWithIdentifier:(id)arg2;
 - (long long)compareOrderOfStroke:(id)arg1 toStroke:(id)arg2;
 - (long long)compareOrderOfStrokeWithIdentifier:(id)arg1 toStrokeWithIdentifier:(id)arg2;
 - (BOOL)enumerateChangesSinceVersion:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 @property(readonly, copy) NSArray *orderedStrokes;
+- (id)slices;
 @property(readonly, retain) id <CHStrokeProviderVersion> strokeProviderVersion;
+@property(readonly, copy) NSString *description;
 - (id)initWithDrawing:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

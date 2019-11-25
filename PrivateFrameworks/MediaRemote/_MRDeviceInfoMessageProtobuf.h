@@ -13,26 +13,31 @@
 @interface _MRDeviceInfoMessageProtobuf : PBCodable <NSCopying>
 {
     unsigned long long _protocolVersion;
+    NSMutableArray *_airplayReceivers;
     NSString *_applicationBundleIdentifier;
     NSString *_applicationBundleVersion;
     NSData *_bluetoothAddress;
     int _deviceClass;
+    NSString *_deviceUID;
     NSString *_groupName;
     NSString *_groupUID;
     NSMutableArray *_groupedDevices;
     unsigned int _lastSupportedMessageType;
-    NSString *_localReceiverPairingIdentity;
+    NSString *_linkAgent;
     NSString *_localizedModelName;
     unsigned int _logicalDeviceCount;
     NSString *_managedConfigDeviceID;
     NSString *_name;
+    NSString *_senderDefaultGroupUID;
     unsigned int _sharedQueueVersion;
     NSString *_systemBuildVersion;
     NSString *_systemMediaApplication;
+    NSString *_systemPodcastApplication;
     NSString *_tightSyncUID;
     NSString *_uniqueIdentifier;
     BOOL _allowsPairing;
     BOOL _connected;
+    BOOL _isAirplayActive;
     BOOL _isGroupLeader;
     BOOL _isProxyGroupPlayer;
     BOOL _supportsACL;
@@ -48,6 +53,7 @@
         unsigned int sharedQueueVersion:1;
         unsigned int allowsPairing:1;
         unsigned int connected:1;
+        unsigned int isAirplayActive:1;
         unsigned int isGroupLeader:1;
         unsigned int isProxyGroupPlayer:1;
         unsigned int supportsACL:1;
@@ -58,7 +64,13 @@
     } _has;
 }
 
++ (Class)airplayReceiversType;
 + (Class)groupedDevicesType;
+@property(retain, nonatomic) NSString *linkAgent; // @synthesize linkAgent=_linkAgent;
+@property(retain, nonatomic) NSMutableArray *airplayReceivers; // @synthesize airplayReceivers=_airplayReceivers;
+@property(retain, nonatomic) NSString *senderDefaultGroupUID; // @synthesize senderDefaultGroupUID=_senderDefaultGroupUID;
+@property(retain, nonatomic) NSString *systemPodcastApplication; // @synthesize systemPodcastApplication=_systemPodcastApplication;
+@property(nonatomic) BOOL isAirplayActive; // @synthesize isAirplayActive=_isAirplayActive;
 @property(nonatomic) BOOL isGroupLeader; // @synthesize isGroupLeader=_isGroupLeader;
 @property(retain, nonatomic) NSMutableArray *groupedDevices; // @synthesize groupedDevices=_groupedDevices;
 @property(retain, nonatomic) NSString *groupName; // @synthesize groupName=_groupName;
@@ -68,7 +80,7 @@
 @property(nonatomic) BOOL tightlySyncedGroup; // @synthesize tightlySyncedGroup=_tightlySyncedGroup;
 @property(nonatomic) unsigned int logicalDeviceCount; // @synthesize logicalDeviceCount=_logicalDeviceCount;
 @property(retain, nonatomic) NSString *managedConfigDeviceID; // @synthesize managedConfigDeviceID=_managedConfigDeviceID;
-@property(retain, nonatomic) NSString *localReceiverPairingIdentity; // @synthesize localReceiverPairingIdentity=_localReceiverPairingIdentity;
+@property(retain, nonatomic) NSString *deviceUID; // @synthesize deviceUID=_deviceUID;
 @property(nonatomic) unsigned int sharedQueueVersion; // @synthesize sharedQueueVersion=_sharedQueueVersion;
 @property(retain, nonatomic) NSData *bluetoothAddress; // @synthesize bluetoothAddress=_bluetoothAddress;
 @property(nonatomic) BOOL supportsExtendedMotion; // @synthesize supportsExtendedMotion=_supportsExtendedMotion;
@@ -96,6 +108,14 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasLinkAgent;
+- (id)airplayReceiversAtIndex:(unsigned long long)arg1;
+- (unsigned long long)airplayReceiversCount;
+- (void)addAirplayReceivers:(id)arg1;
+- (void)clearAirplayReceivers;
+@property(readonly, nonatomic) BOOL hasSenderDefaultGroupUID;
+@property(readonly, nonatomic) BOOL hasSystemPodcastApplication;
+@property(nonatomic) BOOL hasIsAirplayActive;
 @property(nonatomic) BOOL hasIsGroupLeader;
 - (id)groupedDevicesAtIndex:(unsigned long long)arg1;
 - (unsigned long long)groupedDevicesCount;
@@ -112,7 +132,7 @@
 @property(nonatomic) BOOL hasDeviceClass;
 @property(nonatomic) int deviceClass; // @synthesize deviceClass=_deviceClass;
 @property(readonly, nonatomic) BOOL hasManagedConfigDeviceID;
-@property(readonly, nonatomic) BOOL hasLocalReceiverPairingIdentity;
+@property(readonly, nonatomic) BOOL hasDeviceUID;
 @property(nonatomic) BOOL hasSharedQueueVersion;
 @property(readonly, nonatomic) BOOL hasBluetoothAddress;
 @property(nonatomic) BOOL hasSupportsExtendedMotion;

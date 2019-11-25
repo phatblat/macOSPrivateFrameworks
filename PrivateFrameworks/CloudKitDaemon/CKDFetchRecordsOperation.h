@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     BOOL _useCachedEtags;
     BOOL _useRecordCache;
     BOOL _forcePCSDecrypt;
+    BOOL _skipDecryption;
     BOOL _shouldFetchAssetContent;
     BOOL _shouldFetchAssetContentInMemory;
     NSArray *_fullRecordsToFetch;
@@ -36,10 +37,14 @@ __attribute__((visibility("hidden")))
     unsigned long long _URLOptions;
     CKDRecordCache *_cache;
     NSMutableArray *_recordIDsToRefetch;
+    NSMutableDictionary *_keyOrErrorForHostname;
+    NSMutableArray *_shareRecordsToUpdate;
     NSDictionary *_webSharingIdentityDataByRecordID;
 }
 
 @property(retain, nonatomic) NSDictionary *webSharingIdentityDataByRecordID; // @synthesize webSharingIdentityDataByRecordID=_webSharingIdentityDataByRecordID;
+@property(retain, nonatomic) NSMutableArray *shareRecordsToUpdate; // @synthesize shareRecordsToUpdate=_shareRecordsToUpdate;
+@property(retain, nonatomic) NSMutableDictionary *keyOrErrorForHostname; // @synthesize keyOrErrorForHostname=_keyOrErrorForHostname;
 @property(retain, nonatomic) NSMutableArray *recordIDsToRefetch; // @synthesize recordIDsToRefetch=_recordIDsToRefetch;
 @property(retain, nonatomic) CKDRecordCache *cache; // @synthesize cache=_cache;
 @property(nonatomic) unsigned long long URLOptions; // @synthesize URLOptions=_URLOptions;
@@ -61,6 +66,7 @@ __attribute__((visibility("hidden")))
 @property(copy, nonatomic) CDUnknownBlockType recordFetchCommandBlock; // @synthesize recordFetchCommandBlock=_recordFetchCommandBlock;
 @property(copy, nonatomic) CDUnknownBlockType recordFetchProgressBlock; // @synthesize recordFetchProgressBlock=_recordFetchProgressBlock;
 @property(retain, nonatomic) NSArray *fullRecordsToFetch; // @synthesize fullRecordsToFetch=_fullRecordsToFetch;
+@property(nonatomic) BOOL skipDecryption; // @synthesize skipDecryption=_skipDecryption;
 @property(nonatomic) BOOL forcePCSDecrypt; // @synthesize forcePCSDecrypt=_forcePCSDecrypt;
 @property(nonatomic) BOOL useRecordCache; // @synthesize useRecordCache=_useRecordCache;
 @property(nonatomic) BOOL useCachedEtags; // @synthesize useCachedEtags=_useCachedEtags;
@@ -69,10 +75,13 @@ __attribute__((visibility("hidden")))
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)finishWithError:(id)arg1;
 - (void)_downloadAssets;
+- (void)_fetchCloudCerts;
 - (void)_didDownloadAssetsWithError:(id)arg1;
 - (void)_finishAllDownloadTasksWithError:(id)arg1;
 - (void)_addDownloadTaskForRecord:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (BOOL)_prepareAsset:(id)arg1 record:(id)arg2 recordKey:(id)arg3 assetTransferOptions:(id)arg4;
+- (int)_prepareAsset:(id)arg1 record:(id)arg2 recordKey:(id)arg3 assetTransferOptions:(id)arg4;
+- (void)_decryptPropertiesIfNeededForRecord:(id)arg1 record:(id)arg2;
+- (void)_handleSharePCSPrepForShare:(id)arg1 recordID:(id)arg2;
 - (void)_handleRecordFetch:(id)arg1 recordID:(id)arg2 etagMatched:(BOOL)arg3 responseCode:(id)arg4;
 - (void)_decryptPropertiesOnRecord:(id)arg1 recordID:(id)arg2;
 @property(readonly, nonatomic) BOOL hasRecordDecryptOperation;
@@ -82,6 +91,8 @@ __attribute__((visibility("hidden")))
 - (id)errorForRecordID:(id)arg1;
 - (void)fetchRecordsWithIDs:(id)arg1 andFullRecords:(id)arg2;
 - (void)_findSpecialParticipantsOnShare:(id)arg1 identityDelegate:(id)arg2;
+- (void)_saveUpdatedShareRecords;
+- (id)desiredIndexedListKeys;
 - (id)nameForState:(unsigned long long)arg1;
 - (BOOL)makeStateTransition;
 - (id)activityCreate;

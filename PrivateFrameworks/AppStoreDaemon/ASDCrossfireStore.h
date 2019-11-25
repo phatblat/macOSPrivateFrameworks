@@ -6,11 +6,33 @@
 
 #import "NSObject.h"
 
-@interface ASDCrossfireStore : NSObject
+#import "ASDServiceProvider.h"
+
+@class ASDServiceBroker, NSString;
+
+@interface ASDCrossfireStore : NSObject <ASDServiceProvider>
 {
+    ASDServiceBroker *_serviceBroker;
 }
 
++ (id)interface;
++ (id)sharedInstance;
+- (void).cxx_destruct;
+- (void)sendMetricsWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (void)resetMetricsWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (void)reportAppEvent:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)recordMetricsWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (void)recordLaunchesWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (void)getAppEventsWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (void)flushMetricsWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (id)_initWithServiceBroker:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -51,6 +51,7 @@
 - (BOOL)isStickerPackOnly;
 @property(readonly, nonatomic) BOOL shouldHideAppSwitcher;
 @property(readonly, nonatomic) BOOL isEnabled;
+@property(readonly, nonatomic) BOOL showableInBrowser;
 @property(readonly, nonatomic) BOOL showInBrowser;
 @property(readonly, nonatomic, getter=isBetaPlugin) BOOL betaPlugin;
 @property(readonly, nonatomic) NSString *version;
@@ -58,6 +59,7 @@
 - (id)dataSourceForPluginPayload:(id)arg1;
 - (void)insertDataSource:(id)arg1 forGUID:(id)arg2;
 - (id)existingDataSourceForMessageGUID:(id)arg1;
+- (BOOL)shouldShowForRecipients:(id)arg1;
 - (BOOL)supportsControllerReuse;
 - (void)removeController:(id)arg1 forChatItem:(id)arg2;
 - (void)moveController:(id)arg1 toReusePoolFromChatItem:(id)arg2;

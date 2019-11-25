@@ -7,6 +7,8 @@
 #import "NSString.h"
 
 @interface NSString (PKStringAdditions)
+- (id)pk_zString;
+- (double)pk_normalizedLevenshteinDistanceFromString:(id)arg1 decimalPlaces:(unsigned long long)arg2;
 - (id)pk_uppercaseAttributedString;
 - (id)pk_uppercaseFirstStringForLocale:(id)arg1;
 - (id)pk_uppercaseFirstStringForPreferredLocale;

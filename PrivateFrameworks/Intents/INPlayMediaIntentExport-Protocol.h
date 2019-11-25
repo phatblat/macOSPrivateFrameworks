@@ -7,9 +7,16 @@
 #import "JSExport.h"
 #import "NSObject.h"
 
-@class INMediaItem, NSArray, NSDate, NSNumber, NSString;
+@class INMediaItem, INMediaSearch, NSArray, NSDate, NSNumber, NSString;
 
 @protocol INPlayMediaIntentExport <NSObject, JSExport>
+@property(copy) NSString *proxiedBundleIdentifier;
+@property(copy) NSArray *alternativeResults;
+@property(copy) NSArray *audioSearchResults;
+@property(copy) NSArray *hashedRouteUIDs;
+@property(copy) INMediaSearch *mediaSearch;
+@property(copy) NSNumber *playbackSpeed;
+@property long long playbackQueueLocation;
 @property(copy) NSString *recoID;
 @property(copy) NSArray *buckets;
 @property(copy) NSDate *expirationDate;

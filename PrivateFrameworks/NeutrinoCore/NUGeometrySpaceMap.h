@@ -7,11 +7,11 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
-#import "NUSpaceMapping.h"
+#import "NUTaggedSpaceMapping.h"
 
 @class NSMutableDictionary;
 
-@interface NUGeometrySpaceMap : NSObject <NSCopying, NUSpaceMapping>
+@interface NUGeometrySpaceMap : NSObject <NSCopying, NUTaggedSpaceMapping>
 {
     NSMutableDictionary *_spaces;
 }

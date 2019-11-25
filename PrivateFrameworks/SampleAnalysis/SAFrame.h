@@ -9,28 +9,28 @@
 #import "SAJSONSerialization.h"
 #import "SASerializable.h"
 
-@class NSMutableSet, NSString, SAInstruction;
+@class NSString, SAInstruction;
 
 @interface SAFrame : NSObject <SAJSONSerialization, SASerializable>
 {
-    unsigned long long _address;
     SAInstruction *_instruction;
+    unsigned long long _address;
     SAFrame *_parentFrame;
-    NSMutableSet *_childFrames;
+    id _childFrameOrFrames;
 }
 
++ (void)fixupInstructionsInFrameTree:(id)arg1 binaryLoadInfos:(id)arg2 libraryCache:(id)arg3;
++ (void)enumerateFrameTree:(id)arg1 block:(CDUnknownBlockType)arg2;
 + (id)addStack:(id)arg1 toSetOfRootFrames:(id)arg2;
 + (id)frameWithAddress:(unsigned long long)arg1 binaryLoadInfo:(id)arg2 parent:(id)arg3 symbolicationOffByOne:(BOOL)arg4;
 + (id)frameWithPAStyleSerializedFrame:(const CDStruct_1a4856f2 *)arg1;
 + (id)newInstanceWithoutReferencesFromSerializedBuffer:(const CDStruct_f51ef38d *)arg1 bufferLength:(unsigned long long)arg2;
 + (id)classDictionaryKey;
-@property(retain) NSMutableSet *childFrames; // @synthesize childFrames=_childFrames;
-@property __weak SAFrame *parentFrame; // @synthesize parentFrame=_parentFrame;
-@property(retain) SAInstruction *instruction; // @synthesize instruction=_instruction;
+@property(retain) id childFrameOrFrames; // @synthesize childFrameOrFrames=_childFrameOrFrames;
+@property(retain) SAFrame *parentFrame; // @synthesize parentFrame=_parentFrame;
 @property unsigned long long address; // @synthesize address=_address;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *debugDescription;
-- (void)_setParentFrame:(id)arg1;
 - (void)_addChildFrame:(id)arg1;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
@@ -41,6 +41,7 @@
 - (id)copyWithNewParent:(id)arg1;
 - (id)initWithFrame:(id)arg1 andParent:(id)arg2;
 - (id)initWithAddress:(unsigned long long)arg1 binaryLoadInfo:(id)arg2 parent:(id)arg3 symbolicationOffByOne:(BOOL)arg4;
+@property(retain) SAInstruction *instruction;
 - (void)writeJSONDictionaryEntriesToStream:(id)arg1;
 - (void)populateReferencesUsingPAStyleSerializedFrame:(const CDStruct_1a4856f2 *)arg1 andDeserializationDictionary:(id)arg2 andDataBufferDictionary:(id)arg3;
 - (void)populateReferencesUsingBuffer:(CDStruct_f51ef38d *)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(struct NSMutableDictionary *)arg3 andDataBufferDictionary:(struct NSMutableDictionary *)arg4;

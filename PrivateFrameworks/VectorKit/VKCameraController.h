@@ -15,11 +15,14 @@ __attribute__((visibility("hidden")))
 {
     VKCamera *_camera;
     id <MDRenderTarget> _canvas;
-    id <VKCameraControllerDelegate> _delegate;
+    id <VKMapViewCameraDelegate> _cameraDelegate;
     BOOL _gesturing;
     unsigned long long _regionChangeCount;
     BOOL _inProgressRegionChangeIsAnimated;
     struct VKEdgeInsets _edgeInsets;
+    struct MapDataAccess *_mapDataAccess;
+    struct AnimationRunner *_animationRunner;
+    struct RunLoopController *_runLoopController;
     BOOL _staysCenteredDuringPinch;
     BOOL _staysCenteredDuringRotation;
     BOOL _isPitchEnabled;
@@ -27,11 +30,15 @@ __attribute__((visibility("hidden")))
     BOOL _allowDatelineWraparound;
 }
 
+@property(readonly, nonatomic) struct RunLoopController *runLoopController; // @synthesize runLoopController=_runLoopController;
+@property(readonly, nonatomic) struct AnimationRunner *animationRunner; // @synthesize animationRunner=_animationRunner;
+@property(readonly, nonatomic) struct MapDataAccess *mapDataAccess; // @synthesize mapDataAccess=_mapDataAccess;
 @property(nonatomic) BOOL allowDatelineWraparound; // @synthesize allowDatelineWraparound=_allowDatelineWraparound;
 @property(nonatomic) BOOL isRotateEnabled; // @synthesize isRotateEnabled=_isRotateEnabled;
 @property(nonatomic) BOOL isPitchEnabled; // @synthesize isPitchEnabled=_isPitchEnabled;
 @property(nonatomic) BOOL staysCenteredDuringRotation; // @synthesize staysCenteredDuringRotation=_staysCenteredDuringRotation;
 @property(nonatomic) BOOL staysCenteredDuringPinch; // @synthesize staysCenteredDuringPinch=_staysCenteredDuringPinch;
+- (void)populateDebugNode:(struct DebugTreeNode *)arg1 withOptions:(const bitset_dc343b9a *)arg2;
 - (BOOL)centerCoordinate:(CDStruct_c3b9c2ee *)arg1 andDistanceFromCenter:(double *)arg2 forMapRegion:(id)arg3;
 - (void)updateWithTimestamp:(double)arg1;
 - (BOOL)wantsTimerTick;
@@ -71,7 +78,6 @@ __attribute__((visibility("hidden")))
 - (Matrix_443f5d51)cursorFromScreenPoint:(struct CGPoint)arg1;
 - (struct CGPoint)scaledScreenPointForPoint:(struct CGPoint)arg1;
 - (struct CGPoint)centerScreenPoint;
-- (id)detailedDescriptionDictionaryRepresentation;
 - (id)detailedDescription;
 - (void)checkAndResetRegionChangeCount;
 - (BOOL)isChangingRegion;
@@ -81,13 +87,14 @@ __attribute__((visibility("hidden")))
 - (void)canvasDidLayout;
 - (void)setGesturing:(BOOL)arg1;
 - (BOOL)isGesturing;
-- (void)setDelegate:(id)arg1;
-- (id)delegate;
+- (void)setCameraDelegate:(id)arg1;
+- (id)cameraDelegate;
 - (void)setCanvas:(id)arg1;
 - (id)canvas;
 - (id)camera;
 - (void)setCamera:(id)arg1;
 - (void)dealloc;
+- (id)initWithMapDataAccess:(struct MapDataAccess *)arg1 animationRunner:(struct AnimationRunner *)arg2 runLoopController:(struct RunLoopController *)arg3 cameraDelegate:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

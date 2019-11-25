@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-@class GEOActiveResourceFilters, GEOResourceManifestConfiguration, NSLock, NSSet;
+@class GEOActiveResourceFilters, GEOResourceManifestConfiguration, NSSet;
 
 __attribute__((visibility("hidden")))
 @interface GEOResourceFiltersManager : NSObject
 {
     GEOResourceManifestConfiguration *_configuration;
     GEOActiveResourceFilters *_activeFilters;
-    NSLock *_lock;
+    struct os_unfair_lock_s _lock;
     id <GEOResourceFiltersManagerDelegate> _delegate;
 }
 

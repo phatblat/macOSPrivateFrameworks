@@ -69,6 +69,11 @@ typedef struct {
     unsigned long long _field4[5];
 } CDStruct_70511ce9;
 
+// Ambiguous groups
+typedef struct {
+    unsigned int timestamp:1;
+} CDStruct_b5306035;
+
 #pragma mark Typedef'd Unions
 
 typedef union {

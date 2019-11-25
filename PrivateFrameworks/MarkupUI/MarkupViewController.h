@@ -6,13 +6,14 @@
 
 #import "NSViewController.h"
 
+#import "AKSidecarControllerDelegate.h"
 #import "MUContentViewControllerDelegate.h"
 #import "NSTouchBarDelegate.h"
 #import "NSWindowDelegate.h"
 
 @class AKController, MUCGPDFReader, MUContentBorderView, NSData, NSStackView, NSString, NSUndoManager, NSView, NSViewController<MUContentViewControllerProtocol>;
 
-@interface MarkupViewController : NSViewController <MUContentViewControllerDelegate, NSTouchBarDelegate, NSWindowDelegate>
+@interface MarkupViewController : NSViewController <MUContentViewControllerDelegate, AKSidecarControllerDelegate, NSTouchBarDelegate, NSWindowDelegate>
 {
     BOOL _wantsToolbarAndPadding;
     BOOL _sourceContentIsLoaded;
@@ -39,6 +40,7 @@
 + (id)cleanImageMetadataFromData:(id)arg1;
 + (BOOL)hasPrivateImageMetadata:(id)arg1;
 + (id)supportedOutputTypes;
++ (struct CGSize)minimumToolbarSize;
 @property BOOL cropToolEnabled; // @synthesize cropToolEnabled=_cropToolEnabled;
 @property(copy, nonatomic) NSString *hostProcessBundleIdentifier; // @synthesize hostProcessBundleIdentifier=_hostProcessBundleIdentifier;
 @property BOOL encryptPrivateMetadata; // @synthesize encryptPrivateMetadata=_encryptPrivateMetadata;
@@ -66,6 +68,7 @@
 - (BOOL)_writeToDataConsumer:(struct CGDataConsumer *)arg1 embedSourceImageAndEditModel:(BOOL)arg2 error:(id *)arg3;
 - (id)_outputContentType;
 - (id)_sourceContentType;
+- (id)applicationDataForSidecarController:(id)arg1;
 - (void)finalizeCrop;
 - (void)editDetectedForAnnotationController:(id)arg1;
 - (id)annotationControllerOfContentViewController:(id)arg1 willSetToolbarItems:(id)arg2;

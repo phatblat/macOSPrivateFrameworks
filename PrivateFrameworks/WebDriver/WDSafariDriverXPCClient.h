@@ -17,11 +17,12 @@
 
 @property(retain, nonatomic) NSXPCConnection *webDriverServiceConnection; // @synthesize webDriverServiceConnection=_webDriverServiceConnection;
 - (void).cxx_destruct;
-- (void)fetchAttributesForFiles:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)fetchContentsOfFiles:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)fetchAttributesOfFiles:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)launchApplication:(id)arg1 usingArguments:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)serverStopped;
 - (void)serverStarted;
-- (void)runServerOnPort:(long long)arg1 protocolDialect:(long long)arg2;
+- (void)runServerOnPort:(long long)arg1 captureDiagnostics:(BOOL)arg2;
 - (CDUnknownBlockType)_defaultErrorHandler;
 
 @end

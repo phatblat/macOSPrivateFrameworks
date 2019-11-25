@@ -10,6 +10,7 @@
 
 @interface _DKQuery : NSObject <NSSecureCoding>
 {
+    BOOL _executeConcurrently;
 }
 
 + (id)queryNotExecutableError;
@@ -20,6 +21,7 @@
 + (id)predicateForEventsWithSourceDeviceID:(id)arg1 userID:(id)arg2;
 + (id)predicateForEventsWithSourceDeviceIDs:(id)arg1;
 + (id)predicateForEventsWithSourceID:(id)arg1 bundleID:(id)arg2 itemIDs:(id)arg3;
++ (id)predicateForEventsWithSourceGroupIDs:(id)arg1;
 + (id)predicateForEventsWithSourceID:(id)arg1 bundleID:(id)arg2 groupIDs:(id)arg3;
 + (id)predicateForEventsWithSourceID:(id)arg1 bundleID:(id)arg2;
 + (id)predicateForEventsWithSourceID:(id)arg1;
@@ -28,6 +30,7 @@
 + (id)predicateForObjectsWithMetadataKey:(id)arg1 andDoubleValueBetween:(double)arg2 andValue:(double)arg3;
 + (id)predicateForObjectsWithMetadataKey:(id)arg1 andDoubleValue:(double)arg2;
 + (id)predicateForObjectsWithMetadataKey:(id)arg1 andIntegerValue:(long long)arg2;
++ (id)predicateForObjectsWithMetadataKey:(id)arg1 likeStringValue:(id)arg2;
 + (id)predicateForObjectsWithMetadataKey:(id)arg1 andStringValue:(id)arg2;
 + (id)predicateForObjectsWithMetadataKey:(id)arg1 inValues:(id)arg2;
 + (id)predicateForObjectsWithMetadataKey:(id)arg1 andValue:(id)arg2;
@@ -51,6 +54,7 @@
 + (id)predicateForEventsWithLocalCreationInDateRangeFromAfter:(id)arg1 to:(id)arg2;
 + (id)predicateForEventsWithLocalCreationInDateRangeFrom:(id)arg1 toBefore:(id)arg2;
 + (id)predicateForEventsWithMinumumDuration:(double)arg1;
++ (id)predicateForEventsWithMinimumDuration:(double)arg1;
 + (id)predicateForEventsBetweenStartSecondOfDay:(unsigned long long)arg1 endSecondOfDay:(unsigned long long)arg2;
 + (id)predicateForEventsWithDayOfWeek:(unsigned long long)arg1;
 + (id)predicateForEventsIntersectingDateRangeFrom:(id)arg1 to:(id)arg2;
@@ -59,6 +63,7 @@
 + (id)predicateForEventsWithStartAndEndInDateRangeFrom:(id)arg1 to:(id)arg2;
 + (id)predicateForEventsWithStartOrEndInDateRangeWithFrom:(id)arg1 to:(id)arg2;
 + (id)predicateForEventsWithEndInDateRangeFrom:(id)arg1 to:(id)arg2;
++ (id)predicateForEventsWithStartInDateRangeFromAfter:(id)arg1 to:(id)arg2;
 + (id)predicateForEventsWithStartInDateRangeFrom:(id)arg1 to:(id)arg2;
 + (id)predicateForEventsWithStartDateAfter:(id)arg1;
 + (id)predicateForEventsBetweenStartDate:(id)arg1 endDate:(id)arg2;
@@ -68,6 +73,7 @@
 + (id)predicateForSpotlightEventsWithItemIdentifiers:(id)arg1 bundleID:(id)arg2;
 + (id)predicateForSpotlightEventsWithDomainIdentifiers:(id)arg1 bundleID:(id)arg2;
 + (id)predicateForSpotlightEventsWithBundleID:(id)arg1;
+@property(nonatomic) BOOL executeConcurrently; // @synthesize executeConcurrently=_executeConcurrently;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

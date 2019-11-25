@@ -9,6 +9,9 @@
 @class NSManagedObjectContext, NSManagedObjectID, NSSet, NSString;
 
 @protocol ICLegacyAccount <NSObject>
+- (NSString *)localizedAttachmentsNotSupportedReason;
+- (BOOL)preventMovingNotesToOtherAccounts;
+- (BOOL)isManaged;
 - (BOOL)supportsAttachments;
 - (NSManagedObjectID *)objectID;
 - (NSManagedObjectContext *)managedObjectContext;

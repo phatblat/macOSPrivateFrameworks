@@ -10,6 +10,8 @@
 
 @interface PKAuthenticatorEvaluationRequest : NSObject
 {
+    _Bool _useStockAuthInterface;
+    long long _authenticatorPolicy;
     NSString *_reason;
     NSString *_processName;
     NSNumber *_processIdentifier;
@@ -17,12 +19,17 @@
     NSNumber *_PINLength;
     PKPaymentInstructions *_instructions;
     NSData *_externalizedContext;
-    struct OpaqueSecAccessControlRef *_accessControlRef;
+    struct __SecAccessControl *_accessControlRef;
+    NSString *_physicalButtonTitle;
+    NSString *_passcodeTitle;
     long long _policy;
 }
 
 @property(readonly, nonatomic) long long policy; // @synthesize policy=_policy;
-@property(nonatomic) struct OpaqueSecAccessControlRef *accessControlRef; // @synthesize accessControlRef=_accessControlRef;
+@property(copy, nonatomic) NSString *passcodeTitle; // @synthesize passcodeTitle=_passcodeTitle;
+@property(copy, nonatomic) NSString *physicalButtonTitle; // @synthesize physicalButtonTitle=_physicalButtonTitle;
+@property(nonatomic) _Bool useStockAuthInterface; // @synthesize useStockAuthInterface=_useStockAuthInterface;
+@property(nonatomic) struct __SecAccessControl *accessControlRef; // @synthesize accessControlRef=_accessControlRef;
 @property(retain, nonatomic) NSData *externalizedContext; // @synthesize externalizedContext=_externalizedContext;
 @property(retain, nonatomic) PKPaymentInstructions *instructions; // @synthesize instructions=_instructions;
 @property(copy, nonatomic) NSNumber *PINLength; // @synthesize PINLength=_PINLength;
@@ -30,6 +37,7 @@
 @property(copy, nonatomic) NSNumber *processIdentifier; // @synthesize processIdentifier=_processIdentifier;
 @property(copy, nonatomic) NSString *processName; // @synthesize processName=_processName;
 @property(copy, nonatomic) NSString *reason; // @synthesize reason=_reason;
+@property(readonly, nonatomic) long long authenticatorPolicy; // @synthesize authenticatorPolicy=_authenticatorPolicy;
 - (void).cxx_destruct;
 - (void)dealloc;
 - (id)initWithPolicy:(long long)arg1;

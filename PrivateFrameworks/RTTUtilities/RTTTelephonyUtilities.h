@@ -7,16 +7,25 @@
 #import "NSObject.h"
 
 #import "CoreTelephonyClientCarrierBundleDelegate.h"
+#import "TUCallCapabilitiesDelegate.h"
+#import "TUCallCapabilitiesDelegatePrivate.h"
 
-@class CTXPCServiceSubscriptionContext, CoreTelephonyClient, NSObject<OS_dispatch_queue>, NSString;
+@class ACAccountStore, AXDispatchTimer, CNContactStore, CTXPCServiceSubscriptionContext, CoreTelephonyClient, NSNumber, NSObject<OS_dispatch_queue>, NSSet, NSString;
 
-@interface RTTTelephonyUtilities : NSObject <CoreTelephonyClientCarrierBundleDelegate>
+@interface RTTTelephonyUtilities : NSObject <CoreTelephonyClientCarrierBundleDelegate, TUCallCapabilitiesDelegatePrivate, TUCallCapabilitiesDelegate>
 {
+    ACAccountStore *_accountStore;
+    AXDispatchTimer *_icloudAccountConsolidator;
+    AXDispatchTimer *_icloudRelayConsolidator;
     BOOL _headphoneJackSupportsTTY;
     CTXPCServiceSubscriptionContext *_defaultVoiceContext;
     unsigned long long _activeContextCount;
+    NSSet *_allVoiceContexts;
+    CNContactStore *_contactStore;
     CoreTelephonyClient *_telephonyClient;
     NSObject<OS_dispatch_queue> *_telephonyUpdateQueue;
+    NSObject<OS_dispatch_queue> *_accountStoreQueue;
+    NSNumber *_callCapabilitiesSupportsTelephonyCalls;
 }
 
 + (id)relayPhoneNumberForContext:(id)arg1;
@@ -28,6 +37,7 @@
 + (BOOL)isRTTSupportedForContext:(id)arg1;
 + (BOOL)isTTYSupportedForContext:(id)arg1;
 + (BOOL)softwareTTYIsSupported;
++ (BOOL)isRelayRTTSupported;
 + (BOOL)hardwareTTYIsSupported;
 + (id)relayPhoneNumber;
 + (BOOL)relayIsSupported;
@@ -40,24 +50,36 @@
 + (void)performCallCenterTask:(CDUnknownBlockType)arg1;
 + (id)sharedCallCenter;
 + (id)sharedUtilityProvider;
+@property(retain, nonatomic) NSNumber *callCapabilitiesSupportsTelephonyCalls; // @synthesize callCapabilitiesSupportsTelephonyCalls=_callCapabilitiesSupportsTelephonyCalls;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *accountStoreQueue; // @synthesize accountStoreQueue=_accountStoreQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *telephonyUpdateQueue; // @synthesize telephonyUpdateQueue=_telephonyUpdateQueue;
 @property(retain, nonatomic) CoreTelephonyClient *telephonyClient; // @synthesize telephonyClient=_telephonyClient;
 @property(nonatomic) BOOL headphoneJackSupportsTTY; // @synthesize headphoneJackSupportsTTY=_headphoneJackSupportsTTY;
+@property(retain, nonatomic) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
+@property(retain, nonatomic) NSSet *allVoiceContexts; // @synthesize allVoiceContexts=_allVoiceContexts;
 @property(nonatomic) unsigned long long activeContextCount; // @synthesize activeContextCount=_activeContextCount;
 @property(retain, nonatomic) CTXPCServiceSubscriptionContext *defaultVoiceContext; // @synthesize defaultVoiceContext=_defaultVoiceContext;
 - (void).cxx_destruct;
+- (BOOL)relayRTTIsSupported;
+- (void)_icloudAccountChanged;
+- (void)iCloudAccountDidChange:(id)arg1;
+- (void)iCloudRTTRelayDidChange:(id)arg1;
+- (void)didChangeOutgoingRelayCallerID;
+- (void)listenForCloudRelayChanges;
+- (BOOL)currentProcessHandlesCloudRelay;
 - (id)relayNumberForContext:(id)arg1;
 - (BOOL)isTTYSupportedForContext:(id)arg1;
 - (BOOL)isTTYOverIMSSupportedForContext:(id)arg1;
 - (id)getCarrierValueForKeyHierarchy:(id)arg1 andContext:(id)arg2;
 - (id)getCarrierValueForKey:(id)arg1 andContext:(id)arg2;
 - (void)reloadDefaultVoiceContext;
-- (void)reloadRelayPhoneNumbers;
+- (BOOL)reloadRelayPhoneNumbers;
 - (id)subscriptionContexts;
 - (void)simLessSubscriptionsDidChange;
 - (void)activeSubscriptionsDidChange;
 - (void)subscriptionInfoDidChange;
 - (void)carrierSettingsDidChange;
+- (id)labelFromUUID:(id)arg1;
 - (id)phoneNumberFromUUID:(id)arg1;
 - (id)contactPathForCall:(id)arg1;
 - (BOOL)contactPathIsMe:(id)arg1;
@@ -66,7 +88,11 @@
 - (id)myPhoneNumber;
 - (BOOL)relayIsSupported;
 - (BOOL)contactIsTTYContact:(id)arg1;
+- (unsigned long long)currentPreferredTransportMethodForContext:(id)arg1;
 - (unsigned long long)currentPreferredTransportMethod;
+- (void)headphoneStateChangedNotification:(id)arg1;
+- (void)updateHeadphoneState;
+- (void)didChangeTelephonyCallingSupport;
 - (void)setTTYDictionaryAvailability:(BOOL)arg1;
 - (void)dealloc;
 - (id)init;

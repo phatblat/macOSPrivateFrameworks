@@ -8,14 +8,16 @@
 
 typedef void (^CDUnknownBlockType)(void); // return type and parameters are unknown
 
-#pragma mark Typedef'd Structures
+#pragma mark Named Structures
 
-typedef struct {
-    unsigned int timestamp:1;
-    unsigned int enabled:1;
-} CDStruct_93f1cf87;
+struct NSDictionary {
+    Class _field1;
+};
 
-typedef struct {
-    unsigned int timestamp:1;
-} CDStruct_b5306035;
+struct __va_list_tag {
+    unsigned int _field1;
+    unsigned int _field2;
+    void *_field3;
+    void *_field4;
+};
 

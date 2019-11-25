@@ -34,7 +34,6 @@
     BOOL _supportsCellularData;
     BOOL _simBecameNotReady;
     long long _simInserted;
-    BOOL _wantsForcedCellularQueries;
     long long _isPNRSupportedCachedValue;
     BOOL _faceTimeBlocked;
     BOOL _iMessageBlocked;
@@ -48,7 +47,6 @@
 
 + (id)sharedInstance;
 @property(readonly, nonatomic) BOOL commCenterDead; // @synthesize commCenterDead=_commCenterDead;
-@property(readonly, nonatomic) BOOL wantsForcedCellularQueries; // @synthesize wantsForcedCellularQueries=_wantsForcedCellularQueries;
 @property(readonly, nonatomic) BOOL mmsConfigured; // @synthesize mmsConfigured=_mmsConfigured;
 @property(readonly, nonatomic) BOOL supportsMMS; // @synthesize supportsMMS=_supportsMMS;
 @property(readonly, nonatomic) BOOL supportsSMS; // @synthesize supportsSMS=_supportsSMS;
@@ -61,7 +59,10 @@
 @property(readonly, nonatomic) BOOL supportsHandoff; // @synthesize supportsHandoff=_supportsHandoff;
 @property(readonly, nonatomic) BOOL isGreenTea; // @synthesize isGreenTea=_isGreenTea;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL supportsFunCam;
 @property(readonly, nonatomic) BOOL lowRAMDevice;
+- (int)cpuFamily;
+@property(readonly, nonatomic) BOOL slowCPUDevice;
 @property(readonly, nonatomic) BOOL supportsApplePay;
 @property(readonly, nonatomic) BOOL isInMultiUserMode;
 @property(readonly, nonatomic) BOOL nonWifiCallingAvailable;
@@ -88,7 +89,7 @@
 @property(readonly, nonatomic) NSDictionary *CTNetworkInformation;
 - (void)_handlePotentialPhoneNumberRegistrationStateChanged;
 - (void)_invalidateValuesCachedForSelectedPhoneNumberRegistration;
-- (void)noteSelectedPhoneNumberRegistrationSubscriptionNumberDidChange;
+- (void)noteSelectedPhoneNumberRegistrationSubscriptionDidChange;
 - (void)_handleCarrierSettingsChanged;
 - (void)_handleSIMStatusChangedToStatus:(id)arg1;
 - (void)simStatusDidChange:(id)arg1 status:(id)arg2;
@@ -140,8 +141,6 @@
 - (void)_unregisterForCommCenterReadyNotifications;
 - (void)_registerForCommCenterReadyNotifications;
 - (void)_updateCapabilities;
-- (BOOL)_wantsForcedCellularQueries;
-- (id)_forceWWANQueriesCarrierBundleValue;
 - (void)_registerForCapabilityNotifications;
 - (void)_unregisterForServiceStatusNotifications;
 - (void)_registerForServiceStatusNotifications;

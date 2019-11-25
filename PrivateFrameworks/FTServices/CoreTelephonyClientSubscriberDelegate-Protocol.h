@@ -11,6 +11,9 @@
 @protocol CoreTelephonyClientSubscriberDelegate <NSObject>
 
 @optional
+- (void)userDefaultVoiceSlotDidChange:(CTXPCServiceSubscriptionContext *)arg1;
+- (void)subscriberCountryCodeDidChange:(CTXPCServiceSubscriptionContext *)arg1;
+- (void)shortLabelsDidChange;
 - (void)authTokenChanged:(CTServiceDescriptor *)arg1;
 - (void)simPinChangeRequestDidComplete:(CTXPCServiceSubscriptionContext *)arg1 success:(BOOL)arg2;
 - (void)simPukEntryErrorDidOccur:(CTXPCServiceSubscriptionContext *)arg1 status:(NSString *)arg2;

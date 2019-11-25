@@ -17,15 +17,18 @@
     struct {
         unsigned int sortType:1;
     } _has;
+    BOOL __encodeLegacyGloryData;
     int _sortType;
     NSArray *_notes;
     NSArray *_taskLists;
     NSArray *_tasks;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)tasksType;
 + (Class)taskListsType;
 + (Class)notesType;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(copy, nonatomic) NSArray *tasks; // @synthesize tasks=_tasks;
 @property(copy, nonatomic) NSArray *taskLists; // @synthesize taskLists=_taskLists;
 @property(nonatomic) int sortType; // @synthesize sortType=_sortType;
@@ -35,6 +38,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (id)tasksAtIndex:(unsigned long long)arg1;

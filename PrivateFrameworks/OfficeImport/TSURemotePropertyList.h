@@ -8,6 +8,7 @@
 
 @class NSDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSURL;
 
+__attribute__((visibility("hidden")))
 @interface TSURemotePropertyList : NSObject
 {
     NSURL *_remoteURL;

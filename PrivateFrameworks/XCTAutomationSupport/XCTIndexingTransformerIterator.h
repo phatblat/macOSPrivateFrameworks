@@ -10,6 +10,7 @@
 
 @class NSSet, NSString, XCElementSnapshot, XCTElementIndexingTransformer;
 
+__attribute__((visibility("hidden")))
 @interface XCTIndexingTransformerIterator : NSObject <XCTMatchingElementIterator>
 {
     BOOL _hasMatched;

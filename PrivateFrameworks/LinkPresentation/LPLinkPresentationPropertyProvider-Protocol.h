@@ -6,15 +6,18 @@
 
 #import "NSObject.h"
 
-@class LPCaptionBarPresentationProperties, LPImage, LPVideo, LPiTunesPlaybackInformation, NSColor, NSNumber, NSString;
+@class LPAudio, LPCaptionBarPresentationProperties, LPImage, LPImagePresentationProperties, LPInlineMediaPlaybackInformation, LPVideo, NSArray, NSColor, NSNumber, NSString;
 
 @protocol LPLinkPresentationPropertyProvider <NSObject>
 
 @optional
-- (LPiTunesPlaybackInformation *)iTunesPlaybackInformation;
+- (LPInlineMediaPlaybackInformation *)inlinePlaybackInformation;
 - (NSNumber *)minimumHeight;
 - (NSColor *)backgroundColor;
+- (LPAudio *)audio;
 - (LPVideo *)video;
+- (NSArray *)alternateImages;
+- (LPImagePresentationProperties *)imageProperties;
 - (LPImage *)image;
 - (NSString *)quotedText;
 - (LPCaptionBarPresentationProperties *)mediaBottomCaptionBar;

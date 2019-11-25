@@ -27,6 +27,7 @@
     unsigned long long _maxRetriesAfterConnectionFailure;
     NSString *_minimumBridgeOSVersionRequirement;
     NSURL *_bridgeOSSoftwareUpdateEventRecordingServiceURL;
+    NSURL *_personalizationServerURL;
     NSURL *_predicateProductOriginatingCatalogURL;
     NSDictionary *_bridgeOSSoftwareUpdateControllerState;
     NSObject<OS_dispatch_queue> *_delegateQueue;
@@ -52,6 +53,7 @@
 @property(retain) NSObject<OS_dispatch_queue> *delegateQueue; // @synthesize delegateQueue=_delegateQueue;
 @property(retain) NSDictionary *bridgeOSSoftwareUpdateControllerState; // @synthesize bridgeOSSoftwareUpdateControllerState=_bridgeOSSoftwareUpdateControllerState;
 @property(retain) NSURL *predicateProductOriginatingCatalogURL; // @synthesize predicateProductOriginatingCatalogURL=_predicateProductOriginatingCatalogURL;
+@property(retain) NSURL *personalizationServerURL; // @synthesize personalizationServerURL=_personalizationServerURL;
 @property(retain) NSURL *bridgeOSSoftwareUpdateEventRecordingServiceURL; // @synthesize bridgeOSSoftwareUpdateEventRecordingServiceURL=_bridgeOSSoftwareUpdateEventRecordingServiceURL;
 @property(retain) NSString *minimumBridgeOSVersionRequirement; // @synthesize minimumBridgeOSVersionRequirement=_minimumBridgeOSVersionRequirement;
 @property unsigned long long maxRetriesAfterConnectionFailure; // @synthesize maxRetriesAfterConnectionFailure=_maxRetriesAfterConnectionFailure;
@@ -75,6 +77,7 @@
 - (void)_printUsageForExecutableNamed:(id)arg1;
 - (BOOL)clientContextIsEqualTo:(id)arg1;
 - (id)clientContext;
+- (id)errorUserInfo;
 @property(readonly) NSString *actionDescription;
 - (void)dealloc;
 - (id)initWithOptions:(id)arg1;

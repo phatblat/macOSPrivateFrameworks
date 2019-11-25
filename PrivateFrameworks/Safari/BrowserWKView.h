@@ -6,10 +6,12 @@
 
 #import <Safari/SearchableWKView.h>
 
-@class BrowserViewController, NSArray, NSMutableDictionary, NSMutableSet, NSUUID;
+#import "_WKIconLoadingDelegate.h"
+
+@class BrowserViewController, NSArray, NSMutableDictionary, NSMutableSet, NSString, NSUUID;
 
 __attribute__((visibility("hidden")))
-@interface BrowserWKView : SearchableWKView
+@interface BrowserWKView : SearchableWKView <_WKIconLoadingDelegate>
 {
     NSMutableDictionary *_renderTreeCreationHandlerMap;
     NSMutableSet *_WKViewMouseTrackingBlockerSet;
@@ -36,7 +38,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL shouldBlockAllMouseEvents; // @synthesize shouldBlockAllMouseEvents=_shouldBlockAllMouseEvents;
 @property(nonatomic) __weak id <BrowserViewIconLoadingDelegate> iconDelegate; // @synthesize iconDelegate=_iconDelegate;
 - (void).cxx_destruct;
-- (void)_shouldLoadIconWithParameters:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)webView:(id)arg1 shouldLoadIconWithParameters:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)touchBar;
 - (BOOL)resignFirstResponder;
 - (BOOL)_isBlockingWKViewMouseTracking;
@@ -67,6 +69,7 @@ __attribute__((visibility("hidden")))
 - (void)mouseDown:(id)arg1;
 - (BOOL)becomeFirstResponder;
 - (BOOL)acceptsFirstResponder;
+- (void)viewDidChangeEffectiveAppearance;
 - (void)viewDidMoveToWindow;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)startObserving:(id)arg1;
@@ -80,8 +83,14 @@ __attribute__((visibility("hidden")))
 - (id)playbackControlsPresenter;
 @property(readonly, nonatomic) BrowserViewController *browserViewController;
 - (void)dealloc;
-- (id)initWithBrowserViewController:(id)arg1 configurationRef:(struct OpaqueWKPageConfiguration *)arg2;
-- (id)initWithWebViewController:(id)arg1 configurationRef:(struct OpaqueWKPageConfiguration *)arg2;
+- (id)initWithBrowserViewController:(id)arg1 configuration:(id)arg2;
+- (id)initWithWebViewController:(id)arg1 configuration:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

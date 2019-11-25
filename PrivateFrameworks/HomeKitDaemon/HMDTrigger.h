@@ -8,6 +8,7 @@
 
 #import "HMDBackingStoreObjectProtocol.h"
 #import "HMDBulletinIdentifiers.h"
+#import "HMDDevicePreferenceDataSource.h"
 #import "HMDHomeMessageReceiver.h"
 #import "HMFDumpState.h"
 #import "HMFLogging.h"
@@ -15,7 +16,7 @@
 
 @class HMDDevice, HMDHome, HMDUser, HMFMessageDispatcher, NSArray, NSDate, NSDictionary, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
 
-@interface HMDTrigger : HMFObject <HMDBulletinIdentifiers, HMDHomeMessageReceiver, NSSecureCoding, HMFDumpState, HMFLogging, HMDBackingStoreObjectProtocol>
+@interface HMDTrigger : HMFObject <HMDBulletinIdentifiers, HMDHomeMessageReceiver, NSSecureCoding, HMFDumpState, HMFLogging, HMDDevicePreferenceDataSource, HMDBackingStoreObjectProtocol>
 {
     BOOL _active;
     NSString *_name;
@@ -44,9 +45,12 @@
 @property(retain, nonatomic) HMDDevice *owningDevice; // @synthesize owningDevice=_owningDevice;
 @property(retain, nonatomic) HMDUser *owner; // @synthesize owner=_owner;
 @property(nonatomic) __weak HMDHome *home; // @synthesize home=_home;
-@property(retain, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
+@property(copy, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
 @property(retain, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
+- (void)_addActionSet:(id)arg1;
+- (BOOL)supportsDeviceWithCapabilities:(id)arg1;
+- (void)confirmResident;
 - (id)updateEventTriggerMessage:(int)arg1 message:(id)arg2 relay:(BOOL)arg3;
 - (void)timerFired:(id)arg1;
 - (id)emptyModelObject;
@@ -74,6 +78,7 @@
 - (void)_actionSetsUpdated:(id)arg1 message:(id)arg2;
 - (void)_updateActionSetRequest:(id)arg1 postUpdate:(BOOL)arg2;
 - (void)_handleUpdateActionSetRequest:(id)arg1 postUpdate:(BOOL)arg2;
+- (void)_handleUpdateActionSetRequest:(id)arg1;
 - (void)_handleRemoveTriggerOwnedActionSetRequest:(id)arg1 postUpdate:(BOOL)arg2;
 - (void)_handleRemoveActionSetRequest:(id)arg1 postUpdate:(BOOL)arg2;
 - (void)_handleAddTriggerOwnedActionSetRequest:(id)arg1;

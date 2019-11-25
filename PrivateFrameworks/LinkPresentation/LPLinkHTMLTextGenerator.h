@@ -15,7 +15,6 @@
     WebView *_webView;
     LPLinkHTMLGenerator *_DOMGenerator;
     NSString *_generatedFragmentText;
-    NSString *_generatedDocumentText;
     id <LPLinkHTMLTextGeneratorDelegate> _delegate;
 }
 
@@ -23,11 +22,11 @@
 @property(nonatomic) __weak id <LPLinkHTMLTextGeneratorDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)linkHTMLGenerator:(id)arg1 URLForResource:(id)arg2 withMIMEType:(id)arg3;
-@property(readonly, copy, nonatomic) NSString *HTMLDocumentString;
 @property(readonly, copy, nonatomic) NSString *HTMLFragmentString;
 @property(readonly, copy, nonatomic) NSURL *URL;
 @property(copy, nonatomic) LPLinkMetadata *metadata;
 @property(nonatomic) BOOL generateEmailCompatibleMarkup;
+- (void)_commonInitWithPresentationProperties:(id)arg1 URL:(id)arg2;
 - (id)initWithPresentationProperties:(id)arg1 URL:(id)arg2;
 - (id)initWithURL:(id)arg1;
 - (id)init;

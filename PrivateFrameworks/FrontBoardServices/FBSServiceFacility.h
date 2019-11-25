@@ -14,13 +14,14 @@
 @interface FBSServiceFacility : NSObject <BSDescriptionProviding, BSInvalidatable>
 {
     NSString *_identifier;
-    NSMutableSet *_clients;
     FBSSerialQueue *_queue;
     NSSet *_prerequisiteMilestones;
+    NSMutableSet *_clients;
+    NSSet *_clients_immutable;
+    struct os_unfair_lock_s _clients_immutable_lock;
     BOOL _invalidated;
 }
 
-@property(readonly, nonatomic) NSSet *clients; // @synthesize clients=_clients;
 @property(readonly, nonatomic) FBSSerialQueue *queue; // @synthesize queue=_queue;
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
@@ -33,10 +34,11 @@
 - (id)succinctDescriptionBuilder;
 - (id)succinctDescription;
 - (void)sendMessage:(id)arg1 withType:(long long)arg2 toClients:(id)arg3;
-- (void)_handleMessage:(id)arg1 withType:(long long)arg2 fromClient:(id)arg3;
-- (void)_clientDidDisconnect:(id)arg1;
-- (void)_clientDidConnect:(id)arg1 withMessage:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)queue_handleMessage:(id)arg1 withType:(long long)arg2 fromClient:(id)arg3;
+- (void)queue_clientDidDisconnect:(id)arg1;
+- (BOOL)queue_clientDidConnect:(id)arg1 withMessage:(id)arg2;
 @property(readonly, nonatomic) NSSet *_prerequisiteMilestones;
+@property(readonly, nonatomic) NSSet *clients;
 - (void)invalidate;
 - (void)dealloc;
 - (id)initWithIdentifier:(id)arg1 queue:(id)arg2;

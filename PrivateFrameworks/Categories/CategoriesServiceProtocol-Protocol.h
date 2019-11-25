@@ -4,13 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSArray;
+@class NSArray, NSString;
 
 @protocol CategoriesServiceProtocol
-- (void)systemUnblockableBundleIdentifiersWithCompletionHandler:(void (^)(NSSet *, NSError *))arg1;
-- (void)systemBlockableBundleIdentifiersWithCompletionHandler:(void (^)(NSSet *, NSError *))arg1;
-- (void)systemHiddenBundleIdentifiersWithCompletionHandler:(void (^)(NSSet *, NSError *))arg1;
-- (void)categoriesForDomainNames:(NSArray *)arg1 completionHandler:(void (^)(NSDictionary *, NSError *))arg2;
-- (void)categoriesForBundleIDs:(NSArray *)arg1 completionHandler:(void (^)(NSDictionary *, NSError *))arg2;
+- (void)lookupAppStoreForBundleIDs:(NSArray *)arg1 platform:(NSString *)arg2 replyHandler:(void (^)(NSDictionary *, NSError *))arg3;
+- (void)genreIDsAndCounterpartIdentifiersForInstalledBundleIDs:(NSArray *)arg1 replyHandler:(void (^)(NSDictionary *, NSError *))arg2;
 @end
 

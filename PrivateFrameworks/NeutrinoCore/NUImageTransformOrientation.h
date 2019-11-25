@@ -9,6 +9,7 @@
 @interface NUImageTransformOrientation : NUImageTransform
 {
     CDStruct_d58201db _inputImageSize;
+    CDStruct_f261e59c _inputImageOrigin;
     long long _orientation;
 }
 
@@ -18,8 +19,10 @@
 - (BOOL)isEqualToGeometryTransformOrientation:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
+-     // Error parsing type: {?=[4]}144@0:8{?=[4]}16, name: transformMatrix:
 - (struct CGPoint)transformPoint:(struct CGPoint)arg1;
 - (id)inverseTransform;
+- (id)initWithOrientation:(long long)arg1 imageSize:(CDStruct_912cb5d2)arg2 imageOrigin:(CDStruct_912cb5d2)arg3;
 - (id)initWithOrientation:(long long)arg1 imageSize:(CDStruct_912cb5d2)arg2;
 - (id)init;
 

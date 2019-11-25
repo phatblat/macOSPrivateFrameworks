@@ -8,7 +8,7 @@
 
 #import "SiriCoreConnectionProvider.h"
 
-@class NSArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSObject<OS_nw_connection>, NSObject<OS_nw_endpoint>, NSString, NSURL, SAConnectionPolicy, SAConnectionPolicyRoute, SiriCoreConnectionMetrics, SiriCoreConnectionType;
+@class NSArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSObject<OS_nw_connection>, NSObject<OS_nw_content_context>, NSObject<OS_nw_endpoint>, NSString, NSURL, SAConnectionPolicy, SAConnectionPolicyRoute, SiriCoreConnectionMetrics, SiriCoreConnectionType;
 
 @interface SiriCoreNWConnection : NSObject <SiriCoreConnectionProvider>
 {
@@ -18,6 +18,7 @@
     NSString *_resolvedHost;
     NSObject<OS_nw_connection> *_connection;
     NSObject<OS_nw_endpoint> *_endpoint;
+    NSObject<OS_nw_content_context> *_content_context;
     SAConnectionPolicyRoute *_route;
     SAConnectionPolicy *_policy;
     BOOL _prefersWWAN;
@@ -35,6 +36,8 @@
     NSObject<OS_dispatch_source> *_openTimer;
     NSObject<OS_dispatch_source> *_staleConnectionTimer;
     unsigned long long _readWriteCounter;
+    NSObject<OS_dispatch_source> *_connectionUnviableTimer;
+    unsigned long long _betterPathAvailableNotificationMachTime;
     NSArray *_attemptedEndpoints;
     BOOL _isViable;
     BOOL _scopeToWiFiOnly;
@@ -83,6 +86,8 @@
 - (void)_getNWConnectionWithInitialData:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_cancelStaleConnectionTimer;
 - (void)_setupStaleConnectionTimer;
+- (void)_cancelConnectionUnviableTimer;
+- (void)_startConnectionUnviableTimer;
 - (BOOL)_connectByPOPMethod;
 - (id)_connectionId;
 - (id)_url;

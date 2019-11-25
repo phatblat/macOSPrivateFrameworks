@@ -7,28 +7,33 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class CNAutocompleteFetchContext, NSArray, NSString;
 
-@interface CNAutocompleteFetchRequest : NSObject <NSCopying>
+@interface CNAutocompleteFetchRequest : NSObject <NSCopying, NSSecureCoding>
 {
     NSString *_searchString;
     NSString *_priorityDomainForSorting;
     unsigned long long _searchType;
     CNAutocompleteFetchContext *_fetchContext;
+    struct NSNumber *_shouldIncludeGroupResultsImpl;
     BOOL _includeContacts;
     BOOL _includeRecents;
     BOOL _includeSuggestions;
+    BOOL _includeLocalExtensions;
     BOOL _includeDirectoryServers;
     BOOL _includeCalendarServers;
     BOOL _includePredictions;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)searchablePropertiesForSearchType:(unsigned long long)arg1;
 + (id)request;
 @property BOOL includePredictions; // @synthesize includePredictions=_includePredictions;
 @property BOOL includeCalendarServers; // @synthesize includeCalendarServers=_includeCalendarServers;
 @property BOOL includeDirectoryServers; // @synthesize includeDirectoryServers=_includeDirectoryServers;
+@property BOOL includeLocalExtensions; // @synthesize includeLocalExtensions=_includeLocalExtensions;
 @property BOOL includeSuggestions; // @synthesize includeSuggestions=_includeSuggestions;
 @property BOOL includeRecents; // @synthesize includeRecents=_includeRecents;
 @property BOOL includeContacts; // @synthesize includeContacts=_includeContacts;
@@ -39,9 +44,13 @@
 - (void).cxx_destruct;
 @property BOOL includeServers;
 @property(copy) NSString *sendingAddress;
+@property BOOL shouldIncludeGroupResults;
+- (id)shouldIncludeGroupResultsDebugString;
 - (id)searchTypeDebugString;
 - (id)includeDebugString;
 - (id)description;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 @property(readonly) NSArray *searchableProperties;
 - (BOOL)isValid:(id *)arg1;
 - (id)executeWithDelegate:(id)arg1;

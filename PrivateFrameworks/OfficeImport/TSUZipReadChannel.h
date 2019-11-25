@@ -10,6 +10,7 @@
 
 @class NSString, TSUZipArchive, TSUZipEntry;
 
+__attribute__((visibility("hidden")))
 @interface TSUZipReadChannel : NSObject <TSUReadChannel>
 {
     TSUZipEntry *_entry;

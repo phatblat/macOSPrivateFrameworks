@@ -11,6 +11,7 @@
 
 @class NSArray, NSDate, NSDictionary, NSMutableArray, NSMutableDictionary, NSNumber, NSString, NSURL, NSURLSession, NWPathEvaluator;
 
+__attribute__((visibility("hidden")))
 @interface UploadSession : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate>
 {
     NSArray *_uploadingFilesInfo;

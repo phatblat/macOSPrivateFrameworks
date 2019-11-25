@@ -20,6 +20,8 @@
     CDUnknownBlockType _sendMsgBlock;
     double _lastIncomingPacketTime;
     double _lastOutgoingPacketTime;
+    unsigned int _totalPacketsSentOnLink;
+    unsigned int _totalPacketsReceivedOnLink;
     BOOL _hbStarted;
     unsigned short _hbCounter;
     unsigned char _statsIntervalInSeconds;
@@ -65,6 +67,8 @@
     CDUnknownBlockType _sessionGoAwayBlock;
     BOOL _pendingRealloc;
     NSObject<OS_dispatch_source> *_reallocTimer;
+    BOOL _pendingNoSessionStateAllocbind;
+    NSObject<OS_dispatch_source> *_noSessionStateTimer;
     BOOL _recvDisconnected;
     BOOL _recvDisconnectedAck;
     NSData *_encKey;
@@ -74,6 +78,10 @@
     BOOL _serverIsDegraded;
     double _testStartTime;
     unsigned int _testOptions;
+    BOOL _isDisconnecting;
+    double _triggeredCheckTime;
+    BOOL _isRealloc;
+    NSObject<OS_dispatch_source> *_allocbindFailoverTimer;
 }
 
 + (id)candidatePairWithLocalCandidate:(id)arg1 remoteCandidate:(id)arg2 sessionID:(id)arg3 delegate:(id)arg4 sendMsgBlock:(CDUnknownBlockType)arg5;
@@ -82,6 +90,7 @@
 @property(readonly) NSData *hmacKey; // @synthesize hmacKey=_hmacKey;
 @property(readonly) NSData *decKey; // @synthesize decKey=_decKey;
 @property(readonly) NSData *encKey; // @synthesize encKey=_encKey;
+@property(nonatomic) BOOL isRealloc; // @synthesize isRealloc=_isRealloc;
 @property(nonatomic) BOOL sentSKEData; // @synthesize sentSKEData=_sentSKEData;
 @property(nonatomic) BOOL recvSKEData; // @synthesize recvSKEData=_recvSKEData;
 @property(readonly, nonatomic) unsigned int sessionInfoReqCount; // @synthesize sessionInfoReqCount=_sessionInfoReqCount;
@@ -98,10 +107,17 @@
 @property(nonatomic) unsigned short channelNumber; // @synthesize channelNumber=_channelNumber;
 @property(readonly) NSDictionary *sessionInfoDict; // @synthesize sessionInfoDict=_sessionInfoDict;
 @property(readonly) IDSQuickRelaySessionInfo *relaySessionInfo; // @synthesize relaySessionInfo=_relaySessionInfo;
+@property(retain) NSObject<OS_dispatch_source> *allocbindFailoverTimer; // @synthesize allocbindFailoverTimer=_allocbindFailoverTimer;
 @property(copy) NSUUID *linkUUID; // @synthesize linkUUID=_linkUUID;
 @property(readonly, nonatomic) unsigned char statsIntervalInSeconds; // @synthesize statsIntervalInSeconds=_statsIntervalInSeconds;
+@property(nonatomic) unsigned int totalPacketsReceivedOnLink; // @synthesize totalPacketsReceivedOnLink=_totalPacketsReceivedOnLink;
+@property(nonatomic) unsigned int totalPacketsSentOnLink; // @synthesize totalPacketsSentOnLink=_totalPacketsSentOnLink;
 @property(nonatomic) double lastOutgoingPacketTime; // @synthesize lastOutgoingPacketTime=_lastOutgoingPacketTime;
 @property(nonatomic) double lastIncomingPacketTime; // @synthesize lastIncomingPacketTime=_lastIncomingPacketTime;
+@property(nonatomic) double triggeredCheckTime; // @synthesize triggeredCheckTime=_triggeredCheckTime;
+@property(readonly, nonatomic) unsigned int testOptions; // @synthesize testOptions=_testOptions;
+@property(nonatomic) BOOL pendingNoSessionStateAllocbind; // @synthesize pendingNoSessionStateAllocbind=_pendingNoSessionStateAllocbind;
+@property(nonatomic) BOOL isDisconnecting; // @synthesize isDisconnecting=_isDisconnecting;
 @property(readonly, nonatomic) double testStartTime; // @synthesize testStartTime=_testStartTime;
 @property(copy) NSData *skeData; // @synthesize skeData=_skeData;
 @property(nonatomic) BOOL recvDisconnectedAck; // @synthesize recvDisconnectedAck=_recvDisconnectedAck;
@@ -131,12 +147,14 @@
 - (void)_notifyQREventAdded:(id)arg1;
 - (void)_notifySessionStreamInfoReceived:(id)arg1 withParticipants:(id)arg2 sentBytes:(unsigned long long)arg3 receivedBytes:(unsigned long long)arg4 offlineRequest:(BOOL)arg5 streamInfoRequest:(BOOL)arg6 success:(BOOL)arg7;
 - (void)processSessionInfoRequestTimeout:(id)arg1;
-- (BOOL)processStunErrorResponse:(id)arg1 packetBuffer:(CDStruct_18fdc6f4 *)arg2 headerOverhead:(unsigned long long)arg3;
+- (BOOL)processStunErrorResponse:(id)arg1 packetBuffer:(CDStruct_4c86a2e2 *)arg2 headerOverhead:(unsigned long long)arg3;
+- (BOOL)processDataMessageErrorIndication:(id)arg1;
 - (BOOL)processSessionInfoIndication:(id)arg1 arrivalTime:(double)arg2;
 - (BOOL)processInfoIndication:(id)arg1 arrivalTime:(double)arg2;
 - (BOOL)processTestResponse:(id)arg1 arrivalTime:(double)arg2;
-- (BOOL)processSessionInfoResponse:(id)arg1 packetBuffer:(CDStruct_e844bd1c *)arg2 headerOverhead:(unsigned long long)arg3;
-- (BOOL)processInfoResponse:(id)arg1 packetBuffer:(CDStruct_e844bd1c *)arg2 headerOverhead:(unsigned long long)arg3;
+- (BOOL)processSessionInfoResponse:(id)arg1 packetBuffer:(CDStruct_4c86a2e2 *)arg2 headerOverhead:(unsigned long long)arg3;
+- (BOOL)processInfoResponse:(id)arg1 packetBuffer:(CDStruct_4c86a2e2 *)arg2 headerOverhead:(unsigned long long)arg3;
+- (BOOL)_optionallyCheckEncMarker:(id)arg1;
 - (BOOL)processStatsResponse:(id)arg1 arrivalTime:(double)arg2;
 - (void)sendTestRequest:(id)arg1;
 - (void)sendSessionInfoRequest:(id)arg1 options:(id)arg2;
@@ -149,7 +167,9 @@
 - (void)removeStunRequest:(id)arg1;
 - (void)addStunRequest:(id)arg1;
 - (id)processParticipantsData:(char *)arg1 dataLen:(int)arg2;
+- (void)updateParticipantIDMap:(id)arg1;
 - (void)initParticipantIDMap;
+- (unsigned long long)getParticipantIDHash:(id)arg1;
 - (void)deriveAES128CTRKeys:(id)arg1;
 - (void)setProtocolVersion:(unsigned char)arg1 isInitiator:(BOOL)arg2 enableSKE:(BOOL)arg3;
 - (void)setRelayLinkID:(unsigned short)arg1;
@@ -169,6 +189,10 @@
 - (void)_stopReallocTimer;
 - (void)_startReallocTimer;
 - (void)_handleReallocTimer;
+- (void)_stopNoSessionStateTimer;
+- (void)_startNoSessionStateTimer;
+- (void)_handleNoSessionStateTimer;
+- (void)setPendingNoSessionState:(BOOL)arg1;
 - (void)synthesizeNat64WithPrefix;
 - (unsigned int)nextSessionInfoReqID;
 - (void)setPropertiesWithReallocCandidatePair:(id)arg1 reallocToken:(id)arg2;

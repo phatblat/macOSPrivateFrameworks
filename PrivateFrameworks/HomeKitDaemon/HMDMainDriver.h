@@ -6,20 +6,18 @@
 
 #import "NSObject.h"
 
-@class HMDAccessoryBrowser, HMDCloudManager, HMDHomeManager, HMDXpcServer, NSObject<OS_dispatch_queue>;
+@class HMDAccessoryBrowser, HMDCloudManager, HMDHomeManager, NSObject<OS_dispatch_queue>;
 
 @interface HMDMainDriver : NSObject
 {
     NSObject<OS_dispatch_queue> *_workQueue;
     HMDHomeManager *_homeManager;
     HMDAccessoryBrowser *_accessoryBrowser;
-    HMDXpcServer *_xpcServer;
     HMDCloudManager *_cloudDataSyncManager;
 }
 
 + (id)driver;
 @property(retain, nonatomic) HMDCloudManager *cloudDataSyncManager; // @synthesize cloudDataSyncManager=_cloudDataSyncManager;
-@property(retain, nonatomic) HMDXpcServer *xpcServer; // @synthesize xpcServer=_xpcServer;
 @property(retain, nonatomic) HMDAccessoryBrowser *accessoryBrowser; // @synthesize accessoryBrowser=_accessoryBrowser;
 @property(retain, nonatomic) HMDHomeManager *homeManager; // @synthesize homeManager=_homeManager;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;

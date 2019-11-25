@@ -9,7 +9,7 @@
 #import "SMSystemScannerClient.h"
 #import "SMSystemScannerClientChangesProtocol.h"
 
-@class IASPickerViewController, NSArrayController, NSImageView, NSLayoutConstraint, NSObject<SMSelectSourceDelegate>, NSProgressIndicator, NSScrollView, NSString, NSTableView, NSTextField, NSView, SMAuthenticatedMountWindowController, SMSystemScanner_Client, SMSystem_Client;
+@class IASPickerViewController, NSArrayController, NSImageView, NSLayoutConstraint, NSObject<SMSelectSourceDelegate>, NSProgressIndicator, NSScrollView, NSString, NSTableView, NSTextField, NSView, SMSystemScanner_Client, SMSystem_Client;
 
 @interface SMSelectSourceViewController : SMViewController <SMSystemScannerClientChangesProtocol, SMSystemScannerClient>
 {
@@ -48,7 +48,6 @@
     CDUnknownBlockType _updateSystemHandler;
     SMSystem_Client *_highlightedSystem;
     SMSystem_Client *_foundHandoffResponse;
-    SMAuthenticatedMountWindowController *_authMountWindowController;
     NSImageView *_highlightingView;
     NSLayoutConstraint *_highlightingViewYPosConstraint;
     NSLayoutConstraint *_highlightingViewXPosConstraint;
@@ -84,7 +83,6 @@
 @property(retain) NSLayoutConstraint *highlightingViewXPosConstraint; // @synthesize highlightingViewXPosConstraint=_highlightingViewXPosConstraint;
 @property(retain) NSLayoutConstraint *highlightingViewYPosConstraint; // @synthesize highlightingViewYPosConstraint=_highlightingViewYPosConstraint;
 @property(retain) NSImageView *highlightingView; // @synthesize highlightingView=_highlightingView;
-@property(retain) SMAuthenticatedMountWindowController *authMountWindowController; // @synthesize authMountWindowController=_authMountWindowController;
 @property __weak SMSystem_Client *foundHandoffResponse; // @synthesize foundHandoffResponse=_foundHandoffResponse;
 @property __weak SMSystem_Client *highlightedSystem; // @synthesize highlightedSystem=_highlightedSystem;
 @property(copy) CDUnknownBlockType updateSystemHandler; // @synthesize updateSystemHandler=_updateSystemHandler;
@@ -125,6 +123,7 @@
 - (void)displayConnectOtherShowMessage:(id)arg1;
 - (void)pressedConnectOther:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)establishNetworkSourceConnectionStateForSystem:(id)arg1;
 - (void)systemScannerSystemChanged:(id)arg1 onSystem:(id)arg2;
 - (void)systemScannerRemovedSystem:(id)arg1;
 - (void)systemScannerFoundHandoffResponse:(id)arg1;

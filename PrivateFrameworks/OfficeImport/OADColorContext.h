@@ -8,6 +8,7 @@
 
 @class OADColorMap, OADColorScheme;
 
+__attribute__((visibility("hidden")))
 @interface OADColorContext : NSObject
 {
     OADColorScheme *mScheme;

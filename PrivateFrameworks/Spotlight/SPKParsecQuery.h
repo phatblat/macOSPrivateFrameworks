@@ -6,11 +6,10 @@
 
 #import <Spotlight/SPKQuery.h>
 
-@class NSArray, NSObject<OS_dispatch_queue>;
+@class NSObject<OS_dispatch_queue>;
 
 @interface SPKParsecQuery : SPKQuery
 {
-    NSArray *_rankingPatterns;
     NSObject<OS_dispatch_queue> *_queue;
     double _timeout;
     long long _queryTaskId;
@@ -19,16 +18,17 @@
 + (double)scaleFactor;
 + (void)deactivate;
 + (void)activate;
++ (double)searchRenderTimeout;
++ (id)fteExplanationText;
++ (id)fteLearnMore;
++ (id)fteSupportedDomains;
 + (BOOL)showedFTE;
-+ (void)webSearchEnabled:(BOOL)arg1;
 + (void)parsecEnabled:(BOOL)arg1;
-+ (BOOL)isWebSearchEnabled;
 + (BOOL)isParsecEnabled;
 + (BOOL)isQuerySupported:(unsigned long long)arg1;
 + (void)getFTEParameters;
 + (BOOL)isSiri;
 + (void)shouldSetClientAsSiri:(BOOL)arg1;
-+ (void)setFTEParametersWithLocalizedString1:(id)arg1 localizedString2:(id)arg2 learnMoreString:(id)arg3 splitText:(BOOL)arg4 supportedSet:(id)arg5 localeSupported:(BOOL)arg6 parsecSupported:(BOOL)arg7;
 + (void)setIsEffectsViewEnabled:(BOOL)arg1;
 + (BOOL)isEffectsViewEnabled;
 + (void)initialize;
@@ -42,10 +42,9 @@
 - (BOOL)vetURLForResult:(id)arg1;
 - (BOOL)supportsRefinement;
 - (BOOL)isParsecQuery;
-- (BOOL)isRemoteQuery;
 - (void)cancel;
 - (void)start;
-- (void)queryDidFinish:(long long)arg1 fbq:(id)arg2 results:(id)arg3 category_stats:(id)arg4 parsecCategoryOrder:(id)arg5 suggestions:(id)arg6 corrections:(id)arg7;
+- (void)queryDidFinish:(long long)arg1 fbq:(id)arg2 sections:(id)arg3 category_stats:(id)arg4 parsecCategoryOrder:(id)arg5 suggestions:(id)arg6 corrections:(id)arg7;
 - (void)dealloc;
 - (id)initWithUserQuery:(id)arg1 queryGroupId:(unsigned long long)arg2 options:(unsigned long long)arg3 keyboardLanguage:(id)arg4;
 - (id)initWithUserQuery:(id)arg1 options:(unsigned long long)arg2;

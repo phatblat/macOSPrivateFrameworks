@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-__attribute__((visibility("hidden")))
 @interface AMSUnitTests : NSObject
 {
 }
 
 + (void)_sync:(CDUnknownBlockType)arg1;
-+ (id)protocolClasses;
-+ (void)setProtocolClasses:(id)arg1;
++ (id)_encryptionKeys;
++ (void)setEncryptionKey:(id)arg1 forDataProtectionClass:(unsigned long long)arg2;
++ (id)encryptionKeyForDataProtectionClass:(unsigned long long)arg1;
 + (BOOL)isRunningUnitTests;
 
 @end

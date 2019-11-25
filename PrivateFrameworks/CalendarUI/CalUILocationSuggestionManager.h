@@ -12,9 +12,10 @@
 
 @interface CalUILocationSuggestionManager : NSObject <MKSearchCompleterDelegate>
 {
+    NSString *_currentSearchQuery;
     BOOL _searchingTier1;
     BOOL _searchingTier2;
-    NSString *_currentQuery;
+    NSString *_redactedCurrentQuery;
     CalUILocationSuggestionResult *_currentLocation;
     unsigned long long _options;
     NSMutableArray *_meCardResults;
@@ -25,6 +26,7 @@
     NSObject<OS_dispatch_queue> *_runningQueriesQueue;
     NSObject<OS_dispatch_queue> *_resultsAccessQueue;
     NSObject<OS_dispatch_queue> *_recentsResponseQueue;
+    NSObject<OS_dispatch_queue> *_contactsLookupQueue;
     MKLocalSearchRequest *_localSearchRequest;
     CUIKiCloudKVStore *_iCloudKVStore;
     NSMutableSet *_pendingSearchTypes;
@@ -56,6 +58,7 @@
 @property(retain, nonatomic) NSMutableSet *pendingSearchTypes; // @synthesize pendingSearchTypes=_pendingSearchTypes;
 @property(retain) CUIKiCloudKVStore *iCloudKVStore; // @synthesize iCloudKVStore=_iCloudKVStore;
 @property(retain) MKLocalSearchRequest *localSearchRequest; // @synthesize localSearchRequest=_localSearchRequest;
+@property(retain) NSObject<OS_dispatch_queue> *contactsLookupQueue; // @synthesize contactsLookupQueue=_contactsLookupQueue;
 @property(retain) NSObject<OS_dispatch_queue> *recentsResponseQueue; // @synthesize recentsResponseQueue=_recentsResponseQueue;
 @property(retain) NSObject<OS_dispatch_queue> *resultsAccessQueue; // @synthesize resultsAccessQueue=_resultsAccessQueue;
 @property(retain) NSObject<OS_dispatch_queue> *runningQueriesQueue; // @synthesize runningQueriesQueue=_runningQueriesQueue;
@@ -66,7 +69,7 @@
 @property(retain) NSMutableArray *meCardResults; // @synthesize meCardResults=_meCardResults;
 @property unsigned long long options; // @synthesize options=_options;
 @property(retain) CalUILocationSuggestionResult *currentLocation; // @synthesize currentLocation=_currentLocation;
-@property(retain) NSString *currentQuery; // @synthesize currentQuery=_currentQuery;
+@property(retain, nonatomic) NSString *redactedCurrentQuery; // @synthesize redactedCurrentQuery=_redactedCurrentQuery;
 - (void).cxx_destruct;
 - (void)completerDidFail:(id)arg1 error:(id)arg2;
 - (void)geocodeNextLocationSuggestion;
@@ -78,15 +81,16 @@
 - (void)addRunningQuery:(id)arg1;
 - (void)executeSearch:(id)arg1;
 - (void)_addResult:(id)arg1 toResults:(id)arg2;
-- (id)addressBookLocationsForSearchString:(id)arg1;
+- (void)contactLocationsForSearchString:(id)arg1;
 - (id)results;
 - (void)_addArray:(id)arg1 toSet:(id)arg2 withKeySet:(id)arg3 withMaxElements:(long long)arg4;
 - (void)_addArray:(id)arg1 toArray:(id)arg2 withMaxElements:(long long)arg3;
 - (void)resultsUpdated;
-- (void)finishSearchType:(id)arg1;
+- (void)finishSearchType:(id)arg1 withResultCount:(unsigned long long)arg2;
 - (id)pendingSearchTypesCopy;
 - (void)startSearchType:(id)arg1;
 - (BOOL)isFinished;
+@property(retain, nonatomic) NSString *currentSearchQuery;
 - (BOOL)tier1Finished;
 - (id)init;
 

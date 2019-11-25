@@ -19,6 +19,7 @@
     NSDictionary *_lastSpeakerIdInfo;
 }
 
+- (void)setCVTTriggerPhraseDetected;
 - (void)processMyriadDecision:(unsigned long long)arg1;
 @property(readonly, nonatomic) NSDictionary *lastSpeakerIdInfo;
 - (void)recordingStoppedForReason:(long long)arg1;

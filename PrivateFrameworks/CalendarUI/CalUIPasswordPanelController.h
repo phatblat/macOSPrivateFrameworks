@@ -29,8 +29,8 @@
 - (void)showPasswordPanelsForUnauthenticatedAccounts;
 - (void)showPasswordPanelForSource:(id)arg1 userInitiated:(BOOL)arg2;
 - (void)showPasswordPanelForSource:(id)arg1;
-- (void)showPasswordPanelForAccount:(id)arg1 userInitiated:(BOOL)arg2;
-- (void)showPasswordPanelForAccount:(id)arg1;
+- (void)showPasswordPanelForAccountID:(id)arg1 userInitiated:(BOOL)arg2;
+- (void)showPasswordPanelForAccountID:(id)arg1;
 - (id)init;
 
 @end

@@ -11,11 +11,16 @@
 __attribute__((visibility("hidden")))
 @interface LPTheme : NSObject
 {
+    long long _style;
+    unsigned long long _sizeClass;
+    long long _platform;
+    BOOL _isFallbackIcon;
     NSColor *_backgroundColor;
     NSColor *_highlightColor;
     LPCaptionBarStyle *_captionBar;
     LPTextViewStyle *_quotedText;
     LPImageViewStyle *_mediaImage;
+    LPImageViewStyle *_placeholderIcon;
     LPVideoViewStyle *_mediaVideo;
     NSColor *_mediaBackgroundColor;
     LPCaptionBarStyle *_mediaTopCaptionBar;
@@ -26,9 +31,15 @@ __attribute__((visibility("hidden")))
     double _widthFractionForTallMedia;
 }
 
++ (id)iconPlatterCornerRadius;
++ (id)iconPlatterPaddingForReason:(long long)arg1;
 + (void)addClient:(id)arg1;
-+ (id)themeWithStyle:(long long)arg1 icon:(id)arg2 platform:(long long)arg3;
++ (id)themeWithStyle:(long long)arg1 icon:(id)arg2 platform:(long long)arg3 sizeClass:(unsigned long long)arg4;
++ (id)secondaryLabelColor;
++ (id)primaryLabelColor;
++ (double)largestIconSizeInPoints;
 + (id)regularTheme;
++ (void)invalidateThemeCache;
 @property(nonatomic) double widthFractionForTallMedia; // @synthesize widthFractionForTallMedia=_widthFractionForTallMedia;
 @property(retain, nonatomic) LPPointUnit *maximumIntrinsicHeight; // @synthesize maximumIntrinsicHeight=_maximumIntrinsicHeight;
 @property(retain, nonatomic) LPPointUnit *maximumWidth; // @synthesize maximumWidth=_maximumWidth;
@@ -37,6 +48,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) LPCaptionBarStyle *mediaTopCaptionBar; // @synthesize mediaTopCaptionBar=_mediaTopCaptionBar;
 @property(retain, nonatomic) NSColor *mediaBackgroundColor; // @synthesize mediaBackgroundColor=_mediaBackgroundColor;
 @property(readonly, nonatomic) LPVideoViewStyle *mediaVideo; // @synthesize mediaVideo=_mediaVideo;
+@property(readonly, nonatomic) LPImageViewStyle *placeholderIcon; // @synthesize placeholderIcon=_placeholderIcon;
 @property(readonly, nonatomic) LPImageViewStyle *mediaImage; // @synthesize mediaImage=_mediaImage;
 @property(readonly, nonatomic) LPTextViewStyle *quotedText; // @synthesize quotedText=_quotedText;
 @property(readonly, nonatomic) LPCaptionBarStyle *captionBar; // @synthesize captionBar=_captionBar;
@@ -48,7 +60,8 @@ __attribute__((visibility("hidden")))
 - (id)valueForThemeProperty:(id)arg1;
 - (id)CSSCustomPropertiesForThemePropertiesInSet:(id)arg1;
 - (id)valueForUndefinedKey:(id)arg1;
-- (id)initWithStyle:(long long)arg1 icon:(id)arg2 platform:(long long)arg3;
+- (void)adjustForStyle;
+- (id)initWithStyle:(long long)arg1 icon:(id)arg2 platform:(long long)arg3 sizeClass:(unsigned long long)arg4;
 
 @end
 

@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
+#import "HAPAirPlayAccessoryBrowserDelegate.h"
 #import "HMDWACScanner.h"
 #import "HMFLogging.h"
 
 @class CUWiFiScanner, NSObject<OS_dispatch_queue>, NSString;
 
-@interface HMDWACScanner : NSObject <HMFLogging, HMDWACScanner>
+@interface HMDWACScanner : NSObject <HMFLogging, HAPAirPlayAccessoryBrowserDelegate, HMDWACScanner>
 {
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     CUWiFiScanner *_wifiScanner;
@@ -23,9 +24,13 @@
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *delegateQueue; // @synthesize delegateQueue=_delegateQueue;
 @property(nonatomic) __weak id <HMDWACScannerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)wacBrowser:(id)arg1 didUpdateAirPlayDevice:(id)arg2;
+- (void)wacBrowser:(id)arg1 didRemoveAirPlayDevice:(id)arg2;
+- (void)wacBrowser:(id)arg1 didFindAirPlayDevice:(id)arg2;
 - (void)stop;
 - (void)resume;
 - (void)backoff;
+- (void)startDiscoveringAirPlayAccessoriesWithBrowser:(id)arg1;
 - (void)start;
 - (void)setDelegate:(id)arg1 queue:(id)arg2;
 - (id)init;

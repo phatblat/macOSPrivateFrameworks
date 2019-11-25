@@ -8,23 +8,20 @@
 
 #import "GEODataSessionTask.h"
 #import "GEODataSessionTaskDelegate.h"
-#import "GEODataSessionTaskRulesObserver.h"
 #import "GEOStateCapturing.h"
 
 @class GEOClientMetrics, GEODataSession, GEODataURLSessionTask, NSData, NSError, NSObject<OS_dispatch_queue>, NSObject<OS_os_activity>, NSString, NSURL;
 
-@interface GEODataSessionTask : NSObject <GEODataSessionTaskDelegate, GEODataSessionTaskRulesObserver, GEOStateCapturing, GEODataSessionTask>
+@interface GEODataSessionTask : NSObject <GEODataSessionTaskDelegate, GEOStateCapturing, GEODataSessionTask>
 {
     id <GEODataSessionTaskDelegate> _delegate;
     GEODataSession *_session;
-    id <GEODataSessionTaskRules> _rules;
     NSObject<OS_dispatch_queue> *_sessionIsolation;
     NSObject<OS_dispatch_queue> *_delegateQueue;
     NSObject<OS_os_activity> *_activity;
     id <GEODataSessionTask> _completedSubtask;
     GEODataURLSessionTask *_urlTask;
-    GEODataSessionTask *_xpcTask;
-    int _requestKind;
+    CDStruct_d1a7ebee _requestKind;
     unsigned long long _stateCaptureHandle;
     unsigned int _taskIdentifier;
     double _startTime;
@@ -37,19 +34,22 @@
 @property(readonly, nonatomic) unsigned int taskIdentifier; // @synthesize taskIdentifier=_taskIdentifier;
 @property(nonatomic) __weak id <GEODataSessionTaskDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) __weak GEODataSession *session; // @synthesize session=_session;
-@property(readonly, nonatomic) int requestKind; // @synthesize requestKind=_requestKind;
+@property(readonly, nonatomic) CDStruct_d1a7ebee requestKind; // @synthesize requestKind=_requestKind;
 @property(retain, nonatomic) id <GEODataSessionTask> completedSubtask; // @synthesize completedSubtask=_completedSubtask;
-@property(retain, nonatomic) GEODataSessionTask *xpcTask; // @synthesize xpcTask=_xpcTask;
 @property(retain, nonatomic) GEODataURLSessionTask *urlTask; // @synthesize urlTask=_urlTask;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *delegateQueue; // @synthesize delegateQueue=_delegateQueue;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *sessionIsolation; // @synthesize sessionIsolation=_sessionIsolation;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL receivedRNFNotification;
+@property(readonly, nonatomic) BOOL mptcpNegotiated;
+@property(readonly, nonatomic) unsigned long long requestedMultipathServiceType;
 @property(readonly, nonatomic) id <GEORequestCounterTicket> requestCounterTicket;
 @property(readonly, nonatomic) GEOClientMetrics *clientMetrics;
-@property(readonly) BOOL failedDueToCancel;
+@property(readonly, nonatomic) BOOL failedDueToCancel;
 @property(readonly, nonatomic) NSString *remoteAddressAndPort;
 @property(readonly, nonatomic) unsigned long long outgoingPayloadSize;
 @property(readonly, nonatomic) unsigned long long incomingPayloadSize;
+@property(readonly, copy, nonatomic) NSURL *downloadedFileURL;
 @property(readonly, nonatomic) NSData *receivedData;
 @property(readonly, nonatomic) BOOL protocolBufferHasPreamble;
 @property(readonly, nonatomic) id <NSObject> parsedResponse;
@@ -58,10 +58,11 @@
 - (void)start;
 @property float priority;
 @property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 - (void)dealloc;
-- (id)initWithSession:(id)arg1 rules:(id)arg2 delegate:(id)arg3 delegateQueue:(id)arg4 requestKind:(int)arg5 requestCounterTicket:(id)arg6;
-- (BOOL)validateTileResponseWithError:(id *)arg1;
-- (void)rulesDidChooseCompletedSubtask:(id)arg1;
+- (id)initWithSession:(id)arg1 delegate:(id)arg2 delegateQueue:(id)arg3 requestKind:(CDStruct_d1a7ebee)arg4 requestCounterTicket:(id)arg5;
+- (BOOL)validateTileResponse:(BOOL)arg1 error:(id *)arg2;
+- (void)_didCompleteSubtask:(id)arg1;
 - (void)dataSession:(id)arg1 willSendRequest:(id)arg2 forTask:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)dataSession:(id)arg1 didCompleteTask:(id)arg2;
 @property(readonly, nonatomic) NSURL *originalRequestURL;
@@ -70,12 +71,12 @@
 - (BOOL)getHeaderValue:(id *)arg1 forField:(id)arg2;
 - (BOOL)validateTransportWithError:(id *)arg1;
 - (BOOL)didValidateEntityTagForData:(id *)arg1 entityTag:(id *)arg2;
-@property(readonly) double elapsedTime;
+- (double)loadTimeIncludingTask:(id)arg1;
+@property(readonly, nonatomic) double loadTime;
+@property(readonly, nonatomic) double elapsedTime;
 - (id)captureStateWithHints:(struct os_state_hints_s *)arg1;
-- (void)startSubtasksApplyingRules:(id)arg1 URL:(id)arg2 XPC:(id)arg3;
 
 // Remaining properties
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

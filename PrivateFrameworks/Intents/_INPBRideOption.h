@@ -18,6 +18,7 @@
         unsigned int usesMeteredFare:1;
     } _has;
     BOOL _usesMeteredFare;
+    BOOL __encodeLegacyGloryData;
     NSArray *_availablePartySizeOptions;
     NSString *_availablePartySizeOptionsSelectionPrompt;
     NSString *_disclaimerMessage;
@@ -31,8 +32,10 @@
     _INPBUserActivity *_userActivityForBookingInApplication;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)fareLineItemsType;
 + (Class)availablePartySizeOptionsType;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(nonatomic) BOOL usesMeteredFare; // @synthesize usesMeteredFare=_usesMeteredFare;
 @property(retain, nonatomic) _INPBUserActivity *userActivityForBookingInApplication; // @synthesize userActivityForBookingInApplication=_userActivityForBookingInApplication;
 @property(copy, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
@@ -50,6 +53,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(nonatomic) BOOL hasUsesMeteredFare;

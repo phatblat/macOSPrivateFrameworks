@@ -8,40 +8,59 @@
 
 #import "NSCopying.h"
 
-@class GEOMapItemClientAttributes, GEOMapItemInitialRequestData, GEOPDPlaceRefinementParameters;
+@class GEOMapItemClientAttributes, GEOMapItemInitialRequestData, GEOPDPlaceRefinementParameters, PBDataReader;
 
-__attribute__((visibility("hidden")))
 @interface GEOMapItemHandle : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     GEOMapItemClientAttributes *_clientAttributes;
-    int _handleType;
     GEOPDPlaceRefinementParameters *_placeRefinementParameters;
     GEOMapItemInitialRequestData *_placeRequestData;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    int _handleType;
     struct {
-        unsigned int handleType:1;
-    } _has;
+        unsigned int has_handleType:1;
+        unsigned int read_clientAttributes:1;
+        unsigned int read_placeRefinementParameters:1;
+        unsigned int read_placeRequestData:1;
+        unsigned int wrote_clientAttributes:1;
+        unsigned int wrote_placeRefinementParameters:1;
+        unsigned int wrote_placeRequestData:1;
+        unsigned int wrote_handleType:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) GEOMapItemClientAttributes *clientAttributes; // @synthesize clientAttributes=_clientAttributes;
-@property(retain, nonatomic) GEOMapItemInitialRequestData *placeRequestData; // @synthesize placeRequestData=_placeRequestData;
-@property(retain, nonatomic) GEOPDPlaceRefinementParameters *placeRefinementParameters; // @synthesize placeRefinementParameters=_placeRefinementParameters;
++ (BOOL)isValid:(id)arg1;
++ (id)handleDataForMapItem:(id)arg1;
 - (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)copyTo:(id)arg1;
+- (void)clearSensitiveFields;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEOMapItemClientAttributes *clientAttributes;
 @property(readonly, nonatomic) BOOL hasClientAttributes;
+- (void)_readClientAttributes;
+@property(retain, nonatomic) GEOMapItemInitialRequestData *placeRequestData;
 @property(readonly, nonatomic) BOOL hasPlaceRequestData;
+- (void)_readPlaceRequestData;
+@property(retain, nonatomic) GEOPDPlaceRefinementParameters *placeRefinementParameters;
 @property(readonly, nonatomic) BOOL hasPlaceRefinementParameters;
+- (void)_readPlaceRefinementParameters;
 - (int)StringAsHandleType:(id)arg1;
 - (id)handleTypeAsString:(int)arg1;
 @property(nonatomic) BOOL hasHandleType;
-@property(nonatomic) int handleType; // @synthesize handleType=_handleType;
+@property(nonatomic) int handleType;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

@@ -11,27 +11,24 @@
 @interface SASamplePrinter : NSObject
 {
     SAOutputStream *_stream;
-    unsigned long long _startSampleIndex;
-    unsigned long long _endSampleIndex;
+    SASamplePrintOptions *_options;
+    SASampleStore *_sampleStore;
+    _Bool _hasFilterApplied;
+    SATimestamp *_reportStartTime;
+    SATimestamp *_reportEndTime;
+    unsigned long long _reportStartSampleIndex;
+    unsigned long long _reportEndSampleIndex;
     unsigned long long _numSamples;
     NSMutableDictionary *_binaryImagesHit;
     NSMutableDictionary *_indexForImageUUID;
     double _minimumSamplingInterval;
     NSMutableArray *_timeJumps;
-    SASamplePrintOptions *_options;
     NSString *_headerNote;
     NSUUID *_incidentUUID;
-    SASampleStore *_sampleStore;
-    SATimestamp *_startTime;
-    SATimestamp *_endTime;
 }
 
-@property(retain) SATimestamp *endTime; // @synthesize endTime=_endTime;
-@property(retain) SATimestamp *startTime; // @synthesize startTime=_startTime;
-@property(retain) SASampleStore *sampleStore; // @synthesize sampleStore=_sampleStore;
 @property(copy) NSUUID *incidentUUID; // @synthesize incidentUUID=_incidentUUID;
 @property(copy) NSString *headerNote; // @synthesize headerNote=_headerNote;
-@property(copy) SASamplePrintOptions *options; // @synthesize options=_options;
 - (void).cxx_destruct;
 - (id)displayNameForPid:(int)arg1 threadId:(unsigned long long)arg2 timestamp:(id)arg3;
 - (id)displayNameForTask:(id)arg1;
@@ -61,7 +58,7 @@
 - (BOOL)frame:(id)arg1 matchesFrame:(id)arg2;
 - (id)stateChangeStringForThreadState:(id)arg1 serialDispatchQueue:(id)arg2 thread:(id)arg3 threadStateIndexes:(id)arg4 taskState:(id)arg5 task:(id)arg6 iteratorIndex:(unsigned long long)arg7 missingStateIsInAnotherStack:(BOOL)arg8 sampleTimestamp:(id)arg9 previousSampleTimestamp:(id)arg10 previousTaskState:(id)arg11 previousThread:(id)arg12 previousThreadState:(id)arg13 dispatchQueueChanges:(BOOL)arg14 priorityChanges:(BOOL)arg15 nameChanges:(BOOL)arg16 threadChanges:(BOOL)arg17 isTimeJump:(BOOL)arg18;
 - (void)iterateDispatchQueue:(id)arg1 orThread:(id)arg2 threadStateIndexes:(id)arg3 startingAtIndex:(unsigned long long)arg4 endingAfterTimestamp:(id)arg5 task:(id)arg6 stopAtTimeJumps:(BOOL)arg7 callback:(CDUnknownBlockType)arg8;
-- (void)addStackHeaderToStream:(id)arg1 threadId:(unsigned long long)arg2 dispatchQueueId:(unsigned long long)arg3 isIdleWorkQueue:(BOOL)arg4 threadName:(id)arg5 threadNameChanges:(BOOL)arg6 count:(unsigned long long)arg7 firstSampleIndex:(unsigned long long)arg8 lastSampleIndex:(unsigned long long)arg9 timeWhenFirstAttemptedToSample:(id)arg10 minPriority:(int)arg11 maxPriority:(int)arg12 minBasePriority:(int)arg13 maxBasePriority:(int)arg14 cpuTimeNs:(unsigned long long)arg15 cpuInstructions:(unsigned long long)arg16 cpuCycles:(unsigned long long)arg17 isProcessorIdleThread:(BOOL)arg18 isGlobalForcedIdleThread:(BOOL)arg19;
+- (void)addStackHeaderToStream:(id)arg1 threadIds:(id)arg2 dispatchQueues:(id)arg3 isIdleWorkQueue:(BOOL)arg4 threadName:(id)arg5 threadNameChanges:(BOOL)arg6 count:(unsigned long long)arg7 firstSampleIndex:(unsigned long long)arg8 lastSampleIndex:(unsigned long long)arg9 timeWhenFirstAttemptedToSample:(id)arg10 minPriority:(int)arg11 maxPriority:(int)arg12 minBasePriority:(int)arg13 maxBasePriority:(int)arg14 cpuTimeNs:(unsigned long long)arg15 cpuInstructions:(unsigned long long)arg16 cpuCycles:(unsigned long long)arg17 isProcessorIdleThread:(BOOL)arg18 isGlobalForcedIdleThread:(BOOL)arg19;
 - (void)addHeaderForThread:(id)arg1 andThreadStateIndexes:(id)arg2 toStackString:(id)arg3 taskSampleCount:(unsigned long long)arg4 nameChanges:(char *)arg5 dispatchQueueChanges:(char *)arg6 priorityChanges:(char *)arg7;
 - (id)timeWhenFirstAttemptedToSampleThread:(id)arg1;
 - (id)stackStringForThread:(id)arg1 threadStateIndexes:(id)arg2 task:(id)arg3 taskSampleCount:(unsigned long long)arg4;
@@ -77,13 +74,15 @@
 - (id)keyForTask:(id)arg1 isTargetTask:(BOOL)arg2;
 - (unsigned long long)displayedLoadAddressForBinaryLoadInfo:(id)arg1 binariesToDisplay:(id)arg2 extraBinariesToDisplay:(id)arg3;
 - (unsigned long long)displayedLoadAddressForBinary:(id)arg1 desiredLoadAddress:(unsigned long long)arg2 isInKernelAddressSpace:(BOOL)arg3 binariesToDisplay:(id)arg4 extraBinariesToDisplay:(id)arg5;
-- (void)addTaskHeaderToStream:(id)arg1 displayName:(id)arg2 mainBinaryUUID:(id)arg3 mainBinaryPath:(id)arg4 uid:(unsigned int)arg5 architectureString:(id)arg6 version:(id)arg7 parentName:(id)arg8 responsibleName:(id)arg9 taskExecedFromName:(id)arg10 taskExecedToName:(id)arg11 startTimestamp:(id)arg12 endTimestamp:(id)arg13 startSampleIndex:(unsigned long long)arg14 endSampleIndex:(unsigned long long)arg15 numSamples:(unsigned long long)arg16 totalNumSamples:(unsigned long long)arg17 numSamplesSuspended:(unsigned long long)arg18 numSamplesTerminated:(unsigned long long)arg19 startingTaskSize:(unsigned long long)arg20 endingTaskSize:(unsigned long long)arg21 maxTaskSize:(unsigned long long)arg22 startSampleIndexOfMaxTaskSize:(unsigned long long)arg23 endSampleIndexOfMaxTaskSize:(unsigned long long)arg24 numPageins:(unsigned int)arg25 cpuNanoseconds:(unsigned long long)arg26 cpuInstructions:(unsigned long long)arg27 cpuCycles:(unsigned long long)arg28 usesSuddenTermination:(BOOL)arg29 allowsIdleExit:(BOOL)arg30 isTranslocated:(BOOL)arg31 isUnresponsive:(BOOL)arg32 timeOfLastResponse:(double)arg33 numIdleWorkQueueThreads:(unsigned long long)arg34 wqExceededConstrainedThreadLimit:(BOOL)arg35 wqExceededTotalThreadLimit:(BOOL)arg36;
-- (long long)printTaskHeaderForTask:(id)arg1 specialThreadId:(unsigned long long)arg2 omitSpecialThreadId:(BOOL)arg3;
+- (void)addTaskHeaderToStream:(id)arg1 displayName:(id)arg2 mainBinaryUUID:(id)arg3 mainBinaryPath:(id)arg4 uid:(unsigned int)arg5 architectureString:(id)arg6 version:(id)arg7 parentName:(id)arg8 responsibleName:(id)arg9 taskExecedFromName:(id)arg10 taskExecedToName:(id)arg11 startTimestamp:(id)arg12 endTimestamp:(id)arg13 startSampleIndex:(unsigned long long)arg14 endSampleIndex:(unsigned long long)arg15 numSamples:(unsigned long long)arg16 totalNumSamples:(unsigned long long)arg17 numSamplesSuspended:(unsigned long long)arg18 numSamplesTerminated:(unsigned long long)arg19 startingTaskSize:(unsigned long long)arg20 endingTaskSize:(unsigned long long)arg21 maxTaskSize:(unsigned long long)arg22 startSampleIndexOfMaxTaskSize:(unsigned long long)arg23 endSampleIndexOfMaxTaskSize:(unsigned long long)arg24 numPageins:(unsigned int)arg25 cpuNanoseconds:(unsigned long long)arg26 cpuInstructions:(unsigned long long)arg27 cpuCycles:(unsigned long long)arg28 usesSuddenTermination:(BOOL)arg29 allowsIdleExit:(BOOL)arg30 isTranslocated:(BOOL)arg31 isUnresponsive:(BOOL)arg32 timeOfLastResponse:(double)arg33 numIdleWorkQueueThreads:(unsigned long long)arg34 numOtherHiddenThreads:(unsigned long long)arg35 wqExceededConstrainedThreadLimit:(BOOL)arg36 wqExceededTotalThreadLimit:(BOOL)arg37;
+- (long long)printTaskHeaderForTask:(id)arg1 specialThreadId:(unsigned long long)arg2 omitSpecialThreadId:(BOOL)arg3 omitOtherThreads:(BOOL)arg4;
 - (long long)printTaskHeaderForTask:(id)arg1;
-- (void)printTask:(id)arg1 specialThreadId:(unsigned long long)arg2 omitSpecialThreadId:(BOOL)arg3;
+- (void)printTask:(id)arg1 specialThreadId:(unsigned long long)arg2 omitSpecialThreadId:(BOOL)arg3 omitOtherThreads:(BOOL)arg4;
 - (void)printTask:(id)arg1;
 - (long long)printTaskHeaderForMultipleTasks:(id)arg1;
 - (void)printMultipleTasks:(id)arg1;
+- (void)printTasksByExecutable;
+- (void)printTasksByProcess;
 - (void)preprocessTask:(id)arg1;
 - (void)preprocess;
 - (void)printFooter;
@@ -102,6 +101,7 @@
 - (BOOL)complainAboutSamplingGapBetweenStartTimestamp:(id)arg1 endTimestamp:(id)arg2;
 - (double)timeSpentAsleepBetweenStartTimestamp:(id)arg1 endTimestamp:(id)arg2;
 - (id)initWithSampleStore:(id)arg1;
+@property(copy) SASamplePrintOptions *options;
 
 @end
 

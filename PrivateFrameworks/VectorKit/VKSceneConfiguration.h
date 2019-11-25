@@ -36,7 +36,6 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)analyticsLogContextWithNavigationState;
 - (unsigned char)navigationState;
 - (unsigned long long)navigationDestination;
 - (void)setNavigationDestination:(unsigned long long)arg1;
@@ -64,7 +63,7 @@
 - (void)_updateStyleManager;
 - (void)setSceneManager:(shared_ptr_c37d6e02)arg1;
 - (void)resetState;
-- (id)initWithTaskContext:(shared_ptr_e963992e)arg1;
+- (id)initWithTaskContext:(const shared_ptr_e963992e *)arg1;
 
 @end
 

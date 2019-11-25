@@ -6,11 +6,23 @@
 
 #import "NUAutoCalculator.h"
 
-@interface PISmartColorAutoCalculator : NUAutoCalculator
+#import "NUTimeBased.h"
+
+@class NSString;
+
+@interface PISmartColorAutoCalculator : NUAutoCalculator <NUTimeBased>
 {
 }
 
-- (void)calculate:(CDUnknownBlockType)arg1;
+- (void)submit:(CDUnknownBlockType)arg1;
+- (id)submitSynchronous:(out id *)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
+@property(nonatomic) CDStruct_1b6d18a9 time;
 
 @end
 

@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSArray, NSDictionary, NSEnumerator, NSIndexPath, NSSet, NSString, NSValue, XCAccessibilityElement, XCUIApplication;
+@class NSArray, NSDictionary, NSEnumerator, NSIndexPath, NSSet, NSString, NSValue, XCAccessibilityElement;
 
 @interface XCElementSnapshot : NSObject <NSSecureCoding, NSCopying>
 {
@@ -20,8 +20,7 @@
     BOOL _hasFocus;
     BOOL _hasKeyboardFocus;
     BOOL _isTruncatedValue;
-    int _bridgedProcessID;
-    XCUIApplication *_application;
+    id <XCUIElementSnapshotApplication> _application;
     unsigned long long _generation;
     id <XCTElementSnapshotAttributeDataSource> _dataSource;
     NSString *_title;
@@ -36,6 +35,7 @@
     NSArray *_children;
     NSDictionary *_additionalAttributes;
     NSArray *_userTestingAttributes;
+    NSSet *_disclosedChildRowAXElements;
     NSValue *_activationPoint;
     XCAccessibilityElement *_accessibilityElement;
     XCAccessibilityElement *_parentAccessibilityElement;
@@ -43,8 +43,13 @@
     struct CGRect _frame;
 }
 
-+ (id)axAttributesForSnapshotAttributes:(id)arg1;
-+ (id)axAttributesForElementSnapshotKeyPaths:(id)arg1;
++ (unsigned long long)elementTypeForAccessibilityElement:(id)arg1 usingAXAttributes_iOS:(id)arg2 useLegacyElementType:(BOOL)arg3;
++ (unsigned long long)elementTypeForAccessibilityElement:(id)arg1 usingAXAttributes_macOS:(id)arg2 useLegacyElementType:(BOOL)arg3;
++ (id)axAttributesForSnapshotAttributes:(id)arg1 isMacOS:(BOOL)arg2;
++ (id)requiredAXAttributesForElementSnapshotHierarchyOnMacOS:(BOOL)arg1;
++ (id)sanitizedElementSnapshotHierarchyAttributesForAttributes:(id)arg1 isMacOS:(BOOL)arg2;
++ (id)axAttributesForFaultingPropertiesOnMacOS:(BOOL)arg1;
++ (id)axAttributesForElementSnapshotKeyPaths:(id)arg1 isMacOS:(BOOL)arg2;
 + (id)elementWithAccessibilityElement:(id)arg1;
 + (BOOL)supportsSecureCoding;
 @property XCElementSnapshot *parent; // @synthesize parent=_parent;
@@ -60,12 +65,17 @@
 - (BOOL)_isDescendantOfElement:(id)arg1;
 @property(readonly) NSSet *uniqueDescendantSubframes;
 @property(readonly) NSArray *suggestedHitpoints;
-- (BOOL)isRemote;
+@property(readonly) BOOL isRemote;
 @property(readonly) XCElementSnapshot *rootElement;
 @property(readonly) double centerY;
 @property(readonly) double centerX;
 @property(readonly) struct CGPoint center;
 @property(readonly) struct CGRect visibleFrame;
+@property(readonly) NSArray *disclosedChildRows;
+@property(readonly) XCElementSnapshot *outline;
+@property(readonly) BOOL isInRootMenu;
+@property(readonly) XCElementSnapshot *menuItem;
+@property(readonly) XCElementSnapshot *menu;
 @property(readonly) XCElementSnapshot *scrollView;
 @property(readonly) XCElementSnapshot *scrollableContainer;
 - (id)nearestSharedAncestorOfElement:(id)arg1 matchingType:(long long)arg2;
@@ -100,6 +110,7 @@
 - (id)debugDescription;
 - (id)descriptionIncludingPointers:(BOOL)arg1;
 - (id)description;
+@property(copy) NSSet *disclosedChildRowAXElements; // @synthesize disclosedChildRowAXElements=_disclosedChildRowAXElements;
 @property(copy) NSArray *children; // @synthesize children=_children;
 @property(copy) NSArray *userTestingAttributes; // @synthesize userTestingAttributes=_userTestingAttributes;
 @property long long verticalSizeClass; // @synthesize verticalSizeClass=_verticalSizeClass;
@@ -143,7 +154,7 @@
 - (id)initWithCoder:(id)arg1;
 @property(readonly, copy) NSArray *identifiers;
 @property(nonatomic) unsigned long long generation; // @synthesize generation=_generation;
-@property(nonatomic) XCUIApplication *application; // @synthesize application=_application;
+@property(nonatomic) __weak id <XCUIElementSnapshotApplication> application; // @synthesize application=_application;
 - (id)initWithAccessibilityElement:(id)arg1;
 - (void)dealloc;
 

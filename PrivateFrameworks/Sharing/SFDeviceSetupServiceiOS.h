@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSUUID, SFClient, SFService, SFSession;
+@class NSData, NSObject<OS_dispatch_queue>, NSString, NSUUID, SFClient, SFService, SFSession;
 
 @interface SFDeviceSetupServiceiOS : NSObject
 {
@@ -17,9 +17,13 @@
     NSUUID *_peer;
     BOOL _pinShowing;
     SFClient *_preventExitForLocaleClient;
+    NSData *_resumeAuthTag;
+    NSString *_resumePassword;
+    int _resumeState;
     SFService *_sfService;
     BOOL _sfServiceActivated;
     SFSession *_sfSession;
+    BOOL _suspendPending;
     CDUnknownBlockType _completionHandler;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     CDUnknownBlockType _showPINHandlerEx;
@@ -37,6 +41,11 @@
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
 @property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 - (void).cxx_destruct;
+- (void)_handleSetupActionResume;
+- (void)_handleSetupActionSuspend;
+- (void)_handleSetupActionRequest:(id)arg1 responseHandler:(CDUnknownBlockType)arg2;
+- (void)_handleAppEventReceived:(id)arg1;
+- (void)_handleConfigRequestReceived:(id)arg1;
 - (void)_handleSessionSecured:(id)arg1;
 - (void)_handleSessionEnded:(id)arg1;
 - (void)_handleSessionStarted:(id)arg1;
@@ -44,6 +53,7 @@
 - (void)sendObject:(id)arg1;
 - (void)_receivedObject:(id)arg1 flags:(unsigned int)arg2;
 - (void)_sfServiceStart;
+- (int)_runResumeIfNeeded;
 - (void)_run;
 - (void)_completed:(int)arg1;
 - (void)_invalidated;

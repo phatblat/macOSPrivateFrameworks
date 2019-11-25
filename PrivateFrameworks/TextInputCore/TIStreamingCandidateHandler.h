@@ -8,12 +8,13 @@
 
 #import "TICandidateHandler.h"
 
-@class TICandidateRequestToken, TIKeyboardState;
+@class TICandidateRequestToken, TIKeyboardInputManagerBase, TIKeyboardState;
 
 @interface TIStreamingCandidateHandler : NSObject <TICandidateHandler>
 {
     unsigned long long _status;
     BOOL _didCallHandler;
+    TIKeyboardInputManagerBase *_inputManager;
     id <TIClientProxy> _clientProxy;
     TICandidateRequestToken *_requestToken;
     CDUnknownBlockType _candidateHandler;
@@ -32,7 +33,7 @@
 - (void)open;
 @property(readonly, nonatomic) BOOL asynchronous;
 - (void)dealloc;
-- (id)initWithClientProxy:(id)arg1 keyboardState:(id)arg2 requestToken:(id)arg3 logger:(id)arg4 candidateHandler:(CDUnknownBlockType)arg5;
+- (id)initWithClientProxy:(id)arg1 keyboardState:(id)arg2 requestToken:(id)arg3 logger:(id)arg4 inputManager:(id)arg5 candidateHandler:(CDUnknownBlockType)arg6;
 
 @end
 

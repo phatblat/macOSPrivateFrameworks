@@ -19,7 +19,9 @@
 
 @property(retain) CDPStateUIController *cdpStateUIController; // @synthesize cdpStateUIController=_cdpStateUIController;
 @property(retain) MMWebKitViewController *webKitViewController; // @synthesize webKitViewController=_webKitViewController;
-- (void)showCDPRepairFlow;
+- (void).cxx_destruct;
+- (void)_showCDPRepairFlow;
+- (void)presentAccountUpgradeDialogue;
 - (void)_closeWebViewWindow;
 - (void)mmWebKitViewControllerDidDismiss:(id)arg1;
 - (void)mmWebKitViewControllerDidFinishLoading:(id)arg1;
@@ -28,9 +30,8 @@
 - (void)mmWebKitViewControllerDidCancel:(id)arg1;
 - (void)showManageWebView;
 - (void)showUpsellStorageWebView:(id)arg1;
-- (void)setEnabled:(BOOL)arg1 creating:(BOOL)arg2 withWindow:(id)arg3;
+- (void)setEnabled:(BOOL)arg1 creating:(BOOL)arg2 withWindow:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (id)icon;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

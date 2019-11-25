@@ -16,6 +16,7 @@
 @property(readonly, nonatomic) IMHandle *conversationInitiator; // @synthesize conversationInitiator=_conversationInitiator;
 - (void).cxx_destruct;
 - (BOOL)canDelete;
+@property(readonly, nonatomic) NSDate *time;
 @property(readonly, nonatomic) BOOL isFromMe;
 @property(readonly, nonatomic) __weak TUConversation *tuConversation;
 @property(readonly, nonatomic) NSUUID *tuConversationUUID;

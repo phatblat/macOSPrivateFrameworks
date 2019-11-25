@@ -10,6 +10,7 @@
 
 @class NSArray, NSObject<OS_dispatch_queue>, NSString, NetDiagnosticsShim;
 
+__attribute__((visibility("hidden")))
 @interface SymptomsFileCleaner : NSObject <NetDiagnosticsShimDelegate>
 {
     id <SymptomsFileCleanerDelegate> _delegate;

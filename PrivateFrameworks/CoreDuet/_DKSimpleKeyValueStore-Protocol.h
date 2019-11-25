@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSObject, NSObject<NSCoding>, NSString;
+@class NSObject, NSObject<NSSecureCoding>, NSString;
 
 @protocol _DKSimpleKeyValueStore
 - (void)removeObjectForKey:(NSString *)arg1;
-- (void)setObject:(NSObject<NSCoding> *)arg1 forKey:(NSString *)arg2;
+- (void)setObject:(NSObject<NSSecureCoding> *)arg1 forKey:(NSString *)arg2;
 - (NSObject *)objectForKey:(NSString *)arg1;
 @end
 

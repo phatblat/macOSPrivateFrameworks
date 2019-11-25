@@ -16,8 +16,11 @@
 
 // Remaining properties
 @property(retain, nonatomic) NSString *defaultRoomUUID; // @dynamic defaultRoomUUID;
+@property(retain, nonatomic) NSNumber *hasAnyUserAcknowledgedCameraRecordingOnboarding; // @dynamic hasAnyUserAcknowledgedCameraRecordingOnboarding;
 @property(retain, nonatomic) NSData *homeLocationData; // @dynamic homeLocationData;
+@property(retain, nonatomic) NSNumber *multiUserEnabled; // @dynamic multiUserEnabled;
 @property(retain, nonatomic) NSString *name; // @dynamic name;
+@property(retain, nonatomic) NSNumber *networkProtectionMode; // @dynamic networkProtectionMode;
 @property(retain, nonatomic) NSString *ownerName; // @dynamic ownerName;
 @property(retain, nonatomic) NSData *ownerPublicKey; // @dynamic ownerPublicKey;
 @property(retain, nonatomic) NSString *ownerUUID; // @dynamic ownerUUID;
@@ -25,7 +28,7 @@
 @property(retain, nonatomic) NSNumber *presenceAuthorizationStatus; // @dynamic presenceAuthorizationStatus;
 @property(retain, nonatomic) NSNumber *presenceComputeStatus; // @dynamic presenceComputeStatus;
 @property(retain, nonatomic) NSString *primaryResidentUUID; // @dynamic primaryResidentUUID;
-@property(retain, nonatomic) HMDHomeKitVersion *sharedHomeSourceVersion; // @dynamic sharedHomeSourceVersion;
+@property(copy, nonatomic) HMDHomeKitVersion *sharedHomeSourceVersion; // @dynamic sharedHomeSourceVersion;
 
 @end
 

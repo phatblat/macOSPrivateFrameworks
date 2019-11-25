@@ -6,14 +6,13 @@
 
 #import "NSObject.h"
 
-#import "HMFMessageReceiver.h"
 #import "HMMutableApplicationData.h"
 #import "HMObjectMerge.h"
 #import "NSSecureCoding.h"
 
-@class HMApplicationData, HMFUnfairLock, HMHome, NSArray, NSObject<OS_dispatch_queue>, NSString, NSUUID, _HMContext;
+@class HMApplicationData, HMFUnfairLock, HMHome, NSArray, NSString, NSUUID, _HMContext;
 
-@interface HMRoom : NSObject <NSSecureCoding, HMFMessageReceiver, HMObjectMerge, HMMutableApplicationData>
+@interface HMRoom : NSObject <NSSecureCoding, HMObjectMerge, HMMutableApplicationData>
 {
     HMFUnfairLock *_lock;
     NSUUID *_uniqueIdentifier;
@@ -27,15 +26,12 @@
 + (BOOL)supportsSecureCoding;
 @property(retain, nonatomic) _HMContext *context; // @synthesize context=_context;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *messageReceiveQueue;
-@property(readonly, nonatomic) NSUUID *messageTargetUUID;
+@property(readonly, copy) NSUUID *applicationDataIdentifier;
 - (void)_updateRoomName:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (BOOL)_mergeWithNewObject:(id)arg1 operations:(id)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)_registerNotificationHandlers;
 - (void)updateApplicationData:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)_handleRoomRenamedNotification:(id)arg1;
 - (void)_updateName:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)updateName:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)setApplicationData:(id)arg1;
@@ -49,7 +45,6 @@
 - (void)_invalidate;
 - (void)_unconfigure;
 - (void)__configureWithContext:(id)arg1 home:(id)arg2;
-- (void)dealloc;
 - (id)initWithName:(id)arg1;
 - (id)init;
 

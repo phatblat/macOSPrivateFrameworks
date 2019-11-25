@@ -6,19 +6,30 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSManagedObjectContext;
+@class NSDictionary, NSManagedObjectContext, NSObject<OS_os_log>;
 
 @interface ABManagedObjectContextSourceNotificationHelper : NSObject
 {
     NSManagedObjectContext *_context;
     NSDictionary *_changes;
+    BOOL _meCardChanged;
+    NSObject<OS_os_log> *_log;
 }
 
-@property(copy, nonatomic) NSDictionary *changes; // @synthesize changes=_changes;
++ (id)changesNotifier;
+@property(readonly, nonatomic) NSObject<OS_os_log> *log; // @synthesize log=_log;
+@property(nonatomic) BOOL meCardChanged; // @synthesize meCardChanged=_meCardChanged;
+@property(retain, nonatomic) NSDictionary *changes; // @synthesize changes=_changes;
 @property(readonly, nonatomic) NSManagedObjectContext *context; // @synthesize context=_context;
 - (void).cxx_destruct;
+- (void)sendRecordsDidChange;
+- (void)sendMeDidChange;
 - (void)sendDidChangeNotifications;
 - (void)sendWillChangeNotifications;
+- (void)analyzeRecordChanges;
+- (BOOL)hasMeCardHasChangedToAnotherCard;
+- (BOOL)hasMeCardBeenUpdated;
+- (void)analyzeMeCardChanges;
 - (void)analyzeChanges;
 - (id)description;
 - (id)initWithManagedObjectContext:(id)arg1;

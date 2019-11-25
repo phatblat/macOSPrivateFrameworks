@@ -23,7 +23,6 @@
 
 @class NSClickGestureRecognizer, NSCollectionView, NSMutableDictionary, NSMutableSet, NSString, NSUUID, NSViewController<SiriUIViewController>, SVSSuggestionsViewController, SVSTranscript, SVSTranscriptAnimationQueue, SVSTranscriptFlowLayout, SVSTranscriptView, SiriUINavigationController, SiriUITranscriptClumpView, SiriUITranscriptItem;
 
-__attribute__((visibility("hidden")))
 @interface SVSTranscriptViewController : NSViewController <AFQueueDelegate, SiriUISnippetViewControllerDelegate, SiriUISnippetViewControllerDelegatePrivate, SiriUIAceObjectViewControllerDelegate, SiriUIAceObjectViewControllerDelegatePrivate, SVSSuggestionsViewControllerDelegate, SVSTranscriptDataSource, SVSTranscriptDelegate, NSScrollViewDelegate, NSCollectionViewDelegate, NSCollectionViewDataSource, SiriUIClumpViewDelegate, SiriUICardDelegate, SVSTranscriptFlowLayoutDelegate>
 {
     BOOL _viewIsDisappearing;
@@ -129,6 +128,7 @@ __attribute__((visibility("hidden")))
 - (double)_heightForCardHeaderAtIndex:(long long)arg1;
 - (struct CGSize)collectionView:(id)arg1 layout:(id)arg2 sizeForItemAtIndexPath:(id)arg3;
 - (void)collectionView:(id)arg1 didEndDisplayingItem:(id)arg2 forRepresentedObjectAtIndexPath:(id)arg3;
+- (void)collectionView:(id)arg1 willDisplayItem:(id)arg2 forRepresentedObjectAtIndexPath:(id)arg3;
 - (id)collectionView:(id)arg1 itemForRepresentedObjectAtIndexPath:(id)arg2;
 - (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
 - (BOOL)transcriptFlowLayout:(id)arg1 hideItemForInsertAtIndexPath:(id)arg2;
@@ -198,6 +198,7 @@ __attribute__((visibility("hidden")))
 - (id)siriViewController:(id)arg1 domainObjectForIdentifier:(id)arg2;
 - (id)_domainObjectStore;
 - (void)siriViewController:(id)arg1 sendGenericAceCommands:(id)arg2;
+- (void)siriViewController:(id)arg1 didOpenPunchout:(id)arg2;
 - (void)siriViewControllerDidPunchout;
 - (void)siriViewController:(id)arg1 openURL:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (BOOL)siriViewController:(id)arg1 openURL:(id)arg2;
@@ -225,6 +226,8 @@ __attribute__((visibility("hidden")))
 - (void)_showListeningNudgeIfNecessary;
 - (void)_updateViewTopMarginHeight;
 - (id)_conversationItemList;
+- (void)siriDidStopSpeakingWithIdentifier:(id)arg1 speechQueueIsEmpty:(BOOL)arg2;
+- (void)siriDidStartSpeakingWithIdentifier:(id)arg1;
 - (void)siriDidDeactivate;
 - (void)siriDidTransitionFromState:(long long)arg1 event:(long long)arg2;
 - (void)siriWillActivateFromSource:(long long)arg1;

@@ -8,19 +8,31 @@
 
 #import "NSCopying.h"
 
-@class GEOStructuredAddress, NSString, PBUnknownFields;
+@class GEOStructuredAddress, NSString, PBDataReader, PBUnknownFields;
 
 __attribute__((visibility("hidden")))
 @interface GEOPDLocalizedSpokenStructuredAddress : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     PBUnknownFields *_unknownFields;
     NSString *_language;
     GEOStructuredAddress *_spokenStructuredAddress;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_language:1;
+        unsigned int read_spokenStructuredAddress:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_language:1;
+        unsigned int wrote_spokenStructuredAddress:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) GEOStructuredAddress *spokenStructuredAddress; // @synthesize spokenStructuredAddress=_spokenStructuredAddress;
-@property(retain, nonatomic) NSString *language; // @synthesize language=_language;
++ (BOOL)isValid:(id)arg1;
 - (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
 @property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -29,10 +41,17 @@ __attribute__((visibility("hidden")))
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEOStructuredAddress *spokenStructuredAddress;
 @property(readonly, nonatomic) BOOL hasSpokenStructuredAddress;
+- (void)_readSpokenStructuredAddress;
+@property(retain, nonatomic) NSString *language;
 @property(readonly, nonatomic) BOOL hasLanguage;
+- (void)_readLanguage;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

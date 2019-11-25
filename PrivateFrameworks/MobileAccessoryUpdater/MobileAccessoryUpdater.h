@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSString;
+@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_queue_attr>, NSString;
 
 @interface MobileAccessoryUpdater : NSObject
 {
@@ -17,6 +17,7 @@
     char *_cClientIdentifier;
     NSObject<OS_dispatch_queue> *_sessionQueue;
     NSObject<OS_dispatch_queue> *_callbackQueue;
+    NSObject<OS_dispatch_queue_attr> *_attr;
     NSString *_activeFilter;
     BOOL _isInternalClient;
     BOOL _didUnregister;
@@ -30,11 +31,13 @@
 - (BOOL)setLastRemoteFindDate:(id)arg1;
 - (void)performNextStepWithOptions:(id)arg1;
 - (void)performStep:(id)arg1 withOptions:(id)arg2;
+- (void)doneWithOptions:(id)arg1;
 - (const char *)getActiveDeviceClassCString;
 - (id)getActiveDeviceClass;
 - (BOOL)setActiveDeviceClass:(id)arg1;
 - (id)queryNextStep:(id *)arg1;
 - (BOOL)loadPluginWithAccessoryInfo:(id)arg1 options:(id)arg2;
+- (id)getPluginsList;
 - (BOOL)sendMessageForCommand:(int)arg1 withOptions:(id)arg2 requiresFilter:(BOOL)arg3 replyHandler:(CDUnknownBlockType)arg4;
 - (BOOL)sendMessageForCommand:(int)arg1 withOptions:(id)arg2 requiresFilter:(BOOL)arg3;
 - (BOOL)doesOperationCodeRequireFilter:(int)arg1;

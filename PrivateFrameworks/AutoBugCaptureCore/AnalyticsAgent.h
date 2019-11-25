@@ -8,6 +8,7 @@
 
 @class AWDServerConnection, NSObject<OS_dispatch_queue>, NSSet;
 
+__attribute__((visibility("hidden")))
 @interface AnalyticsAgent : NSObject
 {
     NSObject<OS_dispatch_queue> *_queue;

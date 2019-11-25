@@ -6,14 +6,17 @@
 
 #import <FinderKit/FI_TViewController.h>
 
+#import "NSTouchBarDelegate.h"
+#import "TMarkTornDown.h"
 #import "TNWOperationDelegateProtocol.h"
 
-@class FIAirDropListViewController, FIAirDropView, FI_TButton, FI_TImageView, FI_TTextField, FI_TUpdateLayerView, NSArray, NSImage, NSString;
+@class FIAirDropListViewController, FIAirDropView, FI_TButton, FI_TImageView, FI_TTextField, FI_TUpdateLayerView, NSArray, NSImage, NSObject<FIAirDropViewDelegate>, NSString;
 
 __attribute__((visibility("hidden")))
-@interface FIAirDropViewGutsController : FI_TViewController <TNWOperationDelegateProtocol>
+@interface FIAirDropViewGutsController : FI_TViewController <NSTouchBarDelegate, TNWOperationDelegateProtocol, TMarkTornDown>
 {
-    id <FIAirDropViewDelegate> _delegate;
+    struct TNSWeakPtr<NSObject<FIAirDropViewDelegate>, void> _weakDelegate;
+    int _delegateRespondsToMask;
     struct TNSRef<NSArray<NSURL *>, void> _urlsToSend;
     struct TNSRef<NSImage, void> _largeThumbnail;
     struct TNSRef<NSImage, void> _mediumThumbnail;
@@ -35,18 +38,21 @@ __attribute__((visibility("hidden")))
     struct TKeyValueObserver _isLegacyMachineObserver;
     struct TKeyValueObserver _isLegacyModeEnabledObserver;
     struct TKeyValueObserver _arrangedObjectsCountObserver;
-    struct TKeyValueObserver _transferStartedObserver;
-    struct TRecursiveMutex _senderOpControllersLock;
+    struct TKeyValueObserver _touchBarTransferStartedObserver;
+    struct recursive_mutex _senderOpControllersLock;
     struct vector<std::__1::unique_ptr<TAirDropSenderOperationController, std::__1::default_delete<TAirDropSenderOperationController>>, std::__1::allocator<std::__1::unique_ptr<TAirDropSenderOperationController, std::__1::default_delete<TAirDropSenderOperationController>>>> _senderOpControllers;
     _Bool _atLeastOneTransferStarted;
-    int _delegateRespondsToMask;
     struct TNSRef<NSTouchBar, void> _participantsTouchBar;
+    struct TNSRef<NSCustomTouchBarItem, void> _participantsTouchBarItem;
+    struct TNSRef<NSCustomTouchBarItem, void> _escapeKeyTouchBarItem;
     struct TNSRef<NSTouchBar, void> _airDropNotAvailableTouchBar;
-    struct TNSRef<FI_TButton, void> _turnOnWiFiBluetoothTouchBarButton;
+    struct TNSRef<NSCustomTouchBarItem, void> _turnOnWiFiBluetoothTouchBarItem;
+    struct TKeyValueBinder _turnOnWiFiBluetoothTouchBarButtonTitleBinder;
+    _Bool tornDown;
 }
 
+@property(getter=isTornDown) _Bool tornDown; // @synthesize tornDown;
 @property(readonly, nonatomic) _Bool atLeastOneTransferStarted; // @synthesize atLeastOneTransferStarted=_atLeastOneTransferStarted;
-@property(nonatomic) id <FIAirDropViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)nwOperationEventConverting:(id)arg1 opController:(struct INWOperationController *)arg2;
@@ -64,9 +70,8 @@ __attribute__((visibility("hidden")))
 - (void)nwOperationEventAskUser:(id)arg1 opController:(struct INWOperationController *)arg2;
 - (void)tellDelegateCancelButtonPressed;
 - (void)tellDelegateDoneButtonPressed;
+- (id)touchBar:(id)arg1 makeItemForIdentifier:(id)arg2;
 - (id)makeTouchBar;
-- (void)updateEscapeItem;
-- (id)escapeReplacementItem;
 - (void)suspendAirDropDiscovery;
 - (void)resumeAirDropDiscovery;
 - (void)windowOccludedTeardownTimerDidFire;
@@ -95,7 +100,9 @@ __attribute__((visibility("hidden")))
 @property(copy, nonatomic) NSImage *mediumThumbnail; // @dynamic mediumThumbnail;
 @property(copy, nonatomic) NSImage *largeThumbnail; // @dynamic largeThumbnail;
 @property(copy, nonatomic) NSArray *urlsToSend; // @dynamic urlsToSend;
+@property(nonatomic) __weak NSObject<FIAirDropViewDelegate> *delegate; // @dynamic delegate;
 - (void)viewDidMoveToWindow;
+- (void)aboutToTearDown;
 - (void)viewLoaded;
 - (id)nibName;
 - (void)dealloc;

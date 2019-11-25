@@ -4,14 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSViewController.h"
+#import "UXViewController.h"
 
 #import "PXChangeObserver.h"
 #import "PXPlacesMapControllerAccess.h"
 
 @class NSString, PKExtendedTraitCollection, PXPlacesMapController;
 
-@interface PXPlacesMapViewController : NSViewController <PXChangeObserver, PXPlacesMapControllerAccess>
+@interface PXPlacesMapViewController : UXViewController <PXChangeObserver, PXPlacesMapControllerAccess>
 {
     PXPlacesMapController *_mapController;
 }
@@ -21,10 +21,10 @@
 - (void)sendTraitNotification;
 - (void)observable:(id)arg1 didChange:(unsigned long long)arg2 context:(void *)arg3;
 @property(readonly, nonatomic) PKExtendedTraitCollection *pk_extendedTraitCollection;
-- (void)viewDidDisappear;
-- (void)viewWillDisappear;
-- (void)viewDidAppear;
-- (void)viewWillAppear;
+- (void)viewDidDisappear:(BOOL)arg1;
+- (void)viewWillDisappear:(BOOL)arg1;
+- (void)viewDidAppear:(BOOL)arg1;
+- (void)viewWillAppear:(BOOL)arg1;
 - (void)viewDidLoad;
 - (void)loadView;
 - (void)dealloc;

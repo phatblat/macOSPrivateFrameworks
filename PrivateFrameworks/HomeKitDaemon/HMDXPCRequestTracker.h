@@ -12,9 +12,9 @@
 
 @interface HMDXPCRequestTracker : HMFObject <HMFTimerDelegate>
 {
+    id <HMFLocking> _lock;
+    NSObject<OS_dispatch_queue> *_queue;
     NSString *_clientName;
-    NSObject<OS_dispatch_queue> *_propertyQueue;
-    NSObject<OS_dispatch_queue> *_clientQueue;
     NSObject<OS_dispatch_group> *_activeMessageTracker;
     NSMutableDictionary *_pendingRequests;
     HMFTimer *_watchdogTimer;
@@ -23,8 +23,6 @@
 @property(readonly, nonatomic) HMFTimer *watchdogTimer; // @synthesize watchdogTimer=_watchdogTimer;
 @property(readonly, nonatomic) NSMutableDictionary *pendingRequests; // @synthesize pendingRequests=_pendingRequests;
 @property(retain, nonatomic) NSObject<OS_dispatch_group> *activeMessageTracker; // @synthesize activeMessageTracker=_activeMessageTracker;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *clientQueue; // @synthesize clientQueue=_clientQueue;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *propertyQueue; // @synthesize propertyQueue=_propertyQueue;
 - (void).cxx_destruct;
 - (void)timerDidFire:(id)arg1;
 - (void)clear;

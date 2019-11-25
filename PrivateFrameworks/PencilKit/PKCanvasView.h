@@ -6,116 +6,44 @@
 
 #import "NSView.h"
 
-#import "PKDrawableView.h"
-#import "PKInternalDrawingViewDelegate.h"
-#import "PKSelectionDelegate.h"
+@class PKDrawing, PKInk;
 
-@class CHVisualizationManager, NSColor, NSImage, NSString, PKController, PKDrawing, PKInk, PKInternalDrawingView, PKRecognitionOverlayView, PKSelectionController;
-
-@interface PKCanvasView : NSView <PKInternalDrawingViewDelegate, PKSelectionDelegate, PKDrawableView>
+@interface PKCanvasView : NSView
 {
-    BOOL _layerFixedPixelSize;
-    BOOL __maintainsTransformsOnLayout;
-    BOOL _visualizationsEnabled;
-    double _fixedDrawingScale;
+    PKDrawing *_drawing;
+    BOOL _fingerDrawingEnabled;
+    BOOL _disableWideGamut;
+    BOOL _rulerEnabled;
     id <PKCanvasViewDelegate> _delegate;
-    NSImage *_backgroundImage;
-    NSColor *_backgroundColor;
-    PKRecognitionOverlayView *_overlayView;
-    PKSelectionController *_selectionController;
-    long long _aggd_cachedVisibleStrokeCount;
-    PKInternalDrawingView *_drawingView;
-    id <PKSelectionDelegate> _selectionViewDelegate;
-    struct CGSize _fixedPixelSize;
+    PKInk *_ink;
+    id _drawingUndoTarget;
+    SEL _drawingUndoSelector;
 }
 
-@property(nonatomic) __weak id <PKSelectionDelegate> selectionViewDelegate; // @synthesize selectionViewDelegate=_selectionViewDelegate;
-@property(nonatomic) BOOL visualizationsEnabled; // @synthesize visualizationsEnabled=_visualizationsEnabled;
-@property(retain, nonatomic) PKInternalDrawingView *drawingView; // @synthesize drawingView=_drawingView;
-@property(nonatomic) BOOL _maintainsTransformsOnLayout; // @synthesize _maintainsTransformsOnLayout=__maintainsTransformsOnLayout;
-@property(nonatomic) long long aggd_cachedVisibleStrokeCount; // @synthesize aggd_cachedVisibleStrokeCount=_aggd_cachedVisibleStrokeCount;
-@property(retain, nonatomic) PKSelectionController *selectionController; // @synthesize selectionController=_selectionController;
-@property(retain, nonatomic) PKRecognitionOverlayView *overlayView; // @synthesize overlayView=_overlayView;
-@property(retain, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
-@property(retain, nonatomic) NSImage *backgroundImage; // @synthesize backgroundImage=_backgroundImage;
+@property(nonatomic) SEL drawingUndoSelector; // @synthesize drawingUndoSelector=_drawingUndoSelector;
+@property(nonatomic) __weak id drawingUndoTarget; // @synthesize drawingUndoTarget=_drawingUndoTarget;
+@property(nonatomic) BOOL rulerEnabled; // @synthesize rulerEnabled=_rulerEnabled;
+@property(nonatomic) BOOL disableWideGamut; // @synthesize disableWideGamut=_disableWideGamut;
+@property(nonatomic, getter=isFingerDrawingEnabled) BOOL fingerDrawingEnabled; // @synthesize fingerDrawingEnabled=_fingerDrawingEnabled;
+@property(retain, nonatomic) PKInk *ink; // @synthesize ink=_ink;
+@property(copy, nonatomic) PKDrawing *drawing; // @synthesize drawing=_drawing;
 @property(nonatomic) __weak id <PKCanvasViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic) BOOL _layerFixedPixelSize; // @synthesize _layerFixedPixelSize;
-@property(readonly, nonatomic) double _fixedDrawingScale; // @synthesize _fixedDrawingScale;
-@property(readonly, nonatomic) struct CGSize _fixedPixelSize; // @synthesize _fixedPixelSize;
 - (void).cxx_destruct;
-- (void)replaceWithStrokesFromDrawing:(id)arg1 transform:(struct CGAffineTransform)arg2;
-- (void)applyCommand:(id)arg1 toDrawing:(id)arg2;
-- (void)resetSelectedStrokeStateForRenderer;
-- (void)toggleSelectedStrokes:(id)arg1 hide:(BOOL)arg2 inDrawing:(id)arg3 isErasing:(BOOL)arg4;
-- (void)performUndo:(id)arg1;
-- (struct CGAffineTransform)imageTransform;
-- (void)didBeginDraggingSelection;
-- (void)scrollContent:(struct CGPoint)arg1;
-@property(readonly, nonatomic) BOOL hasCurrentSelection;
-- (id)drawingForLiveAttachment;
-- (BOOL)liveDrawingIsAtEndOfDocument;
-- (struct CGPoint)closestPointForPastedSelectionRect:(struct CGRect)arg1 withDrawing:(id *)arg2;
-- (id)drawingForSelectionRect:(struct CGRect)arg1;
-- (id)drawingForUUID:(id)arg1;
-- (BOOL)canModifyWhitespace;
-- (BOOL)isValidDropPointForStrokes:(struct CGPoint)arg1;
-- (id)visibleStrokesOnscreen:(id)arg1 forDrawing:(id)arg2;
-- (struct CGPoint)pointInStrokeSpace:(struct CGPoint)arg1 inDrawing:(id)arg2;
-- (void)selectionRefreshWithChangeToDrawings:(id)arg1;
-- (id)selectionTopView;
-- (struct CGAffineTransform)selectionDrawingTransform;
-- (struct CGPoint)selectionOffsetForDrawing:(id)arg1;
-@property(readonly, nonatomic) CHVisualizationManager *_recognitionVisualizationManager;
-- (void)simulateHIDPoints:(id)arg1;
-- (void)drawingCancelled;
-- (void)didFinishRenderingStroke:(id)arg1 inDrawing:(id)arg2;
-- (void)setIsDrawing:(BOOL)arg1;
-- (void)renderingDidFinish;
-- (void)drawingDidChange:(id)arg1;
-- (void)_updateVisualizationSupport;
-@property(nonatomic) SEL drawingUndoSelector;
-@property(nonatomic) __weak id drawingUndoTarget;
-- (void)setOpaque:(BOOL)arg1;
-- (void)_drawingDisplay;
-- (void)_setNeedsDrawingDisplay;
-@property(readonly, nonatomic) id <PKRendererControllerProtocol> _rendererController;
-@property(readonly, nonatomic) PKController *_drawingController;
-- (void)imageWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (void)eraseAll;
-- (void)drawStrokeWithPoints:(struct CGPoint *)arg1 count:(unsigned long long)arg2;
-- (void)drawStrokeWithPath:(struct CGPath *)arg1;
-- (void)_setDrawing:(id)arg1 alreadyRenderedDrawing:(id)arg2 imageForAlreadyRenderedDrawing:(id)arg3 fullyRenderedCompletionBlock:(CDUnknownBlockType)arg4;
-@property(copy, nonatomic) PKDrawing *drawing;
-- (void)setHidden:(BOOL)arg1;
-@property(copy, nonatomic) PKInk *ink;
-- (double)layerContentScale;
-@property(nonatomic) BOOL disableWideGamut;
-@property(readonly, nonatomic) BOOL isDrawing;
-@property(readonly, nonatomic) BOOL isRendering;
-@property(nonatomic) double maximumZoomScale;
-@property(nonatomic) double minimumZoomScale;
-@property(nonatomic) struct CGAffineTransform strokeTransform;
-@property(nonatomic) struct CGAffineTransform drawingTransform;
-- (void)_setFixedPointSize:(struct CGSize)arg1 drawingScale:(double)arg2;
+- (struct CGAffineTransform)drawingTransform;
+- (struct CGAffineTransform)strokeTransform;
 - (void)_setFixedPixelSize:(struct CGSize)arg1 drawingScale:(double)arg2;
-- (void)windowDidResize:(id)arg1;
-- (void)commitSelectionIfNecessaryWithCompletion:(CDUnknownBlockType)arg1;
-- (BOOL)canBecomeFirstResponder;
-- (void)dealloc;
-- (void)initDrawingView;
-- (void)_setup;
-- (struct CGSize)_drawingSize;
-- (id)initWithCoder:(id)arg1;
+- (void)set_fixedPixelSize:(struct CGSize)arg1;
+- (struct CGSize)_fixedPixelSize;
+- (void)imageWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (void)_setDrawing:(id)arg1 alreadyRenderedDrawing:(id)arg2 imageForAlreadyRenderedDrawing:(id)arg3 fullyRenderedCompletionBlock:(CDUnknownBlockType)arg4;
 - (id)initWithFrame:(struct CGRect)arg1 fixedPixelSize:(struct CGSize)arg2 drawingScale:(double)arg3 layerFixedPixelSize:(BOOL)arg4;
-- (id)initWithFrame:(struct CGRect)arg1 fixedPixelSize:(struct CGSize)arg2 drawingScale:(double)arg3;
+- (void)performUndo:(id)arg1;
+- (void)setOpaque:(BOOL)arg1;
+- (void)setContentSize:(struct CGSize)arg1;
+- (void)_drawingDidChange;
+- (void)_fullyRendered;
+- (id)initWithFrame:(struct CGRect)arg1 drawingWidth:(double)arg2;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (id)initWithFrame:(struct CGRect)arg1 selectionController:(id)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

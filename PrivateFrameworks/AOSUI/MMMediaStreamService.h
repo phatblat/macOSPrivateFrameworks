@@ -10,30 +10,14 @@
 #import "MMServicePreflightProtocol.h"
 #import "MMWebKitViewControllerDelegate.h"
 
-@class CPSConfigurationClient, MMLinkTextField, MMPromptForLocalSecret, MMWebKitViewController, NSButton, NSImageView, NSLayoutConstraint, NSMutableDictionary, NSProgress, NSProgressIndicator, NSString, NSTextField, NSWindow;
+@class CPSConfigurationClient, MMPromptForLocalSecret, MMWebKitViewController, NSMutableDictionary, NSString;
 
 @interface MMMediaStreamService : MMService <MMWebKitViewControllerDelegate, MMLinkTextFieldDelegate, MMServicePreflightProtocol>
 {
-    NSWindow *_photoStreamOptionsSheet;
-    NSImageView *_photoStreamOptionsIcon;
-    NSButton *_icloudPhotosCheckbox;
-    MMLinkTextField *_icloudPhotosMessage;
-    NSLayoutConstraint *_icloudPhotosMessageLeftCheckboxConstraint;
-    NSLayoutConstraint *_icloudPhotosMessageLeftIconConstraint;
-    NSButton *_classicPhotoStreamCheckbox;
-    NSTextField *_classicPhotoStreamMessage;
-    NSButton *_sharedPhotoStreamCheckbox;
-    NSTextField *_sharedPhotoStreamMessage;
-    NSButton *_sharedPhotoStreamConfirmButton;
-    NSImageView *_iCloudPhotosWarningIcon;
-    NSTextField *_iCloudPhotosProgressMessage;
-    NSProgressIndicator *_iCloudPhotosProgressIndicator;
-    NSProgress *_iCloudPhotosProgress;
     MMWebKitViewController *_webKitViewController;
     BOOL _hasCheckedQuota;
     BOOL _hasCheckedRampedState;
     BOOL _didEncounterLoadError;
-    long long _enableOverride;
     NSString *_infoButtonURLString;
     NSMutableDictionary *_cachedExitingStatus;
     CPSConfigurationClient *_gSharedCPSConfigurationClient;
@@ -45,24 +29,9 @@
 @property(retain) CPSConfigurationClient *gSharedCPSConfigurationClient; // @synthesize gSharedCPSConfigurationClient=_gSharedCPSConfigurationClient;
 @property(retain) NSMutableDictionary *cachedExitingStatus; // @synthesize cachedExitingStatus=_cachedExitingStatus;
 @property(retain) NSString *infoButtonURLString; // @synthesize infoButtonURLString=_infoButtonURLString;
-@property long long enableOverride; // @synthesize enableOverride=_enableOverride;
 @property BOOL hasCheckedRampedState; // @synthesize hasCheckedRampedState=_hasCheckedRampedState;
 @property(retain) MMWebKitViewController *webKitViewController; // @synthesize webKitViewController=_webKitViewController;
-@property(retain) NSButton *sharedPhotoStreamConfirmButton; // @synthesize sharedPhotoStreamConfirmButton=_sharedPhotoStreamConfirmButton;
-@property(retain) NSProgress *iCloudPhotosProgress; // @synthesize iCloudPhotosProgress=_iCloudPhotosProgress;
-@property(retain) NSProgressIndicator *iCloudPhotosProgressIndicator; // @synthesize iCloudPhotosProgressIndicator=_iCloudPhotosProgressIndicator;
-@property(retain) NSTextField *iCloudPhotosProgressMessage; // @synthesize iCloudPhotosProgressMessage=_iCloudPhotosProgressMessage;
-@property(retain) NSImageView *iCloudPhotosWarningIcon; // @synthesize iCloudPhotosWarningIcon=_iCloudPhotosWarningIcon;
-@property(retain) NSTextField *sharedPhotoStreamMessage; // @synthesize sharedPhotoStreamMessage=_sharedPhotoStreamMessage;
-@property(retain) NSButton *sharedPhotoStreamCheckbox; // @synthesize sharedPhotoStreamCheckbox=_sharedPhotoStreamCheckbox;
-@property(retain) NSTextField *classicPhotoStreamMessage; // @synthesize classicPhotoStreamMessage=_classicPhotoStreamMessage;
-@property(retain) NSButton *classicPhotoStreamCheckbox; // @synthesize classicPhotoStreamCheckbox=_classicPhotoStreamCheckbox;
-@property(retain) NSLayoutConstraint *icloudPhotosMessageLeftIconConstraint; // @synthesize icloudPhotosMessageLeftIconConstraint=_icloudPhotosMessageLeftIconConstraint;
-@property(retain) NSLayoutConstraint *icloudPhotosMessageLeftCheckboxConstraint; // @synthesize icloudPhotosMessageLeftCheckboxConstraint=_icloudPhotosMessageLeftCheckboxConstraint;
-@property(retain) MMLinkTextField *icloudPhotosMessage; // @synthesize icloudPhotosMessage=_icloudPhotosMessage;
-@property(retain) NSButton *icloudPhotosCheckbox; // @synthesize icloudPhotosCheckbox=_icloudPhotosCheckbox;
-@property(retain) NSImageView *photoStreamOptionsIcon; // @synthesize photoStreamOptionsIcon=_photoStreamOptionsIcon;
-@property(retain) NSWindow *photoStreamOptionsSheet; // @synthesize photoStreamOptionsSheet=_photoStreamOptionsSheet;
+- (void).cxx_destruct;
 - (id)_simulateHasReferencedFiles;
 - (id)_simulateMediaServiceExitType;
 - (id)_simulateMediaServiceExitInterval;
@@ -71,7 +40,7 @@
 - (id)_simulateMediaServiceExceedsQuota;
 - (void)DSEEnableWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)preflightDSEEnableWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (BOOL)preflightForSignout:(id *)arg1 withWindow:(id)arg2 andDataclassActions:(id)arg3;
+- (BOOL)preflightForSignoutWithWindow:(id)arg1;
 - (BOOL)hasPreflightAction;
 - (void)_closeWebViewWindow;
 - (void)callCompletionWithResult:(BOOL)arg1;
@@ -90,7 +59,6 @@
 - (id)rampedStateString;
 - (id)sharedLocalSecretPrompt;
 - (id)sharedConfigurationClient;
-- (void)loadNibsIfNeeded;
 - (id)_photoLibraryReferencedFilesCount;
 - (id)_isExiting;
 - (id)_rampedState;
@@ -98,24 +66,13 @@
 - (BOOL)_isQuotaExceeded;
 - (long long)_willLibraryExceedQuota:(id)arg1 storageAvailable:(id *)arg2;
 - (id)iCloudPhotoLibraryStorage:(id)arg1;
-- (BOOL)_isiCloudStoredAvailable;
 - (id)_photoLibraryStatusInformation;
 - (id)_photoLibraryCountOfUndownloadedAssets:(id *)arg1;
 - (id)_photoLibraryExitInterval;
 - (BOOL)_photoLibraryNotConnected;
 - (BOOL)_photoLibraryHasThumbnailsOnly;
 - (BOOL)_isPhotoLibraryOnHFSVolume;
-- (BOOL)_isSharedPhotoStreamEnabled;
-- (BOOL)_isiCloudPhotoLibraryEnabled;
-- (BOOL)_isClassicPhotoSteamEnabled;
 - (BOOL)_hasUnimportedPhotos;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)setProgressEnabled:(BOOL)arg1;
-- (void)setiCloudPhotosCheckboxEnabled:(BOOL)arg1 includeMessage:(BOOL)arg2;
-- (void)setiCloudPhotosEnabled;
-- (void)SharedStreamsSelected:(id)arg1;
-- (void)MyPhotoStreamSelected:(id)arg1;
-- (void)iCloudPhotosSelected:(id)arg1;
 - (void)showEnableExceedsVolumeSizeSheet:(BOOL)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)showDisableConfirmationSheet:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)showInsufficentDownloadSpaceSheet:(unsigned long long)arg1;
@@ -131,27 +88,13 @@
 - (void)showiCloudPhotoLibraryReferencedFilesSheet:(id)arg1;
 - (void)showiCloudPhotoLibraryHFSWarning;
 - (void)showiCloudPhotoLibraryRampStateDialog;
-- (void)endPhotoSteamOptionsSheet:(id)arg1;
-- (void)showStreamOptionsSheet:(id)arg1;
-- (void)removeMyPhotoStreamCheckbox;
-- (void)removeiCloudPhotoLibraryCheckbox;
-- (void)showWarningIcon:(BOOL)arg1;
-- (void)_updatePhotoStreamOptionsUI;
-- (void)_updateUI;
 - (void)_servicePropertiesChanged:(id)arg1;
 - (void)_serviceEnableChanged:(id)arg1;
-- (void)willGainFocus;
-- (void)willSelect;
 - (BOOL)hasDataToMerge;
 - (BOOL)isDataService;
 - (void)_handleWillExceedCloudStorage:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)showMoreInfo:(id)arg1;
 - (void)setEnabled:(BOOL)arg1 creating:(BOOL)arg2 withWindow:(id)arg3;
 - (_Bool)needsPassword;
-- (long long)_isEnabledForMixedDisplay;
-- (BOOL)isDeterminingStatus;
-- (BOOL)_supportsMixedEnableState;
-- (BOOL)_isEnabledForDisplay;
 - (void)_setEnabled:(BOOL)arg1 withOptions:(int)arg2;
 - (void)_setEnabled:(BOOL)arg1;
 - (id)icon;

@@ -30,7 +30,7 @@
 - (void)cancel;
 - (void)start;
 - (void)clearWebView;
-- (void)setUpWebViewIfNeeded;
+- (void)_setUpWebViewAndStartOffscreenFetching;
 @property(readonly, nonatomic) struct CGSize webViewSize;
 @property(readonly, nonatomic) WKWebViewConfiguration *webViewConfiguration;
 - (void)dealloc;

@@ -6,15 +6,19 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSData, NSDictionary, NSString, _CPFeedbackPayload;
+@class NSArray, NSData, NSDictionary, NSString, _CPFeedbackPayload, _CPUsageEnvelope, _CPUsageSinceLookback;
 
 @protocol _CPClientSession <NSObject>
 @property(readonly, nonatomic) NSData *jsonData;
 @property(copy, nonatomic) NSArray *feedbacks;
+@property(copy, nonatomic) NSData *jsonFeedback;
+@property(retain, nonatomic) _CPUsageEnvelope *cohortsFeedback;
+@property(retain, nonatomic) _CPUsageSinceLookback *usageSinceLookback;
+@property(copy, nonatomic) NSString *locale;
+@property(copy, nonatomic) NSString *countryCode;
+@property(nonatomic) BOOL duEnabled;
 @property(copy, nonatomic) NSString *parsecDeveloperID;
 @property(nonatomic) BOOL removeTimestamps;
-@property(nonatomic) double firstUseDate;
-@property(nonatomic) BOOL firstUseOfTheDay;
 @property(nonatomic) int previousSessionEndReason;
 @property(nonatomic) double sessionStart;
 @property(copy, nonatomic) NSDictionary *resourceVersions;

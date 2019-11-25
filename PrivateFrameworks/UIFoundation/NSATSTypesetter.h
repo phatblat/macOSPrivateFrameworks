@@ -50,8 +50,8 @@
 - (id)paragraphArbitrator;
 - (void)setLineBreakStrategy:(unsigned long long)arg1;
 - (unsigned long long)lineBreakStrategy;
-- (void)setAllowsSecurityMeasures:(BOOL)arg1;
-- (BOOL)allowsSecurityMeasures;
+- (void)setLimitsLayoutForSuspiciousContents:(BOOL)arg1;
+- (BOOL)limitsLayoutForSuspiciousContents;
 - (void)setDefaultTighteningFactor:(double)arg1;
 - (double)defaultTighteningFactor;
 - (unsigned long long)_sweepDirectionForGlyphAtIndex:(long long)arg1;
@@ -60,6 +60,8 @@
 - (BOOL)_usesScreenFonts;
 - (void)_flushCachedObjects;
 - (BOOL)_layoutLineFragmentStartingWithGlyphAtIndex:(unsigned long long *)arg1 characterIndex:(unsigned long long *)arg2 atPoint:(struct CGPoint *)arg3 renderingContext:(id *)arg4;
+- (id)_textStorageForAttachmentProtocol;
+- (id)_textContainerForAttachmentProtocol;
 - (void)_setForceWordWrapping:(BOOL)arg1;
 - (BOOL)_forceWordWrapping;
 - (void)_setBaselineRenderingMode:(BOOL)arg1;

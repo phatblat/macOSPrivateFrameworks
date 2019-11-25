@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
     BOOL _finished;
     BOOL _temporary;
     BOOL _shouldReadRawEncryptedData;
+    BOOL _shouldReadAssetContentUsingClientProxy;
     BOOL _isAlreadyRegistered;
     BOOL _isReaderReadFrom;
     BOOL _isRereferencedAssetUpload;
@@ -60,18 +61,23 @@ __attribute__((visibility("hidden")))
     unsigned long long _downloadTokenExpiration;
     NSDictionary *_assetChunkerOptions;
     CKDAssetZoneKey *_assetZoneKey;
+    NSURL *_constructedAssetDownloadURL;
+    unsigned long long _constructedAssetEstimatedSize;
     NSString *_trackingUUID;
 }
 
 @property(nonatomic) BOOL isRereferencedAssetUpload; // @synthesize isRereferencedAssetUpload=_isRereferencedAssetUpload;
 @property(nonatomic) BOOL isReaderReadFrom; // @synthesize isReaderReadFrom=_isReaderReadFrom;
 @property(nonatomic) BOOL isAlreadyRegistered; // @synthesize isAlreadyRegistered=_isAlreadyRegistered;
+@property(nonatomic) BOOL shouldReadAssetContentUsingClientProxy; // @synthesize shouldReadAssetContentUsingClientProxy=_shouldReadAssetContentUsingClientProxy;
 @property(nonatomic) BOOL shouldReadRawEncryptedData; // @synthesize shouldReadRawEncryptedData=_shouldReadRawEncryptedData;
 @property(nonatomic, getter=isTemporary) BOOL temporary; // @synthesize temporary=_temporary;
 @property(nonatomic) BOOL finished; // @synthesize finished=_finished;
 @property(nonatomic) BOOL hasOffset; // @synthesize hasOffset=_hasOffset;
 @property(nonatomic) BOOL hasSize; // @synthesize hasSize=_hasSize;
 @property(retain, nonatomic) NSString *trackingUUID; // @synthesize trackingUUID=_trackingUUID;
+@property(nonatomic) unsigned long long constructedAssetEstimatedSize; // @synthesize constructedAssetEstimatedSize=_constructedAssetEstimatedSize;
+@property(retain, nonatomic) NSURL *constructedAssetDownloadURL; // @synthesize constructedAssetDownloadURL=_constructedAssetDownloadURL;
 @property(retain, nonatomic) CKDAssetZoneKey *assetZoneKey; // @synthesize assetZoneKey=_assetZoneKey;
 @property(retain, nonatomic) NSDictionary *assetChunkerOptions; // @synthesize assetChunkerOptions=_assetChunkerOptions;
 @property(nonatomic) unsigned long long downloadTokenExpiration; // @synthesize downloadTokenExpiration=_downloadTokenExpiration;
@@ -114,6 +120,7 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSNumber *deviceID; // @synthesize deviceID=_deviceID;
 @property(retain, nonatomic) NSURL *fileURL; // @synthesize fileURL=_fileURL;
 - (void).cxx_destruct;
+- (id)readBytesOfInMemoryAssetContentWithProxy:(id)arg1 offset:(unsigned long long)arg2 length:(unsigned long long)arg3 error:(id *)arg4;
 - (id)getFileMetadataWithFileHandle:(id)arg1 error:(id *)arg2;
 - (id)getFileMetadataWithProxy:(id)arg1 fileHandle:(id)arg2 error:(id *)arg3;
 - (id)getFileSizeWithError:(id *)arg1;

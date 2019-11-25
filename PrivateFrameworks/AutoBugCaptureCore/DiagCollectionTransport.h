@@ -8,6 +8,7 @@
 
 @class DiagCollectionServiceImpl, NSObject<OS_dispatch_queue>, NSXPCListener;
 
+__attribute__((visibility("hidden")))
 @interface DiagCollectionTransport : NSObject
 {
     NSXPCListener *listener;

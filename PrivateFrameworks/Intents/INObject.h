@@ -6,30 +6,42 @@
 
 #import "NSObject.h"
 
+#import "INJSONSerializable.h"
+#import "INRuntimeObject.h"
 #import "INSpeakable.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSArray, NSString;
+@class NSArray, NSMutableDictionary, NSString;
 
-@interface INObject : NSObject <INSpeakable, NSCopying, NSSecureCoding>
+@interface INObject : NSObject <INRuntimeObject, INJSONSerializable, INSpeakable, NSCopying, NSSecureCoding>
 {
+    NSMutableDictionary *_valueForKeyDictionary;
     NSString *_identifier;
     NSString *_displayString;
     NSString *_pronunciationHint;
+    NSArray *_alternativeSpeakableMatches;
 }
 
++ (id)_intents_decodeWithJSONDecoder:(id)arg1 codableDescription:(id)arg2 from:(id)arg3;
++ (BOOL)resolveInstanceMethod:(SEL)arg1;
 + (BOOL)supportsSecureCoding;
+@property(retain) NSArray *alternativeSpeakableMatches; // @synthesize alternativeSpeakableMatches=_alternativeSpeakableMatches;
 @property(readonly) NSString *pronunciationHint; // @synthesize pronunciationHint=_pronunciationHint;
 @property(readonly, copy) NSString *displayString; // @synthesize displayString=_displayString;
 @property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
-@property(readonly) NSArray *alternativeSpeakableMatches;
 @property(readonly) NSString *vocabularyIdentifier;
 @property(readonly) NSString *spokenPhrase;
 - (id)_dictionaryRepresentation;
 - (id)descriptionAtIndent:(unsigned long long)arg1;
 @property(readonly, copy) NSString *description;
+- (id)_intents_encodeWithJSONEncoder:(id)arg1 codableDescription:(id)arg2;
+- (id)valueForUndefinedKey:(id)arg1;
+- (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
+- (BOOL)setValue:(id)arg1 forProperty:(id)arg2;
+- (id)valueForProperty:(id)arg1;
+@property(readonly, nonatomic) NSMutableDictionary *_valueForKeyDictionary; // @synthesize _valueForKeyDictionary;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -38,7 +50,7 @@
 - (id)initWithIdentifier:(id)arg1 displayString:(id)arg2;
 - (id)initWithIdentifier:(id)arg1 displayString:(id)arg2 pronunciationHint:(id)arg3;
 - (id)_intents_localizedCopyForLanguage:(id)arg1;
-- (id)_intents_readableDescriptionForLanguage:(id)arg1;
+- (id)_intents_readableDescriptionForLanguage:(id)arg1 withMetadata:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

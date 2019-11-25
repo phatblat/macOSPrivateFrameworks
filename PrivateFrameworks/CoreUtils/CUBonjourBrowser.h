@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSString;
+@class NSArray, NSObject<OS_dispatch_queue>, NSString;
 
 @interface CUBonjourBrowser : NSObject
 {
@@ -15,7 +15,7 @@
     struct BonjourBrowser *_bonjourBrowser;
     BOOL _invalidateCalled;
     BOOL _invalidateDone;
-    struct NSMutableDictionary *_devices;
+    struct NSMutableDictionary *_deviceMap;
     struct LogCategory *_ucat;
     BOOL _browseFlagsChanged;
     unsigned int _changeFlags;
@@ -60,6 +60,7 @@
 - (void)_interrupted;
 - (void)_activateSafeInvokeBlock:(CDUnknownBlockType)arg1;
 - (void)activate;
+@property(readonly, copy) NSArray *devices;
 - (id)descriptionWithLevel:(int)arg1;
 - (id)description;
 - (void)dealloc;

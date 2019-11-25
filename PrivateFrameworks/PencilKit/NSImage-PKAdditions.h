@@ -7,6 +7,7 @@
 #import "NSImage.h"
 
 @interface NSImage (PKAdditions)
++ (id)imageWithCGImage:(struct CGImage *)arg1;
 - (struct CGImage *)CGImage;
 @end
 

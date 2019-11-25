@@ -6,16 +6,29 @@
 
 #import "NSObject.h"
 
+@class NSObject<OS_dispatch_queue>;
+
 @interface SUStatisticsManager : NSObject
 {
+    NSObject<OS_dispatch_queue> *_queue;
 }
 
 + (id)sharedManager;
-- (id)_createPayloadForRTC:(id)arg1 category:(unsigned long long)arg2;
-- (id)_retrieveCategoryName:(unsigned short)arg1;
-- (unsigned short)_retrieveCategoryInt:(id)arg1;
+@property(retain) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
+- (unsigned char)_byteForNVRAMKey:(id)arg1 namespace:(id)arg2;
+- (void)_reportPreferencesDataToRTC;
+- (void)_reportPreferencesDataToCoreAnalytics;
+- (id)_createPayloadForRTC:(id)arg1;
+- (unsigned short)_retrieveCategoryType:(id)arg1;
+- (void)reportPreferences;
+- (void)reportInstallDataToRTC:(id)arg1 product:(id)arg2;
+- (void)reportScanDataToRTCWithURL:(id)arg1 background:(BOOL)arg2 timeElapsedSinceLastScan:(double)arg3 resultCode:(long long)arg4;
+- (void)reportDoItLaterToRTC:(id)arg1;
+- (void)reportNotificationResponseDataToRTC:(id)arg1;
+- (void)reportDownloadDataToRTC:(id)arg1 cancelled:(BOOL)arg2 product:(id)arg3 timeElapsed:(double)arg4 foreground:(BOOL)arg5;
 - (void)reportDataToRTC:(id)arg1;
-- (void)_sendDataToRTC:(id)arg1 category:(unsigned short)arg2;
+- (void)dealloc;
+- (id)init;
 
 @end
 

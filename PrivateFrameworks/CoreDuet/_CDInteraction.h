@@ -14,6 +14,7 @@
 @interface _CDInteraction : NSObject <_CDPDataPoint, NSSecureCoding>
 {
     BOOL _isResponse;
+    BOOL _forcePersistInteraction;
     NSDate *_startDate;
     NSDate *_endDate;
     NSString *_uuid;
@@ -22,7 +23,9 @@
     long long _direction;
     NSString *_bundleId;
     NSString *_targetBundleId;
+    NSString *_groupName;
     NSURL *_contentURL;
+    NSString *_derivedIntentIdentifier;
     NSString *_domainIdentifier;
     NSString *_account;
     _CDContact *_sender;
@@ -31,14 +34,20 @@
     NSArray *_attachments;
 }
 
++ (id)recipientIdentifiersFromMobileMailConversationId:(id)arg1;
++ (id)conversationIdForMobileMailInteractionRecipients:(id)arg1;
 + (BOOL)supportsSecureCoding;
++ (id)shareSheetInteractionFromINInteraction:(id)arg1 bundleID:(id)arg2 knowledgeStore:(id)arg3;
+@property(nonatomic) BOOL forcePersistInteraction; // @synthesize forcePersistInteraction=_forcePersistInteraction;
 @property(retain) NSArray *attachments; // @synthesize attachments=_attachments;
 @property(retain) NSArray *keywords; // @synthesize keywords=_keywords;
 @property(retain) NSArray *recipients; // @synthesize recipients=_recipients;
 @property(retain) _CDContact *sender; // @synthesize sender=_sender;
 @property(retain) NSString *account; // @synthesize account=_account;
 @property(retain) NSString *domainIdentifier; // @synthesize domainIdentifier=_domainIdentifier;
+@property(retain) NSString *derivedIntentIdentifier; // @synthesize derivedIntentIdentifier=_derivedIntentIdentifier;
 @property(retain) NSURL *contentURL; // @synthesize contentURL=_contentURL;
+@property(retain) NSString *groupName; // @synthesize groupName=_groupName;
 @property(retain) NSString *targetBundleId; // @synthesize targetBundleId=_targetBundleId;
 @property(retain) NSString *bundleId; // @synthesize bundleId=_bundleId;
 @property BOOL isResponse; // @synthesize isResponse=_isResponse;
@@ -49,6 +58,8 @@
 @property(retain) NSDate *endDate; // @synthesize endDate=_endDate;
 @property(retain) NSDate *startDate; // @synthesize startDate=_startDate;
 - (void).cxx_destruct;
+- (BOOL)isEqual:(id)arg1;
+@property(readonly) unsigned long long hash;
 @property(readonly, copy) NSString *description;
 - (id)descriptionOfArray:(id)arg1;
 - (id)init;
@@ -63,7 +74,6 @@
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSURL;
+@class NSArray, NSObject<OS_dispatch_queue>;
 
 @interface CSKDirectoryObserver : NSObject
 {
     BOOL _recursive;
     BOOL _ignoreFiles;
     BOOL _isEventStreamStarted;
-    NSURL *_URL;
+    NSArray *_URLs;
     NSObject<OS_dispatch_queue> *_eventQueue;
     id _representedObject;
     double _eventInterval;
@@ -29,11 +29,12 @@
 @property(nonatomic) BOOL recursive; // @synthesize recursive=_recursive;
 @property(retain, nonatomic) id representedObject; // @synthesize representedObject=_representedObject;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *eventQueue; // @synthesize eventQueue=_eventQueue;
-@property(readonly, nonatomic) NSURL *URL; // @synthesize URL=_URL;
+@property(readonly, nonatomic) NSArray *URLs; // @synthesize URLs=_URLs;
 - (void).cxx_destruct;
 - (void)stop;
 - (void)start;
 - (void)dealloc;
+- (id)initWithURLs:(id)arg1 eventHandler:(CDUnknownBlockType)arg2;
 - (id)initWithURL:(id)arg1 eventHandler:(CDUnknownBlockType)arg2;
 - (id)init;
 

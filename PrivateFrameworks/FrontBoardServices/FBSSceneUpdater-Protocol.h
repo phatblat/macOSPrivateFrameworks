@@ -6,18 +6,14 @@
 
 #import "NSObject.h"
 
-@class FBSScene, FBSSceneClientSettings, FBSSceneClientSettingsDiff, FBSSceneLayer, FBSSceneMessage, FBSSceneTransitionContext, NSSet, NSString;
+@class BSServiceConnectionEndpoint, FBSScene, FBSSceneClientSettings, FBSSceneClientSettingsDiff, FBSSceneMessage, FBSSceneTransitionContext, FBSSerialQueue, NSSet;
 
 @protocol FBSSceneUpdater <NSObject>
 - (void)scene:(FBSScene *)arg1 sendMessage:(FBSSceneMessage *)arg2 withResponse:(void (^)(FBSSceneMessage *, NSError *))arg3;
 - (void)scene:(FBSScene *)arg1 didReceiveActions:(NSSet *)arg2;
 - (void)scene:(FBSScene *)arg1 didUpdateClientSettings:(FBSSceneClientSettings *)arg2 withDiff:(FBSSceneClientSettingsDiff *)arg3 transitionContext:(FBSSceneTransitionContext *)arg4;
-- (void)scene:(FBSScene *)arg1 didDetachLayer:(FBSSceneLayer *)arg2;
-- (void)scene:(FBSScene *)arg1 didUpdateLayer:(FBSSceneLayer *)arg2;
-- (void)scene:(FBSScene *)arg1 didAttachLayer:(FBSSceneLayer *)arg2;
-- (BOOL)willObserveLayersManually;
+- (BSServiceConnectionEndpoint *)endpoint;
 - (id <FBSProcess>)hostProcess;
-- (void)unregisterDelegateForSceneID:(NSString *)arg1;
-- (void)registerDelegate:(id <FBSSceneUpdaterDelegate>)arg1 forSceneID:(NSString *)arg2;
+- (FBSSerialQueue *)callOutQueue;
 @end
 

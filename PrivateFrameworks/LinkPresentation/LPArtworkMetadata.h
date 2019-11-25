@@ -23,9 +23,12 @@
 @property(copy, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 @property(readonly, nonatomic) unsigned int version; // @synthesize version=_version;
 - (void).cxx_destruct;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)init;
 
 @end
 

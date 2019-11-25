@@ -7,14 +7,17 @@
 #import "NSObject.h"
 
 #import "SAJSONSerialization.h"
+#import "SALibraryCache.h"
 
 @class NSArray, NSString, NSUUID;
 
-@interface SAKernelCache : NSObject <SAJSONSerialization>
+@interface SAKernelCache : NSObject <SAJSONSerialization, SALibraryCache>
 {
     NSUUID *_uuid;
-    unsigned long long _loadAddress;
     NSArray *_binaryLoadInfos;
+    unsigned long long _textSegmentsStartAddress;
+    unsigned long long _textSegmentsEndAddress;
+    unsigned long long _loadAddress;
 }
 
 + (void)clearCaches;
@@ -22,13 +25,13 @@
 + (void)_doKernelCachesWork:(CDUnknownBlockType)arg1;
 + (id)newInstanceWithoutReferencesFromSerializedBuffer:(const CDStruct_0b74e904 *)arg1 bufferLength:(unsigned long long)arg2;
 + (id)classDictionaryKey;
-@property(retain) NSArray *binaryLoadInfos; // @synthesize binaryLoadInfos=_binaryLoadInfos;
 @property(readonly) unsigned long long loadAddress; // @synthesize loadAddress=_loadAddress;
+@property(retain) NSArray *binaryLoadInfos; // @synthesize binaryLoadInfos=_binaryLoadInfos;
 @property(readonly) NSUUID *uuid; // @synthesize uuid=_uuid;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long textSegmentsEndAddress;
-@property(readonly) unsigned long long textSegmentsStartAddress;
+@property(readonly) unsigned long long textSegmentsEndAddress; // @synthesize textSegmentsEndAddress=_textSegmentsEndAddress;
+@property(readonly) unsigned long long textSegmentsStartAddress; // @synthesize textSegmentsStartAddress=_textSegmentsStartAddress;
 - (BOOL)matchesUUID:(unsigned char [16])arg1 loadAddress:(unsigned long long)arg2;
 - (id)initWithUUID:(id)arg1 loadAddress:(unsigned long long)arg2;
 - (void)writeJSONDictionaryEntriesToStream:(id)arg1;

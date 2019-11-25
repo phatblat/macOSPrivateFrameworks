@@ -8,23 +8,27 @@
 
 @class NSDate, NSNumber, NSSet, NSString, NSUUID;
 
+__attribute__((visibility("hidden")))
 @interface CallRecord : NSManagedObject
 {
 }
 
 + (id)fetchRequest;
+@property(readonly, nonatomic) BOOL supportsVerificationStatus;
 @property(readonly, nonatomic) BOOL supportsServiceProvider;
 @property(readonly, nonatomic) BOOL supportsRemoteParticipantHandles;
-@property(readonly, nonatomic) BOOL supportsLocalParticipantHandle;
+@property(readonly, nonatomic) BOOL supportsOutgoingLocalParticipantUUID;
+@property(readonly, nonatomic) BOOL supportsLocalParticipantUUID;
 @property(readonly, nonatomic) BOOL supportsHandleType;
 @property(readonly, nonatomic) BOOL supportsCallCategory;
+- (id)compositeVerificationStatusForContext:(id)arg1;
 - (id)compositeServiceProviderForContext:(id)arg1;
 - (id)compositeRemoteParticipantHandlesForContext:(id)arg1;
-- (id)compositeLocalParticipantHandleForContext:(id)arg1;
+- (id)compositeOutgoingLocalParticipantUUIDForContext:(id)arg1;
+- (id)compositeLocalParticipantUUIDForContext:(id)arg1;
 - (id)compositeHandleTypeForContext:(id)arg1;
 - (id)compositeCallCategoryForContext:(id)arg1;
 @property(readonly, copy, nonatomic) NSSet *chRemoteParticipantHandles;
-@property(readonly, nonatomic) CHHandle *chLocalParticipantHandle;
 @property(readonly, nonatomic) long long chHandleType;
 
 // Remaining properties
@@ -36,10 +40,10 @@
 @property(copy, nonatomic) NSNumber *disconnected_cause; // @dynamic disconnected_cause;
 @property(copy, nonatomic) NSNumber *duration; // @dynamic duration;
 @property(copy, nonatomic) NSNumber *face_time_data; // @dynamic face_time_data;
+@property(copy, nonatomic) NSNumber *filtered_out_reason; // @dynamic filtered_out_reason;
 @property(copy, nonatomic) NSNumber *handle_type; // @dynamic handle_type;
 @property(copy, nonatomic) NSString *iso_country_code; // @dynamic iso_country_code;
 @property(copy, nonatomic) NSUUID *localParticipantUUID; // @dynamic localParticipantUUID;
-@property(retain, nonatomic) NSString *local_address; // @dynamic local_address;
 @property(copy, nonatomic) NSString *location; // @dynamic location;
 @property(copy, nonatomic) NSString *name; // @dynamic name;
 @property(copy, nonatomic) NSNumber *number_availability; // @dynamic number_availability;
@@ -49,6 +53,7 @@
 @property(retain, nonatomic) NSSet *remoteParticipantHandles; // @dynamic remoteParticipantHandles;
 @property(copy, nonatomic) NSString *service_provider; // @dynamic service_provider;
 @property(copy, nonatomic) NSString *unique_id; // @dynamic unique_id;
+@property(copy, nonatomic) NSNumber *verificationStatus; // @dynamic verificationStatus;
 
 @end
 

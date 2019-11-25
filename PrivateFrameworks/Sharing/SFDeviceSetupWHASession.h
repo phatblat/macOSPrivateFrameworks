@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, SFDevice, SFSession;
+@class NSObject<OS_dispatch_queue>, SFDevice, SFDeviceOperationCDPSetup, SFSession;
 
 @interface SFDeviceSetupWHASession : NSObject
 {
@@ -18,6 +18,12 @@
     int _pairVerifyState;
     int _pairSetupState;
     int _infoExchangeState;
+    unsigned long long _peerFeatureFlags;
+    unsigned long long _peerProblemsFlags;
+    BOOL _cdpEnabled;
+    SFDeviceOperationCDPSetup *_cdpSetupOperation;
+    double _cdpSetupSecs;
+    int _cdpState;
     int _finishState;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     SFDevice *_peerDevice;
@@ -36,6 +42,7 @@
 - (void).cxx_destruct;
 - (BOOL)_verifyiCloudMatch:(unsigned long long)arg1 error:(id *)arg2;
 - (int)_runFinish;
+- (int)_runCDPSetup;
 - (void)_runInfoExchangeResponse:(id)arg1 error:(id)arg2;
 - (void)_runInfoExchangeRequest;
 - (int)_runInfoExchange;

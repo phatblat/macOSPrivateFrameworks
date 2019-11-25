@@ -17,6 +17,7 @@
     CDStruct_95bda58d _excludedAttributes;
     CDStruct_95bda58d _includedAttributes;
     struct _has;
+    BOOL __encodeLegacyGloryData;
     _INPBActivityList *_activities;
     _INPBString *_albumName;
     _INPBContactList *_contentPerson;
@@ -33,6 +34,8 @@
     _INPBStringList *_searchTerm;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(retain, nonatomic) _INPBStringList *searchTerm; // @synthesize searchTerm=_searchTerm;
 @property(retain, nonatomic) _INPBPlaceList *places; // @synthesize places=_places;
 @property(retain, nonatomic) _INPBContactList *peopleInPhoto; // @synthesize peopleInPhoto=_peopleInPhoto;
@@ -52,6 +55,9 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (void)dealloc;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(readonly, nonatomic) BOOL hasSearchTerm;

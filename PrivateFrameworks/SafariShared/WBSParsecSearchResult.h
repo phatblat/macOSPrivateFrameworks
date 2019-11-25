@@ -14,13 +14,16 @@
 #import "WBSParsecSearchSimpleResult.h"
 #import "WBSParsecSearchSportsResult.h"
 
-@class MKMapItem, NSArray, NSNumber, NSString, NSURL, SFFlight, SFSearchResult, WBSParsecActionButton, WBSParsecAuxiliaryInfo, WBSParsecImageRepresentation, WBSParsecLegacySearchResult, WBSParsecSearchMapsResultFeedbackSender, WBSParsecSearchSportsAttributionExtraCompletionItem, WBSQuerySuggestion;
+@class MKMapItem, NSArray, NSNumber, NSString, NSURL, SFFlight, SFSearchResult, WBSParsecActionButton, WBSParsecAuxiliaryInfo, WBSParsecImageRepresentation, WBSParsecLegacySearchResult, WBSParsecSearchMapsResultFeedbackSender, WBSParsecSearchSportsAttributionExtraCompletionItem, WBSQuerySuggestion, WBSSFSearchResultAdapter;
 
 @interface WBSParsecSearchResult : NSObject <WBSParsecSearchFlightsResult, WBSParsecSearchResult, WBSCompletionListItem, WBSParsecSearchGenericResult, WBSParsecSearchMapsResult, WBSParsecSearchSimpleResult, WBSParsecSearchSportsResult>
 {
+    WBSSFSearchResultAdapter *_sfSearchResultAdapter;
     WBSParsecLegacySearchResult *_legacySearchResult;
 }
 
++ (long long)typeForSFSearchResult:(id)arg1 isOneLine:(BOOL)arg2;
++ (long long)typeForSFSearchResult:(id)arg1;
 @property(readonly, nonatomic) WBSParsecLegacySearchResult *legacySearchResult; // @synthesize legacySearchResult=_legacySearchResult;
 - (void).cxx_destruct;
 - (id)_resultPresentedInCard;
@@ -60,6 +63,7 @@
 - (id)iconWithSession:(id)arg1;
 @property(readonly, nonatomic) WBSParsecImageRepresentation *completionIcon;
 @property(readonly, nonatomic) WBSParsecImageRepresentation *icon;
+@property(readonly, nonatomic) long long parsecQueryID;
 @property(readonly, copy, nonatomic) NSString *sectionBundleIdentifier;
 @property(readonly, nonatomic) SFSearchResult *sfSearchResultValue;
 - (BOOL)canBecomeTopHitForQuery:(id)arg1;
@@ -82,6 +86,7 @@
 @property(readonly, nonatomic) NSString *title;
 @property(readonly, nonatomic) long long subtype;
 @property(readonly, nonatomic) long long type;
+- (id)initWithSFSearchResult:(id)arg1;
 - (id)initWithLegacySearchResult:(id)arg1;
 - (id)init;
 

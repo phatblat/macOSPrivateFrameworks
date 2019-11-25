@@ -13,7 +13,9 @@
 @interface ABAccountRepository : NSObject <ABAccountCollection>
 {
     NSMutableDictionary *_existingAccounts;
+    NSMutableDictionary *_hiddenAccounts;
     BOOL _areExistingAccountsValid;
+    BOOL _areHiddenAccountsValid;
     id _futureAutocompletionAccounts;
     id _factory;
     id _defaultAccountPreference;
@@ -22,7 +24,9 @@
 + (id)dictionaryByObscuringPassword:(id)arg1;
 + (void)prepareLocalCacheForAccountWithIdentifier:(id)arg1 factory:(id)arg2;
 + (id)sharedRepository;
++ (id)os_log;
 @property(readonly, retain) ABDefaultAccountPreference *defaultAccountPreference; // @synthesize defaultAccountPreference=_defaultAccountPreference;
+- (void).cxx_destruct;
 @property(copy) NSString *tag;
 - (BOOL)mergeDataFromAccount:(id)arg1 toAccount:(id)arg2 withOptions:(int)arg3 error:(id *)arg4;
 - (BOOL)mergeDataFromAccount:(id)arg1 toAccount:(id)arg2 error:(id *)arg3;
@@ -38,6 +42,7 @@
 - (id)futureAutocompletionAccounts;
 - (id)autocompletionAccounts;
 - (id)autocompletionSources;
+- (void)runWithLockLoadingHiddenAccountsIfNecessary:(CDUnknownBlockType)arg1;
 - (void)runWithLockLoadingExistingAccountsIfNecessary:(CDUnknownBlockType)arg1;
 - (id)sources;
 - (id)defaultAccountTypeInfo;
@@ -48,10 +53,13 @@
 - (id)defaultableAccounts;
 - (id)accountComparerForExistingAccounts;
 - (id)existingAccountIdentifierEquivalentToProposedConfig:(id)arg1;
+@property(readonly, copy) NSArray *hiddenAccounts;
 @property(readonly, copy) NSArray *allAccounts;
 - (id)accounts;
 @property(readonly, copy) NSArray *enabledAccounts;
 @property(readonly, copy) NSArray *persistentAccounts;
+- (id)hiddenAccountWithIdentifier:(id)arg1;
+- (id)nonHiddenAccountWithIdentifier:(id)arg1;
 - (id)accountWithIdentifier:(id)arg1;
 - (id)sourceWithUID:(id)arg1;
 - (id)setEnabled:(BOOL)arg1 forAccountWithIdentifier:(id)arg2;
@@ -73,14 +81,16 @@
 - (void)nts_invalidateAutocompletionAccounts;
 - (void)nts_removeAccountsFromArray:(id)arg1;
 - (void)nts_removeAccount:(id)arg1;
+- (void)nts_addHiddenAccountsFromArray:(id)arg1;
 - (void)nts_addAccountsFromArray:(id)arg1;
 - (void)nts_addAccount:(id)arg1;
+- (id)nts_hiddenAccountForIdentifier:(id)arg1;
+- (id)nts_hiddenAccounts;
 - (id)nts_accountForIdentifier:(id)arg1;
 - (id)nts_allExistingAccounts;
 - (void)replaceSourceWithUid:(id)arg1;
 - (void)invalidateAllSources;
 - (void)addSourceWithUidIfAbsent:(id)arg1;
-- (void)applicationWillTerminate:(id)arg1;
 - (void)runWithLock:(CDUnknownBlockType)arg1;
 - (void)refreshEnabledAccounts;
 - (id)makeAddressBookWithOptions:(id)arg1;

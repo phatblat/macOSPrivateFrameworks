@@ -6,12 +6,13 @@
 
 #import <LinkPresentation/LPSpecializationMetadata.h>
 
-#import "LPLinkMetadataPresentationTransformerAdaptor.h"
-#import "LPLinkMetadataPreviewTransformerAdaptor.h"
+#import "LPLinkMetadataBackwardCompatibility.h"
+#import "LPLinkMetadataPresentationTransformer.h"
+#import "LPLinkMetadataPreviewTransformer.h"
 
 @class LPImage, NSString;
 
-@interface LPiCloudFamilyInvitationMetadata : LPSpecializationMetadata <LPLinkMetadataPresentationTransformerAdaptor, LPLinkMetadataPreviewTransformerAdaptor>
+@interface LPiCloudFamilyInvitationMetadata : LPSpecializationMetadata <LPLinkMetadataPresentationTransformer, LPLinkMetadataPreviewTransformer, LPLinkMetadataBackwardCompatibility>
 {
     NSString *_title;
     NSString *_subtitle;
@@ -19,19 +20,29 @@
     LPImage *_image;
 }
 
++ (id)keyPathsForValuesAffecting_dummyPropertyForObservation;
 + (BOOL)supportsSecureCoding;
 @property(retain, nonatomic) LPImage *image; // @synthesize image=_image;
 @property(copy, nonatomic) NSString *action; // @synthesize action=_action;
 @property(copy, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
-- (void)populateLinkMetadataForBackwardCompatibility:(id)arg1;
+- (void)_enumerateAsynchronousFields:(CDUnknownBlockType)arg1;
+@property(readonly) unsigned long long hash;
+- (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)populateMetadataForBackwardCompatibility:(id)arg1;
 - (id)previewImageForTransformer:(id)arg1;
 - (id)previewSummaryForTransformer:(id)arg1;
+- (BOOL)canGeneratePresentationPropertiesForURL:(id)arg1;
 - (id)presentationPropertiesForTransformer:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

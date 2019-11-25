@@ -83,11 +83,12 @@
 - (void)_handleRemoveEventModel:(id)arg1 message:(id)arg2;
 - (void)_removeEventsFromEventTrigger:(id)arg1;
 - (void)_handleRemoveEventsFromEventTrigger:(id)arg1;
+- (void)_handleRemoveEventsFromEventTrigger:(id)arg1 relay:(BOOL)arg2;
 - (void)_handleAddEventModel:(id)arg1 message:(id)arg2;
 - (id)createEventModel:(id)arg1 endEvent:(BOOL)arg2 message:(id)arg3 checkForSupport:(BOOL)arg4 error:(id *)arg5;
 - (void)_addEventToEventTrigger:(id)arg1;
 - (void)_handleAddEventToEventTrigger:(id)arg1;
-- (void)_handleLocationAuthorizationMessage:(id)arg1;
+- (void)_handleLocationAuthorizationChangedNotification:(id)arg1;
 - (void)fixupForReplacementAccessory:(id)arg1;
 - (void)_updateCondition:(id)arg1;
 - (void)removeUser:(id)arg1;
@@ -103,7 +104,6 @@
 - (void)_migrateEventsToRecords;
 - (void)configure:(id)arg1 messageDispatcher:(id)arg2 queue:(id)arg3;
 - (void)_reevaluateIfRelaunchRequired;
-- (void)_activateAfterResidentChangeWithCompletion:(CDUnknownBlockType)arg1;
 - (void)_activateWithCompletion:(CDUnknownBlockType)arg1;
 - (void)_activateEvents:(CDUnknownBlockType)arg1;
 - (void)_computeActivation;

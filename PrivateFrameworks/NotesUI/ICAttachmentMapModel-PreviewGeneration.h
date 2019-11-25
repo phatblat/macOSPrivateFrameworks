@@ -7,11 +7,12 @@
 #import "ICAttachmentMapModel.h"
 
 @interface ICAttachmentMapModel (PreviewGeneration)
-- (void)generatePreviewsInOperation:(id)arg1;
+- (BOOL)generatePreviewsInOperation:(id)arg1;
 - (BOOL)generateAsynchronousPreviews;
+- (id)missingPreviewsForCurrentDevice;
 - (BOOL)needToGeneratePreviews;
 - (BOOL)requiresNetworkToGeneratePreview;
-- (id)mapSnapshotCreator;
-- (void)setMapSnapshotCreator:(id)arg1;
+- (CDUnknownBlockType)genericBrickThumbnailCreator;
+- (CDUnknownBlockType)genericListThumbnailCreator;
 @end
 

@@ -6,16 +6,18 @@
 
 #import "NSObject.h"
 
+#import "EFCancelable.h"
 #import "NSMachPortDelegate.h"
 
 @class NSArray, NSError, NSInvocation, NSMachPort, NSMutableSet, NSString;
 
-@interface MCActivityMonitor : NSObject <NSMachPortDelegate>
+@interface MCActivityMonitor : NSObject <NSMachPortDelegate, EFCancelable>
 {
     NSString *_taskName;
     NSString *_statusMessage;
     NSString *_descriptionString;
     NSMutableSet *_subMonitors;
+    NSMutableSet *_associatedCancelables;
     NSMachPort *_cancelPort;
     id <MCActivityTarget> _target;
     double _doneValue;
@@ -83,6 +85,9 @@
 - (void)setStatusMessage:(id)arg1 percentDone:(double)arg2 withKey:(long long)arg3;
 - (void)relinquishExclusiveAccessKey:(long long)arg1;
 - (long long)acquireExclusiveAccessKey;
+- (void)_cancelAssociatedCancelables;
+- (void)removeCancelable:(id)arg1;
+- (void)addCancelable:(id)arg1;
 - (void)cancel;
 - (void)removeSubMonitor:(id)arg1;
 - (void)addSubMonitor:(id)arg1;

@@ -8,10 +8,14 @@
 #import "SGDSuggestManagerEventsProtocol.h"
 #import "SGDSuggestManagerFidesProtocol.h"
 #import "SGDSuggestManagerInternalProtocol.h"
+#import "SGDSuggestManagerIpsosProtocol.h"
 #import "SGDSuggestManagerMailProtocol.h"
 #import "SGDSuggestManagerMessagesProtocol.h"
+#import "SGDSuggestManagerRemindersProtocol.h"
+#import "SGDSuggestManagerURLsProtocol.h"
 #import "_SGDSuggestManagerBaseProtocol.h"
+#import "_SGSuggestManagerFoundInAppsProtocol.h"
 
-@protocol SGDSuggestManagerAllProtocol <_SGDSuggestManagerBaseProtocol, SGDSuggestManagerMailProtocol, SGDSuggestManagerContactsProtocol, SGDSuggestManagerEventsProtocol, SGDSuggestManagerInternalProtocol, SGDSuggestManagerMessagesProtocol, SGDSuggestManagerFidesProtocol>
+@protocol SGDSuggestManagerAllProtocol <_SGDSuggestManagerBaseProtocol, _SGSuggestManagerFoundInAppsProtocol, SGDSuggestManagerMailProtocol, SGDSuggestManagerContactsProtocol, SGDSuggestManagerURLsProtocol, SGDSuggestManagerEventsProtocol, SGDSuggestManagerRemindersProtocol, SGDSuggestManagerIpsosProtocol, SGDSuggestManagerInternalProtocol, SGDSuggestManagerMessagesProtocol, SGDSuggestManagerFidesProtocol>
 @end
 

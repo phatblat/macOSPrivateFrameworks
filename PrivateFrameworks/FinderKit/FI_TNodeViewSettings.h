@@ -81,7 +81,6 @@ __attribute__((visibility("hidden")))
 + (id)keyPathsForValuesAffectingIsAirDrop;
 + (id)keyPathsForValuesAffectingIsSearch;
 + (id)keyPathsForValuesAffectingGroupBy;
-+ (id)keyPathsForValuesAffectingFxShowArrangeByAndSortByPopups;
 + (void)setViewStyleInPrefs:(int)arg1 forName:(struct TString)arg2;
 + (int)viewStyleFromPrefsForName:(struct TString)arg1;
 + (void)setSettingsDictionaryInPrefs:(id)arg1 forName:(struct TString)arg2;
@@ -176,10 +175,11 @@ __attribute__((visibility("hidden")))
 - (void)restoreToDefaults;
 @property(readonly, nonatomic) _Bool showDefaultsButton;
 @property(readonly, nonatomic) _Bool isDesktop; // @dynamic isDesktop;
-@property(readonly, nonatomic) _Bool isAirDrop; // @dynamic isAirDrop;
+@property(readonly, nonatomic) _Bool disabledViewOptionsForTarget; // @dynamic disabledViewOptionsForTarget;
 @property(readonly, nonatomic) _Bool isSearch; // @dynamic isSearch;
 @property(nonatomic) NSString *windowName;
 @property(nonatomic) int viewStyleForViewOptions;
+- (int)viewStyleForOptionsPane:(int)arg1;
 @property(nonatomic) int viewStyle; // @dynamic viewStyle;
 - (void)checkIfUsingDefaultSettings;
 - (void)saveListViewSettings;
@@ -206,7 +206,7 @@ __attribute__((visibility("hidden")))
 - (void)updateIconViewArrangeByAfterGroupByChange;
 @property(nonatomic) int groupBy;
 @property(readonly, nonatomic) _Bool isGrouping;
-@property(readonly, nonatomic) _Bool fxShowArrangeByAndSortByPopups;
+@property(readonly, nonatomic) _Bool showGroupByPopup;
 @property(nonatomic) int nodeCustomViewStyleIndex;
 @property(nonatomic) _Bool nodeCanHaveCustomViewStyle;
 @property(nonatomic) _Bool nodeHasCustomViewStyle;

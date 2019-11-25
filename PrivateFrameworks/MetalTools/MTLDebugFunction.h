@@ -15,8 +15,6 @@
 
 @property(retain, nonatomic) MTLFunctionConstantValues *constantValues; // @synthesize constantValues=_constantValues;
 - (id)bitcodeData;
-- (id)newIndirectArgumentEncoderWithBufferIndex:(unsigned long long)arg1 reflection:(id *)arg2;
-- (id)newIndirectArgumentEncoderWithBufferIndex:(unsigned long long)arg1;
 - (id)newArgumentEncoderWithBufferIndex:(unsigned long long)arg1 reflection:(id *)arg2;
 - (id)newArgumentEncoderWithBufferIndex:(unsigned long long)arg1;
 - (void)dealloc;

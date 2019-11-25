@@ -8,17 +8,21 @@
 
 #import "NSSecureCoding.h"
 
-@class NSMutableArray, NSString;
+@class NSMutableArray, NSString, TUCall;
 
 @interface RTTConversation : NSObject <NSSecureCoding>
 {
     NSString *_callIdentifier;
     NSMutableArray *_utterances;
+    TUCall *_call;
 }
 
 + (BOOL)supportsSecureCoding;
 + (id)conversationWithID:(id)arg1 andUtterances:(id)arg2;
 + (id)conversationWithCall:(id)arg1;
++ (void)conversationWithCall:(id)arg1 withCallback:(CDUnknownBlockType)arg2;
++ (void)conversationWithCallUID:(id)arg1 withCallback:(CDUnknownBlockType)arg2;
+@property(retain, nonatomic) TUCall *call; // @synthesize call=_call;
 @property(retain, nonatomic) NSMutableArray *utterances; // @synthesize utterances=_utterances;
 @property(retain, nonatomic) NSString *callIdentifier; // @synthesize callIdentifier=_callIdentifier;
 - (void).cxx_destruct;
@@ -28,12 +32,12 @@
 - (id)lastUtteranceForMe:(BOOL)arg1;
 - (id)processBackspaceForMe:(BOOL)arg1;
 - (id)appendStringFromOtherContactPath:(id)arg1;
+- (id)appendCharacter:(unsigned short)arg1;
 - (void)addUtterance:(id)arg1;
 - (id)mergeUtterancesIfPossible;
 - (id)otherContactPath;
 - (BOOL)isEqualToConversation:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (void)dealloc;
 - (id)init;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

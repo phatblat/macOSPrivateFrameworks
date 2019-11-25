@@ -6,31 +6,33 @@
 
 #import "NSObject.h"
 
-#import "BSDescriptionProviding.h"
+#import "BSDebugDescriptionProviding.h"
 #import "NSCopying.h"
 #import "NSMutableCopying.h"
 
 @class BSSettings, FBSDisplayConfiguration, FBSDisplayIdentity, NSArray, NSSet, NSString;
 
-@interface FBSSceneSettings : NSObject <BSDescriptionProviding, NSCopying, NSMutableCopying>
+@interface FBSSceneSettings : NSObject <BSDebugDescriptionProviding, NSCopying, NSMutableCopying>
 {
     FBSDisplayConfiguration *_displayConfiguration;
     struct CGRect _frame;
     double _level;
     long long _interfaceOrientation;
-    BOOL _backgrounded;
+    BOOL _foreground;
+    BSSettings *_otherSettings;
+    BSSettings *_transientLocalSettings;
+    BOOL _prefersProcessTaskSuspensionWhileSceneForeground;
+    long long _isOccluded;
     BOOL _occluded;
     BOOL _occludedHasBeenCalculated;
     NSSet *_ignoreOcclusionReasons;
     NSArray *_occlusions;
-    BSSettings *_otherSettings;
-    BSSettings *_transientLocalSettings;
 }
 
 + (BOOL)_isMutable;
 + (id)settings;
 @property(readonly, copy, nonatomic) NSArray *occlusions; // @synthesize occlusions=_occlusions;
-@property(readonly, nonatomic, getter=isBackgrounded) BOOL backgrounded; // @synthesize backgrounded=_backgrounded;
+@property(readonly, nonatomic, getter=isForeground) BOOL foreground; // @synthesize foreground=_foreground;
 @property(readonly, nonatomic) long long interfaceOrientation; // @synthesize interfaceOrientation=_interfaceOrientation;
 @property(readonly, nonatomic) double level; // @synthesize level=_level;
 @property(readonly, nonatomic) struct CGRect frame; // @synthesize frame=_frame;
@@ -40,18 +42,24 @@
 - (id)keyDescriptionForSetting:(unsigned long long)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)_descriptionBuilderWithMultilinePrefix:(id)arg1 debug:(BOOL)arg2;
+- (id)debugDescriptionWithMultilinePrefix:(id)arg1;
 - (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
 - (id)descriptionWithMultilinePrefix:(id)arg1;
 - (id)succinctDescriptionBuilder;
 - (id)succinctDescription;
+@property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
+- (void)setPrefersProcessTaskSuspensionWhileSceneForeground:(BOOL)arg1;
+- (BOOL)prefersProcessTaskSuspensionWhileSceneForeground;
 - (id)transientLocalSettings;
 - (BOOL)isIgnoringOcclusions;
 - (id)ignoreOcclusionReasons;
 - (id)otherSettings;
 - (BOOL)isOccluded;
+@property(readonly, nonatomic, getter=isBackgrounded) BOOL backgrounded;
 - (struct CGRect)bounds;
 @property(readonly, copy, nonatomic) FBSDisplayIdentity *displayIdentity;
 - (void)dealloc;
@@ -59,7 +67,6 @@
 - (id)initWithSettings:(id)arg1;
 
 // Remaining properties
-@property(readonly, copy) NSString *debugDescription;
 @property(readonly) Class superclass;
 
 @end

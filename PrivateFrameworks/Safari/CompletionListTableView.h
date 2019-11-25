@@ -16,13 +16,16 @@ __attribute__((visibility("hidden")))
 
 @property(nonatomic) BOOL usesMenuSelectionStyle; // @synthesize usesMenuSelectionStyle=_usesMenuSelectionStyle;
 @property(nonatomic) BOOL actsLikeMenu; // @synthesize actsLikeMenu=_actsLikeMenu;
+- (id)accessibilityIdentifier;
 - (id)accessibilityLabel;
 - (BOOL)isAccessibilityElement;
 - (BOOL)isAccessibilityEnabled;
 - (id)_accessibilityDescription;
+- (void)drawGridInClipRect:(struct CGRect)arg1;
 - (BOOL)_rowIsSelectableByUser:(long long)arg1;
 - (struct CGRect)frameOfCellAtColumn:(long long)arg1 row:(long long)arg2;
 - (BOOL)isOpaque;
+- (void)mouseExited:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)mouseMoved:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

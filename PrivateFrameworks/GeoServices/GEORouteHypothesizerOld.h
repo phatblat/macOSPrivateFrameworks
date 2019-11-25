@@ -9,7 +9,7 @@
 #import "GEOETAUpdaterDelegate.h"
 #import "GEORouteHypothesizerUpdaterDelegate.h"
 
-@class GEOComposedRoute, GEOComposedWaypoint, GEODirectionsRequestFeedback, GEOETARoute, GEOETAUpdater, GEOLocation, GEOLocationShifter, GEORoute, GEORouteAttributes, GEORouteHypothesisOld, GEORouteHypothesizerUpdater, NSData, NSDate, NSString;
+@class GEOComposedRoute, GEOComposedWaypoint, GEODirectionsRequestFeedback, GEOETARoute, GEOETAUpdater, GEOLocation, GEOLocationShifter, GEORouteAttributes, GEORouteHypothesisOld, GEORouteHypothesizerUpdater, NSData, NSDate, NSString;
 
 @interface GEORouteHypothesizerOld : NSObject <GEORouteHypothesizerUpdaterDelegate, GEOETAUpdaterDelegate>
 {
@@ -32,7 +32,6 @@
     GEOETARoute *_baselineETARoute;
     GEORouteAttributes *_routeAttributes;
     GEORouteHypothesizerUpdater *_updater;
-    GEORoute *_existingRoute;
     NSData *_usualRouteData;
 }
 
@@ -65,7 +64,6 @@
 @property(readonly, nonatomic) BOOL supportsLiveTraffic;
 - (void)dealloc;
 - (void)_commonInit;
-- (id)initWithExistingRoute:(id)arg1 source:(id)arg2 destination:(id)arg3 etaUpdater:(id)arg4;
 - (id)initWithSource:(id)arg1 toDestination:(id)arg2 arrivalDate:(id)arg3 usualRouteData:(id)arg4;
 - (id)initWithSource:(id)arg1 toDestination:(id)arg2 departureDate:(id)arg3 usualRouteData:(id)arg4;
 

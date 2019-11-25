@@ -6,17 +6,19 @@
 
 #import "NSURL.h"
 
+@class NSString;
+
 @interface NSURL (SafariSharedExtras)
 + (void)safari_enumeratePossibleURLsForUserTypedString:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 + (id)safari_URLWithDataAsString:(id)arg1 relativeToURL:(id)arg2;
 + (id)safari_URLWithDataAsString:(id)arg1;
 + (id)safari_URLWithUserTypedString:(id)arg1;
+- (id)safari_relativePathToURL:(id)arg1;
 - (id)safari_wellKnownChangePasswordURL;
 - (BOOL)safari_isWellKnownChangePasswordURL;
 @property(readonly, nonatomic) BOOL safari_isURLTooLongToDisplay;
 - (id)safari_userVisibleStringConsideringLongURLs;
 - (BOOL)safari_shouldBeAssociatedWithFaviconFromRedirectedURL:(id)arg1;
-@property(readonly, nonatomic) BOOL safari_isDashboardURL;
 @property(readonly, nonatomic) BOOL safari_isTopLevelURL;
 - (id)safari_URLWithUniqueFilename;
 - (id)safari_userVisibleHostWithoutWWWSubdomain;
@@ -25,6 +27,8 @@
 - (id)safari_originalDataAsString;
 - (id)safari_displayNameWithTitle:(id)arg1;
 - (BOOL)safari_hasCharactersBeyondPath;
+@property(readonly, copy, nonatomic) NSString *safari_simplifiedURLStringForDeduping;
+@property(readonly, nonatomic) NSURL *safari_canonicalURLForStartPage;
 - (id)safari_canonicalURL;
 - (id)safari_URLByDeletingUserAndPassword;
 - (BOOL)safari_hasUserOrPassword;
@@ -35,10 +39,12 @@
 @property(readonly, nonatomic) BOOL safari_isEligibleToShowNotSecureWarning;
 @property(readonly, nonatomic) BOOL safari_isLocalOrPrivateNetworkURL;
 @property(readonly, nonatomic) BOOL safari_isSafariResourceURL;
+- (BOOL)safari_isMailtoURL;
 @property(readonly, nonatomic) BOOL safari_isBlobURL;
 - (BOOL)safari_isDataURL;
 - (BOOL)safari_isHTTPURL;
 - (BOOL)safari_isHTTPFamilyURL;
+- (BOOL)safari_hasLocalScheme;
 - (BOOL)safari_hasScheme:(id)arg1;
 - (id)safari_path;
 @end

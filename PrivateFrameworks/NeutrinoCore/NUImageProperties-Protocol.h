@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSString;
+@class NSDictionary, NSString, NSURL;
 
 @protocol NUImageProperties <NSObject>
 @property(readonly) id <NURAWImageProperties> rawProperties;
-@property(readonly) id <NUPortraitEffectsMatteProperties> portraitEffectsMatteProperties;
-@property(readonly) id <NUDepthProperties> depthProperties;
+@property(readonly) NSDictionary *auxiliaryImagesProperties;
+@property(readonly) BOOL isFusedOvercapture;
 @property(readonly) long long componentInfo;
 @property(readonly) long long alphaInfo;
 @property(readonly) NSString *fileUTI;
@@ -19,5 +19,6 @@
 @property(readonly) CDStruct_912cb5d2 size;
 @property(readonly) struct CGColorSpace *colorSpace;
 @property(readonly) NSDictionary *metadata;
+@property(readonly) NSURL *url;
 @end
 

@@ -6,10 +6,11 @@
 
 #import "NSObject.h"
 
-@class CUReachabilityMonitor, NSData, NSDictionary, NSError, NSObject<OS_dispatch_queue>, NSString, SFSession;
+@class CUBonjourAdvertiser, CUReachabilityMonitor, NSData, NSDictionary, NSError, NSObject<OS_dispatch_queue>, NSString, SFSession;
 
 @interface SFDeviceOperationHandlerWiFiSetup : NSObject
 {
+    CUBonjourAdvertiser *_bonjourAdvertiser;
     BOOL _invalidateCalled;
     CUReachabilityMonitor *_reachabilityMonitor;
     CDUnknownBlockType _responseHandler;
@@ -17,9 +18,13 @@
     int _state;
     BOOL _stepDone;
     NSError *_stepError;
+    BOOL _reachabilityEnabled;
     unsigned int _repairFlags;
+    unsigned int _setupFlags;
     int _wifiChannel;
     _Bool _wifiDirected;
+    id _wifiEAPConfig;
+    id _wifiEAPTrustExceptions;
     _Bool _wifiHomeNetwork;
     NSString *_wifiPassword;
     NSData *_wifiPSK;
@@ -37,6 +42,8 @@
 - (void)_runScanStart:(int)arg1;
 - (void)_run;
 - (void)_handleWiFiSetupRequest:(id)arg1 responseHandler:(CDUnknownBlockType)arg2;
+- (void)_handleRequestBonjourTestDone:(id)arg1 responseHandler:(CDUnknownBlockType)arg2;
+- (void)_handleRequestBonjourTestStart:(id)arg1 responseHandler:(CDUnknownBlockType)arg2;
 - (void)_completeError:(id)arg1;
 - (void)invalidate;
 - (void)_activate;

@@ -9,6 +9,8 @@
 @protocol IMServiceSessionProtocol
 
 @optional
+- (void)sendNicknameInfoToChatID:(NSString *)arg1;
+- (BOOL)sendNicknameUpdatesToPeerDevices:(NSDictionary *)arg1 toDestinations:(NSArray *)arg2;
 - (void)closeSessionChatID:(NSString *)arg1 identifier:(NSString *)arg2 style:(unsigned char)arg3;
 - (void)enrollSelfDeviceInSMSRelay;
 - (void)unEnrollDeviceInSMSRelay:(NSString *)arg1;
@@ -42,7 +44,7 @@
 - (void)sendSavedReceiptForMessage:(IMMessageItem *)arg1 toChatID:(NSString *)arg2 identifier:(NSString *)arg3 style:(unsigned char)arg4;
 - (void)sendPlayedReceiptForMessage:(IMMessageItem *)arg1 toChatID:(NSString *)arg2 identifier:(NSString *)arg3 style:(unsigned char)arg4;
 - (void)sendReadReceiptForMessage:(IMMessageItem *)arg1 toChatID:(NSString *)arg2 identifier:(NSString *)arg3 style:(unsigned char)arg4;
-- (void)sendLogDumpMessageAtFilePath:(NSString *)arg1 toRecipient:(NSString *)arg2 shouldDeleteFile:(BOOL)arg3;
+- (void)sendLogDumpMessageAtFilePath:(NSString *)arg1 toRecipient:(NSString *)arg2 shouldDeleteFile:(BOOL)arg3 withCompletion:(void (^)(BOOL))arg4;
 - (void)sendMessage:(IMMessageItem *)arg1 toChatID:(NSString *)arg2 identifier:(NSString *)arg3 style:(unsigned char)arg4;
 - (void)eagerUploadCancel:(NSURL *)arg1;
 - (void)eagerUploadTransfer:(NSDictionary *)arg1;

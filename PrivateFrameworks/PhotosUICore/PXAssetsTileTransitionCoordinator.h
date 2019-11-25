@@ -40,6 +40,8 @@
 @property(nonatomic) BOOL delayInsertions; // @synthesize delayInsertions=_delayInsertions;
 @property(nonatomic) BOOL treatRemovalsAsDeletes; // @synthesize treatRemovalsAsDeletes=_treatRemovalsAsDeletes;
 - (void).cxx_destruct;
+- (void)enableAnimationsForTileKind:(unsigned long long)arg1;
+- (void)disableAnimationsForTileKind:(unsigned long long)arg1;
 - (BOOL)useDoubleSidedAnimationForUpdatedTileWithIdentifier:(struct PXTileIdentifier)arg1 fromGeometry:(struct PXTileGeometry)arg2 fromUserData:(id)arg3 toGeometry:(struct PXTileGeometry)arg4 toUserData:(id)arg5;
 - (BOOL)getFinalGeometry:(out struct PXTileGeometry *)arg1 finalUserData:(out id *)arg2 forDisappearingTileWithIdentifier:(struct PXTileIdentifier)arg3 fromGeometry:(struct PXTileGeometry)arg4 fromUserData:(id)arg5;
 - (BOOL)getInitialGeometry:(out struct PXTileGeometry *)arg1 initialUserData:(out id *)arg2 forAppearingTileWithIdentifier:(struct PXTileIdentifier)arg3 toGeometry:(struct PXTileGeometry)arg4 toUserData:(id)arg5;

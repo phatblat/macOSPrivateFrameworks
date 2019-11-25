@@ -6,33 +6,41 @@
 
 #import <Safari/TabBarViewButton.h>
 
+#import "NSAccessibilityRadioButton.h"
 #import "RolloverTrackingButtonDelegate.h"
 
-@class BackgroundColorView, CALayer, FaviconView, NSArray, NSImage, NSMutableArray, NSString, NSTextField, NSView, NSVisualEffectView, RolloverImageButton, _TabButtonAccessibilityHelper;
+@class BackgroundColorView, CALayer, NSArray, NSImage, NSImageView, NSLayoutConstraint, NSMutableArray, NSStackView, NSString, NSTextField, NSView, NSVisualEffectView, RolloverImageButton;
 
 __attribute__((visibility("hidden")))
-@interface TabButton : TabBarViewButton <RolloverTrackingButtonDelegate>
+@interface TabButton : TabBarViewButton <NSAccessibilityRadioButton, RolloverTrackingButtonDelegate>
 {
     BOOL _didEstablishTabBarViewItemBindings;
     NSMutableArray *_accessoryViews;
-    NSView *_mainContentContainer;
-    NSView *_titleContainerView;
+    NSView *_mainContentClippingContainer;
+    NSStackView *_mainContentContainer;
+    NSStackView *_titleContainerView;
     NSTextField *_titleTextField;
     NSView *_focusRingView;
     RolloverImageButton *_closeButton;
-    _TabButtonAccessibilityHelper *_accessibilityHelper;
-    FaviconView *_iconView;
+    NSView *_iconViewContainer;
+    NSImageView *_iconView;
     NSVisualEffectView *_iconFullScreenVisualEffectView;
     BackgroundColorView *_iconFullScreenBackgroundView;
     CALayer *_iconFullScreenBackgroundHighlightLayer;
+    NSLayoutConstraint *_mainContentContainerWidthConstraint;
+    NSLayoutConstraint *_mainContentContainerLeftConstraint;
+    NSLayoutConstraint *_mainContentContainerRightConstraint;
+    NSLayoutConstraint *_mainContentContainerHorizontalCenteringConstraint;
+    NSLayoutConstraint *_titleContainerViewHorizontalCenteringConstraint;
     BOOL _canShowCloseButton;
     BOOL _pinned;
     BOOL _showIcon;
     BOOL _showingCloseButton;
+    BOOL _forOffscreenRendering;
     id <TabButtonDelegate> _delegate;
     id <TabBarViewItem> _tabBarViewItem;
     NSString *_title;
-    unsigned long long _alignment;
+    long long _alignment;
     NSImage *_image;
     double _buttonWidthForTitleLayout;
     double _mainContentContainerCenterOffset;
@@ -41,6 +49,7 @@ __attribute__((visibility("hidden")))
 
 + (id)titleFont;
 + (double)titleWidthForButtonWidth:(double)arg1;
+@property(nonatomic, getter=isForOffscreenRendering) BOOL forOffscreenRendering; // @synthesize forOffscreenRendering=_forOffscreenRendering;
 @property(nonatomic) double titleTextFieldCenterOffset; // @synthesize titleTextFieldCenterOffset=_titleTextFieldCenterOffset;
 @property(nonatomic) double mainContentContainerCenterOffset; // @synthesize mainContentContainerCenterOffset=_mainContentContainerCenterOffset;
 @property(nonatomic) double buttonWidthForTitleLayout; // @synthesize buttonWidthForTitleLayout=_buttonWidthForTitleLayout;
@@ -49,24 +58,23 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL showIcon; // @synthesize showIcon=_showIcon;
 @property(nonatomic, getter=isPinned) BOOL pinned; // @synthesize pinned=_pinned;
 @property(nonatomic) BOOL canShowCloseButton; // @synthesize canShowCloseButton=_canShowCloseButton;
-@property(readonly, nonatomic) id accessibilityHelper; // @synthesize accessibilityHelper=_accessibilityHelper;
 @property(copy, nonatomic) NSArray *accessoryViews; // @synthesize accessoryViews=_accessoryViews;
-@property(nonatomic) unsigned long long alignment; // @synthesize alignment=_alignment;
+@property(nonatomic) long long alignment; // @synthesize alignment=_alignment;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 @property(readonly) id <TabBarViewItem> tabBarViewItem; // @synthesize tabBarViewItem=_tabBarViewItem;
 @property(nonatomic) __weak id <TabButtonDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)_updateAccessibilityChildren;
+- (void)_updateAccessibilityProperties;
+- (id)accessibilityValue;
+- (id)accessibilityLabel;
 - (BOOL)accessibilityPerformPress;
 - (BOOL)accessibilityPerformShowMenu;
 - (void)rolloverTrackingButtonDidResignFirstResponder:(id)arg1;
 - (void)rolloverTrackingButtonDidBecomeFirstResponder:(id)arg1;
 - (BOOL)resignFirstResponder;
 - (BOOL)becomeFirstResponder;
-- (void)_layOutFocusRingWithTitleContainerContentFrame:(struct CGRect)arg1;
-- (void)_layOutTitleContainerViewInBounds:(struct CGRect)arg1 availableBounds:(struct CGRect)arg2;
-- (struct CGRect)_layOutAccessoryViewsInBounds:(struct CGRect)arg1;
-- (struct CGRect)_mainContentContainerRectForBounds:(struct CGRect)arg1;
-- (void)layout;
+- (BOOL)acceptsFirstResponder;
 - (void)updateLayer;
 - (id)_titleAttributedStringForDragAndDrop;
 - (id)pinnedTabDragImageOfSize:(struct CGSize)arg1;
@@ -77,17 +85,23 @@ __attribute__((visibility("hidden")))
 - (void)setHasMouseOverHighlight:(BOOL)arg1 shouldAnimateCloseButton:(BOOL)arg2;
 - (void)_closeButtonClicked:(id)arg1;
 - (BOOL)_shouldShowCloseButton;
-- (void)_updateIconView;
+- (BOOL)_canShowCloseButton;
+- (BOOL)_shouldShowIconView;
 - (void)_reconfigureFullScreenViewsUsingVisualEffectViews:(BOOL)arg1;
 - (void)_removeIconVisualEffectViewForFullScreenToolbarWindow;
 - (void)_addIconVisualEffectViewForFullScreenToolbarWindow;
 - (void)_updateIconFullScreenBackgroundColor;
+- (void)_setUpTabButtonConstraints;
+- (void)_setUpIconViewConstraints;
+- (void)_updateConstraints;
 - (void)setForcesActiveWindowState:(BOOL)arg1;
 - (void)setActive:(BOOL)arg1;
 - (void)dealloc;
 - (id)menuForEvent:(id)arg1;
 - (void)_windowChangedKeyState;
 - (void)viewDidMoveToWindow;
+- (void)_establishTabBarViewItemBindingsIfNecessary;
+- (void)keyDown:(id)arg1;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (BOOL)mouseDownCanMoveWindow;
 - (void)_updateKeyViewLoop;

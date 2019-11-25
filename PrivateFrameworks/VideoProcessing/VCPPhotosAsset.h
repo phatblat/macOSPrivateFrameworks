@@ -30,8 +30,10 @@
 - (id)initWithPHAsset:(id)arg1;
 - (struct __CVBuffer *)imageWithPreferredDimension:(unsigned long long)arg1;
 - (id)exif;
+- (float)originalPhotoOffsetSeconds;
 - (float)photoOffsetSeconds;
 - (id)originalMovie;
+- (id)streamedMovie;
 - (id)movie;
 - (float)slowmoRate;
 - (double)duration;

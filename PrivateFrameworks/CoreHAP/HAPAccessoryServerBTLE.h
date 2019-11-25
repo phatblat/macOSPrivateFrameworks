@@ -38,9 +38,8 @@
 - (BOOL)updateResumeSessionID:(unsigned long long)arg1;
 - (void)handleDisconnectionWithError:(id)arg1 completionQueue:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)handleConnectionWithPeripheral:(id)arg1 withError:(id)arg2;
-- (void)notifyDelegateUpdatedStateNumber;
 @property(nonatomic) unsigned char connectReason; // @synthesize connectReason=_connectReason;
-@property(retain, nonatomic) NSNumber *stateNumber; // @synthesize stateNumber=_stateNumber;
+@property(copy, nonatomic) NSNumber *stateNumber; // @synthesize stateNumber=_stateNumber;
 - (long long)linkType;
 - (id)initWithPeripheral:(id)arg1 name:(id)arg2 pairingUsername:(id)arg3 statusFlags:(id)arg4 stateNumber:(id)arg5 stateChanged:(BOOL)arg6 connectReason:(unsigned char)arg7 configNumber:(id)arg8 category:(id)arg9 setupHash:(id)arg10 connectionIdleTime:(unsigned char)arg11 browser:(id)arg12 keyStore:(id)arg13;
 

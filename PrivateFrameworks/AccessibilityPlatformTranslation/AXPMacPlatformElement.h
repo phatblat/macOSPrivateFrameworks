@@ -7,12 +7,13 @@
 #import "NSAccessibilityElement.h"
 
 #import "AXPTranslationElementProtocol.h"
+#import "NSAccessibilityCustomElementDataProvider.h"
 #import "NSAccessibilityCustomRotorItemSearchDelegate.h"
 #import "NSAccessibilityElement.h"
 
 @class AXPTranslationObject, NSArray, NSMutableDictionary, NSString;
 
-@interface AXPMacPlatformElement : NSAccessibilityElement <NSAccessibilityCustomRotorItemSearchDelegate, AXPTranslationElementProtocol, NSAccessibilityElement>
+@interface AXPMacPlatformElement : NSAccessibilityElement <NSAccessibilityCustomRotorItemSearchDelegate, NSAccessibilityCustomElementDataProvider, AXPTranslationElementProtocol, NSAccessibilityElement>
 {
     NSMutableDictionary *_selectiveCache;
     AXPTranslationObject *translation;
@@ -21,6 +22,8 @@
     NSArray *_cachedCustomRotors;
 }
 
++ (id)elementWithAccessibilityCustomElementData:(id)arg1;
++ (id)applicationElement;
 + (void)initialize;
 + (id)platformElementWithTranslationObject:(id)arg1;
 @property(retain, nonatomic) NSArray *cachedCustomRotors; // @synthesize cachedCustomRotors=_cachedCustomRotors;
@@ -32,23 +35,36 @@
 - (void)dealloc;
 - (BOOL)accessibilityShouldUseUniqueId;
 - (void)accessibilityPerformAction:(id)arg1;
+- (void)performScrollRightByPageAction;
+- (void)performScrollLeftByPageAction;
+- (void)performScrollUpByPageAction;
+- (void)performScrollDownByPageAction;
 - (void)performDecrementAction;
 - (void)performIncrementAction;
 - (BOOL)performEscapeAction;
 - (void)performScrollToVisible;
-- (void)_synthesizeMouseClickAtElementCenter;
+- (BOOL)_synthesizeMouseClick:(unsigned int)arg1;
+- (unsigned int)_windowContextId;
 - (id)_convertTranslatorResponse:(id)arg1 forAttribute:(unsigned long long)arg2;
 - (id)_convertTranslatorResponseForSubrole:(id)arg1;
 - (id)_convertTranslatorResponseForRole:(id)arg1;
 - (void)_cacheResultSelectively:(id)arg1 attribute:(unsigned long long)arg2;
+- (id)_postProcessAttributedString:(id)arg1;
 - (id)_postProcessResult:(id)arg1 attributeType:(unsigned long long)arg2;
 - (id)_accessibilityProcessAttribute:(id)arg1 parameter:(id)arg2;
 - (id)_accessibilityProcessAttribute:(id)arg1;
 - (id)_accessibilityProcessImmediateAttributeResult:(id)arg1;
 - (id)_accessibilityTranslationRootParent;
+- (BOOL)accessibilitySupportsCustomElementData;
+- (BOOL)overridePresenterPid:(int *)arg1;
+- (BOOL)overrideElementPid:(int *)arg1;
+- (id)accessibilityCustomElementData;
+- (BOOL)isEqual:(id)arg1;
+@property(readonly) unsigned long long hash;
 - (id)accessibilityAttributeValue:(id)arg1;
 - (void)setAccessibilityValue:(id)arg1;
 - (id)accessibilityValue;
+- (id)accessibilityLabel;
 - (id)accessibilityTitle;
 - (id)accessibilityParent;
 - (struct CGRect)accessibilityFrame;
@@ -66,16 +82,19 @@
 - (int)pid;
 - (id)accessibilityActionNames;
 - (id)accessibilityCustomActions;
+- (id)accessibilityCustomRotors;
+- (id)_customRotorData:(id)arg1;
+- (id)rotor:(id)arg1 resultForSearchParameters:(id)arg2;
 - (id)accessibilityParameterizedAttributeNames;
 - (id)accessibilityAttributeNames;
 - (BOOL)accessibilityPerformPress;
+- (BOOL)accessibilityPerformShowMenu;
 - (id)accessibilityRole;
 - (id)role;
 - (id)_cachedRole;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

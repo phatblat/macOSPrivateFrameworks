@@ -36,6 +36,7 @@
     BOOL _prefersExclusiveAccessToCellularNetwork;
     BOOL _remoteUplinkMuted;
     BOOL _shouldSuppressInCallUI;
+    BOOL _mutuallyExclusiveCall;
     BOOL _wantsStagingArea;
     int _callStatus;
     int _ttyType;
@@ -44,6 +45,7 @@
     float _remoteMeterLevel;
     NSString *_callUUID;
     TUHandle *_handle;
+    NSString *_isoCountryCode;
     TUCallProvider *_backingProvider;
     TUCallProvider *_displayProvider;
     NSString *_callerNameFromNetwork;
@@ -87,6 +89,7 @@
 @property(retain, nonatomic) id <TURemoteVideoClient> localVideo; // @synthesize localVideo=_localVideo;
 @property(nonatomic) __weak id <TUCallServicesProxyCallActions> proxyCallActionsDelegate; // @synthesize proxyCallActionsDelegate=_proxyCallActionsDelegate;
 @property(nonatomic) BOOL wantsStagingArea; // @synthesize wantsStagingArea=_wantsStagingArea;
+@property(nonatomic, getter=isMutuallyExclusiveCall) BOOL mutuallyExclusiveCall; // @synthesize mutuallyExclusiveCall=_mutuallyExclusiveCall;
 @property(nonatomic) BOOL shouldSuppressInCallUI; // @synthesize shouldSuppressInCallUI=_shouldSuppressInCallUI;
 @property(copy, nonatomic) NSUUID *localSenderIdentityAccountUUID; // @synthesize localSenderIdentityAccountUUID=_localSenderIdentityAccountUUID;
 @property(copy, nonatomic) NSUUID *localSenderIdentityUUID; // @synthesize localSenderIdentityUUID=_localSenderIdentityUUID;
@@ -137,6 +140,7 @@
 @property(nonatomic, getter=isOutgoing) BOOL outgoing; // @synthesize outgoing=_outgoing;
 @property(retain, nonatomic) TUCallProvider *displayProvider; // @synthesize displayProvider=_displayProvider;
 @property(retain, nonatomic) TUCallProvider *backingProvider; // @synthesize backingProvider=_backingProvider;
+@property(copy, nonatomic) NSString *isoCountryCode; // @synthesize isoCountryCode=_isoCountryCode;
 @property(retain, nonatomic) TUHandle *handle; // @synthesize handle=_handle;
 @property(nonatomic, getter=isHostedOnCurrentDevice) BOOL hostedOnCurrentDevice; // @synthesize hostedOnCurrentDevice=_hostedOnCurrentDevice;
 @property(nonatomic) int callStatus; // @synthesize callStatus=_callStatus;

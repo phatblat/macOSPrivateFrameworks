@@ -9,7 +9,7 @@
 #import "SFFeedbackListener.h"
 #import "SFResourceLoader.h"
 
-@class NSFileManager, NSString, NSXPCConnection, PARBag, PARSearchClient, PARSessionConfiguration;
+@class NSFileManager, NSSet, NSString, NSXPCConnection, PARBag, PARSearchClient, PARSessionConfiguration;
 
 @interface PARSession : NSObject <SFFeedbackListener, SFResourceLoader>
 {
@@ -19,19 +19,25 @@
     PARSearchClient *_client;
     PARSessionConfiguration *_configuration;
     id <PARSessionDelegate> _delegate;
+    NSSet *_allowedAppsForSiriSuggestions;
 }
 
 + (id)sessionWithConfiguration:(id)arg1 delegate:(id)arg2 startImmediately:(BOOL)arg3;
 + (id)sessionWithConfiguration:(id)arg1;
 + (id)sharedSession;
 + (id)sharedPARSessionWithConfiguration:(id)arg1;
+@property(retain) NSSet *allowedAppsForSiriSuggestions; // @synthesize allowedAppsForSiriSuggestions=_allowedAppsForSiriSuggestions;
 @property __weak id <PARSessionDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain) PARSessionConfiguration *configuration; // @synthesize configuration=_configuration;
 @property(retain, nonatomic) PARSearchClient *client; // @synthesize client=_client;
 - (void).cxx_destruct;
+- (void)didUpdateSiriSuggestionsAppWhitelist;
 - (void)sendCBAEngagementFeedback:(id)arg1 query:(unsigned long long)arg2;
 - (void)reportFeedback:(id)arg1 queryId:(unsigned long long)arg2;
+- (void)reportFeedback:(id)arg1;
 - (void)reportEvent:(id)arg1;
+- (void)didSubmitUserReportFeedback:(id)arg1;
+- (void)didReportUserResponseFeedback:(id)arg1;
 - (void)didGradeLookupHintRelevancy:(id)arg1;
 - (void)didGradeResultRelevancy:(id)arg1;
 - (void)didGoToSearch:(id)arg1;
@@ -44,7 +50,10 @@
 - (void)suggestionsDidBecomeVisible:(id)arg1;
 - (void)resultsDidBecomeVisible:(id)arg1;
 - (void)didEngageSuggestion:(id)arg1;
+- (void)_flushUsingConnectionToFBF:(id)arg1;
+- (void)_scheduleEagerFlush;
 - (void)sendCustomFeedback:(id)arg1;
+- (void)sendCustomFeedback:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)didErrorOccur:(id)arg1;
 - (void)didEngageCardSection:(id)arg1;
 - (void)didEngageResult:(id)arg1;

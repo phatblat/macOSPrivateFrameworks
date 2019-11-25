@@ -9,6 +9,7 @@
 #import "NSCopying.h"
 #import "NSMutableCopying.h"
 
+__attribute__((visibility("hidden")))
 @interface OITSUFormatObject : NSObject <NSCopying, NSMutableCopying>
 {
     CDStruct_730f14de mFormatStruct;

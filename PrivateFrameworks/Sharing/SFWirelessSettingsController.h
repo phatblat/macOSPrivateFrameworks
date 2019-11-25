@@ -10,6 +10,7 @@
 {
     id _delegate;
     BOOL _wifiEnabled;
+    BOOL _airplaneModeEnabled;
     BOOL _bluetoothEnabled;
     BOOL _deviceSupportsWAPI;
     BOOL _firstCallbackCompleted;
@@ -23,8 +24,9 @@
 - (void)invalidate;
 - (void)dealloc;
 @property(readonly, getter=isWirelessCarPlayEnabled) BOOL wirelessCarPlayEnabled;
-@property(readonly, getter=isWirelessAccessPointEnabled) BOOL wirelessAccessPointEnabled;
+@property(getter=isWirelessAccessPointEnabled) BOOL wirelessAccessPointEnabled;
 @property(readonly) BOOL deviceSupportsWAPI;
+@property(getter=isAirplaneModeEnabled) BOOL airplaneModeEnabled;
 @property(getter=isBluetoothEnabled) BOOL bluetoothEnabled;
 @property(getter=isWifiEnabled) BOOL wifiEnabled;
 - (void)handleOperationCallback:(struct __SFOperation *)arg1 event:(long long)arg2 withResults:(id)arg3;

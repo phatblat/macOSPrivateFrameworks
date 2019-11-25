@@ -10,14 +10,14 @@
 #import "CSVTUIAudioSessionDelegate.h"
 #import "CSVTUITrainingSessionDelegate.h"
 
-@class CSVAD2EndpointAnalyzer, CSVTUIKeywordDetector, CSVTUITrainingSession, NSMutableArray, NSObject<OS_dispatch_queue>, NSString, SFSpeechRecognizer;
+@class CSAsset, CSNNVADEndpointAnalyzer, CSVTUIKeywordDetector, CSVTUITrainingSession, NSMutableArray, NSObject<OS_dispatch_queue>, NSString, SFSpeechRecognizer;
 
 @interface CSVTUITrainingManager : NSObject <CSVTUITrainingSessionDelegate, CSVTUIAudioSessionDelegate, CSEndpointAnalyzerDelegate>
 {
     BOOL _performRMS;
     NSString *_locale;
     id <CSVTUIAudioSession> _audioSession;
-    CSVAD2EndpointAnalyzer *_audioAnalyzer;
+    CSNNVADEndpointAnalyzer *_audioAnalyzer;
     CSVTUIKeywordDetector *_keywordDetector;
     NSMutableArray *_trainingSessions;
     CSVTUITrainingSession *_currentTrainingSession;
@@ -26,6 +26,7 @@
     NSObject<OS_dispatch_queue> *_queue;
     CDUnknownBlockType _cleanupCompletion;
     SFSpeechRecognizer *_speechRecognizer;
+    CSAsset *_currentAsset;
     BOOL _speechRecognizerAvailable;
     float _rms;
     id <CSVTUITrainingManagerDelegate> _delegate;
@@ -37,7 +38,6 @@
 @property(nonatomic) __weak id <CSVTUITrainingManagerDelegate> delegate; // @synthesize delegate=_delegate;
 @property float rms; // @synthesize rms=_rms;
 - (void).cxx_destruct;
-- (void)VTUITrainingSessionStopListen;
 - (void)didDetectForceEndPoint;
 - (void)endpointer:(id)arg1 didDetectHardEndpointAtTime:(double)arg2 withMetrics:(id)arg3;
 - (void)endpointer:(id)arg1 didDetectStartpointAtTime:(double)arg2;
@@ -46,7 +46,7 @@
 - (void)audioSessionRecordBufferAvailable:(id)arg1;
 - (void)audioSessionDidStopRecording:(long long)arg1;
 - (void)audioSessionDidStartRecording:(BOOL)arg1 error:(id)arg2;
-- (void)CSVTUITrainingSession:(id)arg1 hasTrainUtterance:(id)arg2 languageCode:(id)arg3;
+- (BOOL)CSVTUITrainingSession:(id)arg1 hasTrainUtterance:(id)arg2 languageCode:(id)arg3 payload:(BOOL)arg4;
 - (void)CSVTUITrainingSessionStopListen;
 - (void)CSVTUITrainingSessionRMSAvailable:(float)arg1;
 - (BOOL)shouldPerformRMS;
@@ -69,6 +69,7 @@
 - (void)_beginOfSpeechDetected;
 - (void)_destroyAudioSession;
 - (void)_stopAudioSession;
+- (void)prepareWithCompletion:(CDUnknownBlockType)arg1;
 - (void)createSpeechRecognizer;
 - (BOOL)createKeywordDetector;
 - (void)setLocaleIdentifier:(id)arg1;

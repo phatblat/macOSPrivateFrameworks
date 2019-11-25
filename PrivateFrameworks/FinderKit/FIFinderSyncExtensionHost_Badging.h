@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <FinderKit/FIFinderSyncExtensionHost.h>
+#import "NSExtensionContext.h"
 
 #import "FIFinderSyncExtensionHostProtocol.h"
 #import "NSMenuDelegate.h"
@@ -12,7 +12,7 @@
 @class NSDictionary, NSExtension, NSString;
 
 __attribute__((visibility("hidden")))
-@interface FIFinderSyncExtensionHost_Badging : FIFinderSyncExtensionHost <FIFinderSyncExtensionHostProtocol, NSMenuDelegate>
+@interface FIFinderSyncExtensionHost_Badging : NSExtensionContext <FIFinderSyncExtensionHostProtocol, NSMenuDelegate>
 {
     struct TNSRef<NSObject<FIFinderSyncExtensionProtocol>, void> _remote;
     NSExtension *_extension;
@@ -65,7 +65,6 @@ __attribute__((visibility("hidden")))
 - (struct TString)toolbarToolTip;
 - (id)toolbarImageData;
 - (struct TString)toolbarItemName;
-- (void)refreshToolbars;
 - (void)setToolbarItemName:(id)arg1 imageData:(id)arg2 isTemplate:(_Bool)arg3 toolTip:(id)arg4;
 - (void)dealloc;
 - (void)tearDownWhileLocked;

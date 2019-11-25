@@ -8,7 +8,7 @@
 
 #import "PKCanvasViewDelegate.h"
 
-@class AKPageController, NSHashTable, NSString, PKCanvasView, PKInk;
+@class AKPageController, NSHashTable, PKCanvasView, PKInk;
 
 @interface AKInkOverlayView : NSView <PKCanvasViewDelegate>
 {
@@ -19,21 +19,28 @@
     PKCanvasView *_canvasView;
     id <AKInkOverlayViewDelegate> _delegate;
     struct CGSize _canvasSizeInPKDrawingSpace;
+    struct CGRect _previousPageRectInAKModel;
 }
 
++ (struct CGRect)_convertRect:(struct CGRect)arg1 fromPageControllerModelSpace:(id)arg2 toDrawingInCanvasViewSpace:(id)arg3;
 + (id)newDrawingUndoTargetWithPageController:(id)arg1;
 + (id)newAKInkOverlayViewForCurrentPlatformWithPageController:(id)arg1 drawingUndoTarget:(id)arg2;
+@property(nonatomic) struct CGRect previousPageRectInAKModel; // @synthesize previousPageRectInAKModel=_previousPageRectInAKModel;
 @property struct CGSize canvasSizeInPKDrawingSpace; // @synthesize canvasSizeInPKDrawingSpace=_canvasSizeInPKDrawingSpace;
 @property __weak id <AKInkOverlayViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain) PKCanvasView *canvasView; // @synthesize canvasView=_canvasView;
 @property __weak id drawingUndoTarget; // @synthesize drawingUndoTarget=_drawingUndoTarget;
 @property __weak AKPageController *pageController; // @synthesize pageController=_pageController;
 - (void).cxx_destruct;
-- (void)canvasView:(id)arg1 drawingDidChange:(id)arg2;
-- (void)canvasViewDidCancelStroke:(id)arg1;
-- (void)canvasViewDidEndStroke:(id)arg1;
-- (void)canvasViewDidBeginNewStroke:(id)arg1;
+- (void)canvasViewDrawingDidChange:(id)arg1;
+- (void)_canvasView:(id)arg1 cancelledStroke:(id)arg2;
+- (void)_canvasView:(id)arg1 endedStroke:(id)arg2;
+- (void)_canvasView:(id)arg1 beganStroke:(id)arg2;
+- (void)canvasViewDidEndDrawing:(id)arg1;
+- (void)canvasViewDidBeginDrawing:(id)arg1;
 - (void)_calculateFixedPixelSize:(struct CGSize *)arg1 drawingScale:(double *)arg2;
+- (id)updatedDrawingForPageRectUpdate;
+- (BOOL)canvasNeedsUpdate;
 - (void)setupInkView;
 - (void)viewDidMoveToSuperview;
 - (void)viewWillMoveToSuperview:(id)arg1;
@@ -46,12 +53,6 @@
 - (void)awakeFromNib;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithPageController:(id)arg1 drawingUndoTarget:(id)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

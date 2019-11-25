@@ -29,6 +29,8 @@
 
 + (id)_propertyKeysOfInterestForToneAssets;
 - (void).cxx_destruct;
+- (id)_audioMixForVolumeRampingWithDuration:(double)arg1 toneAsset:(id)arg2 toneAssetDuration:(double)arg3 itemIndex:(unsigned long long)arg4;
+- (float)_adjustAudioVolumeForOptimalRampingPerception:(float)arg1;
 - (void)_didCompletePlaybackWithCompletionType:(long long)arg1 error:(id)arg2;
 - (id)_fallbackToneIdentifierForPlayingAlert;
 - (void)_endPreventingAudioSessionDeactivation;
@@ -48,18 +50,19 @@
 - (void)_willBeginPlayingAlert;
 - (void)_stopPlaybackWithOptions:(id)arg1 playerWasAlreadyPausedExternally:(BOOL)arg2;
 - (void)_stopPlayback;
-- (void)_startPlaybackForPlayingAlertUsingConfirmedPlayableAsset:(id)arg1 isFullyReady:(BOOL)arg2;
+- (void)_performDelayedAudioPlaybackInitiationForAlert:(id)arg1;
+- (void)_startPlaybackForPlayingAlertUsingConfirmedPlayableAsset:(id)arg1 hasAlreadyDetectedUserAttention:(BOOL)arg2;
 - (void)_startPlaybackForPlayingAlertUsingConfirmedPlayableAsset:(id)arg1;
 - (void)_startPlaybackForAssetWithLoadedProperties:(id)arg1 alert:(id)arg2;
 - (void)_reloadPlaybackForPlayingAlertWithToneIdentifier:(id)arg1;
 - (BOOL)_canPlayToneAsset:(id)arg1;
 - (void)_handleActivationAssertionStatusChangeForAlert:(id)arg1 updatedStatus:(BOOL)arg2;
 - (void)_updateAudioVolumeDynamicallyForAlert:(id)arg1 toValue:(float)arg2;
-- (void)_stopPlayingAlerts:(id)arg1 withOptions:(id)arg2 playbackCompletionType:(long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (void)_stopPlayingAlerts:(id)arg1 withOptions:(id)arg2 playbackCompletionType:(long long)arg3 willStopAlertsHandler:(CDUnknownBlockType)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)_playAlert:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)handleActivationAssertionStatusChangeForAlert:(id)arg1 updatedStatus:(BOOL)arg2;
 - (void)updateAudioVolumeDynamicallyForAlert:(id)arg1 toValue:(float)arg2;
-- (void)stopPlayingAlerts:(id)arg1 withOptions:(id)arg2 playbackCompletionType:(long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (void)stopPlayingAlerts:(id)arg1 withOptions:(id)arg2 playbackCompletionType:(long long)arg3 willStopAlertsHandler:(CDUnknownBlockType)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)playAlert:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)_assertRunningOnAudioEventQueue;
 - (void)_performBlockOnAudioEventQueue:(CDUnknownBlockType)arg1;

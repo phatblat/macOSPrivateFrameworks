@@ -19,18 +19,19 @@
 - (id)clientCapabilities;
 - (BOOL)isCellDataPossible;
 - (BOOL)supportsForceTouch;
-- (BOOL)supportsNewiOS9Features;
 - (BOOL)supportsNavigation;
 - (BOOL)supportsRealisticTiles;
 - (BOOL)mapsFeatureFreedomEnabled;
 - (BOOL)_deviceSupportsNavigation;
 - (id)hardwareModel;
 - (id)hardwareIdentifier;
+- (id)osAndBuildVersion;
 - (id)buildVersion;
 - (id)osVersion;
 - (id)productName;
 - (id)_systemInfoDictionary;
 - (BOOL)isInternalInstall;
+- (id)init;
 
 @end
 

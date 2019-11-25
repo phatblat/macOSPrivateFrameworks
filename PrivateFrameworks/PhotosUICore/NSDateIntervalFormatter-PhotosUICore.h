@@ -12,6 +12,6 @@
 - (id)_px_localizedCapitalizedString:(id)arg1;
 - (BOOL)px_customizesAttributedString;
 - (id)px_attributedStringFromDateInterval:(id)arg1 defaultAttributes:(id)arg2 emphasizedAttributes:(id)arg3;
-- (id)px_dateTemplateForGranularity:(unsigned long long)arg1;
+- (id)px_dateTemplateForGranularity:(unsigned long long)arg1 abbreviated:(BOOL)arg2;
 @end
 

@@ -9,7 +9,7 @@
 #import "HMFLogging.h"
 #import "HMFTimerDelegate.h"
 
-@class HMDCameraSessionID, HMFTimer, NSDictionary, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
+@class HMDCameraStreamSessionID, HMFTimer, NSDictionary, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
 
 @interface HMDVideoStreamReconfigure : HMFObject <HMFTimerDelegate, HMFLogging>
 {
@@ -20,14 +20,14 @@
     HMFTimer *_downgradeDebouceTimer;
     NSObject<OS_dispatch_queue> *_workQueue;
     NSObject<OS_dispatch_queue> *_delegateQueue;
-    HMDCameraSessionID *_sessionID;
+    HMDCameraStreamSessionID *_sessionID;
     id <HMDVideoStreamReconfigureDelegate> _delegate;
 }
 
 + (id)logCategory;
 @property(nonatomic) BOOL reconfigurationMode; // @synthesize reconfigurationMode=_reconfigurationMode;
 @property(readonly) __weak id <HMDVideoStreamReconfigureDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic) HMDCameraSessionID *sessionID; // @synthesize sessionID=_sessionID;
+@property(readonly, nonatomic) HMDCameraStreamSessionID *sessionID; // @synthesize sessionID=_sessionID;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *delegateQueue; // @synthesize delegateQueue=_delegateQueue;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
 @property(retain, nonatomic) HMFTimer *downgradeDebouceTimer; // @synthesize downgradeDebouceTimer=_downgradeDebouceTimer;

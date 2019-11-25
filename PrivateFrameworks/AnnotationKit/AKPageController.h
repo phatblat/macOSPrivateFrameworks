@@ -62,11 +62,13 @@
 - (double)currentModelToScreenScaleFactor;
 - (long long)currentModelToScreenExifOrientation;
 - (void)updateScaleFactor:(double)arg1 isLiveUpdate:(BOOL)arg2 forceUpdate:(BOOL)arg3;
+- (void)updateOverlayViewLayers;
 - (void)overlayWasAddedToSuperview;
 - (BOOL)relinquishablesAreLoaded;
 - (void)releaseRelinquishables;
 - (void)setupRelinquishables;
 - (void)teardown;
+- (void)unregisterFromUndoManager:(id)arg1;
 - (id)initForTesting;
 - (id)_initWithController:(id)arg1 andPageModelController:(id)arg2;
 

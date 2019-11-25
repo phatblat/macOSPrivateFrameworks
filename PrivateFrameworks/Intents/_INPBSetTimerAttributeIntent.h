@@ -10,18 +10,23 @@
 #import "NSSecureCoding.h"
 #import "_INPBSetTimerAttributeIntent.h"
 
-@class NSString, _INPBIntentMetadata, _INPBTimer;
+@class NSString, _INPBDataString, _INPBIntentMetadata, _INPBTimer;
 
 @interface _INPBSetTimerAttributeIntent : PBCodable <_INPBSetTimerAttributeIntent, NSSecureCoding, NSCopying>
 {
     struct {
         unsigned int toDuration:1;
     } _has;
+    BOOL __encodeLegacyGloryData;
     _INPBIntentMetadata *_intentMetadata;
     _INPBTimer *_targetTimer;
     double _toDuration;
+    _INPBDataString *_toLabel;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(retain, nonatomic) _INPBDataString *toLabel; // @synthesize toLabel=_toLabel;
 @property(nonatomic) double toDuration; // @synthesize toDuration=_toDuration;
 @property(retain, nonatomic) _INPBTimer *targetTimer; // @synthesize targetTimer=_targetTimer;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
@@ -30,8 +35,11 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+@property(readonly, nonatomic) BOOL hasToLabel;
 @property(nonatomic) BOOL hasToDuration;
 @property(readonly, nonatomic) BOOL hasTargetTimer;
 @property(readonly, nonatomic) BOOL hasIntentMetadata;

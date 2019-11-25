@@ -30,6 +30,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) BRCDeadlineScheduler *uploadsDeadlineScheduler; // @synthesize uploadsDeadlineScheduler=_uploadsDeadlineScheduler;
 @property(nonatomic) BOOL isDefaultOwnerOutOfQuota; // @synthesize isDefaultOwnerOutOfQuota=_isDefaultOwnerOutOfQuota;
 - (void).cxx_destruct;
+- (void)forceScheduleQuotaFetchForOwner:(id)arg1;
 - (void)scheduleQuotaFetchIfNeededForOwner:(id)arg1;
 - (void)scheduleQuotaStateUpdateForOwner:(id)arg1;
 - (void)ownerDidReceiveOutOfQuotaError:(id)arg1;

@@ -12,11 +12,14 @@
 #import "HMFTimerDelegate.h"
 #import "NSSecureCoding.h"
 
-@class HMDCentralMessageDispatcher, HMDHome, HMDResidentDevice, HMFMessageDispatcher, HMFTimer, NSArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
+@class HMDHome, HMDMessageDispatcher, HMDResidentDevice, HMFTimer, NSArray, NSHashTable, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
 
 @interface HMDResidentDeviceManager : HMFObject <HMFTimerDelegate, HMFLogging, HMDHomeMessageReceiver, NSSecureCoding, HMDBackingStoreObjectProtocol>
 {
+    id <HMFLocking> _lock;
+    NSObject<OS_dispatch_queue> *_queue;
     NSMutableSet *_residentDevices;
+    NSHashTable *_dataSources;
     BOOL _residentAvailable;
     BOOL _residentSupported;
     BOOL _firstLegacyFetch;
@@ -27,10 +30,6 @@
     id <HMDResidentDeviceManagerDelegate> _delegate;
     NSUUID *_uuid;
     HMDHome *_home;
-    NSObject<OS_dispatch_queue> *_clientQueue;
-    NSObject<OS_dispatch_queue> *_propertyQueue;
-    HMFMessageDispatcher *_messageDispatcher;
-    HMDCentralMessageDispatcher *_remoteMessageDispatcher;
     long long _lastAtHomeLevel;
 }
 
@@ -41,20 +40,16 @@
 + (id)shortDescription;
 @property(nonatomic) long long lastAtHomeLevel; // @synthesize lastAtHomeLevel=_lastAtHomeLevel;
 @property(nonatomic, getter=isConfirming) BOOL confirming; // @synthesize confirming=_confirming;
-@property(readonly, nonatomic) HMDCentralMessageDispatcher *remoteMessageDispatcher; // @synthesize remoteMessageDispatcher=_remoteMessageDispatcher;
-@property(readonly, nonatomic) HMFMessageDispatcher *messageDispatcher; // @synthesize messageDispatcher=_messageDispatcher;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *propertyQueue; // @synthesize propertyQueue=_propertyQueue;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *clientQueue; // @synthesize clientQueue=_clientQueue;
 @property(nonatomic) __weak HMDHome *home; // @synthesize home=_home;
 @property(readonly, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
 @property __weak id <HMDResidentDeviceManagerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)_removeResidentDeviceWithModel:(id)arg1 message:(id)arg2;
 - (void)_addResidentDeviceWithModel:(id)arg1 message:(id)arg2;
-- (void)updatePrimaryResidentWithUUID:(id)arg1;
+- (void)updatePrimaryResidentWithUUID:(id)arg1 actions:(id)arg2;
 - (void)transactionObjectRemoved:(id)arg1 message:(id)arg2;
 - (void)transactionObjectUpdated:(id)arg1 newValues:(id)arg2 message:(id)arg3;
-- (void)_handleCloudManagerDidCompleteInitialFetchNotification:(id)arg1;
+- (void)_handleCloudZoneReadyNotification:(id)arg1;
 - (void)_updateChargingTimer;
 - (void)_updateDischargingTimer:(long long)arg1;
 - (void)atHomeLevelChanged:(long long)arg1;
@@ -78,12 +73,12 @@
 - (id)_electionParameters;
 - (BOOL)_isAtHome;
 - (long long)compareResidentDeviceA:(id)arg1 electionParametersA:(id)arg2 residentDeviceB:(id)arg3 electionParametersB:(id)arg4;
-- (long long)compareResidentDevice:(id)arg1 electionParameters:(id)arg2;
-- (void)conditionallyConfirmOnBoot;
+- (void)confirmPrimaryResident;
 - (void)confirmOnAvailability;
 - (void)confirmAsResident;
+- (void)__handleConfirmationRequest:(id)arg1;
+- (void)confirmWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)_confirmResidentDevice:(id)arg1 electionParameters:(id)arg2 againstDevices:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
-- (id)_orderedDevicesForElection;
 - (void)_electResidentDevice;
 - (void)electResidentDevice;
 - (void)__currentDeviceUpdated:(id)arg1 completion:(CDUnknownBlockType)arg2;
@@ -99,14 +94,12 @@
 @property(readonly, nonatomic, getter=isResidentAvailable) BOOL residentAvailable; // @synthesize residentAvailable=_residentAvailable;
 - (void)_updateResidentAvailability;
 - (void)updateResidentAvailability;
-- (void)_notifyClientsOfRemovedResidentDevice:(id)arg1;
 - (void)removeResidentDevice:(id)arg1;
 - (void)_removeResidentDevice:(id)arg1;
-- (void)_notifyClientsOfAddedResidentDevice:(id)arg1;
 - (void)_addResidentDevice:(id)arg1;
-- (void)setResidentDevices:(id)arg1;
 - (id)residentDeviceForDevice:(id)arg1;
-@property(readonly, nonatomic, getter=isCurrentDeviceAvaliableResident) BOOL currentDeviceAvaliableResident;
+@property(readonly, nonatomic, getter=isCurrentDevicePrimaryResident) BOOL currentDevicePrimaryResident;
+@property(readonly, nonatomic, getter=isCurrentDeviceAvailableResident) BOOL currentDeviceAvailableResident;
 @property(readonly, nonatomic) NSArray *availableResidentDevices;
 @property(readonly, copy, nonatomic) NSArray *residentDevices;
 - (id)ourSelf;
@@ -114,14 +107,18 @@
 - (id)residentWithUUID:(id)arg1;
 @property(nonatomic, getter=hasFirstHomeZoneFetch) BOOL firstHomeZoneFetch; // @synthesize firstHomeZoneFetch=_firstHomeZoneFetch;
 @property(nonatomic, getter=hasFirstLegacyFetch) BOOL firstLegacyFetch; // @synthesize firstLegacyFetch=_firstLegacyFetch;
-@property(retain, nonatomic) NSUUID *primaryResidentUUID; // @synthesize primaryResidentUUID=_primaryResidentUUID;
+@property(readonly, nonatomic) NSUUID *primaryResidentUUID; // @synthesize primaryResidentUUID=_primaryResidentUUID;
 @property(readonly, nonatomic) __weak HMDResidentDevice *primaryResidentDevice;
+- (void)removeDataSource:(id)arg1;
+- (void)addDataSource:(id)arg1;
 - (void)_teardownSessionWithPrimaryResidentDevice;
 - (void)_setupSessionWithPrimaryResidentDevice;
 - (void)_run;
 - (void)run;
+@property(readonly, nonatomic) BOOL hasTrustZoneCapableResident;
 - (void)_registerForMessages;
 - (void)configureWithHome:(id)arg1;
+@property(readonly) HMDMessageDispatcher *messageDispatcher;
 - (id)dumpState;
 @property(readonly, copy) NSString *description;
 @property(readonly, copy) NSString *debugDescription;

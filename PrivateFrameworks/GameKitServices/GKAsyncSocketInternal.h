@@ -8,6 +8,7 @@
 
 @class NSMutableData, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface GKAsyncSocketInternal : GKAsyncSocket
 {
     NSObject<OS_dispatch_source> *_receiveSource;

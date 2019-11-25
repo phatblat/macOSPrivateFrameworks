@@ -7,6 +7,6 @@
 #import "AVAsset.h"
 
 @interface AVAsset (IC_UI)
-- (struct NSImage *)previewImage;
+- (struct NSImage *)ic_previewImage;
 @end
 

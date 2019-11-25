@@ -6,11 +6,16 @@
 
 #import "NUColorSampler.h"
 
-@interface PISourceSampler : NUColorSampler
+#import "PITagColorSampler.h"
+
+@class NSString;
+
+@interface PISourceSampler : NUColorSampler <PITagColorSampler>
 {
 }
 
 - (id)_pipelineFilters;
+@property(readonly, nonatomic) NSString *tag;
 
 @end
 

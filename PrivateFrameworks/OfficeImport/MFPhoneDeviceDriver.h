@@ -8,6 +8,7 @@
 
 #import "MFDeviceDriver.h"
 
+__attribute__((visibility("hidden")))
 @interface MFPhoneDeviceDriver : NSObject <MFDeviceDriver>
 {
     struct CGRect m_canvas;

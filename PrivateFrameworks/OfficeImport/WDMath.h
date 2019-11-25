@@ -8,6 +8,7 @@
 
 @class NSString, WDCharacterProperties;
 
+__attribute__((visibility("hidden")))
 @interface WDMath : WDRun
 {
     int _justification;

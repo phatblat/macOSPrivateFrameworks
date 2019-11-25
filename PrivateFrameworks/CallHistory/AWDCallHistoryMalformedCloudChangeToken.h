@@ -8,6 +8,7 @@
 
 #import "NSCopying.h"
 
+__attribute__((visibility("hidden")))
 @interface AWDCallHistoryMalformedCloudChangeToken : PBCodable <NSCopying>
 {
     unsigned long long _timestamp;

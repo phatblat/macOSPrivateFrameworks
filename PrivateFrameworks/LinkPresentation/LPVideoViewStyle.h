@@ -20,10 +20,8 @@ __attribute__((visibility("hidden")))
     double _pulsingLoadIndicatorMaximumOpacity;
     double _pulsingLoadIndicatorDuration;
     CAMediaTimingFunction *_pulsingLoadIndicatorTimingFunction;
-    NSColor *_fullScreenBackgroundColor;
 }
 
-@property(retain, nonatomic) NSColor *fullScreenBackgroundColor; // @synthesize fullScreenBackgroundColor=_fullScreenBackgroundColor;
 @property(retain, nonatomic) CAMediaTimingFunction *pulsingLoadIndicatorTimingFunction; // @synthesize pulsingLoadIndicatorTimingFunction=_pulsingLoadIndicatorTimingFunction;
 @property(nonatomic) double pulsingLoadIndicatorDuration; // @synthesize pulsingLoadIndicatorDuration=_pulsingLoadIndicatorDuration;
 @property(nonatomic) double pulsingLoadIndicatorMaximumOpacity; // @synthesize pulsingLoadIndicatorMaximumOpacity=_pulsingLoadIndicatorMaximumOpacity;

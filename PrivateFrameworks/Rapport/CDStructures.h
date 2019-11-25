@@ -10,6 +10,22 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct CC_SHA256state_st {
+    unsigned int count[2];
+    unsigned int hash[8];
+    unsigned int wbuf[16];
+};
+
+struct CGPoint {
+    double x;
+    double y;
+};
+
+struct CGSize {
+    double width;
+    double height;
+};
+
 struct LogCategory {
     int _field1;
     int _field2;
@@ -33,6 +49,10 @@ struct LogCategoryPrivate;
 
 struct LogOutput;
 
+struct NSMutableArray {
+    Class _field1;
+};
+
 struct NSMutableDictionary {
     Class _field1;
 };
@@ -41,13 +61,58 @@ struct NSMutableSet {
     Class _field1;
 };
 
+struct in6_addr {
+    union {
+        unsigned char __u6_addr8[16];
+        unsigned short __u6_addr16[8];
+        unsigned int __u6_addr32[4];
+    } __u6_addr;
+};
+
+struct in_addr {
+    unsigned int s_addr;
+};
+
+struct sockaddr {
+    unsigned char sa_len;
+    unsigned char sa_family;
+    char sa_data[14];
+};
+
+struct sockaddr_in {
+    unsigned char sin_len;
+    unsigned char sin_family;
+    unsigned short sin_port;
+    struct in_addr sin_addr;
+    char sin_zero[8];
+};
+
+struct sockaddr_in6 {
+    unsigned char sin6_len;
+    unsigned char sin6_family;
+    unsigned short sin6_port;
+    unsigned int sin6_flowinfo;
+    struct in6_addr sin6_addr;
+    unsigned int sin6_scope_id;
+};
+
 #pragma mark Typedef'd Structures
 
 typedef struct {
-    struct {
-        unsigned char _field1;
-        unsigned char _field2[3];
-    } _field1;
-    unsigned char _field2[4];
-} CDStruct_793dca1b;
+    unsigned char frameType;
+    unsigned char frameLen[3];
+} CDStruct_798ebea5;
+
+typedef struct {
+    unsigned long long _field1;
+    char _field2;
+} CDStruct_59b50e33;
+
+#pragma mark Typedef'd Unions
+
+typedef union {
+    struct sockaddr sa;
+    struct sockaddr_in v4;
+    struct sockaddr_in6 v6;
+} CDUnion_fab80606;
 

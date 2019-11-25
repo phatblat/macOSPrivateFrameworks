@@ -42,10 +42,10 @@ __attribute__((visibility("hidden")))
 - (void)didCreateMissingParentID:(id)arg1 zone:(id)arg2;
 - (void)createApplyJobFromServerItem:(id)arg1 localItem:(id)arg2 state:(int)arg3 kind:(unsigned int)arg4;
 - (void)resetBackoffForServerItem:(id)arg1;
-- (void)setState:(int)arg1 andApplyKind:(unsigned int)arg2 forRank:(long long)arg3 zone:(id)arg4;
+- (void)setState:(int)arg1 andApplyKind:(unsigned int)arg2 forRank:(long long)arg3 zoneRowID:(id)arg4;
 - (void)setState:(int)arg1 andApplyKind:(unsigned int)arg2 forServerItem:(id)arg3 localItem:(id)arg4;
 - (void)_setState:(int)arg1 andApplyKind:(unsigned int)arg2 forJobID:(id)arg3;
-- (void)setState:(int)arg1 forRank:(long long)arg2 zone:(id)arg3;
+- (void)setState:(int)arg1 forRank:(long long)arg2 zoneRowID:(id)arg3;
 - (void)setState:(int)arg1 forServerItem:(id)arg2 localItem:(id)arg3;
 - (void)describeInBuffer:(id)arg1 aggregateOfJobsMatching:(id)arg2 context:(id)arg3;
 - (id)descriptionForRejectedItem:(id)arg1 context:(id)arg2;

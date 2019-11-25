@@ -10,13 +10,15 @@
 {
 }
 
++ (id)appLaunchFeedbackStream;
 + (id)remoteDeviceInBedTimesStream;
 + (id)pairedDeviceForecastStream;
 + (id)internalQueryDataCollectionStream;
 + (id)tombstoneStream;
 + (id)safariHistoryStream;
++ (id)mapsShareEtaFeedbackStream;
++ (id)shareSheetFeedbackStream;
 + (id)searchFeedbackStream;
-+ (id)userActivityDetectedStream;
 + (id)homeKitAppViewStream;
 + (id)homeKitAccessoryControlStream;
 + (id)homeKitSceneStream;
@@ -28,47 +30,48 @@
 + (id)bluetoothIsConnectedStream;
 + (id)carPlayIsConnectedStream;
 + (id)userIsFirstBacklightOnAfterWakeup;
-+ (id)userIsCurrentlyAsleepStream;
-+ (id)userNextSleepPeriodStream;
-+ (id)isSleepEventStream;
-+ (id)detectedSleepEventStream;
-+ (id)nextSleepEventStream;
-+ (id)periodOfDayEventStream;
-+ (id)isWeekendEventStream;
-+ (id)dayOfWeekEventStream;
-+ (id)sunriseSunsetStream;
 + (id)calendarEventStream;
-+ (id)nextCalendarEventStream;
 + (id)microLocationVisitStream;
 + (id)locationVisitStream;
 + (id)motionStream;
++ (id)audioOutputRouteStream;
 + (id)audioOutputRoutStream;
 + (id)audioInputRouteStream;
 + (id)displayOrientationStream;
 + (id)displayIsBacklit;
++ (id)diskSubsystemAccessStream;
++ (id)discoverabilityUsageStream;
++ (id)discoverabilitySignalsStream;
++ (id)siriServiceStream;
++ (id)airplayPredictionStream;
++ (id)timerStream;
++ (id)alarmStream;
++ (id)deviceLowPowerModeStream;
 + (id)deviceIsSleepingStream;
 + (id)deviceBatterySaverStream;
 + (id)deviceBatteryPercentageStream;
 + (id)deviceIsPluggedInStream;
 + (id)keybagIsLockedStream;
++ (id)deviceIsLockedImputedStream;
 + (id)deviceIsLockedStream;
++ (id)nextEventForTopOffProtectionStream;
++ (id)airplaneModeStream;
++ (id)doNotDisturbStream;
++ (id)deviceActivityLevelFeedbackStream;
++ (id)standbyTimerStream;
 + (id)deviceActivityLevelStream;
 + (id)notificationUsageStream;
++ (id)widgetsViewedStream;
 + (id)appViewedInDockStream;
-+ (id)glanceLaunchStream;
-+ (id)spotlightActivityStream;
 + (id)appLocationActivityStream;
 + (id)appRelevantShortcutsStream;
-+ (id)appRelevantActionsStream;
 + (id)appIntentsStream;
 + (id)appActivityStream;
-+ (id)appBulletinStream;
 + (id)appInstallStream;
 + (id)appWebUsageStream;
 + (id)appUsageStream;
 + (id)appInFocusStream;
 + (id)deviceInUseProxyStream;
-+ (id)contextStorePersistentRuleStream;
 
 @end
 

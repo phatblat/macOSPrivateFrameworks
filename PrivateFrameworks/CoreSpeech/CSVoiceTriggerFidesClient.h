@@ -19,12 +19,13 @@
 @property(nonatomic) __weak CSAudioCircularBuffer *audioBuffer; // @synthesize audioBuffer=_audioBuffer;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 - (void).cxx_destruct;
+- (void)voiceTriggerGotSuperVector:(id)arg1;
 - (void)voiceTriggerDidDetectSpeakerReject:(id)arg1;
 - (void)voiceTriggerDidDetectNearMiss:(id)arg1;
-- (void)voiceTriggerDidDetectKeyword:(id)arg1;
+- (void)voiceTriggerDidDetectKeyword:(id)arg1 deviceId:(id)arg2;
 - (void)_logDESRecordWithType:(long long)arg1 result:(id)arg2;
 - (id)_lastTriggerDataWithResult:(id)arg1;
-- (id)initWithAudioBuffer:(id)arg1;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

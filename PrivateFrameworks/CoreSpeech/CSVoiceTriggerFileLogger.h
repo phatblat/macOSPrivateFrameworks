@@ -8,26 +8,24 @@
 
 #import "CSVoiceTriggerDelegate.h"
 
-@class CSAudioCircularBuffer, NSObject<OS_dispatch_queue>, NSString;
+@class NSObject<OS_dispatch_queue>, NSString;
 
 @interface CSVoiceTriggerFileLogger : NSObject <CSVoiceTriggerDelegate>
 {
     NSObject<OS_dispatch_queue> *_queue;
-    CSAudioCircularBuffer *_audioBuffer;
 }
 
-@property(nonatomic) __weak CSAudioCircularBuffer *audioBuffer; // @synthesize audioBuffer=_audioBuffer;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 - (void).cxx_destruct;
 - (void)_clearOldLoggingFiles;
 - (void)voiceTriggerDidDetectSpeakerReject:(id)arg1;
 - (void)voiceTriggerDidDetectNearMiss:(id)arg1;
-- (void)voiceTriggerDidDetectKeyword:(id)arg1;
+- (void)voiceTriggerDidDetectKeyword:(id)arg1 deviceId:(id)arg2;
 - (void)_writeDictionary:(id)arg1 toPath:(id)arg2;
 - (id)_metaFilenameWithPrefix:(id)arg1;
 - (id)_timeStampString;
 - (id)_audioLogDirectory;
-- (id)initWithAudioBuffer:(id)arg1;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

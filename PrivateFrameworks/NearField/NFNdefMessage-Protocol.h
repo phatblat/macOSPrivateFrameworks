@@ -11,6 +11,7 @@
 @protocol NFNdefMessage <NSObject>
 @property(readonly, nonatomic) NSArray *records;
 - (NSString *)decode;
+- (void)addRecordArray:(NSArray *)arg1;
 - (void)addRecord:(id <NFNdefRecord>)arg1;
 - (NSData *)asData;
 - (id)initWithNDEFMessage:(id <NFNdefMessage>)arg1;

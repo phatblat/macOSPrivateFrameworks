@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DOMDocument, DOMDocumentFragment, DOMElement, LPCSSResolver, LPCaptionBarPresentationProperties, LPHTMLComponent, LPHTMLVideoComponent, LPImage, LPLinkMetadata, LPMetadataProvider, LPPointUnit, LPTheme, LPVideo, NSColor, NSString, NSURL;
+@class DOMDocument, DOMDocumentFragment, DOMElement, LPCSSResolver, LPCaptionBarPresentationProperties, LPHTMLComponent, LPHTMLVideoComponent, LPImage, LPImagePresentationProperties, LPLinkMetadata, LPMetadataProvider, LPPointUnit, LPTheme, LPVideo, NSArray, NSColor, NSString, NSURL;
 
 @interface LPLinkHTMLGenerator : NSObject
 {
@@ -18,6 +18,8 @@
     LPCaptionBarPresentationProperties *_mediaBottomCaptionBar;
     NSString *_quotedText;
     LPImage *_image;
+    LPImagePresentationProperties *_imageProperties;
+    NSArray *_alternateImages;
     LPVideo *_video;
     NSColor *_backgroundColor;
     LPPointUnit *_minimumRootHeight;
@@ -83,6 +85,7 @@
 @property(readonly, retain, nonatomic) DOMDocumentFragment *documentFragment;
 - (void)_fetchMetadata;
 @property(readonly, nonatomic) BOOL hasPendingMetadataProvider;
+- (id)_createRootElement;
 - (id)initWithPresentationProperties:(id)arg1 URL:(id)arg2 document:(id)arg3;
 - (id)initWithPresentationProperties:(id)arg1 document:(id)arg2;
 - (id)initWithURL:(id)arg1 document:(id)arg2;

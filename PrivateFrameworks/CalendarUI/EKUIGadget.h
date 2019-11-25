@@ -71,6 +71,8 @@
 - (void)saveCompleteChange;
 - (void)savePartialChange;
 - (void)savePendingChanges;
+- (void)mouseUpInGadgetView;
+- (void)mouseDownInGadgetView;
 - (void)mouseExitedGadgetView;
 - (void)mouseEnteredGadgetView;
 - (void)setNeedsUpdateConstraints:(BOOL)arg1;

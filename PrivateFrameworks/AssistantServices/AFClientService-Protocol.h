@@ -25,8 +25,6 @@
 - (oneway void)adviseSessionArbiterToContinueWithPreviousWinner:(BOOL)arg1;
 - (oneway void)reportIssueForError:(NSError *)arg1 type:(long long)arg2 context:(NSDictionary *)arg3;
 - (oneway void)updateSpeechSynthesisRecord:(AFSpeechSynthesisRecord *)arg1;
-- (oneway void)setMyriadDecisionResult:(BOOL)arg1;
-- (oneway void)setShouldWaitForMyriad:(BOOL)arg1;
 - (oneway void)endUpdateOutputAudioPower;
 - (oneway void)beginUpdateOutputAudioPowerWithReply:(void (^)(AFXPCWrapper *))arg1;
 - (oneway void)stopAllAudioPlaybackRequests:(BOOL)arg1;
@@ -44,6 +42,7 @@
 - (oneway void)setAlertContextDirty;
 - (oneway void)setOverriddenApplicationContext:(NSString *)arg1 withContext:(id)arg2;
 - (oneway void)setApplicationContextForApplicationInfos:(NSArray *)arg1 withRefId:(NSString *)arg2;
+- (oneway void)fetchAppicationContextForApplicationInfo:(NSArray *)arg1 supplementalContext:(NSArray *)arg2 refID:(NSString *)arg3;
 - (oneway void)setApplicationContext:(SASetApplicationContext *)arg1;
 - (oneway void)willSetApplicationContextWithRefId:(NSString *)arg1;
 - (oneway void)rollbackClearContext;
@@ -52,7 +51,7 @@
 - (oneway void)requestStateUpdateWithReply:(void (^)(BOOL))arg1;
 - (oneway void)stopSpeechWithOptions:(AFSpeechRequestOptions *)arg1;
 - (oneway void)rollbackRequest;
-- (oneway void)cancelRequest;
+- (oneway void)cancelRequestForReason:(long long)arg1;
 - (oneway void)updateSpeechOptions:(AFSpeechRequestOptions *)arg1;
 - (oneway void)continuePendingSpeechRequestWithId:(unsigned long long)arg1 fromTimestamp:(double)arg2;
 - (oneway void)startAcousticIDRequestWithOptions:(AFSpeechRequestOptions *)arg1 context:(NSString *)arg2 completion:(void (^)(NSError *))arg3;
@@ -67,7 +66,7 @@
 - (oneway void)setLockState:(BOOL)arg1 showingLockScreen:(BOOL)arg2;
 - (oneway void)resumeInterruptedAudioPlaybackIfNeeded;
 - (oneway void)forceAudioSessionInactiveWithOptions:(unsigned long long)arg1 completion:(void (^)(void))arg2;
-- (oneway void)forceAudioSessionActiveWithOptions:(unsigned long long)arg1 reason:(long long)arg2 completion:(void (^)(NSError *))arg3;
+- (oneway void)forceAudioSessionActiveWithOptions:(unsigned long long)arg1 reason:(long long)arg2 speechRequestOptions:(AFSpeechRequestOptions *)arg3 completion:(void (^)(NSError *))arg4;
 - (oneway void)boostedPreheatWithStyle:(long long)arg1 completion:(void (^)(void))arg2;
 - (oneway void)preheatWithStyle:(long long)arg1 forOptions:(AFSpeechRequestOptions *)arg2;
 @end

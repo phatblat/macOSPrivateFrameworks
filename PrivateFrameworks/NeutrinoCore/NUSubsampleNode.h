@@ -24,9 +24,12 @@
 @property(readonly) long long appliedSubsampleFactor; // @synthesize appliedSubsampleFactor=_appliedSubsampleFactor;
 @property(readonly) long long subsampleFactor; // @synthesize subsampleFactor=_subsampleFactor;
 - (void).cxx_destruct;
+- (id)_evaluateVideoComposition:(out id *)arg1;
+- (id)_evaluateVideoProperties:(out id *)arg1;
 - (id)_evaluateImageProperties:(out id *)arg1;
 - (id)_evaluateImageGeometry:(out id *)arg1;
 - (id)_evaluateImage:(out id *)arg1;
+- (id)debugQuickLookObject;
 - (id)_sourceNode;
 - (id)nodeByReplayingAgainstCache:(id)arg1 pipelineState:(id)arg2 error:(out id *)arg3;
 - (long long)resolveSubsampleFactorForPipelineState:(id)arg1 sourceScale:(CDStruct_912cb5d2)arg2;

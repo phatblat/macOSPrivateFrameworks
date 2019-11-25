@@ -25,21 +25,16 @@
 @property(retain, nonatomic) NSString *spIdTypeStr; // @synthesize spIdTypeStr=_spIdTypeStr;
 @property(nonatomic) unsigned long long spIdType; // @synthesize spIdType=_spIdType;
 - (void).cxx_destruct;
-- (void)speakerVectorGenerator:(id)arg1 finishedWithFinalSpeakerVector:(id)arg2 speakerVectorSize:(unsigned long long)arg3 processedAudioDurationMs:(unsigned long long)arg4;
-- (void)speakerVectorGenerator:(id)arg1 hasSpeakerVector:(id)arg2 speakerVectorSize:(unsigned long long)arg3 processedAudioDurationMs:(unsigned long long)arg4;
-- (void)_processSpeakerVector:(id)arg1 withSize:(unsigned long long)arg2 processedAudioDurationMs:(unsigned long long)arg3 isFinal:(BOOL)arg4;
+- (void)logUtteranceUnderDirectory:(id)arg1 withScores:(id)arg2 withWinner:(id)arg3;
+- (void)rejectUtterance;
+- (void)updateModelWithBestScoreUser:(id)arg1;
+- (void)setCVTTriggerPhraseDetected;
 - (void)endProcessing;
 - (void)processAudioData:(id)arg1;
 @property(readonly, nonatomic) NSString *sysConfigFilepath;
 @property(readonly, nonatomic) float satScoreThreshold;
-- (void)dealloc;
+@property(readonly, nonatomic) unsigned long long spIdType;
 - (id)initWithSpIdContext:(id)arg1 forSpIdType:(unsigned long long)arg2 delegate:(id)arg3;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

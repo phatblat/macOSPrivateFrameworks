@@ -10,13 +10,13 @@
 {
 }
 
++ (id)fontWithDescriptor:(id)arg1 size:(double)arg2;
++ (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 - (unsigned long long)retainCount;
 - (BOOL)retainWeakReference;
 - (BOOL)allowsWeakReference;
 - (oneway void)release;
 - (id)retain;
-- (unsigned long long)hash;
-- (BOOL)isEqual:(id)arg1;
 - (unsigned long long)_cfTypeID;
 
 @end

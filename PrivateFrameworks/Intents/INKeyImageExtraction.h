@@ -9,17 +9,19 @@
 #import "INImageStoring.h"
 #import "NSSecureCoding.h"
 
-@class INImage, NSString;
+@class INImage, NSDictionary, NSMutableDictionary, NSString;
 
 @interface INKeyImageExtraction : NSObject <INImageStoring, NSSecureCoding>
 {
-    INImage *_keyImage;
+    NSMutableDictionary *_keyImagesByType;
+    long long _imageTypeToStore;
     NSString *_proxyIdentifier;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(copy, nonatomic) NSDictionary *keyImagesByType; // @synthesize keyImagesByType=_keyImagesByType;
 @property(copy, nonatomic) NSString *proxyIdentifier; // @synthesize proxyIdentifier=_proxyIdentifier;
-@property(copy, nonatomic) INImage *keyImage; // @synthesize keyImage=_keyImage;
+@property(nonatomic, setter=_setImageTypeToStore:) long long _imageTypeToStore; // @synthesize _imageTypeToStore;
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
@@ -29,8 +31,9 @@
 - (id)storeImageSynchronously:(id)arg1 error:(id *)arg2;
 - (void)purgeImageWithIdentifier:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)retrieveImageWithIdentifier:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)storeImage:(id)arg1 scaled:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)storeImage:(id)arg1 scaled:(BOOL)arg2 qualityOfService:(unsigned int)arg3 storeType:(unsigned long long)arg4 completion:(CDUnknownBlockType)arg5;
 - (BOOL)canStoreImage:(id)arg1;
+@property(copy, nonatomic) INImage *keyImage;
 - (id)init;
 
 // Remaining properties

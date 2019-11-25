@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "SASerializable.h"
 
-@class NSString, SADispatchQueue, SAFrame, SATimestamp, SAWaitInfo;
+@class NSString, SADispatchQueue, SAFrame, SATimestamp, SATurnstileInfo, SAWaitInfo;
 
-@interface SAThreadState : NSObject <SASerializable>
+@interface SAThreadState : NSObject <SASerializable, NSCopying>
 {
     unsigned char _threadQos;
     unsigned char _threadRequestedQos;
@@ -35,6 +36,7 @@
     SAFrame *_leafUserFrame;
     SAFrame *_leafKernelFrame;
     SAWaitInfo *_waitInfo;
+    SATurnstileInfo *_turnstileInfo;
     NSString *_name;
     SADispatchQueue *_dispatchQueue;
     unsigned long long _voucherIdentifier;
@@ -46,10 +48,10 @@
 }
 
 + (id)stateWithStackshotThreadV1:(const struct thread_snapshot *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 leafUserFrame:(id)arg6 leafKernelFrame:(id)arg7 machTimebase:(struct mach_timebase_info)arg8;
-+ (id)stateWithKCDataDeltaThreadV3:(const struct thread_delta_snapshot_v3 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 oldThreadState:(id)arg9 waitInfo:(id)arg10 threadPolicyVersion:(unsigned int)arg11;
-+ (id)stateWithKCDataDeltaThreadV2:(const struct thread_delta_snapshot_v2 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 oldThreadState:(id)arg9 waitInfo:(id)arg10;
-+ (id)stateWithKCDataThreadV2:(const struct thread_snapshot_v2 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 machTimebase:(struct mach_timebase_info)arg9 waitInfo:(id)arg10;
-+ (id)stateWithKCDataThreadV4:(const struct thread_snapshot_v4 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 machTimebase:(struct mach_timebase_info)arg9 waitInfo:(id)arg10 threadPolicyVersion:(unsigned int)arg11 threadInstructionCycles:(const struct instrs_cycles_snapshot *)arg12;
++ (id)stateWithKCDataDeltaThreadV3:(const struct thread_delta_snapshot_v3 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 oldThreadState:(id)arg9 waitInfo:(id)arg10 turnstileInfo:(id)arg11 threadPolicyVersion:(unsigned int)arg12;
++ (id)stateWithKCDataDeltaThreadV2:(const struct thread_delta_snapshot_v2 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 oldThreadState:(id)arg9 waitInfo:(id)arg10 turnstileInfo:(id)arg11;
++ (id)stateWithKCDataThreadV2:(const struct thread_snapshot_v2 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 machTimebase:(struct mach_timebase_info)arg9 waitInfo:(id)arg10 turnstileInfo:(id)arg11;
++ (id)stateWithKCDataThreadV4:(const struct thread_snapshot_v4 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 machTimebase:(struct mach_timebase_info)arg9 waitInfo:(id)arg10 turnstileInfo:(id)arg11 threadPolicyVersion:(unsigned int)arg12 threadInstructionCycles:(const struct instrs_cycles_snapshot *)arg13;
 + (id)stateWithStartTimestamp:(id)arg1 endTimestamp:(id)arg2 startSampleIndex:(unsigned long long)arg3 endSampleIndex:(unsigned long long)arg4;
 + (id)stateWithoutReferencesFromPAStyleSerializedThread:(const CDStruct_f92c3047 *)arg1;
 + (id)newInstanceWithoutReferencesFromSerializedBuffer:(const CDStruct_ace3f587 *)arg1 bufferLength:(unsigned long long)arg2;
@@ -78,6 +80,7 @@
 @property unsigned long long voucherIdentifier; // @synthesize voucherIdentifier=_voucherIdentifier;
 @property __weak SADispatchQueue *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
 @property(retain) NSString *name; // @synthesize name=_name;
+@property(retain) SATurnstileInfo *turnstileInfo; // @synthesize turnstileInfo=_turnstileInfo;
 @property(retain) SAWaitInfo *waitInfo; // @synthesize waitInfo=_waitInfo;
 @property(retain) SAFrame *leafKernelFrame; // @synthesize leafKernelFrame=_leafKernelFrame;
 @property(retain) SAFrame *leafUserFrame; // @synthesize leafUserFrame=_leafUserFrame;
@@ -92,14 +95,17 @@
 - (id)stackIgnoringKernelStackWithLeafFrame:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithStackshotThreadV1:(const struct thread_snapshot *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 leafUserFrame:(id)arg6 leafKernelFrame:(id)arg7 machTimebase:(struct mach_timebase_info)arg8;
-- (id)initWithKCDataDeltaThreadV3:(const struct thread_delta_snapshot_v3 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 oldThreadState:(id)arg9 waitInfo:(id)arg10 threadPolicyVersion:(unsigned int)arg11;
-- (id)initWithKCDataDeltaThreadV2:(const struct thread_delta_snapshot_v2 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 oldThreadState:(id)arg9 waitInfo:(id)arg10;
-- (id)initWithKCDataThreadV2:(const struct thread_snapshot_v2 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 machTimebase:(struct mach_timebase_info)arg9 waitInfo:(id)arg10;
-- (id)initWithKCDataThreadV4:(const struct thread_snapshot_v4 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 machTimebase:(struct mach_timebase_info)arg9 waitInfo:(id)arg10 threadPolicyVersion:(unsigned int)arg11 threadInstructionCycles:(const struct instrs_cycles_snapshot *)arg12;
+- (id)initWithKCDataDeltaThreadV3:(const struct thread_delta_snapshot_v3 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 oldThreadState:(id)arg9 waitInfo:(id)arg10 turnstileInfo:(id)arg11 threadPolicyVersion:(unsigned int)arg12;
+- (id)initWithKCDataDeltaThreadV2:(const struct thread_delta_snapshot_v2 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 oldThreadState:(id)arg9 waitInfo:(id)arg10 turnstileInfo:(id)arg11;
+- (id)initWithKCDataThreadV2:(const struct thread_snapshot_v2 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 machTimebase:(struct mach_timebase_info)arg9 waitInfo:(id)arg10 turnstileInfo:(id)arg11;
+- (id)initWithKCDataThreadV4:(const struct thread_snapshot_v4 *)arg1 startTimestamp:(id)arg2 endTimestamp:(id)arg3 startSampleIndex:(unsigned long long)arg4 endSampleIndex:(unsigned long long)arg5 name:(id)arg6 leafUserFrame:(id)arg7 leafKernelFrame:(id)arg8 machTimebase:(struct mach_timebase_info)arg9 waitInfo:(id)arg10 turnstileInfo:(id)arg11 threadPolicyVersion:(unsigned int)arg12 threadInstructionCycles:(const struct instrs_cycles_snapshot *)arg13;
 - (id)initWithStartTimestamp:(id)arg1 endTimestamp:(id)arg2 startSampleIndex:(unsigned long long)arg3 endSampleIndex:(unsigned long long)arg4;
 - (unsigned long long)sampleCountInSampleIndexRangeStart:(unsigned long long)arg1 end:(unsigned long long)arg2;
 @property(readonly) unsigned char microstackshotFlags;
+@property(readonly) unsigned int cpuNum;
+@property(readonly) unsigned int cpuSpeedMhz;
 @property(readonly) BOOL isOnBattery;
 @property(readonly) BOOL isUserActive;
 @property(readonly) BOOL isBatteryAndUserActivityValid;
@@ -122,7 +128,7 @@
 - (void)populateReferencesUsingPAStyleSerializedThread:(const CDStruct_f92c3047 *)arg1 andDeserializationDictionary:(id)arg2 andDataBufferDictionary:(id)arg3;
 - (void)populateReferencesUsingBuffer:(const CDStruct_ace3f587 *)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(struct NSMutableDictionary *)arg3 andDataBufferDictionary:(struct NSMutableDictionary *)arg4;
 - (void)addSelfToSerializationDictionary:(struct NSMutableDictionary *)arg1;
-- (BOOL)addSelfToBuffer:(CDStruct_ace3f587 *)arg1 bufferLength:(unsigned long long)arg2 withCompletedSerializationDictionary:(struct NSMutableDictionary *)arg3;
+- (BOOL)addSelfToBuffer:(CDStruct_cb201eb0 *)arg1 bufferLength:(unsigned long long)arg2 withCompletedSerializationDictionary:(struct NSMutableDictionary *)arg3;
 - (unsigned long long)sizeInBytesForSerializedVersion;
 
 // Remaining properties

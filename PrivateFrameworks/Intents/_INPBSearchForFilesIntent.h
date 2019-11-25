@@ -15,6 +15,7 @@
 @interface _INPBSearchForFilesIntent : PBCodable <_INPBSearchForFilesIntent, NSSecureCoding, NSCopying>
 {
     CDStruct_5a81f70e _has;
+    BOOL __encodeLegacyGloryData;
     int _entityType;
     int _scope;
     _INPBString *_appId;
@@ -24,7 +25,9 @@
     _INPBString *_scopeEntityName;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)propertiesType;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(retain, nonatomic) _INPBString *scopeEntityName; // @synthesize scopeEntityName=_scopeEntityName;
 @property(nonatomic) int scope; // @synthesize scope=_scope;
 @property(copy, nonatomic) NSArray *properties; // @synthesize properties=_properties;
@@ -37,6 +40,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(readonly, nonatomic) BOOL hasScopeEntityName;

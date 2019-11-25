@@ -4,14 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <HomeKit/HMSetting.h>
 
 #import "HMFLogging.h"
 #import "_HMAccesorySettingDelegate.h"
 
 @class HMAccessorySettingGroup, NSString, _HMAccessorySetting;
 
-@interface HMAccessorySetting : NSObject <_HMAccesorySettingDelegate, HMFLogging>
+@interface HMAccessorySetting : HMSetting <_HMAccesorySettingDelegate, HMFLogging>
 {
     _HMAccessorySetting *_internal;
     HMAccessorySettingGroup *_group;
@@ -30,12 +30,11 @@
 - (void)_settingWillUpdateValue:(id)arg1;
 @property(readonly, getter=isReflected) BOOL reflected;
 - (void)updateValue:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-@property(readonly, copy) id <NSObject><NSCopying><NSSecureCoding> value;
+- (id)value;
 @property(readonly) Class valueClass;
-@property(readonly, copy) NSString *localizedTitle;
 @property(readonly, copy) NSString *keyPath;
 @property(readonly, copy) NSString *description;
-@property(readonly, getter=isWritable) BOOL writable;
+- (BOOL)isWritable;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
 - (id)initWithInternal:(id)arg1;

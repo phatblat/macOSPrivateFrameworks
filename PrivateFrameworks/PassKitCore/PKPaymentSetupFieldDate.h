@@ -6,7 +6,7 @@
 
 #import <PassKitCore/PKPaymentSetupFieldText.h>
 
-@class NSDate, NSDateFormatter, NSString;
+@class NSCalendar, NSDate, NSDateFormatter, NSLocale, NSString;
 
 @interface PKPaymentSetupFieldDate : PKPaymentSetupFieldText
 {
@@ -15,20 +15,25 @@
     BOOL _showsMonth;
     BOOL _showsYear;
     NSString *_submissionFormat;
+    NSCalendar *_calendar;
+    NSLocale *_locale;
+    NSDate *_defaultDate;
 }
 
+@property(copy, nonatomic) NSDate *defaultDate; // @synthesize defaultDate=_defaultDate;
+@property(retain, nonatomic) NSLocale *locale; // @synthesize locale=_locale;
+@property(retain, nonatomic) NSCalendar *calendar; // @synthesize calendar=_calendar;
 @property(copy, nonatomic) NSString *submissionFormat; // @synthesize submissionFormat=_submissionFormat;
 @property(nonatomic) BOOL showsYear; // @synthesize showsYear=_showsYear;
 @property(nonatomic) BOOL showsMonth; // @synthesize showsMonth=_showsMonth;
 @property(nonatomic) BOOL showsDay; // @synthesize showsDay=_showsDay;
 - (void).cxx_destruct;
 - (unsigned long long)fieldType;
+- (void)_commonUpdate;
 - (void)updateWithConfiguration:(id)arg1;
-- (id)_locale;
-@property(readonly, copy, nonatomic) NSDate *defaultDate;
 - (BOOL)submissionStringMeetsAllRequirements;
 - (id)_defaultValueAsDateForCurrentLocale;
-- (id)submissionString;
+- (id)_submissionStringForValue:(id)arg1;
 - (id)displayString;
 @property(copy, nonatomic) NSDate *currentValue; // @dynamic currentValue;
 - (id)initWithIdentifier:(id)arg1 type:(unsigned long long)arg2;

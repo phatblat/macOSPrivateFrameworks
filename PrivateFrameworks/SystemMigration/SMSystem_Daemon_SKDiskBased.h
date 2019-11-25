@@ -13,6 +13,7 @@
     SKDisk *skDisk;
     id cachedPrimaryIdentifier;
     NSString *_deviceBus;
+    NSString *_deviceModelName;
     SKDisk<SKEncryptedDiskProtocol> *_encryptedSKDisk;
     SKAPFSDisk *_apfsSKDisk;
     SKBindableDisk *_bindableSKDisk;
@@ -22,6 +23,7 @@
 @property(retain) SKBindableDisk *bindableSKDisk; // @synthesize bindableSKDisk=_bindableSKDisk;
 @property __weak SKAPFSDisk *apfsSKDisk; // @synthesize apfsSKDisk=_apfsSKDisk;
 @property __weak SKDisk<SKEncryptedDiskProtocol> *encryptedSKDisk; // @synthesize encryptedSKDisk=_encryptedSKDisk;
+@property(retain) NSString *deviceModelName; // @synthesize deviceModelName=_deviceModelName;
 @property(retain) NSString *deviceBus; // @synthesize deviceBus=_deviceBus;
 @property(retain) id cachedPrimaryIdentifier; // @synthesize cachedPrimaryIdentifier;
 @property(retain) SKDisk *skDisk; // @synthesize skDisk;

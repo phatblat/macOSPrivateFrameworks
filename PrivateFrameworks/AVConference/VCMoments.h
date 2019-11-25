@@ -21,16 +21,20 @@ __attribute__((visibility("hidden")))
     unsigned char _mode;
     NSObject<OS_dispatch_queue> *delegateNotificationQueue;
     int _currentActiveRequestsCount;
+    BOOL _isActive;
     BOOL _isClientRegistered;
     VideoAttributes *_remoteScreenAttributes;
     NSMutableSet *_requests;
     BOOL _lastRequest;
 }
 
++ (unsigned long long)countForRequestType:(int)arg1;
++ (int)typeForRequest:(id)arg1;
 + (unsigned long long)deviceFreeDiskSpace;
 + (BOOL)deviceHasSufficientFreeSpace;
++ (unsigned long long)fileSize:(id)arg1;
 @property(retain, nonatomic) VideoAttributes *remoteScreenAttributes; // @synthesize remoteScreenAttributes=_remoteScreenAttributes;
-@property(readonly, nonatomic) BOOL isClientRegistered; // @synthesize isClientRegistered=_isClientRegistered;
+@property(readonly, nonatomic) BOOL isActive; // @synthesize isActive=_isActive;
 @property(nonatomic) unsigned int capabilities; // @synthesize capabilities=_capabilities;
 - (void)handleInsufficientFreeSpaceWithRequest:(id)arg1 delegate:(id)arg2;
 - (unsigned long long)directorySize:(id)arg1;
@@ -42,7 +46,9 @@ __attribute__((visibility("hidden")))
 - (void)notifyFinishWithRequest:(id)arg1 didSucceed:(BOOL)arg2 fileSize:(long long)arg3;
 - (void)processRemotePhotoRequest:(id)arg1;
 - (void)processRemoteLivePhotoRequest:(id)arg1;
-- (void)processRemoteVideoRequest:(id)arg1;
+- (void)processRemoteRequest:(id)arg1 withMediaType:(unsigned char)arg2;
+- (void)_generateRequest:(unsigned char)arg1 requestState:(unsigned char)arg2 transactionID:(id)arg3 timestamp:(unsigned int)arg4;
+- (void)updateActiveStatus;
 - (void)deregisterClient;
 - (void)registerClient;
 - (void)cleanupActiveRequests;
@@ -53,11 +59,14 @@ __attribute__((visibility("hidden")))
 - (id)transportDelegate;
 - (void)setFrameRate:(float)arg1;
 - (void)processRequest:(id)arg1;
+- (BOOL)validateIncomingRequest:(id)arg1;
 - (void)updateRemoteScreenAttributes:(id)arg1;
 - (void)getInitialRemoteScreenAttributes:(id)arg1;
 - (void)addLocalVideoSampleBuffer:(struct opaqueCMSampleBuffer *)arg1 cameraStatusBits:(unsigned char)arg2 timestamp:(unsigned int)arg3;
 - (void)addRemoteAudioSample:(struct opaqueVCAudioBufferList *)arg1 timestamp:(unsigned int)arg2;
 - (void)addLocalAudioSample:(struct opaqueVCAudioBufferList *)arg1 timestamp:(unsigned int)arg2;
+@property(nonatomic) int imageType;
+@property(nonatomic) int videoCodec;
 - (void)dealloc;
 - (id)initWithStreamToken:(unsigned int)arg1 delegate:(id)arg2;
 

@@ -10,6 +10,8 @@
 {
 }
 
++ (id)hardwareModel;
++ (id)getMarketingModelNameMac;
 + (id)MavRevStringQuery;
 + (void)refreshBUI;
 + (BOOL)isValidString:(id)arg1;
@@ -24,6 +26,7 @@
 + (BOOL)shouldLogForEntryKey:(id)arg1;
 + (id)getWhiteblacklist;
 + (id)hashString:(id)arg1;
++ (BOOL)isUDMDevice;
 + (BOOL)isALSCurveHigherThanDefault;
 + (BOOL)isEduMode;
 + (BOOL)isAppAnalyticsEnabled;
@@ -31,6 +34,7 @@
 + (BOOL)isHeySiriEnabled;
 + (double)defaultBatteryEnergyCapacity;
 + (BOOL)hasBatteryUI;
++ (BOOL)hasBattery;
 + (BOOL)hasGasGauge;
 + (BOOL)gasGaugeEnabled;
 + (id)runningAsUser;
@@ -49,10 +53,16 @@
 + (void)exitSafe:(int)arg1;
 + (void)exitWithReasonSync:(short)arg1;
 + (void)exitWithReason:(short)arg1;
++ (unsigned long long)getCurrMachAbsTimeInSecs;
++ (struct mach_timebase_info *)getMachTimebase;
++ (void)getCurrentMonotonicAndMachAbsTime:(id *)arg1 machAbsTime:(unsigned long long *)arg2;
++ (BOOL)deviceRebooted;
++ (id)deviceBootUUID;
 + (id)deviceBootTime;
 + (id)dateFromTimevalSystemTime:(struct timeval)arg1;
 + (id)dateFromTimeval:(struct timeval)arg1;
 + (double)secondsFromMachTime:(unsigned long long)arg1;
++ (double)getMachbaseTimeRatio;
 + (void)postNotificationName:(id)arg1 object:(id)arg2 userInfo:(id)arg3;
 + (void)dispatchSyncWithoutDeadlockOnQueue:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 + (unsigned long long)dispatchTimeInSeconds:(double)arg1;
@@ -61,11 +71,12 @@
 + (id)workQueueForKey:(id)arg1;
 + (id)workQueueForClass:(Class)arg1;
 + (id)extractDateStringAndUUIDStringFromFilePath:(id)arg1;
-+ (int)compressWithSource:(struct __sFILE *)arg1 withDestination:(struct __sFILE *)arg2 withLevel:(int)arg3;
++ (int)compressWithSourceStream:(struct __sFILE *)arg1 withDestination:(struct __sFILE *)arg2 withLevel:(int)arg3;
++ (BOOL)compressWithSource:(id)arg1 withDestination:(id)arg2 withLevel:(int)arg3;
 + (void)setMobileOwnerForFile:(id)arg1;
 + (BOOL)createAndChownDirectoryIfDirectoryDoesNotExist:(id)arg1;
 + (BOOL)createAndChownDirectory:(id)arg1;
-+ (BOOL)moveItemAtPath:(id)arg1 toPath:(id)arg2 error:(id *)arg3;
++ (BOOL)moveItemAtPath:(id)arg1 toPath:(id)arg2 withName:(id)arg3 error:(id *)arg4;
 + (id)containerPath;
 
 @end

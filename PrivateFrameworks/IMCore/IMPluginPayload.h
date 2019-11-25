@@ -60,12 +60,14 @@
 @property(retain, nonatomic) NSAttributedString *text; // @synthesize text=_text;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)initWithCoder:(id)arg1 additionalAllowedClasses:(id)arg2;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqualToPluginPayload:(id)arg1;
 @property(readonly, nonatomic) BOOL shouldHideAttachments;
+- (void)addAttachmentsFromFilePaths:(id)arg1;
 - (void)addAttachmentsFromFileTransferGUIDs:(id)arg1;
 - (id)initWithMessageItem:(id)arg1;
 - (id)initWithMessage:(id)arg1;

@@ -10,6 +10,8 @@
 @class NSArray;
 
 @protocol GEOServerFormattedString <NSObject, NSCoding>
+@property(readonly, nonatomic) id <GEOServerConditionalString> alternativeString;
+@property(readonly, nonatomic) NSArray *formatStyles;
 @property(readonly, nonatomic) NSArray *separators;
 @property(readonly, nonatomic) NSArray *formatTokens;
 @property(readonly, nonatomic) NSArray *formatStrings;

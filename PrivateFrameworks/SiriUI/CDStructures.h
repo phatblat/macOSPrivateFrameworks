@@ -25,16 +25,15 @@ struct CGSize {
     double height;
 };
 
-struct CLLocationCoordinate2D {
-    double _field1;
-    double _field2;
-};
-
 struct NSEdgeInsets {
     double top;
     double left;
     double bottom;
     double right;
+};
+
+struct NSUUID {
+    Class _field1;
 };
 
 struct UIOffset {

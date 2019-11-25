@@ -9,7 +9,7 @@
 #import "WBSFormAutoFillCorrectionManagerDelegate.h"
 #import "WBSFormFieldClassificationCorrectorDelegate.h"
 
-@class NSMutableDictionary, NSString, WBSCoalescedAsynchronousWriter, WBSFormAutoFillCorrectionManager, WBSFormAutoFillParsecFeedbackProcessor;
+@class AutoFillAuthorizationController, AutoFillLocalAuthenticationManager, NSMutableDictionary, NSString, WBSCoalescedAsynchronousWriter, WBSFormAutoFillCorrectionManager, WBSFormAutoFillParsecFeedbackProcessor;
 
 __attribute__((visibility("hidden")))
 @interface FormDataController : WBSFormDataController <WBSFormAutoFillCorrectionManagerDelegate, WBSFormFieldClassificationCorrectorDelegate>
@@ -17,9 +17,12 @@ __attribute__((visibility("hidden")))
     WBSCoalescedAsynchronousWriter *_formDataWriter;
     WBSFormAutoFillCorrectionManager *_autoFillCorrectionManager;
     WBSFormAutoFillParsecFeedbackProcessor *_autoFillFeedbackProcessor;
+    AutoFillAuthorizationController *_autoFillAuthorizationController;
     id <EncryptionProvider> _encryptionProvider;
     BOOL _shouldUseInsecureEncryptionKeyForMigration;
     NSMutableDictionary *_threadUnsafeDeniedCredentialsByProtectionSpace;
+    BOOL _hasAuthenticatedForPasswordAutoFillInClamshellMode;
+    AutoFillLocalAuthenticationManager *_localAuthenticationManager;
 }
 
 + (BOOL)contactIsMe:(id)arg1;
@@ -27,6 +30,8 @@ __attribute__((visibility("hidden")))
 + (unsigned long long)numberOfTextFieldsInForm:(id)arg1;
 + (BOOL)isAddressBookPropertyAnAddressProperty:(id)arg1;
 + (id)sharedFormDataController;
+@property(nonatomic) BOOL hasAuthenticatedForPasswordAutoFillInClamshellMode; // @synthesize hasAuthenticatedForPasswordAutoFillInClamshellMode=_hasAuthenticatedForPasswordAutoFillInClamshellMode;
+@property(readonly, nonatomic) AutoFillLocalAuthenticationManager *localAuthenticationManager; // @synthesize localAuthenticationManager=_localAuthenticationManager;
 - (void).cxx_destruct;
 - (id)uniqueIDOfMe;
 - (id)feedbackProcessorForAutoFillCorrectionManager:(id)arg1;
@@ -58,14 +63,15 @@ __attribute__((visibility("hidden")))
 - (BOOL)shouldSaveUsernamesAndPasswordsInFrame:(const struct Frame *)arg1;
 - (BOOL)_shouldSaveFormDataInFrame:(const struct Frame *)arg1;
 - (BOOL)_savingFormDataIsAllowedInFrame:(const struct Frame *)arg1 dataContainsGeneratedPassword:(BOOL)arg2;
+- (void)clearClamshellAuthenticationOverrideIfNecessary:(id)arg1;
 - (unsigned long long)_numberOfAddressBookAutoFillableFieldsInControls:(id)arg1;
 - (unsigned long long)_numberOfAddressBookElementsInControls:(id)arg1;
 - (BOOL)shouldOfferAddressBookAutoFillInTextField:(id)arg1 formMetadata:(id)arg2;
 - (id)preferredAddressLabelForContact:(id)arg1;
 - (id)preferredAddressLabel;
 - (id)_mutableSetForWBSAddressBookMatches;
--     // Error parsing type: v56@0:8@16^{FormAddressBookAutoFillCompletionController=^^?{atomic<unsigned int>=AI}Bq@@@@{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}@@dBBBBB{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}^^?@QB^{SafeAutoFillConfirmationController}@@{Frame={WKRetainPtr<const void *>=^v}}@@BBBB@BBB@@@B}24@32@40@48, name: _findAllContactsWithSameFullNameAsContact:andGetValuesForContactFormWithCompletionController:metadata:inDomain:contactLabel:
--     // Error parsing type: v40@0:8^{FormAddressBookAutoFillCompletionController=^^?{atomic<unsigned int>=AI}Bq@@@@{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}@@dBBBBB{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}^^?@QB^{SafeAutoFillConfirmationController}@@{Frame={WKRetainPtr<const void *>=^v}}@@BBBB@BBB@@@B}16@24@32, name: showFlexibleContactsAutoFillUIForCompletionController:metadataProvider:contactLabel:
+-     // Error parsing type: v56@0:8@16^{FormAddressBookAutoFillCompletionController=^^?{atomic<unsigned int>=AI}Bq@@@@{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}@@dBBBBB{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}@QB^{SafeAutoFillConfirmationController}@@{Frame={WKRetainPtr<const void *>=^v}}@@BBB@BBB@@@B}24@32@40@48, name: _findAllContactsWithSameFullNameAsContact:andGetValuesForContactFormWithCompletionController:metadata:inDomain:contactLabel:
+-     // Error parsing type: v40@0:8^{FormAddressBookAutoFillCompletionController=^^?{atomic<unsigned int>=AI}Bq@@@@{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}@@dBBBBB{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}@QB^{SafeAutoFillConfirmationController}@@{Frame={WKRetainPtr<const void *>=^v}}@@BBB@BBB@@@B}16@24@32, name: showFlexibleContactsAutoFillUIForCompletionController:metadataProvider:contactLabel:
 - (BOOL)shouldDeferLoadingWhileSavingFormDataInPage:(const struct Page *)arg1 frame:(const struct Frame *)arg2 sourceFrame:(const struct Frame *)arg3 formMetadata:(id)arg4 passwordGenerationCredentials:(id)arg5;
 - (void)_saveFormDataIfNecessary:(id)arg1 page:(const struct Page *)arg2 frame:(const struct Frame *)arg3 sourceFrame:(const struct Frame *)arg4 values:(id)arg5 forceConfirmationIfOverwritingSavedPassword:(BOOL)arg6 passwordGenerationCredentials:(id)arg7 completionHandler:(CDUnknownBlockType)arg8;
 - (void)saveUnsubmittedFormDataFromRemovedFrameIfNecessary:(id)arg1 page:(const struct Page *)arg2 frame:(const struct Frame *)arg3 sourceFrame:(const struct Frame *)arg4 passwordGenerationCredentials:(id)arg5;
@@ -75,10 +81,10 @@ __attribute__((visibility("hidden")))
 - (void)willSubmitStandardForm:(id)arg1 values:(id)arg2 toFrame:(const struct Frame *)arg3 fromFrame:(const struct Frame *)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (BOOL)formContainsNonEmptyTextField:(id)arg1;
 - (void)saveCreditCardDataIfNecessary:(id)arg1 frame:(const struct Frame *)arg2 sourceFrame:(const struct Frame *)arg3 exitHandler:(struct ScopeExitHandler *)arg4;
-- (int)_performCredentialAutoFillActionForForm:(id)arg1 ofType:(unsigned long long)arg2 inViewController:(id)arg3 isPreFill:(BOOL)arg4 frame:(const struct Frame *)arg5;
+- (void)_handleCredentialAutoFillActionWithSuccess:(BOOL)arg1 shouldSubmit:(BOOL)arg2 browserViewController:(id)arg3 isPreFill:(BOOL)arg4 frameHandle:(id)arg5 mainFrameHandle:(id)arg6 autoFillValues:(id)arg7 formMetadata:(id)arg8 autoFillCredentialMatch:(id)arg9;
+- (int)_performCredentialAutoFillActionForForm:(id)arg1 ofType:(unsigned long long)arg2 inViewController:(id)arg3 isPreFill:(BOOL)arg4 isUserInitiated:(BOOL)arg5 frame:(const struct Frame *)arg6;
 - (int)sendAutoFillDataForStandardForm:(id)arg1 inViewController:(id)arg2 frame:(const struct Frame *)arg3 autoFillDataType:(long long)arg4 contactLabel:(id)arg5 multiRoundAutoFillManager:(id)arg6 contact:(id)arg7 allowingIdentifiedAddressBookLabelToOverridePreferredIdentifier:(BOOL)arg8;
-- (int)preFillActiveOrFirstLoginFormInViewController:(id)arg1 metadataOfFormToPreFill:(id)arg2 ancestorFramesOfFormToPreFill:(const struct Array *)arg3 pageContainsAtLeastOneForm:(_Bool)arg4;
-- (_Bool)_mayPrefillInFrame:(const struct Frame *)arg1 ancestorFramesOfFormToPreFill:(const struct Array *)arg2;
+- (_Bool)mayPrefillInFrame:(const struct Frame *)arg1 ancestorFramesOfFormToPreFill:(const struct Array *)arg2;
 - (void)autoFillActiveFormOrBestFormForPageLevelAutoFillInViewController:(id)arg1 metadataProvider:(id)arg2 autoFillDataType:(long long)arg3 contactLabel:(id)arg4 multiRoundAutoFillManager:(id)arg5 contact:(id)arg6 allowingIdentifiedAddressBookLabelToOverridePreferredIdentifier:(BOOL)arg7;
 - (id)noAutoFillDialogDetailTextForResult:(int)arg1;
 - (id)noAutoFillDialogTitleForResult:(int)arg1;

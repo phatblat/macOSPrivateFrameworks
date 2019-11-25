@@ -6,23 +6,26 @@
 
 #import "NSObject.h"
 
-#import "PHPhotoLibraryAvailabilityObserver.h"
-
 @class NSObject<OS_dispatch_queue>, NSString;
 
-@interface VCPDatabaseReader : NSObject <PHPhotoLibraryAvailabilityObserver>
+@interface VCPDatabaseReader : NSObject
 {
     NSObject<OS_dispatch_queue> *_sqlSerialQueue;
+    NSString *_filepath;
     struct sqlite3 *_database;
 }
 
++ (id)databaseForPhotoLibrary:(id)arg1;
++ (BOOL)shouldQueryInternalFields;
 - (void).cxx_destruct;
-- (void)photoLibraryDidBecomeUnavailable:(id)arg1;
+- (id)queryFailedProcessingStatusFromAssets:(id)arg1 forTaskID:(unsigned long long)arg2;
 - (id)queryAssetsAnalyzedSince:(id)arg1;
 - (id)queryAnalysesForAssets:(id)arg1 withTypes:(id)arg2;
 - (id)queryAnalysisForAsset:(id)arg1 withTypes:(id)arg2;
+- (id)queryAnalysisPropertiesForAssets:(id)arg1;
 - (id)queryAnalysisPropertiesForAsset:(id)arg1;
 - (id)queryAnalysisForAsset:(id)arg1;
+- (id)queryBlacklistedLocalIdentifiers;
 - (id)blacklistedLocalIdentifiersFromAssets:(id)arg1;
 - (BOOL)isAssetBlacklisted:(id)arg1 blacklistDate:(id *)arg2;
 - (int)executeDatabaseBlock:(CDUnknownBlockType)arg1;
@@ -36,13 +39,7 @@
 - (void)closeDatabase;
 - (int)openDatabase;
 - (void)dealloc;
-- (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)initWithPhotoLibrary:(id)arg1;
 
 @end
 

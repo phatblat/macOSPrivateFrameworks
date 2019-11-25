@@ -6,6 +6,8 @@
 
 #import "NSImageView.h"
 
+@class NSObject<TDraggingSource>;
+
 __attribute__((visibility("hidden")))
 @interface FI_TImageView : NSImageView
 {
@@ -14,7 +16,7 @@ __attribute__((visibility("hidden")))
     _Bool _doubleClickOnMouseUp;
     _Bool _acceptsFirstMouse;
     _Bool _delayWindowOrderingOnClickThrough;
-    id <TDraggingSource> _draggingSourceDelegate;
+    struct TNSWeakPtr<NSObject<TDraggingSource>, void> _weakDraggingSourceDelegate;
     struct CGSize _maxSize;
     struct CGSize _minSize;
     _Bool _opaqueHitTestingEnabled;
@@ -23,7 +25,6 @@ __attribute__((visibility("hidden")))
 @property(getter=isOpaqueHitTestingEnabled) _Bool opaqueHitTestingEnabled; // @synthesize opaqueHitTestingEnabled=_opaqueHitTestingEnabled;
 @property(nonatomic) struct CGSize minSize; // @synthesize minSize=_minSize;
 @property(nonatomic) struct CGSize maxSize; // @synthesize maxSize=_maxSize;
-@property id <TDraggingSource> draggingSourceDelegate; // @synthesize draggingSourceDelegate=_draggingSourceDelegate;
 @property _Bool delayWindowOrderingOnClickThrough; // @synthesize delayWindowOrderingOnClickThrough=_delayWindowOrderingOnClickThrough;
 @property _Bool acceptsFirstMouse; // @synthesize acceptsFirstMouse=_acceptsFirstMouse;
 - (id).cxx_construct;
@@ -48,6 +49,7 @@ __attribute__((visibility("hidden")))
 - (void)viewWillMoveToSuperview:(id)arg1;
 - (void)viewDidMoveToWindow;
 - (void)viewWillMoveToWindow:(id)arg1;
+@property(nonatomic) __weak NSObject<TDraggingSource> *draggingSourceDelegate; // @dynamic draggingSourceDelegate;
 - (void)awakeCommon;
 - (void)initCommon;
 - (void)awakeFromNib;

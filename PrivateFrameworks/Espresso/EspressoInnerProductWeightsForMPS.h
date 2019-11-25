@@ -14,17 +14,18 @@ __attribute__((visibility("hidden")))
 @interface EspressoInnerProductWeightsForMPS : NSObject <MPSCNNConvolutionDataSource>
 {
     struct inner_product_uniforms params;
-    struct shared_ptr<Espresso::blob<float, 2>> weights_blob;
+    shared_ptr_966620c9 weights_blob;
     struct shared_ptr<Espresso::blob<unsigned short, 2>> weights_f16_blob;
     struct shared_ptr<Espresso::blob<unsigned char, 2>> quantized_weights_blob;
-    struct shared_ptr<Espresso::blob<float, 1>> biases_blob;
+    shared_ptr_0954c506 biases_blob;
     struct shared_ptr<Espresso::blob<float __attribute__((ext_vector_type(2))), 1>> quantization_ranges;
-    struct shared_ptr<Espresso::blob<float, 1>> quantization_lut;
+    shared_ptr_0954c506 quantization_lut;
     unsigned int data_type;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)ready;
 - (void)purge;
 - (float *)biasTerms;

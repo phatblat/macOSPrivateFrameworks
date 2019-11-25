@@ -13,7 +13,7 @@
 #import "SOInputLineDelegate.h"
 #import "SOTranscriptEffectPickerDelegate.h"
 
-@class AVAudioPlayer, AVAudioRecorder, CPKPopover, IMAccount, NSAttributedString, NSButton, NSLayoutConstraint, NSPopover, NSStackView, NSString, NSTextField, NSTextStorage, NSView, SOFlexibleScrollView, SOInputLine, SOInputLineContainer, SOPreviewingWaveformContainerView, SORecordingWaveformContainerView, SORecordingWaveformView;
+@class AVAudioPlayer, AVAudioRecorder, CPKPopover, IMAccount, NSAttributedString, NSButton, NSLayoutConstraint, NSPopover, NSStackView, NSString, NSTextField, NSTextStorage, NSView, SOFlexibleScrollView, SOInputLine, SOInputLineContainer, SOInputVibrantView, SOPreviewingWaveformContainerView, SORecordingWaveformContainerView, SORecordingWaveformView;
 
 @interface SOInputLineViewController : SOChatViewController <CPKPopoverDelegate, NSTouchBarDelegate, SOTranscriptEffectPickerDelegate, NSUserInterfaceValidations, SOInputLineDelegate, AVAudioRecorderDelegate>
 {
@@ -31,6 +31,7 @@
     SOInputLineContainer *_inputLineContainer;
     SOFlexibleScrollView *_scrollView;
     SOInputLine *_inputLine;
+    SOInputVibrantView *_vibrantView;
     double _leadingTextInputMargin;
     double _trailingTextInputMargin;
     NSButton *_smileyButton;
@@ -89,6 +90,7 @@
 @property(nonatomic) BOOL alwaysHideAdditionalControls; // @synthesize alwaysHideAdditionalControls=_alwaysHideAdditionalControls;
 @property(nonatomic) double trailingTextInputMargin; // @synthesize trailingTextInputMargin=_trailingTextInputMargin;
 @property(nonatomic) double leadingTextInputMargin; // @synthesize leadingTextInputMargin=_leadingTextInputMargin;
+@property(retain, nonatomic) SOInputVibrantView *vibrantView; // @synthesize vibrantView=_vibrantView;
 @property(retain, nonatomic) SOInputLine *inputLine; // @synthesize inputLine=_inputLine;
 @property(retain, nonatomic) SOFlexibleScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(retain, nonatomic) SOInputLineContainer *inputLineContainer; // @synthesize inputLineContainer=_inputLineContainer;
@@ -114,7 +116,6 @@
 - (void)inputLineRequestedNextOutgoingMessage:(id)arg1;
 - (void)inputLineRequestedPriorOutgoingMessage:(id)arg1;
 - (BOOL)inputLine:(id)arg1 didChangeSignificantly:(int)arg2;
-- (BOOL)inputLineUsingiMessageService:(id)arg1;
 - (BOOL)inputLineShouldInsertNewLine:(id)arg1;
 - (id)defaultTypingAttributesForInputLine:(id)arg1;
 - (BOOL)inputLine:(id)arg1 canAttachFilesAtURLs:(id)arg2;
@@ -137,6 +138,7 @@
 - (void)_transitionInputLineIntoRecording;
 - (void)updateAudioMessageButtonForAppearance;
 - (void)_updateAudioMessageButtonVisibilty;
+- (void)_updateEffectPickerButtonEnabledState;
 - (void)_updateEffectPickerButtonVisibility;
 - (void)_updateSmileyButtonVisibility;
 - (void)_didResignWindowChange:(id)arg1;
@@ -153,6 +155,7 @@
 - (void)showEffectsPicker:(id)arg1;
 - (void)effectPickerWasCancelled:(id)arg1;
 - (void)effectPicker:(id)arg1 didPickEffect:(id)arg2;
+- (id)effectPickerGetTextToSend:(id)arg1;
 - (void)showSmileyPicker:(id)arg1;
 - (void)showStickerPicker:(id)arg1;
 - (void)showSearchPopover:(id)arg1;

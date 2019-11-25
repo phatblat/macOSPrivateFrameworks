@@ -8,7 +8,7 @@
 
 #import "NSOutlineViewDataSource.h"
 
-@class BookmarksSearcher, KeyLoopSplicingContainerView, NSBox, NSButton, NSLayoutConstraint, NSScrollView, NSSearchField, NSString, NSTableColumn, NSTextField, OutlineViewPlus, WBSFaviconRequestsController, WebBookmark;
+@class BookmarksController, BookmarksSearcher, KeyLoopSplicingContainerView, NSBox, NSButton, NSLayoutConstraint, NSScrollView, NSSearchField, NSString, NSTableColumn, NSTextField, OutlineViewPlus, WBSFaviconRequestsController, WebBookmark;
 
 __attribute__((visibility("hidden")))
 @interface BookmarksViewController : NSViewController <NSOutlineViewDataSource>
@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
     NSLayoutConstraint *_mainContentViewTopConstraint;
     BOOL _draggingUndeletableBookmarks;
     BOOL _abortedDraggingBookmarks;
+    BookmarksController *_bookmarksController;
     BookmarksSearcher *_searcher;
     NSTableColumn *_hiddenAddressColumn;
     BOOL _bookmarkChangeIsExpected;
@@ -164,7 +165,9 @@ __attribute__((visibility("hidden")))
 - (void)viewDidLoad;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (void)dealloc;
-- (id)init;
+- (id)nibName;
+- (id)initWithBookmarksController:(id)arg1 nibName:(id)arg2 bundle:(id)arg3;
+- (id)initWithBookmarksController:(id)arg1;
 - (unsigned long long)_searchResultsCount;
 - (void)focusSearchField;
 - (void)removeBookmarks:(id)arg1;

@@ -6,13 +6,16 @@
 
 #import <XCTAutomationSupport/XCTElementSetCodableTransformer.h>
 
-@class NSArray;
+#import "XCTCapabilitiesProviding.h"
 
-@interface XCTElementSortingTransformer : XCTElementSetCodableTransformer
+@class NSArray, NSString;
+
+@interface XCTElementSortingTransformer : XCTElementSetCodableTransformer <XCTCapabilitiesProviding>
 {
     NSArray *_sortDescriptors;
 }
 
++ (void)provideCapabilitiesToBuilder:(id)arg1;
 + (BOOL)supportsSecureCoding;
 @property(readonly, copy) NSArray *sortDescriptors; // @synthesize sortDescriptors=_sortDescriptors;
 - (void).cxx_destruct;
@@ -22,10 +25,17 @@
 - (id)requiredKeyPathsOrError:(id *)arg1;
 - (BOOL)supportsAttributeKeyPathAnalysis;
 - (BOOL)supportsRemoteEvaluation;
+- (BOOL)canBeRemotelyEvaluatedWithCapabilities:(id)arg1;
 - (id)transform:(id)arg1 relatedElements:(id *)arg2;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithSortDescriptors:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

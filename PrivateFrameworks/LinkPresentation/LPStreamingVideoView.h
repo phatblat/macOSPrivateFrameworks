@@ -43,7 +43,6 @@ __attribute__((visibility("hidden")))
 - (void)createPlayerItemAdjustedForLoopingWithAsset:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)dealloc;
 - (id)initWithVideo:(id)arg1 style:(id)arg2 posterFrame:(id)arg3 posterFrameStyle:(id)arg4 configuration:(id)arg5;
-- (id)init;
 
 @end
 

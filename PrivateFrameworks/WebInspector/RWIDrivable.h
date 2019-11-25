@@ -8,7 +8,6 @@
 
 @class NSNumber, NSString, RWIApplication;
 
-__attribute__((visibility("hidden")))
 @interface RWIDrivable : NSObject
 {
     NSNumber *_targetIdentifier;

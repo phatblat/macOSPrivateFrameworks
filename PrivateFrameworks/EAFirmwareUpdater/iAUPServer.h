@@ -17,6 +17,7 @@
     int _parserState;
     BOOL _escapeInProgress;
     BOOL _byteEscape;
+    BOOL _ackAppReentry;
     FirmwareBundle *_firmwareBundle;
     HSModel *_hsModel;
     unsigned int _telegramLength;
@@ -24,11 +25,26 @@
     NSMutableData *_telegramDataIn;
     unsigned short objectBlockTransferSizes[4];
     unsigned int _firmwareImageBaseTransferAddress;
+    unsigned short _accessoryCapabilities;
+    unsigned int _totalBytesDownloadedInCurrentSession;
+    BOOL _startEventSent;
+    BOOL _restartRequired;
+    BOOL _sleepWakeRequired;
+    BOOL _urgentUpdate;
+    unsigned char _iAUPVersion;
+    unsigned char _currentAsset;
     NSObject<OS_dispatch_queue> *_dispatchQ;
 }
 
+@property(nonatomic) unsigned char currentAsset; // @synthesize currentAsset=_currentAsset;
+@property(nonatomic) unsigned char iAUPVersion; // @synthesize iAUPVersion=_iAUPVersion;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQ; // @synthesize dispatchQ=_dispatchQ;
+@property(nonatomic) BOOL ackAppReentry; // @synthesize ackAppReentry=_ackAppReentry;
+@property(readonly, nonatomic) BOOL urgentUpdate; // @synthesize urgentUpdate=_urgentUpdate;
+@property(readonly, nonatomic) BOOL sleepWakeRequired; // @synthesize sleepWakeRequired=_sleepWakeRequired;
+@property(readonly, nonatomic) BOOL restartRequired; // @synthesize restartRequired=_restartRequired;
 @property(nonatomic) int parserState; // @synthesize parserState=_parserState;
+@property(nonatomic) int serverState; // @synthesize serverState=_serverState;
 @property(nonatomic) BOOL byteEscape; // @synthesize byteEscape=_byteEscape;
 @property(retain, nonatomic) FirmwareBundle *firmwareBundle; // @synthesize firmwareBundle=_firmwareBundle;
 @property id <iAUPServerDelegate> delegate; // @synthesize delegate=_delegate;
@@ -41,8 +57,12 @@
 - (void)processDownloadCompleteCommand:(char *)arg1 length:(unsigned int)arg2;
 - (void)processRequestDownloadCommand:(char *)arg1 length:(unsigned int)arg2;
 - (void)processIdentifyCommand:(char *)arg1 length:(unsigned int)arg2;
+- (void)setResumeInfo:(char *)arg1 length:(unsigned int)arg2;
+- (BOOL)personalizationComplete;
+- (void)processPersonalizationInfo:(char *)arg1 length:(unsigned int)arg2;
+- (id)processManifestProperties:(char *)arg1 length:(unsigned int)arg2;
 - (void)setBootloaderEntry;
-- (void)sendCommand:(unsigned char)arg1 payload:(char *)arg2 payload_length:(unsigned short)arg3;
+- (id)sendCommand:(unsigned char)arg1 payload:(char *)arg2 payload_length:(unsigned short)arg3;
 - (unsigned char)appendByteWithEscaping:(unsigned char)arg1 toObject:(id *)arg2;
 - (void)processInTelegram;
 - (void)processInByte:(unsigned char)arg1;
@@ -52,7 +72,8 @@
 - (void)resetParser;
 - (unsigned int)supportedTargetProductIDCode;
 - (void)dealloc;
-- (id)initInstance;
+- (id)getNumberOfBytesDownloadedInCurrentSession;
+- (id)initInstanceWithByteEscape:(BOOL)arg1;
 
 @end
 

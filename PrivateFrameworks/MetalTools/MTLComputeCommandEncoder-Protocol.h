@@ -8,6 +8,7 @@
 
 @protocol MTLComputeCommandEncoder <MTLCommandEncoder>
 @property(readonly) unsigned long long dispatchType;
+- (void)sampleCountersInBuffer:(id <MTLCounterSampleBuffer>)arg1 atSampleIndex:(unsigned long long)arg2 withBarrier:(BOOL)arg3;
 - (void)memoryBarrierWithResources:(const id *)arg1 count:(unsigned long long)arg2;
 - (void)memoryBarrierWithScope:(unsigned long long)arg1;
 - (void)useHeaps:(const id *)arg1 count:(unsigned long long)arg2;

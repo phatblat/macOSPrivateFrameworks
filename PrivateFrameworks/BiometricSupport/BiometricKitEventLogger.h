@@ -6,8 +6,9 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
+@class BKEvent, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
 
+__attribute__((visibility("hidden")))
 @interface BiometricKitEventLogger : NSObject
 {
     NSObject<OS_dispatch_queue> *_queue;
@@ -16,11 +17,13 @@
     int _eventListLength;
     _Bool _terminalFlushPending;
     _Bool _startEventFound;
+    BKEvent *_lastSmartKeyboardEvent;
 }
 
 + (id)logger;
 - (void).cxx_destruct;
 - (void)flushEvents;
+- (void)logSmartKeyboardStatus;
 - (void)logDeviceMetadata;
 - (void)logEventOrCode:(unsigned long long)arg1;
 - (void)appendEvent:(id)arg1;

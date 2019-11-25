@@ -8,25 +8,26 @@
 
 #import "NUImageProperties.h"
 
-@class NSDictionary, NSString;
+@class NSDictionary, NSString, NSURL;
 
 @interface _NUImageProperties : NSObject <NUImageProperties>
 {
+    BOOL _isFusedOvercapture;
+    NSURL *_url;
     NSDictionary *_metadata;
     struct CGColorSpace *_colorSpace;
     long long _orientation;
     NSString *_fileUTI;
     long long _alphaInfo;
     long long _componentInfo;
-    id <NUDepthProperties> _depthProperties;
-    id <NUPortraitEffectsMatteProperties> _portraitEffectsMatteProperties;
+    NSDictionary *_auxiliaryImagesProperties;
     id <NURAWImageProperties> _rawProperties;
     CDStruct_d58201db _size;
 }
 
 @property(retain) id <NURAWImageProperties> rawProperties; // @synthesize rawProperties=_rawProperties;
-@property(retain) id <NUPortraitEffectsMatteProperties> portraitEffectsMatteProperties; // @synthesize portraitEffectsMatteProperties=_portraitEffectsMatteProperties;
-@property(retain) id <NUDepthProperties> depthProperties; // @synthesize depthProperties=_depthProperties;
+@property(retain) NSDictionary *auxiliaryImagesProperties; // @synthesize auxiliaryImagesProperties=_auxiliaryImagesProperties;
+@property BOOL isFusedOvercapture; // @synthesize isFusedOvercapture=_isFusedOvercapture;
 @property long long componentInfo; // @synthesize componentInfo=_componentInfo;
 @property long long alphaInfo; // @synthesize alphaInfo=_alphaInfo;
 @property(retain) NSString *fileUTI; // @synthesize fileUTI=_fileUTI;
@@ -34,6 +35,7 @@
 @property CDStruct_912cb5d2 size; // @synthesize size=_size;
 @property struct CGColorSpace *colorSpace; // @synthesize colorSpace=_colorSpace;
 @property(retain) NSDictionary *metadata; // @synthesize metadata=_metadata;
+@property(retain) NSURL *url; // @synthesize url=_url;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 

@@ -10,6 +10,12 @@
 {
 }
 
++ (void)audioManagerUnpausedMediaClient:(id)arg1;
++ (void)audioManagerPausedMediaClient:(id)arg1;
++ (void)audioManagerUnduckedAudio;
++ (void)audioManagerDuckedAudio;
++ (void)audioManagerUnpausedMusic;
++ (void)audioManagerPausedMusic;
 + (void)SRFSpeechVocalizationEnd;
 + (void)SRFSpeechVocalizationBegin;
 + (void)SRFSpeechCreation:(unsigned long long)arg1;

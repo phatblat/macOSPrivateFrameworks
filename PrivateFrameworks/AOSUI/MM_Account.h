@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CNContact, NSArray, NSDictionary, NSImage, NSMutableArray, NSMutableDictionary, NSString, NSWindow;
+@class AOSUIProfilePictureStore, CNContact, NSArray, NSDictionary, NSImage, NSMutableArray, NSMutableDictionary, NSString, NSWindow;
 
 @interface MM_Account : NSObject
 {
@@ -19,6 +19,7 @@
     NSImage *_cachedImage;
     NSImage *_croppedImage;
     struct CGRect _imageCropRect;
+    AOSUIProfilePictureStore *_profilePictureStore;
 }
 
 + (id)accountWithID:(id)arg1 fetchAccountImage:(BOOL)arg2;
@@ -27,16 +28,16 @@
 @property struct CGRect imageCropRect; // @synthesize imageCropRect=_imageCropRect;
 @property(retain) NSImage *cachedImage; // @synthesize cachedImage=_cachedImage;
 @property(retain) NSMutableDictionary *suppressedFailures; // @synthesize suppressedFailures=_suppressedFailures;
-@property(retain) NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
+@property(retain, nonatomic) NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
 @property(retain) NSDictionary *context; // @synthesize context=_context;
 @property(retain) NSArray *services; // @synthesize services=_services;
+- (void).cxx_destruct;
 - (void)DSEEnable:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)_setProgressStringForAccount:(id)arg1 service:(id)arg2 starting:(BOOL)arg3;
 - (void)_handleEndMigrationNotification:(id)arg1;
 - (void)_handleBeginMigrationNotification:(id)arg1;
 - (void)_handleServiceFailureNotification:(id)arg1;
 - (void)_handleServiceFailureForServiceID:(id)arg1 notification:(id)arg2;
-- (void)_fetchImageForAccount;
 - (BOOL)hasMailConfigured;
 - (id)appleAccount;
 - (void)handleAEEvents:(id)arg1;

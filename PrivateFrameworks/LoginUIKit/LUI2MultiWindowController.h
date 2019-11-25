@@ -11,12 +11,14 @@
 @interface LUI2MultiWindowController : NSObject
 {
     BOOL _registered;
+    BOOL _anyUserLoggingOut;
     NSMutableArray *_windows;
     NSTimer *_displayChangeTimer;
 }
 
-@property(retain) NSTimer *displayChangeTimer; // @synthesize displayChangeTimer=_displayChangeTimer;
+@property BOOL anyUserLoggingOut; // @synthesize anyUserLoggingOut=_anyUserLoggingOut;
 @property BOOL registered; // @synthesize registered=_registered;
+@property(retain) NSTimer *displayChangeTimer; // @synthesize displayChangeTimer=_displayChangeTimer;
 @property(retain) NSMutableArray *windows; // @synthesize windows=_windows;
 - (void)dealloc;
 - (id)init;

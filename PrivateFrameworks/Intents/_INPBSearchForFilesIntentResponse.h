@@ -16,12 +16,15 @@
 {
     CDStruct_f2ecb737 _has;
     BOOL _success;
+    BOOL __encodeLegacyGloryData;
     NSArray *_entities;
     _INPBInteger *_numResults;
     _INPBString *_query;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)entitiesType;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(nonatomic) BOOL success; // @synthesize success=_success;
 @property(retain, nonatomic) _INPBString *query; // @synthesize query=_query;
 @property(retain, nonatomic) _INPBInteger *numResults; // @synthesize numResults=_numResults;
@@ -31,6 +34,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(nonatomic) BOOL hasSuccess;

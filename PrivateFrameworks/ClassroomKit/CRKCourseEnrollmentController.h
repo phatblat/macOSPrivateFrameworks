@@ -7,41 +7,40 @@
 #import "NSObject.h"
 
 #import "CATTaskOperationNotificationDelegate.h"
+#import "CRKSettingsPaneInfoProvider.h"
 #import "CRKStudentDaemonProxyObserver.h"
 
-@class CATRemoteTaskOperation, CRKSecureCodedUserDefaultsObject, CRKStudentDaemonProxy, NSArray, NSDictionary, NSString;
+@class CATRemoteTaskOperation, CRKSecureCodedUserDefaultsObject, CRKSettingsUIVisibleRemoteValue, CRKStudentDaemonProxy, NSArray, NSDictionary, NSSet, NSString;
 
-@interface CRKCourseEnrollmentController : NSObject <CRKStudentDaemonProxyObserver, CATTaskOperationNotificationDelegate>
+@interface CRKCourseEnrollmentController : NSObject <CRKStudentDaemonProxyObserver, CATTaskOperationNotificationDelegate, CRKSettingsPaneInfoProvider>
 {
     id <CRKCourseEnrollmentControllerDelegate> mDelegate;
     CRKStudentDaemonProxy *mDaemonProxy;
     CATRemoteTaskOperation *mBrowseOperation;
     CATRemoteTaskOperation *mActiveCoursesOperation;
-    CATRemoteTaskOperation *mCloudStatusSubscriptionOperation;
     CRKSecureCodedUserDefaultsObject *mStoredCourses;
     BOOL mConfigurationFetched;
+    CRKSettingsUIVisibleRemoteValue *mSettingsUIVisibleRemoteValue;
     NSArray *_courses;
     NSArray *_courseInvitations;
+    NSSet *_acceptedInvitationIdentifiers;
     NSArray *_activeCourseIdentifiers;
     NSArray *_activeInstructorIdentifiers;
     NSDictionary *_observingInstructorIdentifiersByCourseIdentifiers;
-    long long _cloudEnrollmentStatus;
     unsigned long long _configurationType;
 }
 
 @property(nonatomic) unsigned long long configurationType; // @synthesize configurationType=_configurationType;
-@property(nonatomic) long long cloudEnrollmentStatus; // @synthesize cloudEnrollmentStatus=_cloudEnrollmentStatus;
 @property(retain, nonatomic) NSDictionary *observingInstructorIdentifiersByCourseIdentifiers; // @synthesize observingInstructorIdentifiersByCourseIdentifiers=_observingInstructorIdentifiersByCourseIdentifiers;
 @property(copy, nonatomic) NSArray *activeInstructorIdentifiers; // @synthesize activeInstructorIdentifiers=_activeInstructorIdentifiers;
 @property(copy, nonatomic) NSArray *activeCourseIdentifiers; // @synthesize activeCourseIdentifiers=_activeCourseIdentifiers;
+@property(copy, nonatomic) NSSet *acceptedInvitationIdentifiers; // @synthesize acceptedInvitationIdentifiers=_acceptedInvitationIdentifiers;
 @property(copy, nonatomic) NSArray *courseInvitations; // @synthesize courseInvitations=_courseInvitations;
 @property(copy, nonatomic) NSArray *courses; // @synthesize courses=_courses;
 - (void).cxx_destruct;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)taskOperation:(id)arg1 didPostNotificationWithName:(id)arg2 userInfo:(id)arg3;
 - (BOOL)isEphemeralMultiUser;
-- (void)cloudEnrollmentStatusDidChange:(long long)arg1;
-- (void)fetchCloudEnrollmentStatusDidFinish:(id)arg1;
-- (void)fetchCloudEnrollmentStatus;
 - (void)screenObserversHaveChanged:(id)arg1;
 - (void)fetchScreenObserversDidFinish:(id)arg1;
 - (void)fetchScreenObservers;
@@ -66,6 +65,7 @@
 - (void)daemonProxy:(id)arg1 didReceiveNotificationWithName:(id)arg2 userInfo:(id)arg3;
 - (void)daemonProxyDidDisconnect:(id)arg1;
 - (void)daemonProxyDidConnect:(id)arg1;
+@property(readonly, nonatomic) BOOL settingsUIVisible;
 - (id)coursesWithInstructorIdentifier:(id)arg1;
 - (id)invitationWithCourseIdentifier:(id)arg1;
 - (id)courseWithIdentifier:(id)arg1;

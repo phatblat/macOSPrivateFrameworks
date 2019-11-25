@@ -17,8 +17,10 @@
     BOOL _accountIsT13;
     BOOL _accountIsU13;
     BOOL _accountIsU18;
+    BOOL _accountAgeUnknown;
     BOOL _isActiveRecord;
     BOOL _isRestrictedByEU_GDPR;
+    BOOL _isDPIDManatee;
     BOOL _isPlaceholderAccount;
     BOOL _accountLimitAdTrackingEnabled;
     BOOL _lastSentLimitAdTrackingStatus;
@@ -52,11 +54,13 @@
 @property(nonatomic) int lastSentSegmentDataTimestamp; // @synthesize lastSentSegmentDataTimestamp=_lastSentSegmentDataTimestamp;
 @property(nonatomic) int segmentDataTimestamp; // @synthesize segmentDataTimestamp=_segmentDataTimestamp;
 @property(nonatomic) int limitAdTrackingTimestamp; // @synthesize limitAdTrackingTimestamp=_limitAdTrackingTimestamp;
+@property(nonatomic) BOOL isDPIDManatee; // @synthesize isDPIDManatee=_isDPIDManatee;
 @property(retain, nonatomic) NSString *iAdIDBeforeReset; // @synthesize iAdIDBeforeReset=_iAdIDBeforeReset;
 @property(readonly, nonatomic) BOOL isRestrictedByEU_GDPR; // @synthesize isRestrictedByEU_GDPR=_isRestrictedByEU_GDPR;
 @property(retain, nonatomic) NSString *IDFA; // @synthesize IDFA=_IDFA;
 @property(retain, nonatomic) NSString *segmentData; // @synthesize segmentData=_segmentData;
 @property(readonly, nonatomic) BOOL isActiveRecord; // @synthesize isActiveRecord=_isActiveRecord;
+@property(nonatomic) BOOL accountAgeUnknown; // @synthesize accountAgeUnknown=_accountAgeUnknown;
 @property(nonatomic) BOOL accountIsU18; // @synthesize accountIsU18=_accountIsU18;
 @property(nonatomic) BOOL accountIsU13; // @synthesize accountIsU13=_accountIsU13;
 @property(nonatomic) BOOL accountIsT13; // @synthesize accountIsT13=_accountIsT13;

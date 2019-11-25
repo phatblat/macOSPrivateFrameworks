@@ -11,14 +11,13 @@
 @interface DMFWebsitePolicyMonitor : NSObject
 {
     NSArray *_policyTypes;
-    NSUUID *_policyMonitorIdentifier;
+    NSUUID *_identifier;
 }
 
-@property(readonly, nonatomic) NSUUID *policyMonitorIdentifier; // @synthesize policyMonitorIdentifier=_policyMonitorIdentifier;
+@property(readonly, nonatomic) NSUUID *identifier; // @synthesize identifier=_identifier;
 @property(copy, nonatomic) NSArray *policyTypes; // @synthesize policyTypes=_policyTypes;
 - (void).cxx_destruct;
-- (BOOL)askPermissionForWebsite:(id)arg1 error:(id *)arg2;
-- (void)_fetchCategoriesIfNeededForWebsites:(id)arg1 response:(CDUnknownBlockType)arg2;
+- (void)_fetchCategoriesIfNeededForWebsiteURLs:(id)arg1 response:(CDUnknownBlockType)arg2;
 - (void)requestPoliciesForWebsites:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 @property(readonly, getter=isEnabled) BOOL enabled;
 - (void)dealloc;

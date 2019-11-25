@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class ACAccount, NSArray, NSDictionary, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
+@class ACAccount, AMSMetricsEvent, NSArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
 
 @interface AMSFollowUpItem : NSObject
 {
@@ -17,6 +17,7 @@
     NSArray *_actions;
     long long _displayStyle;
     NSString *_informativeText;
+    AMSMetricsEvent *_metricsEvent;
     NSString *_title;
     NSObject<OS_dispatch_queue> *_internalQueue;
     NSObject<OS_dispatch_queue> *_metricsQueue;
@@ -28,19 +29,19 @@
 @property(retain) NSObject<OS_dispatch_queue> *internalQueue; // @synthesize internalQueue=_internalQueue;
 @property(retain) NSString *title; // @synthesize title=_title;
 @property BOOL shouldPostNotification; // @synthesize shouldPostNotification=_shouldPostNotification;
+@property(retain) AMSMetricsEvent *metricsEvent; // @synthesize metricsEvent=_metricsEvent;
 @property(retain) NSString *informativeText; // @synthesize informativeText=_informativeText;
 @property long long displayStyle; // @synthesize displayStyle=_displayStyle;
 @property(retain) NSArray *actions; // @synthesize actions=_actions;
 - (void).cxx_destruct;
-- (BOOL)shouldOverwriteItem:(id)arg1;
 - (id)postMetricsWithBagContract:(id)arg1;
+- (BOOL)shouldOverwriteItem:(id)arg1;
+- (id)postMetricsWithBag:(id)arg1;
 - (id)generateItem;
 @property(retain) NSMutableDictionary *userInfo; // @synthesize userInfo=_userInfo;
 @property long long priority;
-@property(retain) NSDictionary *metrics;
 @property(retain) NSString *logKey;
 @property(retain) NSString *identifier; // @synthesize identifier=_identifier;
-@property BOOL hasPostedMetrics;
 @property(retain) ACAccount *account; // @synthesize account=_account;
 @property(readonly) NSString *groupIdentifier;
 @property(readonly) NSString *backingIdentifier;

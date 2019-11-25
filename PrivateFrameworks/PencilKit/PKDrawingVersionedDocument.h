@@ -10,18 +10,20 @@
 
 @interface PKDrawingVersionedDocument : PKVersionedDocument
 {
+    BOOL _loadNonInkingStrokes;
     PKDrawing *_drawing;
 }
 
 + (unsigned int)minimumSupportedVersion;
 + (unsigned int)serializationVersion;
+@property(nonatomic) BOOL loadNonInkingStrokes; // @synthesize loadNonInkingStrokes=_loadNonInkingStrokes;
 @property(retain, nonatomic) PKDrawing *drawing; // @synthesize drawing=_drawing;
 - (void).cxx_destruct;
 - (id)serializeCurrentVersion:(unsigned int *)arg1;
 - (void)mergeVersion:(unsigned int)arg1 fromData:(id)arg2;
 - (unsigned long long)mergeWithDrawingVersionedDocument:(id)arg1;
 - (id)initWithDrawing:(id)arg1;
-- (void)loadUnzippedData:(id)arg1;
+- (BOOL)loadUnzippedData:(id)arg1;
 
 @end
 

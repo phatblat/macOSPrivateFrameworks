@@ -8,6 +8,7 @@
 
 @class NSCondition, NSThread, OITSUPointerKeyDictionary, OITSURetainedPointerKeyDictionary;
 
+__attribute__((visibility("hidden")))
 @interface OITSUFlushingManager : NSObject
 {
     OITSURetainedPointerKeyDictionary *_objects;

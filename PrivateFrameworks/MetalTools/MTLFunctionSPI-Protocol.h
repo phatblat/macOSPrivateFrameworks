@@ -15,10 +15,9 @@
 @property(readonly, copy) NSString *unpackedFilePath;
 @property(readonly) long long lineNumber;
 @property(readonly, copy) NSString *filePath;
+- (id <MTLFunction>)newFunctionWithPluginData:(NSData *)arg1 bitcodeType:(unsigned char)arg2;
 - (NSData *)bitcodeData;
 - (const CDStruct_5af0f983 *)bitCodeHash;
-- (id <MTLIndirectArgumentEncoder>)newIndirectArgumentEncoderWithBufferIndex:(unsigned long long)arg1 reflection:(id *)arg2;
-- (id <MTLIndirectArgumentEncoder>)newIndirectArgumentEncoderWithBufferIndex:(unsigned long long)arg1;
 - (void)reflectionWithOptions:(unsigned long long)arg1 completionHandler:(void (^)(MTLFunctionReflection *))arg2;
 - (MTLFunctionReflection *)reflectionWithOptions:(unsigned long long)arg1;
 @end

@@ -12,6 +12,7 @@ __attribute__((visibility("hidden")))
 @interface VCControlChannel : VCObject
 {
     id _messageReceivedDelegate;
+    id _dataReceivedDelegate;
     int _bytesSent;
     int _lastProcessedBytesSent;
     int _bytesSentToReport;
@@ -23,9 +24,12 @@ __attribute__((visibility("hidden")))
     int _maxReceivedRate;
     int _minReceivedRate;
     double _lastUpdateTimestamp;
+    unsigned int _reliableMessageResendInterval;
     NSObject<OS_dispatch_queue> *_asyncProcessingQueue;
 }
 
+@property(readonly, nonatomic) unsigned int reliableMessageResendInterval; // @synthesize reliableMessageResendInterval=_reliableMessageResendInterval;
+- (void)setEncryptionWithEncryptionMaterial:(CDStruct_791df8ea *)arg1;
 - (void)broadcastUnreliableMessage:(id)arg1;
 - (void)sendUnreliableMessage:(id)arg1 participantID:(unsigned long long)arg2;
 - (void)sendReliableMessage:(id)arg1 participantID:(unsigned long long)arg2;
@@ -35,6 +39,7 @@ __attribute__((visibility("hidden")))
 - (void)throwNotSupportedExceptionForMethod:(id)arg1;
 - (void)flushActiveMessages;
 - (void)dealloc;
+@property(nonatomic) id dataReceivedDelegate;
 @property(nonatomic) id messageReceivedDelegate; // @synthesize messageReceivedDelegate=_messageReceivedDelegate;
 - (id)init;
 

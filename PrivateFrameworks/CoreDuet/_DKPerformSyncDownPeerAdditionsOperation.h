@@ -17,24 +17,29 @@
     _DKSyncType *_type;
     _CDMutablePerfMetric *_perfMetric;
     struct _CDPerfEvent _perfEvent;
+    NSArray *_streamNames;
     BOOL _highPriority;
     _DKSyncHistory *_history;
+    id <_DKKeyValueStore> _keyValueStore;
+    NSDate *_startDate;
     NSDate *_highWaterMark;
     unsigned long long _batchNumber;
     NSArray *_overlappingWindows;
+    BOOL _foundAdditions;
 }
 
 + (void)_updateEventStatsWithTotal:(unsigned long long)arg1 streamNameCounts:(id)arg2 transportType:(long long)arg3;
 + (void)_updateEventStatsWithSyncLatencyOfEvent:(id)arg1 ingressDate:(id)arg2 transportType:(long long)arg3;
 + (void)_updateEventStatsWithPreviousSyncDate:(id)arg1 transportType:(long long)arg2;
++ (void)_updateEventStatsWithIsNewestMissingWindow:(BOOL)arg1;
 - (void).cxx_destruct;
 - (void)endPerfMetrics;
 - (void)startPerfMetrics;
 - (void)endOperation;
 - (void)updateEvents:(id)arg1 withSourceDeviceID:(id)arg2;
 - (void)coalesceRedundantOverlappingWindows;
-- (void)handleFetchedEvents:(id)arg1 windowStartDate:(id)arg2 windowEndDate:(id)arg3 window:(id)arg4;
-- (void)performSyncDownPeerAdditionsWithPreviousWindow:(id)arg1;
+- (void)handleFetchedEvents:(id)arg1 completedWindows:(id)arg2 missingWindows:(id)arg3;
+- (void)performSyncDownPeerAdditionsWithCompletedWindows:(id)arg1;
 - (void)performSyncDownPeerAdditionsWithHighWaterMark:(id)arg1 orError:(id)arg2;
 - (void)performSyncDownPeerAdditionsWithDidPrewarm:(BOOL)arg1 orError:(id)arg2;
 - (void)performSyncDownPeerAdditions;

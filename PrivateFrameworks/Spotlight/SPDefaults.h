@@ -17,7 +17,6 @@
     BOOL _spotEnabled;
     BOOL _highlightShownWithSpot;
     BOOL _parsecEnabled;
-    BOOL _webSearchEnabled;
     BOOL _spotlightSuggestionsDisabled;
     BOOL _demoEnabled;
     BOOL _clearOnClose;
@@ -36,6 +35,7 @@
 + (void)initialize;
 + (BOOL)isParsecEnabled;
 + (BOOL)isDeveloper;
++ (BOOL)getShowExtensionStatus;
 + (id)standardAppDefaults;
 @property(getter=shouldReloadPrefs) BOOL reloadPrefs; // @synthesize reloadPrefs=_reloadPrefs;
 @property(readonly) BOOL customFolderPreview; // @synthesize customFolderPreview=_customFolderPreview;
@@ -50,7 +50,6 @@
 @property BOOL clearOnClose; // @synthesize clearOnClose=_clearOnClose;
 @property(getter=isDemoEnabled) BOOL demoEnabled; // @synthesize demoEnabled=_demoEnabled;
 @property(getter=areSpotlightSuggestionsDisabled) BOOL spotlightSuggestionsDisabled; // @synthesize spotlightSuggestionsDisabled=_spotlightSuggestionsDisabled;
-@property(getter=isWebSearchEnabled) BOOL webSearchEnabled; // @synthesize webSearchEnabled=_webSearchEnabled;
 @property(getter=isParsecEnabled) BOOL parsecEnabled; // @synthesize parsecEnabled=_parsecEnabled;
 @property(getter=isHighlightShownWithSpot) BOOL highlightShownWithSpot; // @synthesize highlightShownWithSpot=_highlightShownWithSpot;
 @property(getter=isSpotEnabled) BOOL spotEnabled; // @synthesize spotEnabled=_spotEnabled;
@@ -60,11 +59,9 @@
 - (void)_used;
 - (long long)useCount;
 @property(readonly) BOOL firstUse;
-@property(readonly, getter=isWebSearchAllowed) BOOL webSearchAllowed;
 @property(readonly, getter=isParsecAllowed) BOOL parsecAllowed;
 @property(readonly) BOOL groupResults;
 - (id)init;
-- (void)reloadDefaults;
 - (void)prefsNotificationReceived:(id)arg1;
 @property BOOL showedLearnMore;
 - (void)reloadPrefs;

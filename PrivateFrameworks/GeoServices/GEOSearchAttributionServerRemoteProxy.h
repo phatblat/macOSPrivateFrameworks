@@ -8,14 +8,14 @@
 
 #import "GEOSearchAttributionServerProxy.h"
 
-@class GEOSearchAttributionManifest, NSLock, NSObject<OS_dispatch_queue>, NSString;
+@class GEOSearchAttributionManifest, NSObject<OS_dispatch_queue>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface GEOSearchAttributionServerRemoteProxy : NSObject <GEOSearchAttributionServerProxy>
 {
     NSObject<OS_dispatch_queue> *_attributionQueue;
     GEOSearchAttributionManifest *_attributionManifest;
-    NSLock *_attributionManifestLock;
+    struct os_unfair_lock_s _attributionManifestLock;
     int _attributionManifestUpdatedToken;
 }
 

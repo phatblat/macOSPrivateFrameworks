@@ -6,19 +6,29 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSURL;
+@class ACAccount, NSArray, NSString, NSURL;
 
 __attribute__((visibility("hidden")))
 @interface AMSMetricsBatch : NSObject
 {
-    NSURL *_reportURL;
-    NSArray *_events;
+    BOOL _containsLoadURL;
+    ACAccount *_account;
+    NSString *_canaryIdentifier;
+    NSArray *_droppedEvents;
     NSArray *_eventDictionaries;
+    NSArray *_events;
+    NSURL *_reportURL;
+    NSArray *_skippedEvents;
 }
 
-@property(retain) NSArray *eventDictionaries; // @synthesize eventDictionaries=_eventDictionaries;
-@property(retain) NSArray *events; // @synthesize events=_events;
+@property(retain) NSArray *skippedEvents; // @synthesize skippedEvents=_skippedEvents;
 @property(retain) NSURL *reportURL; // @synthesize reportURL=_reportURL;
+@property(retain) NSArray *events; // @synthesize events=_events;
+@property(retain) NSArray *eventDictionaries; // @synthesize eventDictionaries=_eventDictionaries;
+@property(retain) NSArray *droppedEvents; // @synthesize droppedEvents=_droppedEvents;
+@property BOOL containsLoadURL; // @synthesize containsLoadURL=_containsLoadURL;
+@property(retain) NSString *canaryIdentifier; // @synthesize canaryIdentifier=_canaryIdentifier;
+@property(retain) ACAccount *account; // @synthesize account=_account;
 - (void).cxx_destruct;
 
 @end

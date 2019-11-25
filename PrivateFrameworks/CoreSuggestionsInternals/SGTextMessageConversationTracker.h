@@ -17,7 +17,10 @@
 + (id)instance;
 - (void).cxx_destruct;
 - (void)clear;
+- (id)addItem:(id)arg1;
+- (id)addMessage:(id)arg1 withDetectedData:(id)arg2;
 - (id)addMessage:(id)arg1;
+- (id)conversationForIdentifier:(id)arg1;
 - (id)init;
 
 @end

@@ -20,9 +20,11 @@
     CBCentralManager *_centralManager;
     struct NSMutableDictionary *_devices;
     BOOL _invalidateCalled;
+    NSObject<OS_dispatch_source> *_lostTimer;
     BOOL _needDups;
     long long _payloadType;
     _Bool _poweredOffSleep;
+    int _rescanSecondsActual;
     NSObject<OS_dispatch_source> *_rescanTimer;
     struct __sFILE {
         char *_field1;
@@ -51,12 +53,22 @@
     BOOL _timeoutFired;
     NSObject<OS_dispatch_source> *_timeoutTimer;
     NSSet *_trackedPeersApplied;
+    struct LogCategory *_ucat;
     BOOL _updating;
+    BOOL _scanParamActive;
+    BOOL _scanParamCache;
+    BOOL _scanParamDups;
+    NSData *_scanParamFilterData;
+    NSData *_scanParamFilterMask;
+    long long _scanParamInterval;
+    long long _scanParamWindow;
+    long long _scanParamMode;
+    NSArray *_scanParamPeers;
+    long long _scanParamRSSI;
     WPAWDL *_wpAirDrop;
     WPNearby *_wpNearby;
     long long _wpNearbyType;
     WPPairing *_wpPairing;
-    struct LogCategory *_ucat;
     BOOL _rssiLog;
     BOOL _rssiLogStdOut;
     BOOL _scanCache;
@@ -107,6 +119,7 @@
 @property(copy, nonatomic) CDUnknownBlockType bluetoothStateChangedHandler; // @synthesize bluetoothStateChangedHandler=_bluetoothStateChangedHandler;
 - (void).cxx_destruct;
 - (unsigned int)statusToHeadsetStatus:(unsigned char)arg1;
+- (void)parseStatus3:(unsigned char)arg1 productID:(unsigned int)arg2 caseLEDColor:(char *)arg3 caseLEDStatus:(char *)arg4;
 - (id)modelWithProductID:(unsigned short)arg1;
 - (BOOL)pairingUpdatePairedInfo:(id)arg1 fields:(id)arg2 bleDevice:(id)arg3;
 - (id)pairingParsePayload:(id)arg1 identifier:(id)arg2 bleDevice:(id)arg3;
@@ -136,7 +149,9 @@
 - (void)_startTimeoutIfNeeded;
 - (void)_rssiLogClose;
 - (void)_rssiLogOpen;
+- (void)_restartIfNeeded:(BOOL)arg1;
 - (void)_restartIfNeeded;
+- (void)_rescanLostFired;
 - (void)_rescanTimerFired;
 - (void)_removeAllDevicesWithReason:(id)arg1;
 - (void)_poweredOn;
@@ -153,7 +168,6 @@
 - (void)setPayloadFilterData:(id)arg1 mask:(id)arg2;
 @property(readonly, copy) NSString *description;
 - (void)dealloc;
-- (id)init;
 - (id)initWithType:(long long)arg1;
 
 // Remaining properties

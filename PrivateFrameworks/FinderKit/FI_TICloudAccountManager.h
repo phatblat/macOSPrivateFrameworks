@@ -6,8 +6,12 @@
 
 #import "NSObject.h"
 
+#import "TCoalescingNodeObserverProtocol.h"
+
+@class NSString;
+
 __attribute__((visibility("hidden")))
-@interface FI_TICloudAccountManager : NSObject
+@interface FI_TICloudAccountManager : NSObject <TCoalescingNodeObserverProtocol>
 {
     struct TriStateBool fLoggedIntoICloud;
     struct TriStateBool fICloudDriveEnabled;
@@ -18,6 +22,9 @@ __attribute__((visibility("hidden")))
     struct TriStateBool fIsOverQuota;
     struct TriStateBool fAppSynchingDocuments;
     struct TNSRef<BRContainer, void> fDefaultContainer;
+    struct TNotificationCenterObserver fiCloudAccountTokenDidChangeObserver;
+    struct TNotificationCenterObserver fContainerListDidChangeObserver;
+    struct TKeyValueObserver fOverQuotaObserver;
 }
 
 + (_Bool)isMaxTier;
@@ -45,15 +52,19 @@ __attribute__((visibility("hidden")))
 - (_Bool)hasDeclinedUpgrade;
 - (_Bool)isSignedIntoICloud;
 - (_Bool)isSynchingDocuments;
-- (_Bool)updateLoginState:(_Bool)arg1 userHasDeclinedUpgrade:(_Bool)arg2 firstSyncDownComplete:(_Bool)arg3 syncDesktop:(_Bool)arg4 syncDocuments:(_Bool)arg5 loggedIntoIcloud:(_Bool)arg6;
+- (pair_5f6a4f40)updateLoginState:(_Bool)arg1 userHasDeclinedUpgrade:(_Bool)arg2 firstSyncDownComplete:(_Bool)arg3 syncDesktop:(_Bool)arg4 syncDocuments:(_Bool)arg5 loggedIntoIcloud:(_Bool)arg6;
 - (void)computeLoginState;
 - (void)computeIsOverQuota;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)invalidate;
 - (void)dealloc;
 - (id)_init;
 - (void)iCloudAccountAvailabilityChanged;
-- (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

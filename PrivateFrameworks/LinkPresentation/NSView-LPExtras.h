@@ -7,7 +7,9 @@
 #import "NSView.h"
 
 @interface NSView (LPExtras)
+- (BOOL)_lp_prefersDarkInterface;
 - (void)_lp_bringSubviewToFront:(id)arg1;
+- (void)_lp_setNonContinuousCornerRadius:(double)arg1;
 - (void)_lp_setCornerRadius:(double)arg1;
 - (BOOL)_lp_isLTR;
 - (double)_lp_backingScaleFactor;

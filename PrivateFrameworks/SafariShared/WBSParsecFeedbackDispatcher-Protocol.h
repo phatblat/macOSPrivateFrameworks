@@ -16,7 +16,7 @@
 - (void)didDisplayCompletionListItems:(NSArray *)arg1 forQuery:(WBSCompletionQuery *)arg2 forEvent:(long long)arg3;
 
 @optional
-- (void)userTypedGoToSearch:(NSString *)arg1 endpoint:(unsigned long long)arg2;
+- (void)userTypedGoToSearch:(NSString *)arg1 endpoint:(unsigned long long)arg2 forQueryID:(unsigned long long)arg3;
 - (void)didBeginSearchOfType:(long long)arg1 withQuery:(WBSCompletionQuery *)arg2 urlString:(NSString *)arg3 headers:(NSDictionary *)arg4 endpoint:(unsigned long long)arg5;
 - (void)didBeginSearchOfType:(long long)arg1 withQuery:(WBSCompletionQuery *)arg2 endpoint:(unsigned long long)arg3;
 - (void)searchViewDisappearedBecauseOfEvent:(long long)arg1;
@@ -24,7 +24,7 @@
 - (void)searchViewAppearedBecauseOfEvent:(unsigned long long)arg1;
 - (void)didReceiveParsecResultsAfterTimeout:(NSArray *)arg1;
 - (void)didGenerateCompletionListItemsWithRankingObserver:(WBSCompletionListRankingObserver *)arg1;
-- (void)userTypedURLDirectly:(NSString *)arg1;
+- (void)userTypedURLDirectlyForQuery:(WBSCompletionQuery *)arg1;
 - (void)userDidEngageWithCompletionListItem:(id <WBSCompletionListItem>)arg1 onActionButton:(BOOL)arg2 method:(long long)arg3 doesMatchSiriSuggestion:(BOOL)arg4;
 - (void)userDidEngageWithCompletionListItem:(id <WBSCompletionListItem>)arg1 onActionButton:(BOOL)arg2 method:(long long)arg3;
 - (void)userDidEngageWithCompletionListItem:(id <WBSCompletionListItem>)arg1 atPosition:(unsigned long long)arg2 withEngagementActionDictionary:(NSDictionary *)arg3;

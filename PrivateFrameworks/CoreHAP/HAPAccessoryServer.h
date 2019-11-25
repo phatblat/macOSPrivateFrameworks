@@ -12,6 +12,7 @@
 {
     NSString *_name;
     NSString *_identifier;
+    id <HMFLocking> _lock;
     BOOL _hasPairings;
     BOOL _reachable;
     BOOL _securitySessionOpen;
@@ -31,7 +32,7 @@
     NSHashTable *_internalDelegates;
     NSObject<OS_dispatch_queue> *_internalDelegateQueue;
     NSObject<OS_dispatch_queue> *_clientQueue;
-    NSObject<OS_dispatch_queue> *_propertyQueue;
+    unsigned long long _stateNumber;
     id <HAPKeyStore> _keyStore;
     unsigned long long _pairSetupType;
 }
@@ -40,7 +41,7 @@
 @property(nonatomic) unsigned long long pairSetupType; // @synthesize pairSetupType=_pairSetupType;
 @property(readonly, nonatomic) __weak id <HAPKeyStore> keyStore; // @synthesize keyStore=_keyStore;
 @property(nonatomic, getter=isIncompatibleUpdate) BOOL incompatibleUpdate; // @synthesize incompatibleUpdate=_incompatibleUpdate;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *propertyQueue; // @synthesize propertyQueue=_propertyQueue;
+@property(nonatomic) unsigned long long stateNumber; // @synthesize stateNumber=_stateNumber;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *clientQueue; // @synthesize clientQueue=_clientQueue;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *internalDelegateQueue; // @synthesize internalDelegateQueue=_internalDelegateQueue;
 @property(readonly, nonatomic) NSHashTable *internalDelegates; // @synthesize internalDelegates=_internalDelegates;
@@ -68,21 +69,21 @@
 - (void)addPairing:(id)arg1 completionQueue:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (BOOL)stopPairingWithError:(id *)arg1;
 - (BOOL)tryPairingPassword:(id)arg1 error:(id *)arg2;
-- (void)startPairingWithConsentRequired:(BOOL)arg1;
+- (void)startPairingWithConsentRequired:(BOOL)arg1 config:(id)arg2 ownershipToken:(id)arg3;
 - (void)continuePairingUsingWAC;
 - (void)continuePairingAfterAuthPrompt;
+- (BOOL)matchesSetupID:(id)arg1 serverIdentifier:(id)arg2;
 - (BOOL)matchesSetupID:(id)arg1;
+- (id)productData;
 @property(readonly, nonatomic, getter=isPaired) BOOL paired;
+- (void)tearDownAndRestablishSession;
 - (void)reconfirm;
-- (void)notifyDelegateUpdatedCategory:(id)arg1;
 @property(copy, nonatomic) NSNumber *category; // @synthesize category=_category;
-- (void)notifyDelegateUpdatedName:(id)arg1;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(nonatomic) unsigned long long authMethod; // @synthesize authMethod=_authMethod;
 @property(copy, nonatomic) NSData *setupHash; // @synthesize setupHash=_setupHash;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(readonly, copy) HAPDeviceID *deviceID;
-- (void)notifyDelegateUpdatedHasPairings:(BOOL)arg1;
 @property(nonatomic) BOOL hasPairings; // @synthesize hasPairings=_hasPairings;
 @property(getter=isSecuritySessionOpen) BOOL securitySessionOpen; // @synthesize securitySessionOpen=_securitySessionOpen;
 @property(nonatomic, getter=isReachable) BOOL reachable; // @synthesize reachable=_reachable;

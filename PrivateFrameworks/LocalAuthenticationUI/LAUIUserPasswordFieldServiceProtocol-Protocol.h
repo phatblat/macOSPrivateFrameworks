@@ -6,10 +6,17 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSData, NSString;
 
 @protocol LAUIUserPasswordFieldServiceProtocol <NSObject>
-- (void)setSkipPasswordVerification:(BOOL)arg1;
+- (void)showBackoffInterval:(double)arg1 accountBlocked:(BOOL)arg2;
+- (void)setTextAlingmentForBackoffLabel:(long long)arg1;
+- (void)setPasswordFieldEnabled:(BOOL)arg1;
+- (void)setSkipCredentialsVerification:(BOOL)arg1;
+- (void)orderOut;
+- (void)setPamToken:(NSData *)arg1;
+- (void)setPamService:(NSString *)arg1;
+- (void)setPamUsername:(NSString *)arg1;
 - (void)setPINAuthentication:(BOOL)arg1;
 - (void)setCanAuthenticateAsAnyAdmin:(BOOL)arg1;
 - (void)setExtractablePassword:(BOOL)arg1;

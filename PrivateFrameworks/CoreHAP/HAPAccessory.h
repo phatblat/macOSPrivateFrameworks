@@ -8,7 +8,7 @@
 
 #import "HMFMerging.h"
 
-@class HAPAccessoryServer, NSArray, NSNumber, NSObject<OS_dispatch_queue>, NSString;
+@class HAPAccessoryServer, HMFMACAddress, NSArray, NSNumber, NSObject<OS_dispatch_queue>, NSString;
 
 @interface HAPAccessory : HMFObject <HMFMerging>
 {
@@ -22,20 +22,24 @@
     NSArray *_services;
     NSString *_serverIdentifier;
     long long _linkType;
+    HMFMACAddress *_bluetoothClassicMacAddress;
     NSString *_uniqueIdentifier;
     NSString *_name;
     NSString *_model;
     NSString *_manufacturer;
     NSString *_serialNumber;
     NSString *_firmwareVersion;
+    NSString *_productData;
     NSObject<OS_dispatch_queue> *_workQueue;
 }
 
 + (BOOL)isAccessoryPrimaryWithUniqueIdentifier:(id)arg1;
 + (id)instanceIDForUniqueIdentifier:(id)arg1;
 + (id)serverIdentifierWithUniqueIdentifier:(id)arg1;
++ (id)productDataStringFromData:(id)arg1;
 + (BOOL)isAccessoryPairedWithIdentifier:(id)arg1;
 @property(retain) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
+@property(copy, nonatomic) NSString *productData; // @synthesize productData=_productData;
 @property(copy, nonatomic) NSString *firmwareVersion; // @synthesize firmwareVersion=_firmwareVersion;
 @property(copy, nonatomic) NSString *serialNumber; // @synthesize serialNumber=_serialNumber;
 @property(copy, nonatomic) NSString *manufacturer; // @synthesize manufacturer=_manufacturer;
@@ -43,6 +47,7 @@
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(copy, nonatomic) NSString *uniqueIdentifier; // @synthesize uniqueIdentifier=_uniqueIdentifier;
 @property(nonatomic) BOOL supportsRelay; // @synthesize supportsRelay=_supportsRelay;
+@property(copy) HMFMACAddress *bluetoothClassicMacAddress; // @synthesize bluetoothClassicMacAddress=_bluetoothClassicMacAddress;
 @property(readonly, nonatomic) long long linkType; // @synthesize linkType=_linkType;
 @property(copy, nonatomic) NSString *serverIdentifier; // @synthesize serverIdentifier=_serverIdentifier;
 @property(retain, nonatomic) NSArray *services; // @synthesize services=_services;
@@ -57,7 +62,7 @@
 - (id)characteristicOfType:(id)arg1 serviceType:(id)arg2;
 - (id)characteristicsOfType:(id)arg1;
 - (id)servicesOfType:(id)arg1;
-- (BOOL)validateCharacteristicValues:(id *)arg1;
+- (BOOL)_validateCharacteristicValues;
 - (void)invalidate;
 - (BOOL)_updateForAccessoryInformationService;
 - (BOOL)_updateService:(id)arg1;

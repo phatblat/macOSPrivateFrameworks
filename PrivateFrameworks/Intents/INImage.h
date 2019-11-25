@@ -9,13 +9,14 @@
 #import "INCacheableObject.h"
 #import "INImageExport.h"
 #import "INImageProxyInjecting.h"
+#import "INJSONSerializable.h"
 #import "INKeyImageProducing.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
 @class NSData, NSString, NSURL;
 
-@interface INImage : NSObject <INKeyImageProducing, INCacheableObject, INImageProxyInjecting, INImageExport, NSCopying, NSSecureCoding>
+@interface INImage : NSObject <INJSONSerializable, INKeyImageProducing, INCacheableObject, INImageProxyInjecting, INImageExport, NSCopying, NSSecureCoding>
 {
     NSString *_identifier;
     CDStruct_8caa76fc _imageSize;
@@ -30,6 +31,7 @@
 + (id)imageWithURL:(id)arg1;
 + (void)registerImageLoadersOnce;
 + (void)initialize;
++ (id)_intents_decodeWithJSONDecoder:(id)arg1 codableDescription:(id)arg2 from:(id)arg3;
 + (void)buildFromCachePayload:(id)arg1 identifier:(id)arg2 completion:(CDUnknownBlockType)arg3;
 @property(nonatomic, setter=_setImageSize:) CDStruct_8caa76fc _imageSize; // @synthesize _imageSize;
 @property(copy, nonatomic, setter=_setIdentifier:) NSString *_identifier; // @synthesize _identifier;
@@ -43,6 +45,7 @@
 - (id)_description;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) BOOL _isSupportedForDonation;
 @property(readonly, nonatomic) BOOL _isEligibleForProxying;
 - (id)_initWithURLRepresentation:(id)arg1;
 - (id)_URLRepresentation;
@@ -58,7 +61,8 @@
 - (id)_initWithData:(id)arg1;
 - (id)_initWithIdentifier:(id)arg1;
 - (id)init;
-- (id)_intents_readableDescriptionForLanguage:(id)arg1;
+- (id)_intents_readableDescriptionForLanguage:(id)arg1 withMetadata:(id)arg2;
+- (id)_intents_encodeWithJSONEncoder:(id)arg1 codableDescription:(id)arg2;
 - (long long)_compareSubProducerOne:(id)arg1 subProducerTwo:(id)arg2;
 @property(readonly) INImage *_keyImage;
 @property(readonly, copy, nonatomic) NSString *cacheIdentifier;

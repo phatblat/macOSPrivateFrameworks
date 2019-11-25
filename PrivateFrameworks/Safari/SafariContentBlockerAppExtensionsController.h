@@ -8,11 +8,12 @@
 
 #import "SFContentBlockerManagerDelegate.h"
 
-@class NSMutableSet, NSString;
+@class NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
 
 @interface SafariContentBlockerAppExtensionsController : NSObject <SFContentBlockerManagerDelegate>
 {
     NSMutableSet *_contentBlockersInInvalidAppBundles;
+    NSObject<OS_dispatch_queue> *_appBundleValidationQueue;
     NSString *_crashReporterMessage;
 }
 

@@ -9,12 +9,16 @@
 #import "NSCopying.h"
 #import "NSLocking.h"
 
+@class ABAccount, NSNumber;
+
 @interface ABRecord : NSObject <NSLocking, NSCopying>
 {
     id _databaseImpl;
     id _reserved1;
     id _reserved2;
     id _reserved3;
+    struct NSNumber *_isReadOnlyStorage;
+    ABAccount *_account;
 }
 
 + (Class)remoteObjectClass;
@@ -40,17 +44,24 @@
 + (id)propertyTypes;
 + (id)propertyTypesWithAddressBook:(id)arg1;
 + (id)propertyTypesWithAddressBook:(id)arg1 acquireLock:(BOOL)arg2;
++ (id)cardDAVProperties;
++ (id)typeOfCardDAVProperty:(id)arg1;
++ (id)typeOfBuiltInProperty:(id)arg1;
 + (id)builtInProperties;
 + (id)makeUniqueId;
 + (id)_table;
 + (id)_newUniqueIdForTable:(id)arg1;
+@property(readonly) ABAccount *account; // @synthesize account=_account;
+@property(readonly) NSNumber *isReadOnlyStorage; // @synthesize isReadOnlyStorage=_isReadOnlyStorage;
 - (void).cxx_destruct;
 - (void)unlock;
 - (void)lock;
 - (id)quicklookURL;
+- (BOOL)nts_computeIsReadOnly;
+- (void)nts_accountDidChange:(id)arg1;
+- (void)accountDidChange:(id)arg1;
 - (id)accountPermissions;
-- (id)account;
-- (id)nts_account;
+- (id)nts_computeAccount;
 - (id)nts_accountFromDatabaseImpl;
 - (id)nts_accountWithIdentifier:(id)arg1;
 - (id)initWithAddressBook:(id)arg1 account:(id)arg2;
@@ -142,7 +153,6 @@
 - (id)duplicate;
 - (id)duplicateWithClass:(Class)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (id)destinationStoreUrlWithAddressBook:(id)arg1 storeUrl:(id)arg2;
 - (BOOL)_shouldAssignNewDatabaseImplToPrimaryStore;

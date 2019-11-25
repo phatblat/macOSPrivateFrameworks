@@ -8,9 +8,11 @@
 
 @class BiometricKitXPCClientConnection;
 
+__attribute__((visibility("hidden")))
 @interface BiometricKitXPCClient : NSObject
 {
     unsigned long long _clientID;
+    unsigned long long _connectionID;
     long long _clientType;
     BiometricKitXPCClientConnection *_connection;
     BOOL _connectionInitialized;
@@ -21,6 +23,7 @@
 + (void)initialize;
 @property(nonatomic) __weak id <BiometricKitDelegateXpcProtocol> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (int)getLastMatchEvent:(id *)arg1;
 - (int)pauseFaceDetectTimer:(BOOL)arg1;
 - (int)enableMatchAutoRetry:(BOOL)arg1;
 - (void)logEventOrCode:(unsigned long long)arg1;

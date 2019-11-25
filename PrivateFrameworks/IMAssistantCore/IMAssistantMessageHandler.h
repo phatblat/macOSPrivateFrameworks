@@ -9,24 +9,22 @@
 #import "IMAssistantINMessageConverterPersonProvider.h"
 #import "IMAssistantIdentifiableIntentHandler.h"
 
-@class CNContactStore, IMChatRegistry, NSArray, NSString;
+@class NSArray, NSString;
 
 @interface IMAssistantMessageHandler : NSObject <IMAssistantINMessageConverterPersonProvider, IMAssistantIdentifiableIntentHandler>
 {
-    CNContactStore *_contactStore;
+    id <IMAssistantMessageHandlerDataSource> _messageHandlerDataSource;
     NSArray *_keysToFetch;
     NSString *_intentIdentifier;
-    IMChatRegistry *_chatRegistry;
 }
 
-+ (id)spiHandleToPersonCache;
-+ (id)handleToContactIdentifierCache;
-+ (void)registerForContactStoreChangeNotifications;
-+ (void)contactStoreDidChange:(id)arg1;
 + (id)connectToIMDaemonController;
-@property(retain, nonatomic) IMChatRegistry *chatRegistry; // @synthesize chatRegistry=_chatRegistry;
+@property(copy, nonatomic) NSString *intentIdentifier; // @synthesize intentIdentifier=_intentIdentifier;
+@property(retain, nonatomic) NSArray *keysToFetch; // @synthesize keysToFetch=_keysToFetch;
+@property(retain, nonatomic) id <IMAssistantMessageHandlerDataSource> messageHandlerDataSource; // @synthesize messageHandlerDataSource=_messageHandlerDataSource;
 - (void).cxx_destruct;
 - (void)forceTriggerResumeNotification;
+- (id)personFromSPIHandle:(id)arg1 contact:(id)arg2;
 - (id)personFromSPIHandle:(id)arg1;
 - (id)contactIdentifiersForParticipantsInChat:(id)arg1;
 - (id)meContactIdentifier;
@@ -36,13 +34,11 @@
 - (id)contactIdentifiersMatchingHandleID:(id)arg1;
 - (id)contactsMatchingPredicate:(id)arg1 forPerson:(id)arg2;
 - (id)contactWithIdentifier:(id)arg1;
+- (id)unifiedContactIdentifierForContactIdentifier:(id)arg1;
 - (id)contactsMatchingINPerson:(id)arg1;
-@property(readonly, copy, nonatomic) NSString *intentIdentifier;
-@property(readonly, nonatomic) NSArray *keysToFetch;
-@property(readonly, nonatomic) CNContactStore *contactStore;
-- (id)_initWithContactStore:(id)arg1 keysToFetch:(id)arg2 intentIdentifier:(id)arg3;
-- (id)initWithContactStore:(id)arg1 keysToFetch:(id)arg2 intentIdentifier:(id)arg3;
-- (id)initWithContactStore:(id)arg1 intentIdentifier:(id)arg2;
+- (id)_initWithDataSource:(id)arg1 contactKeysToFetch:(id)arg2 intentIdentifier:(id)arg3;
+- (id)initWithDataSource:(id)arg1 keysToFetch:(id)arg2 intentIdentifier:(id)arg3;
+- (id)initWithDataSource:(id)arg1 intentIdentifier:(id)arg2;
 - (id)initWithIntentIdentifier:(id)arg1;
 
 // Remaining properties

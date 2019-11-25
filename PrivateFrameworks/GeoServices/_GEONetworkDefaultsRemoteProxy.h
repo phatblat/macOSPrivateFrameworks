@@ -8,14 +8,13 @@
 
 #import "_GEONetworkDefaultsServerProxy.h"
 
-@class NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
+@class NSMutableArray, NSString, geo_isolater;
 
 __attribute__((visibility("hidden")))
 @interface _GEONetworkDefaultsRemoteProxy : NSObject <_GEONetworkDefaultsServerProxy>
 {
     id <_GEONetworkDefaultsServerProxyDelegate> _delegate;
-    NSObject<OS_dispatch_queue> *_isolation;
-    NSObject<OS_dispatch_queue> *_xpcQueue;
+    geo_isolater *_isolation;
     NSMutableArray *_updateCompletionHandlers;
     int _configChangedToken;
 }

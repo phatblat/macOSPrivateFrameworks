@@ -15,8 +15,11 @@
     NSWorkspace *_workspace;
 }
 
++ (id)openConfigurationWithEndpoint:(id)arg1 isSensitive:(BOOL)arg2;
++ (id)urlCouldNotBeOpenedErrorWithURL:(id)arg1;
 @property(readonly, nonatomic) NSWorkspace *workspace; // @synthesize workspace=_workspace;
 - (void).cxx_destruct;
+- (id)openURL:(id)arg1 isSensitive:(BOOL)arg2 connectionEndpoint:(id)arg3 withScheduler:(id)arg4;
 - (id)openURL:(id)arg1 isSensitive:(BOOL)arg2 withScheduler:(id)arg3;
 - (id)openURL:(id)arg1 withScheduler:(id)arg2;
 - (id)initWithWorkspace:(id)arg1;

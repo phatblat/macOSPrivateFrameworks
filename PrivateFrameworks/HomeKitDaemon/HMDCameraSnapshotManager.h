@@ -17,7 +17,7 @@
 #import "HMFLogging.h"
 #import "HMFTimerDelegate.h"
 
-@class HMDAccessory, HMDCameraResidentMessageHandler, HMDCameraSnapshotMonitorEvents, HMDCameraStreamSnapshotHandler, HMDNotificationRegistration, HMDSnapshotCacheRequestHandler, HMDSnapshotLocalSession, HMDSnapshotRequestHandler, HMDSnapshotSlotManager, HMFMessageDispatcher, HMFNetMonitor, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
+@class HMDCameraResidentMessageHandler, HMDCameraSnapshotMonitorEvents, HMDCameraStreamSnapshotHandler, HMDHAPAccessory, HMDNotificationRegistration, HMDSnapshotCacheRequestHandler, HMDSnapshotLocalSession, HMDSnapshotRequestHandler, HMDSnapshotSlotManager, HMFMessageDispatcher, HMFNetMonitor, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
 
 @interface HMDCameraSnapshotManager : HMFObject <HMDCameraSnapshotLocalDelegate, HMDCameraSnapshotRemoteRelaySenderDelegate, HMDCameraSnapshotRemoteRelayReceiverDelegate, HMDCameraSnapshotRemoteStreamSenderDelegate, HMDCameraSnapshotRemoteStreamReceiverDelegate, HMDCameraSnapshotRemoteRelayStreamDelegate, HMFTimerDelegate, HMFLogging, HMDCameraStreamSnapshotHandlerDelegate, HMDHomeMessageReceiver>
 {
@@ -25,7 +25,7 @@
     HMFMessageDispatcher *_msgDispatcher;
     HMDSnapshotLocalSession *_currentLocalSession;
     NSMutableDictionary *_currentRemoteSessions;
-    HMDAccessory *_accessory;
+    HMDHAPAccessory *_accessory;
     NSUUID *_uniqueIdentifier;
     NSString *_imageCacheDirectory;
     NSString *_logID;
@@ -57,12 +57,13 @@
 @property(readonly, nonatomic) NSString *logID; // @synthesize logID=_logID;
 @property(readonly, nonatomic) NSString *imageCacheDirectory; // @synthesize imageCacheDirectory=_imageCacheDirectory;
 @property(readonly, nonatomic) NSUUID *uniqueIdentifier; // @synthesize uniqueIdentifier=_uniqueIdentifier;
-@property(readonly, nonatomic) __weak HMDAccessory *accessory; // @synthesize accessory=_accessory;
+@property(readonly, nonatomic) __weak HMDHAPAccessory *accessory; // @synthesize accessory=_accessory;
 @property(retain, nonatomic) NSMutableDictionary *currentRemoteSessions; // @synthesize currentRemoteSessions=_currentRemoteSessions;
 @property(retain, nonatomic) HMDSnapshotLocalSession *currentLocalSession; // @synthesize currentLocalSession=_currentLocalSession;
 @property(retain, nonatomic) HMFMessageDispatcher *msgDispatcher; // @synthesize msgDispatcher=_msgDispatcher;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
 - (void).cxx_destruct;
+- (void)handleCameraSettingsDidChangeNotification:(id)arg1;
 - (void)streamSnapshotHandler:(id)arg1 didChangeStreamSetupInProgress:(BOOL)arg2;
 - (void)streamSnapshotHandler:(id)arg1 didGetLastSnapshot:(id)arg2;
 - (void)streamSnapshotHandler:(id)arg1 didGetNewSnapshot:(id)arg2;
@@ -88,20 +89,19 @@
 - (void)_endSession:(id)arg1 error:(id)arg2;
 - (void)timerDidFire:(id)arg1;
 - (void)_issueGetSnapshot:(id)arg1;
-- (void)_sendSnapshotRequestRelayStream:(id)arg1;
-- (void)_sendSnapshotRequestStreamReceiver:(id)arg1;
-- (void)_sendSnapshotRequestStreamInitiator:(id)arg1;
-- (void)_sendSnapshotRequestRelayInitiator:(id)arg1;
-- (void)_sendSnapshotRequestRelayReceiver:(id)arg1;
-- (void)_sendSnapshotRequestLocal:(id)arg1;
-- (void)_sendStreamSnapshotRequest:(id)arg1;
-- (void)_message:(id)arg1 errored:(long long)arg2;
+- (void)_sendSnapshotRequestRelayStream:(id)arg1 snapshotSessionID:(id)arg2;
+- (void)_sendSnapshotRequestStreamReceiver:(id)arg1 snapshotSessionID:(id)arg2;
+- (void)_sendSnapshotRequestStreamInitiator:(id)arg1 snapshotSessionID:(id)arg2;
+- (void)_sendSnapshotRequestRelayInitiator:(id)arg1 snapshotSessionID:(id)arg2;
+- (void)_sendSnapshotRequestRelayReceiver:(id)arg1 snapshotSessionID:(id)arg2;
+- (void)_sendSnapshotRequestLocal:(id)arg1 snapshotSessionID:(id)arg2;
+- (void)_sendStreamSnapshotRequest:(id)arg1 snapshotSessionID:(id)arg2;
 - (void)_handleSnapshotRemoteRequest:(id)arg1;
 - (void)_handleSnapshotRequest:(id)arg1;
+- (id)_createSnapshotSessionIDWithMessage:(id)arg1 error:(id *)arg2;
 - (id)getMostRecentSnapshotRequest;
 - (void)_handleCreateSnapshotFromBulletinContext:(id)arg1;
 - (void)_handleReleaseSnapshot:(id)arg1;
-- (void)monitorForEventsForServices:(id)arg1;
 - (void)_removeAllPendingRequests:(id)arg1;
 - (void)handleAccessoryIsNotReachable:(id)arg1;
 - (void)releaseSnapshot:(id)arg1;

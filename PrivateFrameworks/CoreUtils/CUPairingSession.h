@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CUAppleIDClient, CUPairedPeer, NSData, NSDictionary, NSObject<OS_dispatch_queue>, NSString;
+@class CUAppleIDClient, CUPairedPeer, NSArray, NSData, NSDictionary, NSObject<OS_dispatch_queue>, NSString;
 
 @interface CUPairingSession : NSObject
 {
@@ -15,11 +15,15 @@
     struct LogCategory *_ucat;
     unsigned int _flags;
     unsigned int _pinType;
+    unsigned int _pinTypeActual;
     unsigned int _sessionType;
     NSDictionary *_acl;
+    NSDictionary *_aclActual;
     NSDictionary *_additionalPeerInfo;
     NSDictionary *_additionalSelfInfo;
+    NSArray *_allowedMACAddresses;
     unsigned long long _selfAppFlags;
+    NSDictionary *_appInfoSelf;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     NSString *_fixedPIN;
     NSString *_label;
@@ -57,19 +61,24 @@
 @property(copy, nonatomic) NSString *mfiProductType; // @synthesize mfiProductType=_mfiProductType;
 @property(copy, nonatomic) NSData *mfiCertificateData; // @synthesize mfiCertificateData=_mfiCertificateData;
 @property(nonatomic) unsigned int sessionType; // @synthesize sessionType=_sessionType;
+@property(readonly, nonatomic) unsigned int pinTypeActual; // @synthesize pinTypeActual=_pinTypeActual;
 @property(nonatomic) unsigned int pinType; // @synthesize pinType=_pinType;
 @property(readonly, copy, nonatomic) NSDictionary *peerInfo; // @synthesize peerInfo=_peerInfo;
 @property(copy, nonatomic) NSString *label; // @synthesize label=_label;
 @property(nonatomic) unsigned int flags; // @synthesize flags=_flags;
 @property(copy, nonatomic) NSString *fixedPIN; // @synthesize fixedPIN=_fixedPIN;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
+@property(copy, nonatomic) NSDictionary *appInfoSelf; // @synthesize appInfoSelf=_appInfoSelf;
 @property(nonatomic) unsigned long long selfAppFlags; // @synthesize selfAppFlags=_selfAppFlags;
+@property(copy, nonatomic) NSArray *allowedMACAddresses; // @synthesize allowedMACAddresses=_allowedMACAddresses;
 @property(copy, nonatomic) NSDictionary *additionalSelfInfo; // @synthesize additionalSelfInfo=_additionalSelfInfo;
 @property(copy, nonatomic) NSDictionary *additionalPeerInfo; // @synthesize additionalPeerInfo=_additionalPeerInfo;
+@property(readonly, copy, nonatomic) NSDictionary *aclActual; // @synthesize aclActual=_aclActual;
 @property(copy, nonatomic) NSDictionary *acl; // @synthesize acl=_acl;
 - (void).cxx_destruct;
 - (int)deriveKeyWithSaltPtr:(const void *)arg1 saltLen:(unsigned long long)arg2 infoPtr:(const void *)arg3 infoLen:(unsigned long long)arg4 keyLen:(unsigned long long)arg5 outputKeyPtr:(void *)arg6;
 - (void)closeStream:(id)arg1;
+- (id)openStreamWithName:(id)arg1 type:(int)arg2 error:(id *)arg3;
 - (id)openStreamWithName:(id)arg1 error:(id *)arg2;
 - (void)_tryPIN:(id)arg1;
 - (void)tryPIN:(id)arg1;
@@ -79,6 +88,7 @@
 - (void)invalidate;
 - (void)_activate;
 - (void)activate;
+@property(readonly, copy, nonatomic) NSDictionary *appInfoPeer;
 @property(readonly, nonatomic) unsigned long long peerAppFlags;
 @property(readonly, nonatomic) CUPairedPeer *pairedPeer;
 - (void)_cleanup;

@@ -13,6 +13,7 @@
 @interface PKPeerPaymentAccount : NSObject <NSSecureCoding>
 {
     BOOL _accountStateDirty;
+    BOOL _identityVerificationForDisbursementsRequired;
     BOOL _identityVerificationRequired;
     BOOL _termsAcceptanceRequired;
     unsigned long long _state;
@@ -22,11 +23,11 @@
     NSDecimalNumber *_maximumBalance;
     NSDate *_lastUpdated;
     double _proactiveFetchPeriod;
-    NSString *_termsIdentifier;
-    NSURL *_termsURL;
     NSURL *_associatedPassURL;
     long long _pendingPaymentCount;
     NSArray *_supportedFeatureDescriptors;
+    NSString *_termsIdentifier;
+    NSURL *_termsURL;
     NSString *_associatedPassSerialNumber;
     NSString *_associatedPassTypeIdentifier;
 }
@@ -34,13 +35,14 @@
 + (BOOL)supportsSecureCoding;
 @property(copy, nonatomic) NSString *associatedPassTypeIdentifier; // @synthesize associatedPassTypeIdentifier=_associatedPassTypeIdentifier;
 @property(copy, nonatomic) NSString *associatedPassSerialNumber; // @synthesize associatedPassSerialNumber=_associatedPassSerialNumber;
+@property(copy, nonatomic) NSURL *termsURL; // @synthesize termsURL=_termsURL;
+@property(copy, nonatomic) NSString *termsIdentifier; // @synthesize termsIdentifier=_termsIdentifier;
 @property(nonatomic) BOOL termsAcceptanceRequired; // @synthesize termsAcceptanceRequired=_termsAcceptanceRequired;
 @property(nonatomic) BOOL identityVerificationRequired; // @synthesize identityVerificationRequired=_identityVerificationRequired;
 @property(copy, nonatomic) NSArray *supportedFeatureDescriptors; // @synthesize supportedFeatureDescriptors=_supportedFeatureDescriptors;
+@property(nonatomic) BOOL identityVerificationForDisbursementsRequired; // @synthesize identityVerificationForDisbursementsRequired=_identityVerificationForDisbursementsRequired;
 @property(nonatomic) long long pendingPaymentCount; // @synthesize pendingPaymentCount=_pendingPaymentCount;
 @property(copy, nonatomic) NSURL *associatedPassURL; // @synthesize associatedPassURL=_associatedPassURL;
-@property(copy, nonatomic) NSURL *termsURL; // @synthesize termsURL=_termsURL;
-@property(copy, nonatomic) NSString *termsIdentifier; // @synthesize termsIdentifier=_termsIdentifier;
 @property(nonatomic) double proactiveFetchPeriod; // @synthesize proactiveFetchPeriod=_proactiveFetchPeriod;
 @property(retain, nonatomic) NSDate *lastUpdated; // @synthesize lastUpdated=_lastUpdated;
 @property(nonatomic, getter=isAccountStateDirty) BOOL accountStateDirty; // @synthesize accountStateDirty=_accountStateDirty;
@@ -60,6 +62,8 @@
 @property(readonly, copy, nonatomic) NSArray *defaultSuggestions;
 - (id)initWithDictionary:(id)arg1 lastUpdated:(id)arg2;
 - (id)_featureWithIdentifier:(id)arg1;
+- (id)instantWithdrawalPromotionFeatureDescriptor;
+- (BOOL)supportsInstantWithdrawal;
 - (id)cardBalancePromotionFeatureDescriptor;
 - (BOOL)supportsCardBalancePromotion;
 - (id)requestFromUserFeatureDescriptor;

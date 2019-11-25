@@ -6,12 +6,11 @@
 
 #import "NSObject.h"
 
-@class GEOCompanionRouteContext, GEOCompanionRouteDetails, GEOCompanionRouteStatus, GEOComposedRoute, GEOLocation, GEONameInfo, GEONavigationGuidanceState, GEONavigationRouteSummary, GEONavigationRouteTransitSummary, GEORouteMatch, NSArray, NSData, NSString, NSXPCConnection;
+@class GEOComposedRoute, GEOLocation, GEONameInfo, GEONavigationGuidanceState, GEONavigationRouteSummary, GEONavigationRouteTransitSummary, GEORouteMatch, NSArray, NSData, NSString, NSXPCConnection;
 
 @interface GEONavigationProxy : NSObject
 {
     NSXPCConnection *_navdConnection;
-    NSXPCConnection *_nanomapscdConnection;
     int _navigationStartedToken;
     BOOL _hasNavigationStartedToken;
     NSString *_destinationName;
@@ -38,24 +37,12 @@
     NSData *_trafficIncidentAlertDetailsData;
     int _navigationVoiceVolume;
     BOOL _isNavigatingInLowGuidance;
-    GEOCompanionRouteDetails *_companionRouteDetails;
-    GEOCompanionRouteStatus *_companionRouteStatus;
-    GEOCompanionRouteContext *_companionRouteContext;
-    BOOL _shouldSendRouteWithStatus;
     BOOL _isConnectedToCarplay;
     id <GEOServerFormattedStepStringFormatter> _formatter;
 }
 
-@property(retain) id <GEOServerFormattedStepStringFormatter> formatter; // @synthesize formatter=_formatter;
+@property(retain, nonatomic) id <GEOServerFormattedStepStringFormatter> formatter; // @synthesize formatter=_formatter;
 - (void).cxx_destruct;
-- (void)_invalidateNavigationSessionWithRouteContext:(id)arg1;
-- (void)_sendCoalescedCompanionRouteStatus;
-- (void)_sendCompanionRouteStatus;
-- (void)_sendCompanionRouteDetails:(id)arg1 routeStatus:(id)arg2 routeContext:(id)arg3;
-- (void)_markCurrentHapticsAsTriggered;
-- (void)_updateCompanionRouteStatus;
-- (void)_closeNanomapscdConnection;
-- (void)_openNanomapscdConnection;
 - (void)_sendNavigationVoiceVolume;
 - (void)_sendTrafficIncidentAlertDetailsData;
 - (void)_sendPositionFromDestination;
@@ -82,7 +69,7 @@
 - (void)setPositionFromDestination:(CDStruct_c3b9c2ee)arg1;
 - (void)setPositionFromManeuver:(CDStruct_c3b9c2ee)arg1;
 - (void)setPositionFromSign:(CDStruct_c3b9c2ee)arg1;
-- (void)setClusteredSectionSelectedRideFromRoute:(id)arg1 routeID:(id)arg2;
+- (void)setClusteredSectionSelectedRideFromRoute:(id)arg1;
 - (void)setStepNameInfo:(id)arg1;
 - (void)setDisplayedStepIndex:(unsigned long long)arg1;
 - (void)setStepIndex:(unsigned long long)arg1;
@@ -94,6 +81,7 @@
 - (void)setLocationUnreliable:(BOOL)arg1;
 - (void)setLastLocation:(id)arg1;
 - (void)setNavigationState:(int)arg1;
+- (void)setNavigationSessionState:(unsigned long long)arg1 transportType:(int)arg2;
 - (void)setRoute:(id)arg1;
 - (void)stop;
 - (void)startWithDestinationName:(id)arg1;

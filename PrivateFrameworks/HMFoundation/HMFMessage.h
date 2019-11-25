@@ -8,14 +8,17 @@
 
 #import "NSCopying.h"
 #import "NSMutableCopying.h"
+#import "NSSecureCoding.h"
 
 @class HMFActivity, HMFMessageDestination, HMFMessageInternal, HMFMessageTransport, NSDictionary, NSString, NSUUID;
 
-@interface HMFMessage : HMFObject <NSCopying, NSMutableCopying>
+@interface HMFMessage : HMFObject <NSCopying, NSMutableCopying, NSSecureCoding>
 {
     HMFMessageInternal *_internal;
 }
 
++ (id)supportedClasses;
++ (BOOL)supportsSecureCoding;
 + (id)shortDescription;
 + (id)messageWithName:(id)arg1 qualityOfService:(long long)arg2 destination:(id)arg3 payload:(id)arg4;
 + (id)messageWithName:(id)arg1 destination:(id)arg2 payload:(id)arg3;
@@ -27,8 +30,13 @@
 + (id)messageWithName:(id)arg1 messagePayload:(id)arg2;
 @property(readonly, nonatomic) HMFMessageInternal *internal; // @synthesize internal=_internal;
 - (void).cxx_destruct;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (BOOL)respondWithPayload:(id)arg1 error:(id)arg2;
+- (BOOL)respondWithError:(id)arg1;
+- (BOOL)respondWithPayload:(id)arg1;
 @property(copy, nonatomic) CDUnknownBlockType responseHandler;
 @property(copy, nonatomic) NSDictionary *messagePayload;
 @property(readonly, copy, nonatomic) NSDictionary *headers;
@@ -37,6 +45,7 @@
 @property(readonly, nonatomic) __weak HMFMessageTransport *transport;
 @property(retain, nonatomic) HMFMessageDestination *destination;
 @property(readonly, nonatomic) long long qualityOfService;
+@property(readonly, nonatomic) double timeout;
 @property(readonly, copy, nonatomic) NSString *name;
 @property(copy, nonatomic) NSUUID *identifier;
 - (id)description;
@@ -52,7 +61,6 @@
 - (id)initWithName:(id)arg1 identifier:(id)arg2 messagePayload:(id)arg3 responseHandler:(CDUnknownBlockType)arg4;
 - (id)arrayOfDateComponentsForKey:(id)arg1;
 - (id)predicateForKey:(id)arg1;
-- (id)locationForKey:(id)arg1;
 - (id)calendarForKey:(id)arg1;
 - (id)errorForKey:(id)arg1;
 - (id)dateComponentsForKey:(id)arg1;

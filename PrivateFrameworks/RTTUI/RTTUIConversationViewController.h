@@ -9,35 +9,38 @@
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
 #import "NSTextViewDelegate.h"
+#import "RTTUIServiceCellDelegate.h"
 #import "RTTUIUtteranceCellDelegate.h"
 
-@class CAShapeLayer, NSImageView, NSLock, NSMutableArray, NSObject<OS_dispatch_queue>, NSScrollView, NSString, NSTableView, NSTextView, RTTConversation, RTTUtterance, TUCall;
+@class AXDispatchTimer, CAShapeLayer, NSButton, NSMutableString, NSScrollView, NSString, NSTableView, NSTextView, RTTConversation, RTTUIServiceUpdateCell, RTTUtterance, TUCall;
 
-@interface RTTUIConversationViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource, RTTUIUtteranceCellDelegate, NSTextViewDelegate>
+@interface RTTUIConversationViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource, RTTUIUtteranceCellDelegate, NSTextViewDelegate, RTTUIServiceCellDelegate>
 {
     NSTextView *_textView;
     CAShapeLayer *_bubbleLayer;
+    RTTUIServiceUpdateCell *_serviceCell;
     id _keyboardEventMonitor;
-    NSImageView *_gaButton;
-    NSLock *_realtimeSendLock;
-    NSObject<OS_dispatch_queue> *_utteranceRequestQueue;
-    BOOL _processingUtteranceBuffer;
+    NSButton *_gaButton;
+    AXDispatchTimer *_voAnnouncementTimer;
+    AXDispatchTimer *_realTimeTimeout;
+    NSMutableString *_voAnnouncementBuffer;
+    BOOL _serviceMessageVisible;
     RTTConversation *_conversation;
+    NSString *_currentServiceMessage;
     NSScrollView *_scrollView;
     NSTableView *_tableView;
     RTTUtterance *_currentUtterance;
     TUCall *_call;
-    NSMutableArray *_utteranceBuffer;
 }
 
++ (BOOL)_validRectangle:(struct CGRect)arg1;
 + (id)viewControllerForConversation:(id)arg1;
 + (id)viewControllerForCall:(id)arg1;
-@property(nonatomic) BOOL processingUtteranceBuffer; // @synthesize processingUtteranceBuffer=_processingUtteranceBuffer;
-@property(retain, nonatomic) NSMutableArray *utteranceBuffer; // @synthesize utteranceBuffer=_utteranceBuffer;
 @property(retain, nonatomic) TUCall *call; // @synthesize call=_call;
 @property(retain, nonatomic) RTTUtterance *currentUtterance; // @synthesize currentUtterance=_currentUtterance;
 @property(retain, nonatomic) NSTableView *tableView; // @synthesize tableView=_tableView;
 @property(retain, nonatomic) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
+@property(retain, nonatomic) NSString *currentServiceMessage; // @synthesize currentServiceMessage=_currentServiceMessage;
 @property(retain, nonatomic) RTTConversation *conversation; // @synthesize conversation=_conversation;
 - (void).cxx_destruct;
 - (void)textDidChange:(id)arg1;
@@ -50,24 +53,33 @@
 - (void)utteranceCellDidUpdateContent:(id)arg1;
 - (void)updateTableViewSizeAnimated:(BOOL)arg1;
 - (void)viewDidAppear;
+- (void)updateGAButton:(BOOL)arg1;
+- (void)viewWillAppear;
 - (void)setupTableView;
 - (void)loadView;
+- (void)_processRealtimeTimeout;
 - (void)realtimeTextDidChange;
+- (id)lastRowPathForUtterance:(id)arg1;
 - (void)gaButtonPressed:(id)arg1;
 - (void)deviceDidReceiveString:(id)arg1 forUtterance:(id)arg2;
+- (void)_scrollToIndexPathIfNecessary:(id)arg1 animated:(BOOL)arg2;
+- (void)updateVoiceOverAnnouncement:(id)arg1;
 - (id)currentContactPath;
 - (id)cannedResponses;
 - (id)cellAtIndexPath:(id)arg1;
 - (void)setTextViewUtterance:(id)arg1;
 - (id)textViewUtterance;
-- (void)sendNewUtteranceString:(id)arg1;
-- (void)_sendNewUtteranceString:(id)arg1 atIndex:(unsigned long long)arg2 forCellPath:(id)arg3;
-- (void)processUtteranceQueue;
+- (void)updateUtterance:(id)arg1 forIndexPath:(id)arg2;
 - (id)addUtterance:(id)arg1;
-- (id)callContainingUtterance;
+- (void)_updateServiceCellWithString:(id)arg1;
+- (void)updateServiceCellWithString:(id)arg1;
+- (id)currentCall;
+- (id)contactDisplayString;
 - (void)toggleMute:(id)arg1;
 - (void)updateMuteButton;
+- (id)onHoldMessage;
 - (void)callDidConnect:(id)arg1;
+- (void)updateCallActiveStatus:(BOOL)arg1;
 - (void)viewDidLoad;
 - (void)dealloc;
 - (id)inputTextView;

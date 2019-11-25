@@ -10,6 +10,7 @@
 
 @class NSString;
 
+__attribute__((visibility("hidden")))
 @interface OISFUBufferedInputStream : NSObject <OISFUBufferedInputStream>
 {
     id <SFUInputStream> mStream;

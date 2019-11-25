@@ -28,7 +28,9 @@
     unsigned char _osVersion;
     BOOL _paired;
     unsigned int _deviceFlags;
+    unsigned int _hotspotInfo;
     unsigned int _systemPairState;
+    NSString *_accountID;
     NSArray *_batteryInfo;
     SFBLEDevice *_bleDevice;
     NSString *_contactIdentifier;
@@ -36,9 +38,12 @@
     long long _distance;
     NSUUID *_identifier;
     NSString *_idsIdentifier;
+    NSString *_mediaRemoteID;
+    NSString *_mediaRouteID;
     NSString *_model;
     NSString *_name;
     unsigned long long _problemFlags;
+    NSString *_rapportIdentifier;
     NSString *_requestSSID;
 }
 
@@ -50,14 +55,18 @@
 @property(nonatomic) BOOL wakeDevice; // @synthesize wakeDevice=_wakeDevice;
 @property(nonatomic) unsigned int systemPairState; // @synthesize systemPairState=_systemPairState;
 @property(copy, nonatomic) NSString *requestSSID; // @synthesize requestSSID=_requestSSID;
+@property(readonly, nonatomic) NSString *rapportIdentifier; // @synthesize rapportIdentifier=_rapportIdentifier;
 @property(readonly, nonatomic) unsigned long long problemFlags; // @synthesize problemFlags=_problemFlags;
 @property(nonatomic) BOOL needsSetup; // @synthesize needsSetup=_needsSetup;
 @property(readonly, nonatomic) BOOL needsKeyboard; // @synthesize needsKeyboard=_needsKeyboard;
 @property(readonly, nonatomic) BOOL needsAWDL; // @synthesize needsAWDL=_needsAWDL;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(copy, nonatomic) NSString *model; // @synthesize model=_model;
+@property(readonly, copy, nonatomic) NSString *mediaRouteID; // @synthesize mediaRouteID=_mediaRouteID;
+@property(readonly, copy, nonatomic) NSString *mediaRemoteID; // @synthesize mediaRemoteID=_mediaRemoteID;
 @property(copy, nonatomic) NSString *idsIdentifier; // @synthesize idsIdentifier=_idsIdentifier;
 @property(copy, nonatomic) NSUUID *identifier; // @synthesize identifier=_identifier;
+@property(nonatomic) unsigned int hotspotInfo; // @synthesize hotspotInfo=_hotspotInfo;
 @property(nonatomic) BOOL hasProblem; // @synthesize hasProblem=_hasProblem;
 @property(readonly, nonatomic) BOOL duetSync; // @synthesize duetSync=_duetSync;
 @property(nonatomic) long long distance; // @synthesize distance=_distance;
@@ -71,6 +80,7 @@
 @property(copy, nonatomic) NSArray *batteryInfo; // @synthesize batteryInfo=_batteryInfo;
 @property(nonatomic) BOOL autoUnlockWatch; // @synthesize autoUnlockWatch=_autoUnlockWatch;
 @property(nonatomic) BOOL autoUnlockEnabled; // @synthesize autoUnlockEnabled=_autoUnlockEnabled;
+@property(copy, nonatomic) NSString *accountID; // @synthesize accountID=_accountID;
 - (void).cxx_destruct;
 - (void)updateWithRPIdentity:(id)arg1;
 - (void)updateWithPairedPeer:(id)arg1;

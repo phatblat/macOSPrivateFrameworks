@@ -8,11 +8,10 @@
 
 #import "MRNowPlayingClientState.h"
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>;
+@class NSMutableDictionary;
 
 @interface MRNowPlayingOriginClientManager : NSObject <MRNowPlayingClientState>
 {
-    NSObject<OS_dispatch_queue> *_serialQueue;
     NSMutableDictionary *_originClients;
     NSMutableDictionary *_originClientRequests;
 }

@@ -11,6 +11,8 @@
     struct AugmentableInspectorController *_controller;
 }
 
+- (void)powerEfficientPlaybackStateChangedWithNodeId:(int)arg1 timestamp:(double)arg2 isPowerEfficient:(BOOL)arg3;
+- (void)didFireEventWithNodeId:(int)arg1 eventName:(id)arg2 timestamp:(double)arg3 data:(id *)arg4;
 - (void)willRemoveEventListenerWithNodeId:(int)arg1;
 - (void)didAddEventListenerWithNodeId:(int)arg1;
 - (void)pseudoElementRemovedWithParentId:(int)arg1 pseudoElementId:(int)arg2;

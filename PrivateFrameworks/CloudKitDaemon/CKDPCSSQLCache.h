@@ -16,7 +16,7 @@ __attribute__((visibility("hidden")))
     unsigned long long _cacheHitCount;
 }
 
-+ (void)_evictPCSSQLCachesForAppContainerTuples:(id)arg1;
++ (void)_evictPCSSQLCachesForAppContainerAccountTuples:(id)arg1;
 + (void)evictPCSSQLCachesForKnownClientContexts;
 + (void)registerPCSSQLCacheEvictionActivity;
 + (id)globalPCSSQLCacheEvictionQueue;

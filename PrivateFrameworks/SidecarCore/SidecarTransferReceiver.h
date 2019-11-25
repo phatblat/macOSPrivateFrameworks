@@ -6,22 +6,19 @@
 
 #import <SidecarCore/SidecarTransfer.h>
 
-@class NSArray, NSDictionary, NSMutableArray;
+@class NSMutableArray, NSMutableDictionary;
 
 __attribute__((visibility("hidden")))
 @interface SidecarTransferReceiver : SidecarTransfer
 {
-    long long _completedItems;
-    long long _expectedItems;
-    NSMutableArray *_expectedSizes;
-    NSMutableArray *_expectedTypes;
-    NSArray *_mutableItems;
-    NSDictionary *_options;
+    NSMutableDictionary *_groups;
+    NSMutableArray *_orderedGroups;
 }
 
-@property(readonly, nonatomic) NSDictionary *options; // @synthesize options=_options;
 - (void).cxx_destruct;
+- (CDUnknownBlockType)_resumeMessage:(id)arg1;
 - (void)handleMessage:(id)arg1;
+- (id)initWithSession:(id)arg1 requestID:(long long)arg2;
 
 @end
 

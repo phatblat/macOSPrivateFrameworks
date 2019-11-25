@@ -15,11 +15,14 @@
 @interface _INPBLocalizedProject : PBCodable <_INPBLocalizedProject, NSSecureCoding, NSCopying>
 {
     struct _has;
+    BOOL __encodeLegacyGloryData;
     _INPBAppNames *_appNames;
     _INPBIntentVocabulary *_intentVocabulary;
     _INPBLanguageTag *_language;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(retain, nonatomic) _INPBLanguageTag *language; // @synthesize language=_language;
 @property(retain, nonatomic) _INPBIntentVocabulary *intentVocabulary; // @synthesize intentVocabulary=_intentVocabulary;
 @property(retain, nonatomic) _INPBAppNames *appNames; // @synthesize appNames=_appNames;
@@ -28,6 +31,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(readonly, nonatomic) BOOL hasLanguage;

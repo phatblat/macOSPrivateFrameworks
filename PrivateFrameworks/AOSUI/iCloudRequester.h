@@ -21,6 +21,7 @@
     BOOL _isFinished;
     BOOL _canceled;
     AKAppleIDSession *_appleIDSession;
+    NSString *_accountID;
     BOOL _shouldRetry;
     BOOL _isCanceled;
     NSObject<OS_dispatch_queue> *_handlerQueue;
@@ -31,6 +32,7 @@
 @property(retain, nonatomic) NSHTTPURLResponse *httpResponse; // @synthesize httpResponse=_httpResponse;
 @property(getter=isCanceled) BOOL canceled; // @synthesize canceled=_isCanceled;
 @property(getter=isFinished) BOOL finished; // @synthesize finished=_isFinished;
+- (void).cxx_destruct;
 - (void)connection:(id)arg1 didFailWithError:(id)arg2;
 - (void)connectionDidFinishLoading:(id)arg1;
 - (void)connection:(id)arg1 didReceiveData:(id)arg2;
@@ -39,8 +41,10 @@
 - (void)__unsafe_callHandler;
 - (void)_callHandler;
 - (void)_kickOffRequest:(id)arg1;
+- (void)generateiCloudRequestHeadersForAccountID:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)start;
 - (void)cancel;
+- (id)initWithRequest:(id)arg1 signForAccountID:(id)arg2 handler:(CDUnknownBlockType)arg3;
 - (id)initWithRequest:(id)arg1 handler:(CDUnknownBlockType)arg2;
 
 // Remaining properties

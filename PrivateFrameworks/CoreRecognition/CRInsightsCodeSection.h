@@ -10,13 +10,12 @@
 
 @interface CRInsightsCodeSection : NSObject
 {
-    NSString *_description;
     NSString *_name;
+    NSString *_description;
 }
 
-@property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSString *description;
+- (id)description;
 - (id)initWithName:(id)arg1 andDescription:(id)arg2;
 
 @end

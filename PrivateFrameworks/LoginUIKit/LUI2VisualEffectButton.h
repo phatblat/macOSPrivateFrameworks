@@ -28,6 +28,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 @property(retain) NSImage *image;
+@property long long blendingMode;
 - (BOOL)accessibilityPerformPress;
 - (void)setAccessibilityLabel:(id)arg1;
 - (id)accessibilityLabel;
@@ -38,6 +39,7 @@
 - (BOOL)performKeyEquivalent:(id)arg1;
 @property unsigned long long keyEquivalentModifierMask;
 @property(copy) NSString *keyEquivalent;
+- (void)setNextKeyView:(id)arg1;
 - (void)_setupVisualEffectButton;
 
 // Remaining properties

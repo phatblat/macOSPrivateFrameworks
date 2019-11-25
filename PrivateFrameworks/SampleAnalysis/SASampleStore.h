@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, SABinaryLocator, SAFrame, SAMountStatusTracker, SASharedCache, SATask, SATimestamp, SAWSUpdateDataStore;
+@class NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, SABinaryLoadInfo, SABinaryLocator, SAFrame, SAMountStatusTracker, SASharedCache, SATask, SATimeRange, SATimestamp, SAWSUpdateDataStore;
 
 @interface SASampleStore : NSObject <NSSecureCoding>
 {
@@ -26,7 +26,6 @@
     SAWSUpdateDataStore *_wsDataStore;
     SABinaryLocator *_binaryLocator;
     NSMutableSet *_pidsToTrack;
-    SATask *_targetTask;
     int _targetProcessId;
     unsigned long long _targetThreadId;
     struct mach_timebase_info _machTimebase;
@@ -43,6 +42,9 @@
     double _sampleIntervalLimit;
     NSMutableArray *_namesToUseDsymForUUID;
     NSMutableArray *_idsToUseDsymForUUID;
+    BOOL _bulkSymbolicationFailed;
+    unsigned long long _numMicrostackshotsSkippedDueToMissingLoadInfos;
+    unsigned long long _targetHIDEventMachAbs;
     BOOL _keepMicrostackshotsWithoutLoadInfo;
     BOOL _sanitizePaths;
     BOOL _omitSensitiveStrings;
@@ -67,7 +69,8 @@
     NSString *_osBuildVersion;
     NSString *_hardwareModel;
     NSString *_bootArgs;
-    unsigned long long _targetHIDEventMachAbs;
+    unsigned long long _targetHIDEventEndMachAbs;
+    SATask *_targetProcess;
     double _cpuUsed;
     double _cpuDuration;
     double _cpuLimit;
@@ -82,6 +85,7 @@
     double _writeLimitDuration;
     NSString *_event;
     NSString *_eventNote;
+    SATimeRange *_eventTimeRange;
     NSString *_signature;
     NSString *_actionTaken;
     double _extraDuration;
@@ -97,13 +101,13 @@
     NSString *_targetProcessCommerceAppID;
     NSString *_targetProcessCommerceExternalID;
     NSString *_targetProcessVendorID;
-    NSMutableSet *_rootKernelFrames;
+    SABinaryLoadInfo *_prelinkedKernelLoadInfo;
 }
 
 + (BOOL)supportsSecureCoding;
 + (BOOL)canOpenFileAsKTraceFile:(const char *)arg1 errorOut:(id *)arg2;
 + (id)sampleStoreForSpindumpFile:(const char *)arg1;
-@property(readonly) NSMutableSet *rootKernelFrames; // @synthesize rootKernelFrames=_rootKernelFrames;
+@property(retain) SABinaryLoadInfo *prelinkedKernelLoadInfo; // @synthesize prelinkedKernelLoadInfo=_prelinkedKernelLoadInfo;
 @property(readonly) NSString *targetProcessVendorID; // @synthesize targetProcessVendorID=_targetProcessVendorID;
 @property(readonly) NSString *targetProcessCommerceExternalID; // @synthesize targetProcessCommerceExternalID=_targetProcessCommerceExternalID;
 @property(readonly) NSString *targetProcessCommerceAppID; // @synthesize targetProcessCommerceAppID=_targetProcessCommerceAppID;
@@ -119,6 +123,7 @@
 @property double extraDuration; // @synthesize extraDuration=_extraDuration;
 @property(copy) NSString *actionTaken; // @synthesize actionTaken=_actionTaken;
 @property(copy) NSString *signature; // @synthesize signature=_signature;
+@property(copy) SATimeRange *eventTimeRange; // @synthesize eventTimeRange=_eventTimeRange;
 @property(copy) NSString *eventNote; // @synthesize eventNote=_eventNote;
 @property(copy) NSString *event; // @synthesize event=_event;
 @property double writeLimitDuration; // @synthesize writeLimitDuration=_writeLimitDuration;
@@ -133,7 +138,8 @@
 @property double cpuLimit; // @synthesize cpuLimit=_cpuLimit;
 @property double cpuDuration; // @synthesize cpuDuration=_cpuDuration;
 @property double cpuUsed; // @synthesize cpuUsed=_cpuUsed;
-@property unsigned long long targetHIDEventMachAbs; // @synthesize targetHIDEventMachAbs=_targetHIDEventMachAbs;
+@property(readonly) SATask *targetProcess; // @synthesize targetProcess=_targetProcess;
+@property unsigned long long targetHIDEventEndMachAbs; // @synthesize targetHIDEventEndMachAbs=_targetHIDEventEndMachAbs;
 @property(copy) NSString *bootArgs; // @synthesize bootArgs=_bootArgs;
 @property unsigned int numActiveCPUs; // @synthesize numActiveCPUs=_numActiveCPUs;
 @property(copy) NSString *hardwareModel; // @synthesize hardwareModel=_hardwareModel;
@@ -178,6 +184,7 @@
 - (void)gatherKernelVersion;
 - (void)gatherKextStat;
 - (void)symbolicate;
+- (void)symbolicateViaBulkSymbolication:(id)arg1;
 - (BOOL)findCpuSignalHandlerStackLeafKernelFrame;
 - (long long)_addMicrostackshotFromData:(id)arg1 ofTypes:(int)arg2 inTimeRangeStart:(double)arg3 end:(double)arg4 onlyPid:(int)arg5 onlyTid:(unsigned long long)arg6;
 - (long long)addMicrostackshotsFromData:(id)arg1 ofTypes:(int)arg2 inTimeRangeStart:(double)arg3 end:(double)arg4 onlyPid:(int)arg5 onlyTid:(unsigned long long)arg6;
@@ -187,7 +194,7 @@
 - (unsigned long long)addKCDataStackshot:(id)arg1 returningTimestamp:(id *)arg2;
 - (unsigned long long)addKCDataStackshots:(id)arg1 createSeparateSamplePerStackshot:(BOOL)arg2;
 - (void)addProcessInfoFromTailspin:(id)arg1;
-- (unsigned long long)addKCDataThreadV4:(const struct thread_snapshot_v4 *)arg1 threadV2:(const struct thread_snapshot_v2 *)arg2 deltaThreadV3:(const struct thread_delta_snapshot_v3 *)arg3 deltaThreadV2:(const struct thread_delta_snapshot_v2 *)arg4 timestamp:(id)arg5 sampleIndex:(unsigned long long)arg6 stack:(id)arg7 name:(const char *)arg8 waitInfo:(const struct stackshot_thread_waitinfo *)arg9 instructionCycles:(const struct instrs_cycles_snapshot *)arg10 task:(id)arg11 taskIsSuspended:(BOOL)arg12;
+- (unsigned long long)addKCDataThreadV4:(const struct thread_snapshot_v4 *)arg1 threadV2:(const struct thread_snapshot_v2 *)arg2 deltaThreadV3:(const struct thread_delta_snapshot_v3 *)arg3 deltaThreadV2:(const struct thread_delta_snapshot_v2 *)arg4 timestamp:(id)arg5 sampleIndex:(unsigned long long)arg6 stack:(id)arg7 threadName:(const char *)arg8 dispatchQueueLabel:(const char *)arg9 waitInfo:(const struct stackshot_thread_waitinfo *)arg10 turnstileInfo:(const struct stackshot_thread_turnstileinfo *)arg11 instructionCycles:(const struct instrs_cycles_snapshot *)arg12 task:(id)arg13 kernelTask:(id)arg14 taskIsSuspended:(BOOL)arg15;
 - (unsigned long long)indexOfLastSampleOnOrBeforeTimestamp:(id)arg1;
 - (unsigned long long)indexOfFirstSampleOnOrAfterTimestamp:(id)arg1;
 - (void)dealloc;
@@ -196,19 +203,24 @@
 - (id)initForFileParsing;
 - (id)initForLiveSampling;
 - (id)init;
+- (id)firstTaskWithPid:(int)arg1 orTid:(unsigned long long)arg2;
 - (id)lastTaskWithPid:(int)arg1 orTid:(unsigned long long)arg2;
 - (id)taskWithPid:(int)arg1 orTid:(unsigned long long)arg2 atTimestamp:(id)arg3;
 - (id)taskWithPid:(int)arg1 atTimestamp:(id)arg2;
 - (id)taskWithUniquePid:(unsigned long long)arg1 atTimestamp:(id)arg2;
+- (id)_firstTaskOnOrAfterTimestamp:(id)arg1 inTasks:(id)arg2;
+- (id)firstTaskWithUniquePid:(unsigned long long)arg1 onOrAfterTimestamp:(id)arg2;
+- (id)firstTaskWithPid:(int)arg1 onOrAfterTimestamp:(id)arg2;
+- (id)firstTaskWithPid:(int)arg1;
+- (id)firstTaskWithUniquePid:(unsigned long long)arg1;
 - (id)_lastTaskOnOrBeforeTimestamp:(id)arg1 inTasks:(id)arg2;
 - (id)lastTaskWithUniquePid:(unsigned long long)arg1 onOrBeforeTimestamp:(id)arg2;
 - (id)lastTaskWithPid:(int)arg1 onOrBeforeTimestamp:(id)arg2;
 - (id)lastTaskWithPid:(int)arg1;
 - (id)lastTaskWithUniquePid:(unsigned long long)arg1;
-- (id)addKernelStack:(id)arg1;
-- (id)taskForMicrostackshotTask:(const struct task_snapshot *)arg1 loadInfos:(const struct dyld_uuid_info_64 *)arg2 numLoadInfos:(unsigned int)arg3 machineArchitecture:(struct _CSArchitecture)arg4 sharedCache:(id)arg5;
-- (id)taskForKCDataDeltaTask:(const struct task_delta_snapshot_v2 *)arg1 loadInfos:(const struct dyld_uuid_info_64 *)arg2 numLoadInfos:(unsigned int)arg3 machineArchitecture:(struct _CSArchitecture)arg4 timestamp:(id)arg5 sharedCache:(id)arg6;
-- (id)taskForKCDataTask:(const struct task_snapshot_v2 *)arg1 loadInfos:(const struct dyld_uuid_info_64 *)arg2 numLoadInfos:(unsigned int)arg3 machineArchitecture:(struct _CSArchitecture)arg4 timestamp:(id)arg5 sharedCache:(id)arg6;
+- (id)taskForMicrostackshotTask:(const struct task_snapshot *)arg1 loadInfos:(const struct dyld_uuid_info_64 *)arg2 numLoadInfos:(unsigned int)arg3 machineArchitecture:(struct _CSArchitecture)arg4 sharedCache:(id)arg5 loadInfosIsPartial:(_Bool)arg6;
+- (id)taskForKCDataDeltaTask:(const struct task_delta_snapshot_v2 *)arg1 loadInfos:(const struct dyld_uuid_info_64 *)arg2 numLoadInfos:(unsigned int)arg3 machineArchitecture:(struct _CSArchitecture)arg4 timestamp:(id)arg5 sharedCache:(id)arg6 loadInfosIsPartial:(_Bool)arg7;
+- (id)taskForKCDataTask:(const struct task_snapshot_v2 *)arg1 loadInfos:(const struct dyld_uuid_info_64 *)arg2 numLoadInfos:(unsigned int)arg3 machineArchitecture:(struct _CSArchitecture)arg4 timestamp:(id)arg5 sharedCache:(id)arg6 loadInfosIsPartial:(_Bool)arg7;
 - (void)postprocess;
 - (void)gatherExtraInfoForTargetProcess:(id)arg1;
 - (void)finishedSamplingLiveSystem;
@@ -219,7 +231,8 @@
 @property(readonly) NSString *targetProcessBundleName;
 @property(readonly) NSString *targetProcessAbsolutePath;
 @property(readonly) NSString *targetProcessName;
-@property(readonly) SATask *targetProcess;
+- (void)findTargetProcessInTimeRange:(id)arg1;
+- (void)findTargetProcess;
 @property int targetProcessId;
 @property unsigned long long targetThreadId;
 - (BOOL)setTargetProcessWithHint:(id)arg1;
@@ -238,15 +251,16 @@
 @property double kPerfPETSampleIntervalLimit; // @dynamic kPerfPETSampleIntervalLimit;
 @property BOOL haveKPerfSched; // @dynamic haveKPerfSched;
 @property BOOL keepStateBetweenSampleIndexes; // @dynamic keepStateBetweenSampleIndexes;
+@property unsigned long long targetHIDEventMachAbs;
 - (BOOL)initWithPAStyleCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (BOOL)parseKTraceFile:(const char *)arg1 warningsOut:(id)arg2 errorOut:(id *)arg3;
-- (int)_addKPerfDataFromKTraceSession:(struct ktrace_session *)arg1 beforeMachAbsTime:(unsigned long long)arg2 sharedCache64bit:(id)arg3 sharedCache32bit:(id)arg4;
+- (int)_addKPerfDataFromKTraceSession:(struct ktrace_session *)arg1 beforeMachAbsTime:(unsigned long long)arg2 systemSharedCache:(id)arg3 nonSystemSharedCache:(id)arg4 pidsUsingNonSystemSharedCache:(id)arg5;
 - (void)kperfLostEvents:(struct trace_point *)arg1 state:(id)arg2;
 - (void)kperfExecString:(struct trace_point *)arg1 state:(id)arg2;
 - (void)kperfNewThread:(struct trace_point *)arg1 state:(id)arg2;
-- (void)kperfRecord:(struct kpdecode_record *)arg1 state:(id)arg2 frameIterator:(id)arg3 sharedCache64bit:(id)arg4 sharedCache32bit:(id)arg5;
+- (void)kperfRecord:(struct kpdecode_record *)arg1 state:(id)arg2 frameIterator:(id)arg3 systemSharedCache:(id)arg4 nonSystemSharedCache:(id)arg5 pidsUsingNonSystemSharedCache:(id)arg6;
 - (void)kperfTimerFire:(struct trace_point *)arg1 state:(id)arg2;
 - (void)kperfSample:(struct trace_point *)arg1 state:(id)arg2;
 - (id)taskForPid:(int)arg1 andName:(const char *)arg2 didExecAtTimestamp:(id)arg3 sharedCache:(id)arg4;
@@ -254,7 +268,7 @@
 - (id)tidsForPid:(int)arg1;
 - (id)tidToPidDict;
 - (void)backfillTask:(id)arg1 lastSampleIndex:(unsigned long long)arg2 timestamp:(id)arg3 haveSnap:(BOOL)arg4 terminatedThreadsUserTimeInNs:(unsigned long long)arg5 terminatedThreadsSystemTimeInNs:(unsigned long long)arg6 terminatedThreadsCycles:(unsigned long long)arg7 terminatedThreadsInstructions:(unsigned long long)arg8 suspendCount:(unsigned int)arg9 pageins:(unsigned int)arg10 isDarwinBG:(BOOL)arg11 isForeground:(BOOL)arg12 isBoosted:(BOOL)arg13 isDirty:(BOOL)arg14 haveWQFlags:(BOOL)arg15 wqExceededTotalThreadLimit:(BOOL)arg16 wqExceededConstrainedThreadLimit:(BOOL)arg17 haveMem:(BOOL)arg18 taskSizeInBytes:(unsigned long long)arg19 haveLatencyQos:(BOOL)arg20 latencyQos:(unsigned int)arg21;
-- (void)backfillThread:(id)arg1 inTask:(id)arg2 lastSampleIndex:(unsigned long long)arg3 timestamp:(id)arg4 haveName:(BOOL)arg5 name:(const char *)arg6 haveDispatchQueueId:(BOOL)arg7 dispatchQueueId:(unsigned long long)arg8 leafKernelFrame:(id)arg9 haveUserStack:(BOOL)arg10 leafUserFrame:(id)arg11 haveSched:(BOOL)arg12 systemCpuTimeNs:(unsigned long long)arg13 userCpuTimeNs:(unsigned long long)arg14 basePriority:(int)arg15 scheduledPriority:(int)arg16 state:(unsigned int)arg17 threadQos:(unsigned char)arg18 threadRequestedQos:(unsigned char)arg19 threadRequestedQosOverride:(unsigned char)arg20 threadQosPromote:(unsigned char)arg21 threadQosIpcOverride:(unsigned char)arg22 threadQosSyncIpcOverride:(unsigned char)arg23 haveCycIns:(BOOL)arg24 instructions:(unsigned long long)arg25 cycles:(unsigned long long)arg26 haveSnap:(BOOL)arg27 ioTier:(unsigned char)arg28 isIOPassive:(BOOL)arg29 isDarwinBG:(BOOL)arg30 isSuspended:(BOOL)arg31 isGlobalForcedIdle:(BOOL)arg32 isIdleWorkQueue:(BOOL)arg33 lastMadeRunnableTime:(id)arg34 isOnCore:(BOOL)arg35;
+- (void)backfillThread:(id)arg1 inTask:(id)arg2 lastSampleIndex:(unsigned long long)arg3 timestamp:(id)arg4 haveName:(BOOL)arg5 name:(const char *)arg6 haveDispatchQueueId:(BOOL)arg7 dispatchQueueId:(unsigned long long)arg8 dispatchQueueLabel:(const char *)arg9 leafKernelFrame:(id)arg10 haveUserStack:(BOOL)arg11 leafUserFrame:(id)arg12 haveSched:(BOOL)arg13 systemCpuTimeNs:(unsigned long long)arg14 userCpuTimeNs:(unsigned long long)arg15 basePriority:(int)arg16 scheduledPriority:(int)arg17 state:(unsigned int)arg18 threadQos:(unsigned char)arg19 threadRequestedQos:(unsigned char)arg20 threadRequestedQosOverride:(unsigned char)arg21 threadQosPromote:(unsigned char)arg22 threadQosIpcOverride:(unsigned char)arg23 threadQosSyncIpcOverride:(unsigned char)arg24 haveCycIns:(BOOL)arg25 instructions:(unsigned long long)arg26 cycles:(unsigned long long)arg27 haveSnap:(BOOL)arg28 ioTier:(unsigned char)arg29 isIOPassive:(BOOL)arg30 isDarwinBG:(BOOL)arg31 isSuspended:(BOOL)arg32 isGlobalForcedIdle:(BOOL)arg33 isIdleWorkQueue:(BOOL)arg34 lastMadeRunnableTime:(id)arg35 isOnCore:(BOOL)arg36;
 - (BOOL)saveBinaryFormatToStream:(struct __sFILE *)arg1;
 - (id)binaryFormat;
 

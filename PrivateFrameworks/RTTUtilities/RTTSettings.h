@@ -11,6 +11,7 @@
 @interface RTTSettings : NSObject
 {
     NSLock *_synchronizeDomainsLock;
+    NSMutableDictionary *_serverCachedSettings;
     NSMutableSet *_registeredNotifications;
     NSMutableSet *_synchronizePreferences;
     NSMutableDictionary *_updateBlocks;
@@ -25,6 +26,7 @@
 @property(nonatomic) BOOL internalOverrideTTYAvailability;
 - (void)resetCannedResponses;
 @property(retain, nonatomic) NSArray *cannedResponses;
+@property(nonatomic) BOOL continuityRTTIsSupported;
 @property(nonatomic) BOOL hasReceivedRTTCall;
 - (void)setPreferredRelayNumber:(id)arg1 forContext:(id)arg2;
 - (id)preferredRelayNumberForContext:(id)arg1;
@@ -47,6 +49,9 @@
 @property(nonatomic) BOOL incomingCallsTTY;
 @property(nonatomic) BOOL TTYSoftwareEnabled;
 @property(nonatomic) BOOL TTYHardwareEnabled;
+- (void)clearServerSettingsCacheForKey:(id)arg1;
+- (void)clearAllServerSettingsCache;
+- (id)valueForPreferenceKey:(id)arg1 andContext:(id)arg2;
 - (id)valueForPreferenceKey:(id)arg1;
 - (id)objectValueForKey:(id)arg1 withClass:(Class)arg2 andDefaultValue:(id)arg3;
 - (id)objectValueForKey:(id)arg1 andContext:(id)arg2 withClass:(Class)arg3 andDefaultValue:(id)arg4;
@@ -57,6 +62,7 @@
 - (void)_setValue:(id)arg1 forPreferenceKey:(id)arg2;
 - (void)_setValue:(id)arg1 forPreferenceKey:(id)arg2 andContext:(id)arg3;
 - (void)updateGizmoValueIfNeeded:(id)arg1 forPreferenceKey:(id)arg2;
+- (id)uuidFromContext:(id)arg1;
 - (void)registerUpdateBlock:(CDUnknownBlockType)arg1 forRetrieveSelector:(SEL)arg2 withListener:(id)arg3;
 - (id)notificationForSelector:(SEL)arg1;
 - (void)_registerForNotification:(id)arg1;

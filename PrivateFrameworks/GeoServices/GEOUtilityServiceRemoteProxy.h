@@ -8,19 +8,16 @@
 
 #import "GEOUtilityServiceProxy.h"
 
-@class NSObject<OS_dispatch_queue>, NSString;
+@class NSString;
 
 @interface GEOUtilityServiceRemoteProxy : NSObject <GEOUtilityServiceProxy>
 {
-    NSObject<OS_dispatch_queue> *_queue;
 }
 
-- (void).cxx_destruct;
 - (void)getCurrentGeoServicesState:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (id)getGeoServicesCacheDirectoryPath;
 - (id)getHomeDirectoryPath;
 - (id)_getPathSynchronous:(const char *)arg1;
-- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

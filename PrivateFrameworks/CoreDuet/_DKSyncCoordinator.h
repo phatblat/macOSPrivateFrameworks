@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "APSConnectionDelegate.h"
+#import "_DKSyncCoordinator.h"
 
 @class APSConnection, NSArray, NSHashTable, NSObject<OS_dispatch_queue>, NSString, _DKKnowledgeStorage, _DKSyncState, _DKThrottledActivity;
 
-@interface _DKSyncCoordinator : NSObject <APSConnectionDelegate>
+@interface _DKSyncCoordinator : NSObject <APSConnectionDelegate, _DKSyncCoordinator>
 {
     NSObject<OS_dispatch_queue> *_executionQueue;
     _DKThrottledActivity *_activityThrottler;

@@ -62,12 +62,15 @@
 - (void)stripPathAndSetOverrideBaseURL:(id)arg1;
 @property(retain) NSURL *overrideBaseURL;
 - (void)_setOverrideBaseURL:(id)arg1;
+@property(readonly) BOOL allowsTasks;
+@property(readonly) BOOL allowsEvents;
 @property(readonly) BOOL supportsPhoneNumbers;
 - (BOOL)supportsPrivateEvents;
 @property(readonly) BOOL supportsPush;
 @property(readonly) BOOL supportsFreebusy;
 @property BOOL isDelegate;
 @property(readonly) BOOL isMainPrincipal;
+@property(readonly) BOOL requiresOpeningAttachmentAsLink;
 @property(readonly) BOOL isAutoScheduleSupported;
 @property(readonly) BOOL isLikenessPropagationSupported;
 @property(readonly) BOOL isPrivateCommentsSupported;

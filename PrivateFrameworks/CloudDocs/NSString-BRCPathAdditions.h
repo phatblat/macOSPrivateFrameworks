@@ -29,6 +29,7 @@
 - (const char *)br_fileSystemRepresentation;
 - (BOOL)br_isAbsolutePath;
 - (id)br_pathRelativeToPath:(id)arg1;
+- (id)removingROSPPrefix;
 - (id)br_pathRelativeToPackageRoot;
 - (id)br_pathOfPackageRoot;
 - (BOOL)br_isPackageRoot;
@@ -39,5 +40,7 @@
 - (id)br_displayFilenameWithExtensionHidden:(BOOL)arg1;
 - (id)brc_stringByDeletingPathExtension;
 - (id)br_pathExtension;
+- (id)brc_libnotifyPerUserNotificationName;
+- (id)brc_stringByBackslashEscapingCharactersInString:(id)arg1;
 @end
 

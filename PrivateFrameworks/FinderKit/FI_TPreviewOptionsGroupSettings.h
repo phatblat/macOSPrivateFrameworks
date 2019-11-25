@@ -6,17 +6,16 @@
 
 #import "NSObject.h"
 
-@class FI_TPreviewOptionsGroup, NSArray, NSSet;
+@class FI_TPreviewOptionsGroup, NSArray, NSObject<TPreviewOptionsGroupSettingsDelegete>, NSSet;
 
 __attribute__((visibility("hidden")))
 @interface FI_TPreviewOptionsGroupSettings : NSObject
 {
     struct TNSRef<FI_TPreviewOptionsGroup, void> _group;
     struct TNSRef<NSMutableSet<NSString *>, void> _activeKeys;
-    id <TPreviewOptionsGroupSettingsDelegete> _delegate;
+    struct TNSWeakPtr<NSObject<TPreviewOptionsGroupSettingsDelegete>, void> _weakDelegate;
 }
 
-@property(nonatomic) id <TPreviewOptionsGroupSettingsDelegete> delegate; // @synthesize delegate=_delegate;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) _Bool allDisabled; // @dynamic allDisabled;
@@ -28,6 +27,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, retain, nonatomic) NSArray *orderedActiveKeys;
 @property(retain, nonatomic) NSSet *activeKeys; // @dynamic activeKeys;
 @property(readonly, retain, nonatomic) FI_TPreviewOptionsGroup *group; // @dynamic group;
+@property(nonatomic) __weak NSObject<TPreviewOptionsGroupSettingsDelegete> *delegate; // @dynamic delegate;
 - (id)initWithGroup:(id)arg1;
 
 @end

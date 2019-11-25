@@ -8,7 +8,7 @@
 
 #import "NSTextApplicationFrameworkContextClient.h"
 
-@class CUICatalog, CUIStyleEffectConfiguration, NSGraphicsContext, NSString;
+@class CUICatalog, CUIStyleEffectConfiguration, NSString, __NSImmutableTextStorage;
 
 @interface NSLineFragmentRenderingContext : NSObject <NSTextApplicationFrameworkContextClient>
 {
@@ -31,18 +31,17 @@
         unsigned int _reserved:25;
     } _flags;
     long long _resolvedDirection;
-    unsigned long long _resolvedAlignment;
+    long long _resolvedAlignment;
     CUICatalog *_catalog;
     CUIStyleEffectConfiguration *_styleEffects;
-    NSGraphicsContext *_graphicsContext;
+    __NSImmutableTextStorage *_textStorage;
 }
 
 + (void)initialize;
 + (id)allocWithZone:(struct _NSZone *)arg1;
-@property(retain) NSGraphicsContext *graphicsContext; // @synthesize graphicsContext=_graphicsContext;
 @property(retain) CUIStyleEffectConfiguration *cuiStyleEffects; // @synthesize cuiStyleEffects=_styleEffects;
 @property(retain) CUICatalog *cuiCatalog; // @synthesize cuiCatalog=_catalog;
-@property unsigned long long resolvedTextAlignment; // @synthesize resolvedTextAlignment=_resolvedAlignment;
+@property long long resolvedTextAlignment; // @synthesize resolvedTextAlignment=_resolvedAlignment;
 @property long long resolvedBaseWritingDirection; // @synthesize resolvedBaseWritingDirection=_resolvedDirection;
 - (struct CGRect)imageBounds;
 @property long long applicationFrameworkContext;
@@ -55,7 +54,7 @@
 @property(getter=_usesSimpleTextEffects, setter=_setUsesSimpleTextEffects:) BOOL usesSimpleTextEffects;
 - (void)finalize;
 - (void)dealloc;
-- (id)initWithRuns:(struct __CFArray *)arg1 glyphOrigin:(double)arg2 lineFragmentWidth:(double)arg3 elasticWidth:(double)arg4 usesScreenFonts:(BOOL)arg5 isRTL:(BOOL)arg6;
+- (id)initWithTextStorage:(id)arg1 runs:(struct __CFArray *)arg2 glyphOrigin:(double)arg3 lineFragmentWidth:(double)arg4 elasticWidth:(double)arg5 usesScreenFonts:(BOOL)arg6 isRTL:(BOOL)arg7;
 - (oneway void)release;
 - (BOOL)_isDeallocating;
 - (BOOL)_tryRetain;

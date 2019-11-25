@@ -6,36 +6,48 @@
 
 #import "CALayer.h"
 
-@class NSArray;
+@class NSArray, NSUUID, PKRendererTileProperties;
 
 @interface PKRendererTile : CALayer
 {
+    // Error parsing type: Ad, name: _cachedContentsScale
     // Error parsing type: Aq, name: _renderCount
+    // Error parsing type: Ad, name: _lastUsedTimestamp
     BOOL _outOfDate;
-    id <PKRendererControllerProtocol> _rendererController;
+    NSUUID *_identifier;
     long long _level;
     NSArray *_renderedStrokes;
+    long long _currentlyRenderingCount;
     struct CGPoint _offset;
     struct CGRect _drawingFrame;
 }
 
 + (struct CGRect)layerFrameForLevel:(long long)arg1 offset:(struct CGPoint)arg2;
 + (double)tileSizeForLevel:(long long)arg1;
+@property(nonatomic) long long currentlyRenderingCount; // @synthesize currentlyRenderingCount=_currentlyRenderingCount;
 @property BOOL outOfDate; // @synthesize outOfDate=_outOfDate;
 @property(copy, nonatomic) NSArray *renderedStrokes; // @synthesize renderedStrokes=_renderedStrokes;
 @property(readonly, nonatomic) struct CGPoint offset; // @synthesize offset=_offset;
 @property(readonly, nonatomic) long long level; // @synthesize level=_level;
-@property __weak id <PKRendererControllerProtocol> rendererController; // @synthesize rendererController=_rendererController;
+@property(readonly, nonatomic) NSUUID *identifier; // @synthesize identifier=_identifier;
 @property(readonly, nonatomic) struct CGRect drawingFrame; // @synthesize drawingFrame=_drawingFrame;
 - (void).cxx_destruct;
+- (void)updateLastUsedTimestamp;
+@property(readonly, nonatomic) double lastUsedTimestamp; // @dynamic lastUsedTimestamp;
+@property(readonly, nonatomic) double drawingContentsScale; // @dynamic drawingContentsScale;
+- (void)setContentsScale:(double)arg1;
 - (id)debugDescription;
 - (id)description;
 @property(readonly) long long renderCount;
 - (void)cancel;
-- (void)update;
+- (void)showDebugLayer;
+- (void)updateDisableTransactionActions:(BOOL)arg1;
 - (void)updateFrameForScale:(double)arg1;
+- (void)setFrame:(struct CGRect)arg1;
+@property(readonly, nonatomic) PKRendererTileProperties *properties;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
-- (id)initWithLevel:(long long)arg1 offset:(struct CGPoint)arg2 drawingScale:(double)arg3;
+- (id)initWithLevel:(long long)arg1 offset:(struct CGPoint)arg2 drawingScale:(double)arg3 contentsScale:(double)arg4;
 
 @end
 

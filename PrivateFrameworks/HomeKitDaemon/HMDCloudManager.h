@@ -8,15 +8,15 @@
 
 #import "APSConnectionDelegate.h"
 
-@class APSConnection, CKContainer, CKDatabase, CKServerChangeToken, HMDCloudCache, HMDCloudDataSyncStateFilter, HMDCloudHomeManagerZone, HMDCloudLegacyZone, HMDCloudMetadataZone, HMDHomeManager, HMFMessageDispatcher, NSData, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, NSUUID;
+@class APSConnection, CKContainer, CKDatabase, HMDCloudCache, HMDCloudDataSyncStateFilter, HMDCloudHomeManagerZone, HMDCloudLegacyZone, HMDCloudMetadataZone, HMDHomeManager, HMDSyncOperationManager, HMFMessageDispatcher, NSData, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
 
 @interface HMDCloudManager : HMFObject <APSConnectionDelegate>
 {
     BOOL _accountActive;
     BOOL _cloudHomeDataRecordExists;
     BOOL _keychainSyncEnabled;
-    BOOL _firstV3Fetch;
-    int _proxSetupNotificationToken;
+    BOOL _firstV3FetchRun;
+    BOOL _firstDBQueryRun;
     NSObject<OS_dispatch_queue> *_callbackQueue;
     CKContainer *_container;
     CKDatabase *_database;
@@ -29,35 +29,33 @@
     NSObject<OS_dispatch_source> *_pollTimer;
     NSObject<OS_dispatch_source> *_controllerKeyPollTimer;
     NSObject<OS_dispatch_source> *_watchdogControllerKeyPollTimer;
-    CKServerChangeToken *_databaseServerChangeToken;
     APSConnection *_pushConnection;
     CDUnknownBlockType _cloudDataDeletedNotificationHandler;
     CDUnknownBlockType _cloudMetadataDeletedNotificationHandler;
     CDUnknownBlockType _controllerKeyAvailableNotificationHandler;
     HMDCloudDataSyncStateFilter *_cloudDataSyncStateFilter;
-    NSUUID *_uuid;
     HMFMessageDispatcher *_msgDispatcher;
     HMDHomeManager *_homeManager;
+    HMDSyncOperationManager *_syncManager;
     NSMutableArray *_currentBackoffTimerValuesInMinutes;
     CDUnknownBlockType _dataDecryptionFailedHandler;
     CDUnknownBlockType _accountActiveUpdateHandler;
 }
 
 + (BOOL)isControllerKeyAvailable;
-@property(nonatomic, getter=isFirstV3Fetch) BOOL firstV3Fetch; // @synthesize firstV3Fetch=_firstV3Fetch;
+@property(nonatomic, getter=isFirstDBQueryRun) BOOL firstDBQueryRun; // @synthesize firstDBQueryRun=_firstDBQueryRun;
+@property(nonatomic, getter=isFirstV3FetchRun) BOOL firstV3FetchRun; // @synthesize firstV3FetchRun=_firstV3FetchRun;
 @property(copy, nonatomic) CDUnknownBlockType accountActiveUpdateHandler; // @synthesize accountActiveUpdateHandler=_accountActiveUpdateHandler;
 @property(copy, nonatomic) CDUnknownBlockType dataDecryptionFailedHandler; // @synthesize dataDecryptionFailedHandler=_dataDecryptionFailedHandler;
-@property(nonatomic) int proxSetupNotificationToken; // @synthesize proxSetupNotificationToken=_proxSetupNotificationToken;
 @property(retain, nonatomic) NSMutableArray *currentBackoffTimerValuesInMinutes; // @synthesize currentBackoffTimerValuesInMinutes=_currentBackoffTimerValuesInMinutes;
+@property(nonatomic) __weak HMDSyncOperationManager *syncManager; // @synthesize syncManager=_syncManager;
 @property(nonatomic) __weak HMDHomeManager *homeManager; // @synthesize homeManager=_homeManager;
 @property(retain, nonatomic) HMFMessageDispatcher *msgDispatcher; // @synthesize msgDispatcher=_msgDispatcher;
-@property(retain, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
 @property(retain, nonatomic) HMDCloudDataSyncStateFilter *cloudDataSyncStateFilter; // @synthesize cloudDataSyncStateFilter=_cloudDataSyncStateFilter;
 @property(copy, nonatomic) CDUnknownBlockType controllerKeyAvailableNotificationHandler; // @synthesize controllerKeyAvailableNotificationHandler=_controllerKeyAvailableNotificationHandler;
 @property(copy, nonatomic) CDUnknownBlockType cloudMetadataDeletedNotificationHandler; // @synthesize cloudMetadataDeletedNotificationHandler=_cloudMetadataDeletedNotificationHandler;
 @property(copy, nonatomic) CDUnknownBlockType cloudDataDeletedNotificationHandler; // @synthesize cloudDataDeletedNotificationHandler=_cloudDataDeletedNotificationHandler;
 @property(retain, nonatomic) APSConnection *pushConnection; // @synthesize pushConnection=_pushConnection;
-@property(retain, nonatomic) CKServerChangeToken *databaseServerChangeToken; // @synthesize databaseServerChangeToken=_databaseServerChangeToken;
 @property(retain, nonatomic) NSObject<OS_dispatch_source> *watchdogControllerKeyPollTimer; // @synthesize watchdogControllerKeyPollTimer=_watchdogControllerKeyPollTimer;
 @property(retain, nonatomic) NSObject<OS_dispatch_source> *controllerKeyPollTimer; // @synthesize controllerKeyPollTimer=_controllerKeyPollTimer;
 @property(retain, nonatomic) NSObject<OS_dispatch_source> *pollTimer; // @synthesize pollTimer=_pollTimer;
@@ -77,14 +75,13 @@
 - (void)connection:(id)arg1 didReceiveIncomingMessage:(id)arg2;
 - (void)connection:(id)arg1 didReceivePublicToken:(id)arg2;
 - (void)connection:(id)arg1 didReceiveToken:(id)arg2 forTopic:(id)arg3 identifier:(id)arg4;
-- (void)_fetchDatabaseZoneChanges;
+- (void)_fetchDatabaseZoneChangesCompletion:(CDUnknownBlockType)arg1;
 - (void)fetchDatabaseZoneChanges;
 - (void)_scheduleZoneFetch:(id)arg1;
 - (void)_registerForPushNotifications;
 - (void)_setupSubscriptionForZone:(id)arg1;
 - (void)_registerForProxSetupNotifications;
-- (void)_auditProxSetupNotification;
-- (BOOL)_isProxSetupRunning;
+- (void)_auditProxSetupNotification:(id)arg1;
 - (void)_stopControllerKeyPollTimer;
 - (void)_startControllerKeyPollTimerWithValue:(long long)arg1;
 - (void)_startControllerKeyPollTimerWithBackoff;
@@ -109,7 +106,7 @@
 - (void)_verifyZonesExist:(id)arg1 zoneIndex:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)_resetHomeDataRecordState;
 - (id)_changeTokenFromData:(id)arg1;
-- (void)_handleAccountStatus:(long long)arg1 completionHandler:(CDUnknownBlockType)arg2 error:(id)arg3;
+- (void)_handleAccountStatus:(long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)updateAccountStatusChanged:(BOOL)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_processFetchCompletedWithError:(id)arg1 serverToken:(id)arg2 fetchTransaction:(id)arg3 migrationOptions:(long long)arg4 completionHandler:(CDUnknownBlockType)arg5 moreRecordsComing:(BOOL)arg6 emptyRecord:(BOOL)arg7;
 - (BOOL)_processFetchedTransaction:(id)arg1;
@@ -163,7 +160,7 @@
 - (void)__fetchSubscriptionWithID:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)__addCKDatabaseOperation:(id)arg1;
 - (void)dealloc;
-- (id)initWithMessageDispatcher:(id)arg1 cloudDataSyncStateFilter:(id)arg2 cloudCache:(id)arg3 homeManager:(id)arg4 callbackQueue:(id)arg5;
+- (id)initWithMessageDispatcher:(id)arg1 cloudDataSyncStateFilter:(id)arg2 cloudCache:(id)arg3 homeManager:(id)arg4 syncManager:(id)arg5 callbackQueue:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

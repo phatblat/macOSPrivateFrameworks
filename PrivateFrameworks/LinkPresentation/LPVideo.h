@@ -7,14 +7,18 @@
 #import "NSObject.h"
 
 #import "AVAssetResourceLoaderDelegate.h"
+#import "LPAsynchronousResource.h"
 #import "NSSecureCoding.h"
 
-@class AVAsset, AVURLAsset, LPVideoProperties, NSData, NSObject<OS_dispatch_queue>, NSString, NSURL;
+@class AVAsset, AVURLAsset, LPVideoProperties, NSData, NSItemProvider, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSString, NSURL;
 
-@interface LPVideo : NSObject <AVAssetResourceLoaderDelegate, NSSecureCoding>
+@interface LPVideo : NSObject <AVAssetResourceLoaderDelegate, LPAsynchronousResource, NSSecureCoding>
 {
     NSData *_data;
     NSObject<OS_dispatch_queue> *_mediaLoadingQueue;
+    NSItemProvider *_itemProvider;
+    LPVideo *_videoLoadedFromItemProvider;
+    NSObject<OS_dispatch_group> *_itemProviderLoadGroup;
     struct CGSize _intrinsicSize;
     AVURLAsset *_asset;
     id _mediaServicesResetNotificationHandler;
@@ -33,6 +37,9 @@
 - (void).cxx_destruct;
 - (BOOL)resourceLoader:(id)arg1 shouldWaitForLoadingOfRequestedResource:(id)arg2;
 @property(readonly, nonatomic) AVAsset *_asset;
+@property(readonly, retain, nonatomic) NSItemProvider *_itemProvider;
+- (void)loadAsynchronouslyWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (BOOL)needsAsynchronousLoad;
 @property(readonly, nonatomic) struct CGSize _intrinsicSize;
 - (BOOL)_shouldEncodeData;
 - (void)_mapDataFromFileURL;
@@ -42,6 +49,7 @@
 @property(readonly, nonatomic) unsigned long long _encodedSize;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithItemProvider:(id)arg1 properties:(id)arg2;
 - (id)initWithYouTubeURL:(id)arg1 properties:(id)arg2;
 - (id)initWithYouTubeURL:(id)arg1;
 - (id)initWithStreamingURL:(id)arg1 properties:(id)arg2;

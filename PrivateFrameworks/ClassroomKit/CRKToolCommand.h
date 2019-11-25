@@ -16,6 +16,8 @@
     CATTaskClient *mTaskClient;
     CATOperationQueue *mOperationQueue;
     CATOperation *mOperation;
+    BOOL _printJSON;
+    BOOL _printVerbose;
     id <CRKToolCommandDelegate> _delegate;
     NSString *_sessionIdentifier;
 }
@@ -26,8 +28,13 @@
 + (id)help;
 + (id)description;
 + (id)aliases;
++ (id)subcommandPath;
++ (BOOL)supportsVerboseOutput;
++ (BOOL)supportsJSON;
 @property(copy, nonatomic) NSString *sessionIdentifier; // @synthesize sessionIdentifier=_sessionIdentifier;
 @property(nonatomic) __weak id <CRKToolCommandDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic, getter=shouldPrintVerbose) BOOL printVerbose; // @synthesize printVerbose=_printVerbose;
+@property(nonatomic, getter=shouldPrintJSON) BOOL printJSON; // @synthesize printJSON=_printJSON;
 - (void).cxx_destruct;
 - (void)clientDidDisconnect:(id)arg1;
 - (void)client:(id)arg1 didInterruptWithError:(id)arg2;
@@ -46,6 +53,7 @@
 - (void)remoteTaskDidProgress:(id)arg1;
 - (id)requestWithArguments:(id)arg1;
 - (id)operationWithClient:(id)arg1 arguments:(id)arg2;
+- (id)arrayByParsingAndRemovingArgumentFlags:(id)arg1;
 - (void)runWithClient:(id)arg1 arguments:(id)arg2;
 - (void)runWithArguments:(id)arg1;
 - (id)init;

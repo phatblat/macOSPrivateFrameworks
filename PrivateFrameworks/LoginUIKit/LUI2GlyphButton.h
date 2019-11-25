@@ -16,6 +16,7 @@
     NSVisualEffectView *_backgroundView;
     NSImageView *_glyphView;
     LUI2GBButton *_button;
+    NSView *_titleContainer;
     NSTextField *_titleView;
     LUI2DarkenView *_darkenView;
     NSDictionary *_images;
@@ -26,6 +27,7 @@
 @property(retain) NSDictionary *images; // @synthesize images=_images;
 @property(retain) LUI2DarkenView *darkenView; // @synthesize darkenView=_darkenView;
 @property(retain) NSTextField *titleView; // @synthesize titleView=_titleView;
+@property(retain) NSView *titleContainer; // @synthesize titleContainer=_titleContainer;
 @property(retain) LUI2GBButton *button; // @synthesize button=_button;
 @property(retain) NSImageView *glyphView; // @synthesize glyphView=_glyphView;
 @property(retain) NSVisualEffectView *backgroundView; // @synthesize backgroundView=_backgroundView;
@@ -35,6 +37,7 @@
 - (id)initWithFrame:(struct CGRect)arg1;
 @property(copy) NSString *title;
 - (void)setImageIdentifier:(id)arg1;
+@property long long blendingMode;
 - (BOOL)accessibilityPerformPress;
 - (id)accessibilityLabel;
 - (id)accessibilityChildren;

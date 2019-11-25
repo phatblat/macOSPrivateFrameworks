@@ -7,9 +7,5 @@
 #import "NSObject.h"
 
 @protocol MDSnapshotMap <NSObject>
-@property(nonatomic) BOOL showsVenues;
-@property(nonatomic) BOOL showsBuildings;
-- (BOOL)isShowingNoDataPlaceholders;
-- (struct LabelSettings *)labelSettings;
 @end
 

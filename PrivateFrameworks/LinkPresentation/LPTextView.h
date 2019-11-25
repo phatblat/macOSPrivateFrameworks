@@ -9,27 +9,35 @@
 #import "LPContentInsettable.h"
 #import "LPTextStyleable.h"
 
-@class LPImageView, LPTextViewStyle, NSTextField;
+@class LPTextViewStyle, NSAttributedString, NSTextField;
 
 __attribute__((visibility("hidden")))
 @interface LPTextView : LPComponentView <LPTextStyleable, LPContentInsettable>
 {
     NSTextField *_textView;
+    long long _overrideMaximumNumberOfLines;
     struct NSEdgeInsets _contentInset;
-    LPImageView *_glyphView;
     LPTextViewStyle *_style;
+    NSAttributedString *_attributedString;
+    double _ascender;
+    double _descender;
 }
 
 - (void).cxx_destruct;
 - (id)_createTextViewWithAttributedString:(id)arg1 style:(id)arg2;
-- (struct NSEdgeInsets)_effectiveContentInset;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (void)layoutComponentView;
+- (long long)effectiveMaximumNumberOfLines;
+- (struct NSEdgeInsets)effectiveInsets;
+- (void)setOverrideMaximumNumberOfLines:(long long)arg1;
+- (long long)computedNumberOfLines;
 - (double)descender;
 - (double)ascender;
+- (double)lastLineDescent;
 - (double)firstLineLeading;
 @property(readonly, retain, nonatomic) LPTextViewStyle *style;
 - (void)setContentInset:(struct NSEdgeInsets)arg1;
+@property(readonly, retain, nonatomic) NSAttributedString *attributedString;
 - (id)initWithText:(id)arg1 style:(id)arg2;
 - (id)init;
 

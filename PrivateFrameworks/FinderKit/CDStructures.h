@@ -4,13 +4,22 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class BRContainer, CALayer, CNAvatarCache, CNAvatarViewController, CNContactStore, FIAirDropListViewItem, FIAirDropViewGutsController, FIArrangeByMenuController, FIRadialProgressLayer, FIRadialProgressView, FITopBarTitlebarAccessoryViewController, FI_IPropertyValueApplicator, FI_IPropertyValueExtractor, FI_NewFolderController, FI_TAirDropDiscoveryController, FI_TAirDropLegacyModePopoverViewController, FI_TAirDropProgressLayer, FI_TBVDSBulkConfigChangedState, FI_TBasicImageView, FI_TBrowserContainerController, FI_TBrowserImmediateActionGestureRecognizerDelegate, FI_TBrowserSplitViewController, FI_TBrowserViewContainerController, FI_TBrowserViewController, FI_TBrowserViewDataSource, FI_TBrowserViewSwitchAnimator, FI_TButton, FI_TColumnPreviewController, FI_TColumnViewController, FI_TContainerLayoutManager, FI_TDFRAddTagsViewController, FI_TDFRScrollingStackViewController, FI_TDelayedPopulationViewController, FI_TDesktopGridLayout, FI_TDesktopInlinePreviewController, FI_TDesktopInlineProgressView, FI_TDesktopTitleBubbleView, FI_TDesktopTitleLayoutManager, FI_TFileSizeFormatter, FI_TFloatingInputView, FI_TGoToAutoCompletionController, FI_TGoToFieldEditor, FI_TICloudBadgeButton, FI_TICloudBadgePlaceholderView, FI_TICloudNoDocumentsViewController, FI_TICloudProgressObserver, FI_TIconCollectionGroupHeaderView, FI_TIconSelectionView, FI_TIconView, FI_TIconViewSettings, FI_TImageView, FI_TInlineCancelButtonLayer, FI_TInlinePreviewData, FI_TInlineProgressBarLayer, FI_TInlineProgressHostLayer, FI_TInlineProgressView, FI_TInternalCloudProgressObserver, FI_TKeyValueObserverGlue, FI_TListHeaderCellView, FI_TListHeaderRowView, FI_TListNameCellView, FI_TListNameSubtitleTextField, FI_TListTextField, FI_TListViewSettings, FI_TMDUserSearch, FI_TNodeViewSettings, FI_TNodesAndValues, FI_TNotificationCenterObserverGlue, FI_TPathBarController, FI_TPieChartProgressLayer, FI_TPopoverController, FI_TPreviewOptions, FI_TPreviewOptionsDynamicGroupSettings, FI_TPreviewOptionsGroup, FI_TQLMultiPreviewItem, FI_TQLMultiPreviewView, FI_TQLMultiPreviewViewCommonDelegate, FI_TQLPreviewViewZoomController, FI_TRenameOperation, FI_TRunAfterHelper, FI_TSearchCriteriaSheetController, FI_TSearchCriteriaViewController, FI_TSearchScopeSliceController, FI_TSearchSliceController, FI_TShrinkToFitController, FI_TShrinkToFitWindow, FI_TSidebarSplitViewController, FI_TSidebarViewController, FI_TTableViewShrinkToFitController, FI_TTagColumnTableViewController, FI_TTagEditorController, FI_TTagOperationDelegate, FI_TTagSuggestionsWindowController, FI_TTaggingPopoverContentViewController, FI_TTaggingSuggestionsViewController, FI_TTagsImageView, FI_TTargetActionFunctor, FI_TTextField, FI_TTrackingImageView, FI_TUpdateLayerView, FI_TValidatingDateFormatter, FI_TViewGridLayoutControllerDelegate, FI_TWindowHistory, NSAccessibilityCustomAction, NSArray, NSAttributedString, NSBox, NSColor, NSData, NSDate, NSDateComponents, NSDateInterval, NSDictionary, NSEvent, NSFont, NSImage, NSImmediateActionGestureRecognizer, NSIndexSet, NSLayoutConstraint, NSLayoutGuide, NSMetadataQuery, NSMutableArray, NSMutableDictionary, NSMutableIndexSet, NSMutableSet, NSNumber, NSObject, NSObject<FIFinderSyncExtensionProtocol>, NSObject<FI_TAirDropNotAvailableDelegateProtocol>, NSObject<OS_dispatch_queue>, NSObject<TStdAlertSheetClientProtocol>, NSOperationQueue, NSSet, NSSharingServicePicker, NSSplitViewItem, NSStackView, NSString, NSTextContainer, NSTextStorage, NSTimer, NSTouchBar, NSTrackingArea, NSURL, NSValue, NSView, NSViewController, NSWindow, QLInlinePreviewController, QLPreviewPanel, SFAirDropDiscoveryController, SFWirelessSettingsController;
+@class BRContainer, CALayer, CNAvatarCache, CNAvatarViewController, CNContactStore, FIAirDropListViewItem, FIAirDropViewGutsController, FIArrangeByMenuController, FILocationMenuFactory, FIRadialProgressLayer, FIRadialProgressView, FITopBarTitlebarAccessoryViewController, FI_IPropertyValueApplicator, FI_IPropertyValueExtractor, FI_NewFolderController, FI_TAirDropDiscoveryController, FI_TAirDropLegacyModePopoverViewController, FI_TAirDropProgressLayer, FI_TAlertCallbackStub, FI_TBVDSBulkConfigChangedState, FI_TBasicImageView, FI_TBrowserImmediateActionGestureRecognizerDelegate, FI_TBrowserSplitViewController, FI_TBrowserViewContainerController, FI_TBrowserViewController, FI_TBrowserViewDataSource, FI_TBrowserViewSwitchAnimator, FI_TButton, FI_TColumnPreviewController, FI_TColumnViewController, FI_TContainerLayoutManager, FI_TDesktopGridLayout, FI_TDesktopInlinePreviewController, FI_TDesktopInlineProgressView, FI_TDesktopTitleBubbleView, FI_TDesktopTitleLayoutManager, FI_TFileSizeFormatter, FI_TFloatingInputView, FI_TGoToAutoCompletionController, FI_TGoToFieldEditor, FI_TICloudBadgeButton, FI_TICloudBadgePlaceholderView, FI_TICloudNoDocumentsViewController, FI_TICloudProgressObserver, FI_TIconCollectionGroupHeaderView, FI_TIconSelectionView, FI_TIconView, FI_TIconViewSettings, FI_TImageView, FI_TInlineCancelButtonLayer, FI_TInlinePreviewData, FI_TInlineProgressBarLayer, FI_TInlineProgressHostLayer, FI_TInlineProgressView, FI_TInternalCloudProgressObserver, FI_TKeyValueObserverGlue, FI_TLabelView, FI_TListHeaderCellView, FI_TListHeaderRowView, FI_TListNameCellView, FI_TListNameSubtitleTextField, FI_TListTextField, FI_TListViewSettings, FI_TLoadingViewController, FI_TMDUserSearch, FI_TNodeViewSettings, FI_TNodesAndValues, FI_TNotificationCenterObserverGlue, FI_TPathBarController, FI_TPieChartProgressLayer, FI_TPopoverController, FI_TPreviewOptions, FI_TPreviewOptionsDynamicGroupSettings, FI_TPreviewOptionsGroup, FI_TQLMultiPreviewItem, FI_TQLMultiPreviewView, FI_TQLMultiPreviewViewCommonDelegate, FI_TQLPreviewViewZoomController, FI_TRenameOperation, FI_TRunAfterHelper, FI_TSearchCriteriaSheetController, FI_TSearchCriteriaViewController, FI_TSearchScopeSliceController, FI_TSearchSliceController, FI_TShrinkToFitController, FI_TShrinkToFitTextView, FI_TShrinkToFitWindow, FI_TSidebarSplitViewController, FI_TSidebarViewController, FI_TTableView, FI_TTableViewShrinkToFitController, FI_TTagColumnTableViewController, FI_TTagEditorController, FI_TTagOperationDelegate, FI_TTagSuggestionsWindowController, FI_TTaggingPopoverContentViewController, FI_TTaggingSuggestionsViewController, FI_TTagsImageView, FI_TTargetActionFunctor, FI_TTextField, FI_TTrackingImageView, FI_TUpdateLayerView, FI_TValidatingDateFormatter, FI_TViewGridLayoutControllerDelegate, FI_TWindowHistory, NSAccessibilityCustomAction, NSArray, NSAttributedString, NSBox, NSColor, NSCustomTouchBarItem, NSData, NSDate, NSDateComponents, NSDateInterval, NSDictionary, NSEvent, NSFont, NSImage, NSImageView, NSImmediateActionGestureRecognizer, NSIndexSet, NSLayoutConstraint, NSLayoutGuide, NSMetadataQuery, NSMutableArray, NSMutableDictionary, NSMutableIndexSet, NSMutableSet, NSNumber, NSObject, NSObject<FIFinderSyncExtensionProtocol>, NSObject<FI_TAirDropNotAvailableDelegateProtocol>, NSObject<OS_dispatch_queue>, NSObject<TStdAlertSheetClientProtocol>, NSOperationQueue, NSSet, NSSharingServicePicker, NSSplitViewItem, NSStackView, NSString, NSTextContainer, NSTextStorage, NSTimer, NSTouchBar, NSTrackingArea, NSURL, NSValue, NSView, NSViewController, NSWindow, QLInlinePreviewController, QLPreviewPanel, QLPreviewView, SFAirDropDiscoveryController, SFWirelessSettingsController;
 
 #pragma mark Blocks
 
 typedef void (^CDUnknownBlockType)(void); // return type and parameters are unknown
 
 #pragma mark Named Structures
+
+struct CGAffineTransform {
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+    double _field5;
+    double _field6;
+};
 
 struct CGImage;
 
@@ -33,6 +42,27 @@ struct ColumnDesc;
 
 struct DSSemaphore;
 
+struct FIAmbiguousMenuItems;
+
+struct FIBuildMenuData {
+    struct TFENode fTargetNode;
+    struct TFENode fICloudContainer;
+    struct TNSRef<NSArray<NSURL *>, void> fRecentPlacesURLs;
+    struct TNSWeakPtr<NSObject<FILocationMenuItemTargetProtocol>, void> fWeakMenuItemTarget;
+    double fScaleFactor;
+    _Bool fIsDarkBackground;
+    _Bool fIsSavePanel;
+    _Bool fInMovePanel;
+    _Bool fIncludeAncestors;
+    _Bool fShowKeyEquivalents;
+    _Bool fShowICloud;
+    _Bool fShowFavorites;
+    _Bool fShowDevices;
+    _Bool fSidebarIsHidden;
+    _Bool fWantsShowHideSidebarSection;
+    _Bool fShowOtherSection;
+};
+
 struct FI_TBestFitStringSelector {
     struct TNSRef<NSSet<NSAttributedString *>, void> _field1;
     struct NSEdgeInsets _field2;
@@ -47,12 +77,12 @@ struct HFSUniStr255 {
 
 struct INWOperationController {
     CDUnknownFunctionPointerType *_field1;
-    struct TMutex _field2;
+    struct recursive_mutex _field2;
     struct TRef<__SFOperation *, TRetainReleasePolicy<SFOperationRef>> _field3;
     struct TString _field4;
     long long _field5;
     long long _field6;
-    id _field7;
+    struct TNSWeakPtr<NSObject<TNWOperationDelegateProtocol>, void> _field7;
     unsigned long long _field8;
 };
 
@@ -125,6 +155,7 @@ struct OperationErrorRecord {
     unsigned int _field3;
     char _field4[1024];
     _Bool _field5;
+    id _field6;
 };
 
 struct OperationIterator {
@@ -192,14 +223,14 @@ struct TAdjustContainerOptions;
 
 struct TAirDropSenderOperationController {
     CDUnknownFunctionPointerType *_field1;
-    struct TMutex _field2;
+    struct recursive_mutex _field2;
     struct TRef<__SFOperation *, TRetainReleasePolicy<SFOperationRef>> _field3;
     struct TString _field4;
     long long _field5;
     long long _field6;
-    id _field7;
+    struct TNSWeakPtr<NSObject<TNWOperationDelegateProtocol>, void> _field7;
     unsigned long long _field8;
-    struct TMutex _field9;
+    struct mutex _field9;
     struct TNSRef<NSDictionary, void> _field10;
     struct TString _field11;
     struct TFENode _field12;
@@ -225,36 +256,33 @@ struct TBVDSChangedPayload {
     unordered_map_f886f0c5 _field4;
     _Bool _field5;
     _Bool _field6;
-};
-
-struct TBaseInstanceCounter {
-    CDUnknownFunctionPointerType *_field1;
+    _Bool _field7;
+    _Bool _field8;
 };
 
 struct TBestFitFormatterSelector;
 
 struct TBlockingQueue;
 
-struct TBrowserImmediateActionGestureRecognizerHandlerBase {
-    CDUnknownFunctionPointerType *_field1;
-};
+struct TBrowserImmediateActionGestureRecognizerHandlerBase;
 
 struct TCoalescingNodeObserver {
     CDUnknownFunctionPointerType *_field1;
     struct weak_ptr<TNodeEventHandler> _field2;
     CDUnknownFunctionPointerType *_field3;
-    struct map<TFENode, TObserverStats, std::__1::less<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TObserverStats>>> _field4;
-    struct unique_ptr<TNodeChangeNotifier, std::__1::default_delete<TNodeChangeNotifier>> _field5;
-    _Bool _field6;
-    unsigned long long _field7;
+    _Bool _field4;
+    struct map<TFENode, TObserverStats, std::__1::less<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TObserverStats>>> _field5;
+    struct unique_ptr<TNodeChangeNotifier, std::__1::default_delete<TNodeChangeNotifier>> _field6;
+    _Bool _field7;
     unsigned long long _field8;
-    unsigned int _field9;
-    unsigned long long _field10;
-    struct unordered_map<TFENode, std::__1::shared_ptr<TCoalescedEvents>, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, std::__1::shared_ptr<TCoalescedEvents>>>> _field11;
-    struct set<TFENode, std::__1::less<TFENode>, std::__1::allocator<TFENode>> _field12;
-    struct TSpinLock _field13;
-    _Bool _field14;
+    unsigned long long _field9;
+    unsigned int _field10;
+    unsigned long long _field11;
+    struct unordered_map<TFENode, std::__1::shared_ptr<TCoalescedEvents>, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, std::__1::shared_ptr<TCoalescedEvents>>>> _field12;
+    struct set<TFENode, std::__1::less<TFENode>, std::__1::allocator<TFENode>> _field13;
+    struct TSpinLock _field14;
     _Bool _field15;
+    _Bool _field16;
 };
 
 struct TCoalescingNodeObserverCocoaBridge;
@@ -280,8 +308,6 @@ struct TConditionVariable {
     int fWaitCount;
 };
 
-struct TCustomNode;
-
 struct TDesktopTitleMetrics {
     struct TNSRef<NSTextStorage, void> fTextStorage;
     struct TNSRef<FI_TDesktopTitleLayoutManager, void> fLayoutManager;
@@ -305,14 +331,30 @@ struct TDesktopTitleMetrics {
 
 struct TDisableScreenUpdatesInWindow;
 
+struct TDragContentCharacteristics {
+    _Bool _field1;
+    _Bool _field2;
+    _Bool _field3;
+    _Bool _field4;
+    _Bool _field5;
+    _Bool _field6;
+    _Bool _field7;
+    _Bool _field8;
+    _Bool _field9;
+    _Bool _field10;
+    struct TFENode _field11;
+    struct TFENode _field12;
+};
+
 struct TDropOperation {
     CDUnknownFunctionPointerType *_field1;
     struct OpaqueCoreDrag *_field2;
-    id _field3;
-    id _field4;
+    struct TNSRef<NSObject<NSDraggingInfo>, void> _field3;
+    struct TNSWeakPtr<NSObject<TDropOperationDelegateProtocol>, void> _field4;
     struct TFENode _field5;
     struct TFENodeVector _field6;
     struct TAppManagedFilesInfo _field7;
+    struct optional<std::__1::pair<TFENode, TDropOperation::TDragContentCharacteristics>> _field8;
 };
 
 struct TEnableObserverAdaptor<TNodeObserver, TCustomNode>;
@@ -333,6 +375,7 @@ struct TFENodeData {
     struct TRef<__CFFileSecurity *, TRetainReleasePolicy<CFFileSecurityRef>> _field5;
     _Bool _field6;
     _Bool _field7;
+    _Bool _field8;
 };
 
 struct TFENodeOrderedSet {
@@ -361,7 +404,8 @@ struct TGoToPathToAutoCompleteHelper {
 
 struct TGroupManager {
     CDUnknownFunctionPointerType *_field1;
-    int _field2;
+    struct recursive_mutex _field2;
+    int _field3;
 };
 
 struct TGroupModeData {
@@ -401,32 +445,7 @@ struct TIconBrowserSettings {
     unsigned char _field16;
 };
 
-struct TIconFetcher {
-    struct mutex _field1;
-    struct TConditionVariable _field2;
-    unsigned int _field3;
-    _Bool _field4;
-    _Bool _field5;
-    struct TFENodeOrderedSet _field6;
-    int _field7;
-    _Bool _field8;
-    _Bool _field9;
-    struct TFENode _field10;
-    unsigned int _field11;
-    double _field12;
-    int _field13;
-    struct TFENodeOrderedSet _field14;
-    struct TFENodeOrderedSet _field15;
-    unordered_set_931aff12 _field16;
-    _Bool _field17;
-    unsigned long long _field18;
-    unsigned long long _field19;
-    struct function<void (const std::__1::shared_ptr<TIconFetcher>&, const TFENodeVector &)> _field20;
-    struct TFENodeOrderedSet _field21;
-    struct TRef<NSObject<OS_dispatch_queue>*, TRetainReleasePolicy<dispatch_queue_t>> _field22;
-    struct TRef<NSObject<OS_dispatch_queue>*, TRetainReleasePolicy<dispatch_queue_t>> _field23;
-    struct weak_ptr<TIconFetcher> _field24;
-};
+struct TIconFetcher;
 
 struct TIconLayoutBitmap {
     long long fRowStride;
@@ -459,13 +478,6 @@ struct TKeyValueObserver {
     struct TString fKeyPathToObserve;
 };
 
-struct TLayoutBinding {
-    struct TSideLayoutBinding top;
-    struct TSideLayoutBinding left;
-    struct TSideLayoutBinding bottom;
-    struct TSideLayoutBinding right;
-};
-
 struct TListBrowserSettings {
     CDUnknownFunctionPointerType *_field1;
     int _field2;
@@ -479,27 +491,27 @@ struct TListBrowserSettings {
 
 struct TMDQueryAliasNode {
     CDUnknownFunctionPointerType *_field1;
-    struct weak_ptr<TCustomNode> _field2;
-    struct TNSRef<NSMutableDictionary, void> _field3;
-    struct TMutex _field4;
-    struct map<const TNodeObserver *, std::__1::pair<std::__1::weak_ptr<TNodeObserver>, TObserverStats>, std::__1::less<const TNodeObserver *>, std::__1::allocator<std::__1::pair<const TNodeObserver *const, std::__1::pair<std::__1::weak_ptr<TNodeObserver>, TObserverStats>>>> _field5;
-    struct TFENode _field6;
-    struct shared_ptr<TEnableObserverAdaptor<TNodeObserver, TCustomNode>> _field7;
-    _Bool _field8;
+    struct TNSRef<NSMutableDictionary, void> _field2;
+    struct recursive_mutex _field3;
+    struct map<const TNodeObserver *, std::__1::pair<std::__1::weak_ptr<TNodeObserver>, TObserverStats>, std::__1::less<const TNodeObserver *>, std::__1::allocator<std::__1::pair<const TNodeObserver *const, std::__1::pair<std::__1::weak_ptr<TNodeObserver>, TObserverStats>>>> _field4;
+    struct TFENode _field5;
+    struct shared_ptr<TEnableObserverAdaptor<TNodeObserver, TCustomNode>> _field6;
+    _Bool _field7;
+    struct vector<TMDQueryAliasNode::SearchScopeDefinition, std::__1::allocator<TMDQueryAliasNode::SearchScopeDefinition>> _field8;
     struct vector<TMDQueryAliasNode::SearchScopeDefinition, std::__1::allocator<TMDQueryAliasNode::SearchScopeDefinition>> _field9;
-    struct vector<TMDQueryAliasNode::SearchScopeDefinition, std::__1::allocator<TMDQueryAliasNode::SearchScopeDefinition>> _field10;
-    struct TString _field11;
-    unsigned int _field12;
+    struct TString _field10;
+    unsigned int _field11;
+    struct TFENode _field12;
     struct TFENode _field13;
     struct TFENode _field14;
     struct TFENode _field15;
-    struct TFENode _field16;
+    struct TString _field16;
     struct TString _field17;
     struct TString _field18;
-    struct TString _field19;
-    struct TRef<const __CFDictionary *, TRetainReleasePolicy<CFDictionaryRef>> _field20;
+    struct TRef<const __CFDictionary *, TRetainReleasePolicy<CFDictionaryRef>> _field19;
+    int _field20;
     int _field21;
-    int _field22;
+    _Bool _field22;
     _Bool _field23;
     _Bool _field24;
     _Bool _field25;
@@ -515,14 +527,13 @@ struct TMDQueryAliasNode {
     _Bool _field35;
     _Bool _field36;
     _Bool _field37;
-    _Bool _field38;
-    struct TFENode _field39;
-    int _field40;
+    struct TFENode _field38;
+    int _field39;
+    struct TRef<const __CFArray *, TRetainReleasePolicy<CFArrayRef>> _field40;
     struct TRef<const __CFArray *, TRetainReleasePolicy<CFArrayRef>> _field41;
-    struct TRef<const __CFArray *, TRetainReleasePolicy<CFArrayRef>> _field42;
-    struct TFENode _field43;
-    struct TMDQueryDefinition _field44;
-    TNSWeakPtr_a131d41e _field45;
+    struct TFENode _field42;
+    struct TMDQueryDefinition _field43;
+    TNSWeakPtr_a131d41e _field44;
 };
 
 struct TMDQueryDefinition {
@@ -541,10 +552,6 @@ struct TMetadataAvailability;
 struct TMetadataGroup {
     int _field1;
     vector_6a476d2d _field2;
-};
-
-struct TMutex {
-    struct _opaque_pthread_mutex_t fMutex;
 };
 
 struct TNSRef<BRContainer, void> {
@@ -577,6 +584,10 @@ struct TNSRef<FIAirDropViewGutsController, void> {
 
 struct TNSRef<FIArrangeByMenuController, void> {
     FIArrangeByMenuController *fRef;
+};
+
+struct TNSRef<FILocationMenuFactory, void> {
+    FILocationMenuFactory *fRef;
 };
 
 struct TNSRef<FIRadialProgressLayer, void> {
@@ -615,16 +626,16 @@ struct TNSRef<FI_TAirDropProgressLayer, void> {
     FI_TAirDropProgressLayer *fRef;
 };
 
+struct TNSRef<FI_TAlertCallbackStub, void> {
+    FI_TAlertCallbackStub *fRef;
+};
+
 struct TNSRef<FI_TBVDSBulkConfigChangedState, void> {
     FI_TBVDSBulkConfigChangedState *fRef;
 };
 
 struct TNSRef<FI_TBasicImageView, void> {
     FI_TBasicImageView *fRef;
-};
-
-struct TNSRef<FI_TBrowserContainerController, void> {
-    FI_TBrowserContainerController *fRef;
 };
 
 struct TNSRef<FI_TBrowserImmediateActionGestureRecognizerDelegate, void> {
@@ -665,18 +676,6 @@ struct TNSRef<FI_TColumnViewController, void> {
 
 struct TNSRef<FI_TContainerLayoutManager, void> {
     FI_TContainerLayoutManager *fRef;
-};
-
-struct TNSRef<FI_TDFRAddTagsViewController, void> {
-    FI_TDFRAddTagsViewController *fRef;
-};
-
-struct TNSRef<FI_TDFRScrollingStackViewController, void> {
-    FI_TDFRScrollingStackViewController *fRef;
-};
-
-struct TNSRef<FI_TDelayedPopulationViewController, void> {
-    FI_TDelayedPopulationViewController *fRef;
 };
 
 struct TNSRef<FI_TDesktopGridLayout, void> {
@@ -779,6 +778,10 @@ struct TNSRef<FI_TKeyValueObserverGlue, void> {
     FI_TKeyValueObserverGlue *fRef;
 };
 
+struct TNSRef<FI_TLabelView, void> {
+    FI_TLabelView *fRef;
+};
+
 struct TNSRef<FI_TListHeaderCellView, void> {
     FI_TListHeaderCellView *fRef;
 };
@@ -801,6 +804,10 @@ struct TNSRef<FI_TListTextField, void> {
 
 struct TNSRef<FI_TListViewSettings, void> {
     FI_TListViewSettings *fRef;
+};
+
+struct TNSRef<FI_TLoadingViewController, void> {
+    FI_TLoadingViewController *fRef;
 };
 
 struct TNSRef<FI_TMDUserSearch, void> {
@@ -891,6 +898,10 @@ struct TNSRef<FI_TShrinkToFitController, void> {
     FI_TShrinkToFitController *fRef;
 };
 
+struct TNSRef<FI_TShrinkToFitTextView, void> {
+    FI_TShrinkToFitTextView *fRef;
+};
+
 struct TNSRef<FI_TShrinkToFitWindow, void> {
     FI_TShrinkToFitWindow *fRef;
 };
@@ -901,6 +912,10 @@ struct TNSRef<FI_TSidebarSplitViewController, void> {
 
 struct TNSRef<FI_TSidebarViewController, void> {
     FI_TSidebarViewController *fRef;
+};
+
+struct TNSRef<FI_TTableView, void> {
+    FI_TTableView *fRef;
 };
 
 struct TNSRef<FI_TTableViewShrinkToFitController, void> {
@@ -975,6 +990,10 @@ struct TNSRef<NSArray<CAFilter *>, void> {
     NSArray *fRef;
 };
 
+struct TNSRef<NSArray<FI_IPropertyValueController *>, void> {
+    NSArray *fRef;
+};
+
 struct TNSRef<NSArray<FI_TBaseInfoWindowViewController *>, void> {
     NSArray *fRef;
 };
@@ -988,10 +1007,6 @@ struct TNSRef<NSArray<FI_TPreviewOptionsGroupSettings *>, void> {
 };
 
 struct TNSRef<NSArray<FI_TTagInfo *>, void> {
-    NSArray *fRef;
-};
-
-struct TNSRef<NSArray<IPropertyValueControllers *>, void> {
     NSArray *fRef;
 };
 
@@ -1017,6 +1032,10 @@ struct TNSRef<NSBox, void> {
 
 struct TNSRef<NSColor, void> {
     NSColor *fRef;
+};
+
+struct TNSRef<NSCustomTouchBarItem, void> {
+    NSCustomTouchBarItem *fRef;
 };
 
 struct TNSRef<NSData, void> {
@@ -1053,6 +1072,10 @@ struct TNSRef<NSFont, void> {
 
 struct TNSRef<NSImage, void> {
     NSImage *fRef;
+};
+
+struct TNSRef<NSImageView, void> {
+    NSImageView *fRef;
 };
 
 struct TNSRef<NSImmediateActionGestureRecognizer, void> {
@@ -1117,6 +1140,10 @@ struct TNSRef<NSObject<FIFinderSyncExtensionProtocol>, void> {
 
 struct TNSRef<NSObject<FI_TAirDropNotAvailableDelegateProtocol>, void> {
     NSObject<FI_TAirDropNotAvailableDelegateProtocol> *fRef;
+};
+
+struct TNSRef<NSObject<NSDraggingInfo>, void> {
+    id _field1;
 };
 
 struct TNSRef<NSObject<TStdAlertSheetClientProtocol>, void> {
@@ -1203,6 +1230,10 @@ struct TNSRef<QLPreviewPanel, void> {
     QLPreviewPanel *fRef;
 };
 
+struct TNSRef<QLPreviewView, void> {
+    QLPreviewView *fRef;
+};
+
 struct TNSRef<SFAirDropDiscoveryController, void> {
     SFAirDropDiscoveryController *fRef;
 };
@@ -1211,7 +1242,23 @@ struct TNSRef<SFWirelessSettingsController, void> {
     SFWirelessSettingsController *fRef;
 };
 
+struct TNSWeakPtr<FI_TBrowserContainerController, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
 struct TNSWeakPtr<FI_TBrowserViewDataSource, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<FI_TICloudProgressObserver, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<FI_TOutlineView, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<FI_TPopoverController, void> {
     struct TNSRef<NSValue, void> fWeakObject;
 };
 
@@ -1219,11 +1266,131 @@ struct TNSWeakPtr<FI_TRunAfterHelper, void> {
     struct TNSRef<NSValue, void> fWeakObject;
 };
 
+struct TNSWeakPtr<FI_TShrinkToFitController, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<FI_TShrinkToFitScrollView, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<FI_TShrinkToFitTextView, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<FI_TTableView, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<FI_TTagColumnTableViewController, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<FI_TTaggingTokenField, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<FI_TViewOptionsSettingsController, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
 struct TNSWeakPtr<NSLayoutConstraint, void> {
     struct TNSRef<NSValue, void> fWeakObject;
 };
 
-struct TNSWeakPtr<NSObject<TDFRTagsViewTagProviding>, void> {
+struct TNSWeakPtr<NSObject<BrowserContainerDelegate, BrowserContainerSearching, BrowserContainerTargeting>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<CAAnimationDelegate>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<FIAirDropViewDelegate>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<FILocationMenuItemTargetProtocol>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<IAsyncNodeOperationDelegateProtocol>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TCollectionViewDelegateProtocol>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TDesktopInlinePreviewDataSource>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TDraggingDestinationDelegate, TSpringLoadingDestinationDelegate>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TDraggingSource>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TDropOperationDelegateProtocol>, void> {
+    struct TNSRef<NSValue, void> _field1;
+};
+
+struct TNSWeakPtr<NSObject<TGoToWindowDelegate>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TListHeaderRowViewDelegate>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TListNameFieldDelegate>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TListRowViewDelegate>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TNWOperationDelegateProtocol>, void> {
+    struct TNSRef<NSValue, void> _field1;
+};
+
+struct TNSWeakPtr<NSObject<TPathControlDelegate>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TPreviewOptionsGroupSettingsDelegete>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TPropertyThumbnailExtractorDelegate>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TQLPreviewWindowControllerProtocol>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TSearchCriteriaSheetDelegate>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TSearchCriteriaViewControllerDelegate>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TSearchScopeSliceControllerDelegate>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TShrinkToFitDelegateProtocol>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TTagColumnTableViewControllerDelegate>, void> {
     struct TNSRef<NSValue, void> fWeakObject;
 };
 
@@ -1231,7 +1398,27 @@ struct TNSWeakPtr<NSObject<TThumbnailExtractorDelegate>, void> {
     struct TNSRef<NSValue, void> _field1;
 };
 
+struct TNSWeakPtr<NSObject<TTouchBarGoToViewDelegate>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSObject<TTouchBarTagsViewTagProviding>, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSPopUpButton, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
 struct TNSWeakPtr<NSProgress, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSView, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+};
+
+struct TNSWeakPtr<NSWindow, void> {
     struct TNSRef<NSValue, void> fWeakObject;
 };
 
@@ -1243,9 +1430,10 @@ struct TNodeObserver {
     CDUnknownFunctionPointerType *_field1;
     struct weak_ptr<TNodeEventHandler> _field2;
     CDUnknownFunctionPointerType *_field3;
-    struct map<TFENode, TObserverStats, std::__1::less<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TObserverStats>>> _field4;
-    struct unique_ptr<TNodeChangeNotifier, std::__1::default_delete<TNodeChangeNotifier>> _field5;
-    _Bool _field6;
+    _Bool _field4;
+    struct map<TFENode, TObserverStats, std::__1::less<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TObserverStats>>> _field5;
+    struct unique_ptr<TNodeChangeNotifier, std::__1::default_delete<TNodeChangeNotifier>> _field6;
+    _Bool _field7;
 };
 
 struct TNodeObserverCocoaBridge;
@@ -1309,10 +1497,6 @@ struct TReadWriteLock {
         long long __sig;
         char __opaque[192];
     } fRWLock;
-};
-
-struct TRecursiveMutex {
-    struct _opaque_pthread_mutex_t fMutex;
 };
 
 struct TRef<CGImage *, TRetainReleasePolicy<CGImageRef>> {
@@ -1380,14 +1564,8 @@ struct TRenameUndoRedoOperationHelper;
 
 struct TSharedFileListItem;
 
-struct TSideLayoutBinding {
-    struct TNSRef<NSView, void> masterView;
-    int kind;
-    struct CGRect frame;
-};
-
 struct TSpinLock {
-    int fSpinLock;
+    struct os_unfair_lock_s fSpinLock;
 };
 
 struct TString {
@@ -1397,15 +1575,14 @@ struct TString {
 struct TTagsTask;
 
 struct TThumbnailExtractor {
-    struct TMutex _field1;
+    struct mutex _field1;
     struct shared_ptr<TThumbnailExtractorThread> _field2;
     int _field3;
     unsigned int _field4;
-    _Bool _field5;
+    duration_34584d68 _field5;
     _Bool _field6;
     struct function<bool (const TFENode &, unsigned int)> _field7;
     struct function<void (const std::__1::vector<TThumbnailExtractorData, std::__1::allocator<TThumbnailExtractorData>>&)> _field8;
-    function_b1fce659 _field9;
 };
 
 struct TThumbnailExtractorController {
@@ -1415,8 +1592,9 @@ struct TThumbnailExtractorController {
 
 struct TThumbnailExtractorData {
     struct TFENode _field1;
-    struct map<unsigned int, TThumbnailExtractorData::TThumbnailData, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, TThumbnailExtractorData::TThumbnailData>>> _field2;
-    struct TFENodeData _field3;
+    struct TNSRef<NSImage, void> _field2;
+    struct map<unsigned int, TThumbnailExtractorData::TImageRepData, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, TThumbnailExtractorData::TImageRepData>>> _field3;
+    struct TFENodeData _field4;
 };
 
 struct TThumbnailExtractorThread;
@@ -1448,8 +1626,8 @@ struct _NSRange {
     unsigned long long length;
 };
 
-struct __hash_node_base<std::__1::__hash_node<NSObject *, void *>*> {
-    struct __hash_node_base<std::__1::__hash_node<NSObject *, void *>*> *__next_;
+struct __hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*> *__next_;
 };
 
 struct __hash_node_base<std::__1::__hash_node<TFENode, void *>*> {
@@ -1482,6 +1660,10 @@ struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENod
 
 struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<FI_TBVDSBusyStateIncrementer, void>>, void *>*> {
     struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<FI_TBVDSBusyStateIncrementer, void>>, void *>*> *__next_;
+};
+
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*> *_field1;
 };
 
 struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSObject, void>>, void *>*> {
@@ -1526,10 +1708,6 @@ struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef
 
 struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSObject, void>, unsigned long>, void *>*> {
     struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSObject, void>, unsigned long>, void *>*> *__next_;
-};
-
-struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, void *>*> {
-    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, void *>*> *__next_;
 };
 
 struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TString, TNSRef<FI_TPreviewOptions, void>>, void *>*> {
@@ -1586,6 +1764,19 @@ struct condition_variable_any {
     struct shared_ptr<std::__1::mutex> __mut_;
 };
 
+struct duration<double, std::__1::ratio<1, 1>> {
+    double _field1;
+};
+
+struct duration<long long, std::__1::ratio<1, 1000>> {
+    long long _field1;
+};
+
+struct function<CGRect (CGRect)> {
+    struct type _field1;
+    struct __base<CGRect (CGRect)> *_field2;
+};
+
 struct function<NSComparisonResult (__kindof NSView *, __kindof NSView *)> {
     struct type __buf_;
     struct __base<NSComparisonResult (__kindof NSView *, __kindof NSView *)> *__f_;
@@ -1604,6 +1795,16 @@ struct function<NSImage *(NSView *, MouseState, TSidebarActionKind)> {
 struct function<NSImage *(bool, bool, bool, NSTableViewRowSizeStyle, double)> {
     struct type __buf_;
     struct __base<NSImage *(bool, bool, bool, NSTableViewRowSizeStyle, double)> *__f_;
+};
+
+struct function<NSObject *(const TFENodeVector &)> {
+    struct type __buf_;
+    struct __base<NSObject *(const TFENodeVector &)> *__f_;
+};
+
+struct function<TFENodeVector (SEL *)> {
+    struct type _field1;
+    struct __base<TFENodeVector (SEL *)> *_field2;
 };
 
 struct function<TString (const TString &)> {
@@ -1626,14 +1827,29 @@ struct function<bool (FI_TSTFTextField *)> {
     struct __base<bool (FI_TSTFTextField *)> *__f_;
 };
 
+struct function<bool (const TFENode &)> {
+    struct type _field1;
+    struct __base<bool (const TFENode &)> *_field2;
+};
+
 struct function<bool (const TFENode &, unsigned int)> {
     struct type _field1;
     struct __base<bool (const TFENode &, unsigned int)> *_field2;
 };
 
-struct function<std::__1::pair<NSImage *, TString>(CGSize)> {
+struct function<bool (const TFENodeVector &)> {
     struct type __buf_;
-    struct __base<std::__1::pair<NSImage *, TString>(CGSize)> *__f_;
+    struct __base<bool (const TFENodeVector &)> *__f_;
+};
+
+struct function<bool (unsigned int)> {
+    struct type __buf_;
+    struct __base<bool (unsigned int)> *__f_;
+};
+
+struct function<int (NSObject *, const TFENodeVector &)> {
+    struct type __buf_;
+    struct __base<int (NSObject *, const TFENodeVector &)> *__f_;
 };
 
 struct function<std::__1::shared_ptr<TUndoableAction>()> {
@@ -1666,6 +1882,11 @@ struct function<void (FI_TGotoWindowController *, const TFENode &, const TFENode
     struct __base<void (FI_TGotoWindowController *, const TFENode &, const TFENode &, const TString &)> *__f_;
 };
 
+struct function<void (FI_TListBaseCellView *, long, long)> {
+    struct type _field1;
+    struct __base<void (FI_TListBaseCellView *, long, long)> *_field2;
+};
+
 struct function<void (FI_TPreviewOptions *)> {
     struct type __buf_;
     struct __base<void (FI_TPreviewOptions *)> *__f_;
@@ -1674,6 +1895,11 @@ struct function<void (FI_TPreviewOptions *)> {
 struct function<void (FI_TTagInfo *, bool)> {
     struct type __buf_;
     struct __base<void (FI_TTagInfo *, bool)> *__f_;
+};
+
+struct function<void (NSArray<NSMenuItem *>*)> {
+    struct type _field1;
+    struct __base<void (NSArray<NSMenuItem *>*)> *_field2;
 };
 
 struct function<void (NSDictionary<NSString *, NSObject *>*)> {
@@ -1711,11 +1937,6 @@ struct function<void (const TFENodeVector &, const TError &)> {
     struct __base<void (const TFENodeVector &, const TError &)> *__f_;
 };
 
-struct function<void (const std::__1::shared_ptr<TIconFetcher>&, const TFENodeVector &)> {
-    struct type _field1;
-    struct __base<void (const std::__1::shared_ptr<TIconFetcher>&, const TFENodeVector &)> *_field2;
-};
-
 struct function<void (const std::__1::unordered_set<TFENode, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<TFENode>>&, std::__1::unordered_map<TFENode, TChildrenData, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TChildrenData>>>&, TGroupModeData &, std::__1::vector<std::__1::unordered_map<TFENode, TBVDSChangedPayload, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TBVDSChangedPayload>>>, std::__1::allocator<std::__1::unordered_map<TFENode, TBVDSChangedPayload, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TBVDSChangedPayload>>>>>&, bool, bool)> {
     struct type _field1;
     struct __base<void (const std::__1::unordered_set<TFENode, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<TFENode>>&, std::__1::unordered_map<TFENode, TChildrenData, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TChildrenData>>>&, TGroupModeData &, std::__1::vector<std::__1::unordered_map<TFENode, TBVDSChangedPayload, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TBVDSChangedPayload>>>, std::__1::allocator<std::__1::unordered_map<TFENode, TBVDSChangedPayload, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TBVDSChangedPayload>>>>>&, bool, bool)> *_field2;
@@ -1745,18 +1966,6 @@ struct map<CGSize, NSAttributedString *, CompareSizeByWidth, std::__1::allocator
             struct __tree_end_node<std::__1::__tree_node_base<void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::__map_value_compare<CGSize, std::__1::__value_type<CGSize, NSAttributedString *>, CompareSizeByWidth, true>> {
-            unsigned long long _field1;
-        } _field3;
-    } _field1;
-};
-
-struct map<TFENode, CGRect, std::__1::less<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, CGRect>>> {
-    struct __tree<std::__1::__value_type<TFENode, CGRect>, std::__1::__map_value_compare<TFENode, std::__1::__value_type<TFENode, CGRect>, std::__1::less<TFENode>, true>, std::__1::allocator<std::__1::__value_type<TFENode, CGRect>>> {
-        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *_field1;
-        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<TFENode, CGRect>, void *>>> {
-            struct __tree_end_node<std::__1::__tree_node_base<void *>*> _field1;
-        } _field2;
-        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<TFENode, std::__1::__value_type<TFENode, CGRect>, std::__1::less<TFENode>, true>> {
             unsigned long long _field1;
         } _field3;
     } _field1;
@@ -1846,13 +2055,37 @@ struct map<TSidebarZone, TFENodeVector, std::__1::less<TSidebarZone>, std::__1::
     } __tree_;
 };
 
-struct map<TString, TNSRef<FI_TDFRTagButton, void>, std::__1::less<TString>, std::__1::allocator<std::__1::pair<const TString, TNSRef<FI_TDFRTagButton, void>>>> {
-    struct __tree<std::__1::__value_type<TString, TNSRef<FI_TDFRTagButton, void>>, std::__1::__map_value_compare<TString, std::__1::__value_type<TString, TNSRef<FI_TDFRTagButton, void>>, std::__1::less<TString>, true>, std::__1::allocator<std::__1::__value_type<TString, TNSRef<FI_TDFRTagButton, void>>>> {
+struct map<TString, TNSRef<FI_TTouchBarTagButton, void>, std::__1::less<TString>, std::__1::allocator<std::__1::pair<const TString, TNSRef<FI_TTouchBarTagButton, void>>>> {
+    struct __tree<std::__1::__value_type<TString, TNSRef<FI_TTouchBarTagButton, void>>, std::__1::__map_value_compare<TString, std::__1::__value_type<TString, TNSRef<FI_TTouchBarTagButton, void>>, std::__1::less<TString>, true>, std::__1::allocator<std::__1::__value_type<TString, TNSRef<FI_TTouchBarTagButton, void>>>> {
         struct __tree_end_node<std::__1::__tree_node_base<void *>*> *__begin_node_;
-        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<TString, TNSRef<FI_TDFRTagButton, void>>, void *>>> {
+        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<TString, TNSRef<FI_TTouchBarTagButton, void>>, void *>>> {
             struct __tree_end_node<std::__1::__tree_node_base<void *>*> __value_;
         } __pair1_;
-        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<TString, std::__1::__value_type<TString, TNSRef<FI_TDFRTagButton, void>>, std::__1::less<TString>, true>> {
+        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<TString, std::__1::__value_type<TString, TNSRef<FI_TTouchBarTagButton, void>>, std::__1::less<TString>, true>> {
+            unsigned long long __value_;
+        } __pair3_;
+    } __tree_;
+};
+
+struct map<TString, TNotificationCenterObserver, std::__1::less<TString>, std::__1::allocator<std::__1::pair<const TString, TNotificationCenterObserver>>> {
+    struct __tree<std::__1::__value_type<TString, TNotificationCenterObserver>, std::__1::__map_value_compare<TString, std::__1::__value_type<TString, TNotificationCenterObserver>, std::__1::less<TString>, true>, std::__1::allocator<std::__1::__value_type<TString, TNotificationCenterObserver>>> {
+        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *__begin_node_;
+        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<TString, TNotificationCenterObserver>, void *>>> {
+            struct __tree_end_node<std::__1::__tree_node_base<void *>*> __value_;
+        } __pair1_;
+        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<TString, std::__1::__value_type<TString, TNotificationCenterObserver>, std::__1::less<TString>, true>> {
+            unsigned long long __value_;
+        } __pair3_;
+    } __tree_;
+};
+
+struct map<UDefaults::RegistryID, TNotificationCenterObserver, std::__1::less<UDefaults::RegistryID>, std::__1::allocator<std::__1::pair<const UDefaults::RegistryID, TNotificationCenterObserver>>> {
+    struct __tree<std::__1::__value_type<UDefaults::RegistryID, TNotificationCenterObserver>, std::__1::__map_value_compare<UDefaults::RegistryID, std::__1::__value_type<UDefaults::RegistryID, TNotificationCenterObserver>, std::__1::less<UDefaults::RegistryID>, true>, std::__1::allocator<std::__1::__value_type<UDefaults::RegistryID, TNotificationCenterObserver>>> {
+        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *__begin_node_;
+        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<UDefaults::RegistryID, TNotificationCenterObserver>, void *>>> {
+            struct __tree_end_node<std::__1::__tree_node_base<void *>*> __value_;
+        } __pair1_;
+        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<UDefaults::RegistryID, std::__1::__value_type<UDefaults::RegistryID, TNotificationCenterObserver>, std::__1::less<UDefaults::RegistryID>, true>> {
             unsigned long long __value_;
         } __pair3_;
     } __tree_;
@@ -1882,13 +2115,13 @@ struct map<long, TFENode, std::__1::less<long>, std::__1::allocator<std::__1::pa
     } _field1;
 };
 
-struct map<unsigned int, TThumbnailExtractorData::TThumbnailData, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, TThumbnailExtractorData::TThumbnailData>>> {
-    struct __tree<std::__1::__value_type<unsigned int, TThumbnailExtractorData::TThumbnailData>, std::__1::__map_value_compare<unsigned int, std::__1::__value_type<unsigned int, TThumbnailExtractorData::TThumbnailData>, std::__1::less<unsigned int>, true>, std::__1::allocator<std::__1::__value_type<unsigned int, TThumbnailExtractorData::TThumbnailData>>> {
+struct map<unsigned int, TThumbnailExtractorData::TImageRepData, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, TThumbnailExtractorData::TImageRepData>>> {
+    struct __tree<std::__1::__value_type<unsigned int, TThumbnailExtractorData::TImageRepData>, std::__1::__map_value_compare<unsigned int, std::__1::__value_type<unsigned int, TThumbnailExtractorData::TImageRepData>, std::__1::less<unsigned int>, true>, std::__1::allocator<std::__1::__value_type<unsigned int, TThumbnailExtractorData::TImageRepData>>> {
         struct __tree_end_node<std::__1::__tree_node_base<void *>*> *_field1;
-        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<unsigned int, TThumbnailExtractorData::TThumbnailData>, void *>>> {
+        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<unsigned int, TThumbnailExtractorData::TImageRepData>, void *>>> {
             struct __tree_end_node<std::__1::__tree_node_base<void *>*> _field1;
         } _field2;
-        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<unsigned int, std::__1::__value_type<unsigned int, TThumbnailExtractorData::TThumbnailData>, std::__1::less<unsigned int>, true>> {
+        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<unsigned int, std::__1::__value_type<unsigned int, TThumbnailExtractorData::TImageRepData>, std::__1::less<unsigned int>, true>> {
             unsigned long long _field1;
         } _field3;
     } _field1;
@@ -1898,6 +2131,31 @@ struct mutex {
     struct _opaque_pthread_mutex_t __m_;
 };
 
+struct optional<std::__1::pair<TFENode, TDropOperation::TDragContentCharacteristics>> {
+    union {
+        char _field1;
+        struct pair<TFENode, TDropOperation::TDragContentCharacteristics> _field2;
+    } _field1;
+    _Bool _field2;
+};
+
+struct optional<std::__1::unordered_set<TFENode, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<TFENode>>> {
+    union {
+        char _field1;
+        unordered_set_931aff12 _field2;
+    } _field1;
+    _Bool _field2;
+};
+
+struct os_unfair_lock_s {
+    unsigned int _os_unfair_lock_opaque;
+};
+
+struct pair<CGRect, bool> {
+    struct CGRect _field1;
+    _Bool _field2;
+};
+
 struct pair<NSImage *, TString> {
     id _field1;
     struct TString _field2;
@@ -1905,22 +2163,28 @@ struct pair<NSImage *, TString> {
 
 struct pair<TFENode, NodeNotificationOptions>;
 
+struct pair<TFENode, TDropOperation::TDragContentCharacteristics> {
+    struct TFENode _field1;
+    struct TDragContentCharacteristics _field2;
+};
+
 struct pair<TFENode, TFENode>;
 
 struct pair<TFENode, TFENodePropertyList>;
+
+struct pair<TFENode, TNSRef<NSImage, void>>;
 
 struct pair<TFENode, unsigned int>;
 
 struct pair<TNSRef<NSObject, void>, unsigned long>;
 
-struct pair<TString, TString> {
-    struct TString _field1;
-    struct TString _field2;
+struct pair<bool, bool> {
+    _Bool _field1;
+    _Bool _field2;
 };
 
-struct pair<double, double> {
-    double _field1;
-    double _field2;
+struct recursive_mutex {
+    struct _opaque_pthread_mutex_t __m_;
 };
 
 struct set<TFENode, std::__1::less<TFENode>, std::__1::allocator<TFENode>> {
@@ -1933,30 +2197,6 @@ struct set<TFENode, std::__1::less<TFENode>, std::__1::allocator<TFENode>> {
             unsigned long long _field1;
         } _field3;
     } _field1;
-};
-
-struct set<TString, std::__1::less<TString>, std::__1::allocator<TString>> {
-    struct __tree<TString, std::__1::less<TString>, std::__1::allocator<TString>> {
-        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *__begin_node_;
-        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<TString, void *>>> {
-            struct __tree_end_node<std::__1::__tree_node_base<void *>*> __value_;
-        } __pair1_;
-        struct __compressed_pair<unsigned long, std::__1::less<TString>> {
-            unsigned long long __value_;
-        } __pair3_;
-    } __tree_;
-};
-
-struct set<UDefaults::RegistryID, std::__1::less<UDefaults::RegistryID>, std::__1::allocator<UDefaults::RegistryID>> {
-    struct __tree<UDefaults::RegistryID, std::__1::less<UDefaults::RegistryID>, std::__1::allocator<UDefaults::RegistryID>> {
-        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *__begin_node_;
-        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<UDefaults::RegistryID, void *>>> {
-            struct __tree_end_node<std::__1::__tree_node_base<void *>*> __value_;
-        } __pair1_;
-        struct __compressed_pair<unsigned long, std::__1::less<UDefaults::RegistryID>> {
-            unsigned long long __value_;
-        } __pair3_;
-    } __tree_;
 };
 
 struct set<double, std::__1::less<double>, std::__1::allocator<double>> {
@@ -2106,6 +2346,18 @@ struct unique_ptr<Browser::TListBrowserSettings, std::__1::default_delete<Browse
     } __ptr_;
 };
 
+struct unique_ptr<FIAmbiguousMenuItems, std::__1::default_delete<FIAmbiguousMenuItems>> {
+    struct __compressed_pair<FIAmbiguousMenuItems *, std::__1::default_delete<FIAmbiguousMenuItems>> {
+        struct FIAmbiguousMenuItems *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<FI_TBestFitStringSelector, std::__1::default_delete<FI_TBestFitStringSelector>> {
+    struct __compressed_pair<FI_TBestFitStringSelector *, std::__1::default_delete<FI_TBestFitStringSelector>> {
+        struct FI_TBestFitStringSelector *__value_;
+    } __ptr_;
+};
+
 struct unique_ptr<TAirDropSenderOperationController, std::__1::default_delete<TAirDropSenderOperationController>>;
 
 struct unique_ptr<TBlockingQueue, std::__1::default_delete<TBlockingQueue>> {
@@ -2156,11 +2408,11 @@ struct unique_ptr<fstd::finder_callable_details::callable_holder_base<void>, std
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *, void *>*>*>>> {
-    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *, void *>*>*>>> {
-        struct __hash_node_base<std::__1::__hash_node<NSObject *, void *>*> **__value_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *, void *>*>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *, void *>*>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*> **__value_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*>> {
                 unsigned long long __value_;
             } __data_;
         } __value_;
@@ -2253,6 +2505,17 @@ struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__h
             } __data_;
         } __value_;
     } __ptr_;
+};
+
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*>*>> {
+                unsigned long long _field1;
+            } _field1;
+        } _field2;
+    } _field1;
 };
 
 struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSObject, void>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSObject, void>>, void *>*>*>>> {
@@ -2370,17 +2633,6 @@ struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__h
         struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSObject, void>, unsigned long>, void *>*> **__value_;
         struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSObject, void>, unsigned long>, void *>*>*>> {
             struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSObject, void>, unsigned long>, void *>*>*>> {
-                unsigned long long __value_;
-            } __data_;
-        } __value_;
-    } __ptr_;
-};
-
-struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, void *>*>*>>> {
-    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, void *>*>*>>> {
-        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, void *>*> **__value_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, void *>*>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, void *>*>*>> {
                 unsigned long long __value_;
             } __data_;
         } __value_;
@@ -2543,6 +2795,21 @@ struct unordered_map<TFENode, TNSRef<FI_TBVDSBusyStateIncrementer, void>, std::_
             float __value_;
         } __p3_;
     } __table_;
+};
+
+struct unordered_map<TFENode, TNSRef<NSIndexPath, void>, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TNSRef<NSIndexPath, void>>>> {
+    struct __hash_table<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, std::__1::__unordered_map_hasher<TFENode, std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, std::__1::hash<TFENode>, true>, std::__1::__unordered_map_equal<TFENode, std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, std::__1::equal_to<TFENode>, true>, std::__1::allocator<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*>*>>> _field1;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*> _field1;
+        } _field2;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<TFENode, std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, std::__1::hash<TFENode>, true>> {
+            unsigned long long _field1;
+        } _field3;
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<TFENode, std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, std::__1::equal_to<TFENode>, true>> {
+            float _field1;
+        } _field4;
+    } _field1;
 };
 
 struct unordered_map<TFENode, TNSRef<NSObject, void>, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TNSRef<NSObject, void>>>> {
@@ -2710,21 +2977,6 @@ struct unordered_map<TNSRef<NSObject, void>, unsigned long, std::__1::hash<TNSRe
     } __table_;
 };
 
-struct unordered_map<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>, std::__1::hash<TNSRef<NSView, void>>, std::__1::equal_to<TNSRef<NSView, void>>, std::__1::allocator<std::__1::pair<const TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>>> {
-    struct __hash_table<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, std::__1::__unordered_map_hasher<TNSRef<NSView, void>, std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, std::__1::hash<TNSRef<NSView, void>>, true>, std::__1::__unordered_map_equal<TNSRef<NSView, void>, std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, std::__1::equal_to<TNSRef<NSView, void>>, true>, std::__1::allocator<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>>> {
-        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, void *>*>*>>> __bucket_list_;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, void *>*> __value_;
-        } __p1_;
-        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<TNSRef<NSView, void>, std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, std::__1::hash<TNSRef<NSView, void>>, true>> {
-            unsigned long long __value_;
-        } __p2_;
-        struct __compressed_pair<float, std::__1::__unordered_map_equal<TNSRef<NSView, void>, std::__1::__hash_value_type<TNSRef<NSView, void>, std::__1::pair<unsigned long, TNotificationCenterObserver>>, std::__1::equal_to<TNSRef<NSView, void>>, true>> {
-            float __value_;
-        } __p3_;
-    } __table_;
-};
-
 struct unordered_map<TString, TNSRef<FI_TPreviewOptions, void>, std::__1::hash<TString>, std::__1::equal_to<TString>, std::__1::allocator<std::__1::pair<const TString, TNSRef<FI_TPreviewOptions, void>>>> {
     struct __hash_table<std::__1::__hash_value_type<TString, TNSRef<FI_TPreviewOptions, void>>, std::__1::__unordered_map_hasher<TString, std::__1::__hash_value_type<TString, TNSRef<FI_TPreviewOptions, void>>, std::__1::hash<TString>, true>, std::__1::__unordered_map_equal<TString, std::__1::__hash_value_type<TString, TNSRef<FI_TPreviewOptions, void>>, std::__1::equal_to<TString>, true>, std::__1::allocator<std::__1::__hash_value_type<TString, TNSRef<FI_TPreviewOptions, void>>>> {
         struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TString, TNSRef<FI_TPreviewOptions, void>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TString, TNSRef<FI_TPreviewOptions, void>>, void *>*>*>>> __bucket_list_;
@@ -2815,16 +3067,16 @@ struct unordered_map<unsigned long, std::__1::unordered_map<TFENode, std::__1::u
     } __table_;
 };
 
-struct unordered_set<NSObject *, std::__1::hash<NSObject *>, std::__1::equal_to<NSObject *>, std::__1::allocator<NSObject *>> {
-    struct __hash_table<NSObject *, std::__1::hash<NSObject *>, std::__1::equal_to<NSObject *>, std::__1::allocator<NSObject *>> {
-        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *, void *>*>*>>> __bucket_list_;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *, void *>*>, std::__1::allocator<std::__1::__hash_node<NSObject *, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<NSObject *, void *>*> __value_;
+struct unordered_set<NSObject *__unsafe_unretained, std::__1::hash<NSObject *__unsafe_unretained>, std::__1::equal_to<NSObject *__unsafe_unretained>, std::__1::allocator<NSObject *__unsafe_unretained>> {
+    struct __hash_table<NSObject *__unsafe_unretained, std::__1::hash<NSObject *__unsafe_unretained>, std::__1::equal_to<NSObject *__unsafe_unretained>, std::__1::allocator<NSObject *__unsafe_unretained>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*>>> __bucket_list_;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>, std::__1::allocator<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*> __value_;
         } __p1_;
-        struct __compressed_pair<unsigned long, std::__1::hash<NSObject *>> {
+        struct __compressed_pair<unsigned long, std::__1::hash<NSObject *__unsafe_unretained>> {
             unsigned long long __value_;
         } __p2_;
-        struct __compressed_pair<float, std::__1::equal_to<NSObject *>> {
+        struct __compressed_pair<float, std::__1::equal_to<NSObject *__unsafe_unretained>> {
             float __value_;
         } __p3_;
     } __table_;
@@ -3076,6 +3328,14 @@ struct vector<int, std::__1::allocator<int>> {
     } __end_cap_;
 };
 
+struct vector<std::__1::function<void ()>, std::__1::allocator<std::__1::function<void ()>>> {
+    function_b1fce659 *_field1;
+    function_b1fce659 *_field2;
+    struct __compressed_pair<std::__1::function<void ()>*, std::__1::allocator<std::__1::function<void ()>>> {
+        function_b1fce659 *_field1;
+    } _field3;
+};
+
 struct vector<std::__1::pair<TFENode, NodeNotificationOptions>, std::__1::allocator<std::__1::pair<TFENode, NodeNotificationOptions>>> {
     struct pair<TFENode, NodeNotificationOptions> *_field1;
     struct pair<TFENode, NodeNotificationOptions> *_field2;
@@ -3089,6 +3349,14 @@ struct vector<std::__1::pair<TFENode, TFENode>, std::__1::allocator<std::__1::pa
     struct pair<TFENode, TFENode> *__end_;
     struct __compressed_pair<std::__1::pair<TFENode, TFENode>*, std::__1::allocator<std::__1::pair<TFENode, TFENode>>> {
         struct pair<TFENode, TFENode> *__value_;
+    } __end_cap_;
+};
+
+struct vector<std::__1::pair<TFENode, TNSRef<NSImage, void>>, std::__1::allocator<std::__1::pair<TFENode, TNSRef<NSImage, void>>>> {
+    struct pair<TFENode, TNSRef<NSImage, void>> *__begin_;
+    struct pair<TFENode, TNSRef<NSImage, void>> *__end_;
+    struct __compressed_pair<std::__1::pair<TFENode, TNSRef<NSImage, void>>*, std::__1::allocator<std::__1::pair<TFENode, TNSRef<NSImage, void>>>> {
+        struct pair<TFENode, TNSRef<NSImage, void>> *__value_;
     } __end_cap_;
 };
 
@@ -3140,16 +3408,6 @@ struct vector<unsigned char, std::__1::allocator<unsigned char>> {
     } __end_cap_;
 };
 
-struct weak_ptr<TCustomNode> {
-    struct TCustomNode *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct weak_ptr<TIconFetcher> {
-    struct TIconFetcher *_field1;
-    struct __shared_weak_count *_field2;
-};
-
 struct weak_ptr<TNodeEventHandler> {
     struct TNodeEventHandler *_field1;
     struct __shared_weak_count *_field2;
@@ -3167,17 +3425,30 @@ typedef struct {
 } CDStruct_4c969caf;
 
 // Template types
+typedef struct TNSRef<FI_TBasicImageView, void> {
+    FI_TBasicImageView *fRef;
+} TNSRef_cc605514;
+
 typedef struct TNSRef<FI_TICloudBadgePlaceholderView, void> {
     FI_TICloudBadgePlaceholderView *fRef;
 } TNSRef_aed84f5d;
 
-typedef struct TNSRef<FI_TQLMultiPreviewView, void> {
-    FI_TQLMultiPreviewView *fRef;
-} TNSRef_87bff19e;
-
 typedef struct TNSWeakPtr<FI_TRunAfterHelper, void> {
     struct TNSRef<NSValue, void> fWeakObject;
 } TNSWeakPtr_a131d41e;
+
+typedef struct duration<double, std::__1::ratio<1, 1>> {
+    double _field1;
+} duration_3c68f186;
+
+typedef struct duration<long long, std::__1::ratio<1, 1000>> {
+    long long _field1;
+} duration_34584d68;
+
+typedef struct function<CGRect (CGRect)> {
+    struct type _field1;
+    struct __base<CGRect (CGRect)> *_field2;
+} function_21210f8a;
 
 typedef struct function<NSComparisonResult (__kindof NSView *, __kindof NSView *)> {
     struct type __buf_;
@@ -3199,6 +3470,16 @@ typedef struct function<NSImage *(bool, bool, bool, NSTableViewRowSizeStyle, dou
     struct __base<NSImage *(bool, bool, bool, NSTableViewRowSizeStyle, double)> *__f_;
 } function_3343ca80;
 
+typedef struct function<NSObject *(const TFENodeVector &)> {
+    struct type __buf_;
+    struct __base<NSObject *(const TFENodeVector &)> *__f_;
+} function_24308192;
+
+typedef struct function<TFENodeVector (SEL *)> {
+    struct type _field1;
+    struct __base<TFENodeVector (SEL *)> *_field2;
+} function_dc9816ab;
+
 typedef struct function<TString (const TString &)> {
     struct type __buf_;
     struct __base<TString (const TString &)> *__f_;
@@ -3219,10 +3500,25 @@ typedef struct function<bool (FI_TSTFTextField *)> {
     struct __base<bool (FI_TSTFTextField *)> *__f_;
 } function_9b3a6be4;
 
-typedef struct function<std::__1::pair<NSImage *, TString>(CGSize)> {
+typedef struct function<bool (const TFENode &)> {
+    struct type _field1;
+    struct __base<bool (const TFENode &)> *_field2;
+} function_88e6fc60;
+
+typedef struct function<bool (const TFENodeVector &)> {
     struct type __buf_;
-    struct __base<std::__1::pair<NSImage *, TString>(CGSize)> *__f_;
-} function_d15ff7cc;
+    struct __base<bool (const TFENodeVector &)> *__f_;
+} function_ce22cfb2;
+
+typedef struct function<bool (unsigned int)> {
+    struct type __buf_;
+    struct __base<bool (unsigned int)> *__f_;
+} function_15fcc248;
+
+typedef struct function<int (NSObject *, const TFENodeVector &)> {
+    struct type __buf_;
+    struct __base<int (NSObject *, const TFENodeVector &)> *__f_;
+} function_9c771ac6;
 
 typedef struct function<std::__1::shared_ptr<TUndoableAction>()> {
     struct type __buf_;
@@ -3254,6 +3550,11 @@ typedef struct function<void (FI_TGotoWindowController *, const TFENode &, const
     struct __base<void (FI_TGotoWindowController *, const TFENode &, const TFENode &, const TString &)> *__f_;
 } function_8027184b;
 
+typedef struct function<void (FI_TListBaseCellView *, long, long)> {
+    struct type _field1;
+    struct __base<void (FI_TListBaseCellView *, long, long)> *_field2;
+} function_bab39997;
+
 typedef struct function<void (FI_TPreviewOptions *)> {
     struct type __buf_;
     struct __base<void (FI_TPreviewOptions *)> *__f_;
@@ -3263,6 +3564,11 @@ typedef struct function<void (FI_TTagInfo *, bool)> {
     struct type __buf_;
     struct __base<void (FI_TTagInfo *, bool)> *__f_;
 } function_92f9ed64;
+
+typedef struct function<void (NSArray<NSMenuItem *>*)> {
+    struct type _field1;
+    struct __base<void (NSArray<NSMenuItem *>*)> *_field2;
+} function_64ecc982;
 
 typedef struct function<void (NSDictionary<NSString *, NSObject *>*)> {
     struct type __buf_;
@@ -3294,6 +3600,11 @@ typedef struct function<void (const TFENode &, const TString &)> {
     struct __base<void (const TFENode &, const TString &)> *__f_;
 } function_b4fae195;
 
+typedef struct function<void (const TFENodeVector &, const TError &)> {
+    struct type __buf_;
+    struct __base<void (const TFENodeVector &, const TError &)> *__f_;
+} function_cbb14aa3;
+
 typedef struct function<void (const std::__1::unordered_set<TFENode, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<TFENode>>&, std::__1::unordered_map<TFENode, TChildrenData, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TChildrenData>>>&, TGroupModeData &, std::__1::vector<std::__1::unordered_map<TFENode, TBVDSChangedPayload, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TBVDSChangedPayload>>>, std::__1::allocator<std::__1::unordered_map<TFENode, TBVDSChangedPayload, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TBVDSChangedPayload>>>>>&, bool, bool)> {
     struct type _field1;
     struct __base<void (const std::__1::unordered_set<TFENode, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<TFENode>>&, std::__1::unordered_map<TFENode, TChildrenData, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TChildrenData>>>&, TGroupModeData &, std::__1::vector<std::__1::unordered_map<TFENode, TBVDSChangedPayload, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TBVDSChangedPayload>>>, std::__1::allocator<std::__1::unordered_map<TFENode, TBVDSChangedPayload, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TBVDSChangedPayload>>>>>&, bool, bool)> *_field2;
@@ -3303,18 +3614,6 @@ typedef struct function<void (long)> {
     struct type __buf_;
     struct __base<void (long)> *__f_;
 } function_998afc14;
-
-typedef struct map<TFENode, CGRect, std::__1::less<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, CGRect>>> {
-    struct __tree<std::__1::__value_type<TFENode, CGRect>, std::__1::__map_value_compare<TFENode, std::__1::__value_type<TFENode, CGRect>, std::__1::less<TFENode>, true>, std::__1::allocator<std::__1::__value_type<TFENode, CGRect>>> {
-        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *_field1;
-        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<TFENode, CGRect>, void *>>> {
-            struct __tree_end_node<std::__1::__tree_node_base<void *>*> _field1;
-        } _field2;
-        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<TFENode, std::__1::__value_type<TFENode, CGRect>, std::__1::less<TFENode>, true>> {
-            unsigned long long _field1;
-        } _field3;
-    } _field1;
-} map_e297d142;
 
 typedef struct map<TFENode, const TFENodeVector *const, std::__1::less<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, const TFENodeVector *const>>> {
     struct __tree<std::__1::__value_type<TFENode, const TFENodeVector *const>, std::__1::__map_value_compare<TFENode, std::__1::__value_type<TFENode, const TFENodeVector *const>, std::__1::less<TFENode>, true>, std::__1::allocator<std::__1::__value_type<TFENode, const TFENodeVector *const>>> {
@@ -3340,20 +3639,52 @@ typedef struct map<TFENode, const std::__1::vector<std::__1::pair<TFENode, unsig
     } _field1;
 } map_253f12d2;
 
+typedef struct map<TSidebarZone, TFENodeVector, std::__1::less<TSidebarZone>, std::__1::allocator<std::__1::pair<const TSidebarZone, TFENodeVector>>> {
+    struct __tree<std::__1::__value_type<TSidebarZone, TFENodeVector>, std::__1::__map_value_compare<TSidebarZone, std::__1::__value_type<TSidebarZone, TFENodeVector>, std::__1::less<TSidebarZone>, true>, std::__1::allocator<std::__1::__value_type<TSidebarZone, TFENodeVector>>> {
+        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *__begin_node_;
+        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<TSidebarZone, TFENodeVector>, void *>>> {
+            struct __tree_end_node<std::__1::__tree_node_base<void *>*> __value_;
+        } __pair1_;
+        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<TSidebarZone, std::__1::__value_type<TSidebarZone, TFENodeVector>, std::__1::less<TSidebarZone>, true>> {
+            unsigned long long __value_;
+        } __pair3_;
+    } __tree_;
+} map_25537475;
+
+typedef struct map<long, TFENode, std::__1::less<long>, std::__1::allocator<std::__1::pair<const long, TFENode>>> {
+    struct __tree<std::__1::__value_type<long, TFENode>, std::__1::__map_value_compare<long, std::__1::__value_type<long, TFENode>, std::__1::less<long>, true>, std::__1::allocator<std::__1::__value_type<long, TFENode>>> {
+        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *_field1;
+        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<long, TFENode>, void *>>> {
+            struct __tree_end_node<std::__1::__tree_node_base<void *>*> _field1;
+        } _field2;
+        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<long, std::__1::__value_type<long, TFENode>, std::__1::less<long>, true>> {
+            unsigned long long _field1;
+        } _field3;
+    } _field1;
+} map_a2752b13;
+
+typedef struct optional<std::__1::unordered_set<TFENode, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<TFENode>>> {
+    union {
+        char _field1;
+        unordered_set_931aff12 _field2;
+    } _field1;
+    _Bool _field2;
+} optional_256c1242;
+
+typedef struct pair<CGRect, bool> {
+    struct CGRect _field1;
+    _Bool _field2;
+} pair_9764cbd7;
+
 typedef struct pair<NSImage *, TString> {
     id _field1;
     struct TString _field2;
 } pair_a86e8956;
 
-typedef struct pair<TString, TString> {
-    struct TString _field1;
-    struct TString _field2;
-} pair_1ddb90c7;
-
-typedef struct pair<double, double> {
-    double _field1;
-    double _field2;
-} pair_b2618ff2;
+typedef struct pair<bool, bool> {
+    _Bool _field1;
+    _Bool _field2;
+} pair_5f6a4f40;
 
 typedef struct set<double, std::__1::less<double>, std::__1::allocator<double>> {
     struct __tree<double, std::__1::less<double>, std::__1::allocator<double>> {
@@ -3416,6 +3747,12 @@ typedef struct unique_function<void ()> {
     struct unique_ptr<fstd::finder_callable_details::callable_holder_base<void>, std::__1::default_delete<fstd::finder_callable_details::callable_holder_base<void>>> fLambdaHolder;
 } unique_function_63952f55;
 
+typedef struct unique_ptr<FI_TBestFitStringSelector, std::__1::default_delete<FI_TBestFitStringSelector>> {
+    struct __compressed_pair<FI_TBestFitStringSelector *, std::__1::default_delete<FI_TBestFitStringSelector>> {
+        struct FI_TBestFitStringSelector *__value_;
+    } __ptr_;
+} unique_ptr_c12ab926;
+
 typedef struct unique_ptr<TBrowserImmediateActionGestureRecognizerHandlerBase, std::__1::default_delete<TBrowserImmediateActionGestureRecognizerHandlerBase>> {
     struct __compressed_pair<TBrowserImmediateActionGestureRecognizerHandlerBase *, std::__1::default_delete<TBrowserImmediateActionGestureRecognizerHandlerBase>> {
         struct TBrowserImmediateActionGestureRecognizerHandlerBase *__value_;
@@ -3451,6 +3788,21 @@ typedef struct unordered_map<TFENode, TFENodeOrderedSet, std::__1::hash<TFENode>
         } __p3_;
     } __table_;
 } unordered_map_f8b1458f;
+
+typedef struct unordered_map<TFENode, TNSRef<NSIndexPath, void>, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TNSRef<NSIndexPath, void>>>> {
+    struct __hash_table<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, std::__1::__unordered_map_hasher<TFENode, std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, std::__1::hash<TFENode>, true>, std::__1::__unordered_map_equal<TFENode, std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, std::__1::equal_to<TFENode>, true>, std::__1::allocator<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*>*>>> _field1;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, void *>*> _field1;
+        } _field2;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<TFENode, std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, std::__1::hash<TFENode>, true>> {
+            unsigned long long _field1;
+        } _field3;
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<TFENode, std::__1::__hash_value_type<TFENode, TNSRef<NSIndexPath, void>>, std::__1::equal_to<TFENode>, true>> {
+            float _field1;
+        } _field4;
+    } _field1;
+} unordered_map_7677f55a;
 
 typedef struct unordered_map<TFENode, std::__1::pair<TNSRef<NSIndexPath, void>, TNSRef<NSIndexPath, void>>, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, std::__1::pair<TNSRef<NSIndexPath, void>, TNSRef<NSIndexPath, void>>>>> {
     struct __hash_table<std::__1::__hash_value_type<TFENode, std::__1::pair<TNSRef<NSIndexPath, void>, TNSRef<NSIndexPath, void>>>, std::__1::__unordered_map_hasher<TFENode, std::__1::__hash_value_type<TFENode, std::__1::pair<TNSRef<NSIndexPath, void>, TNSRef<NSIndexPath, void>>>, std::__1::hash<TFENode>, true>, std::__1::__unordered_map_equal<TFENode, std::__1::__hash_value_type<TFENode, std::__1::pair<TNSRef<NSIndexPath, void>, TNSRef<NSIndexPath, void>>>, std::__1::equal_to<TFENode>, true>, std::__1::allocator<std::__1::__hash_value_type<TFENode, std::__1::pair<TNSRef<NSIndexPath, void>, TNSRef<NSIndexPath, void>>>>> {
@@ -3497,20 +3849,20 @@ typedef struct unordered_map<TNSRef<NSFormatter, void>, TNSRef<NSDictionary, voi
     } _field1;
 } unordered_map_6f91522d;
 
-typedef struct unordered_set<NSObject *, std::__1::hash<NSObject *>, std::__1::equal_to<NSObject *>, std::__1::allocator<NSObject *>> {
-    struct __hash_table<NSObject *, std::__1::hash<NSObject *>, std::__1::equal_to<NSObject *>, std::__1::allocator<NSObject *>> {
-        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *, void *>*>*>>> __bucket_list_;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *, void *>*>, std::__1::allocator<std::__1::__hash_node<NSObject *, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<NSObject *, void *>*> __value_;
+typedef struct unordered_set<NSObject *__unsafe_unretained, std::__1::hash<NSObject *__unsafe_unretained>, std::__1::equal_to<NSObject *__unsafe_unretained>, std::__1::allocator<NSObject *__unsafe_unretained>> {
+    struct __hash_table<NSObject *__unsafe_unretained, std::__1::hash<NSObject *__unsafe_unretained>, std::__1::equal_to<NSObject *__unsafe_unretained>, std::__1::allocator<NSObject *__unsafe_unretained>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*>>> __bucket_list_;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>, std::__1::allocator<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*> __value_;
         } __p1_;
-        struct __compressed_pair<unsigned long, std::__1::hash<NSObject *>> {
+        struct __compressed_pair<unsigned long, std::__1::hash<NSObject *__unsafe_unretained>> {
             unsigned long long __value_;
         } __p2_;
-        struct __compressed_pair<float, std::__1::equal_to<NSObject *>> {
+        struct __compressed_pair<float, std::__1::equal_to<NSObject *__unsafe_unretained>> {
             float __value_;
         } __p3_;
     } __table_;
-} unordered_set_24e1661d;
+} unordered_set_e17e8012;
 
 typedef struct unordered_set<TFENode, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<TFENode>> {
     struct __hash_table<TFENode, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<TFENode>> {
@@ -3614,6 +3966,14 @@ typedef struct vector<TOpenContainerOptions, std::__1::allocator<TOpenContainerO
     } _field3;
 } vector_a7e7ffc1;
 
+typedef struct vector<TSidebarZone, std::__1::allocator<TSidebarZone>> {
+    int *__begin_;
+    int *__end_;
+    struct __compressed_pair<TSidebarZone *, std::__1::allocator<TSidebarZone>> {
+        int *__value_;
+    } __end_cap_;
+} vector_5db024cf;
+
 typedef struct vector<TSortBy, std::__1::allocator<TSortBy>> {
     int *_field1;
     int *_field2;
@@ -3654,6 +4014,14 @@ typedef struct vector<int, std::__1::allocator<int>> {
     } __end_cap_;
 } vector_12bd641b;
 
+typedef struct vector<std::__1::function<void ()>, std::__1::allocator<std::__1::function<void ()>>> {
+    function_b1fce659 *_field1;
+    function_b1fce659 *_field2;
+    struct __compressed_pair<std::__1::function<void ()>*, std::__1::allocator<std::__1::function<void ()>>> {
+        function_b1fce659 *_field1;
+    } _field3;
+} vector_346e281a;
+
 typedef struct vector<std::__1::pair<TFENode, NodeNotificationOptions>, std::__1::allocator<std::__1::pair<TFENode, NodeNotificationOptions>>> {
     struct pair<TFENode, NodeNotificationOptions> *_field1;
     struct pair<TFENode, NodeNotificationOptions> *_field2;
@@ -3661,6 +4029,14 @@ typedef struct vector<std::__1::pair<TFENode, NodeNotificationOptions>, std::__1
         struct pair<TFENode, NodeNotificationOptions> *_field1;
     } _field3;
 } vector_c133cd5b;
+
+typedef struct vector<std::__1::pair<TFENode, TNSRef<NSImage, void>>, std::__1::allocator<std::__1::pair<TFENode, TNSRef<NSImage, void>>>> {
+    struct pair<TFENode, TNSRef<NSImage, void>> *__begin_;
+    struct pair<TFENode, TNSRef<NSImage, void>> *__end_;
+    struct __compressed_pair<std::__1::pair<TFENode, TNSRef<NSImage, void>>*, std::__1::allocator<std::__1::pair<TFENode, TNSRef<NSImage, void>>>> {
+        struct pair<TFENode, TNSRef<NSImage, void>> *__value_;
+    } __end_cap_;
+} vector_2129316b;
 
 typedef struct vector<std::__1::pair<TFENode, unsigned int>, std::__1::allocator<std::__1::pair<TFENode, unsigned int>>> {
     struct pair<TFENode, unsigned int> *_field1;

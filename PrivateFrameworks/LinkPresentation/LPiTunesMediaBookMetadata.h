@@ -6,14 +6,16 @@
 
 #import <LinkPresentation/LPSpecializationMetadata.h>
 
-#import "LPLinkMetadataPresentationTransformerAdaptor.h"
-#import "LPLinkMetadataPreviewTransformerAdaptor.h"
-#import "LPLinkMetadataStoreTransformerAdaptor.h"
+#import "LPLinkMetadataBackwardCompatibility.h"
+#import "LPLinkMetadataPresentationTransformer.h"
+#import "LPLinkMetadataPreviewTransformer.h"
+#import "LPLinkMetadataStoreTransformer.h"
 
 @class LPArtworkMetadata, LPImage, NSString;
 
-@interface LPiTunesMediaBookMetadata : LPSpecializationMetadata <LPLinkMetadataPresentationTransformerAdaptor, LPLinkMetadataPreviewTransformerAdaptor, LPLinkMetadataStoreTransformerAdaptor>
+@interface LPiTunesMediaBookMetadata : LPSpecializationMetadata <LPLinkMetadataPresentationTransformer, LPLinkMetadataPreviewTransformer, LPLinkMetadataBackwardCompatibility, LPLinkMetadataStoreTransformer>
 {
+    BOOL _hasSpineOnRight;
     NSString *_storeFrontIdentifier;
     NSString *_storeIdentifier;
     NSString *_name;
@@ -22,7 +24,9 @@
     LPArtworkMetadata *_artworkMetadata;
 }
 
++ (id)keyPathsForValuesAffecting_dummyPropertyForObservation;
 + (BOOL)supportsSecureCoding;
+@property(nonatomic) BOOL hasSpineOnRight; // @synthesize hasSpineOnRight=_hasSpineOnRight;
 @property(copy, nonatomic) LPArtworkMetadata *artworkMetadata; // @synthesize artworkMetadata=_artworkMetadata;
 @property(retain, nonatomic) LPImage *artwork; // @synthesize artwork=_artwork;
 @property(copy, nonatomic) NSString *author; // @synthesize author=_author;
@@ -30,13 +34,23 @@
 @property(copy, nonatomic) NSString *storeIdentifier; // @synthesize storeIdentifier=_storeIdentifier;
 @property(copy, nonatomic) NSString *storeFrontIdentifier; // @synthesize storeFrontIdentifier=_storeFrontIdentifier;
 - (void).cxx_destruct;
+- (void)_enumerateAsynchronousFields:(CDUnknownBlockType)arg1;
+@property(readonly) unsigned long long hash;
+- (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)storeIdentifierForTransformer:(id)arg1;
+- (void)populateMetadataForBackwardCompatibility:(id)arg1;
 - (id)previewImageForTransformer:(id)arg1;
 - (id)previewSummaryForTransformer:(id)arg1;
+- (BOOL)canGeneratePresentationPropertiesForURL:(id)arg1;
 - (id)presentationPropertiesForTransformer:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

@@ -36,9 +36,10 @@
 + (id)notifyableMatchesForProfile:(id)arg1 inList:(id)arg2;
 + (id)lprojURLsForTour:(id)arg1 preferredLocalizations:(id)arg2;
 + (id)localesURLForTour:(id)arg1;
-+ (void)loadLocalizedTextForPreferredLocalizations:(id)arg1 forJSON:(id)arg2 atConfigURL:(id)arg3 completion:(CDUnknownBlockType)arg4;
++ (id)loadLocalizedTextForPreferredLocalizations:(id)arg1 forJSON:(id)arg2 atConfigURL:(id)arg3;
 + (void)loadLocalizedTextForTour:(id)arg1 configJSON:(id)arg2 atConfigURL:(id)arg3 preferredLocalizations:(id)arg4;
 + (id)tourWithDictionary:(id)arg1 forConfig:(BOOL)arg2;
++ (BOOL)_loadToursForJSON:(id)arg1 atURL:(id)arg2 forProfile:(id)arg3;
 + (id)addLocalizedStringForKey:(id)arg1 inLocalizedStrings:(id)arg2 inDictionary:(id)arg3;
 + (id)cacheMergedDictionaryForJSON:(id)arg1 tour:(id)arg2 andLocalizedStrings:(id)arg3 forID:(id)arg4 forLocale:(id)arg5 atURL:(id)arg6;
 + (unsigned long long)indexOfTour:(id)arg1;
@@ -47,11 +48,13 @@
 + (BOOL)cacheIsRecent:(id)arg1 forProfile:(id)arg2;
 + (void)cacheImagesForTours:(id)arg1;
 + (id)validateConfigURL:(id)arg1;
-+ (void)cacheImage:(id)arg1 completion:(CDUnknownBlockType)arg2;
++ (id)safeConfigURL:(id)arg1;
++ (id)cachePathForImageAtURL:(id)arg1 forTour:(id)arg2;
 + (id)cachedDictionary;
 + (void)persistCacheDictionary:(id)arg1;
 + (id)cachePath;
 + (void)clearCachedConfig;
++ (void)removeCachedConfig;
 + (id)getCachedTour:(id)arg1;
 + (void)cacheTour:(id)arg1 index:(unsigned long long)arg2 tourCount:(unsigned long long)arg3;
 + (id)cachedTours;

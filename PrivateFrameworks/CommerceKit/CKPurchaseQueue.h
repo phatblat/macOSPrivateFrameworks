@@ -6,13 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSString, _CKPurchaseQueueDelegateWrapper;
+@class NSArray, NSMutableArray, NSString, _CKPurchaseQueueDelegateWrapper;
 
 @interface CKPurchaseQueue : NSObject
 {
     NSMutableArray *_transactions;
     NSString *_identifier;
-    NSArray *_transactions;
     _CKPurchaseQueueDelegateWrapper *_delegateWrapper;
 }
 
@@ -20,7 +19,6 @@
 + (void)_resumeTransactionWithResumeData:(id)arg1 storeResponse:(id)arg2;
 + (void)_cancelTransactionWithResumeData:(id)arg1;
 @property(retain) _CKPurchaseQueueDelegateWrapper *delegateWrapper; // @synthesize delegateWrapper=_delegateWrapper;
-@property(readonly) NSArray *transactions; // @synthesize transactions=_transactions;
 @property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (void)cancelTransactionGroup:(id)arg1;

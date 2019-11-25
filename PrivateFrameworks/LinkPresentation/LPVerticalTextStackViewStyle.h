@@ -13,6 +13,8 @@
 __attribute__((visibility("hidden")))
 @interface LPVerticalTextStackViewStyle : NSObject <LPEmailCompatibleCaptionBarItemChild>
 {
+    BOOL _shouldAlignToBaselines;
+    unsigned int _maximumNumberOfLines;
     LPPointUnit *_firstLineLeading;
     LPPointUnit *_lastLineDescent;
     LPTextRowStyle *_aboveTopCaption;
@@ -25,6 +27,8 @@ __attribute__((visibility("hidden")))
 
 @property(readonly, retain, nonatomic) LPPadding *emailCompatibleMargin; // @synthesize emailCompatibleMargin=_emailCompatibleMargin;
 @property(readonly, retain, nonatomic) LPPadding *captionTextPadding; // @synthesize captionTextPadding=_captionTextPadding;
+@property(nonatomic) BOOL shouldAlignToBaselines; // @synthesize shouldAlignToBaselines=_shouldAlignToBaselines;
+@property(nonatomic) unsigned int maximumNumberOfLines; // @synthesize maximumNumberOfLines=_maximumNumberOfLines;
 @property(readonly, nonatomic) LPTextRowStyle *belowBottomCaption; // @synthesize belowBottomCaption=_belowBottomCaption;
 @property(readonly, nonatomic) LPTextRowStyle *bottomCaption; // @synthesize bottomCaption=_bottomCaption;
 @property(readonly, nonatomic) LPTextRowStyle *topCaption; // @synthesize topCaption=_topCaption;
@@ -32,6 +36,7 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) LPPointUnit *lastLineDescent; // @synthesize lastLineDescent=_lastLineDescent;
 @property(retain, nonatomic) LPPointUnit *firstLineLeading; // @synthesize firstLineLeading=_firstLineLeading;
 - (void).cxx_destruct;
+- (void)applyToAllTextViewStyles:(CDUnknownBlockType)arg1;
 - (id)initWithPlatform:(long long)arg1;
 
 @end

@@ -7,9 +7,10 @@
 #import "JSExport.h"
 #import "NSObject.h"
 
-@class INSpeakableString;
+@class INArchivedObject, INSpeakableString;
 
 @protocol INRunWorkflowIntentExport <NSObject, JSExport>
+@property(copy) INArchivedObject *stepIntentResponse;
 @property(copy) INSpeakableString *workflow;
 - (id)init;
 @end

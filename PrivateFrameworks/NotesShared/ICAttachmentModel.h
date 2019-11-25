@@ -38,7 +38,7 @@
 - (id)generateTemporaryURLWithExtension:(id)arg1;
 @property(readonly) NSURL *previewItemURL;
 - (id)titleForSubAttachment:(id)arg1;
-- (id)hardLinkFolderPath;
+- (id)hardLinkFolderURL;
 - (BOOL)canConvertToHTMLForSharing;
 - (id)attributesForSharingHTMLWithTagName:(id *)arg1 textContent:(id *)arg2;
 - (void)noteWillAddOrRemovePassword;
@@ -83,7 +83,12 @@
 @property(readonly, nonatomic) BOOL hasThumbnailImage;
 @property(readonly, nonatomic) NSString *hardLinkVersion;
 @property(readonly, nonatomic) NSString *previewImageTypeUTI;
+@property(readonly, nonatomic) BOOL supportsImageClassification;
+@property(readonly, nonatomic) BOOL supportsOCR;
+@property(readonly, nonatomic) BOOL requiresPostProcessing;
 @property(readonly, nonatomic) BOOL needsFullSizePreview;
+@property(readonly, nonatomic) BOOL preferLocalPreviewImages;
+@property(readonly, nonatomic) BOOL previewsSupportMultipleAppearances;
 @property(readonly, nonatomic) BOOL hasPreviews;
 - (void)writeMergeableData;
 - (BOOL)mergeWithMergeableData:(id)arg1;

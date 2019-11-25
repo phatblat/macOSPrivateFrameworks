@@ -39,6 +39,7 @@
 - (void)cancelSearch;
 - (void)searchForString:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_cleanup;
+- (void)dealloc;
 - (id)init;
 
 // Remaining properties

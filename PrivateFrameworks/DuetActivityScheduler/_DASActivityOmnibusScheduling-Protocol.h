@@ -5,10 +5,12 @@
 //
 
 #import "_DASActivityBackgroundLaunchScheduler.h"
+#import "_DASActivityBackgroundTaskSchedulerServer.h"
 #import "_DASActivityGroupScheduler.h"
 #import "_DASActivityMetering.h"
+#import "_DASActivitySchedulerClient.h"
 #import "_DASActivitySchedulerIntrospectingServer.h"
 
-@protocol _DASActivityOmnibusScheduling <_DASActivityGroupScheduler, _DASActivitySchedulerIntrospectingServer, _DASActivityBackgroundLaunchScheduler, _DASActivityMetering>
+@protocol _DASActivityOmnibusScheduling <_DASActivityGroupScheduler, _DASActivitySchedulerClient, _DASActivitySchedulerIntrospectingServer, _DASActivityBackgroundLaunchScheduler, _DASActivityMetering, _DASActivityBackgroundTaskSchedulerServer>
 @end
 

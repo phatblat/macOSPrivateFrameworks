@@ -6,20 +6,22 @@
 
 #import "NSObject.h"
 
+#import "INFileEnumerable.h"
 #import "INImageProxyInjecting.h"
 #import "INInteractionExport.h"
 #import "INKeyImageProducing.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class CSSearchableItem, INImage, INIntent, INIntentResponse, NSDate, NSDateInterval, NSString, SAUISnippet;
+@class CSSearchableItem, INImage, INIntent, INIntentResponse, NSDate, NSDateInterval, NSString, NSUUID, SAUISnippet;
 
-@interface INInteraction : NSObject <INInteractionExport, INImageProxyInjecting, INKeyImageProducing, NSSecureCoding, NSCopying>
+@interface INInteraction : NSObject <INFileEnumerable, INInteractionExport, INImageProxyInjecting, INKeyImageProducing, NSSecureCoding, NSCopying>
 {
-    BOOL _donatedBySiri;
-    SAUISnippet *_snippet;
     INIntent *_intent;
     INIntentResponse *_intentResponse;
+    BOOL _donatedBySiri;
+    SAUISnippet *_snippet;
+    NSUUID *_contextExtensionUUID;
     long long _intentHandlingStatus;
     long long _direction;
     NSDateInterval *_dateInterval;
@@ -27,6 +29,7 @@
     NSString *_groupIdentifier;
 }
 
++ (unsigned long long)_searchableItemVersion;
 + (void)deleteInteractionsWithGroupIdentifier:(id)arg1 completion:(CDUnknownBlockType)arg2;
 + (void)deleteInteractionsWithIdentifiers:(id)arg1 completion:(CDUnknownBlockType)arg2;
 + (void)deleteAllInteractionsWithCompletion:(CDUnknownBlockType)arg1;
@@ -39,7 +42,8 @@
 @property long long intentHandlingStatus; // @synthesize intentHandlingStatus=_intentHandlingStatus;
 @property(copy, setter=_setIntentResponse:) INIntentResponse *intentResponse; // @synthesize intentResponse=_intentResponse;
 @property(copy, setter=_setIntent:) INIntent *intent; // @synthesize intent=_intent;
-@property(readonly) BOOL _donatedBySiri; // @synthesize _donatedBySiri;
+@property(copy, setter=_setContextExtensionUUID:) NSUUID *_contextExtensionUUID; // @synthesize _contextExtensionUUID;
+@property(nonatomic, setter=_setDonatedBySiri:) BOOL _donatedBySiri; // @synthesize _donatedBySiri;
 @property(retain, setter=_setSnippet:) SAUISnippet *_snippet; // @synthesize _snippet;
 - (void).cxx_destruct;
 - (id)parameterValueForParameter:(id)arg1;
@@ -57,13 +61,16 @@
 - (void)_injectProxiesForImages:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_donateInteractionWithBundleId:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)donateInteractionWithCompletion:(CDUnknownBlockType)arg1;
-- (void)_setDonatedBySiri:(BOOL)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)_commonInit;
 - (id)initWithIntent:(id)arg1 response:(id)arg2;
+- (id)_init;
 @property(copy, nonatomic) NSString *domainIdentifier;
 @property(nonatomic) double duration;
 @property(retain, nonatomic) NSDate *date;
+- (void)_intents_enumerateFileURLsWithBlock:(CDUnknownBlockType)arg1 mutate:(BOOL)arg2;
+- (void)_intents_enumerateFilesWithBlock:(CDUnknownBlockType)arg1 mutate:(BOOL)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

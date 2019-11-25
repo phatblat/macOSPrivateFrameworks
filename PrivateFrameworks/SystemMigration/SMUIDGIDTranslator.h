@@ -9,7 +9,7 @@
 #import "NSCoding.h"
 #import "NSSecureCoding.h"
 
-@class NSArray, NSMutableDictionary, NSMutableIndexSet, SMMigrationRequest;
+@class NSArray, NSMutableDictionary, NSMutableIndexSet, NSObject<OS_dispatch_queue>, SMMigrationRequest;
 
 @interface SMUIDGIDTranslator : NSObject <NSCoding, NSSecureCoding>
 {
@@ -18,11 +18,13 @@
     NSArray *_overwriteUsernames;
     NSMutableDictionary *_uidTranslationTable;
     NSMutableDictionary *_gidTranslationTable;
+    NSObject<OS_dispatch_queue> *_tableAccessQueue;
     NSMutableIndexSet *_existingGIDs;
 }
 
 + (BOOL)supportsSecureCoding;
 @property(retain) NSMutableIndexSet *existingGIDs; // @synthesize existingGIDs=_existingGIDs;
+@property(retain) NSObject<OS_dispatch_queue> *tableAccessQueue; // @synthesize tableAccessQueue=_tableAccessQueue;
 @property(retain) NSMutableDictionary *gidTranslationTable; // @synthesize gidTranslationTable=_gidTranslationTable;
 @property(retain) NSMutableDictionary *uidTranslationTable; // @synthesize uidTranslationTable=_uidTranslationTable;
 @property(retain) NSArray *overwriteUsernames; // @synthesize overwriteUsernames=_overwriteUsernames;

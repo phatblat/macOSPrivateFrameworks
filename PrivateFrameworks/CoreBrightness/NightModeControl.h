@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, SunriseSunsetProvider;
+@class NSDictionary, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, SunriseSunsetProvider;
 
 __attribute__((visibility("hidden")))
 @interface NightModeControl : NSObject
@@ -15,7 +15,7 @@ __attribute__((visibility("hidden")))
     SunriseSunsetProvider *_sunriseSunsetProvider;
     int _sunriseSunsetInfoQueryTimeout;
     NSDictionary *_sunriseSunsetInfo;
-    id <NightShiftSupportProtocol> _supportObj;
+    NSMutableArray *_supportObjs;
     NSObject<OS_dispatch_queue> *_queue;
     NSObject<OS_dispatch_source> *_nextTransitionTimer;
     NSObject<OS_dispatch_source> *_transitionTimer;
@@ -46,7 +46,7 @@ __attribute__((visibility("hidden")))
     BOOL _displayOff;
     int _logLevel;
     CDUnknownBlockType _callbackBlock;
-    CDStruct_768fa5c4 _status;
+    CDStruct_d991f265 _status;
     CDStruct_6cee55f3 _backupSchedule;
     BOOL _statusUpdated;
     NSString *_currentSunriseKey;
@@ -63,6 +63,9 @@ __attribute__((visibility("hidden")))
     struct __CFString *_userName;
 }
 
+- (void)setPreference:(id)arg1 forKey:(id)arg2 user:(id)arg3;
+- (id)copyPreferenceForKey:(id)arg1 user:(id)arg2;
+- (void)setNightShiftFactorDictionary:(id)arg1;
 - (void)displayAlertInteractive:(BOOL)arg1;
 - (id)copyTimeStringWithHour:(int)arg1 minute:(int)arg2 second:(int)arg3;
 - (void)cancelTransition;
@@ -99,14 +102,16 @@ __attribute__((visibility("hidden")))
 - (id)getPropertyForKey:(id)arg1;
 - (void)dealloc;
 - (void)switchToUser:(struct __CFString *)arg1;
+- (void)removeSupportObject:(id)arg1;
+- (void)addSupportObject:(id)arg1;
 - (id)initWithSupportObject:(id)arg1 queue:(id)arg2 callback:(CDUnknownBlockType)arg3;
 - (id)copyLowPowerModeState;
 - (void)updateLowPowerModeState:(id)arg1;
 - (void)updateStatusDictionaryWithValue:(id)arg1 forKey:(id)arg2;
 - (id)copyStatusDictionaryFromPrefs;
 - (void)saveStatusToPrefs:(id)arg1;
-- (id)copyDictionaryFromStatus:(CDStruct_768fa5c4 *)arg1;
-- (BOOL)parseStatusDictionary:(id)arg1 intoStruct:(CDStruct_768fa5c4 *)arg2 shouldUpdatePrefs:(char *)arg3;
+- (id)copyDictionaryFromStatus:(CDStruct_d991f265 *)arg1;
+- (BOOL)parseStatusDictionary:(id)arg1 intoStruct:(CDStruct_d991f265 *)arg2 shouldUpdatePrefs:(char *)arg3;
 
 @end
 

@@ -8,7 +8,6 @@
 
 @class NSButton, NSString, SiriUIKeyline, SiriUISnippetViewController;
 
-__attribute__((visibility("hidden")))
 @interface SiriUIActionableFooterView : SiriUIReusableFooterView
 {
     NSButton *_button;

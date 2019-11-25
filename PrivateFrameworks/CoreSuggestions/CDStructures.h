@@ -34,6 +34,10 @@ struct SGMContactDetailExtractionOutcome_ {
     unsigned long long _field1;
 };
 
+struct SGMContactDetailExtractionSignatureSource_ {
+    unsigned long long _field1;
+};
+
 struct SGMContactDetailFoundIn_ {
     unsigned long long _field1;
 };
@@ -177,4 +181,16 @@ typedef struct {
     unsigned long long *_field3;
     unsigned long long _field4[5];
 } CDStruct_70511ce9;
+
+// Ambiguous groups
+typedef struct {
+    unsigned int app:1;
+    unsigned int extracted:1;
+    unsigned int selfId:1;
+} CDStruct_5f298e02;
+
+typedef struct {
+    unsigned int extracted:1;
+    unsigned int type:1;
+} CDStruct_a710f5a9;
 

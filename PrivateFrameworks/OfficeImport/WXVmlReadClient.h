@@ -8,6 +8,7 @@
 
 #import "OAVReadClient.h"
 
+__attribute__((visibility("hidden")))
 @interface WXVmlReadClient : NSObject <OAVReadClient>
 {
 }

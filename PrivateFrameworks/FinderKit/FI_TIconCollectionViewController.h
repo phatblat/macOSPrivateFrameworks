@@ -34,7 +34,6 @@ __attribute__((visibility("hidden")))
     struct TNotificationCenterObserver _iconSizeSliderDidChangeObserver;
     struct TNotificationCenterObserver _gridSpacingSliderWillChangeObserver;
     struct TNotificationCenterObserver _gridSpacingSliderDidChangeObserver;
-    struct vector<TKeyValueBinder, std::__1::allocator<TKeyValueBinder>> _viewSettingsBinders;
 }
 
 @property(nonatomic) _Bool isUpdateLayoutControllerDirty; // @synthesize isUpdateLayoutControllerDirty=_isUpdateLayoutControllerDirty;
@@ -47,6 +46,9 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) double gridSpacing; // @synthesize gridSpacing=_gridSpacing;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (void)updateSyncBadgeForIconView:(id)arg1 node:(const struct TFENode *)arg2;
+- (void)updateScreenTimeBadgeForIconView:(id)arg1 node:(const struct TFENode *)arg2;
+- (void)updateDimmedForIconView:(id)arg1 node:(const struct TFENode *)arg2;
 - (void)updateICloudBadgeForIconView:(id)arg1 node:(const struct TFENode *)arg2;
 - (_Bool)inlinePreviewMouseDown:(id)arg1;
 - (void)updateInlinePreviewEnabledState;
@@ -75,10 +77,9 @@ __attribute__((visibility("hidden")))
 - (void)reusingDataSource;
 - (void)performBatchUpdatesCompletionHandler:(const unordered_set_931aff12 *)arg1:(_Bool)arg2:(const unordered_map_f8b1458f *)arg3:(_Bool)arg4:(_Bool)arg5:(unsigned long long)arg6;
 - (void)configureGroupNodes:(const unordered_set_931aff12 *)arg1 firstPopulation:(_Bool)arg2;
-- (void)dataSourceChanged_insert:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2:(unordered_set_931aff12 *)arg3:(_Bool *)arg4;
+- (void)dataSourceChanged_buildInsert:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2:(map_a2752b13 *)arg3:(map_a2752b13 *)arg4;
 - (void)dataSourceChanged:(const vector_274a36ec *)arg1;
 - (_Bool)handleMouseUp:(id)arg1;
-- (_Bool)handleMouseDown:(id)arg1;
 - (void)updateSpatialDataAfterGridSizeChange:(const struct CGSize *)arg1 oldFirstIconAnchorPoint:(const struct CGPoint *)arg2;
 - (void)getFreeFormLayoutGridSize:(struct CGSize *)arg1 firstIconAnchorPoint:(struct CGPoint *)arg2;
 - (void)setAllowsDraggingFilesIn:(_Bool)arg1;
@@ -88,14 +89,12 @@ __attribute__((visibility("hidden")))
 - (_Bool)determineSnapToGridStateForDrag;
 - (id)makeDragImageIconViewForNode:(const struct TFENode *)arg1;
 - (struct TFENode)nextNodeInViewAfter:(const struct TFENodeVector *)arg1;
-- (void)unbindViewSettings;
 - (void)privateBindSettings;
 - (void)viewOptionSliderDidChangeForNode:(const struct TFENode *)arg1;
 - (void)viewOptionSliderWillChangeForNode:(const struct TFENode *)arg1;
 @property(retain, nonatomic) NSImage *backgroundImage; // @dynamic backgroundImage;
 @property(retain, nonatomic) NSColor *backgroundColor; // @dynamic backgroundColor;
 - (void)updateIconsToBackgroundColor;
-- (id)effectiveFontSmoothingBackgroundColor;
 - (id)effectiveBackgroundColor;
 - (void)updateDrawSelectionBordered;
 - (_Bool)shouldDrawSelectionBordered;
@@ -119,7 +118,7 @@ __attribute__((visibility("hidden")))
 - (void)invalidateKeyNodes:(const struct TFENodeVector *)arg1 forThumbnails:(_Bool)arg2;
 - (void)unregisterContainerWithNodeKeyCache:(const struct TFENode *)arg1;
 - (void)registerContainerWithNodeKeyCache:(const struct TFENode *)arg1;
-- (pair_1ddb90c7)fetchItemInfoTextForNode:(const struct TFENode *)arg1;
+- (void)updateSubtitleForIconView:(id)arg1 node:(const struct TFENode *)arg2;
 - (void)invalidateInfoTextForKeyNodes:(const struct TFENodeVector *)arg1;
 - (void)invalidateThumbnailForKeyNodes:(const struct TFENodeVector *)arg1;
 - (void)menuWillOpen:(id)arg1;
@@ -139,7 +138,6 @@ __attribute__((visibility("hidden")))
 - (id)itemIdentifier;
 - (void)reloadIconsInView;
 - (struct TFENodeVector)nodesWithViews;
-- (void)updateSubtitleForIconView:(id)arg1 node:(const struct TFENode *)arg2;
 - (void)updateInlineProgressForIconView:(id)arg1 node:(const struct TFENode *)arg2;
 - (void)configureIconView:(id)arg1 forNode:(const struct TFENode *)arg2;
 - (void)configureCollectionViewItem:(id)arg1 forNode:(const struct TFENode *)arg2;

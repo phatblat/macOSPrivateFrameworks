@@ -10,7 +10,7 @@
 #import "GEODataSessionUpdatableTask.h"
 #import "GEOStateCapturing.h"
 
-@class GEOClientMetrics, GEODataRequest, NSData, NSError, NSHTTPURLResponse, NSMutableData, NSObject<OS_dispatch_queue>, NSObject<OS_os_activity>, NSObject<OS_voucher>, NSString, NSURL, NSURLRequest, NSURLSessionDataTask, NSURLSessionTaskMetrics;
+@class GEOClientMetrics, GEODataRequest, NSData, NSDate, NSError, NSHTTPURLResponse, NSMutableData, NSObject<OS_dispatch_queue>, NSObject<OS_os_activity>, NSObject<OS_voucher>, NSString, NSURL, NSURLRequest, NSURLSessionTask, NSURLSessionTaskMetrics;
 
 @interface GEODataURLSessionTask : NSObject <GEOStateCapturing, GEODataSessionTask, GEODataSessionUpdatableTask>
 {
@@ -18,15 +18,17 @@
     GEODataRequest *_request;
     NSObject<OS_dispatch_queue> *_delegateQueue;
     NSObject<OS_dispatch_queue> *_sessionIsolation;
-    NSURLSessionDataTask *_backingTask;
+    NSURLSessionTask *_backingTask;
     NSError *_nonBackingTaskError;
     NSData *_cachedData;
     NSMutableData *_receivedData;
     NSURLSessionTaskMetrics *_urlTaskMetrics;
     double _startTime;
     double _endTime;
-    int _requestKind;
+    CDStruct_d1a7ebee _requestKind;
     unsigned int _taskIdentifier;
+    BOOL _mptcpNegotiated;
+    BOOL _receivedRNFNotification;
     unsigned long long _stateCaptureHandle;
     float _priority;
     unsigned int _sessionIdentifier;
@@ -36,26 +38,31 @@
     NSObject<OS_os_activity> *_activity;
     NSObject<OS_voucher> *_voucher;
     id <NSObject> _parsedResponse;
+    NSDate *_originalStartDate;
 }
 
+@property(nonatomic) BOOL receivedRNFNotification; // @synthesize receivedRNFNotification=_receivedRNFNotification;
+@property(readonly, nonatomic) BOOL mptcpNegotiated; // @synthesize mptcpNegotiated=_mptcpNegotiated;
 @property(nonatomic) unsigned int sessionIdentifier; // @synthesize sessionIdentifier=_sessionIdentifier;
 @property(readonly, nonatomic) BOOL finished; // @synthesize finished=_finished;
-@property(readonly, nonatomic) NSURLSessionDataTask *backingTask; // @synthesize backingTask=_backingTask;
+@property(readonly, nonatomic) NSURLSessionTask *backingTask; // @synthesize backingTask=_backingTask;
 @property(readonly, nonatomic) double startTime; // @synthesize startTime=_startTime;
 @property(readonly, nonatomic) NSURLSessionTaskMetrics *urlTaskMetrics; // @synthesize urlTaskMetrics=_urlTaskMetrics;
 @property(readonly, nonatomic) unsigned int taskIdentifier; // @synthesize taskIdentifier=_taskIdentifier;
 @property(readonly, nonatomic) __weak id <GEODataSessionTaskDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic) int requestKind; // @synthesize requestKind=_requestKind;
+@property(readonly, nonatomic) CDStruct_d1a7ebee requestKind; // @synthesize requestKind=_requestKind;
 @property(copy, nonatomic) NSData *cachedData; // @synthesize cachedData=_cachedData;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *delegateQueue; // @synthesize delegateQueue=_delegateQueue;
 @property(readonly, nonatomic) GEODataRequest *request; // @synthesize request=_request;
-@property(readonly) NSObject<OS_os_activity> *activity; // @synthesize activity=_activity;
+@property(readonly, nonatomic) NSObject<OS_os_activity> *activity; // @synthesize activity=_activity;
 - (void).cxx_destruct;
+- (void)delegateAsync:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) id <GEORequestCounterTicket> requestCounterTicket;
 - (void)notifyDelegateWithSession:(id)arg1;
+@property(readonly, nonatomic) unsigned long long requestedMultipathServiceType;
 @property(readonly, nonatomic) NSString *remoteAddressAndPort;
 @property(readonly, nonatomic) GEOClientMetrics *clientMetrics;
-@property(readonly) BOOL failedDueToCancel;
+@property(readonly, nonatomic) BOOL failedDueToCancel;
 @property(readonly, nonatomic) unsigned long long incomingPayloadSize;
 @property(readonly, nonatomic) unsigned long long outgoingPayloadSize;
 @property(readonly, nonatomic) NSURLRequest *originalURLRequest;
@@ -63,20 +70,22 @@
 @property(readonly, nonatomic) id <NSObject> parsedResponse;
 @property(retain, nonatomic) NSError *error;
 @property(readonly, nonatomic) NSHTTPURLResponse *response;
+@property(readonly, copy, nonatomic) NSURL *downloadedFileURL;
 @property(readonly, nonatomic) NSData *receivedData;
 @property(readonly, nonatomic) BOOL protocolBufferHasPreamble;
 @property float priority;
+@property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 - (void)cancel;
 - (void)_prepareForRestart;
 - (void)_start;
 - (void)start;
 - (void)dealloc;
-- (id)initWithSession:(id)arg1 delegate:(id)arg2 delegateQueue:(id)arg3 requestKind:(int)arg4 priority:(float)arg5;
+- (id)initWithSession:(id)arg1 delegate:(id)arg2 delegateQueue:(id)arg3 requestKind:(CDStruct_d1a7ebee)arg4 priority:(float)arg5;
 - (id)init;
 - (BOOL)validateContentLengthWithError:(id *)arg1;
 - (BOOL)validateNonEmptyResponseWithError:(id *)arg1;
-- (BOOL)validateTileResponseWithError:(id *)arg1;
+- (BOOL)validateTileResponse:(BOOL)arg1 error:(id *)arg2;
 - (id)captureStateWithHints:(struct os_state_hints_s *)arg1;
 - (void)didCollectMetrics:(id)arg1;
 - (void)dataSession:(id)arg1 taskDidCompleteWithError:(id)arg2;
@@ -86,8 +95,11 @@
 - (void)dataSession:(id)arg1 willSendRequestForEstablishedConnection:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)createURLRequest;
 - (id)createURLSessionTaskWithSession:(id)arg1 request:(id)arg2;
+- (id)_createBackingTaskWithRequest:(id)arg1 session:(id)arg2;
 - (BOOL)didValidateEntityTagForData:(id *)arg1 entityTag:(id *)arg2;
-@property(readonly) double elapsedTime;
+- (double)loadTimeIncludingTask:(id)arg1;
+@property(readonly, nonatomic) double loadTime;
+@property(readonly, nonatomic) double elapsedTime;
 @property(readonly, nonatomic) NSURL *originalRequestURL;
 @property(readonly, nonatomic) long long HTTPStatusCode;
 @property(readonly, nonatomic) unsigned long long contentLength;
@@ -95,7 +107,6 @@
 @property(readonly, nonatomic) NSString *entityTag;
 
 // Remaining properties
-@property(readonly, copy) NSString *debugDescription;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

@@ -8,6 +8,7 @@
 
 @class OADColorContext, OADColorMap, OADColorScheme, OADFontScheme, OADStyleMatrix;
 
+__attribute__((visibility("hidden")))
 @interface OADDrawingTheme : NSObject
 {
     OADStyleMatrix *mStyleMatrix;

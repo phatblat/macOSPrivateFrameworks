@@ -8,6 +8,7 @@
 
 @class NSDictionary;
 
+__attribute__((visibility("hidden")))
 @interface CATHTTPMessageParser : NSObject
 {
     struct __CFHTTPMessage *mCurrentMessage;

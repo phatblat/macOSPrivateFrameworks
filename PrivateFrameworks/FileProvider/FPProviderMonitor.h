@@ -18,6 +18,8 @@
 + (BOOL)isProviderIDForeground:(id)arg1;
 + (id)providerIDForApplication:(id)arg1 sharedContainerIdentifier:(id)arg2;
 - (void).cxx_destruct;
+- (BOOL)wakeProviderID:(id)arg1 forSessionIdentifier:(id)arg2;
+- (BOOL)supportsWakesForProviderID:(id)arg1;
 - (void)removeObserver:(id)arg1 forProviderID:(id)arg2;
 - (void)addObserver:(id)arg1 forProviderID:(id)arg2;
 - (void)dealloc;

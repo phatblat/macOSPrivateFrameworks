@@ -32,7 +32,7 @@
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)_callSFDeviceIdentifierUpdatedDelegate:(id)arg1;
+- (void)_callFixSessionAvailabilityUpdatedDelegate;
 - (void)_callSymptomsUpdatedDelegate:(id)arg1;
 - (BOOL)_mergeWithNewObject:(id)arg1 operations:(id)arg2;
 @property(readonly, nonatomic) NSUUID *uniqueIdentifier; // @synthesize uniqueIdentifier=_uniqueIdentifier;
@@ -43,8 +43,6 @@
 - (void)_handleSymptomsUpdated:(id)arg1;
 - (void)initiateFixWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)registerForMessages;
-@property(readonly) long long fixState;
-@property(readonly) BOOL canInitiateFix;
 @property(copy, setter=setSFDeviceIdentifier:) NSUUID *sfDeviceIdentifier; // @synthesize sfDeviceIdentifier=_sfDeviceIdentifier;
 @property __weak id <HMSymptomsHandlerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, copy) NSSet *symptoms;

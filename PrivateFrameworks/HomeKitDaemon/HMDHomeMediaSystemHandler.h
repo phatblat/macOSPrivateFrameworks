@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
+#import "HMDDevicePreferenceDataSource.h"
 #import "HMDHomeMessageReceiver.h"
 #import "HMFLogging.h"
 #import "NSSecureCoding.h"
 
 @class HMDHome, HMFMessageDispatcher, NSMutableArray, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
 
-@interface HMDHomeMediaSystemHandler : NSObject <NSSecureCoding, HMFLogging, HMDHomeMessageReceiver>
+@interface HMDHomeMediaSystemHandler : NSObject <HMDDevicePreferenceDataSource, NSSecureCoding, HMFLogging, HMDHomeMessageReceiver>
 {
     NSMutableArray *_mediaSystems;
     NSObject<OS_dispatch_queue> *_workQueue;
@@ -23,7 +24,6 @@
 + (BOOL)hasMessageReceiverChildren;
 + (BOOL)supportsSecureCoding;
 + (id)preProcessMediaSystemMessage:(id)arg1 home:(id)arg2;
-+ (id)checkToHandleMessage:(id)arg1 home:(id)arg2;
 + (id)logCategory;
 @property(nonatomic) __weak HMDHome *home; // @synthesize home=_home;
 @property(retain, nonatomic) HMFMessageDispatcher *msgDispatcher; // @synthesize msgDispatcher=_msgDispatcher;
@@ -35,6 +35,7 @@
 @property(readonly, copy) NSSet *messageReceiverChildren;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)supportsDeviceWithCapabilities:(id)arg1;
 - (id)backingStoreObjects;
 - (void)_handleUpdateMediaSystemModel:(id)arg1 message:(id)arg2;
 - (void)_handleRemoveMediaSystemModel:(id)arg1 message:(id)arg2;

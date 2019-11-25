@@ -13,6 +13,7 @@
 
 @class HMAccessorySettings, HMFUnfairLock, NSArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSString, NSUUID, _HMContext;
 
+__attribute__((visibility("hidden")))
 @interface _HMAccessorySettingGroup : NSObject <HMFLogging, HMFMessageReceiver, NSSecureCoding, HMFMerging>
 {
     HMFUnfairLock *_lock;
@@ -46,26 +47,21 @@
 - (BOOL)mergeObject:(id)arg1;
 - (id)logIdentifier;
 - (void)removeGroup:(id)arg1 fromGroup:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (void)_handleRemovedGroup:(id)arg1;
 - (void)notifyDelegateOfRemovedGroup:(id)arg1;
 - (void)removeGroup:(id)arg1;
 - (void)addGroup:(id)arg1 toGroup:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (void)_handleAddedGroup:(id)arg1;
 - (void)notifyDelegateOfAddedGroup:(id)arg1;
 - (void)addGroup:(id)arg1;
 - (id)groupWithIdentifier:(id)arg1;
 @property(readonly, copy) NSArray *groups;
 - (void)removeSetting:(id)arg1 fromGroup:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (void)_handleRemovedSetting:(id)arg1;
 - (void)notifyDelegateOfRemovedSetting:(id)arg1;
 - (void)removeSetting:(id)arg1;
 - (void)addSetting:(id)arg1 toGroup:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (void)_handleAddedSetting:(id)arg1;
 - (void)notifyDelegateOfAddedSetting:(id)arg1;
 - (void)addSetting:(id)arg1;
 - (id)settingWithIdentifier:(id)arg1;
 @property(readonly, copy) NSArray *settings;
-- (void)_registerNotificationHandlers;
 - (void)configureWithAccessorySettings:(id)arg1 context:(id)arg2;
 - (id)clientQueue;
 @property(readonly, copy) NSString *description;

@@ -38,6 +38,8 @@
     BOOL _supportsBinauralStreaming;
     BOOL _supportsCombinedPresets;
     BOOL _supportsCombinedVolumes;
+    BOOL _leftPeripheralPaired;
+    BOOL _rightPeripheralPaired;
     short _leftMicrophoneVolumeSteps;
     short _rightMicrophoneVolumeSteps;
     short _leftStreamVolumeSteps;
@@ -51,6 +53,7 @@
     unsigned int rightProgramVersion;
     unsigned int _leftPresetBitmask;
     unsigned int _rightPresetBitmask;
+    int _availableInputEars;
     NSString *leftUUID;
     NSString *rightUUID;
     NSString *name;
@@ -93,6 +96,9 @@
 }
 
 + (id)characteristicsUUIDs;
+@property(nonatomic) BOOL rightPeripheralPaired; // @synthesize rightPeripheralPaired=_rightPeripheralPaired;
+@property(nonatomic) BOOL leftPeripheralPaired; // @synthesize leftPeripheralPaired=_leftPeripheralPaired;
+@property(nonatomic) int availableInputEars; // @synthesize availableInputEars=_availableInputEars;
 @property(retain, nonatomic) NSDate *rightBatteryLowDate; // @synthesize rightBatteryLowDate=_rightBatteryLowDate;
 @property(retain, nonatomic) NSDate *leftBatteryLowDate; // @synthesize leftBatteryLowDate=_leftBatteryLowDate;
 @property(nonatomic) unsigned long long rightWriteResponseProperties; // @synthesize rightWriteResponseProperties=_rightWriteResponseProperties;
@@ -161,11 +167,14 @@
 @property(retain, nonatomic) NSString *rightUUID; // @synthesize rightUUID;
 @property(retain, nonatomic) NSString *leftUUID; // @synthesize leftUUID;
 - (void).cxx_destruct;
+- (unsigned long long)deviceType;
+- (unsigned long long)requiredProperties;
+- (id)serviceUUID;
+- (BOOL)isFakeDevice;
 - (id)persistentRepresentation;
 - (BOOL)addPeripheral:(id)arg1;
 @property(readonly, copy) NSString *description;
-- (BOOL)isBluetoothPaired;
-- (BOOL)isPartiallyBluetoothPaired;
+- (void)checkPairingStatusWithCompletion:(CDUnknownBlockType)arg1;
 - (void)peripheralDidUnpair:(id)arg1;
 - (void)peripheral:(id)arg1 didFinishPairingWithResult:(id)arg2;
 - (void)pairingDidCompleteForPeripheral:(id)arg1;
@@ -190,7 +199,6 @@
 - (void)selectProgram:(id)arg1 forEar:(int)arg2;
 - (void)readProperty:(unsigned long long)arg1 fromPeripheral:(id)arg2;
 - (void)readValueForCharacteristic:(id)arg1 fromPeripheral:(id)arg2;
-- (void)_writeAllProgramSelectionsToPeripheral;
 - (void)writeSignedInt:(BOOL)arg1 toEar:(int)arg2 forProperty:(unsigned long long)arg3;
 - (void)writeInt:(unsigned char)arg1 toEar:(int)arg2 forProperty:(unsigned long long)arg3;
 - (void)delayWriteProperty:(unsigned long long)arg1 forPeripheral:(id)arg2;
@@ -218,6 +226,7 @@
 - (void)mateWithDevice:(id)arg1;
 - (BOOL)didLoadRequiredProperties;
 - (BOOL)didLoadBasicProperties;
+- (BOOL)didLoadOptionalBasicProperties;
 - (BOOL)didLoadPersistentProperties;
 - (BOOL)peripheral:(id)arg1 didLoadProperty:(unsigned long long)arg2;
 @property(readonly, retain, nonatomic) NSString *deviceUUID;

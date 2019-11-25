@@ -8,20 +8,16 @@
 
 #import "PPQuickTypeServantProtocol.h"
 
-@class CNContactStore, NSArray, NSCache, NSObject<OS_dispatch_semaphore>, PPContactScorer, _PASLock;
+@class NSCache, NSObject<OS_dispatch_semaphore>, PPLocalContactStore, _PASLock;
 
 @interface PPQuickTypeContactsServant : NSObject <PPQuickTypeServantProtocol>
 {
-    CNContactStore *_store;
+    PPLocalContactStore *_localContactStore;
     _PASLock *_meCardCacheLock;
     _PASLock *_meContactDataLock;
     NSCache *_meQuickTypeItemCache;
-    NSArray *_peopleKeysToFetch;
     NSCache *_cachedNameLookups;
-    PPContactScorer *_contactScorer;
     NSObject<OS_dispatch_semaphore> *_initializationComplete;
-    BOOL _consultScorerForImmediateResult;
-    id <SGSuggestionsServiceContactsProtocol> _contactService;
 }
 
 + (id)_supportedPeopleSemanticTypes;
@@ -30,9 +26,8 @@
 - (id)_loadMeCard;
 - (id)_selfContactQueryqueryFromSemanticTagquery:(id)arg1;
 - (BOOL)_isSemanticTagEligible:(unsigned char)arg1;
-- (id)_lookupPeopleWithNamePrefixUncached:(id)arg1 recipients:(id)arg2 explanationSet:(id)arg3;
-- (id)_lookupPeopleWithNamePrefix:(id)arg1 recipients:(id)arg2 explanationSet:(id)arg3;
-- (id)_lookupScoredPeopleWithNamePrefix:(id)arg1 recipients:(id)arg2 explanationSet:(id)arg3;
+- (id)_lookupPeopleWithNamePrefix:(id)arg1 recipients:(id)arg2 explanationSet:(id)arg3 justPreloadCache:(BOOL)arg4;
+- (id)_lookupScoredPeopleWithNamePrefix:(id)arg1 recipients:(id)arg2 explanationSet:(id)arg3 justPreloadCache:(BOOL)arg4;
 - (id)_predictMeCardDetailForQuery:(id)arg1 limit:(unsigned long long)arg2 fromSemanticTextField:(BOOL)arg3 explanationSet:(id)arg4;
 - (id)_predictMeCardDetailForQuery:(id)arg1 limit:(unsigned long long)arg2 explanationSet:(id)arg3;
 - (id)_mePredictionCacheKeyForQuery:(id)arg1;
@@ -41,11 +36,9 @@
 - (id)_applySmartLimitingToCandidates:(id)arg1 clientLimit:(unsigned long long)arg2 explanationSet:(id)arg3;
 - (id)quickTypeItemsWithQuery:(id)arg1 limit:(unsigned long long)arg2 explanationSet:(id)arg3;
 - (void)_preloadMeCardAndItemCacheWithMeContact:(id)arg1;
+- (id)_scoredMeContactWithMeContact:(id)arg1;
 - (void)_registerForNotifications;
-- (void)setContactScorer:(id)arg1;
 - (void)setCachedNameLookup:(id)arg1;
-- (void)setContactService:(id)arg1;
-- (void)setStore:(id)arg1;
 - (void)_warmUpFormatters;
 - (id)initWithOptions:(unsigned char)arg1;
 - (id)init;

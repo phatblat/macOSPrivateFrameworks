@@ -8,7 +8,6 @@
 
 @class AceObject, NSUUID, NSViewController<SiriUIViewController>;
 
-__attribute__((visibility("hidden")))
 @interface SiriUITranscriptItem : NSObject
 {
     BOOL _snippetViewControllerHasBeenUnloaded;

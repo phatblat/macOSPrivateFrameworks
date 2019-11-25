@@ -9,6 +9,22 @@
 @class ICCollaborationColorManager, NSArray, PKInk, TTTextStorage;
 
 @interface ICNote (UI)
++ (id)hexStringForColor:(struct NSColor *)arg1;
++ (BOOL)isDefaultColor:(struct NSColor *)arg1;
++ (id)tagDictionariesForAttributes:(id)arg1 attachmentConversionHandler:(CDUnknownBlockType)arg2;
++ (id)tagDictionaryForWrapperAroundParagraphStyle:(id)arg1;
++ (id)htmlStringFromAttributedString:(id)arg1 attachmentConversionHandler:(CDUnknownBlockType)arg2;
++ (void)fixTextColorsInAttributedString:(id)arg1;
++ (void)fixFontsInAttributedString:(id)arg1;
++ (void)fixUnwantedCharactersInAttributedString:(id)arg1;
++ (void)fixDashedListsInAttributedString:(id)arg1;
++ (id)htmlStringByFixingDashedListsInHTMLString:(id)arg1;
++ (id)mutableAttributedStringFromHTMLString:(id)arg1 readerDelegate:(id)arg2;
++ (id)mutableAttributedStringFromHTMLString:(id)arg1 baseURL:(id)arg2;
++ (id)htmlObjectAttributesForAttachmentWithContentID:(id)arg1;
++ (id)attributedStringFromHTMLString:(id)arg1 baseURL:(id)arg2 readerDelegate:(id)arg3;
++ (id)attributedStringFromHTMLString:(id)arg1 readerDelegate:(id)arg2;
++ (id)attributedStringFromHTMLString:(id)arg1;
 - (void)updatePKDrawingsWithHandwritingRecognitionEnabled:(BOOL)arg1;
 @property(nonatomic, getter=isHandwritingRecognitionEnabled) BOOL handwritingRecognitionEnabled;
 @property(copy, nonatomic) PKInk *selectedInk;
@@ -31,15 +47,18 @@
 - (void)updateModificationDateAndChangeCount;
 - (void)saveAfterDelay;
 - (void)save;
-- (struct NSImage *)thumbnailImageWithMinSize:(struct CGSize)arg1 scale:(double)arg2 imageScaling:(unsigned long long *)arg3 showAsFileIcon:(char *)arg4 isMovie:(char *)arg5 movieDuration:(CDStruct_1b6d18a9 *)arg6 attachment:(id *)arg7;
-- (struct NSImage *)thumbnailImageWithMinSize:(struct CGSize)arg1 scale:(double)arg2 imageScaling:(unsigned long long *)arg3 showAsFileIcon:(char *)arg4 isMovie:(char *)arg5 movieDuration:(CDStruct_1b6d18a9 *)arg6;
+- (id)thumbnailImageCacheKeyWithItemSize:(struct CGSize)arg1 appearanceType:(unsigned long long)arg2;
+- (struct NSImage *)thumbnailImageWithMinSize:(struct CGSize)arg1 scale:(double)arg2 appearanceType:(unsigned long long)arg3 requireAppearance:(BOOL)arg4 imageScaling:(unsigned long long *)arg5 showAsFileIcon:(char *)arg6 isMovie:(char *)arg7 movieDuration:(CDStruct_1b6d18a9 *)arg8 attachment:(id *)arg9;
+- (struct NSImage *)thumbnailImageWithMinSize:(struct CGSize)arg1 scale:(double)arg2 appearanceType:(unsigned long long)arg3 requireAppearance:(BOOL)arg4 imageScaling:(unsigned long long *)arg5 showAsFileIcon:(char *)arg6 isMovie:(char *)arg7 movieDuration:(CDStruct_1b6d18a9 *)arg8;
 - (id)attachmentFromRemoteFileWrapper:(id)arg1;
 - (id)attachmentFromLegacyAttachmentFileWrapper:(id)arg1;
 - (id)attachmentFromStandardFileWrapper:(id)arg1;
 - (id)attachmentFromInlineDrawingAttachment:(id)arg1;
 - (id)attachmentFromTableData:(id)arg1;
 - (id)attachmentFromObject:(id)arg1 createIfNecessary:(BOOL)arg2;
+- (id)attachmentActivityItemsForSharingForRange:(struct _NSRange)arg1;
 @property(readonly, nonatomic) NSArray *attachmentActivityItemsForSharing;
+- (id)noteActivityItemsForSharingWithNoteExporter:(id)arg1;
 @property(readonly, nonatomic) long long primaryWritingDirection;
 - (id)uiAttributedString;
 @property(readonly, nonatomic) TTTextStorage *textStorageWithoutCreating;
@@ -51,5 +70,10 @@
 - (void)noteDidSaveAndClearDecryptedData;
 - (BOOL)shouldReleaseTextStorageWhenTurningIntoFault;
 - (void)noteWillTurnIntoFault;
+- (id)dataForTypeIdentifier:(id)arg1;
+- (id)htmlStringWithHTMLAttachments;
+- (id)htmlStringWithAttachmentConversionHandler:(CDUnknownBlockType)arg1;
+- (id)htmlStringWithAttachments:(BOOL)arg1;
+- (id)htmlString;
 @end
 

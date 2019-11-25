@@ -22,8 +22,8 @@
 + (id)inkTypeNames;
 + (id)blendModeNames;
 + (double)defaultValueForInput:(unsigned long long)arg1;
-+ (CDStruct_c3b9c2ee)rangeForInput:(unsigned long long)arg1;
-+ (CDStruct_c3b9c2ee)rangeForInkProperty:(unsigned long long)arg1;
++ (CDStruct_88b945db)rangeForInput:(unsigned long long)arg1;
++ (CDStruct_88b945db)rangeForInkProperty:(unsigned long long)arg1;
 
 @end
 

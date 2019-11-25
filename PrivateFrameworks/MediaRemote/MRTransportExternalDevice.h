@@ -8,7 +8,7 @@
 
 #import "MRProtocolClientConnectionDelegate.h"
 
-@class CURunLoopThread, MRExternalClientConnection, MRExternalDeviceTransport, NSData, NSDate, NSDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_os_transaction>, NSString, _MRContentItemProtobuf, _MRDeviceInfoMessageProtobuf, _MRNowPlayingPlayerPathProtobuf, _MROriginProtobuf;
+@class CURunLoopThread, MRExternalClientConnection, MRExternalDeviceTransport, NSData, NSDate, NSDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_os_transaction>, NSRunLoop, NSString, _MRContentItemProtobuf, _MRDeviceInfoMessageProtobuf, _MRNowPlayingPlayerPathProtobuf, _MROriginProtobuf;
 
 @interface MRTransportExternalDevice : MRExternalDevice <MRProtocolClientConnectionDelegate>
 {
@@ -28,6 +28,7 @@
     unsigned long long _reconnectionAttemptCount;
     BOOL _forceReconnectOnConnectionFailure;
     BOOL _disconnecting;
+    BOOL _isClientSyncActive;
     NSObject<OS_os_transaction> *_transaction;
     BOOL _isCallingClientCallback;
     MRExternalClientConnection *_clientConnection;
@@ -58,8 +59,10 @@
     CDUnknownBlockType _volumeControlCapabilitiesCallback;
     NSObject<OS_dispatch_queue> *_volumeControlCapabilitiesCallbackQueue;
     NSObject<OS_dispatch_queue> *_outputContextCallbackQueue;
+    NSRunLoop *_runLoop;
 }
 
+@property(retain, nonatomic) NSRunLoop *runLoop; // @synthesize runLoop=_runLoop;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *outputContextCallbackQueue; // @synthesize outputContextCallbackQueue=_outputContextCallbackQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *volumeControlCapabilitiesCallbackQueue; // @synthesize volumeControlCapabilitiesCallbackQueue=_volumeControlCapabilitiesCallbackQueue;
 @property(copy, nonatomic) CDUnknownBlockType volumeControlCapabilitiesCallback; // @synthesize volumeControlCapabilitiesCallback=_volumeControlCapabilitiesCallback;
@@ -83,6 +86,7 @@
 @property(nonatomic) long long connectionRecoveryBehavior; // @synthesize connectionRecoveryBehavior=_connectionRecoveryBehavior;
 @property(readonly, nonatomic) MRExternalDeviceTransport *transport; // @synthesize transport=_transport;
 - (void).cxx_destruct;
+- (void)_handleSetDefaultSupportedCommandsMessage:(id)arg1;
 - (void)_contentItemUpdatedNotification:(id)arg1;
 - (id)_createPlaybackQueue:(BOOL)arg1;
 - (void)_updateNowPlayingInfo;
@@ -124,16 +128,21 @@
 - (void)_callClientNameCallback;
 - (void)_callClientPairingCallback:(CDUnknownBlockType)arg1;
 - (void)_callClientConnectionStateCallback:(unsigned int)arg1 previousConnectionState:(unsigned int)arg2 error:(id)arg3;
+- (void)_handlePlaybackSessionMigrateEndRequest:(id)arg1 error:(id)arg2 forPlayerPath:(id)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)_handlePlaybackSessionMigrateBeginRequest:(id)arg1 forPlayerPath:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)_handlePlaybackSessionMigrateRequest:(id)arg1 request:(id)arg2 forPlayerPath:(id)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)_handlePlaybackSessionRequest:(void *)arg1 forPlayerPath:(void *)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)_handleLegacyPlaybackQueueRequestWithCompletion:(CDUnknownBlockType)arg1;
 - (void)_handlePlaybackQueueResponse:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_handlePlaybackQueueRequest:(void *)arg1 forPlayer:(void *)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)_onSerialQueue_registerOriginCallbacks;
-- (void)_onWorkerQueue_cleanUpWithReason:(long long)arg1;
-- (void)_tearDownCustomOriginWithReason:(long long)arg1;
-- (void)_onWorkerQueue_syncClientState;
+- (void)_cleanUpWithReason:(long long)arg1;
+- (void)_cleanUpStreamsWithReason:(long long)arg1;
+- (id)_onWorkerQueue_syncClientState;
 - (id)_onWorkerQueue_openSecuritySession;
-- (id)_onWorkerQueue_loadDeviceInfo;
+- (id)_onWorkerQueue_reRegisterCustomOrigin;
 - (id)_onWorkerQueue_setupCustomOrigin;
+- (id)_onWorkerQueue_loadDeviceInfo;
 - (id)_onWorkerQueue_initializeConnectionWithOptions:(unsigned int)arg1;
 - (void)_transportDeviceInfoDidChangeNotification:(id)arg1;
 - (void)_localDeviceInfoDidChangeNotification:(id)arg1;
@@ -151,10 +160,14 @@
 - (void)ping:(double)arg1 callback:(CDUnknownBlockType)arg2 withQueue:(id)arg3;
 - (void)sendCustomData:(id)arg1 withName:(id)arg2;
 - (void)unpair;
+- (void)veirfyConnectionStatusAndMaybeDisconnect:(id)arg1;
 - (void)disconnect:(id)arg1;
+- (void)_onSerialQueue_prepareToDisconnect:(id)arg1;
+- (void)_onWorkerQueue_disconnect:(id)arg1;
 - (void)connectWithOptions:(unsigned int)arg1;
-- (void)_onSerialQueue_connectWithOptions:(unsigned int)arg1;
+- (void)_onSerialQueue_prepareToConnectWithOptions:(unsigned int)arg1;
 - (void)_onWorkerQueue_connectWithOptions:(unsigned int)arg1 isRetry:(BOOL)arg2;
+- (void)sendButtonEvent:(struct _MRHIDButtonEvent)arg1;
 - (void)setVolumeControlCapabilitiesCallback:(CDUnknownBlockType)arg1 withQueue:(id)arg2;
 - (void)setVolumeCallback:(CDUnknownBlockType)arg1 withQueue:(id)arg2;
 - (void)setOutputDevicesRemovedCallback:(CDUnknownBlockType)arg1 withQueue:(id)arg2;

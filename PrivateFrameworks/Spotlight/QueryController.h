@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+#import "PARResultFactory.h"
 #import "PRSSessionController.h"
 
 @class NSArray, NSDictionary, NSString;
 
-@interface QueryController : NSObject <PRSSessionController>
+@interface QueryController : NSObject <PRSSessionController, PARResultFactory>
 {
     NSString *_userId;
     double _gSessionStartTime;
@@ -29,6 +30,7 @@
 - (id)userId;
 - (id)init;
 @property(readonly, nonatomic) NSString *applicationNameForUserAgent;
+- (id)createResultObject;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

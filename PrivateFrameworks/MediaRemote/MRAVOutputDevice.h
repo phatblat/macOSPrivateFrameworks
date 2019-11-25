@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class MRAVEndpoint, MRAVOutputDeviceSourceInfo, NSData, NSDictionary, NSString, _MRAVOutputDeviceDescriptorProtobuf;
+@class MRAVEndpoint, MRAVOutputDeviceSourceInfo, NSArray, NSData, NSDictionary, NSString, _MRAVOutputDeviceDescriptorProtobuf;
 
 @interface MRAVOutputDevice : NSObject
 {
@@ -21,9 +21,12 @@
     BOOL _groupContainsGroupLeader;
     BOOL _airPlayReceiverSessionActive;
     BOOL _groupable;
+    BOOL _supportsBluetoothSharing;
     BOOL _proxyGroupPlayer;
     BOOL _canRelayCommunicationChannel;
     BOOL _supportsBufferedAirPlay;
+    BOOL _supportsRapport;
+    BOOL _isAddedToHomeKit;
     BOOL _deviceGroupable;
     BOOL _pickedOnPairedDevice;
     BOOL _hasBatteryLevel;
@@ -47,12 +50,18 @@
     NSString *_playingPairedDeviceName;
     NSString *_parentGroupIdentifier;
     MRAVOutputDeviceSourceInfo *_sourceInfo;
+    NSString *_bluetoothID;
+    NSString *_currentBluetoothListeningMode;
+    NSArray *_availableBluetoothListeningModes;
     MRAVEndpoint *_endpoint;
 }
 
 + (id)localDeviceLocalizedName;
 + (id)localDeviceUID;
 @property(nonatomic) __weak MRAVEndpoint *endpoint; // @synthesize endpoint=_endpoint;
+@property(readonly, nonatomic) NSArray *availableBluetoothListeningModes; // @synthesize availableBluetoothListeningModes=_availableBluetoothListeningModes;
+@property(readonly, nonatomic) NSString *currentBluetoothListeningMode; // @synthesize currentBluetoothListeningMode=_currentBluetoothListeningMode;
+@property(readonly, nonatomic) NSString *bluetoothID; // @synthesize bluetoothID=_bluetoothID;
 @property(nonatomic) float volume; // @synthesize volume=_volume;
 @property(readonly, nonatomic) MRAVOutputDeviceSourceInfo *sourceInfo; // @synthesize sourceInfo=_sourceInfo;
 @property(readonly, nonatomic, getter=isVolumeControlAvailable) BOOL volumeControlAvailable; // @synthesize volumeControlAvailable=_volumeControlAvailable;
@@ -67,9 +76,12 @@
 @property(readonly, nonatomic) unsigned int deviceType; // @synthesize deviceType=_deviceType;
 @property(readonly, nonatomic, getter=isPickedOnPairedDevice) BOOL pickedOnPairedDevice; // @synthesize pickedOnPairedDevice=_pickedOnPairedDevice;
 @property(readonly, nonatomic, getter=isDeviceGroupable) BOOL deviceGroupable; // @synthesize deviceGroupable=_deviceGroupable;
+@property(readonly, nonatomic) BOOL isAddedToHomeKit; // @synthesize isAddedToHomeKit=_isAddedToHomeKit;
+@property(readonly, nonatomic) BOOL supportsRapport; // @synthesize supportsRapport=_supportsRapport;
 @property(readonly, nonatomic) BOOL supportsBufferedAirPlay; // @synthesize supportsBufferedAirPlay=_supportsBufferedAirPlay;
 @property(readonly, nonatomic) BOOL canRelayCommunicationChannel; // @synthesize canRelayCommunicationChannel=_canRelayCommunicationChannel;
 @property(readonly, nonatomic, getter=isProxyGroupPlayer) BOOL proxyGroupPlayer; // @synthesize proxyGroupPlayer=_proxyGroupPlayer;
+@property(readonly, nonatomic) BOOL supportsBluetoothSharing; // @synthesize supportsBluetoothSharing=_supportsBluetoothSharing;
 @property(readonly, nonatomic, getter=isGroupable) BOOL groupable; // @synthesize groupable=_groupable;
 @property(readonly, nonatomic, getter=isAirPlayReceiverSessionActive) BOOL airPlayReceiverSessionActive; // @synthesize airPlayReceiverSessionActive=_airPlayReceiverSessionActive;
 @property(readonly, nonatomic) BOOL groupContainsGroupLeader; // @synthesize groupContainsGroupLeader=_groupContainsGroupLeader;
@@ -91,6 +103,9 @@
 @property(readonly, nonatomic) NSString *uid; // @synthesize uid=_uid;
 @property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSString *debugName;
+@property(readonly, nonatomic) BOOL isPersonalRoute;
+@property(readonly, nonatomic) unsigned int volumeCapabilities;
 @property(readonly, nonatomic) NSDictionary *jsonEncodableDictionaryRepresentation;
 @property(readonly, nonatomic) NSString *roleDescription;
 @property(readonly, nonatomic) NSString *composedTypeDescription;

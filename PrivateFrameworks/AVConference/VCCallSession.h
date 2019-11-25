@@ -9,13 +9,14 @@
 #import "AVCRateControllerDelegate.h"
 #import "VCAudioIOSink.h"
 #import "VCCaptionsReceiverDelegate.h"
+#import "VCRedundancyControllerDelegate.h"
 #import "VCSecureDataChannelDelegate.h"
 #import "VCTransportSessionLegacyDelegate.h"
 
-@class AVCRateController, GKRingBuffer, NSArray, NSData, NSDictionary, NSMutableArray, NSMutableDictionary, NSNumber, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSObject<VCCallSessionDelegate>, NSObject<VideoConferenceChannelQualityDelegate>, NSString, TimingCollection, VCAudioPayload, VCAudioTransmitter, VCBitrateArbiter, VCCallInfo, VCCallLinkCongestionDetector, VCCapabilities, VCCaptionsReceiver, VCConnectionManager, VCControlChannel, VCImageAttributeRules, VCMediaNegotiator, VCRateControlMediaController, VCSecureDataChannel, VCSessionMessaging, VCTransportSession, VCWCMClient, VideoAttributes, WRMClient;
+@class AVCRateController, GKRingBuffer, NSArray, NSData, NSDictionary, NSMutableArray, NSMutableDictionary, NSNumber, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSObject<VCCallSessionDelegate>, NSObject<VideoConferenceChannelQualityDelegate>, NSString, TimingCollection, VCAudioPayload, VCAudioTransmitter, VCBitrateArbiter, VCCallInfo, VCCallLinkCongestionDetector, VCCapabilities, VCCaptionsReceiver, VCConnectionManager, VCControlChannel, VCControlChannelMultiWay, VCDisplayLink, VCImageAttributeRules, VCMediaNegotiator, VCRateControlMediaController, VCRedundancyControllerVideo, VCSecureDataChannel, VCSessionMessaging, VCSwitchManager, VCTransportSession, VCWCMClient, VideoAttributes, WRMClient;
 
 __attribute__((visibility("hidden")))
-@interface VCCallSession : NSObject <VCSecureDataChannelDelegate, VCCaptionsReceiverDelegate, VCTransportSessionLegacyDelegate, AVCRateControllerDelegate, VCAudioIOSink>
+@interface VCCallSession : NSObject <VCSecureDataChannelDelegate, VCCaptionsReceiverDelegate, VCTransportSessionLegacyDelegate, AVCRateControllerDelegate, VCAudioIOSink, VCRedundancyControllerDelegate>
 {
     NSObject<VCCallSessionDelegate> *delegate;
     VCCallInfo *localCallInfo;
@@ -29,6 +30,7 @@ __attribute__((visibility("hidden")))
     long long connectionChangeState;
     id <VCConnectionProtocol> toBeChangedPrimaryConnection;
     VCMediaNegotiator *_mediaNegotiator;
+    VCSwitchManager *_switchManager;
     NSObject<OS_dispatch_queue> *connectionChangeQueue;
     long long state;
     long long _sipState;
@@ -82,7 +84,13 @@ __attribute__((visibility("hidden")))
     BOOL shouldUpdateLastReceivedPacketTimestamp;
     double lastReceivedPacketTimestamp;
     BOOL isRemoteMediaStalled;
+    unsigned int _mediaStallCount;
+    double _mediaStallTotalTime;
+    double _maxMediaStallTime;
+    double _lastMediaStallStartTime;
+    BOOL _isRemoteMediaStalledShort;
     int packetsSinceStall;
+    int packetsSinceShortMediaStall;
     int natType;
     NSObject<OS_dispatch_source> *pausedAudioHeartBeat;
     TimingCollection *perfTimers;
@@ -98,6 +106,7 @@ __attribute__((visibility("hidden")))
     int sampleLogCount;
     double timeSinceLastReportedNoPackets;
     double noRemotePacketsTimeout;
+    double _remoteMediaStallTimeout;
     BOOL previousNoRemoteInProgress;
     BOOL didAttemptSIPInvite;
     NSObject<VideoConferenceChannelQualityDelegate> *qualityDelegate;
@@ -113,9 +122,9 @@ __attribute__((visibility("hidden")))
     VCCallLinkCongestionDetector *congestionDetector;
     BOOL shouldSendAudio;
     BOOL isGKVoiceChat;
-    int signalStrength;
-    int signalRaw;
-    int signalGrade;
+    int _signalStrengthBars;
+    int _signalStrengthDisplayBars;
+    int _signalStrengthMaxDisplayBars;
     _Bool bBWEstOperatingModeInitialized;
     _Bool bBWEstNewBWEstModeEnabled;
     _Bool bBWEstFakeLargeFrameModeEnabled;
@@ -132,6 +141,7 @@ __attribute__((visibility("hidden")))
     unsigned int awdCallNonce;
     VCSessionMessaging *messaging;
     VCControlChannel *controlChannel;
+    VCControlChannelMultiWay *secureControlChannel;
     BOOL isCurrentNetworkBad;
     unsigned int callSessionBitrate;
     NSObject<OS_dispatch_queue> *cellTechQueue;
@@ -142,11 +152,13 @@ __attribute__((visibility("hidden")))
     unsigned short maxPacketLength;
     long long initialSentBytes;
     long long initialReceivedBytes;
-    // Error parsing type: ^{tagVCAudioReceiver={tagVCAudioReceiverConfig=I[3{tagVCAudioReceiverStream=^{tagHANDLE}S}]^v^vIiiB^{opaqueRTCReporting}iB^{__CFString}^{__CFString}SB}^v^v^{opaqueVCJitterBuffer}B^{AudioStreamBasicDescription}id{?=qiIq}^{tagVCRealTimeThread}{tagVCAudioReceiverReportingTask=^{opaqueRTCReporting}i^{tagHANDLE}}B{_opaque_pthread_mutex_t=q[56c]}{_opaque_pthread_mutex_t=q[56c]}{tagVCAudioDecoderList=^{tagDecoderSettings}I}I{tagVCAudioReceiverStatistics=AI}^{tagWRMMetricsInfo}^?{tagVCAudioReceiverCallbackContext=^v^?^?}^?{tagVCAudioReceiverCallbackContext=^v^?^?}I[2{_RTCPPacketList=(tagNTP=Q{?=II})C[10^{tagRTCPPACKET}][1472C]I[1472C]}]dI[300{tagPacketHistoryInfo=ISIBB}]SS^{tagVCAudioReceiverStream}SSBSSSS}, name: audioReceiver
+    // Error parsing type: ^{tagVCAudioReceiver={tagVCAudioReceiverConfig=I[3{tagVCAudioReceiverStream=^{tagHANDLE}S^{tagVCAudioReceiver}}]^v^vIiiB^{opaqueRTCReporting}iB^{__CFString}^{__CFString}SB}^v^v^{opaqueVCJitterBuffer}B^{AudioStreamBasicDescription}id{?=qiIq}^{tagVCRealTimeThread}{tagVCAudioReceiverReportingTask=^{opaqueRTCReporting}i^{tagHANDLE}}BB{_opaque_pthread_mutex_t=q[56c]}{_opaque_pthread_mutex_t=q[56c]}{tagVCAudioDecoderList=^{tagDecoderSettings}I}I{tagVCAudioReceiverStatistics=AI}^{tagWRMMetricsInfo}^?{tagVCAudioReceiverCallbackContext=^v^?^?}^?{tagVCAudioReceiverCallbackContext=^v^?^?}I[2{_RTCPPacketList=(tagNTP=Q{?=II})C[10^{tagRTCPPACKET}]^{OpaqueCMBlockBuffer}*QI[1472C]}]dI[300{tagPacketHistoryInfo=ISIBB}]SS^{tagVCAudioReceiverStream}SSBSSSSIB}, name: audioReceiver
     VCAudioTransmitter *audioTransmitter;
     VCCaptionsReceiver *_captionsReceiver;
     struct tagHANDLE *hVideoReceiver;
     struct tagHANDLE *hVideoTransmitter;
+    VCDisplayLink *_displayLink;
+    VCRedundancyControllerVideo *_videoRedundancyController;
     BOOL remoteSupportsVisibleRect;
     BOOL remoteSupportsExpectedAspectRatio;
     BOOL canLocalResizePIP;
@@ -156,6 +168,7 @@ __attribute__((visibility("hidden")))
     NSObject<OS_dispatch_source> *sessionHealthMonitor;
     VideoAttributes *remoteVideoAttributes;
     double lastVideoQualityNotificationUpdate;
+    double lastVideoCallAlarmTime;
     unsigned int remoteFrameWidth;
     unsigned int remoteFrameHeight;
     VCWCMClient *vcWCMClient;
@@ -165,8 +178,6 @@ __attribute__((visibility("hidden")))
     struct __CVPixelBufferPool *hdBufferPool;
     struct CGSize expectedDecodeSize;
     struct opaqueRTCReporting *reportingAgent;
-    int reportUpdateInterval;
-    int reportReportFrequency;
     BOOL didReportNoRemotePackets;
     BOOL didReportLongConnectionTime;
     BOOL didReportAudioStall;
@@ -180,7 +191,6 @@ __attribute__((visibility("hidden")))
     VCSecureDataChannel *secureDataChannel;
     NSString *basebandCodecType;
     NSNumber *basebandCodecSampleRate;
-    BOOL _didSendBasebandCodec;
     unsigned int dwRTT_ice;
     NSObject<OS_dispatch_queue> *timestampQueue;
     BOOL shouldSendBlackFrame;
@@ -199,6 +209,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)keyPathsForValuesAffectingNetworkQuality;
++ (void)stopSecureControlChannel:(id)arg1;
 + (id)getDecodePayloadTypes:(int)arg1 secondaryPayloadTypes:(id)arg2;
 + (int)setRxPayloadList:(struct tagHANDLE *)arg1 withPayloadTypes:(id)arg2 isRedEnabled:(BOOL)arg3;
 + (int)setRxPayloadList:(struct tagHANDLE *)arg1 withPayloadTypes:(id)arg2;
@@ -215,7 +226,7 @@ __attribute__((visibility("hidden")))
 @property unsigned int remoteFrameHeight; // @synthesize remoteFrameHeight;
 @property unsigned int remoteFrameWidth; // @synthesize remoteFrameWidth;
 // Error parsing type for property audioReceiver:
-// Property attributes: T^{tagVCAudioReceiver={tagVCAudioReceiverConfig=I[3{tagVCAudioReceiverStream=^{tagHANDLE}S}]^v^vIiiB^{opaqueRTCReporting}iB^{__CFString}^{__CFString}SB}^v^v^{opaqueVCJitterBuffer}B^{AudioStreamBasicDescription}id{?=qiIq}^{tagVCRealTimeThread}{tagVCAudioReceiverReportingTask=^{opaqueRTCReporting}i^{tagHANDLE}}B{_opaque_pthread_mutex_t=q[56c]}{_opaque_pthread_mutex_t=q[56c]}{tagVCAudioDecoderList=^{tagDecoderSettings}I}I{tagVCAudioReceiverStatistics=AI}^{tagWRMMetricsInfo}^?{tagVCAudioReceiverCallbackContext=^v^?^?}^?{tagVCAudioReceiverCallbackContext=^v^?^?}I[2{_RTCPPacketList=(tagNTP=Q{?=II})C[10^{tagRTCPPACKET}][1472C]I[1472C]}]dI[300{tagPacketHistoryInfo=ISIBB}]SS^{tagVCAudioReceiverStream}SSBSSSS},R,VaudioReceiver
+// Property attributes: T^{tagVCAudioReceiver={tagVCAudioReceiverConfig=I[3{tagVCAudioReceiverStream=^{tagHANDLE}S^{tagVCAudioReceiver}}]^v^vIiiB^{opaqueRTCReporting}iB^{__CFString}^{__CFString}SB}^v^v^{opaqueVCJitterBuffer}B^{AudioStreamBasicDescription}id{?=qiIq}^{tagVCRealTimeThread}{tagVCAudioReceiverReportingTask=^{opaqueRTCReporting}i^{tagHANDLE}}BB{_opaque_pthread_mutex_t=q[56c]}{_opaque_pthread_mutex_t=q[56c]}{tagVCAudioDecoderList=^{tagDecoderSettings}I}I{tagVCAudioReceiverStatistics=AI}^{tagWRMMetricsInfo}^?{tagVCAudioReceiverCallbackContext=^v^?^?}^?{tagVCAudioReceiverCallbackContext=^v^?^?}I[2{_RTCPPacketList=(tagNTP=Q{?=II})C[10^{tagRTCPPACKET}]^{OpaqueCMBlockBuffer}*QI[1472C]}]dI[300{tagPacketHistoryInfo=ISIBB}]SS^{tagVCAudioReceiverStream}SSBSSSSIB},R,VaudioReceiver
 
 @property(retain, nonatomic) VideoAttributes *remoteVideoAttributes; // @synthesize remoteVideoAttributes;
 @property(retain, nonatomic) VCImageAttributeRules *imageAttributeRules; // @synthesize imageAttributeRules;
@@ -226,9 +237,9 @@ __attribute__((visibility("hidden")))
 @property BOOL shouldTimeoutPackets; // @synthesize shouldTimeoutPackets;
 @property(copy, nonatomic) NSString *sessionID; // @synthesize sessionID;
 @property(nonatomic) float packetLateAndMissingRatio; // @synthesize packetLateAndMissingRatio;
-@property(nonatomic) int signalGrade; // @synthesize signalGrade;
-@property(nonatomic) int signalRaw; // @synthesize signalRaw;
-@property(nonatomic) int signalStrength; // @synthesize signalStrength;
+@property(nonatomic) int signalStrengthMaxDisplayBars; // @synthesize signalStrengthMaxDisplayBars=_signalStrengthMaxDisplayBars;
+@property(nonatomic) int signalStrengthDisplayBars; // @synthesize signalStrengthDisplayBars=_signalStrengthDisplayBars;
+@property(nonatomic) int signalStrengthBars; // @synthesize signalStrengthBars=_signalStrengthBars;
 @property(nonatomic) unsigned int roundTripTime; // @synthesize roundTripTime;
 @property(nonatomic) double networkConditionsTimeoutInSeconds; // @synthesize networkConditionsTimeoutInSeconds;
 @property(nonatomic) double packetLossRate; // @synthesize packetLossRate;
@@ -256,6 +267,8 @@ __attribute__((visibility("hidden")))
 @property(retain) VCConnectionManager *connectionManager; // @synthesize connectionManager;
 @property long long connectionChangeState; // @synthesize connectionChangeState;
 @property struct tagHANDLE *rtpHandle; // @synthesize rtpHandle;
+- (void)redundancyController:(id)arg1 redundancyPercentageDidChange:(unsigned int)arg2;
+- (void)redundancyController:(id)arg1 redundancyIntervalDidChange:(double)arg2;
 - (void)setupSecureDataChannel;
 - (void)handleKeyExchangeCompleted;
 - (void)updateCachedConnectionState;
@@ -316,15 +329,20 @@ __attribute__((visibility("hidden")))
 - (BOOL)isLowBitrateCodecPreferred:(id)arg1;
 - (void)reportOperatingMode;
 - (id)newMediaBlobWithRemoteMediaBlob:(id)arg1 localCallID:(unsigned int)arg2 isLowBitrateCodecPreferred:(BOOL)arg3;
+- (id)newMediaNegotiatorAudioConfigurationWithAllowAudioSwitching:(BOOL)arg1 useSBR:(BOOL)arg2 aacBlockSize:(unsigned int)arg3;
 - (BOOL)cancel:(id)arg1;
 - (BOOL)disconnect:(id)arg1 didRemoteCancel:(BOOL)arg2;
 - (void)requestWRMNotification;
 - (void)sendWRMStatusUpdate:(const CDStruct_8aeecdac *)arg1;
-- (void)setWRMNotification:(CDStruct_d2860d30 *)arg1;
+- (void)setPreWarmState:(BOOL)arg1;
+- (void)setWRMNotification:(CDStruct_0693755d *)arg1;
 - (void)setWRMMetricConfig:(CDStruct_69d7cc99 *)arg1;
-- (void)reportWRMMetrics:(const CDStruct_0db8e210 *)arg1;
+- (void)reportImmediateWRMMetric:(int)arg1 value:(unsigned long long)arg2;
+- (void)reportWRMMetrics:(const CDStruct_dea828ac *)arg1;
 - (void)cleanupWRMClient;
 - (void)setupWRMClient;
+- (void)setupABTesting;
+- (void)applyNegotiatedFaceTimeSettings;
 - (int)rtcpDescriptor;
 - (void)handleReceivedPiggybackBlobLegacy:(id)arg1;
 - (void)handleReceivedPiggybackBlobIDS:(id)arg1;
@@ -337,11 +355,15 @@ __attribute__((visibility("hidden")))
 - (void)setupConnectionTimeoutTimerWithErrorCode:(int)arg1 detailedCode:(int)arg2 description:(id)arg3 reason:(id)arg4;
 - (void)cancelConnectionTimeoutTimer;
 - (void)timeoutUnfinishedConnection;
+- (id)activeControlChannel;
+- (BOOL)isSecureMessagingRequired;
+- (BOOL)isSIPEnabled;
 - (void)dealloc;
 - (BOOL)handshakeComplete:(struct SSLContext *)arg1 withError:(struct __CFError **)arg2;
-- (void)updateLastReceivedPacket:(BOOL)arg1;
+- (void)updateLastReceivedPacket:(BOOL)arg1 packetType:(int)arg2;
 - (void)updateLastReceivedAudioTime;
-- (void)updateLastReceivedPacketWithTimestamp:(double)arg1;
+- (void)updateLastReceivedPacketWithTimestamp:(double)arg1 packetType:(int)arg2;
+- (void)updateRemoteMediaStallStateReporting:(double)arg1;
 - (void)updateRemoteMediaStallState:(double)arg1;
 @property(readonly) double networkQuality;
 - (int)getAudioTxBitrate;
@@ -369,7 +391,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL useCompressedConnectionData;
 @property(nonatomic) BOOL requiresWifi;
 @property(readonly) BOOL isCurrentPayloadTypeValid;
-- (id)initWithDeviceRole:(int)arg1 transportType:(unsigned int)arg2;
+- (id)initWithDeviceRole:(int)arg1 transportType:(unsigned int)arg2 isGKVoiceChat:(BOOL)arg3 reportingHierarchyToken:(id)arg4;
 - (id)init;
 @property(readonly, copy) NSString *description;
 - (void)vcSecureDataChannel:(id)arg1 messageType:(unsigned int)arg2 receivedData:(id)arg3;
@@ -386,6 +408,8 @@ __attribute__((visibility("hidden")))
 - (void)shouldSendBlackFrame:(BOOL)arg1;
 - (void)sendBasebandCodecMessage;
 - (void)disableSessionHealthMonitor;
+- (double)audioTransmittingBitrateKbps;
+- (double)audioReceivingBitrateKbps;
 - (void)enableSessionHealthMonitor;
 - (void)logConnectionSuccess;
 - (unsigned int)maxBitrateForConnectionType;
@@ -396,7 +420,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)setMatchedFeaturesString:(char *)arg1 localFeaturesString:(id)arg2 remoteFeaturesString:(id)arg3;
 - (id)allPayloadsLocalFeaturesString;
 - (id)pickFeaturesStringForPayload:(int)arg1 featuresListDict:(id)arg2 remote:(BOOL)arg3;
-- (void)logIdentity:(struct OpaqueSecIdentityRef *)arg1;
+- (void)logIdentity:(struct __SecIdentity *)arg1;
 - (void)setLocalIdentityForKeyExchange;
 - (int)Conference_SetBWEstMode:(_Bool)arg1 bFakeLargeFrameMode:(_Bool)arg2;
 - (void)notifyDelegateSessionStarted;
@@ -492,8 +516,9 @@ __attribute__((visibility("hidden")))
 - (void)reportDashboardEndResult:(BOOL)arg1;
 - (long long)calculateSIPEndAction:(BOOL)arg1 currentState:(long long)arg2 error:(id)arg3;
 - (void)notifyDelegateAndEndCall:(long long)arg1 didRemoteCancel:(BOOL)arg2 error:(id)arg3;
-- (struct OpaqueSecIdentityRef *)retrieveIdentity;
-- (void)setupPeerInfo:(id)arg1 usingInviteData:(id)arg2 isCaller:(BOOL)arg3 capabilities:(id)arg4;
+- (struct __SecIdentity *)retrieveIdentity;
+- (void)setupPeerInfo:(BOOL)arg1 capabilities:(id)arg2;
+- (void)setupRemoteCallInfoWithParticipantID:(id)arg1 usingInviteData:(id)arg2;
 - (void)setupDTLSDefaults;
 - (void)logDetailedNetworkInformation;
 - (void)updateNetworkCheckHint:(double)arg1;
@@ -506,12 +531,14 @@ __attribute__((visibility("hidden")))
 - (void)handleMediaReceivedOverRelayLinkWithConnectionId:(int)arg1;
 - (void)handleMediaReceivedOverPeerToPeerLinkWithConnectionId:(int)arg1;
 - (int)flushBasebandQueueWithPayloads:(id)arg1 flushCount:(unsigned int *)arg2;
+- (void)controlChannel:(id)arg1 receivedData:(id)arg2 transactionID:(unsigned int)arg3 fromParticipant:(id)arg4;
 - (void)setupSymptomEnabledMessage;
 - (void)setupPreferredInterfaceMessage;
 - (void)setupMomentsMessages;
 - (void)setupCellTechChangeMessages;
 - (void)setupPiPStateChangeMessage;
 - (void)setupHandoverCandidateChangeMessage;
+- (void)setupDisconnectMessage;
 - (void)setupBasebandCodecInfoMessages;
 - (void)setupCallingModeMessages;
 - (void)setupAudioOnOffStateMessages;
@@ -527,6 +554,8 @@ __attribute__((visibility("hidden")))
 - (void)rateController:(void *)arg1 targetBitrateDidChange:(unsigned int)arg2 rateChangeCounter:(unsigned int)arg3;
 - (void)mediaController:(void *)arg1 mediaSuggestionDidChange:(struct VCRateControlMediaSuggestion)arg2;
 - (void)packMeters:(char *)arg1 withLength:(char *)arg2;
+- (void)updateStatistics:(CDStruct_b21f1e06)arg1;
+- (void)displayLinkTick:(id)arg1;
 - (void)callAlarmsWithRTPTimeStamp:(CDStruct_1b6d18a9 *)arg1;
 - (void)processResolutionChangeToVideoRule:(id)arg1 captureRule:(id)arg2 featuresListString:(id)arg3;
 - (id)newRemoteScreenAttributesForOrientation:(int)arg1;
@@ -535,8 +564,8 @@ __attribute__((visibility("hidden")))
 - (double)sessionReceivingFramerate;
 - (double)sessionTransmittingBitrate;
 - (double)sessionTransmittingFramerate;
-- (BOOL)initializeVideoReceiver:(id *)arg1 reportingAgent:(struct opaqueRTCReporting *)arg2;
-- (BOOL)initializeVideoTransmitter:(id *)arg1 encodeRule:(id)arg2 captureRuleWifi:(id)arg3 captureRuleCellular:(id)arg4 unpausing:(BOOL)arg5 reportingAgent:(struct opaqueRTCReporting *)arg6;
+- (BOOL)initializeVideoReceiver:(id *)arg1 reportingAgent:(struct opaqueRTCReporting *)arg2 fecHeaderV1Enabled:(BOOL)arg3;
+- (BOOL)initializeVideoTransmitter:(id *)arg1 encodeRule:(id)arg2 captureRuleWifi:(id)arg3 captureRuleCellular:(id)arg4 unpausing:(BOOL)arg5 reportingAgent:(struct opaqueRTCReporting *)arg6 fecHeaderV1Enabled:(BOOL)arg7;
 - (struct CGSize)computeVisibleAspectRatioWithRemoteScreenAspectRatio:(struct CGSize)arg1 remoteExpectedAspectRatio:(struct CGSize)arg2 encodeWidth:(int)arg3 encodeHeight:(int)arg4;
 - (unsigned int)parameterSetForPayload:(int)arg1;
 - (void)onPlayVideo:(struct __CVBuffer *)arg1 frameTime:(CDStruct_1b6d18a9)arg2 cameraStatusBits:(unsigned char)arg3;

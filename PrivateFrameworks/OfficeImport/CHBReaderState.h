@@ -8,6 +8,7 @@
 
 @class EBReaderSheetState, OADColorScheme;
 
+__attribute__((visibility("hidden")))
 @interface CHBReaderState : CHBState
 {
     EBReaderSheetState *mEBReaderSheetState;

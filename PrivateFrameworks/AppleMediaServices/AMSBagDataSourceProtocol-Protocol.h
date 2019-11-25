@@ -11,7 +11,6 @@
 @protocol AMSBagDataSourceProtocol <NSObject>
 @property(readonly, copy) NSString *profileVersion;
 @property(readonly, copy) NSString *profile;
-@property(readonly) NSString *logKey;
 @property(readonly, getter=isLoaded) BOOL loaded;
 @property(readonly) NSDate *expirationDate;
 - (NSString *)valueForURLVariable:(NSString *)arg1;
@@ -19,6 +18,7 @@
 - (AMSBagKeyInfo *)bagKeyInfoForKey:(NSString *)arg1;
 
 @optional
+@property(copy) CDUnknownBlockType dataSourceDataInvalidatedHandler;
 @property(copy) CDUnknownBlockType dataSourceChangedHandler;
 @end
 

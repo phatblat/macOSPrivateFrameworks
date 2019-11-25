@@ -8,6 +8,7 @@
 
 @class HMMediaSession, NSString;
 
+__attribute__((visibility("hidden")))
 @interface _HMMediaProfile : _HMAccessoryProfile
 {
     HMMediaSession *_mediaSession;
@@ -18,6 +19,7 @@
 + (BOOL)supportsSecureCoding;
 @property __weak id <_HMMediaProfileDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)handleRuntimeStateUpdate:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)setRouteUID:(id)arg1;

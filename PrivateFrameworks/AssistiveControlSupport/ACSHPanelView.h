@@ -6,7 +6,7 @@
 
 #import <AssistiveControlSupport/ACSHPanelElementView.h>
 
-@class ACSHMouseSelectionView, ACSHPanel, ACSHPanelElementHighlightView, ACSHResizeHandlesView, NSArray, NSMutableArray;
+@class ACSHMouseSelectionView, ACSHPanel, ACSHResizeHandlesView, NSArray, NSCache, NSMutableArray;
 
 @interface ACSHPanelView : ACSHPanelElementView
 {
@@ -32,7 +32,6 @@
     ACSHPanelElementView *_mouseDragView;
     ACSHPanelElementView *__mouseDownView;
     ACSHPanelElementView *__resizingView;
-    ACSHPanelElementHighlightView *__panelElementHighlightView;
     NSMutableArray *__viewsMutatedDuringUndo;
     NSArray *__movedViews;
     NSArray *__editorSelectedPanelElementViewsAtDragStart;
@@ -42,6 +41,7 @@
     NSArray *__elementsForPreviewingScanOrder;
     unsigned long long __previewScanOrderIndex;
     unsigned long long __localUndoGroupingLevel;
+    NSCache *__systemFontCacheBySize;
     struct CGPoint __dragRemainder;
     struct CGPoint __lastMouseDownScreenPoint;
     struct CGPoint __lastMouseDragScreenPoint;
@@ -49,6 +49,7 @@
     struct CGRect __mouseDownViewOriginalFrame;
 }
 
+@property(retain) NSCache *_systemFontCacheBySize; // @synthesize _systemFontCacheBySize=__systemFontCacheBySize;
 @property unsigned long long _localUndoGroupingLevel; // @synthesize _localUndoGroupingLevel=__localUndoGroupingLevel;
 @property unsigned long long _previewScanOrderIndex; // @synthesize _previewScanOrderIndex=__previewScanOrderIndex;
 @property(retain) NSArray *_elementsForPreviewingScanOrder; // @synthesize _elementsForPreviewingScanOrder=__elementsForPreviewingScanOrder;
@@ -67,7 +68,6 @@
 @property struct CGRect _selfOriginalFrame; // @synthesize _selfOriginalFrame=__selfOriginalFrame;
 @property(retain) NSArray *_movedViews; // @synthesize _movedViews=__movedViews;
 @property(retain) NSMutableArray *_viewsMutatedDuringUndo; // @synthesize _viewsMutatedDuringUndo=__viewsMutatedDuringUndo;
-@property(retain, nonatomic) ACSHPanelElementHighlightView *_panelElementHighlightView; // @synthesize _panelElementHighlightView=__panelElementHighlightView;
 @property(retain) ACSHPanelElementView *_resizingView; // @synthesize _resizingView=__resizingView;
 @property __weak ACSHPanelElementView *_mouseDownView; // @synthesize _mouseDownView=__mouseDownView;
 @property(nonatomic) __weak ACSHPanelElementView *mouseDragView; // @synthesize mouseDragView=_mouseDragView;
@@ -80,6 +80,7 @@
 @property(nonatomic) __weak id <ACSHPanelViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) __weak ACSHPanelElementView *editorFocusedView; // @synthesize editorFocusedView=_editorFocusedView;
 - (void).cxx_destruct;
+- (id)cachedSystemFontOfSize:(double)arg1;
 - (id)accessibilityHitTest:(struct CGPoint)arg1;
 - (id)accessibilityAttributeValue:(id)arg1;
 - (id)accessibilityAttributeNames;

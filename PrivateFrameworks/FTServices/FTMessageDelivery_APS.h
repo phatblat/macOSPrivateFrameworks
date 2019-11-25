@@ -14,6 +14,7 @@
 @interface FTMessageDelivery_APS : FTMessageDelivery <FTMessageQueueDelegate, APSConnectionDelegate>
 {
     id <FTMessageDeliveryAPSConnection> _connection;
+    id <FTMessageDeliveryAPSMobileNetworkManager> _mobileNetworkManager;
     Class _APSOutgoingMessageClass;
     NSMutableArray *_enabledTopics;
     NSMutableDictionary *_ftMessageMap;
@@ -75,7 +76,7 @@
 - (void)_setEnabledTopics:(id)arg1;
 - (void)dealloc;
 - (id)init;
-- (id)initWithAPSConnection:(id)arg1;
+- (id)initWithAPSConnection:(id)arg1 mobileNetworkManager:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

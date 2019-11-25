@@ -99,6 +99,7 @@
 - (id)arrivalCamera;
 - (void)cleanupView;
 - (void)addTrack:(id)arg1;
+- (void)updateMargins;
 - (void)updateBackForwardButtons:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setAbsoluteIndex:(unsigned long long)arg1 animated:(BOOL)arg2;
 - (void)updateMapArcs;
@@ -109,6 +110,9 @@
 - (id)currentLeg;
 - (id)currentFlight;
 - (void)setupStyles;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)dealloc;
+- (void)updateMapAppearance;
 - (void)awakeFromNib;
 
 // Remaining properties

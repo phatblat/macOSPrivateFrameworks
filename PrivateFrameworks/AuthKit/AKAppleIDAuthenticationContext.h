@@ -7,11 +7,12 @@
 #import "NSObject.h"
 
 #import "AKAppleIDAuthenticationLimitedUIProvider.h"
+#import "AKAuthenticationContext.h"
 #import "NSSecureCoding.h"
 
 @class AKAnisetteData, AKDevice, NSArray, NSDictionary, NSNumber, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
 
-@interface AKAppleIDAuthenticationContext : NSObject <AKAppleIDAuthenticationLimitedUIProvider, NSSecureCoding>
+@interface AKAppleIDAuthenticationContext : NSObject <AKAppleIDAuthenticationLimitedUIProvider, AKAuthenticationContext, NSSecureCoding>
 {
     NSString *_generatedCode;
     NSNumber *_latitude;
@@ -60,6 +61,9 @@
     unsigned long long _capabilityForUIDisplay;
     NSString *_shortLivedToken;
     NSString *_message;
+    AKAnisetteData *_companionDeviceAnisetteData;
+    AKAnisetteData *_proxiedDeviceAnisetteData;
+    NSString *_appProvidedContext;
     NSString *_username;
     long long _serviceType;
     NSString *_reason;
@@ -70,6 +74,7 @@
     NSString *_altDSID;
     NSDictionary *_httpHeadersForRemoteUI;
     id _clientInfo;
+    NSDictionary *_appProvidedData;
     NSString *_title;
     NSString *_helpAnchor;
     NSString *_helpBook;
@@ -79,8 +84,6 @@
     NSNumber *_hasEmptyPassword;
     NSSet *_desiredInternalTokens;
     NSString *_securityUpgradeContext;
-    AKAnisetteData *_proxiedDeviceAnisetteData;
-    AKAnisetteData *_companionDeviceAnisetteData;
     NSString *_displayString;
     NSString *_displayTitle;
 }
@@ -88,8 +91,6 @@
 + (BOOL)supportsSecureCoding;
 @property(copy, nonatomic) NSString *displayTitle; // @synthesize displayTitle=_displayTitle;
 @property(copy, nonatomic) NSString *displayString; // @synthesize displayString=_displayString;
-@property(retain) AKAnisetteData *companionDeviceAnisetteData; // @synthesize companionDeviceAnisetteData=_companionDeviceAnisetteData;
-@property(retain) AKAnisetteData *proxiedDeviceAnisetteData; // @synthesize proxiedDeviceAnisetteData=_proxiedDeviceAnisetteData;
 @property(copy, nonatomic) NSString *securityUpgradeContext; // @synthesize securityUpgradeContext=_securityUpgradeContext;
 @property BOOL shouldSkipSettingsLaunchAlert; // @synthesize shouldSkipSettingsLaunchAlert=_shouldSkipSettingsLaunchAlert;
 @property(setter=setFirstTimeLogin:) BOOL isFirstTimeLogin; // @synthesize isFirstTimeLogin=_isFirstTimeLogin;
@@ -110,6 +111,7 @@
 @property(retain) NSString *title; // @synthesize title=_title;
 @property BOOL needsRepair; // @synthesize needsRepair=_needsRepair;
 @property BOOL shouldOfferSecurityUpgrade; // @synthesize shouldOfferSecurityUpgrade=_shouldOfferSecurityUpgrade;
+@property(copy) NSDictionary *appProvidedData; // @synthesize appProvidedData=_appProvidedData;
 @property(retain) id clientInfo; // @synthesize clientInfo=_clientInfo;
 @property(copy) NSDictionary *httpHeadersForRemoteUI; // @synthesize httpHeadersForRemoteUI=_httpHeadersForRemoteUI;
 @property(copy) NSString *altDSID; // @synthesize altDSID=_altDSID;
@@ -127,8 +129,11 @@
 @property BOOL shouldAllowAppleIDCreation; // @synthesize shouldAllowAppleIDCreation=_shouldAllowAppleIDCreation;
 @property BOOL isUsernameEditable; // @synthesize isUsernameEditable=_isUsernameEditable;
 @property(copy, nonatomic) NSString *username; // @synthesize username=_username;
+@property(copy) NSString *appProvidedContext; // @synthesize appProvidedContext=_appProvidedContext;
+@property(retain) AKAnisetteData *proxiedDeviceAnisetteData; // @synthesize proxiedDeviceAnisetteData=_proxiedDeviceAnisetteData;
+@property(retain) AKAnisetteData *companionDeviceAnisetteData; // @synthesize companionDeviceAnisetteData=_companionDeviceAnisetteData;
 @property unsigned long long _attemptIndex; // @synthesize _attemptIndex;
-@property(readonly) BOOL _shouldSkipInitialReachabilityCheck; // @synthesize _shouldSkipInitialReachabilityCheck;
+@property BOOL _shouldSkipInitialReachabilityCheck; // @synthesize _shouldSkipInitialReachabilityCheck;
 @property(copy, nonatomic, setter=_setMessage:) NSString *_message; // @synthesize _message;
 @property(copy, setter=_setShortLivedToken:) NSString *_shortLivedToken; // @synthesize _shortLivedToken;
 @property BOOL _isPasswordEditable; // @synthesize _isPasswordEditable;
@@ -142,6 +147,7 @@
 @property(copy, setter=_setProxiedAppBundleID:) NSString *_proxiedAppBundleID; // @synthesize _proxiedAppBundleID;
 @property(setter=_setProxyingForApp:) BOOL _isProxyingForApp; // @synthesize _isProxyingForApp;
 - (void).cxx_destruct;
+- (void)presentBiometricOrPasscodeValidationForAppleID:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)presentSecondFactorAlertWithError:(id)arg1 title:(id)arg2 message:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)dismissSecondFactorUIWithCompletion:(CDUnknownBlockType)arg1;
 - (void)presentSecondFactorUIWithCompletion:(CDUnknownBlockType)arg1;
@@ -149,14 +155,18 @@
 - (void)dismissBasicLoginUIWithCompletion:(CDUnknownBlockType)arg1;
 @property(readonly) BOOL _requiresPasswordInput;
 - (void)presentBasicLoginUIWithCompletion:(CDUnknownBlockType)arg1;
-@property(copy) AKDevice *companionDevice;
-@property(copy) AKDevice *proxiedDevice;
+@property(copy) AKDevice *companionDevice; // @synthesize companionDevice=_companionDevice;
+@property(copy) AKDevice *proxiedDevice; // @synthesize proxiedDevice=_proxiedDevice;
 @property(copy) NSString *serviceIdentifier;
+- (id)_appendBlameIfRequiredTo:(id)arg1;
 @property(readonly) NSString *_interpolatedReasonWithBlame;
 @property(readonly) NSString *_interpolatedReason;
 @property BOOL shouldForceInteractiveAuth; // @synthesize shouldForceInteractiveAuth=_shouldForceInteractiveAuth;
 @property BOOL shouldPreventInteractiveAuth; // @synthesize shouldPreventInteractiveAuth=_shouldPreventInteractiveAuth;
 @property(readonly) unsigned long long _capabilityForUIDisplay; // @synthesize _capabilityForUIDisplay;
+@property(readonly, getter=isContextEligibleForBiometricOrPasscodeAuth) BOOL contextEligibleForBiometricOrPasscodeAuth;
+@property(readonly, getter=isContextEligibleForSilentAuth) BOOL contextEligibleForSilentAuth;
+@property(readonly, getter=isContextEligibleForSilentAuthCoercion) BOOL contextEligibleForSilentAuthCoercion;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 - (BOOL)_localUserHasEmptyPassword;
@@ -164,6 +174,7 @@
 - (id)_sanitizedCopy;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithContext:(id)arg1;
 - (id)_initWithIdentifier:(id)arg1;
 - (id)init;
 - (id)authKitAccountForSilentServiceToken:(id *)arg1;

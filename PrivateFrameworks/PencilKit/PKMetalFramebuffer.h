@@ -8,21 +8,20 @@
 
 @interface PKMetalFramebuffer : NSObject
 {
-    struct __IOSurface *_ioSurface;
     BOOL _isPurgeable;
     BOOL _memoryless;
     BOOL _backedByIOSurface;
     id <MTLTexture> _colorTexture;
     id <MTLDevice> _device;
     unsigned long long _pixelFormat;
-    struct __CVBuffer *_pixelBuffer;
     unsigned long long _sampleCount;
+    struct __IOSurface *_ioSurface;
     struct CGSize _size;
 }
 
+@property(readonly, nonatomic) struct __IOSurface *ioSurface; // @synthesize ioSurface=_ioSurface;
 @property(readonly, nonatomic) unsigned long long sampleCount; // @synthesize sampleCount=_sampleCount;
 @property(readonly, nonatomic) BOOL backedByIOSurface; // @synthesize backedByIOSurface=_backedByIOSurface;
-@property(readonly, nonatomic) struct __CVBuffer *pixelBuffer; // @synthesize pixelBuffer=_pixelBuffer;
 @property(readonly, nonatomic) BOOL memoryless; // @synthesize memoryless=_memoryless;
 @property(readonly, nonatomic) unsigned long long pixelFormat; // @synthesize pixelFormat=_pixelFormat;
 @property(readonly, nonatomic) id <MTLDevice> device; // @synthesize device=_device;

@@ -21,6 +21,7 @@
     unsigned int _localVolumeControlCapabilities;
 }
 
++ (id)sharedOutputContextController;
 @property(nonatomic) unsigned int localVolumeControlCapabilities; // @synthesize localVolumeControlCapabilities=_localVolumeControlCapabilities;
 @property(nonatomic) float localVolume; // @synthesize localVolume=_localVolume;
 - (void).cxx_destruct;

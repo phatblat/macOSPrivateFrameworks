@@ -15,12 +15,14 @@
     NSMutableArray *_dispatchQueueStates;
     BOOL _isConcurrent;
     unsigned long long _dispatchQueueId;
+    NSString *_dispatchQueueLabel;
 }
 
 + (id)dispatchQueueWithId:(unsigned long long)arg1;
 + (id)newInstanceWithoutReferencesFromSerializedBuffer:(const CDStruct_0eb10942 *)arg1 bufferLength:(unsigned long long)arg2;
 + (id)classDictionaryKey;
 @property BOOL isConcurrent; // @synthesize isConcurrent=_isConcurrent;
+@property(retain) NSString *dispatchQueueLabel; // @synthesize dispatchQueueLabel=_dispatchQueueLabel;
 @property(readonly) unsigned long long dispatchQueueId; // @synthesize dispatchQueueId=_dispatchQueueId;
 @property(readonly) NSArray *dispatchQueueStates; // @synthesize dispatchQueueStates=_dispatchQueueStates;
 - (void).cxx_destruct;
@@ -31,6 +33,7 @@
 - (unsigned long long)indexOfFirstDispatchQueueStateOnOrAfterTime:(id)arg1 withSampleIndex:(BOOL)arg2;
 - (void)enumerateThreadStatesBetweenStartTime:(id)arg1 endTime:(id)arg2 reverseOrder:(BOOL)arg3 withSampleIndex:(BOOL)arg4 block:(CDUnknownBlockType)arg5;
 - (unsigned long long)addStates:(id)arg1;
+- (unsigned long long)insertState:(id)arg1;
 - (unsigned long long)addState:(id)arg1;
 - (id)initWithId:(unsigned long long)arg1;
 - (void)paDeserializationAppendState:(id)arg1;

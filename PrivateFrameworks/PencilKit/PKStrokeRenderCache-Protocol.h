@@ -12,5 +12,6 @@
 - (BOOL)lockPurgeableResourcesAddToSet:(NSMutableSet *)arg1;
 - (BOOL)needsCompute;
 - (unsigned long long)cacheCost;
+- (unsigned long long)inkVersion;
 @end
 

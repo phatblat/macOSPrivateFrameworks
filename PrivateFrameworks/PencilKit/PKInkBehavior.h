@@ -31,9 +31,6 @@
     double _blendAlpha;
     double _targetMultiple;
     double _baseAlpha;
-    double _baseRadiusStylus;
-    double _baseRadiusTouchPad;
-    double _baseRadiusTouchPhone;
     PKInkSmoothingDescriptor *_smoothingDescriptor;
     PKInkFeatheringDescriptor *_featheringDescriptor;
 }
@@ -43,9 +40,6 @@
 + (double)inkRadiusOverride;
 @property(retain, nonatomic) PKInkFeatheringDescriptor *featheringDescriptor; // @synthesize featheringDescriptor=_featheringDescriptor;
 @property(retain, nonatomic) PKInkSmoothingDescriptor *smoothingDescriptor; // @synthesize smoothingDescriptor=_smoothingDescriptor;
-@property(nonatomic) double baseRadiusTouchPhone; // @synthesize baseRadiusTouchPhone=_baseRadiusTouchPhone;
-@property(nonatomic) double baseRadiusTouchPad; // @synthesize baseRadiusTouchPad=_baseRadiusTouchPad;
-@property(nonatomic) double baseRadiusStylus; // @synthesize baseRadiusStylus=_baseRadiusStylus;
 @property(nonatomic) double baseAlpha; // @synthesize baseAlpha=_baseAlpha;
 @property(nonatomic) double targetMultiple; // @synthesize targetMultiple=_targetMultiple;
 @property(nonatomic) double blendAlpha; // @synthesize blendAlpha=_blendAlpha;
@@ -53,12 +47,8 @@
 @property(readonly, nonatomic) NSString *variant; // @synthesize variant=_variant;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)setupParticleShader:(id)arg1 resourceHandler:(id)arg2;
-- (id)shaderFrom:(id)arg1;
 - (id)particleTextureName;
-- (unsigned int)particleTexture;
 - (double)rulerOffsetForBaseValues:(struct _PKStrokePoint)arg1 inputType:(long long)arg2 inputScale:(double)arg3;
-- (double)baseRadiusForInputType:(long long)arg1;
 - (void)setVariableSnappedWidth:(BOOL)arg1;
 - (BOOL)variableSnappedWidth;
 - (void)setRulerOffsetConstant:(double)arg1;
@@ -75,6 +65,9 @@
 - (double)solveForTime:(vector_2b0a8222 *)arg1 forTime:(double)arg2 stillChanging:(char *)arg3;
 - (struct _PKStrokePoint)outputTimePoint:(struct _PKStrokePoint)arg1 atTime:(double)arg2 stillChanging:(char *)arg3;
 - (struct _PKStrokePoint)outputForPoint:(CDStruct_57911ed6)arg1 context:(CDStruct_af59ed2a *)arg2;
+- (double)edgeWidthForPoint:(CDStruct_57911ed6)arg1 context:(CDStruct_af59ed2a *)arg2;
+- (double)radiusForPoint:(CDStruct_57911ed6)arg1 context:(CDStruct_af59ed2a *)arg2;
+- (double)alphaForStrokeColor:(struct CGColor *)arg1;
 - (double)alphaForStroke:(id)arg1;
 - (double)brushOpacityForPoint:(CDStruct_57911ed6)arg1 context:(CDStruct_af59ed2a *)arg2;
 - (double)particleSpacingForRadius:(double)arg1;

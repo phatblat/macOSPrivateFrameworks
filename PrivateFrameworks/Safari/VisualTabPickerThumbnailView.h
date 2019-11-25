@@ -6,43 +6,42 @@
 
 #import <Safari/VisualTabPickerShadowTileView.h>
 
-@class FaviconView, NSButton, NSLayoutConstraint, NSStackView, NSTextField, NSView, VisualTabPickerMuteButton;
+@class NSImageView, NSLayoutConstraint, NSStackView, NSTextField, NSView, RolloverImageButton, VisualTabPickerMuteButton;
 
 __attribute__((visibility("hidden")))
 @interface VisualTabPickerThumbnailView : VisualTabPickerShadowTileView
 {
     NSTextField *_titleTextField;
-    FaviconView *_siteIconImageView;
+    NSImageView *_siteIconImageView;
     NSStackView *_headerContentStackView;
     NSView *_thumbnailView;
-    NSButton *_closeButton;
+    RolloverImageButton *_closeButton;
     VisualTabPickerMuteButton *_muteButton;
     NSLayoutConstraint *_muteButtonWidthConstraint;
     NSLayoutConstraint *_muteButtonHeightConstraint;
     BOOL _closeButtonVisible;
     BOOL _visibleToUser;
     BOOL _muteButtonVisible;
-    int _muteButtonState;
     id <VisualTabPickerThumbnailDataSource> _dataSource;
     id <VisualTabPickerThumbnailDelegate> _delegate;
+    long long _muteButtonState;
 }
 
-@property(nonatomic) int muteButtonState; // @synthesize muteButtonState=_muteButtonState;
+@property(nonatomic) long long muteButtonState; // @synthesize muteButtonState=_muteButtonState;
 @property(nonatomic, getter=isMuteButtonVisible) BOOL muteButtonVisible; // @synthesize muteButtonVisible=_muteButtonVisible;
 @property(nonatomic) BOOL visibleToUser; // @synthesize visibleToUser=_visibleToUser;
 @property(nonatomic, getter=isCloseButtonVisible) BOOL closeButtonVisible; // @synthesize closeButtonVisible=_closeButtonVisible;
 @property(nonatomic) __weak id <VisualTabPickerThumbnailDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) __weak id <VisualTabPickerThumbnailDataSource> dataSource; // @synthesize dataSource=_dataSource;
 - (void).cxx_destruct;
-- (void)accessibilityPerformAction:(id)arg1;
-- (id)accessibilityActionNames;
-- (id)accessibilityAttributeValue:(id)arg1;
-- (id)accessibilityAttributeNames;
+- (BOOL)accessibilityPerformPress;
+- (id)accessibilityLabel;
+- (id)accessibilityRole;
 - (void)_muteButtonPressed:(id)arg1;
 - (void)_createMuteButtonIfNecessary;
 - (void)_closeButtonPressed:(id)arg1;
 - (void)_updateCloseButtonImages;
-- (void)_createCloseButtonIfNecessary;
+- (void)_createCloseButton;
 - (void)updateIcon;
 - (void)reloadData;
 - (id)_createTitleTextField;

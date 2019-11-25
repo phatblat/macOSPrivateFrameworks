@@ -20,11 +20,14 @@
         unsigned int mantissa:1;
     } _has;
     BOOL _isNegative;
+    BOOL __encodeLegacyGloryData;
     int _exponent;
     unsigned long long _mantissa;
     _INPBValueMetadata *_valueMetadata;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(retain, nonatomic) _INPBValueMetadata *valueMetadata; // @synthesize valueMetadata=_valueMetadata;
 @property(nonatomic) unsigned long long mantissa; // @synthesize mantissa=_mantissa;
 @property(nonatomic) BOOL isNegative; // @synthesize isNegative=_isNegative;
@@ -34,6 +37,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(readonly, nonatomic) BOOL hasValueMetadata;

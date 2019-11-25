@@ -14,6 +14,7 @@
     BOOL _observingAttachment;
 }
 
++ (id)sharedDrawingController;
 + (id)contentInfoTextWithAttachmentCount:(unsigned long long)arg1;
 @property(nonatomic) BOOL observingAttachment; // @synthesize observingAttachment=_observingAttachment;
 - (void).cxx_destruct;
@@ -23,14 +24,15 @@
 - (BOOL)shouldSyncPreviewImageToCloud:(id)arg1;
 - (struct CGAffineTransform)previewImageOrientationTransform;
 - (void)drawingPreviewIsUpToDate;
+- (BOOL)preferLocalPreviewImages;
 - (BOOL)showThumbnailInNoteList;
 - (BOOL)supportsQuickLook;
 - (BOOL)canSaveURL;
 - (id)saveURL;
+- (BOOL)previewsSupportMultipleAppearances;
 - (BOOL)hasPreviews;
 - (void)writeMergeableData;
 - (BOOL)mergeWithMergeableData:(id)arg1;
-- (id)sharedDrawingController;
 - (id)drawingDocument;
 @property(readonly, nonatomic) ICDrawing *drawing;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;

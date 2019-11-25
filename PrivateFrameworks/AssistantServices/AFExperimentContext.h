@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class AFExperiment<AFExperimentForSiriVOXSounds>, AFExperiment<AFExperimentForSiriVOXTapToSiriBehavior>, NSDictionary;
+@class AFExperiment<AFExperimentForSiriVOXSounds>, AFExperiment<AFExperimentForSiriVOXTapToSiriBehavior>, AFExperiment<AFInvocationFeedbackExperiment>, NSDictionary;
 
 @interface AFExperimentContext : NSObject <NSCopying, NSSecureCoding>
 {
@@ -31,6 +31,7 @@
 @property(readonly, nonatomic) AFExperiment<AFExperimentForSiriVOXSounds> *experimentForSiriVOXSounds;
 - (id)mutatedCopyWithMutator:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) AFExperiment<AFExperimentForSiriVOXTapToSiriBehavior> *experimentForSiriVOXTapToSiriBehavior;
+@property(readonly, nonatomic) AFExperiment<AFInvocationFeedbackExperiment> *invocationFeedbackExperiment;
 
 @end
 

@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class TUMomentDescriptor, TUMomentsCapabilities;
+@class NSString, TUMomentDescriptor, TUMomentsCapabilities;
 
 @protocol TUMomentsControllerDataSourceDelegate <NSObject>
 - (void)serverDiedForDataSource:(id <TUMomentsControllerDataSource>)arg1;
 - (void)dataSource:(id <TUMomentsControllerDataSource>)arg1 didReceiveLocallyRequestedMomentDescriptor:(TUMomentDescriptor *)arg2;
-- (void)willCaptureRemoteRequestForDataSource:(id <TUMomentsControllerDataSource>)arg1;
+- (void)dataSource:(id <TUMomentsControllerDataSource>)arg1 willCaptureRemoteRequestFromRequesterID:(NSString *)arg2;
 - (void)dataSource:(id <TUMomentsControllerDataSource>)arg1 didUpdateCapabilities:(TUMomentsCapabilities *)arg2 forVideoStreamToken:(long long)arg3;
 @end
 

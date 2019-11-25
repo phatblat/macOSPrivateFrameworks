@@ -13,18 +13,18 @@
 __attribute__((visibility("hidden")))
 @interface CKDPAsset : PBCodable <NSCopying>
 {
+    long long _constructedAssetDownloadEstimatedSize;
+    long long _constructedAssetDownloadURLExpiration;
     long long _downloadTokenExpiration;
     long long _downloadURLExpiration;
     long long _size;
     NSString *_assetAuthorizationResponseUUID;
-    NSData *_assetCopyMetadata;
     NSData *_clearAssetKey;
+    NSString *_constructedAssetDownloadURL;
     NSString *_contentBaseURL;
-    NSString *_derivedContentType;
     NSString *_downloadBaseURL;
     NSData *_downloadRequest;
     NSString *_downloadToken;
-    NSData *_header;
     NSString *_owner;
     CKDPProtectionInfo *_protectionInfo;
     CKDPRecordIdentifier *_recordId;
@@ -33,15 +33,19 @@ __attribute__((visibility("hidden")))
     NSData *_signature;
     NSString *_uploadReceipt;
     struct {
+        unsigned int constructedAssetDownloadEstimatedSize:1;
+        unsigned int constructedAssetDownloadURLExpiration:1;
         unsigned int downloadTokenExpiration:1;
         unsigned int downloadURLExpiration:1;
         unsigned int size:1;
     } _has;
 }
 
+@property(nonatomic) long long constructedAssetDownloadEstimatedSize; // @synthesize constructedAssetDownloadEstimatedSize=_constructedAssetDownloadEstimatedSize;
+@property(nonatomic) long long constructedAssetDownloadURLExpiration; // @synthesize constructedAssetDownloadURLExpiration=_constructedAssetDownloadURLExpiration;
+@property(retain, nonatomic) NSString *constructedAssetDownloadURL; // @synthesize constructedAssetDownloadURL=_constructedAssetDownloadURL;
 @property(retain, nonatomic) NSString *assetAuthorizationResponseUUID; // @synthesize assetAuthorizationResponseUUID=_assetAuthorizationResponseUUID;
 @property(retain, nonatomic) NSData *clearAssetKey; // @synthesize clearAssetKey=_clearAssetKey;
-@property(retain, nonatomic) NSData *assetCopyMetadata; // @synthesize assetCopyMetadata=_assetCopyMetadata;
 @property(nonatomic) long long downloadTokenExpiration; // @synthesize downloadTokenExpiration=_downloadTokenExpiration;
 @property(retain, nonatomic) NSData *referenceSignature; // @synthesize referenceSignature=_referenceSignature;
 @property(retain, nonatomic) CKDPProtectionInfo *protectionInfo; // @synthesize protectionInfo=_protectionInfo;
@@ -51,11 +55,9 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) CKDPRecordIdentifier *recordId; // @synthesize recordId=_recordId;
 @property(retain, nonatomic) NSString *requestor; // @synthesize requestor=_requestor;
 @property(retain, nonatomic) NSString *contentBaseURL; // @synthesize contentBaseURL=_contentBaseURL;
-@property(retain, nonatomic) NSString *derivedContentType; // @synthesize derivedContentType=_derivedContentType;
 @property(retain, nonatomic) NSData *downloadRequest; // @synthesize downloadRequest=_downloadRequest;
 @property(retain, nonatomic) NSString *downloadToken; // @synthesize downloadToken=_downloadToken;
 @property(nonatomic) long long size; // @synthesize size=_size;
-@property(retain, nonatomic) NSData *header; // @synthesize header=_header;
 @property(retain, nonatomic) NSData *signature; // @synthesize signature=_signature;
 @property(retain, nonatomic) NSString *owner; // @synthesize owner=_owner;
 - (void).cxx_destruct;
@@ -68,9 +70,11 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasConstructedAssetDownloadEstimatedSize;
+@property(nonatomic) BOOL hasConstructedAssetDownloadURLExpiration;
+@property(readonly, nonatomic) BOOL hasConstructedAssetDownloadURL;
 @property(readonly, nonatomic) BOOL hasAssetAuthorizationResponseUUID;
 @property(readonly, nonatomic) BOOL hasClearAssetKey;
-@property(readonly, nonatomic) BOOL hasAssetCopyMetadata;
 @property(nonatomic) BOOL hasDownloadTokenExpiration;
 @property(readonly, nonatomic) BOOL hasReferenceSignature;
 @property(readonly, nonatomic) BOOL hasProtectionInfo;
@@ -80,11 +84,9 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) BOOL hasRecordId;
 @property(readonly, nonatomic) BOOL hasRequestor;
 @property(readonly, nonatomic) BOOL hasContentBaseURL;
-@property(readonly, nonatomic) BOOL hasDerivedContentType;
 @property(readonly, nonatomic) BOOL hasDownloadRequest;
 @property(readonly, nonatomic) BOOL hasDownloadToken;
 @property(nonatomic) BOOL hasSize;
-@property(readonly, nonatomic) BOOL hasHeader;
 @property(readonly, nonatomic) BOOL hasSignature;
 @property(readonly, nonatomic) BOOL hasOwner;
 

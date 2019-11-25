@@ -6,12 +6,14 @@
 
 #import "NSObject.h"
 
+#import "INImageProxyInjecting.h"
+#import "INKeyImageProducing.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class INDefaultCardTemplate, INShortcut, NSArray;
+@class INDefaultCardTemplate, INImage, INShortcut, NSArray, NSString;
 
-@interface INRelevantShortcut : NSObject <NSSecureCoding, NSCopying>
+@interface INRelevantShortcut : NSObject <INKeyImageProducing, INImageProxyInjecting, NSSecureCoding, NSCopying>
 {
     NSArray *_relevanceProviders;
     INDefaultCardTemplate *_watchTemplate;
@@ -29,6 +31,15 @@
 @property(copy) NSArray *relevanceProviders; // @synthesize relevanceProviders=_relevanceProviders;
 - (id)initWithShortcut:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (long long)_compareSubProducerOne:(id)arg1 subProducerTwo:(id)arg2;
+@property(readonly) INImage *_keyImage;
+- (void)_injectProxiesForImages:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

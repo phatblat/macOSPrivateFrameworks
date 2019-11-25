@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, PKAuthenticatorEvaluationContext;
+@class PKAuthenticatorEvaluationContext;
 
 @interface PKAuthenticator : NSObject
 {
     unsigned long long _authenticationIdentifier;
-    NSObject<OS_dispatch_queue> *_contextMutationQueue;
+    struct os_unfair_lock_s _lock;
     BOOL _invalidated;
     PKAuthenticatorEvaluationContext *_context;
     id <PKAuthenticatorDelegate> _delegate;
@@ -21,7 +21,8 @@
 + (id)viewServiceBundleID;
 + (unsigned long long)cachedStateForPolicy:(long long)arg1;
 + (unsigned long long)_currentStateForMechanisms:(id)arg1;
-+ (unsigned long long)currentStateForAccessControl:(struct OpaqueSecAccessControlRef *)arg1;
++ (BOOL)canPerformPSD2StyleBuyForAccessControlRef:(struct __SecAccessControl *)arg1;
++ (unsigned long long)currentStateForAccessControl:(struct __SecAccessControl *)arg1;
 + (unsigned long long)currentStateForPolicy:(long long)arg1;
 + (void)resetSharedRootContextWithCompletion:(CDUnknownBlockType)arg1;
 + (void)preheatAuthenticator;
@@ -52,7 +53,6 @@
 - (id)_optionsForEvaluationRequest:(id)arg1;
 - (id)_swapContext:(id)arg1 withOptions:(unsigned long long)arg2;
 - (id)_swapContext:(id)arg1;
-- (void)_contextChanged;
 - (id)_context;
 - (void)dealloc;
 - (id)initWithDelegate:(id)arg1;

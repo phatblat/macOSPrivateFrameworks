@@ -15,6 +15,7 @@
 - (void)remoteDisplayReceivedEventID:(NSString *)arg1 event:(NSDictionary *)arg2 options:(NSDictionary *)arg3;
 - (void)remoteDisplaySessionEndedWithID:(NSNumber *)arg1;
 - (void)remoteDisplayStartServerSessionID:(NSNumber *)arg1 device:(RPRemoteDisplayDevice *)arg2 completion:(void (^)(NSError *))arg3;
+- (void)remoteDisplayUpdateErrorFlags:(unsigned long long)arg1;
 - (void)remoteDisplaySessionError:(NSError *)arg1;
 - (void)remoteDisplayChangedDevice:(RPRemoteDisplayDevice *)arg1 changes:(unsigned int)arg2;
 - (void)remoteDisplayLostDevice:(RPRemoteDisplayDevice *)arg1;

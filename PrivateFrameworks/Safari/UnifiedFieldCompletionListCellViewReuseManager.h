@@ -6,25 +6,22 @@
 
 #import "NSObject.h"
 
-@class NSCountedSet, NSMutableDictionary, NSNib, UnifiedFieldCompletionStyledTableCellView<ParsecTableCellView>;
+@class NSCountedSet, NSMutableDictionary, UnifiedFieldCompletionStyledTableCellView<ParsecTableCellView>;
 
 __attribute__((visibility("hidden")))
 @interface UnifiedFieldCompletionListCellViewReuseManager : NSObject
 {
     NSMutableDictionary *_viewArraysByClass;
     NSCountedSet *_viewIndicesByClass;
-    NSNib *_generalNib;
-    NSNib *_platformSpecificNib;
     NSMutableDictionary *_parsecCellReuseManagersByIdentifier;
     UnifiedFieldCompletionStyledTableCellView<ParsecTableCellView> *_mostRecentlyUsedParsecCellView;
 }
 
 + (id)sharedManager;
++ (int)cellViewTypeForResult:(id)arg1;
 @property(readonly, nonatomic) UnifiedFieldCompletionStyledTableCellView<ParsecTableCellView> *mostRecentlyUsedParsecCellView; // @synthesize mostRecentlyUsedParsecCellView=_mostRecentlyUsedParsecCellView;
 - (void).cxx_destruct;
 - (id)_identifierForParsecCellViewType:(int)arg1;
-- (id)_generalNib;
-- (id)_platformSpecificNib;
 - (id)_createCellViewWithIdentifier:(id)arg1 fromNib:(id)arg2;
 - (id)_nextCellViewOfClass:(Class)arg1;
 - (id)_init;

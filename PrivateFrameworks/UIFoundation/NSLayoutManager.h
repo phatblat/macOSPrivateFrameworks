@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class CUIStyleEffectConfiguration, NSArray, NSBox, NSFont, NSGlyphGenerator, NSMutableArray, NSParagraphArbitrator, NSRunStorage, NSSortedArray, NSStorage, NSTabWell, NSTextContainer, NSTextStorage, NSTextView, NSTypesetter;
 
-@interface NSLayoutManager : NSObject <NSCoding>
+@interface NSLayoutManager : NSObject <NSSecureCoding>
 {
     NSTextStorage *_textStorage;
     NSGlyphGenerator *_glyphGenerator;
@@ -86,8 +86,11 @@
     id _rulerAccViewLists;
     struct _NSRange _newlyFilledGlyphRange;
     id _extraData;
+    NSTextContainer *_cachedTextContainer;
+    BOOL _cachedTextContainerIsVertical;
 }
 
++ (BOOL)supportsSecureCoding;
 + (BOOL)_showsControlCharacters;
 + (BOOL)_showsInvisibleCharacters;
 + (BOOL)_ignoresViewTransformations;
@@ -97,6 +100,7 @@
 + (BOOL)_inBackgroundLayout;
 + (id)_defaultLinkAttributes;
 - (void)showAttachmentCell:(id)arg1 inRect:(struct CGRect)arg2 characterIndex:(unsigned long long)arg3;
+- (void)showCGGlyphs:(const unsigned short *)arg1 positions:(const struct CGPoint *)arg2 count:(long long)arg3 font:(id)arg4 textMatrix:(struct CGAffineTransform)arg5 attributes:(id)arg6 inContext:(struct CGContext *)arg7;
 - (void)underlineGlyphRange:(struct _NSRange)arg1 underlineType:(long long)arg2 lineFragmentRect:(struct CGRect)arg3 lineFragmentGlyphRange:(struct _NSRange)arg4 containerOrigin:(struct CGPoint)arg5;
 - (void)strikethroughGlyphRange:(struct _NSRange)arg1 strikethroughType:(long long)arg2 lineFragmentRect:(struct CGRect)arg3 lineFragmentGlyphRange:(struct _NSRange)arg4 containerOrigin:(struct CGPoint)arg5;
 - (void)drawStrikethroughForGlyphRange:(struct _NSRange)arg1 strikethroughType:(long long)arg2 baselineOffset:(double)arg3 lineFragmentRect:(struct CGRect)arg4 lineFragmentGlyphRange:(struct _NSRange)arg5 containerOrigin:(struct CGPoint)arg6;
@@ -173,6 +177,8 @@
 - (void)setLocation:(struct CGPoint)arg1 forStartOfGlyphRange:(struct _NSRange)arg2 coalesceRuns:(BOOL)arg3;
 - (void)setExtraLineFragmentRect:(struct CGRect)arg1 usedRect:(struct CGRect)arg2 textContainer:(id)arg3;
 - (void)setLineFragmentRect:(struct CGRect)arg1 forGlyphRange:(struct _NSRange)arg2 usedRect:(struct CGRect)arg3;
+- (void)_resetCachedTextContainer;
+- (void)_setCachedTextContainer:(id)arg1 isVertical:(BOOL)arg2;
 - (void)setTextContainer:(id)arg1 forGlyphRange:(struct _NSRange)arg2;
 - (unsigned long long)getGlyphs:(unsigned int *)arg1 range:(struct _NSRange)arg2;
 - (unsigned long long)getGlyphsInRange:(struct _NSRange)arg1 glyphs:(unsigned int *)arg2 characterIndexes:(unsigned long long *)arg3 glyphInscriptions:(unsigned long long *)arg4 elasticBits:(char *)arg5 bidiLevels:(char *)arg6;
@@ -213,12 +219,14 @@
 - (void)invalidateLayoutForCharacterRange:(struct _NSRange)arg1 actualCharacterRange:(struct _NSRange *)arg2;
 - (void)invalidateGlyphsForCharacterRange:(struct _NSRange)arg1 changeInLength:(long long)arg2 actualCharacterRange:(struct _NSRange *)arg3;
 - (void)_invalidateGlyphsForCharacterRange:(struct _NSRange)arg1 editedCharacterRange:(struct _NSRange)arg2 changeInLength:(long long)arg3 actualCharacterRange:(struct _NSRange *)arg4;
-@property BOOL allowsSecurityMeasures;
+@property BOOL limitsLayoutForSuspiciousContents;
 - (BOOL)backgroundColorProvidesOpaqueSurface;
 - (unsigned long long)layoutOptions;
 @property long long typesetterBehavior;
 @property unsigned long long defaultAttachmentScaling;
-@property float hyphenationFactor;
+@property BOOL usesDefaultHyphenation;
+- (float)hyphenationFactor;
+- (void)setHyphenationFactor:(float)arg1;
 @property BOOL showsControlCharacters;
 @property BOOL showsInvisibleCharacters;
 - (void)setUsesScreenFonts:(BOOL)arg1;
@@ -254,6 +262,7 @@
 - (id)init;
 - (void)_commonInit;
 - (void)coordinateAccess:(CDUnknownBlockType)arg1;
+- (void)fillMarkedBackgroundRectArray:(const struct CGRect *)arg1 count:(unsigned long long)arg2 forCharacterRange:(struct _NSRange)arg3 color:(id)arg4;
 - (id)renderingColorForDocumentColor:(id)arg1;
 - (void)setApplicationFrameworkContext:(long long)arg1;
 - (long long)applicationFrameworkContext;
@@ -392,7 +401,7 @@
 - (void)_drawLineForGlyphRange:(struct _NSRange)arg1 inContext:(struct CGContext *)arg2 from:(double)arg3 to:(double)arg4 at:(double)arg5 thickness:(double)arg6 lineOrigin:(struct CGPoint)arg7 breakForDescenders:(BOOL)arg8 flipped:(BOOL)arg9;
 - (void)drawSpellingUnderlineForGlyphRange:(struct _NSRange)arg1 spellingState:(long long)arg2 inGlyphRange:(struct _NSRange)arg3 lineFragmentRect:(struct CGRect)arg4 lineFragmentGlyphRange:(struct _NSRange)arg5 containerOrigin:(struct CGPoint)arg6;
 - (void)_showAttachmentCell:(id)arg1 inRect:(struct CGRect)arg2 characterIndex:(unsigned long long)arg3;
-- (void)showCGGlyphs:(const unsigned short *)arg1 positions:(const struct CGPoint *)arg2 count:(unsigned long long)arg3 font:(id)arg4 textMatrix:(struct CGAffineTransform)arg5 attributes:(id)arg6 inContext:(struct CGContext *)arg7;
+- (void)_showCGGlyphs:(const unsigned short *)arg1 positions:(const struct CGPoint *)arg2 count:(long long)arg3 font:(id)arg4 textMatrix:(struct CGAffineTransform)arg5 attributes:(id)arg6 inContext:(struct CGContext *)arg7;
 - (id)_rulerAccView;
 - (id)_rulerHelper;
 

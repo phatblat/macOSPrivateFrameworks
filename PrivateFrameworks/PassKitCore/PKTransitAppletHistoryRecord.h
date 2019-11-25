@@ -13,6 +13,7 @@
 
 @interface PKTransitAppletHistoryRecord : NSObject <NSCopying, NSSecureCoding>
 {
+    unsigned long long _transitModifiers;
     NSNumber *_historySequenceNumber;
     unsigned long long _type;
     unsigned long long _subtype;
@@ -22,6 +23,7 @@
     NSNumber *_loyaltyBalance;
     NSDecimalNumber *_amount;
     NSNumber *_loyaltyAmount;
+    NSNumber *_cityCode;
     NSData *_startStation;
     NSData *_endStation;
     NSString *_transitDetail;
@@ -33,6 +35,7 @@
 @property(copy, nonatomic) NSString *transitDetail; // @synthesize transitDetail=_transitDetail;
 @property(copy, nonatomic) NSData *endStation; // @synthesize endStation=_endStation;
 @property(copy, nonatomic) NSData *startStation; // @synthesize startStation=_startStation;
+@property(copy, nonatomic) NSNumber *cityCode; // @synthesize cityCode=_cityCode;
 @property(copy, nonatomic) NSNumber *loyaltyAmount; // @synthesize loyaltyAmount=_loyaltyAmount;
 @property(copy, nonatomic) NSDecimalNumber *amount; // @synthesize amount=_amount;
 @property(copy, nonatomic) NSNumber *loyaltyBalance; // @synthesize loyaltyBalance=_loyaltyBalance;

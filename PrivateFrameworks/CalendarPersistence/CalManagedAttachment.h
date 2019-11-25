@@ -51,6 +51,7 @@
 @property(retain) NSString *attachmentID; // @dynamic attachmentID;
 @property(readonly, nonatomic) BOOL canBeConvertedToFullObject;
 @property(retain) NSString *contentType; // @dynamic contentType;
+@property(retain) NSString *contentTypeFromServer; // @dynamic contentTypeFromServer;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(retain) NSString *filenameSuggestedByServer; // @dynamic filenameSuggestedByServer;

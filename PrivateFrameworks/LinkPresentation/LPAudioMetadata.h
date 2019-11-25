@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+#import "LPMediaMetadata.h"
 #import "NSSecureCoding.h"
 
 @class NSString, NSURL;
 
-@interface LPAudioMetadata : NSObject <NSSecureCoding>
+@interface LPAudioMetadata : NSObject <LPMediaMetadata, NSSecureCoding>
 {
     unsigned int _version;
     NSURL *_URL;
@@ -24,9 +25,17 @@
 @property(copy, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 @property(readonly, nonatomic) unsigned int version; // @synthesize version=_version;
 - (void).cxx_destruct;
+@property(readonly) unsigned long long hash;
+- (BOOL)isEqual:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)_initWithDictionary:(id)arg1;
+- (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

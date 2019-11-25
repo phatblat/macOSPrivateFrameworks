@@ -6,10 +6,12 @@
 
 #import <CloudKitDaemon/CKDPCSData.h>
 
+#import "NSSecureCoding.h"
+
 @class CKEncryptedData;
 
 __attribute__((visibility("hidden")))
-@interface CKDChainPCSData : CKDPCSData
+@interface CKDChainPCSData : CKDPCSData <NSSecureCoding>
 {
     CKEncryptedData *_encryptedChainPCSPrivateKey;
 }

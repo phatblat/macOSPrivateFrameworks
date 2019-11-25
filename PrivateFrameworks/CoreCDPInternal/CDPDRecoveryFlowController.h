@@ -8,12 +8,11 @@
 
 #import "CDPDDeviceSecretValidatorDelegate.h"
 
-@class CDPDCircleController, CDPDRecoveryFlowContext, CDPDSecureBackupController, NSObject<OS_os_activity>, NSString;
+@class CDPDCircleController, CDPDRecoveryFlowContext, CDPDSecureBackupController, NSString;
 
 @interface CDPDRecoveryFlowController : NSObject <CDPDDeviceSecretValidatorDelegate>
 {
     id <CDPRemoteDeviceSecretValidatorProtocol> _validator;
-    NSObject<OS_os_activity> *_recoveryFlow;
     CDPDRecoveryFlowContext *_recoveryContext;
     CDPDCircleController *_circleController;
     CDPDSecureBackupController *_secureBackupController;

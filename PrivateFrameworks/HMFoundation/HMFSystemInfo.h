@@ -6,17 +6,19 @@
 
 #import <HMFoundation/HMFObject.h>
 
+#import "HMFSystemInfoMigrationDataSourceDelegate.h"
 #import "HMFSystemInfoNameDataSourceDelegate.h"
 
 @class HMFMACAddress, HMFSoftwareVersion, NSString;
 
-@interface HMFSystemInfo : HMFObject <HMFSystemInfoNameDataSourceDelegate>
+@interface HMFSystemInfo : HMFObject <HMFSystemInfoNameDataSourceDelegate, HMFSystemInfoMigrationDataSourceDelegate>
 {
     id <HMFSystemInfoNameDataSource> _nameDataSource;
     id <HMFSystemInfoMarketingInformationDataSource> _marketingDataSource;
     id <HMFSystemInfoSerialNumberDataSource> _serialNumberDataSource;
     id <HMFSystemInfoProductInfoDataSource> _productInfoDataSource;
     id <HMFSystemInfoSoftwareVersionDataSource> _softwareVersionDataSource;
+    id <HMFSystemInfoMigrationDataSource> _migrationDataSource;
     id <HMFSystemInfoWiFiDataSource> _WiFiDataSource;
     id <HMFSystemInfoBluetoothLEDataSource> _bluetoothLEDataSource;
 }
@@ -25,6 +27,7 @@
 + (id)systemInfo;
 @property(readonly, nonatomic) id <HMFSystemInfoBluetoothLEDataSource> bluetoothLEDataSource; // @synthesize bluetoothLEDataSource=_bluetoothLEDataSource;
 @property(readonly, nonatomic) id <HMFSystemInfoWiFiDataSource> WiFiDataSource; // @synthesize WiFiDataSource=_WiFiDataSource;
+@property(readonly, nonatomic) id <HMFSystemInfoMigrationDataSource> migrationDataSource; // @synthesize migrationDataSource=_migrationDataSource;
 @property(readonly, nonatomic) id <HMFSystemInfoSoftwareVersionDataSource> softwareVersionDataSource; // @synthesize softwareVersionDataSource=_softwareVersionDataSource;
 @property(readonly, nonatomic) id <HMFSystemInfoProductInfoDataSource> productInfoDataSource; // @synthesize productInfoDataSource=_productInfoDataSource;
 @property(readonly, nonatomic) id <HMFSystemInfoSerialNumberDataSource> serialNumberDataSource; // @synthesize serialNumberDataSource=_serialNumberDataSource;
@@ -33,7 +36,10 @@
 - (void).cxx_destruct;
 @property(readonly) BOOL supportsBLE;
 @property(readonly, copy) HMFMACAddress *WiFiInterfaceMACAddress;
+- (void)dataSource:(id)arg1 didUpdateMigrating:(BOOL)arg2;
+@property(readonly, getter=isMigrating) BOOL migrating;
 @property(readonly, copy) HMFSoftwareVersion *softwareVersion;
+@property(readonly, copy) NSString *modelIdentifier;
 @property(readonly) long long productVariant;
 @property(readonly) long long productClass;
 @property(readonly) long long productPlatform;

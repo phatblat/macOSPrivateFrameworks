@@ -15,16 +15,21 @@
 @interface _INPBDuration : PBCodable <_INPBDuration, NSSecureCoding, NSCopying>
 {
     CDStruct_85a1ec51 _has;
+    BOOL __encodeLegacyGloryData;
     int _nanos;
     long long _seconds;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(nonatomic) long long seconds; // @synthesize seconds=_seconds;
 @property(nonatomic) int nanos; // @synthesize nanos=_nanos;
 - (id)dictionaryRepresentation;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(nonatomic) BOOL hasSeconds;

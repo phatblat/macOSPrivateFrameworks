@@ -9,11 +9,11 @@
 #import "MCActivityTarget.h"
 #import "MFActivityProgressUpdater.h"
 
-@class ACAccountStore, MCActivityAggregate, MCActivityMonitor, MFSqliteHandle, NSArray, NSString;
+@class ACAccountStore, EDPersistenceDatabaseConnection, MCActivityAggregate, MCActivityMonitor, NSArray, NSString;
 
 @interface MFLibraryUpgrader : NSObject <MCActivityTarget, MFActivityProgressUpdater>
 {
-    MFSqliteHandle *_handle;
+    EDPersistenceDatabaseConnection *_currentConnection;
     ACAccountStore *_accountStore;
     NSArray *_upgradeSteps;
     BOOL _readOnly;
@@ -36,7 +36,6 @@
     BOOL _shouldRecalculateAutomatedConversations;
     id <MFLibraryUpgraderDelegate> _delegate;
     MCActivityMonitor *_monitor;
-    unsigned long long _initialLastWriteMinorVersion;
     unsigned long long _majorVersion;
     unsigned long long _minorVersion;
     MCActivityAggregate *_activity;
@@ -48,7 +47,6 @@
 @property(retain, nonatomic) MCActivityAggregate *activity; // @synthesize activity=_activity;
 @property(nonatomic) unsigned long long minorVersion; // @synthesize minorVersion=_minorVersion;
 @property(nonatomic) unsigned long long majorVersion; // @synthesize majorVersion=_majorVersion;
-@property(nonatomic) unsigned long long initialLastWriteMinorVersion; // @synthesize initialLastWriteMinorVersion=_initialLastWriteMinorVersion;
 @property(nonatomic) BOOL shouldRecalculateAutomatedConversations; // @synthesize shouldRecalculateAutomatedConversations=_shouldRecalculateAutomatedConversations;
 @property(nonatomic) BOOL shouldReparseExchangeReferences; // @synthesize shouldReparseExchangeReferences=_shouldReparseExchangeReferences;
 @property(nonatomic) BOOL shouldRemoveJunkColors; // @synthesize shouldRemoveJunkColors=_shouldRemoveJunkColors;
@@ -70,24 +68,15 @@
 @property(nonatomic) BOOL readOnly; // @synthesize readOnly=_readOnly;
 @property(nonatomic) __weak id <MFLibraryUpgraderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)upgradeSignaturesFromLion;
-- (void)upgradeSmartMailboxesFromLion;
-- (void)upgradeRulesFromLion;
 - (void)upgradeMailDataIfNecessary;
-- (long long)_getSQLTableCount:(const char *)arg1 usingDB:(struct sqlite3 *)arg2;
+- (long long)_getSQLTableCount:(const char *)arg1 connection:(id)arg2;
 - (void)_stampCurrentMinorVersion:(unsigned long long)arg1;
 - (void)_executeSQL:(id)arg1 updateMinorVersion:(unsigned long long)arg2;
-@property(readonly, nonatomic) NSArray *upgradeSteps;
 - (unsigned long long)_lastWriteMinorVersion;
 - (BOOL)_needsRun;
 - (void)_bootstrapVersioningEngine;
 - (void)_getVersionInfo;
-- (void)_unlockWriterDB:(struct sqlite3 *)arg1;
-- (struct sqlite3 *)_getWriterDB;
-- (void)_unlockReaderDB:(struct sqlite3 *)arg1;
-- (struct sqlite3 *)_getReaderDB;
-- (id)_handle;
-- (void)_setHandle:(id)arg1;
+@property(retain, nonatomic) EDPersistenceDatabaseConnection *currentConnection;
 - (void)resetProgressItemsWithTotal:(unsigned long long)arg1 andStatusMessage:(id)arg2;
 - (void)incrementProgressIndicatorWithThreshold:(unsigned long long)arg1;
 - (void)incrementProgressIndicator;
@@ -110,7 +99,7 @@
 - (void)_updateMailboxURLUnicodeComposition;
 - (id)_copySpotlightAttributesWithDateSent:(int)arg1 dateReceived:(int)arg2 dateLastViewed:(int)arg3 read:(int)arg4 libraryFlags:(long long)arg5 messageID:(const char *)arg6 conversationID:(long long)arg7 subject:(id)arg8 displayName:(id)arg9 senderName:(id)arg10 senderAddress:(id)arg11 recipientNames:(id)arg12 recipientAddresses:(id)arg13;
 - (id)_urlV1V2StringForMailboxDirectory:(id)arg1 account:(id)arg2 levelFromAccountDirectory:(unsigned long long)arg3;
-- (void)_getRecipientsForMessageWithLibraryID:(long long)arg1 recipientNames:(id)arg2 recipientAddresses:(id)arg3 dbHandle:(id)arg4;
+- (void)_getRecipientsForMessageWithLibraryID:(long long)arg1 recipientNames:(id)arg2 recipientAddresses:(id)arg3 connection:(id)arg4;
 - (void)_setSpotlightAttributesForEMLXFilesInMailbox:(id)arg1 mailboxURLString:(id)arg2;
 - (void)_sendSpotlightAttributesByPath:(id)arg1;
 - (id)_accountsWithTypeIdentifiers:(id)arg1;
@@ -136,40 +125,17 @@
 - (id)_mailboxV1V2URLStringsForAccount:(id)arg1;
 - (void)_upgradeFromSUMountainCalypsoToMavericks;
 - (void)_upgradeFromMountainLionToSUMountainCalypso;
-- (id)_newRulesWithOnlyLastComponentForApplesScriptReferencesFromRules:(id)arg1;
-- (void)makeAppleScriptReferencesInRulesUseOnlyLastPathComponent;
-- (void)_fixEWSFoldersTable;
 - (void)fixMailDownloadsMigrationKey;
 - (void)_startMigratorServiceForAppleScriptFilesAndRules;
 - (void)upgradeAppleScriptFilesAndRules;
 - (void)_startMigratorServiceForMailDownloads;
 - (void)upgradeMailDownloadsFiles;
-- (BOOL)_removeMessageTypeFromSmartMailbox:(id)arg1 localProperties:(id)arg2;
-- (void)_removeMessageTypeFromSmartMailboxes;
-- (void)_removeMessageTypeFromRules;
-- (void)_combineVIPSendersPlists;
-- (void)_addFileExtensionToSignatures;
-- (void)_changeSignatureBundleLayout;
-- (void)_changeSignaturesLayout;
-- (void)_changeSmartMailboxesLayout;
-- (void)_changeRulesLayout;
-- (void)_upgradeFromLionToMountainLion;
-- (void)_updateSmartMailboxUnreadMessagesForMailboxes:(id)arg1;
-- (void)_updateSmartMailboxUnreadMessages;
-- (void)_upgradeFromSUSnowFeltToLion;
-- (void)_upgradeFromSnowLeopardToSUSnowFelt;
-- (void)_upgradeFromLeopardToSnowLeopard;
-- (void)_updateCoalescedAddressReferences;
-- (void)_populateRecipientPosition;
-- (void)_upgradeFromTigerToLeopard;
 - (void)_useWALJournalingIfPossible;
-- (void)_vacuum;
 - (void)_createNewDatabaseObjects;
 - (void)_upgradeSchema:(id)arg1;
 - (void)_upgradeV1V2Schema;
-- (void)_upgradeSchemaFromBackBooting:(id)arg1;
 - (void)_dropTriggers;
-- (id)_upgradeStepsAndUpgradeStepsFromBackBooting:(id *)arg1 withHandle:(id)arg2;
+- (id)_upgradeStepsWithConnection:(id)arg1 initialLastWriteMinorVersion:(unsigned long long)arg2;
 - (void)run;
 - (BOOL)_libraryIsTooNew;
 - (BOOL)_canLibraryBeUpgraded;

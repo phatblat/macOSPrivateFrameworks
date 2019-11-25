@@ -8,6 +8,7 @@
 
 @class HMCameraSnapshot;
 
+__attribute__((visibility("hidden")))
 @interface _HMCameraSnapshotControl : _HMCameraControl
 {
     HMCameraSnapshot *_mostRecentSnapshot;

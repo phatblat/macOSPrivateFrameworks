@@ -8,14 +8,14 @@
 
 #import "HMFLogging.h"
 
-@class HMDCameraNetworkConfig, HMDCameraSessionID, NSObject<OS_dispatch_queue>, NSString;
+@class HMDCameraNetworkConfig, HMDCameraStreamSessionID, NSObject<OS_dispatch_queue>, NSString;
 
 @interface HMDStreamInterface : HMFObject <HMFLogging>
 {
     int _localRTPSocket;
     unsigned long long _streamInterfaceState;
     HMDCameraNetworkConfig *_localNetworkConfig;
-    HMDCameraSessionID *_sessionID;
+    HMDCameraStreamSessionID *_sessionID;
     NSObject<OS_dispatch_queue> *_workQueue;
     NSObject<OS_dispatch_queue> *_delegateQueue;
     id <HMDCameraRemoteStreamProtocol> _sessionHandler;
@@ -28,7 +28,7 @@
 @property(readonly, nonatomic) id <HMDCameraRemoteStreamProtocol> sessionHandler; // @synthesize sessionHandler=_sessionHandler;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *delegateQueue; // @synthesize delegateQueue=_delegateQueue;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
-@property(readonly, nonatomic) HMDCameraSessionID *sessionID; // @synthesize sessionID=_sessionID;
+@property(readonly, nonatomic) HMDCameraStreamSessionID *sessionID; // @synthesize sessionID=_sessionID;
 @property(readonly, nonatomic) HMDCameraNetworkConfig *localNetworkConfig; // @synthesize localNetworkConfig=_localNetworkConfig;
 - (void).cxx_destruct;
 - (BOOL)loadMiscFields:(id)arg1;

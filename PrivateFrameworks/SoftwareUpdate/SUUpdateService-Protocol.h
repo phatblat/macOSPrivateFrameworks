@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSData, NSDictionary, NSFileHandle, NSString, NSURLCredential, SUUpdateStatus;
+@class NSArray, NSData, NSDictionary, NSFileHandle, NSSet, NSString, NSURLCredential, SUUpdateStatus;
 
 @protocol SUUpdateService <NSObject>
 - (void)resetServiceWithReply:(void (^)(void))arg1;
@@ -24,11 +24,11 @@
 - (void)preparationRequiredForProductKeys:(NSArray *)arg1 reply:(void (^)(BOOL, BOOL, BOOL))arg2;
 - (void)combinedStatusForUpdatesWithProductKeys:(NSArray *)arg1 reply:(void (^)(SUUpdateStatus *, NSDictionary *))arg2;
 - (void)statusForUpdateWithProductKey:(NSString *)arg1 reply:(void (^)(SUUpdateStatus *))arg2;
+- (void)rebootForPostLogoutUpdatesAfterSuccess:(BOOL)arg1 nightInstall:(BOOL)arg2 shouldShutDown:(BOOL)arg3 reply:(void (^)(BOOL))arg4;
 - (void)takeRequestsToInstallAfterPostLogoutUpdatesWithReply:(void (^)(NSArray *, BOOL))arg1;
 - (void)registerRequestsToInstallAfterPostLogoutUpdates:(NSArray *)arg1 reply:(void (^)(NSError *))arg2;
 - (void)configureProgressPhasesEnablingFLO:(NSDictionary *)arg1 finishBlock:(void (^)(void))arg2;
 - (void)configureProgressPhasesWithFinishBlock:(void (^)(void))arg1;
-- (void)stringRepresentationOfLongDescriptionForProductKey:(NSString *)arg1 reply:(void (^)(NSString *))arg2;
 - (void)stashURLCredential:(NSURLCredential *)arg1;
 - (void)commitLoginCredentialsDisablingFLO:(BOOL)arg1 hasArmedBaseSystemUpdates:(BOOL)arg2 finishBlock:(void (^)(BOOL))arg3;
 - (void)stashLoginCredentialsEnablingFLO:(BOOL)arg1 reply:(void (^)(BOOL))arg2;
@@ -45,7 +45,7 @@
 - (void)startInstallingAdminUpdates:(NSArray *)arg1 replyWhenDone:(void (^)(SUUpdateStatus *))arg2;
 - (void)startUpdatesForProductKeys:(NSArray *)arg1 inForeground:(BOOL)arg2 clientBlocksRestart:(BOOL)arg3 replyWhenDone:(void (^)(NSDictionary *))arg4;
 - (void)startDownloadingForProductKeys:(NSArray *)arg1 replyWhenDone:(void (^)(NSDictionary *))arg2;
-- (void)calculateDiskSpaceRequiredForUpdatesWithProductKeys:(NSArray *)arg1 downloadingOnly:(BOOL)arg2 reply:(void (^)(unsigned long long))arg3;
+- (void)calculateDiskSpaceRequiredForUpdatesWithProductKeys:(NSArray *)arg1 downloadingOnly:(BOOL)arg2 invokeCacheDelete:(BOOL)arg3 reply:(void (^)(unsigned long long))arg4;
 - (void)preventFurtherScansWhileConnected:(void (^)(BOOL))arg1;
 - (void)buildTagCacheIfNecessaryWithReply:(void (^)(void))arg1;
 - (void)markRampedUpdatesAsSeenWithReply:(void (^)(void))arg1;
@@ -62,15 +62,14 @@
 - (void)adminDeferredAvailableUpdatesWithReply:(void (^)(NSArray *))arg1;
 - (void)installedUpdateJournalPrunedAndSortedWithReply:(void (^)(NSArray *))arg1;
 - (void)installedUpdateJournalWithReply:(void (^)(NSArray *))arg1;
+- (void)updateProductsForProductKeys:(NSSet *)arg1 withReply:(void (^)(NSArray *))arg2;
 - (void)installStatus:(SUUpdateStatus *)arg1 didChangeExternallyForProductKey:(NSString *)arg2;
-- (void)currentDevKeyModeWithReply:(void (^)(NSString *, SUDevKey *))arg1;
+- (void)currentDevKeyModeWithReply:(void (^)(NSString *))arg1;
 - (void)clearInvalidationForIdentifier:(NSString *)arg1 version:(NSString *)arg2 forReason:(int)arg3;
 - (void)fetchMajorOSInfoForProductKey:(NSString *)arg1 reply:(void (^)(SUMajorProduct *))arg2;
-- (void)remainingPackageIdentifiersToInstallForProductKey:(NSString *)arg1 reply:(void (^)(NSArray *))arg2;
-- (void)packageReferenceForMatchingIdentifier:(NSString *)arg1 productKey:(NSString *)arg2 invalidatingPrevious:(BOOL)arg3 reply:(void (^)(NSDictionary *))arg4;
 - (void)availableUpdatesOfType:(long long)arg1 withState:(long long)arg2 filteredByState:(unsigned long long)arg3 filterDeferred:(BOOL)arg4 filterDuplicates:(BOOL)arg5 reply:(void (^)(NSArray *, NSArray *, BOOL))arg6;
 - (void)endTransactions;
-- (void)takeInstallNotificationsOfType:(NSString *)arg1 withReply:(void (^)(NSDictionary *))arg2;
+- (void)takeInstallNotificationsOfType:(NSString *)arg1 withReply:(void (^)(NSDictionary *, NSArray *))arg2;
 - (void)authorizeForManagingDaemonWithExternalFormData:(NSData *)arg1 reply:(void (^)(BOOL))arg2;
 - (void)authorizeForUpdatingWithExternalFormData:(NSData *)arg1 additionalTransactions:(unsigned long long)arg2 reply:(void (^)(BOOL))arg3;
 @end

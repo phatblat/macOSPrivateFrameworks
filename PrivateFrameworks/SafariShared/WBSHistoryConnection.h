@@ -8,16 +8,20 @@
 
 #import "WBSHistoryConnectionProtocol.h"
 
-@class NSObject<OS_dispatch_queue>, WBSHistoryService, WBSHistoryServiceDatabase;
+@class NSObject<OS_dispatch_queue>, WBSCloudHistory, WBSCloudHistoryConfiguration, WBSHistoryService, WBSHistoryServiceDatabase;
 
 @interface WBSHistoryConnection : NSObject <WBSHistoryConnectionProtocol>
 {
     WBSHistoryService *_historyService;
     NSObject<OS_dispatch_queue> *_internalQueue;
     WBSHistoryServiceDatabase *_database;
+    WBSCloudHistory *_cloudHistory;
+    WBSCloudHistoryConfiguration *_cloudHistoryConfiguration;
 }
 
 - (void).cxx_destruct;
+- (void)releaseCloudHistory:(CDUnknownBlockType)arg1;
+- (void)initializeCloudHistoryWithConfiguration:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)finishClearingHistoryIfNecessaryWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)disconnectWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)connectWithOptions:(id)arg1 delegate:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;

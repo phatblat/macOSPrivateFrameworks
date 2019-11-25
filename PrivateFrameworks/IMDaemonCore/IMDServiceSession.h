@@ -95,6 +95,7 @@
 - (void)_managedPrefsNotification:(id)arg1;
 @property(readonly, nonatomic) BOOL allowedAsChild;
 @property(readonly, nonatomic) BOOL networkConditionsAllowLogin;
+- (void)processNetworkDataAvailabilityChange:(BOOL)arg1;
 @property(readonly, nonatomic) BOOL overrideNetworkAvailability;
 - (void)_networkChanged:(id)arg1;
 - (void)_callMonitorStateChanged:(id)arg1;
@@ -135,6 +136,7 @@
 - (BOOL)isAwaitingStorageTimer;
 - (void)didReceiveBalloonPayload:(id)arg1 forChat:(id)arg2 style:(unsigned char)arg3 messageGUID:(id)arg4 account:(id)arg5;
 - (void)didSendBalloonPayload:(id)arg1 forChat:(id)arg2 style:(unsigned char)arg3 messageGUID:(id)arg4 account:(id)arg5 completionBlock:(CDUnknownBlockType)arg6;
+- (void)_postMessagesFromStorage:(id)arg1;
 - (void)_storageTimerFired;
 - (void)_updateStorageTimerWithInterval:(double)arg1;
 - (void)_checkMessageForOneTimeCodes:(id)arg1;
@@ -162,10 +164,10 @@
 - (void)didChangeMemberStatus:(int)arg1 forHandle:(id)arg2 unformattedNumber:(id)arg3 countryCode:(id)arg4 forChat:(id)arg5 style:(unsigned char)arg6;
 - (void)didChangeMemberStatus:(int)arg1 forHandle:(id)arg2 forChat:(id)arg3 style:(unsigned char)arg4;
 - (void)updateDisplayName:(id)arg1 fromDisplayName:(id)arg2 forChatID:(id)arg3 identifier:(id)arg4 style:(unsigned char)arg5;
-- (void)didUpdateChatStatus:(int)arg1 chat:(id)arg2 style:(unsigned char)arg3 displayName:(id)arg4 groupID:(id)arg5 lastAddressedHandle:(id)arg6 lastAddressedSIMID:(id)arg7 handleInfo:(id)arg8 account:(id)arg9 isSpam:(BOOL)arg10 spamExtensionName:(id)arg11;
+- (void)didUpdateChatStatus:(int)arg1 chat:(id)arg2 style:(unsigned char)arg3 displayName:(id)arg4 groupID:(id)arg5 lastAddressedHandle:(id)arg6 lastAddressedSIMID:(id)arg7 handleInfo:(id)arg8 account:(id)arg9 isSpam:(BOOL)arg10 spamExtensionName:(id)arg11 isBlackholed:(BOOL)arg12;
 - (void)didUpdateChatStatus:(int)arg1 chat:(id)arg2 style:(unsigned char)arg3 displayName:(id)arg4 groupID:(id)arg5 handleInfo:(id)arg6 account:(id)arg7 isSpam:(BOOL)arg8 spamExtensionName:(id)arg9;
-- (void)didUpdateChatStatus:(int)arg1 chat:(id)arg2 style:(unsigned char)arg3 displayName:(id)arg4 groupID:(id)arg5 lastAddressedHandle:(id)arg6 lastAddressedSIMID:(id)arg7 handleInfo:(id)arg8 account:(id)arg9;
-- (void)didUpdateChatStatus:(int)arg1 chat:(id)arg2 style:(unsigned char)arg3 displayName:(id)arg4 groupID:(id)arg5 handleInfo:(id)arg6 account:(id)arg7;
+- (void)didUpdateChatStatus:(int)arg1 chat:(id)arg2 style:(unsigned char)arg3 displayName:(id)arg4 groupID:(id)arg5 lastAddressedHandle:(id)arg6 lastAddressedSIMID:(id)arg7 handleInfo:(id)arg8 account:(id)arg9 isBlackholed:(BOOL)arg10;
+- (void)didUpdateChatStatus:(int)arg1 chat:(id)arg2 style:(unsigned char)arg3 displayName:(id)arg4 groupID:(id)arg5 handleInfo:(id)arg6 account:(id)arg7 isBlackholed:(BOOL)arg8;
 - (void)didUpdateChatStatus:(int)arg1 chat:(id)arg2 style:(unsigned char)arg3 displayName:(id)arg4 groupID:(id)arg5 lastAddressedHandle:(id)arg6 lastAddressedSIMID:(id)arg7 handleInfo:(id)arg8;
 - (void)didUpdateChatStatus:(int)arg1 chat:(id)arg2 style:(unsigned char)arg3 displayName:(id)arg4 groupID:(id)arg5 lastAddressedHandle:(id)arg6 handleInfo:(id)arg7;
 - (void)didUpdateChatStatus:(int)arg1 chat:(id)arg2 style:(unsigned char)arg3 displayName:(id)arg4 groupID:(id)arg5 handleInfo:(id)arg6;
@@ -173,9 +175,12 @@
 - (void)didUpdateChatStatus:(int)arg1 chat:(id)arg2 style:(unsigned char)arg3 account:(id)arg4;
 - (void)didUpdateChatStatus:(int)arg1 chat:(id)arg2 style:(unsigned char)arg3;
 - (void)didReceiveInvitation:(id)arg1 forChat:(id)arg2 style:(unsigned char)arg3;
-- (void)_storeMessage:(id)arg1 chatIdentifier:(id)arg2 localChat:(id)arg3 style:(unsigned char)arg4 account:(id)arg5 messagesToPostArray:(id)arg6;
+- (BOOL)_storeMessage:(id)arg1 chatIdentifier:(id)arg2 localChat:(id)arg3 style:(unsigned char)arg4 account:(id)arg5 messagesToPostArray:(id)arg6;
 - (BOOL)testOverrideTextValidationDidFail;
-- (void)didReceiveMessages:(id)arg1 forChat:(id)arg2 style:(unsigned char)arg3 account:(id)arg4;
+- (BOOL)didReceiveMessages:(id)arg1 forChat:(id)arg2 style:(unsigned char)arg3 account:(id)arg4;
+- (BOOL)_isActivated;
+- (void)_setSortIDForMessage:(id)arg1 forChat:(id)arg2;
+- (void)_setReplyGUIDOnMessage:(id)arg1 forChat:(id)arg2;
 - (id)_transcodeController;
 - (void)didReceiveMessage:(id)arg1 forChat:(id)arg2 style:(unsigned char)arg3 account:(id)arg4;
 - (void)didReceiveMessage:(id)arg1 forChat:(id)arg2 style:(unsigned char)arg3;
@@ -208,6 +213,7 @@
 - (void)didReceiveMessageReadForMessageID:(id)arg1 date:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)_didReceiveMessageReadForMessageID:(id)arg1 date:(id)arg2 attempts:(long long)arg3 useMessageSuppression:(BOOL)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (BOOL)_hasSuppressedMessageID:(id)arg1 chatGUID:(id)arg2;
+- (void)updateChatGUID:(id)arg1 withLastReadTimeStamp:(long long)arg2 withLastSeenMessageGUID:(id)arg3 fromMe:(BOOL)arg4;
 - (BOOL)_didReceiveMessageDeliveryReceiptForMessageID:(id)arg1 attempts:(long long)arg2 date:(id)arg3 account:(id)arg4;
 - (BOOL)didReceiveMessageDeliveryReceiptForMessageID:(id)arg1 date:(id)arg2 account:(id)arg3;
 - (BOOL)didReceiveMessageDeliveryReceiptForMessageID:(id)arg1 date:(id)arg2;
@@ -221,7 +227,7 @@
 - (void)didReceiveError:(unsigned int)arg1 forMessageID:(id)arg2 forceError:(BOOL)arg3;
 - (void)didReceiveErrorMessage:(id)arg1 forChat:(id)arg2 style:(unsigned char)arg3;
 - (void)didReceiveReplaceMessageID:(int)arg1 forChat:(id)arg2 style:(unsigned char)arg3;
-- (void)didJoinChat:(id)arg1 style:(unsigned char)arg2 displayName:(id)arg3 groupID:(id)arg4 handleInfo:(id)arg5 account:(id)arg6;
+- (void)didJoinChat:(id)arg1 style:(unsigned char)arg2 displayName:(id)arg3 groupID:(id)arg4 handleInfo:(id)arg5 account:(id)arg6 isBlackholed:(BOOL)arg7;
 - (void)didJoinChat:(id)arg1 style:(unsigned char)arg2 displayName:(id)arg3 groupID:(id)arg4 handleInfo:(id)arg5 isSpam:(BOOL)arg6 spamExtensionName:(id)arg7;
 - (void)didJoinChat:(id)arg1 style:(unsigned char)arg2 displayName:(id)arg3 groupID:(id)arg4 lastAddressedHandle:(id)arg5 lastAddressedSIMID:(id)arg6 handleInfo:(id)arg7;
 - (void)didJoinChat:(id)arg1 style:(unsigned char)arg2 displayName:(id)arg3 groupID:(id)arg4 lastAddressedHandle:(id)arg5 handleInfo:(id)arg6;
@@ -247,8 +253,8 @@
 - (void)canonicalizeChatIdentifier:(id *)arg1 style:(unsigned char *)arg2;
 - (void)unregisterChat:(id)arg1 style:(unsigned char)arg2;
 - (BOOL)isChatRegistered:(id)arg1 style:(unsigned char)arg2;
-- (void)registerChat:(id)arg1 style:(unsigned char)arg2 displayName:(id)arg3 groupID:(id)arg4 lastAddressedHandle:(id)arg5 lastAddressedSIMID:(id)arg6 handleInfo:(id)arg7 account:(id)arg8;
-- (void)registerChat:(id)arg1 style:(unsigned char)arg2 displayName:(id)arg3 groupID:(id)arg4 lastAddressedHandle:(id)arg5 handleInfo:(id)arg6 account:(id)arg7;
+- (void)registerChat:(id)arg1 style:(unsigned char)arg2 displayName:(id)arg3 groupID:(id)arg4 lastAddressedHandle:(id)arg5 lastAddressedSIMID:(id)arg6 handleInfo:(id)arg7 account:(id)arg8 isBlackholed:(BOOL)arg9;
+- (void)registerChat:(id)arg1 style:(unsigned char)arg2 displayName:(id)arg3 groupID:(id)arg4 lastAddressedHandle:(id)arg5 handleInfo:(id)arg6 account:(id)arg7 isBlackholed:(BOOL)arg8;
 - (void)registerChat:(id)arg1 style:(unsigned char)arg2 displayName:(id)arg3 groupID:(id)arg4 handleInfo:(id)arg5 account:(id)arg6;
 - (void)registerChat:(id)arg1 style:(unsigned char)arg2 displayName:(id)arg3 groupID:(id)arg4 handleInfo:(id)arg5;
 - (void)registerChat:(id)arg1 style:(unsigned char)arg2 handleInfo:(id)arg3;
@@ -258,6 +264,9 @@
 - (id)chatRoomForGroupChatIdentifier:(id)arg1;
 - (id)groupChatIdentifierForChatRoom:(id)arg1;
 - (void)useChatRoom:(id)arg1 forGroupChatIdentifier:(id)arg2;
+- (id)_sharedMessageStore;
+- (id)_sharedAccountController;
+- (void)_IMDStoreMessage:(id)arg1 inMessage:(id)arg2 forceReplace:(BOOL)arg3 modifyError:(BOOL)arg4 modifyFlags:(BOOL)arg5 calculateUnreadCount:(BOOL)arg6 flagMask:(unsigned long long)arg7 shouldStoreBlock:(CDUnknownBlockType)arg8 didStoreBlock:(CDUnknownBlockType)arg9 block:(CDUnknownBlockType)arg10;
 - (void)changeLocalProperty:(id)arg1 ofBuddy:(id)arg2 to:(id)arg3;
 - (id)localPropertiesOfBuddy:(id)arg1;
 - (void)clearLocalProperties;
@@ -276,9 +285,11 @@
 - (id)pictureKeyForBuddy:(id)arg1;
 - (id)pictureOfBuddy:(id)arg1;
 @property(readonly, retain, nonatomic) NSDictionary *buddyPictures;
+- (void)sendNicknameInfoToChatID:(id)arg1;
+- (BOOL)sendNicknameUpdatesToPeerDevices:(id)arg1 toDestinations:(id)arg2;
 - (void)closeSessionChatID:(id)arg1 identifier:(id)arg2 style:(unsigned char)arg3;
 - (void)setProperties:(id)arg1 ofParticipant:(id)arg2 inChatID:(id)arg3 identifier:(id)arg4 style:(unsigned char)arg5;
-- (void)sendLogDumpMessageAtFilePath:(id)arg1 toRecipient:(id)arg2 shouldDeleteFile:(BOOL)arg3;
+- (void)sendLogDumpMessageAtFilePath:(id)arg1 toRecipient:(id)arg2 shouldDeleteFile:(BOOL)arg3 withCompletion:(CDUnknownBlockType)arg4;
 - (void)sendMessage:(id)arg1 toChatID:(id)arg2 identifier:(id)arg3 style:(unsigned char)arg4;
 - (void)declineInvitationToChatID:(id)arg1 identifier:(id)arg2 style:(unsigned char)arg3;
 - (void)invitePersonInfo:(id)arg1 withMessage:(id)arg2 toChatID:(id)arg3 identifier:(id)arg4 style:(unsigned char)arg5;

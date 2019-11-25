@@ -8,7 +8,7 @@
 
 #import "TIAssetManaging.h"
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, TIMobileAssetMediator, TIMobileAssetTimer;
+@class NSArray, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, TIMobileAssetTimer, TIRequestedInputModes;
 
 @interface TIAssetManager : NSObject <TIAssetManaging>
 {
@@ -16,12 +16,15 @@
     BOOL _assetDownloadingEnabled;
     CDUnknownBlockType _enabledInputModeIdentifiersProviderBlock;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
-    TIMobileAssetMediator *_mobileAssetMediator;
+    id <TIMobileAssetMediator> _mobileAssetMediator;
     NSMutableDictionary *_assetsByInputMode;
     NSMutableDictionary *_assetsByInputModeLevel;
+    NSArray *_requestedInputModes_mainThreadCache;
+    id <TIInputModePreferenceProvider> _inputModePreferenceProvider;
     TIMobileAssetTimer *_timer;
     NSArray *_currentActiveRegions;
     NSArray *_currentNormalizedActiveRegions;
+    TIRequestedInputModes *_requestedInputModes;
 }
 
 + (id)_regionFromAddress:(id)arg1;
@@ -30,20 +33,23 @@
 + (id)sharedAssetManagerWithEnabledInputModesProvider:(CDUnknownBlockType)arg1;
 + (id)sharedAssetManager;
 + (void)setSharedAssetManager:(id)arg1;
+@property(readonly, nonatomic) TIRequestedInputModes *requestedInputModes; // @synthesize requestedInputModes=_requestedInputModes;
 @property(retain, nonatomic) NSArray *currentNormalizedActiveRegions; // @synthesize currentNormalizedActiveRegions=_currentNormalizedActiveRegions;
 @property(retain, nonatomic) NSArray *currentActiveRegions; // @synthesize currentActiveRegions=_currentActiveRegions;
 @property(readonly, nonatomic) BOOL assetDownloadingEnabled; // @synthesize assetDownloadingEnabled=_assetDownloadingEnabled;
 @property(retain, nonatomic) TIMobileAssetTimer *timer; // @synthesize timer=_timer;
+@property(readonly, nonatomic) id <TIInputModePreferenceProvider> inputModePreferenceProvider; // @synthesize inputModePreferenceProvider=_inputModePreferenceProvider;
+@property(copy, nonatomic) NSArray *requestedInputModes_mainThreadCache; // @synthesize requestedInputModes_mainThreadCache=_requestedInputModes_mainThreadCache;
 @property(readonly, nonatomic) NSMutableDictionary *assetsByInputModeLevel; // @synthesize assetsByInputModeLevel=_assetsByInputModeLevel;
 @property(readonly, nonatomic) NSMutableDictionary *assetsByInputMode; // @synthesize assetsByInputMode=_assetsByInputMode;
-@property(readonly, nonatomic) TIMobileAssetMediator *mobileAssetMediator; // @synthesize mobileAssetMediator=_mobileAssetMediator;
+@property(readonly, nonatomic) id <TIMobileAssetMediator> mobileAssetMediator; // @synthesize mobileAssetMediator=_mobileAssetMediator;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
 @property(copy, nonatomic) CDUnknownBlockType enabledInputModeIdentifiersProviderBlock; // @synthesize enabledInputModeIdentifiersProviderBlock=_enabledInputModeIdentifiersProviderBlock;
 - (void).cxx_destruct;
 - (BOOL)purgeAsset:(id)arg1;
 - (id)purgeableAssets;
 - (void)performMaintenance;
-- (id)updateInputModesAndGetNewLevels;
+- (void)updateInputModesAndLevels;
 - (void)addAssets:(id)arg1;
 - (void)submitStatistics:(id)arg1;
 - (void)gatherStatistics:(id)arg1;
@@ -53,6 +59,7 @@
 - (void)updateAssetDownloadingEnabled;
 - (id)updatedActiveRegions;
 - (id)activeInputModeLevels;
+- (id)activeInputModes;
 - (id)defaultEnabledInputModes;
 - (id)enabledInputModes;
 - (id)levelsForInputMode:(id)arg1;
@@ -62,11 +69,14 @@
 - (void)appleKeyboardsInternalSettingsChanged:(id)arg1;
 - (void)unregisterForNotifications;
 - (void)registerForNotifications;
+- (void)requestAssetDownloadForLanguage:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)assetContentItemsWithContentType:(id)arg1 inputMode:(id)arg2;
+@property(readonly, nonatomic) double requestExpirationInterval;
 - (id)recursiveDescription;
 - (void)dealloc;
-- (id)initWithEnabledInputModesProvider:(CDUnknownBlockType)arg1;
+- (id)initWithMobileAssetMediator:(id)arg1 requestedInputModes:(id)arg2 inputModePreferenceProvider:(id)arg3 enabledInputModesProvider:(CDUnknownBlockType)arg4;
 - (id)init;
+- (id)initForTestingWithMobileAssetMediator:(id)arg1 requestedInputModes:(id)arg2 inputModePreferenceProvider:(id)arg3 enabledInputModesProvider:(CDUnknownBlockType)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,10 +6,19 @@
 
 #import "ICAttachmentInlineDrawingModel.h"
 
-@class NSObject<OS_dispatch_queue>, PKDrawing;
+@class NSImage, NSObject<OS_dispatch_queue>, PKDrawing;
 
 @interface ICAttachmentInlineDrawingModel (UI)
++ (void)generatePreviewsForAttachment:(id)arg1 fromDrawing:(id)arg2;
++ (struct NSImage *)generateImageForAttachment:(id)arg1 fromDrawing:(id)arg2 fullResolution:(BOOL)arg3 appearanceInfo:(id)arg4;
++ (struct NSImage *)previewImageFromDrawing:(id)arg1 fullImage:(struct CGImage *)arg2 scale:(double)arg3;
++ (unsigned short)drawingPreviewVersion;
+- (void)filePromiseProvider:(id)arg1 writePromiseToURL:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (id)filePromiseProvider:(id)arg1 fileNameForType:(id)arg2;
+- (id)filePromiseProvider;
+- (void)drawPreviewInRect:(struct CGRect)arg1;
 - (void)titleQuery:(id)arg1 didUpdateWithItem:(id)arg2;
+- (id)titleQueryDrawingDispatchQueue:(id)arg1;
 - (void)setTitleQuery:(id)arg1;
 - (id)titleQuery;
 @property(nonatomic, getter=isTitleQueryEnabled) BOOL titleQueryEnabled;
@@ -18,14 +27,18 @@
 - (void)setHandwritingRecognitionDrawing:(id)arg1;
 @property(readonly, nonatomic) PKDrawing *handwritingRecognitionDrawing;
 @property(nonatomic, getter=isHandwritingRecognitionEnabled) BOOL handwritingRecognitionEnabled;
+- (void)updateAfterLoadWithSubAttachmentIdentifierMap:(id)arg1;
 - (id)mergeableDataForCopying;
 - (id)activityItems;
 - (id)activityItem;
-- (struct NSImage *)imageForActivityItem;
+@property(readonly, nonatomic) NSImage *imageForActivityItem;
 - (id)newDrawingFromMergeableData;
 - (BOOL)actuallyMergeWithDrawing:(id)arg1;
 - (BOOL)mergeWithMergeableData:(id)arg1;
 - (BOOL)mergeWithDrawing:(id)arg1;
 - (void)attachmentModelDealloc;
+- (BOOL)generatePreviewsInOperation:(id)arg1;
+- (BOOL)needToGeneratePreviews;
+- (BOOL)generatePreviewsDuringCloudActivity;
 @end
 

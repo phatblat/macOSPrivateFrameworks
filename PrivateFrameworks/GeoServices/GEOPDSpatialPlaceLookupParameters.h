@@ -8,24 +8,37 @@
 
 #import "NSCopying.h"
 
-@class GEOLatLng, PBUnknownFields;
+@class GEOLatLng, PBDataReader, PBUnknownFields;
 
 __attribute__((visibility("hidden")))
 @interface GEOPDSpatialPlaceLookupParameters : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     PBUnknownFields *_unknownFields;
     CDStruct_95bda58d _categoryFilters;
     GEOLatLng *_center;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     int _count;
     int _radius;
     struct {
-        unsigned int count:1;
-        unsigned int radius:1;
-    } _has;
+        unsigned int has_count:1;
+        unsigned int has_radius:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_categoryFilters:1;
+        unsigned int read_center:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_categoryFilters:1;
+        unsigned int wrote_center:1;
+        unsigned int wrote_count:1;
+        unsigned int wrote_radius:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) GEOLatLng *center; // @synthesize center=_center;
++ (BOOL)isValid:(id)arg1;
 - (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
 @property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -34,22 +47,29 @@ __attribute__((visibility("hidden")))
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (int)StringAsCategoryFilters:(id)arg1;
 - (id)categoryFiltersAsString:(int)arg1;
 - (void)setCategoryFilters:(int *)arg1 count:(unsigned long long)arg2;
 - (int)categoryFilterAtIndex:(unsigned long long)arg1;
+- (void)_addNoFlagsCategoryFilter:(int)arg1;
 - (void)addCategoryFilter:(int)arg1;
 - (void)clearCategoryFilters;
 @property(readonly, nonatomic) int *categoryFilters;
 @property(readonly, nonatomic) unsigned long long categoryFiltersCount;
+- (void)_readCategoryFilters;
 @property(nonatomic) BOOL hasCount;
-@property(nonatomic) int count; // @synthesize count=_count;
+@property(nonatomic) int count;
 @property(nonatomic) BOOL hasRadius;
-@property(nonatomic) int radius; // @synthesize radius=_radius;
+@property(nonatomic) int radius;
+@property(retain, nonatomic) GEOLatLng *center;
 @property(readonly, nonatomic) BOOL hasCenter;
+- (void)_readCenter;
 - (void)dealloc;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

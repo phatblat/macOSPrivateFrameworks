@@ -10,6 +10,7 @@
 
 @class CATOperation, NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface _CATObserverManager : NSObject <CATOperationObserver>
 {
     NSMutableSet *mObservers;

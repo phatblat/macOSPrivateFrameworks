@@ -5,10 +5,12 @@
 //
 
 #import "NSObject.h"
+#import "TMarkTornDown.h"
 
 @class FI_IAsyncNodeOperation;
 
-@protocol IAsyncNodeOperationDelegateProtocol <NSObject>
+@protocol IAsyncNodeOperationDelegateProtocol <NSObject, TMarkTornDown>
+- (void)aboutToTearDown;
 
 @optional
 - (int)asyncNodeOperation:(FI_IAsyncNodeOperation *)arg1 completedNotification:(const struct TOperationMonitor *)arg2;

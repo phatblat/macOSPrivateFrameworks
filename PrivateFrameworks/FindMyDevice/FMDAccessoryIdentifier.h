@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
+#import "FMDCodable.h"
 #import "FMDIdentifiable.h"
 #import "NSCopying.h"
 
 @class NSString;
 
-@interface FMDAccessoryIdentifier : NSObject <NSCopying, FMDIdentifiable>
+@interface FMDAccessoryIdentifier : NSObject <FMDCodable, NSCopying, FMDIdentifiable>
 {
     NSString *_string;
 }
@@ -19,6 +20,8 @@
 + (BOOL)supportsSecureCoding;
 @property(retain, nonatomic) NSString *string; // @synthesize string=_string;
 - (void).cxx_destruct;
+- (id)initWithFMDCoder:(id)arg1 error:(id *)arg2;
+- (BOOL)encodeWithFMDCoder:(id)arg1 error:(id *)arg2;
 @property(readonly, copy) NSString *description;
 - (id)stringValue;
 - (id)copyWithZone:(struct _NSZone *)arg1;

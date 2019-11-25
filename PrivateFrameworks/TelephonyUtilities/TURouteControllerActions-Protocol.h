@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "TURouteControllerXPCServer.h"
+#import "NSObject.h"
 
-@class NSDictionary;
+@class NSDictionary, NSString, TURouteController;
 
-@protocol TURouteControllerActions <TURouteControllerXPCServer>
-@property(readonly, nonatomic) NSDictionary *routesByUniqueIdentifier;
-@property(retain, nonatomic) id <TURouteControllerClient> routeControllerClient;
+@protocol TURouteControllerActions <NSObject>
+- (void)pickRouteWithUniqueIdentifier:(NSString *)arg1 shouldWaitUntilAvailable:(BOOL)arg2 forRouteController:(TURouteController *)arg3;
+- (NSDictionary *)routesByUniqueIdentifierForRouteController:(TURouteController *)arg1;
 @end
 

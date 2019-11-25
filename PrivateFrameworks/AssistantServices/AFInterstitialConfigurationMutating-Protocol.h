@@ -9,6 +9,11 @@
 @class NSString;
 
 @protocol AFInterstitialConfigurationMutating <NSObject>
+- (void)setSpeechEndHostTime:(unsigned long long)arg1;
+- (void)setIsTwoShot:(BOOL)arg1;
+- (void)setIsDucking:(BOOL)arg1;
+- (void)setIsVoiceTrigger:(BOOL)arg1;
+- (void)setRecordRoute:(NSString *)arg1;
 - (void)setGender:(long long)arg1;
 - (void)setLanguageCode:(NSString *)arg1;
 - (void)setStyle:(long long)arg1;

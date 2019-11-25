@@ -6,12 +6,20 @@
 
 #import "CKRecord.h"
 
+#import "PQLBindable.h"
 #import "PQLValuable.h"
 
-@class NSString;
+@class NSData, NSString;
 
-@interface CKRecord (BRCSerializationAdditions) <PQLValuable>
+@interface CKRecord (BRCSerializationAdditions) <PQLValuable, PQLBindable>
 + (id)newFromSqliteValue:(struct sqlite3_value *)arg1;
++ (id)desiredKeysWithMask:(unsigned short)arg1;
++ (id)rootAppLibraryRecordForAppLibraryID:(id)arg1 zoneID:(id)arg2;
++ (id)rootDirectoryRecordForZoneID:(id)arg1;
++ (id)brc_containerMetadataRecordWithContainer:(id)arg1;
++ (id)brc_containerMetadataZoneID;
++ (id)brc_zoneHealthZoneID;
++ (id)brc_fakeRecordWithErrorMarkerFor20716676;
 - (void)serializeVersion:(id)arg1 diffs:(unsigned long long)arg2 deadInServerTruth:(BOOL)arg3;
 - (void)serializeStatInfo:(id)arg1 diffs:(unsigned long long)arg2 stageID:(id)arg3 deadInServerTruth:(BOOL)arg4 pcsChaining:(BOOL)arg5;
 - (void)serializeFilename:(id)arg1 forCreation:(BOOL)arg2 setExtension:(BOOL)arg3 inSharedAlias:(BOOL)arg4;
@@ -29,6 +37,23 @@
 - (BOOL)deserializeFilename:(id *)arg1 basename:(id *)arg2 bounceno:(id *)arg3 extension:(id *)arg4 userInfo:(id)arg5 error:(id *)arg6;
 - (BOOL)_deserializeValue:(id *)arg1 forKey:(id)arg2 encrypted:(BOOL)arg3 expectClass:(Class)arg4 allowNil:(BOOL)arg5 errorDescription:(id *)arg6;
 - (void)sqliteBind:(struct sqlite3_stmt *)arg1 index:(int)arg2;
+- (void)sanitizeShortTokenFields;
+- (void)sqliteBind:(struct sqlite3_stmt *)arg1 index:(int)arg2;
+- (BOOL)brc_currentUserOwnsLastEditorDevice;
+- (id)brc_lastEditorDeviceName;
+- (BOOL)brc_safeToGetURL;
+- (id)brc_updateDroppedReason;
+- (id)brc_oplockMergeEtag;
+- (BOOL)brc_isInterestingRecordForSyncDown;
+- (id)brc_containerMetadataIconPaths;
+- (id)brc_containerMetadataIconNames;
+@property(readonly, nonatomic) NSData *brc_containerMetadataPropertiesData;
+- (BOOL)brc_isfakeRecordWithErrorMarkerFor20716676;
+- (void)brc_updateWithLogicalName:(id)arg1 isFolder:(BOOL)arg2;
+- (id)brc_documentName;
+- (id)brc_sharedDocumentDisplayName;
+- (id)brc_sharedDocumentExtension;
+- (BOOL)isFolderShare;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

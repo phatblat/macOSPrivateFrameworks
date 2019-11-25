@@ -10,7 +10,6 @@
 
 @interface AKSignatureView : NSView
 {
-    struct CGColor *_cgColor;
     struct CGPoint _lastPoint;
     id _trackingTouchID;
     double _lastSetNeedsDisplayCallToSuperTime;
@@ -30,12 +29,14 @@
     CHQuadCurvePointFIFO *_interpolatingFIFO;
     AKBitmapFIFO *_bitmapFifo;
     NSTrackingArea *_trackingArea;
+    id <AKSignatureViewLiveDelegate> _liveDelegate;
     struct CGPoint _strokeStartLocation;
     struct CGPoint _strokeLastLocation;
     struct CGRect _aggregateInvalid;
     struct CGRect _unionDrawingRect;
 }
 
+@property(nonatomic) __weak id <AKSignatureViewLiveDelegate> liveDelegate; // @synthesize liveDelegate=_liveDelegate;
 @property BOOL startedTouchDrawing; // @synthesize startedTouchDrawing=_startedTouchDrawing;
 @property(retain) NSTrackingArea *trackingArea; // @synthesize trackingArea=_trackingArea;
 @property(nonatomic) struct CGRect unionDrawingRect; // @synthesize unionDrawingRect=_unionDrawingRect;

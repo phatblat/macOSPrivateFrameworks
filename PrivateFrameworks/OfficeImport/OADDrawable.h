@@ -8,6 +8,7 @@
 
 @class OADDrawable<OADDrawableContainer>, OADDrawableProperties;
 
+__attribute__((visibility("hidden")))
 @interface OADDrawable : NSObject
 {
     BOOL mHidden;

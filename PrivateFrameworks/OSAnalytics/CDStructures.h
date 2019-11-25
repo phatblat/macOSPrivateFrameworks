@@ -38,7 +38,10 @@ struct __sbuf {
     int _field2;
 };
 
-struct internal_state;
+struct dyld_uuid_info_64 {
+    unsigned long long _field1;
+    unsigned char _field2[16];
+};
 
 struct jetsam_snapshot {
     unsigned long long _field1;
@@ -75,8 +78,15 @@ struct jetsam_snapshot_entry {
     unsigned long long _field23;
     unsigned long long _field24;
     unsigned long long _field25;
-    struct timeval _field26;
+    struct timeval64 _field26;
     unsigned long long _field27;
+};
+
+struct kcdata_item;
+
+struct kcdata_iter {
+    struct kcdata_item *_field1;
+    void *_field2;
 };
 
 struct memorystatus_kernel_stats {
@@ -99,25 +109,23 @@ struct memorystatus_kernel_stats {
     char _field17[80];
 };
 
+struct stackshot_thread_turnstileinfo {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned char _field3;
+    unsigned char _field4;
+    unsigned long long _field5;
+};
+
+struct stackshot_thread_waitinfo {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    unsigned char _field4;
+};
+
 struct timeval64 {
     long long _field1;
     long long _field2;
-};
-
-struct z_stream_s {
-    char *next_in;
-    unsigned int avail_in;
-    unsigned long long total_in;
-    char *next_out;
-    unsigned int avail_out;
-    unsigned long long total_out;
-    char *msg;
-    struct internal_state *state;
-    CDUnknownFunctionPointerType zalloc;
-    CDUnknownFunctionPointerType zfree;
-    void *opaque;
-    int data_type;
-    unsigned long long adler;
-    unsigned long long reserved;
 };
 

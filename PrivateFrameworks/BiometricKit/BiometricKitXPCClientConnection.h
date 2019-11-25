@@ -8,6 +8,7 @@
 
 @class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSXPCConnection;
 
+__attribute__((visibility("hidden")))
 @interface BiometricKitXPCClientConnection : NSObject
 {
     NSXPCConnection *_xpcConnection;

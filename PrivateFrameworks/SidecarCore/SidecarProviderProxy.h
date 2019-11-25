@@ -8,20 +8,19 @@
 
 #import "SidecarSessionDelegate.h"
 
-@class NSMapTable;
-
 __attribute__((visibility("hidden")))
 @interface SidecarProviderProxy : NSObject <SidecarSessionDelegate>
 {
     id <SidecarServiceProviderDelegate> _delegate;
-    NSMapTable *_responses;
 }
 
 + (id)defaultProxy;
 @property(nonatomic) __weak id <SidecarServiceProviderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)sidecarServiceTerminate;
 - (void)sidecarSession:(id)arg1 receivedMessage:(id)arg2;
-- (void)sidecarSession:(id)arg1 invalidatedWithError:(id)arg2;
+- (void)sidecarSessionStarted:(id)arg1;
+- (void)sidecarSession:(id)arg1 closedWithError:(id)arg2;
 - (id)init;
 
 @end

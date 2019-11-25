@@ -13,6 +13,8 @@
 
 @interface HMDAccountRegistry : HMFObject <HMFLogging, NSFastEnumeration>
 {
+    id <HMFLocking> _lock;
+    BOOL _started;
     NSObject<OS_dispatch_queue> *_clientQueue;
     HMDAppleAccountManager *_appleAccountManager;
     HMDRemoteAccountManager *_remoteAccountManager;
@@ -20,6 +22,7 @@
 
 + (id)logCategory;
 + (id)sharedRegistry;
++ (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 @property(readonly) HMDRemoteAccountManager *remoteAccountManager; // @synthesize remoteAccountManager=_remoteAccountManager;
 @property(readonly) HMDAppleAccountManager *appleAccountManager; // @synthesize appleAccountManager=_appleAccountManager;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *clientQueue; // @synthesize clientQueue=_clientQueue;
@@ -29,6 +32,7 @@
 - (void)__handleRemovedRemoteAccount:(id)arg1;
 - (void)__handleAddedRemoteAccount:(id)arg1;
 - (void)__handleAppleAccountDeviceAdded:(id)arg1;
+- (void)__handleAppleAccountHandlesUpdated:(id)arg1;
 - (void)__handleAppleAccountUpdate:(id)arg1;
 - (id)deviceForDevice:(id)arg1 exists:(char *)arg2;
 - (id)deviceForDevice:(id)arg1;
@@ -41,8 +45,10 @@
 - (id)accountForHandle:(id)arg1;
 - (BOOL)accountExistsForHandle:(id)arg1;
 @property(readonly, nonatomic) NSArray *accounts;
+- (void)reset;
 - (void)stop;
 - (void)start;
+@property(readonly) BOOL started; // @synthesize started=_started;
 - (id)attributeDescriptions;
 - (id)initWithAppleAccountManager:(id)arg1 remoteAccountManager:(id)arg2;
 - (id)init;

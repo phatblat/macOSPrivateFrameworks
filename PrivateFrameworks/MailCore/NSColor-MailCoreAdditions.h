@@ -12,12 +12,12 @@
 + (BOOL)isDarkEffectiveAppearance:(id)arg1;
 + (BOOL)isDarkAppearance;
 + (id)scriptingRGBColorWithDescriptor:(id)arg1;
-+ (id)stationeryPaneBackgroundColor;
 + (id)aquaBlueColor;
 + (id)junkMailColor;
 + (id)threadBackgroundColor;
 + (void)_clearThreadBackgroundColors;
-+ (id)lighterThreadBackgroundColor;
++ (id)childThreadBackgroundColor;
++ (id)parentThreadBackgroundColor;
 + (void)setThreadBackgroundColor:(id)arg1;
 + (id)colorWithIntValue:(int)arg1;
 + (id)newSwatchForColor:(id)arg1;
@@ -35,9 +35,11 @@
 + (void)setQuotingColorList:(id)arg1;
 + (id)quotingColorList;
 + (id)defaultQuotingColors;
+- (id)_semanticCSSColorOverrideForAppearance:(id)arg1;
 - (id)cssColorStringForAppearance:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *cssColorString;
 - (id)scriptingRGBColorDescriptor;
+- (id)messageBlendedBackgroundColor;
 @property(readonly, nonatomic) int intValue;
 @end
 

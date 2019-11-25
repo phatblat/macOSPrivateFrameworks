@@ -7,11 +7,12 @@
 #import "NSSplitViewController.h"
 
 #import "NSSplitViewDelegate.h"
+#import "SidebarStateRestorationContext.h"
 
 @class BrowserWindowController, NSColor, NSSplitViewItem, NSString, NSView, NSVisualEffectView, SidebarViewController;
 
 __attribute__((visibility("hidden")))
-@interface BrowserWindowContentSplitViewController : NSSplitViewController <NSSplitViewDelegate>
+@interface BrowserWindowContentSplitViewController : NSSplitViewController <NSSplitViewDelegate, SidebarStateRestorationContext>
 {
     BrowserWindowController *_browserWindowController;
     NSSplitViewItem *_sidebarSplitViewItem;
@@ -22,6 +23,7 @@ __attribute__((visibility("hidden")))
     struct SidebarAnimationContext _sidebarAnimationContext;
     NSVisualEffectView *_visualEffectViewForHidingSeparator;
     unsigned long long _fakeSidebarTransitionDepth;
+    NSString *_lastDisplayedSidebarBookmarkListUUID;
     SidebarViewController *_sidebarViewController;
     NSView *_sidebarClipView;
     id <BrowserWindowContentSplitViewControllerDelegate> _delegate;
@@ -30,6 +32,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) __weak id <BrowserWindowContentSplitViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) NSView *sidebarClipView; // @synthesize sidebarClipView=_sidebarClipView;
 @property(retain, nonatomic) SidebarViewController *sidebarViewController; // @synthesize sidebarViewController=_sidebarViewController;
+@property(copy, nonatomic) NSString *lastDisplayedSidebarBookmarkListUUID; // @synthesize lastDisplayedSidebarBookmarkListUUID=_lastDisplayedSidebarBookmarkListUUID;
 - (void).cxx_destruct;
 - (id)_performanceOperationName;
 - (BOOL)_splitView:(id)arg1 canLiveCollapseArrangedSubview:(id)arg2;
@@ -37,6 +40,7 @@ __attribute__((visibility("hidden")))
 - (void)splitViewItem:(id)arg1 isChangingCollapsed:(BOOL)arg2 animated:(BOOL)arg3;
 - (void)splitViewItem:(id)arg1 willChangeCollapsed:(BOOL)arg2 animated:(BOOL)arg3;
 - (BOOL)_isShowingOverlaySidebar;
+- (BOOL)_uncachedSidebarAppearsAsOverlay;
 @property(readonly, nonatomic) BOOL sidebarAppearsAsOverlay;
 - (void)_cleanUpAfterHidingSidebar;
 - (void)_prepareForFadeOutAnimationWithSnapshot:(const RetainPtr_fae59704 *)arg1;

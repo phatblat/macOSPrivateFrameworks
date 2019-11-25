@@ -6,10 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSObject<OS_dispatch_queue>;
+@class NSDictionary, NSObject<OS_dispatch_queue>, NSString;
 
 @interface PPConnectionsParameters : NSObject
 {
+    NSString *_abGroupIdentifier;
     NSDictionary *_assets;
     NSObject<OS_dispatch_queue> *_queue;
 }
@@ -36,6 +37,8 @@
 - (unsigned long long)quickTypePredictionLimit;
 - (double)calendarEventLocationExpirySeconds;
 - (double)calendarEventLocationLookaheadTimeSeconds;
+- (double)foundInAppsSourceExpirySeconds;
+- (double)foundInAppsSourceLookBackSeconds;
 - (double)namedEntitySourceExpirySeconds;
 - (double)namedEntitySourceLookBackSeconds;
 - (double)userActivityExpirySeconds;

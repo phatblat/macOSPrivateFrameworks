@@ -62,12 +62,12 @@
 - (id)generatePositionalByDayOnTimeRange:(id)arg1 withRecurrenceStart:(id)arg2;
 - (id)generatePeriodicByDayOnTimeRange:(id)arg1 withRecurrenceStart:(id)arg2;
 - (void)addPeriodicDay:(unsigned long long)arg1 toArray:(id)arg2 withTimeRange:(id)arg3;
-- (int)numberOfDaysUntilPreviousOccurrenceOfDay:(int)arg1 beforeDate:(id)arg2;
-- (int)numberOfDaysUntilNextOccurrenceOfDay:(int)arg1 afterDate:(id)arg2;
+- (long long)numberOfDaysUntilPreviousOccurrenceOfDay:(long long)arg1 beforeDate:(id)arg2;
+- (long long)numberOfDaysUntilNextOccurrenceOfDay:(long long)arg1 afterDate:(id)arg2;
 - (id)generateByMonthDayOnTimeRange:(id)arg1 withRecurrenceStart:(id)arg2;
 - (id)generateByYearDayOnTimeRange:(id)arg1 withRecurrenceStart:(id)arg2;
 - (id)generateByWeeknoOnTimeRange:(id)arg1 withRecurrenceStart:(id)arg2;
-- (id)week:(int)arg1 forYear:(int)arg2 withTimeZone:(id)arg3;
+- (id)week:(long long)arg1 forYear:(long long)arg2 withTimeZone:(id)arg3;
 - (id)generateByMonthOnTimeRange:(id)arg1 withRecurrenceStart:(id)arg2;
 - (id)realOccurrencesOnTimeRange:(id)arg1 withRecurrenceStart:(id)arg2 alwaysIncludeStartDate:(BOOL)arg3;
 - (id)occurrencesOnTimeRange:(id)arg1 withRecurrenceStart:(id)arg2;
@@ -118,8 +118,6 @@
 - (void)setProperty:(id)arg1 withValue:(id)arg2;
 - (id)initWithRecurrenceRule:(id)arg1;
 - (id)humanReadableDescriptionForStartDate:(id)arg1;
-- (id)untilNSCalendarDate;
-- (void)setUntilNSCalendarDate:(id)arg1;
 - (id)addDatesOnTimeRange:(id)arg1 withRecurrenceStart:(id)arg2 alwaysIncludeStartDate:(BOOL)arg3;
 - (id)cachedDatesOnTimeRange:(id)arg1;
 - (BOOL)isTimeRangeCached:(id)arg1 withRecurrenceStart:(id)arg2;

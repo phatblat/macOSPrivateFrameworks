@@ -6,21 +6,22 @@
 
 #import "NSViewController.h"
 
-@class BrowserViewController, CombinedFavoritesGridViewController, KeyLoopSplicingContainerView, NSLayoutConstraint, NSString, NSView, NSViewController<StartPageContentViewController>, NSVisualEffectView, TestDriveMigrationBannerViewController, TopSitesViewController;
+@class BrowserViewController, ForYouRecommendationMediator, KeyLoopSplicingContainerView, NSLayoutConstraint, NSString, NSView, NSViewController<StartPageContentViewController>, NSVisualEffectView, SiriSuggestionsStartPageViewController, TestDriveMigrationBannerViewController, TopSitesViewController;
 
 __attribute__((visibility("hidden")))
 @interface StartPageViewController : NSViewController
 {
     NSView *_rootView;
     NSViewController<StartPageContentViewController> *_currentMainContainerViewController;
-    CombinedFavoritesGridViewController *_favoritesGridViewController;
     TopSitesViewController *_topSitesViewController;
+    SiriSuggestionsStartPageViewController *_siriSuggestionsStartPageViewController;
     TestDriveMigrationBannerViewController *_testDriveMigrationBannerViewController;
     double _defaultBottomBannerContainerToMainContainerBottomConstraintConstant;
     BOOL _canShowTestDriveMigrationBanner;
     int _mode;
     BrowserViewController *_browserContentViewController;
     NSView *_externalCenteringView;
+    ForYouRecommendationMediator *_mediator;
     KeyLoopSplicingContainerView *_mainContainerView;
     NSVisualEffectView *_windowBackdropVisualEffectView;
     NSView *_bottomBanner;
@@ -39,12 +40,12 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSView *bottomBanner; // @synthesize bottomBanner=_bottomBanner;
 @property(nonatomic) __weak NSVisualEffectView *windowBackdropVisualEffectView; // @synthesize windowBackdropVisualEffectView=_windowBackdropVisualEffectView;
 @property(nonatomic) __weak KeyLoopSplicingContainerView *mainContainerView; // @synthesize mainContainerView=_mainContainerView;
+@property(retain, nonatomic) ForYouRecommendationMediator *mediator; // @synthesize mediator=_mediator;
 @property(nonatomic) BOOL canShowTestDriveMigrationBanner; // @synthesize canShowTestDriveMigrationBanner=_canShowTestDriveMigrationBanner;
 @property(retain, nonatomic) NSView *externalCenteringView; // @synthesize externalCenteringView=_externalCenteringView;
 @property(nonatomic) int mode; // @synthesize mode=_mode;
 @property(nonatomic) __weak BrowserViewController *browserContentViewController; // @synthesize browserContentViewController=_browserContentViewController;
 - (void).cxx_destruct;
-- (id)test_combinedFavoritesGridViewController;
 - (void)_stopObservingMigrationState;
 - (void)_startObservingMigrationState;
 - (void)_testDriveMigrationBannerStatusDidChange:(id)arg1;

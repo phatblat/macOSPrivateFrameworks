@@ -13,7 +13,7 @@
 
 @class NSString;
 
-@interface AKAnisetteData : NSObject <NSCopying, NSObjectROCKDeserializable, NSObjectROCKSerializable, NSSecureCoding>
+@interface AKAnisetteData : NSObject <NSCopying, NSSecureCoding>
 {
     NSString *_machineID;
     NSString *_oneTimePassword;

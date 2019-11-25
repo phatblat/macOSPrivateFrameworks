@@ -8,18 +8,16 @@
 
 #import "CAAnimationDelegate.h"
 
-@class LPCaptionBarAccessoryView, LPCaptionBarPresentationProperties, LPCaptionBarStyle, LPComponentView<LPTextStyleable>, LPImageView, LPVerticalTextStackView, LPiTunesPlayButtonView, LPiTunesPlaybackInformation, NSString, NSView;
+@class LPCaptionBarAccessoryView, LPCaptionBarPresentationProperties, LPCaptionBarStyle, LPComponentView<LPTextStyleable>, LPInlineMediaPlaybackInformation, LPPlayButtonView, LPVerticalTextStackView, NSString;
 
 __attribute__((visibility("hidden")))
 @interface LPCaptionBarView : LPComponentView <CAAnimationDelegate>
 {
     LPCaptionBarStyle *_style;
     LPCaptionBarPresentationProperties *_presentationProperties;
-    NSView *_leftIconView;
-    NSView *_rightIconView;
-    LPImageView *_belowLeftIconView;
-    LPImageView *_belowRightIconView;
-    LPiTunesPlayButtonView *_playButton;
+    LPComponentView *_leftIconView;
+    LPComponentView *_rightIconView;
+    LPPlayButtonView *_playButton;
     LPCaptionBarAccessoryView *_leftAccessoryView;
     LPCaptionBarAccessoryView *_rightAccessoryView;
     LPComponentView<LPTextStyleable> *_aboveTopCaptionView;
@@ -27,18 +25,19 @@ __attribute__((visibility("hidden")))
     LPComponentView<LPTextStyleable> *_bottomCaptionView;
     LPComponentView<LPTextStyleable> *_belowBottomCaptionView;
     LPVerticalTextStackView *_textStackView;
-    LPiTunesPlaybackInformation *_iTunesPlaybackInformation;
+    LPInlineMediaPlaybackInformation *_inlinePlaybackInformation;
     BOOL _hasEverBuilt;
     BOOL _useProgressSpinner;
+    struct NSEdgeInsets _textSafeAreaInset;
 }
 
+@property(nonatomic) struct NSEdgeInsets textSafeAreaInset; // @synthesize textSafeAreaInset=_textSafeAreaInset;
 @property(nonatomic) BOOL useProgressSpinner; // @synthesize useProgressSpinner=_useProgressSpinner;
 - (void).cxx_destruct;
 - (void)_buildViewsForCaptionBarIfNeeded;
 - (struct CGSize)_layoutCaptionBarForSize:(struct CGSize)arg1 applyingLayout:(BOOL)arg2;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (void)layoutComponentView;
-- (id)_createIndeterminateProgressIndicator;
 - (void)animationDidStop:(id)arg1 finished:(BOOL)arg2;
 - (void)animateInWithBaseAnimation:(id)arg1 currentTime:(double)arg2;
 - (void)animateOut;

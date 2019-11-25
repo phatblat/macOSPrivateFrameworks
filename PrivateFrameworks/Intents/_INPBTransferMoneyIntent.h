@@ -15,6 +15,7 @@
 @interface _INPBTransferMoneyIntent : PBCodable <_INPBTransferMoneyIntent, NSSecureCoding, NSCopying>
 {
     struct _has;
+    BOOL __encodeLegacyGloryData;
     _INPBFinancialAccountValue *_fromAccount;
     _INPBIntentMetadata *_intentMetadata;
     _INPBFinancialAccountValue *_toAccount;
@@ -23,6 +24,8 @@
     _INPBDateTimeRange *_transactionScheduledDate;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(retain, nonatomic) _INPBDateTimeRange *transactionScheduledDate; // @synthesize transactionScheduledDate=_transactionScheduledDate;
 @property(copy, nonatomic) NSString *transactionNote; // @synthesize transactionNote=_transactionNote;
 @property(retain, nonatomic) _INPBPaymentAmountValue *transactionAmount; // @synthesize transactionAmount=_transactionAmount;
@@ -34,6 +37,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(readonly, nonatomic) BOOL hasTransactionScheduledDate;

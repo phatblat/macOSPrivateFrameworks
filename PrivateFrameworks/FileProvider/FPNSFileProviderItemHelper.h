@@ -8,7 +8,7 @@
 
 #import "NSFileProviderItem.h"
 
-@class NSData, NSDate, NSDictionary, NSError, NSNumber, NSPersonNameComponents, NSString;
+@class NSData, NSDate, NSDictionary, NSError, NSFileProviderItemVersion, NSNumber, NSPersonNameComponents, NSString;
 
 __attribute__((visibility("hidden")))
 @interface FPNSFileProviderItemHelper : NSObject <NSFileProviderItem>
@@ -42,8 +42,12 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic, getter=isDownloaded) BOOL downloaded;
 @property(readonly, nonatomic, getter=isDownloading) BOOL downloading;
 @property(readonly, copy, nonatomic) NSError *downloadingError;
+@property(readonly, nonatomic, getter=isExcludedFromSync) BOOL excludedFromSync;
+@property(readonly, nonatomic) NSDictionary *extendedAttributes;
 @property(readonly, copy, nonatomic) NSNumber *favoriteRank;
+@property(readonly, nonatomic) id <NSFileProviderItemFlags> flags;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSFileProviderItemVersion *itemVersion;
 @property(readonly, copy, nonatomic) NSDate *lastUsedDate;
 @property(readonly, nonatomic) NSPersonNameComponents *mostRecentEditorNameComponents;
 @property(readonly, nonatomic, getter=isMostRecentVersionDownloaded) BOOL mostRecentVersionDownloaded;

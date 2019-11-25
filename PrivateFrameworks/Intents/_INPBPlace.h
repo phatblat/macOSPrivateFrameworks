@@ -17,13 +17,16 @@
     struct {
         unsigned int personalPlaceType:1;
     } _has;
+    BOOL __encodeLegacyGloryData;
     int _personalPlaceType;
     NSArray *_placeDescriptors;
     _INPBString *_placeSubType;
     _INPBString *_placeType;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)placeDescriptorsType;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(retain, nonatomic) _INPBString *placeType; // @synthesize placeType=_placeType;
 @property(retain, nonatomic) _INPBString *placeSubType; // @synthesize placeSubType=_placeSubType;
 @property(copy, nonatomic) NSArray *placeDescriptors; // @synthesize placeDescriptors=_placeDescriptors;
@@ -33,6 +36,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(readonly, nonatomic) BOOL hasPlaceType;

@@ -24,6 +24,7 @@
     BOOL _dirty;
     BOOL _payloadAvailable;
     BOOL _payloadRequested;
+    BOOL _active;
     NSUUID *_uuid;
     unsigned long long _type;
     NSString *_title;
@@ -32,6 +33,7 @@
     NSString *_teamIdentifier;
     NSURL *_webpageURL;
     NSURL *_referrerURL;
+    NSString *_targetContentIdentifier;
     NSDictionary *_options;
     NSError *_encodedUserInfoError;
     NSSet *_requiredUserInfoKeys;
@@ -44,6 +46,7 @@
     NSString *_persistentIdentifier;
     NSError *_error;
     SFPeerDevice *_peerDevice;
+    NSString *_peerDeviceType;
     NSString *_bundleIdentifier;
     _LSUserActivityWasContinuedInfo *_wasContinuedInfo;
 }
@@ -52,7 +55,9 @@
 + (BOOL)supportsSecureCoding;
 @property(retain) _LSUserActivityWasContinuedInfo *wasContinuedInfo; // @synthesize wasContinuedInfo=_wasContinuedInfo;
 @property(copy) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
+@property(copy) NSString *peerDeviceType; // @synthesize peerDeviceType=_peerDeviceType;
 @property(retain) SFPeerDevice *peerDevice; // @synthesize peerDevice=_peerDevice;
+@property BOOL active; // @synthesize active=_active;
 @property(getter=isPayloadRequested) BOOL payloadRequested; // @synthesize payloadRequested=_payloadRequested;
 @property(getter=isPayloadAvailable) BOOL payloadAvailable; // @synthesize payloadAvailable=_payloadAvailable;
 @property(readonly, getter=isDirty) BOOL dirty; // @synthesize dirty=_dirty;
@@ -74,6 +79,7 @@
 @property(copy) NSSet *requiredUserInfoKeys; // @synthesize requiredUserInfoKeys=_requiredUserInfoKeys;
 @property(copy) NSError *encodedUserInfoError; // @synthesize encodedUserInfoError=_encodedUserInfoError;
 @property(copy) NSDictionary *options; // @synthesize options=_options;
+@property(copy) NSString *targetContentIdentifier; // @synthesize targetContentIdentifier=_targetContentIdentifier;
 @property(copy) NSURL *referrerURL; // @synthesize referrerURL=_referrerURL;
 @property(copy) NSURL *webpageURL; // @synthesize webpageURL=_webpageURL;
 @property(copy) NSString *teamIdentifier; // @synthesize teamIdentifier=_teamIdentifier;
@@ -90,6 +96,7 @@
 - (void)clearPayload;
 - (BOOL)wasResumedOnAnotherDeviceWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (BOOL)requestPayloadWithCompletionHandlerEvenIfClean:(BOOL)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
+- (void)fetchAllNearbyAppSuggestions:(CDUnknownBlockType)arg1;
 - (BOOL)requestPayloadWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (id)optionalUserActivityData;
 - (id)secondaryUserActivityString;
@@ -99,7 +106,6 @@
 - (id)payloadForIdentifier:(id)arg1;
 - (id)payloadIdentifiers;
 @property(copy) NSDictionary *payloads;
-- (id)copyUserActivityInfoWithUUID:(BOOL)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

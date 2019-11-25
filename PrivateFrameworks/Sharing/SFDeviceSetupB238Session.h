@@ -8,7 +8,7 @@
 
 #import "AVAudioPlayerDelegate.h"
 
-@class ACAccount, ACAccountStore, APCListener, AVAudioPlayer, HMHome, NSArray, NSDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, SFDevice, SFDeviceOperationWiFiSetup, SFSession, SSAccount;
+@class ACAccount, ACAccountStore, APCListener, AVAudioPlayer, HMHome, NSArray, NSDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, SFDevice, SFDeviceOperationCDPSetup, SFDeviceOperationWiFiSetup, SFSession, SSAccount;
 
 @interface SFDeviceSetupB238Session : NSObject <AVAudioPlayerDelegate>
 {
@@ -74,6 +74,10 @@
     NSObject<OS_dispatch_source> *_apcTimer;
     unsigned int _apcTimeoutCount;
     BOOL _apcTryingPasscode;
+    BOOL _lpcAligned;
+    int _lpcAlignmentState;
+    BOOL _lpcPlayAgain;
+    BOOL _lpcSkip;
     BOOL _siriPasscodeEnabled;
     BOOL _siriPasscodeInitDone;
     BOOL _siriPasscodeSecured;
@@ -81,8 +85,14 @@
     unsigned int _pairSetupFlags;
     int _pairSetupState;
     double _pairSetupSecs;
+    int _recognizeVoiceEnabled;
+    int _recognizeVoiceState;
+    int _recognizeVoiceStepState;
     int _personalRequestsState;
     int _personalRequestsChoice;
+    BOOL _siriForEveryoneAnswered;
+    int _siriForEveryoneState;
+    int _siriDataSharing;
     int _termsState;
     BOOL _termsAgreed;
     int _shareSettingsState;
@@ -96,24 +106,37 @@
     SFDeviceOperationWiFiSetup *_wifiSetupOperation;
     int _wifiSetupState;
     double _wifiSetupSecs;
+    double _wifiSetupStepSecs;
+    double _wifiBonjourTestSecs;
+    BOOL _cdpEnabled;
+    SFDeviceOperationCDPSetup *_cdpSetupOperation;
+    double _cdpSetupSecs;
+    int _cdpState;
     BOOL _hasExistingHomePod;
+    int _multiUserEnableState;
+    int _multiUserEnableStepState;
     int _finishState;
     unsigned long long _finishStartTicks;
     double _finishSecs;
     double _iTunesWaitSecs;
     double _mediaSystemWaitSecs;
     double _totalSecs;
+    BOOL _prefBonjourTest;
     BOOL _prefForceSiriGreeting;
+    BOOL _prefLEDPasscodeEnabled;
+    BOOL _prefMultiUser;
+    BOOL _hasMultipleUsers;
     BOOL _liveOn;
     BOOL _pauseAfterPreAuth;
     unsigned char _stereoCounterpartColor;
     BOOL _touchRemoteEnabled;
-    unsigned int _testFlags;
+    int _bonjourTestState;
     NSDictionary *_additionalMetrics;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     SFDevice *_peerDevice;
     unsigned long long _peerFeatureFlags;
     NSDictionary *_preAuthResponse;
+    unsigned long long _testFlags;
     CDUnknownBlockType _preAuthHandler;
     CDUnknownBlockType _progressHandler;
     CDUnknownBlockType _promptForAppleMusicHandler;
@@ -151,14 +174,16 @@
 @property(copy, nonatomic) CDUnknownBlockType progressHandler; // @synthesize progressHandler=_progressHandler;
 @property(copy, nonatomic) CDUnknownBlockType preAuthHandler; // @synthesize preAuthHandler=_preAuthHandler;
 @property(nonatomic) BOOL touchRemoteEnabled; // @synthesize touchRemoteEnabled=_touchRemoteEnabled;
-@property(nonatomic) unsigned int testFlags; // @synthesize testFlags=_testFlags;
+@property(nonatomic) unsigned long long testFlags; // @synthesize testFlags=_testFlags;
 @property(readonly, nonatomic) unsigned char stereoCounterpartColor; // @synthesize stereoCounterpartColor=_stereoCounterpartColor;
 @property(retain, nonatomic) NSDictionary *preAuthResponse; // @synthesize preAuthResponse=_preAuthResponse;
 @property(nonatomic) unsigned long long peerFeatureFlags; // @synthesize peerFeatureFlags=_peerFeatureFlags;
 @property(retain, nonatomic) SFDevice *peerDevice; // @synthesize peerDevice=_peerDevice;
 @property(nonatomic) BOOL pauseAfterPreAuth; // @synthesize pauseAfterPreAuth=_pauseAfterPreAuth;
 @property(nonatomic) BOOL liveOn; // @synthesize liveOn=_liveOn;
+@property(readonly, nonatomic) BOOL hasMultipleUsers; // @synthesize hasMultipleUsers=_hasMultipleUsers;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
+@property(readonly, nonatomic) int bonjourTestState; // @synthesize bonjourTestState=_bonjourTestState;
 @property(copy, nonatomic) NSDictionary *additionalMetrics; // @synthesize additionalMetrics=_additionalMetrics;
 - (void).cxx_destruct;
 - (void)audioSessionInterrupted:(id)arg1;
@@ -166,15 +191,18 @@
 - (void)audioPlayerDecodeErrorDidOccur:(id)arg1 error:(id)arg2;
 - (void)_setupAudio;
 - (void)_reportError:(id)arg1 label:(id)arg2;
+- (BOOL)_recognizeVoiceAlreadyEnabled;
 - (void)_promptForPINWithFlags:(unsigned int)arg1 throttleSeconds:(int)arg2;
 - (void)_playLocalSoundID:(int)arg1 remoteSoundID:(int)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)_playLocalSoundID:(int)arg1 remoteSoundID:(int)arg2;
 - (void)_logMetrics;
 - (void)_homeKitUpdateiCloudSwitchState:(BOOL)arg1;
+- (id)_homeKitFindSettingsWithKeyPath:(id)arg1 group:(id)arg2;
 - (void)_handlePeerEvent:(id)arg1 flags:(unsigned int)arg2;
 - (void)_runFinishResponse:(id)arg1 error:(id)arg2;
 - (void)_runFinishRequest;
 - (int)_runFinishStart;
+- (int)_runCDPSetup:(BOOL)arg1;
 - (int)_runWiFiSetup;
 - (int)_runAppleMusic;
 - (void)_runBasicConfigReceiveResponse:(id)arg1 error:(id)arg2;
@@ -195,9 +223,16 @@
 - (void)_runAudioPasscodeInitResponse:(id)arg1 error:(id)arg2;
 - (void)_runAudioPasscodeInitRequest;
 - (int)_runAudioPasscode;
+- (int)_runLEDPassCodeAlignment;
 - (int)_runShareSettings;
 - (int)_runTerms;
+- (int)_runSiriForEveryone;
 - (int)_runPersonalRequests;
+- (void)_runRecognizeVoiceCheckVoiceProfileResponse:(BOOL)arg1 error:(id)arg2;
+- (void)_runRecognizeVoiceCheckVoiceProfileStart;
+- (void)_runRecognizeVoiceCheckLanguageResponse:(id)arg1 error:(id)arg2;
+- (void)_runRecognizeVoiceCheckLanguageStart;
+- (int)_runRecognizeVoice;
 - (int)_runSiriLanguage;
 - (int)_runCheckAccount;
 - (void)_runPreAuthResponse:(id)arg1 error:(id)arg2;
@@ -220,10 +255,13 @@
 - (void)skipiTunesSignIn;
 - (void)skipAudioPasscode;
 - (void)siriLanguagePicked:(long long)arg1;
+- (void)siriForEveryoneAnswered;
+@property(readonly, nonatomic) BOOL siriDataSharingEnabled;
 - (void)siriEnable;
 - (void)shareSettingsAgreed;
 @property(readonly, nonatomic) NSString *selectedSiriLanguage;
 @property(readonly, nonatomic) HMHome *selectedHome;
+- (void)recognizeVoiceAnswered:(BOOL)arg1;
 - (void)_preflightAppleMusicCompleted:(int)arg1;
 - (void)_preflightAppleMusic;
 - (void)preflight;
@@ -231,6 +269,7 @@
 - (void)personalRequestsEnabled:(BOOL)arg1;
 - (void)pairSetupTryPIN:(id)arg1;
 - (void)locationEnable:(BOOL)arg1;
+- (void)ledPasscodeMatched;
 - (void)homeKitSelectRoom:(id)arg1;
 - (void)homeKitReselectHome;
 - (void)homeKitSelectHome:(id)arg1;

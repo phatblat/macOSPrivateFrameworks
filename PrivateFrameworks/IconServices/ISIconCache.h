@@ -6,47 +6,44 @@
 
 #import "NSObject.h"
 
-@class ISStore, ISStoreIndex, NSCache, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString, NSXPCConnection;
+#import "ISIconCache.h"
 
-@interface ISIconCache : NSObject
+@class ISStore, ISStoreIndex, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSString, NSXPCConnection;
+
+@interface ISIconCache : NSObject <ISIconCache>
 {
-    NSString *_cachePath;
+    NSObject<OS_dispatch_group> *_initializationGroup;
+    NSObject<OS_dispatch_queue> *_backgroundQueue;
     NSString *_cacheName;
     NSXPCConnection *_connection;
     ISStoreIndex *_storeIndex;
     ISStore *_store;
-    NSCache *_imageCache;
-    NSObject<OS_dispatch_semaphore> *_initializationSema;
-    NSObject<OS_dispatch_group> *_initializationGroup;
-    NSObject<OS_dispatch_queue> *_backgroundQueue;
+    NSString *_cachePath;
 }
 
 + (id)defaultIconCache;
-@property(readonly) NSCache *imageCache; // @synthesize imageCache=_imageCache;
 @property(readonly) NSXPCConnection *connection; // @synthesize connection=_connection;
 @property(readonly) NSString *cacheName; // @synthesize cacheName=_cacheName;
 - (void).cxx_destruct;
-- (id)_imageWithData:(id)arg1 UUID:(id)arg2 addToCache:(BOOL)arg3;
-- (void)_fetchImageForGenerationRequest:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (id)_generateImageWithRequest:(id)arg1;
-- (id)_cachedImageForGenerationRequest:(id)arg1;
-- (id)description;
+- (void)generateImageWithRequest:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (id)generateImageWithRequest:(id)arg1;
+@property(readonly, copy) NSString *description;
 - (void)clear;
-- (id)_cacheImageWithBitmapUUID:(id)arg1;
-- (id)_bitmapUUIDForGenerationRequest:(id)arg1 stale:(char *)arg2;
-- (BOOL)_isStoreIndexItem:(const CDStruct_1a8ce9d4 *)arg1 validForGenerationRequest:(id)arg2;
-- (BOOL)_getStoreIndexItem:(CDStruct_1a8ce9d4 *)arg1 forGenerationRequest:(id)arg2;
-- (void)imageWithRequest:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (id)imageWithRequest:(id)arg1;
-- (void)imageForBinding:(struct _LSBinding *)arg1 size:(struct CGSize)arg2 scale:(double)arg3 options:(id)arg4 completion:(CDUnknownBlockType)arg5;
-- (id)imageForBinding:(struct _LSBinding *)arg1 size:(struct CGSize)arg2 scale:(double)arg3 options:(id)arg4;
 @property(readonly) ISStoreIndex *storeIndex; // @synthesize storeIndex=_storeIndex;
 @property(readonly) ISStore *store; // @synthesize store=_store;
-@property(readonly) NSString *cachePath; // @dynamic cachePath;
+@property(readonly) NSString *cachePath; // @synthesize cachePath=_cachePath;
 - (id)serviceName;
-@property(readonly, getter=isInitialized) BOOL initialized;
+- (BOOL)isInitialized;
 - (void)waitForInitializationToComplete;
-- (id)initWithCacheName:(id)arg1;
+- (id)_initWithCacheName:(id)arg1;
+- (void)imageForBinding:(struct _LSBinding *)arg1 size:(struct CGSize)arg2 scale:(double)arg3 options:(id)arg4 completion:(CDUnknownBlockType)arg5;
+- (id)imageForBinding:(struct _LSBinding *)arg1 size:(struct CGSize)arg2 scale:(double)arg3 options:(id)arg4;
+- (void)clear;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

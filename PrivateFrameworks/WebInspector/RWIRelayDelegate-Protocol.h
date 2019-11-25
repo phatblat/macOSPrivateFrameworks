@@ -16,7 +16,7 @@
 - (void)relay:(RWIRelay *)arg1 applicationConnected:(_RWIApplicationInfo *)arg2;
 - (_RWIApplicationInfo *)relay:(RWIRelay *)arg1 applicationInfoForIncomingConnection:(_RWIRelayConnectionToApplication *)arg2 bundleIdentifier:(NSString *)arg3;
 - (BOOL)relay:(RWIRelay *)arg1 allowIncomingApplicationConnection:(_RWIRelayConnectionToApplication *)arg2 bundleIdentifier:(NSString *)arg3;
-- (BOOL)relay:(RWIRelay *)arg1 allowIncomingApplicationViaProxy:(CDStruct_6ad76789)arg2;
+- (BOOL)relay:(RWIRelay *)arg1 allowIncomingApplicationViaProxy:(CDStruct_6ad76789)arg2 pid:(int)arg3;
 - (void)relayInitialize:(RWIRelay *)arg1;
 @end
 

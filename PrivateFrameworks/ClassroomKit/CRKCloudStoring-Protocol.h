@@ -6,11 +6,10 @@
 
 #import "NSCopying.h"
 #import "NSObject.h"
-#import "NSSecureCoding.h"
 
 @class CRKCloudRecord, NSDictionary, NSSet, NSString;
 
-@protocol CRKCloudStoring <NSObject, NSSecureCoding, NSCopying>
+@protocol CRKCloudStoring <NSObject, NSCopying>
 + (id)skeletonInstance;
 + (NSString *)recordType;
 + (id)instanceWithRecord:(CRKCloudRecord *)arg1;

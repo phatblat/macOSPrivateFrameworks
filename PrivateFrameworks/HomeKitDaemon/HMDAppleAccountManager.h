@@ -15,29 +15,37 @@
 #import "IDSAccountRegistrationDelegate.h"
 #import "IDSServiceDelegate.h"
 
-@class ACAccountStore, HMDAccount, HMDAppleAccountContext, HMDAppleAccountSettings, HMDBackingStore, HMDDevice, HMFExponentialBackoffTimer, HMFTimer, HMFUnfairLock, IDSService, NSObject<OS_dispatch_queue>, NSString, NSUUID;
+@class ACAccountStore, APSConnection, HMDAccount, HMDAppleAccountContext, HMDAppleAccountSettings, HMDBackingStore, HMDCloudCache, HMDDevice, HMFExponentialBackoffTimer, HMFTimer, HMFUnfairLock, IDSService, NSObject<OS_dispatch_queue>, NSString, NSUUID;
 
-@interface HMDAppleAccountManager : HMFObject <HMDAccountManager, HMFLogging, HMFMessageReceiver, HMFTimerDelegate, IDSServiceDelegate>
+@interface HMDAppleAccountManager : HMFObject <APSConnectionDelegate, HMDAccountManager, HMFLogging, HMFMessageReceiver, HMFTimerDelegate, IDSAccountDelegate, IDSAccountRegistrationDelegate, IDSServiceDelegate>
 {
     HMFUnfairLock *_lock;
     BOOL _monitoring;
+    BOOL _rapportIdentitiesChangedNotificationTokenValid;
+    int _rapportIdentitiesChangedNotificationToken;
     HMDAccount *_account;
     HMDAppleAccountContext *_accountContext;
     ACAccountStore *_accountStore;
     NSObject<OS_dispatch_queue> *_clientQueue;
+    APSConnection *_pushConnection;
     HMFExponentialBackoffTimer *_accountChangeBackoffTimer;
     HMFTimer *_devicesChangeBackoffTimer;
     IDSService *_service;
     HMDBackingStore *_backingStore;
+    HMDCloudCache *_cloudCache;
 }
 
 + (id)logCategory;
 + (id)sharedManager;
+@property(retain, nonatomic) HMDCloudCache *cloudCache; // @synthesize cloudCache=_cloudCache;
 @property(retain, nonatomic) HMDBackingStore *backingStore; // @synthesize backingStore=_backingStore;
 @property(readonly, nonatomic) IDSService *service; // @synthesize service=_service;
+@property(nonatomic, getter=isRapportIdentitiesChangedNotificationTokenValid) BOOL rapportIdentitiesChangedNotificationTokenValid; // @synthesize rapportIdentitiesChangedNotificationTokenValid=_rapportIdentitiesChangedNotificationTokenValid;
+@property(nonatomic) int rapportIdentitiesChangedNotificationToken; // @synthesize rapportIdentitiesChangedNotificationToken=_rapportIdentitiesChangedNotificationToken;
 @property(nonatomic, getter=isMonitoring) BOOL monitoring; // @synthesize monitoring=_monitoring;
 @property(readonly, nonatomic) HMFTimer *devicesChangeBackoffTimer; // @synthesize devicesChangeBackoffTimer=_devicesChangeBackoffTimer;
 @property(readonly, nonatomic) HMFExponentialBackoffTimer *accountChangeBackoffTimer; // @synthesize accountChangeBackoffTimer=_accountChangeBackoffTimer;
+@property(readonly, nonatomic) APSConnection *pushConnection; // @synthesize pushConnection=_pushConnection;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *clientQueue; // @synthesize clientQueue=_clientQueue;
 @property(readonly) ACAccountStore *accountStore; // @synthesize accountStore=_accountStore;
 - (void).cxx_destruct;
@@ -48,6 +56,7 @@
 - (void)timerDidFire:(id)arg1;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *messageReceiveQueue;
 @property(readonly, nonatomic) NSUUID *messageTargetUUID;
+- (void)connection:(id)arg1 didReceivePublicToken:(id)arg2;
 @property(readonly, nonatomic) HMDAppleAccountSettings *settings;
 - (void)processAccountModelRemove:(id)arg1 message:(id)arg2;
 - (void)processAccountModel:(id)arg1 message:(id)arg2;
@@ -63,11 +72,15 @@
 - (void)__deviceAddedToCurrentAccount:(id)arg1;
 @property(retain) HMDAccount *account; // @synthesize account=_account;
 @property(readonly) HMDAppleAccountContext *accountContext; // @synthesize accountContext=_accountContext;
+- (void)__handleMigrationUpdated:(id)arg1;
 - (void)__handleUpdatedName:(id)arg1;
 - (void)__handleRemovedAccount:(id)arg1;
 - (void)__handleModifiedAccount:(id)arg1;
+- (void)__localDataReset:(id)arg1;
 - (void)stop;
 - (void)start;
+- (void)_deregisterForRapportNotifications;
+- (void)_registerForRapportNotifications;
 - (id)initWithIDSService:(id)arg1;
 - (id)init;
 

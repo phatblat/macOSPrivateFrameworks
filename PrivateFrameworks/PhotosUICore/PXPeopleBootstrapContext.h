@@ -12,6 +12,8 @@
 {
     BOOL _skipInitialAction;
     BOOL _wantsNaming;
+    BOOL _wantsMergeCandidateSuggestions;
+    BOOL _wantsPostNaming;
     id <PXPerson> _sourcePerson;
     id <PXPerson> _targetPerson;
     unsigned long long _bootstrapType;
@@ -20,10 +22,14 @@
     CDUnknownBlockType _preCommitBlock;
     CDUnknownBlockType _cancelBlock;
     id <PXPeopleSuggestionManagerDataSource> _prefetchedDataSource;
+    id <PXCMMPersonSuggestion> _personSuggestion;
 }
 
 + (id)contextWithPerson:(id)arg1 type:(unsigned long long)arg2;
+@property(readonly, nonatomic) id <PXCMMPersonSuggestion> personSuggestion; // @synthesize personSuggestion=_personSuggestion;
 @property(retain, nonatomic) id <PXPeopleSuggestionManagerDataSource> prefetchedDataSource; // @synthesize prefetchedDataSource=_prefetchedDataSource;
+@property(nonatomic) BOOL wantsPostNaming; // @synthesize wantsPostNaming=_wantsPostNaming;
+@property(nonatomic) BOOL wantsMergeCandidateSuggestions; // @synthesize wantsMergeCandidateSuggestions=_wantsMergeCandidateSuggestions;
 @property(nonatomic) BOOL wantsNaming; // @synthesize wantsNaming=_wantsNaming;
 @property(copy, nonatomic) CDUnknownBlockType cancelBlock; // @synthesize cancelBlock=_cancelBlock;
 @property(copy, nonatomic) CDUnknownBlockType preCommitBlock; // @synthesize preCommitBlock=_preCommitBlock;
@@ -34,7 +40,7 @@
 @property(retain) id <PXPerson> targetPerson; // @synthesize targetPerson=_targetPerson;
 @property(retain) id <PXPerson> sourcePerson; // @synthesize sourcePerson=_sourcePerson;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSString *displayName;
+@property(readonly, nonatomic) NSString *localizedName;
 - (id)init;
 
 @end

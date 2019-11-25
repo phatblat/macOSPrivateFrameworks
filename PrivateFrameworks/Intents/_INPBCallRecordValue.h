@@ -10,7 +10,7 @@
 #import "NSSecureCoding.h"
 #import "_INPBCallRecordValue.h"
 
-@class NSString, _INPBCallMetrics, _INPBContactValue, _INPBDateTime;
+@class NSString, _INPBCallMetrics, _INPBContactValue, _INPBDateTime, _INPBInteger;
 
 @interface _INPBCallRecordValue : PBCodable <_INPBCallRecordValue, NSSecureCoding, NSCopying>
 {
@@ -20,15 +20,20 @@
         unsigned int unseen:1;
     } _has;
     BOOL _unseen;
+    BOOL __encodeLegacyGloryData;
     int _callCapability;
     int _callType;
     _INPBCallMetrics *_callMetrics;
     _INPBContactValue *_caller;
     _INPBDateTime *_dateCreated;
     NSString *_identifier;
+    _INPBInteger *_numberOfCalls;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(nonatomic) BOOL unseen; // @synthesize unseen=_unseen;
+@property(retain, nonatomic) _INPBInteger *numberOfCalls; // @synthesize numberOfCalls=_numberOfCalls;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(retain, nonatomic) _INPBDateTime *dateCreated; // @synthesize dateCreated=_dateCreated;
 @property(retain, nonatomic) _INPBContactValue *caller; // @synthesize caller=_caller;
@@ -40,9 +45,12 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(nonatomic) BOOL hasUnseen;
+@property(readonly, nonatomic) BOOL hasNumberOfCalls;
 @property(readonly, nonatomic) BOOL hasIdentifier;
 @property(readonly, nonatomic) BOOL hasDateCreated;
 @property(readonly, nonatomic) BOOL hasCaller;

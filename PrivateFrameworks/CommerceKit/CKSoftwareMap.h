@@ -18,6 +18,7 @@
 @property(retain, nonatomic) CKSoftwareMapObserver *sharedObserver; // @synthesize sharedObserver=_sharedObserver;
 @property(retain, nonatomic) NSMutableDictionary *productsObservers; // @synthesize productsObservers=_productsObservers;
 - (void).cxx_destruct;
+- (void)startAdoptionEligibilityCheckWithReplyBlock:(CDUnknownBlockType)arg1;
 - (id)adopt:(id)arg1;
 - (id)adoptableBundleIdentifiers;
 - (BOOL)adoptionCompletedForBundleID:(id)arg1 adoptingDSID:(out id *)arg2 appleID:(out id *)arg3;

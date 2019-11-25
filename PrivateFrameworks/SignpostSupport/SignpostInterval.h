@@ -41,13 +41,18 @@
 - (unsigned long long)durationMachContinuousTime;
 - (unsigned long long)endMachContinuousTime;
 - (unsigned long long)startMachContinuousTime;
+- (BOOL)endTimezone:(struct timezone *)arg1;
+- (BOOL)beginTimezone:(struct timezone *)arg1;
+- (BOOL)_hasEndTimeval;
+- (BOOL)_hasBeginTimeval;
 - (void)_adjustEndTimeVal:(struct timeval *)arg1;
 - (void)_adjustBeginTimeVal:(struct timeval *)arg1;
 - (id)descriptionWithTimeFormat:(unsigned long long)arg1 verbosity:(unsigned char)arg2;
-- (id)descriptionStringForColumn:(unsigned long long)arg1 timeFormat:(unsigned long long)arg2;
+- (id)_descriptionStringForColumn:(unsigned long long)arg1 timeFormat:(unsigned long long)arg2 asBegin:(BOOL)arg3;
 @property(readonly, nonatomic) NSString *_intervalTypeString;
+@property(readonly, nonatomic) BOOL isSyntheticInterval;
 - (id)humanReadableType;
-- (id)_dictionaryRepresentationWithIsHumanReadable:(BOOL)arg1;
+- (id)_dictionaryRepresentationWithIsHumanReadable:(BOOL)arg1 shouldRedact:(BOOL)arg2;
 - (id)initWithDictionary:(id)arg1;
 
 @end

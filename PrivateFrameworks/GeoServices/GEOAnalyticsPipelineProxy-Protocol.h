@@ -6,9 +6,16 @@
 
 #import "NSObject.h"
 
-@class GEOUserSessionEntity;
+@class GEOAnalyticsPipelineEvalStatus, GEOUserSessionEntity, NSData, NSObject<OS_dispatch_queue>, NSPredicate, NSString;
 
 @protocol GEOAnalyticsPipelineProxy <NSObject>
+- (GEOAnalyticsPipelineEvalStatus *)getEvalStatus;
+- (void)showEvalDataWithPredicate:(NSPredicate *)arg1 visitorBlock:(BOOL (^)(GEOLogMessage *))arg2 summaryBlock:(void (^)(unsigned long long, unsigned long long))arg3;
+- (void)initiateUploadOfType:(int)arg1;
+- (void)flushEvalData;
+- (void)setEvalMode:(BOOL)arg1;
+- (void)reportMapKitCountType:(int)arg1 appId:(NSString *)arg2 completion:(void (^)(void))arg3 completionQueue:(NSObject<OS_dispatch_queue> *)arg4;
+- (void)reportLogMsgType:(int)arg1 eventType:(int)arg2 logMsg:(NSData *)arg3 completion:(void (^)(void))arg4 completionQueue:(NSObject<OS_dispatch_queue> *)arg5;
 - (void)setShortSessionValues:(GEOUserSessionEntity *)arg1 withCompletion:(void (^)(void))arg2;
 - (void)shortSessionValuesWithCompletion:(void (^)(struct GEOSessionID, unsigned long long, double))arg1;
 @end

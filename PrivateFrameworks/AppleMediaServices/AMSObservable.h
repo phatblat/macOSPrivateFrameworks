@@ -8,7 +8,6 @@
 
 @class NSConditionLock, NSError, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
 
-__attribute__((visibility("hidden")))
 @interface AMSObservable : NSObject
 {
     unsigned long long _behavior;
@@ -31,6 +30,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)_isComplete;
 - (void)unsubscribeAll;
 - (void)unsubscribe:(id)arg1;
+- (id)subscribeWithResultBlock:(CDUnknownBlockType)arg1;
 - (void)subscribe:(id)arg1;
 - (BOOL)sendResult:(id)arg1;
 - (BOOL)sendFailure:(id)arg1;

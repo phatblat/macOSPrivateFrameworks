@@ -14,6 +14,7 @@
 {
     KCPairingChannel *_pairingChannel;
     _Bool _complete;
+    id <CDPDCircleProxy> _circleProxy;
 }
 
 - (void).cxx_destruct;
@@ -22,6 +23,7 @@
 - (BOOL)isComplete;
 - (id)processIncomingPayload:(id)arg1 error:(id *)arg2;
 - (id)initiatingPayload:(id *)arg1;
+- (id)initWithCircleProxy:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

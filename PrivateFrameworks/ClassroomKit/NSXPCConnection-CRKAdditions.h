@@ -7,6 +7,7 @@
 #import "NSXPCConnection.h"
 
 @interface NSXPCConnection (CRKAdditions)
++ (unsigned long long)xpcConnectionOptions;
 + (id)crk_studentDaemonConnection;
 @end
 

@@ -6,9 +6,7 @@
 
 #import "NSObject.h"
 
-#import "CHLoggerProtocol.h"
-
-@interface CHLogger : NSObject <CHLoggerProtocol>
+@interface CHLogger : NSObject
 {
     struct os_log_s *_logHandle;
 }

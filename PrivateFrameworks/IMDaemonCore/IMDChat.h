@@ -41,20 +41,33 @@
     BOOL _pendingENGroupParticipantUpdate;
     BOOL _isArchived;
     BOOL _isFiltered;
+    BOOL _isBlackholed;
     BOOL _hasHadSuccessfulQuery;
+    BOOL _wasReportedAsJunk;
+    BOOL _meCardUpdated;
     NSString *_cloudKitRecordID;
     NSString *_srCloudKitRecordID;
+    NSString *_lastSeenMessageGuid;
     NSString *_srServerChangeToken;
     long long _srCloudKitSyncState;
+    NSDictionary *_nicknamesForParticipants;
+    unsigned long long _numMessagesSent;
 }
 
 + (id)_recordType;
+@property BOOL meCardUpdated; // @synthesize meCardUpdated=_meCardUpdated;
+@property unsigned long long numMessagesSent; // @synthesize numMessagesSent=_numMessagesSent;
+@property BOOL wasReportedAsJunk; // @synthesize wasReportedAsJunk=_wasReportedAsJunk;
+@property(readonly, nonatomic) NSDictionary *nicknamesForParticipants; // @synthesize nicknamesForParticipants=_nicknamesForParticipants;
 @property BOOL pendingENGroupParticipantUpdate; // @synthesize pendingENGroupParticipantUpdate=_pendingENGroupParticipantUpdate;
 @property BOOL createEngramGroupOnMessageSend; // @synthesize createEngramGroupOnMessageSend=_createEngramGroupOnMessageSend;
 @property long long srCloudKitSyncState; // @synthesize srCloudKitSyncState=_srCloudKitSyncState;
 @property(copy) NSString *srServerChangeToken; // @synthesize srServerChangeToken=_srServerChangeToken;
+@property(readonly, copy) NSString *lastSeenMessageGuid; // @synthesize lastSeenMessageGuid=_lastSeenMessageGuid;
 @property(copy) NSString *srCloudKitRecordID; // @synthesize srCloudKitRecordID=_srCloudKitRecordID;
 @property(copy) NSString *cloudKitRecordID; // @synthesize cloudKitRecordID=_cloudKitRecordID;
+- (void)meCardHasUpdated;
+- (void)updateNicknamesForParticipants:(id)arg1;
 - (void)tearDownToneNotificationSessionIfNeeded;
 - (BOOL)isBusinessChat;
 - (id)cloudKitDebugDescription;
@@ -62,14 +75,20 @@
 - (id)cloudKitChatID;
 @property(readonly, nonatomic) NSString *personCentricID;
 - (id)_personIdentity;
+- (void)_persistMergedIDMergedChatsIfNeeded:(id)arg1;
 - (id)_chatRegistry;
 - (void)updateHasHadSuccessfulQuery:(BOOL)arg1;
+- (void)updateLastSeenMessageGuidIfNeeded:(id)arg1;
+- (id)lastSeenMessageGUID;
 - (int)getNumberOfTimesRespondedToThread;
 - (BOOL)isSMSSpam;
+- (BOOL)isiMessageSpam;
 - (void)updateSMSSpamExtensionNameChatProperty:(id)arg1;
 - (void)updateShouldForceToSMS:(BOOL)arg1;
 - (void)updateIsSMSSpamChatProperty:(BOOL)arg1;
+- (void)updateIsiMessageSpam:(BOOL)arg1;
 - (void)updateNumberOfTimesRespondedToThread;
+- (void)updateIsBlackholed:(BOOL)arg1;
 - (void)updateIsFiltered:(BOOL)arg1;
 - (void)updateDisplayName:(id)arg1;
 - (void)updateLastAddressedSIMID:(id)arg1;
@@ -116,6 +135,7 @@
 @property BOOL hasHadSuccessfulQuery;
 @property BOOL isFiltered;
 @property(setter=_setRowID:) long long rowID;
+@property BOOL isBlackholed;
 @property(readonly) BOOL isArchived;
 @property(setter=_setUnreadCount:) unsigned long long unreadCount;
 @property long long state;
@@ -138,7 +158,7 @@
 @property(copy) NSString *chatIdentifier;
 @property(copy) NSString *guid;
 - (void)dealloc;
-- (id)initWithAccountID:(id)arg1 service:(id)arg2 guid:(id)arg3 groupID:(id)arg4 chatIdentifier:(id)arg5 participants:(id)arg6 roomName:(id)arg7 displayName:(id)arg8 lastAddressedLocalHandle:(id)arg9 properties:(id)arg10 state:(long long)arg11 style:(unsigned char)arg12 isFiltered:(BOOL)arg13 hasHadSuccessfulQuery:(BOOL)arg14 engramID:(id)arg15 serverChangeToken:(id)arg16 cloudKitSyncState:(long long)arg17 originalGroupID:(id)arg18 lastReadMessageTimeStamp:(long long)arg19 lastMessageTimeStampOnLoad:(long long)arg20 srServerChangeToken:(id)arg21 srCloudKitSyncState:(long long)arg22 cloudKitRecordID:(id)arg23 srCloudKitRecordID:(id)arg24;
+- (id)initWithAccountID:(id)arg1 service:(id)arg2 guid:(id)arg3 groupID:(id)arg4 chatIdentifier:(id)arg5 participants:(id)arg6 roomName:(id)arg7 displayName:(id)arg8 lastAddressedLocalHandle:(id)arg9 lastAddressedSIMID:(id)arg10 properties:(id)arg11 state:(long long)arg12 style:(unsigned char)arg13 isFiltered:(BOOL)arg14 hasHadSuccessfulQuery:(BOOL)arg15 engramID:(id)arg16 serverChangeToken:(id)arg17 cloudKitSyncState:(long long)arg18 originalGroupID:(id)arg19 lastReadMessageTimeStamp:(long long)arg20 lastMessageTimeStampOnLoad:(long long)arg21 srServerChangeToken:(id)arg22 srCloudKitSyncState:(long long)arg23 cloudKitRecordID:(id)arg24 srCloudKitRecordID:(id)arg25 isBlackholed:(BOOL)arg26;
 @property(readonly) NSArray *alternativeSpeakableMatches;
 @property(readonly) NSString *vocabularyIdentifier;
 @property(readonly) NSString *pronunciationHint;
@@ -148,12 +168,6 @@
 - (id)copyCKRecordRepresentationWithZoneID:(id)arg1 salt:(id)arg2 isUsingStingRay:(BOOL)arg3;
 - (id)recordName;
 - (id)_copyCKRecordFromExistingCKMetadataIsUsingStringRay:(BOOL)arg1 zoneID:(id)arg2 salt:(id)arg3;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
-@property(readonly) NSString *identifier;
-@property(readonly) Class superclass;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

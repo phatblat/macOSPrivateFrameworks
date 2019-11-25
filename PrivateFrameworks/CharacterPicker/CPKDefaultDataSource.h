@@ -18,15 +18,15 @@
 + (id)characterPaletteLaunchParamForKey:(id)arg1;
 + (void)setCharacterPaletteLaunchParam:(id)arg1 forKey:(id)arg2;
 + (id)lastUsedSkinToneEmojiForEmoji:(id)arg1;
-+ (id)setSkinTone:(long long)arg1 toString:(id)arg2;
-+ (long long)hasSkinTone:(id)arg1;
++ (id)normalizedSkinToneString:(id)arg1;
++ (void)emojiTokensForSearchString:(id)arg1 inLanguages:(id)arg2 maxResults:(unsigned long long)arg3 usingBlock:(CDUnknownBlockType)arg4;
++ (id)preferredLanguagesForSearch;
 + (id)localizedCharacterName:(id)arg1;
 + (const struct __EmojiLocaleDataWrapper *)preferredEmojiLocale;
 + (long long)indexInArray:(id)arg1 fromStandardItemIndex:(long long)arg2;
 + (id)standardItemArrayFromArray:(id)arg1;
 + (void)setState:(id)arg1;
 + (id)state;
-+ (void)setSkinTone:(id)arg1;
 + (id)skinToneDictionary;
 + (void)setFavorites:(id)arg1;
 + (id)favorites;

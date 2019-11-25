@@ -14,6 +14,7 @@
     XCTIndexingTransformerIterator *_currentIterator;
 }
 
++ (void)provideCapabilitiesToBuilder:(id)arg1;
 + (BOOL)supportsSecureCoding;
 @property(retain) XCTIndexingTransformerIterator *currentIterator; // @synthesize currentIterator=_currentIterator;
 @property(readonly) unsigned long long elementIndex; // @synthesize elementIndex=_elementIndex;
@@ -24,9 +25,11 @@
 - (id)requiredKeyPathsOrError:(id *)arg1;
 - (BOOL)supportsAttributeKeyPathAnalysis;
 - (BOOL)supportsRemoteEvaluation;
+- (BOOL)canBeRemotelyEvaluatedWithCapabilities:(id)arg1;
 - (id)transform:(id)arg1 relatedElements:(id *)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithElementIndex:(unsigned long long)arg1;
 
 @end

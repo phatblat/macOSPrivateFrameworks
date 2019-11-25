@@ -7,6 +7,7 @@
 #import "MTLIndirectCommandBuffer.h"
 
 @protocol MTLIndirectCommandBufferSPI <MTLIndirectCommandBuffer>
+@property(nonatomic) unsigned long long resourceIndex;
 @property(readonly) unsigned long long storageMode;
 @property(readonly) unsigned long long uniqueIdentifier;
 - (void)getHeader:(void **)arg1 headerSize:(unsigned long long *)arg2;

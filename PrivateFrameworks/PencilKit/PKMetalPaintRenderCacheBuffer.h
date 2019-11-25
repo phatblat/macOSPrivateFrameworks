@@ -26,7 +26,7 @@
 - (BOOL)lockPurgeableResourcesAddToSet:(id)arg1;
 @property(readonly, nonatomic) id <MTLBuffer> strokePointBuffer; // @dynamic strokePointBuffer;
 @property(readonly, nonatomic) id <MTLBuffer> uniformsBuffer; // @dynamic uniformsBuffer;
-- (id)initWithUniforms:(const struct PKMetalPaintKernelUniforms *)arg1 points:(const struct PKMetalPaintStrokePoint *)arg2 numPoints:(unsigned long long)arg3 resourceHandler:(id)arg4;
+- (id)initWithUniforms:(const struct PKMetalPaintKernelUniforms *)arg1 points:(const struct PKMetalPaintStrokePoint *)arg2 numPoints:(unsigned long long)arg3 numVertices:(unsigned long long)arg4 resourceHandler:(id)arg5;
 - (id)init;
 
 @end

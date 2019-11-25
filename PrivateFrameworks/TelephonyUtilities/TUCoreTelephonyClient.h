@@ -19,13 +19,16 @@ __attribute__((visibility("hidden")))
     CoreTelephonyClient *_client;
 }
 
++ (id)sharedRTTTelephonyUtilities;
++ (Class)RTTTelephonyUtilitiesClass;
++ (Class)RTTSettingsClass;
 @property(readonly, nonatomic) CoreTelephonyClient *client; // @synthesize client=_client;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 - (void).cxx_destruct;
 - (id)subscriptionForUUID:(id)arg1;
-- (id)subscriptionForLabelID:(id)arg1;
 - (id)initWithQueue:(id)arg1;
 - (id)init;
+- (unsigned long long)preferredTransportMethodForSubscription:(id)arg1;
 - (BOOL)isTTYSoftwareSupportedForSubscriptionUUID:(id)arg1;
 - (BOOL)isTTYSoftwareSupportedForSubscription:(id)arg1;
 - (BOOL)isTTYSoftwareEnabledForSubscriptionUUID:(id)arg1;
@@ -44,12 +47,13 @@ __attribute__((visibility("hidden")))
 - (BOOL)isTTYEnabledForSubscription:(id)arg1;
 - (BOOL)isRTTSupportedForSubscriptionUUID:(id)arg1;
 - (BOOL)isRTTSupportedForSubscription:(id)arg1;
-- (BOOL)shouldShowEmergencyCallbackModeAlertForSubscriptionLabelID:(id)arg1 error:(id *)arg2;
 - (BOOL)shouldShowEmergencyCallbackModeAlertForSubscription:(id)arg1 error:(id *)arg2;
-- (BOOL)isWhitelistedEmergencyNumberForDigits:(id)arg1 subscriptionLabelID:(id)arg2 error:(id *)arg3;
+- (BOOL)shouldShowEmergencyCallbackModeAlertForSubscriptionUUID:(id)arg1 error:(id *)arg2;
 - (BOOL)isWhitelistedEmergencyNumberForDigits:(id)arg1 subscription:(id)arg2 error:(id *)arg3;
-- (BOOL)isEmergencyNumberForDigits:(id)arg1 subscriptionLabelID:(id)arg2 error:(id *)arg3;
+- (BOOL)isWhitelistedEmergencyNumberForDigits:(id)arg1 subscriptionUUID:(id)arg2 error:(id *)arg3;
 - (BOOL)isEmergencyNumberForDigits:(id)arg1 subscription:(id)arg2 error:(id *)arg3;
+- (BOOL)isEmergencyNumberForDigits:(id)arg1 subscriptionUUID:(id)arg2 error:(id *)arg3;
+- (BOOL)inEmergencyMode;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -27,7 +27,7 @@ __attribute__((visibility("hidden")))
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)_lp_CSSText;
-- (struct NSEdgeInsets)asInsetsForView:(id)arg1;
+- (struct NSEdgeInsets)asInsetsForLTR:(BOOL)arg1;
 - (id)init;
 
 @end

@@ -8,15 +8,17 @@
 
 #import "ADIDManager_XPC.h"
 
-@class DSIDRecord, NSArray, NSString;
+@class DSIDRecord, NSArray, NSDictionary, NSString;
 
 @interface ADIDManager : ADSingleton <ADIDManager_XPC>
 {
     DSIDRecord *_activeDSIDRecord;
     NSArray *_monthlyResetArray;
+    NSDictionary *_usageVectors;
 }
 
 + (id)sharedInstance;
+@property(retain, nonatomic) NSDictionary *usageVectors; // @synthesize usageVectors=_usageVectors;
 @property(retain) NSArray *monthlyResetArray; // @synthesize monthlyResetArray=_monthlyResetArray;
 @property(retain) DSIDRecord *activeDSIDRecord; // @synthesize activeDSIDRecord=_activeDSIDRecord;
 - (void).cxx_destruct;

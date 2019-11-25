@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSData, NSString;
+@class NSArray, NSData, NSSet, NSString;
 
 @protocol WBSDataCache <NSObject>
 @property(nonatomic) __weak id <WBSDataCacheDelegate> dataCacheDelegate;
 @property(readonly, nonatomic, getter=isTerminating) BOOL terminating;
 - (long long)entryStateForKeyString:(NSString *)arg1;
+- (void)removeEntriesForKeyStringsNotIncludedIn:(NSSet *)arg1 completionHandler:(void (^)(void))arg2;
 - (void)removeEntriesForKeyStrings:(NSArray *)arg1 completionHandler:(void (^)(void))arg2;
 - (void)setEntry:(NSData *)arg1 forKeyString:(NSString *)arg2 completionHandler:(void (^)(BOOL, NSError *))arg3;
 - (void)getEntryURLForKeyString:(NSString *)arg1 completionHandler:(void (^)(NSURL *))arg2;

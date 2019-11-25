@@ -17,10 +17,12 @@
     vector_03cfcf00 _outputPoints;
     long long _outputImmutableCount;
     BOOL _inputHasChanged;
+    struct _PKStrokePoint _baseValues;
     NSObject<OS_dispatch_queue> *_inputQueue;
     PKStroke *_currentStroke;
     long long _currentInputType;
     long long _immutableCount;
+    long long _missedUpdates;
     vector_58517711 _updatedDrawPoints;
     BOOL _drawingEndedButNotFinished;
     NSObject<OS_dispatch_semaphore> *_drawingWaitForFinishSemaphore;
@@ -85,7 +87,7 @@
 - (void).cxx_destruct;
 - (id)strokeFromPoints:(struct CGPoint *)arg1 count:(unsigned long long)arg2 ink:(id)arg3 inputScale:(double)arg4;
 - (id)strokeFromPath:(struct CGPath *)arg1 ink:(id)arg2 inputScale:(double)arg3 velocityForDistanceFunction:(CDUnknownBlockType)arg4;
-- (id)_strokeFromInputPoints:(vector_58517711 *)arg1 ink:(id)arg2 inputScale:(double)arg3;
+- (id)strokeFromInputPoints:(vector_58517711 *)arg1 inputType:(long long)arg2 ink:(id)arg3 inputScale:(double)arg4;
 - (void)drawingCancelledWithCompletion:(CDUnknownBlockType)arg1;
 - (void)drawingEndedWithCompletion:(CDUnknownBlockType)arg1;
 - (void)_drawingAddPoint:(CDStruct_57911ed6)arg1;
@@ -95,8 +97,11 @@
 - (double)latestNonPredictedTimestamp;
 - (void)removePredictedTouches;
 - (void)updateImmutableCount;
+- (void)drawingUpdateAllPointsDidTimeoutWithStrokeUUID:(id)arg1;
 - (void)drawingUpdateAllPoints;
 - (void)drawingUpdatePoint:(CDStruct_57911ed6)arg1;
+- (id)_newStrokeWithCurrentData;
+- (id)newStrokeWithCurrentData;
 - (long long)fetchFilteredPointsFromIndex:(long long)arg1 accessBlock:(CDUnknownBlockType)arg2;
 - (struct _PKStrokePoint)outputPoint:(CDStruct_57911ed6)arg1 baseValues:(struct _PKStrokePoint)arg2;
 - (struct _PKStrokePoint)outputCurrentStrokePoint:(CDStruct_57911ed6)arg1;

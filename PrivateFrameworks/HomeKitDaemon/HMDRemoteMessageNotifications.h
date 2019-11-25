@@ -6,18 +6,17 @@
 
 #import "HMFObject.h"
 
-@class NSMapTable, NSObject<OS_dispatch_queue>;
+@class NSMapTable;
 
 @interface HMDRemoteMessageNotifications : HMFObject
 {
+    id <HMFLocking> _lock;
     NSMapTable *_sessionNotificationPayloads;
-    NSObject<OS_dispatch_queue> *_propertyQueue;
 }
 
 + (BOOL)messageExpectsNotificationResponse:(id)arg1;
 + (id)messagesWithNotificationResponses;
 + (void)initialize;
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *propertyQueue; // @synthesize propertyQueue=_propertyQueue;
 @property(retain, nonatomic) NSMapTable *sessionNotificationPayloads; // @synthesize sessionNotificationPayloads=_sessionNotificationPayloads;
 - (void).cxx_destruct;
 - (id)description;

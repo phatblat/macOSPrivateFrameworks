@@ -13,11 +13,12 @@
     INCExtensionConnection *_connection;
 }
 
++ (BOOL)shouldLaunchAppInBackgroundWithIntent:(id)arg1 intentResponse:(id)arg2;
 + (void)initialize;
 @property(readonly, nonatomic) __weak INCExtensionConnection *_connection; // @synthesize _connection;
 - (void).cxx_destruct;
 - (id)_initWithConnection:(id)arg1;
-- (void)launchAppInBackground:(BOOL)arg1 userActivityIdentifier:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)launchAppInBackground:(BOOL)arg1 restrictAppsToCarPlay:(BOOL)arg2 userActivityIdentifier:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)launchAppInBackground:(BOOL)arg1 completionHandler:(CDUnknownBlockType)arg2;
 
 @end

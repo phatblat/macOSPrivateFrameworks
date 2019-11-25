@@ -5,6 +5,7 @@
 //
 
 @protocol NFSessionInterface
+- (oneway void)prioritizeSession:(void (^)(void))arg1;
 - (oneway void)endSession:(void (^)(void))arg1;
 @end
 

@@ -8,11 +8,14 @@
 
 @interface PHPhotoLibrary (MediaAnalysis)
 + (id)vcp_defaultMediaAnalysisDatabaseFilepath;
-+ (id)vcp_photoLibrary;
++ (id)vcp_defaultURL;
++ (id)vcp_defaultPhotoLibrary;
 - (long long)vcp_isCPLDownloadComplete;
 - (long long)vcp_isCPLSyncComplete;
 - (long long)vcp_isCPLEnabled;
-- (unsigned long long)vcp_assetCount;
+- (unsigned long long)vcp_assetCountWithInternalPredicate:(id)arg1 forTaskID:(unsigned long long)arg2;
+- (unsigned long long)vcp_assetCountWithMediaType:(long long)arg1 forTaskID:(unsigned long long)arg2;
+- (unsigned long long)vcp_assetCountForTaskID:(unsigned long long)arg1;
 - (id)vcp_mediaAnalysisDatabaseFilepath;
 - (id)vcp_mediaAnalysisDirectory;
 - (id)vcp_url;

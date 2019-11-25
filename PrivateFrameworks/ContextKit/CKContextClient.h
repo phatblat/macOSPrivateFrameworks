@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSObject<OS_dispatch_queue>, NSSet, NSString;
+@class CKContextSemaphore, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSSet, NSString;
 
 @interface CKContextClient : NSObject
 {
@@ -14,12 +14,19 @@
     NSSet *_capabilities;
     NSString *_indexVersionId;
     NSMutableArray *_updateHandlers;
+    NSObject<OS_dispatch_semaphore> *_sema_capabilities;
+    CKContextSemaphore *_serviceSemaphore;
     unsigned long long _defaultRequestType;
 }
 
 + (id)clientWithDefaultRequestType:(unsigned long long)arg1;
++ (id)new;
 @property(readonly, nonatomic) unsigned long long defaultRequestType; // @synthesize defaultRequestType=_defaultRequestType;
 - (void).cxx_destruct;
+- (void)ancestorsForTopics:(id)arg1 withReply:(CDUnknownBlockType)arg2;
+- (void)workWithServiceSemaphore:(CDUnknownBlockType)arg1;
+- (BOOL)tryAcquireServiceSemaphore;
+- (BOOL)hasServiceSemaphore;
 @property(readonly, nonatomic) NSSet *capabilities;
 - (id)indexVersionId;
 - (id)retrieveCapabilites;
@@ -28,7 +35,9 @@
 - (id)newRequest;
 - (void)_updateCachedCapabilites;
 - (void)_handleConfigurationUpdate;
+- (void)ensureFullyInitialized;
 - (id)initWithDefaultRequestType:(unsigned long long)arg1;
+- (id)init;
 
 @end
 

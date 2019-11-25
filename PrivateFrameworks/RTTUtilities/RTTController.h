@@ -9,32 +9,45 @@
 #import "RTTCallDelegate.h"
 #import "TUCallCapabilitiesDelegate.h"
 
-@class NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
+@class AXDispatchTimer, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
 
 @interface RTTController : NSObject <RTTCallDelegate, TUCallCapabilitiesDelegate>
 {
     NSObject<OS_dispatch_queue> *_workerQueue;
+    NSMutableDictionary *_localSettingsCache;
+    AXDispatchTimer *_preferredRelayCoalescer;
+    AXDispatchTimer *_callUpdateCoalescer;
     NSMutableArray *_rttCalls;
     id <HCHeardControllerProtocol> _delegate;
+    CDUnknownBlockType _serverInvalidateCallback;
 }
 
 + (id)sharedController;
-@property(retain, nonatomic) id <HCHeardControllerProtocol> delegate; // @synthesize delegate=_delegate;
+@property(copy, nonatomic) CDUnknownBlockType serverInvalidateCallback; // @synthesize serverInvalidateCallback=_serverInvalidateCallback;
+@property(nonatomic) __weak id <HCHeardControllerProtocol> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) NSMutableArray *rttCalls; // @synthesize rttCalls=_rttCalls;
 - (void).cxx_destruct;
+- (void)ttyCall:(id)arg1 shouldDisplayServiceMessage:(id)arg2;
+- (void)ttyCall:(id)arg1 didSendRemoteString:(id)arg2 forUtterance:(id)arg3;
 - (void)ttyCall:(id)arg1 didReceiveString:(id)arg2 forUtterance:(id)arg3;
 - (id)handleIncomingNotificationSuppressionChange:(id)arg1;
 - (id)displayCallPrompt:(id)arg1;
 - (id)handleSettingsRequest:(id)arg1;
 - (id)handleDictionaryRequest:(id)arg1;
 - (id)handleDatabaseRequest:(id)arg1;
+- (id)handleMediaAction:(id)arg1;
 - (void)dealloc;
 - (void)displayRTTFirstUseAlert;
 - (void)dismissRTTFirstUseAlert;
 - (id)callForUUID:(id)arg1;
+- (id)_callForUUIDWithoutRefresh:(id)arg1;
 - (void)handleUpdatedCalls:(id)arg1;
+- (void)_refreshCurrentCallListWithExistingCalls:(id)arg1;
+- (void)_refreshCurrentCallList;
 - (void)callDidConnect:(id)arg1;
 - (void)didChangeTelephonyCallingSupport;
+- (BOOL)invalidateServerCaches:(id)arg1;
+- (void)_handlePreferredRelayNumberUpdate;
 - (id)init;
 
 // Remaining properties

@@ -21,11 +21,13 @@
 @property(retain, nonatomic) NSMutableDictionary *passUniqueIDToCardEntryMap; // @synthesize passUniqueIDToCardEntryMap=_passUniqueIDToCardEntryMap;
 @property(retain, nonatomic) PKPaymentPreferenceContact *billingPreference; // @synthesize billingPreference=_billingPreference;
 - (void).cxx_destruct;
-- (BOOL)canSelectPreference:(id)arg1 atIndex:(unsigned long long)arg2;
-- (long long)_selectedPaymentPassIndexFromCardEntries:(id)arg1;
+- (BOOL)_shouldDisplayPaymentApplicationWithAcceptedApplicationsCount:(long long)arg1 unavailableApplicationsCount:(long long)arg2;
+- (id)_unavailablePaymentApplicationsForPass:(id)arg1;
+- (id)_acceptedPaymentApplicationsForPass:(id)arg1;
+- (BOOL)canSelectPreference:(id)arg1 preferenceIndex:(unsigned long long)arg2 subItemIndex:(unsigned long long)arg3;
 - (id)_unavailableReasonForPass:(id)arg1;
-- (id)_unavailablePassesCardEntries;
-- (id)_acceptedPassesCardEntries;
+- (id)_cardPreferenceForUnavailablePasses;
+- (id)_cardPreferenceForAcceptedPasses;
 - (void)_setupPreferences;
 - (id)cardEntryForPass:(id)arg1;
 - (BOOL)shouldEnableSubItemInPreference:(id)arg1 preferenceIndex:(long long)arg2 subItemIndex:(long long)arg3;

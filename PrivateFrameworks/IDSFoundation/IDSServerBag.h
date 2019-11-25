@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
-@class IMConnectionMonitor, IMRemoteURLConnection, NSArray, NSData, NSDate, NSDictionary, NSMutableURLRequest, NSNumber, NSObject<OS_dispatch_queue>, NSString, NSURL;
+@class IDSRateLimiter, IMConnectionMonitor, IMRemoteURLConnection, NSArray, NSData, NSDate, NSDictionary, NSMutableURLRequest, NSNumber, NSObject<OS_dispatch_queue>, NSString, NSURL;
 
 @interface IDSServerBag : NSObject
 {
     BOOL _allowSelfSignedCertificates;
     BOOL _allowUnsignedBags;
+    BOOL _hashAlgorithm;
     int _trustStatus;
     int _token;
     IMConnectionMonitor *_connectionMonitor;
@@ -31,6 +32,9 @@
     NSData *_serverSignature;
     NSArray *_serverCerts;
     NSData *_serverGivenBag;
+    CDUnknownBlockType _remoteURLCreationBlock;
+    CDUnknownBlockType _connectionMonitorCreationBlock;
+    IDSRateLimiter *_rateLimiter;
 }
 
 + (id)_bagCreationLock;
@@ -39,6 +43,10 @@
 + (id)_sharedInstance;
 + (id)_sharedInstanceForClass:(Class)arg1;
 + (id)sharedInstance;
+@property(retain, nonatomic) IDSRateLimiter *rateLimiter; // @synthesize rateLimiter=_rateLimiter;
+@property(copy) CDUnknownBlockType connectionMonitorCreationBlock; // @synthesize connectionMonitorCreationBlock=_connectionMonitorCreationBlock;
+@property(copy) CDUnknownBlockType remoteURLCreationBlock; // @synthesize remoteURLCreationBlock=_remoteURLCreationBlock;
+@property BOOL hashAlgorithm; // @synthesize hashAlgorithm=_hashAlgorithm;
 @property(retain) NSData *serverGivenBag; // @synthesize serverGivenBag=_serverGivenBag;
 @property(retain) NSArray *serverCerts; // @synthesize serverCerts=_serverCerts;
 @property(retain) NSData *serverSignature; // @synthesize serverSignature=_serverSignature;
@@ -74,12 +82,13 @@
 - (void)_cancelCurrentLoad;
 - (void)_processBagResultData:(id)arg1 response:(id)arg2 inBackground:(BOOL)arg3;
 - (BOOL)_loadFromSignedDictionary:(id)arg1 returningError:(id *)arg2;
-- (BOOL)trustRefFromCertificates:(id)arg1 trustRef:(struct __SecTrust **)arg2;
+- (BOOL)trustRefFromCertificates:(id)arg1 canReportFailure:(BOOL)arg2 trustRef:(struct __SecTrust **)arg3;
 - (BOOL)_allowInvalid;
 - (void)_invalidate;
 - (BOOL)_loadFromDictionary:(id)arg1 returningError:(id *)arg2;
 - (void)dealloc;
-- (id)_initWithURL:(id)arg1 apsEnvironmentName:(id)arg2 allowSelfSignedCertificates:(BOOL)arg3 allowUnsignedBags:(BOOL)arg4;
+- (id)_initWithURL:(id)arg1 apsEnvironmentName:(id)arg2 allowSelfSignedCertificates:(BOOL)arg3 allowUnsignedBags:(BOOL)arg4 hashAlgorithm:(BOOL)arg5 remoteURLCreationBlock:(CDUnknownBlockType)arg6 connectionMonitorCreationBlock:(CDUnknownBlockType)arg7;
+- (id)_initWithURL:(id)arg1 apsEnvironmentName:(id)arg2 allowSelfSignedCertificates:(BOOL)arg3 allowUnsignedBags:(BOOL)arg4 hashAlgorithm:(BOOL)arg5;
 - (void)_generateURLRequest;
 - (void)_bagExternallyReloaded;
 - (void)_saveToCache;
@@ -88,6 +97,7 @@
 - (void)_loadFromCache;
 - (void)_clearCache;
 - (id)_bagDefaultsDomain;
+- (unsigned long long)_bagDomain;
 
 @end
 

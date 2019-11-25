@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class AVAudioMix, AVComposition, AVDepthData, AVPortraitEffectsMatte, AVVideoComposition, CIImage, NSDictionary, NSString, NUGeometrySpaceMap, NUImageGeometry;
+@class AVAudioMix, AVComposition, AVVideoComposition, CIImage, NSDictionary, NSMutableDictionary, NSString, NUGeometrySpaceMap, NUImageGeometry;
 
 @interface NURenderNode : NSObject
 {
@@ -18,8 +18,7 @@
     NSDictionary *_settings;
     struct NSDictionary *_xforms;
     CIImage *_cached_outputImage;
-    AVDepthData *_cached_outputDepthData;
-    AVPortraitEffectsMatte *_cached_outputPortraitEffectsMatte;
+    NSMutableDictionary *_cached_auxiliaryImages;
     AVComposition *_cached_outputVideo;
     AVVideoComposition *_cached_outputVideoComposition;
     AVAudioMix *_cached_outputAudioMix;
@@ -42,8 +41,7 @@
 @property(retain) AVAudioMix *cached_outputAudioMix; // @synthesize cached_outputAudioMix=_cached_outputAudioMix;
 @property(retain) AVVideoComposition *cached_outputVideoComposition; // @synthesize cached_outputVideoComposition=_cached_outputVideoComposition;
 @property(retain) AVComposition *cached_outputVideo; // @synthesize cached_outputVideo=_cached_outputVideo;
-@property(retain) AVPortraitEffectsMatte *cached_outputPortraitEffectsMatte; // @synthesize cached_outputPortraitEffectsMatte=_cached_outputPortraitEffectsMatte;
-@property(retain) AVDepthData *cached_outputDepthData; // @synthesize cached_outputDepthData=_cached_outputDepthData;
+@property(retain) NSMutableDictionary *cached_auxiliaryImages; // @synthesize cached_auxiliaryImages=_cached_auxiliaryImages;
 @property(retain) CIImage *cached_outputImage; // @synthesize cached_outputImage=_cached_outputImage;
 @property(readonly) BOOL isGeometryNode; // @synthesize isGeometryNode=_isGeometryNode;
 @property(readonly) NSDictionary *xforms; // @synthesize xforms=_xforms;
@@ -75,12 +73,11 @@
 - (id)geometryNode;
 - (id)uniqueInputNode;
 - (id)outputGeometrySpaceMap:(out id *)arg1;
-- (id)_evaluatePortraitEffectsMatte:(out id *)arg1;
-- (id)originalPortraitEffectsMatte:(out id *)arg1;
-- (BOOL)canPropagateOriginalDepthData;
-- (id)_evaluateDepthData:(out id *)arg1;
-- (id)originalDepthData:(out id *)arg1;
+- (id)_evaluateAuxiliaryImageForType:(long long)arg1 error:(out id *)arg2;
+- (id)originalAuxiliaryImageForType:(long long)arg1 error:(out id *)arg2;
+- (BOOL)canPropagateOriginalAuxiliaryData;
 - (id)_evaluateImage:(out id *)arg1;
+- (id)debugQuickLookObject;
 - (id)outputImage:(out id *)arg1;
 - (id)_evaluateAudioMix:(out id *)arg1;
 - (id)outputAudioMix:(out id *)arg1;

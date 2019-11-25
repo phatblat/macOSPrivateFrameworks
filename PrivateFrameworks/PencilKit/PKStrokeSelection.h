@@ -6,12 +6,9 @@
 
 #import "NSObject.h"
 
-#import "NSItemProviderReading.h"
-#import "NSItemProviderWriting.h"
+@class NSImage, NSMutableOrderedSet, PKDrawing, PKStroke;
 
-@class NSArray, NSImage, NSMutableOrderedSet, NSString, PKDrawing, PKStroke;
-
-@interface PKStrokeSelection : NSObject <NSItemProviderReading, NSItemProviderWriting>
+@interface PKStrokeSelection : NSObject
 {
     NSMutableOrderedSet *_strokes;
     PKStroke *_lassoStroke;
@@ -21,22 +18,17 @@
 
 + (id)strokeSelectionFromData:(id)arg1;
 @property(readonly, nonatomic) PKDrawing *drawing; // @synthesize drawing=_drawing;
-@property(retain, nonatomic) NSImage *strokeImage; // @synthesize strokeImage=_strokeImage;
+@property(copy, nonatomic) NSImage *strokeImage; // @synthesize strokeImage=_strokeImage;
 @property(readonly, nonatomic) PKStroke *lassoStroke; // @synthesize lassoStroke=_lassoStroke;
 @property(readonly, nonatomic) NSMutableOrderedSet *strokes; // @synthesize strokes=_strokes;
 - (void).cxx_destruct;
+- (BOOL)containsBitmapData;
 - (id)strokeDataForSelection;
-- (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)legacyStrokeDataForSelection;
+- (id)_newDrawingWithStrokes;
 - (struct CGRect)boundsWithoutLasso;
 - (struct CGRect)bounds;
 - (id)initWithStrokes:(id)arg1 lassoStroke:(id)arg2 drawing:(id)arg3;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
-@property(readonly, copy) NSArray *writableTypeIdentifiersForItemProvider;
 
 @end
 

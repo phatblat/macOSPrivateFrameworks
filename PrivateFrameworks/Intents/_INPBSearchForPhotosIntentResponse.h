@@ -15,11 +15,14 @@
 @interface _INPBSearchForPhotosIntentResponse : PBCodable <_INPBSearchForPhotosIntentResponse, NSSecureCoding, NSCopying>
 {
     CDStruct_a60b8694 _has;
+    BOOL __encodeLegacyGloryData;
     int _searchResultsCount;
     NSString *_albumName;
     _INPBLocation *_locationCreated;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(nonatomic) int searchResultsCount; // @synthesize searchResultsCount=_searchResultsCount;
 @property(retain, nonatomic) _INPBLocation *locationCreated; // @synthesize locationCreated=_locationCreated;
 @property(copy, nonatomic) NSString *albumName; // @synthesize albumName=_albumName;
@@ -28,6 +31,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(nonatomic) BOOL hasSearchResultsCount;

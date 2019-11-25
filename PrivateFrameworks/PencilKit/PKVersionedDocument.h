@@ -24,10 +24,10 @@
 - (void)mergeVersion:(unsigned int)arg1 fromData:(id)arg2;
 @property(readonly, nonatomic) unsigned long long futureVersionCount;
 - (void)dealloc;
-- (void)loadDocumentArchive:(struct Document *)arg1;
+- (BOOL)loadDocumentArchive:(struct Document *)arg1;
 - (void)loadArchive:(const struct Document *)arg1;
-- (void)loadUnzippedData:(id)arg1;
-- (void)loadData:(id)arg1;
+- (BOOL)loadUnzippedData:(id)arg1;
+- (BOOL)loadData:(id)arg1;
 - (id)initWithArchive:(const struct Document *)arg1;
 - (id)initWithUnzippedData:(id)arg1;
 - (id)initWithData:(id)arg1;

@@ -6,7 +6,7 @@
 
 #import <IMDaemonCore/IMDCKAbstractSyncController.h>
 
-@class CKServerChangeToken, IMDCKAttachmentSyncCKOperationFactory, IMDRecordZoneManager, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>;
+@class IMDCKAttachmentSyncCKOperationFactory, IMDRecordZoneManager, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>;
 
 @interface IMDCKAttachmentSyncController : IMDCKAbstractSyncController
 {
@@ -45,11 +45,12 @@
 - (void)_fetchAndValidateFileTransfersFromCloudKit:(id)arg1 capturedWithABC:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)_processAndValidateAttachmentRecordsEligibleForPurge:(id)arg1 recordIDsToTransfers:(id)arg2 capturedWithABC:(BOOL)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)_validateTransferFromCloudKit:(id)arg1 localTransfer:(id)arg2 validateCompletion:(CDUnknownBlockType)arg3;
-- (void)clearLocalSyncState;
+- (void)clearLocalSyncState:(unsigned long long)arg1;
 - (void)deleteAttachmentZone;
 - (void)_deleteStingRayToken;
-@property(retain, nonatomic) CKServerChangeToken *latestSyncToken;
-- (id)_changeTokenKey;
+- (id)latestSyncTokenForSyncType:(long long)arg1;
+- (void)setLatestSyncToken:(id)arg1 forSyncType:(long long)arg2;
+- (id)_changeTokenKeyForSyncType:(long long)arg1;
 - (void)_migrateSyncToken;
 - (void)_resetAttachmentSyncStateForRecord:(id)arg1 toState:(long long)arg2;
 - (void)_markTransferAsNotBeingAbleToSyncUsingCKRecord:(id)arg1;
@@ -62,13 +63,14 @@
 - (void)_processAssetFetchPerRecordProgressBlock:(id)arg1 progress:(double)arg2;
 - (void)_processModifyRecordCompletion:(id)arg1 deletedRecordIDs:(id)arg2 error:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (id)_operationErrorForModifyingRecordCompletion:(id)arg1;
-- (void)_processRecordZoneChangeTokenUpdated:(id)arg1 zoneID:(id)arg2 clienChangeToken:(id)arg3;
+- (void)_processRecordZoneChangeTokenUpdated:(id)arg1 zoneID:(id)arg2 clienChangeToken:(id)arg3 syncType:(long long)arg4;
 - (void)_processRecordChanged:(id)arg1;
 - (void)_processRecordDeletion:(id)arg1;
 - (void)_processFetchRecordChangesCompleted:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)_processModifyPerRecordCallBack:(id)arg1 error:(id)arg2;
 - (void)_processRecordZoneFetchCompletion:(id)arg1 zoneID:(id)arg2 clientChangeTokenData:(id)arg3 moreComing:(BOOL)arg4 shouldWriteBackChanges:(BOOL)arg5 desiredKeys:(long long)arg6 syncType:(long long)arg7 error:(id)arg8 currentBatchCount:(long long)arg9 maxBatchCount:(long long)arg10 completionBlock:(CDUnknownBlockType)arg11;
-- (void)_resetSyncToken;
+- (BOOL)_kickOffWriteIfNeededForSyncType:(long long)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)_kickOffWriteOnCKQueueWithCompletion:(CDUnknownBlockType)arg1;
 - (void)deleteAttachmentSyncToken;
 - (BOOL)_attachmentZoneCreated;
 - (void)_writeCKRecordsToAttachmentZone:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
@@ -87,7 +89,7 @@
 - (BOOL)_deviceConditionsAllowsMessageSyncIgnoreFeatureEnabled:(BOOL)arg1;
 - (BOOL)_deviceConditionsAllowsMessageSync;
 - (BOOL)_deviceConditionsAllowsMessageSyncForCurrentBatchCount:(long long)arg1 maxBatchCount:(long long)arg2;
-- (void)_updateDeviceCondictionsToCheckIfNeededForCurrentBatchCount:(long long)arg1 maxBatchCount:(long long)arg2;
+- (void)_updateDeviceConditionsToCheckIfNeededForCurrentBatchCount:(long long)arg1 maxBatchCount:(long long)arg2;
 - (id)_ckUtilitiesInstance;
 - (id)__databaseRequestForAttachmentsWithAssets;
 - (void)__databaseRequestResetAllAttachmentsInFaiedCloudDownloadState;
@@ -103,11 +105,13 @@
 - (void)fetchAttachmentDataForTransfers:(id)arg1 highQuality:(BOOL)arg2 perTransferProgress:(CDUnknownBlockType)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)fetchAttachmentDataForTransfers:(id)arg1 highQuality:(BOOL)arg2 useNonHSA2ManateeDatabase:(BOOL)arg3 perTransferProgress:(CDUnknownBlockType)arg4 completion:(CDUnknownBlockType)arg5;
 - (void)syncAttachmentsWithSyncType:(long long)arg1 deviceConditionsToCheck:(unsigned long long)arg2 activity:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (long long)_numberOfMetadataBatchesOfAttachmentsToFetchInInitialSync;
 - (void)_markAllUnsuccessFullSyncAttachmentsAsNeedingSync;
 - (BOOL)_shouldMarkAttachmentsAsNeedingReupload;
 - (long long)_numberOfBatchesOfAttachmentsToFetchInInitialSync;
-- (void)_updateAllAttachmentsAsNotNeedingReUpload;
+- (void)_hasMarkedAllAttachmentsAsNeedingSync;
 - (BOOL)_shouldMarkAllAttachmentsAsNeedingSync;
+- (void)_needsToMarkAllAttachmentsAsNeedingSync;
 - (long long)syncControllerRecordType;
 - (id)init;
 - (id)initWithSyncTokenStore:(id)arg1;

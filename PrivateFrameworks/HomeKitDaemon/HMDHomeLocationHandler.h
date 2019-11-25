@@ -17,6 +17,7 @@
     int _locationAuthorization;
     CLLocation *_location;
     NSTimeZone *_timeZone;
+    NSString *_isoCountryCode;
     NSObject<OS_dispatch_queue> *_workQueue;
     HMFMessageDispatcher *_msgDispatcher;
     HMDHome *_home;
@@ -33,6 +34,7 @@
 @property(nonatomic) __weak HMDHome *home; // @synthesize home=_home;
 @property(retain, nonatomic) HMFMessageDispatcher *msgDispatcher; // @synthesize msgDispatcher=_msgDispatcher;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
+@property(retain, nonatomic) NSString *isoCountryCode; // @synthesize isoCountryCode=_isoCountryCode;
 @property(retain, nonatomic) NSTimeZone *timeZone; // @synthesize timeZone=_timeZone;
 @property(retain, nonatomic) CLLocation *location; // @synthesize location=_location;
 - (void).cxx_destruct;
@@ -57,10 +59,10 @@
 - (BOOL)_canExtractBatchLocations;
 - (void)accessoriesBecomeUnreachable;
 - (void)accessoriesBecomeReachable;
-- (void)accessoryAdded;
+- (void)updateHomeLocation;
 - (void)_handleRetrieveLocation:(id)arg1;
 - (void)_handleLocationAuthorization:(int)arg1;
-- (void)_handleLocationAuthorizationMessage:(id)arg1;
+- (void)_handleLocationAuthorizationChangedNotification:(id)arg1;
 - (void)_registerForRegionUpdate;
 - (void)_registerForMessages;
 - (void)configure:(id)arg1 queue:(id)arg2 messageDispatcher:(id)arg3;

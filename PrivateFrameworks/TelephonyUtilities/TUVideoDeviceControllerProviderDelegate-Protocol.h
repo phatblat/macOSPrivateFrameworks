@@ -9,6 +9,7 @@
 @class NSError, NSString, VideoAttributes;
 
 @protocol TUVideoDeviceControllerProviderDelegate <AVConferencePreviewClientDelegate>
+- (void)provider:(id <TUVideoDeviceControllerProvider>)arg1 cameraZoomAvailabilityDidChange:(BOOL)arg2;
 - (void)provider:(id <TUVideoDeviceControllerProvider>)arg1 didReceiveFirstPreviewFrameFromCameraUniqueID:(NSString *)arg2;
 - (void)provider:(id <TUVideoDeviceControllerProvider>)arg1 didReceiveErrorFromCameraUniqueID:(NSString *)arg2 error:(NSError *)arg3;
 - (void)provider:(id <TUVideoDeviceControllerProvider>)arg1 didChangeLocalVideoAttributes:(VideoAttributes *)arg2;

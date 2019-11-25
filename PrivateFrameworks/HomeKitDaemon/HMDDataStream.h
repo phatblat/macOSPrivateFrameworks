@@ -9,21 +9,26 @@
 #import "HMFLogging.h"
 #import "HMFTimerDelegate.h"
 
-@class HAPSecuritySessionEncryption, HMDDataStreamControlProtocol, HMFTimer, NSMapTable, NSObject<OS_dispatch_queue>, NSString;
+@class HAPSecuritySessionEncryption, HMDDataStreamControlProtocol, HMFTimer, NSMapTable, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
 
 @interface HMDDataStream : NSObject <HMFLogging, HMFTimerDelegate>
 {
     BOOL _firstMessageReceived;
     id <HMDDataStreamDelegate> _delegate;
+    NSString *_logIdentifier;
     id <HMDDataStreamTransport> _transport;
     HAPSecuritySessionEncryption *_sessionEncryption;
     NSMapTable *_protocols;
     HMDDataStreamControlProtocol *_controlProtocol;
     HMFTimer *_helloMessageResponseTimer;
     NSObject<OS_dispatch_queue> *_workQueue;
+    unsigned long long _nextRequestIdentifier;
+    NSMutableSet *_pendingRequests;
 }
 
 + (id)logCategory;
+@property(readonly, nonatomic) NSMutableSet *pendingRequests; // @synthesize pendingRequests=_pendingRequests;
+@property(nonatomic) unsigned long long nextRequestIdentifier; // @synthesize nextRequestIdentifier=_nextRequestIdentifier;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
 @property(retain, nonatomic) HMFTimer *helloMessageResponseTimer; // @synthesize helloMessageResponseTimer=_helloMessageResponseTimer;
 @property(nonatomic) BOOL firstMessageReceived; // @synthesize firstMessageReceived=_firstMessageReceived;
@@ -31,24 +36,29 @@
 @property(retain, nonatomic) NSMapTable *protocols; // @synthesize protocols=_protocols;
 @property(retain, nonatomic) HAPSecuritySessionEncryption *sessionEncryption; // @synthesize sessionEncryption=_sessionEncryption;
 @property(retain, nonatomic) id <HMDDataStreamTransport> transport; // @synthesize transport=_transport;
+@property(readonly, copy) NSString *logIdentifier; // @synthesize logIdentifier=_logIdentifier;
 @property(nonatomic) __weak id <HMDDataStreamDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)timerDidFire:(id)arg1;
 - (void)startHelloMessageResponseTimer;
 - (void)transportDidOpen:(id)arg1;
 - (void)transportDidClose:(id)arg1;
+- (void)fulfillPendingRequestWithResponseHeader:(id)arg1 payload:(id)arg2;
 - (void)transport:(id)arg1 didReceiveRawFrame:(id)arg2;
-- (BOOL)mayHandleFirstMessageReceivedOnDataStream:(id)arg1 payload:(id)arg2;
+- (void)handlePendingRequests;
+- (BOOL)handleFirstMessageReceivedOnDataStream:(id)arg1 payload:(id)arg2;
 - (void)transport:(id)arg1 didFailWithError:(id)arg2;
+- (void)sendRequestForProtocol:(id)arg1 topic:(id)arg2 payload:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)sendRequestForProtocol:(id)arg1 topic:(id)arg2 identifier:(unsigned long long)arg3 payload:(id)arg4 completion:(CDUnknownBlockType)arg5;
 - (void)sendResponseForRequestHeader:(id)arg1 payload:(id)arg2 status:(unsigned short)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)sendEventForProtocol:(id)arg1 topic:(id)arg2 payload:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)_sendMessageWithHeader:(id)arg1 payload:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (id)createRequestIdentifier;
 - (id)protocolDelegateHandle;
 - (void)addProtocol:(id)arg1 name:(id)arg2;
 - (void)close;
 - (void)connect;
-- (id)initWithTransport:(id)arg1 sessionEncryption:(id)arg2 workQueue:(id)arg3;
+- (id)initWithTransport:(id)arg1 sessionEncryption:(id)arg2 workQueue:(id)arg3 logIdentifier:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

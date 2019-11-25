@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 @protocol GGLRenderQueueSource <NSObject>
-- (RenderQueue_efd5f737 *)renderQueueForTimestamp:(double)arg1;
+- (struct RenderQueue *)renderQueueForTimestamp:(double)arg1;
+- (BOOL)isDelayedRenderQueueConsumptionSupported;
 @end
 

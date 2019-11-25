@@ -11,6 +11,7 @@
 
 @class HMFUnfairLock, HMMediaSession, NSObject<OS_dispatch_queue>, NSString, NSUUID, _HMContext;
 
+__attribute__((visibility("hidden")))
 @interface _HMAudioControl : NSObject <HMFMessageReceiver, HMObjectMerge>
 {
     HMFUnfairLock *_lock;

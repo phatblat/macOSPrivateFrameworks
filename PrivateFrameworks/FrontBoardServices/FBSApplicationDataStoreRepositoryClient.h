@@ -8,15 +8,15 @@
 
 #import "FBSApplicationDataStoreRepositoryClient.h"
 
-@class NSCountedSet, NSHashTable, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
+@class NSCountedSet, NSHashTable, NSMutableDictionary, NSString;
 
 @interface FBSApplicationDataStoreRepositoryClient : FBSServiceFacilityClient <FBSApplicationDataStoreRepositoryClient>
 {
+    struct os_unfair_lock_s _prefetchedDataLock;
     NSCountedSet *_prefetchedKeys;
     NSMutableDictionary *_prefetchedKeyValues;
     NSMutableDictionary *_pendingChangesToPrefetchedKeys;
-    NSObject<OS_dispatch_queue> *_prefetchedDataQueue;
-    NSObject<OS_dispatch_queue> *_observersQueue;
+    struct os_unfair_lock_s _observersLock;
     NSHashTable *_observers;
 }
 

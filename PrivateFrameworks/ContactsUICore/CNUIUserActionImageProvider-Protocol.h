@@ -9,7 +9,7 @@
 @class NSImage, NSString;
 
 @protocol CNUIUserActionImageProvider <NSObject>
-+ (id <CNUIUserActionTemplateImage>)templateImageForActionType:(NSString *)arg1 imageStyle:(long long)arg2;
 + (NSImage *)imageForActionType:(NSString *)arg1 imageStyle:(long long)arg2;
++ (NSString *)symbolImageNameForActionType:(NSString *)arg1;
 @end
 

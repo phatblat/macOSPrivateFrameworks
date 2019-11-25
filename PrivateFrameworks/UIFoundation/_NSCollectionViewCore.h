@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSBox, NSCollectionView, NSCollectionViewData, NSCollectionViewLayout, NSCollectionViewLayoutAttributes, NSCollectionViewUpdate, NSIndexPath, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, NSTimer, NSView, _NSCollectionViewPrefetchingContext;
+@class NSArray, NSBox, NSCollectionView, NSCollectionViewData, NSCollectionViewLayout, NSCollectionViewLayoutAttributes, NSCollectionViewUpdate, NSIndexPath, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, NSTimer, NSView, _NSCollectionViewOrthogonalScrollerSectionController, _NSCollectionViewPrefetchingContext;
 
 @interface _NSCollectionViewCore : NSObject
 {
@@ -172,6 +172,7 @@
     NSIndexPath *_dropTargetIndexPath;
     long long _proposedDropOperation;
     struct CGSize _contentSize;
+    _NSCollectionViewOrthogonalScrollerSectionController *_orthogonalScrollerController;
 }
 
 + (id)_reuseKeyForSupplementaryViewOfKind:(id)arg1 withReuseIdentifier:(id)arg2;
@@ -184,6 +185,7 @@
 @property(getter=_proposedDropOperation, setter=_setProposedDropOperation:) long long proposedDropOperation;
 @property(retain, getter=_dropTargetIndexPath, setter=_setDropTargetIndexPath:) NSIndexPath *dropTargetIndexPath;
 - (void)_stopAutoscrollTimer;
+- (void)_orthogonalScrollingSection:(long long)arg1 didScrollToOffset:(struct CGPoint)arg2;
 - (double)_trackedLayoutValueForKey:(id)arg1;
 - (void)_trackLayoutValue:(double)arg1 forKey:(id)arg2;
 - (struct CGPoint)_contentOffsetForNewFrame:(struct CGRect)arg1 oldFrame:(struct CGRect)arg2 newContentSize:(struct CGSize)arg3 andOldContentSize:(struct CGSize)arg4;
@@ -225,6 +227,7 @@
 - (void)_reuseAllItems;
 - (void)_reuseCell:(id)arg1 notifyDidEndDisplaying:(BOOL)arg2;
 - (void)_reuseCell:(id)arg1;
+- (void)_reuseReusableViewIfNeeded:(id)arg1;
 - (BOOL)_isViewInReuseQueue:(id)arg1;
 - (id)_createTemplateLayoutCellForCellsWithIdentifier:(id)arg1;
 - (id)dequeueReusableSupplementaryViewOfKind:(id)arg1 withReuseIdentifier:(id)arg2 forIndexPath:(id)arg3;
@@ -241,6 +244,7 @@
 - (void)registerClass:(Class)arg1 forSupplementaryViewOfKind:(id)arg2 withReuseIdentifier:(id)arg3;
 - (void)registerClass:(Class)arg1 forCellWithReuseIdentifier:(id)arg2;
 - (void)_registeredSupplementaryViewKind:(id)arg1;
+- (id)_nsScrollViewForOrthogonalScrollingSection:(long long)arg1;
 - (void)scrollToItemAtIndexPath:(id)arg1 atScrollPosition:(unsigned long long)arg2 animated:(BOOL)arg3;
 - (struct CGPoint)_contentOffsetForScrollingToItemAtIndexPath:(id)arg1 atScrollPosition:(unsigned long long)arg2;
 - (id)_indexPathsForVisibleDecorationViewsOfKind:(id)arg1;
@@ -299,6 +303,7 @@
 - (struct CGRect)_visibleBounds;
 - (struct CGRect)visibleBounds;
 - (void)_addControlledSubview:(id)arg1 atZIndex:(long long)arg2 forced:(BOOL)arg3;
+- (void)_addControlledSubview:(id)arg1;
 - (void)_invalidateLayoutIfNecessaryForReload;
 - (void)prefetchCompleteForItemAtIndexPath:(id)arg1;
 - (void)reloadData;

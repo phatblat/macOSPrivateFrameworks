@@ -8,7 +8,7 @@
 
 #import "ICProgressIndicatorTrackerDelegate.h"
 
-@class ICAttachmentPreviewGeneratorOperationQueue, NSMapTable, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
+@class ICAttachmentPreviewGeneratorOperationQueue, NSMapTable, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
 
 @interface ICAttachmentPreviewGenerator : NSObject <ICProgressIndicatorTrackerDelegate>
 {
@@ -19,11 +19,19 @@
     NSMapTable *_lastOperationForAttachmentID;
     NSMutableSet *_attachmentIDsPending;
     NSMutableDictionary *_attachmentIDsProgress;
+    ICAttachmentPreviewGeneratorOperationQueue *_postProcessingQueue;
+    NSMutableOrderedSet *_postProcessingIDsPending;
+    unsigned long long _postProcessingRequestIndex;
     unsigned long long _previewGenerationState;
     NSObject<OS_dispatch_queue> *_previewQueue;
     NSObject<OS_dispatch_queue> *_previewProgressQueue;
 }
 
++ (void)purgeOCRInContext:(id)arg1;
++ (void)purgeImageClassificationsInContext:(id)arg1;
++ (void)setImageClassificationTemporarilyDisabled:(BOOL)arg1;
++ (BOOL)imageClassificationEnabled;
++ (BOOL)ocrGenerationEnabled;
 + (id)sharedGenerator;
 // Error parsing type for property shouldGenerateAttachmentsWhenReachable:
 // Property attributes: TAc,N,V_shouldGenerateAttachmentsWhenReachable
@@ -31,6 +39,9 @@
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *previewProgressQueue; // @synthesize previewProgressQueue=_previewProgressQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *previewQueue; // @synthesize previewQueue=_previewQueue;
 @property unsigned long long previewGenerationState; // @synthesize previewGenerationState=_previewGenerationState;
+@property unsigned long long postProcessingRequestIndex; // @synthesize postProcessingRequestIndex=_postProcessingRequestIndex;
+@property(retain, nonatomic) NSMutableOrderedSet *postProcessingIDsPending; // @synthesize postProcessingIDsPending=_postProcessingIDsPending;
+@property(retain, nonatomic) ICAttachmentPreviewGeneratorOperationQueue *postProcessingQueue; // @synthesize postProcessingQueue=_postProcessingQueue;
 @property(retain, nonatomic) NSMutableDictionary *attachmentIDsProgress; // @synthesize attachmentIDsProgress=_attachmentIDsProgress;
 @property(retain, nonatomic) NSMutableSet *attachmentIDsPending; // @synthesize attachmentIDsPending=_attachmentIDsPending;
 @property(retain, nonatomic) NSMapTable *lastOperationForAttachmentID; // @synthesize lastOperationForAttachmentID=_lastOperationForAttachmentID;
@@ -48,6 +59,7 @@
 - (void)suspend;
 - (void)disableAutomaticPreviewGeneration;
 - (void)enableAutomaticPreviewGeneration;
+- (void)didRecieveMemoryWarning;
 - (void)cancelGenerationOfPendingPreviews;
 - (void)reachabilityChanged:(id)arg1;
 - (void)managedObjectContextDidSave:(id)arg1;
@@ -55,9 +67,20 @@
 - (void)attachmentWillBeDeleted:(id)arg1;
 - (void)attachmentNeedsPreviewGenerationNotification:(id)arg1;
 - (void)attachmentDidLoad:(id)arg1;
+- (void)adjustUserTitleIfNecessaryForAttachment:(id)arg1;
+- (void)postProcessPreviewForAttachment:(id)arg1;
+- (void)postProcessPendingPreviews;
+- (void)beginPostProcessingAfterDelayIfNecessaryWithForceDelay:(BOOL)arg1;
+- (void)postProcessIfNeededForAttachment:(id)arg1;
+- (void)attachmentNeedsPostProcessingNotification:(id)arg1;
 - (void)generatePreviewIfNeededForAttachmentWithObjectID:(id)arg1;
 - (void)generatePreviewIfNeededForAttachment:(id)arg1;
+- (void)generateMissingOrOutdatedAttachmentMetaDataIfNeededInContext:(id)arg1;
+- (id)missingOrOutdatedMetaDataAttachmentsInContext:(id)arg1;
+- (id)missingOrOutdatedOCRSummaryAttachmentsInContext:(id)arg1;
+- (id)missingOrOutdatedImageClassificationSummaryAttachmentsInContext:(id)arg1;
 - (void)generatePreviewsIfNeeded;
+@property(readonly, nonatomic) BOOL previewOperationsIdle;
 - (BOOL)isPreviewGenerationSupported;
 - (void)progressIndicatorTrackerStopAnimation;
 - (void)progressIndicatorTrackerStartAnimation;

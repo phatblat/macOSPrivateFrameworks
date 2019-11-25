@@ -6,9 +6,11 @@
 
 #import "CATOperation.h"
 
-@class CRKAirDropTransferInfo, NSData, NSSet, NSString;
+#import "SFAirDropClassroomTransferDelegate.h"
 
-@interface CRKShowOpenDialogOperation : CATOperation
+@class CRKAirDropTransferInfo, NSData, NSSet, NSString, NSURL, SFAirDropClassroomTransferManager;
+
+@interface CRKShowOpenDialogOperation : CATOperation <SFAirDropClassroomTransferDelegate>
 {
     NSSet *mURLs;
     BOOL mKeepOriginalFiles;
@@ -22,12 +24,15 @@
     CRKAirDropTransferInfo *mTransferInfo;
     BOOL mTransferAccepted;
     BOOL mTransferFinished;
+    NSURL *mTransferDirectoryURL;
+    SFAirDropClassroomTransferManager *mTransferManager;
 }
 
 + (id)fakeBundleID;
 - (void).cxx_destruct;
 - (void)failWithError:(id)arg1;
 - (void)succeedIfNeeded;
+- (void)cleanupHiddenTransferItemsIfNeeded;
 - (void)transferWithIdentifierWasDeclined:(id)arg1 withFailureReason:(unsigned long long)arg2;
 - (void)transferWithIdentifierWasAccepted:(id)arg1;
 - (void)transferDidFinishWithSuccess:(BOOL)arg1 destinationPath:(id)arg2 error:(id)arg3;
@@ -40,6 +45,12 @@
 - (id)initWithFileURLs:(id)arg1 keepOriginalFiles:(BOOL)arg2 previewImageData:(id)arg3 senderName:(id)arg4 autoAccept:(BOOL)arg5 sourceBundleIdentifier:(id)arg6 filesDescription:(id)arg7;
 - (id)initWithFileURLs:(id)arg1 keepOriginalFiles:(BOOL)arg2 previewImageData:(id)arg3 senderName:(id)arg4 autoAccept:(BOOL)arg5 sourceBundleIdentifier:(id)arg6;
 - (id)initWithFileURLs:(id)arg1 keepOriginalFiles:(BOOL)arg2 previewImageData:(id)arg3 senderName:(id)arg4 autoAccept:(BOOL)arg5;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

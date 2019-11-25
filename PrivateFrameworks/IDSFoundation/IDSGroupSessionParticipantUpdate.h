@@ -15,6 +15,7 @@
     unsigned long long _participantIdentifier;
     NSString *_participantDestinationID;
     unsigned long long _participantUpdateType;
+    unsigned long long _participantUpdateSubtype;
     BOOL _fromServer;
     NSDate *_serverDate;
     NSData *_participantData;
@@ -27,6 +28,7 @@
 @property(readonly, nonatomic) NSArray *members; // @synthesize members=_members;
 @property(readonly, nonatomic) NSDate *serverDate; // @synthesize serverDate=_serverDate;
 @property(readonly, nonatomic) BOOL fromServer; // @synthesize fromServer=_fromServer;
+@property(readonly, nonatomic) unsigned long long participantUpdateSubtype; // @synthesize participantUpdateSubtype=_participantUpdateSubtype;
 @property(readonly, nonatomic) NSUUID *relaySessionID; // @synthesize relaySessionID=_relaySessionID;
 @property(readonly, nonatomic) NSDictionary *participantIDs; // @synthesize participantIDs=_participantIDs;
 @property(readonly, nonatomic) NSData *clientContextData; // @synthesize clientContextData=_clientContextData;
@@ -41,7 +43,7 @@
 - (id)description;
 - (id)dictionaryRepresentation;
 - (id)initWithDictionaryRepresentation:(id)arg1;
-- (id)initWithGroupUUID:(id)arg1 participantIdentifier:(unsigned long long)arg2 participantDestinationID:(id)arg3 participantUpdateType:(unsigned long long)arg4 fromServer:(BOOL)arg5 serverDate:(id)arg6 participantData:(id)arg7 clientContextData:(id)arg8 members:(id)arg9 participantIDs:(id)arg10 relaySessionID:(id)arg11;
+- (id)initWithGroupUUID:(id)arg1 isInitiator:(BOOL)arg2 participantIdentifier:(unsigned long long)arg3 participantDestinationID:(id)arg4 participantUpdateType:(unsigned long long)arg5 participantUpdateSubtype:(unsigned long long)arg6 fromServer:(BOOL)arg7 serverDate:(id)arg8 participantData:(id)arg9 clientContextData:(id)arg10 members:(id)arg11 participantIDs:(id)arg12 relaySessionID:(id)arg13;
 
 @end
 

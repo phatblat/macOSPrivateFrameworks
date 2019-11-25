@@ -25,6 +25,7 @@ __attribute__((visibility("hidden")))
 - (void)presentDrawable:(id)arg1;
 - (void)waitUntilCompleted;
 - (void)waitUntilScheduled;
+- (id)resourceStateCommandEncoder;
 - (id)renderCommandEncoder;
 - (id)computeCommandEncoder;
 - (id)blitCommandEncoder;

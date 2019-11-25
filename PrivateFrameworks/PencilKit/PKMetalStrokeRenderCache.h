@@ -18,6 +18,7 @@
 
 - (void).cxx_destruct;
 - (BOOL)lockPurgeableResourcesAddToSet:(id)arg1;
+- (unsigned long long)inkVersion;
 - (BOOL)needsCompute;
 - (unsigned long long)cacheCost;
 @property(readonly, nonatomic) NSArray *buffers; // @dynamic buffers;

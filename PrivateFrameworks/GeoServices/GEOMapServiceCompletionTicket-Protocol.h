@@ -4,14 +4,19 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import "GEOMapServiceCancellableTicket.h"
+#import "GEOMapServiceThrottlableTicket.h"
 
-@class GEOMapItemIdentifier, GEOMapServiceTraits, GEORPSuggestionEntry, GEORPSuggestionList, NSDictionary, NSString;
+@class GEOClientRankingModel, GEOMapItemIdentifier, GEOMapServiceTraits, GEORPSuggestionEntry, GEORPSuggestionList, GEOSortPriorityMapping, NSDictionary, NSString;
 
-@protocol GEOMapServiceCompletionTicket <NSObject>
+@protocol GEOMapServiceCompletionTicket <GEOMapServiceCancellableTicket, GEOMapServiceThrottlableTicket>
 @property(readonly, nonatomic) NSDictionary *responseUserInfo;
 @property(readonly, nonatomic) GEOMapServiceTraits *traits;
 @property(readonly, nonatomic, getter=_searchQuery) NSString *searchQuery;
+- (BOOL)showAutocompleteClientSource;
+- (BOOL)autocompleteTopSectionIsQuerySuggestions;
+- (GEOSortPriorityMapping *)sortPriorityMapping;
+- (GEOClientRankingModel *)clientRankingModel;
 - (BOOL)shouldDisplayNoResults;
 - (BOOL)hasShouldDisplayNoResults;
 - (double)retainSearchTime;

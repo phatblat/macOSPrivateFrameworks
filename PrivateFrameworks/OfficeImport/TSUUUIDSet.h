@@ -9,6 +9,7 @@
 #import "NSCopying.h"
 #import "NSMutableCopying.h"
 
+__attribute__((visibility("hidden")))
 @interface TSUUUIDSet : NSObject <NSCopying, NSMutableCopying>
 {
     unsigned int _index;

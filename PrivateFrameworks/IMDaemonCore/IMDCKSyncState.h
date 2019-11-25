@@ -8,7 +8,7 @@
 
 #import "IMKeyValueCollectionDelegate.h"
 
-@class IMKeyValueCollection, NSArray, NSDate, NSString;
+@class IMKeyValueCollection, NSArray, NSDate, NSDictionary, NSString;
 
 @interface IMDCKSyncState : NSObject <IMKeyValueCollectionDelegate>
 {
@@ -16,6 +16,7 @@
     id <IMDCKSyncStateDelegate> _delegate;
 }
 
++ (void)removeBuildObjectsFromDict:(id)arg1;
 + (id)logHandle;
 @property(nonatomic) __weak id <IMDCKSyncStateDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) IMKeyValueCollection *keyValueCollection; // @synthesize keyValueCollection=_storage;
@@ -33,6 +34,17 @@
 - (void)clearLocalCloudKitSyncState;
 - (void)setSyncingFinished;
 @property(readonly, copy) NSString *description;
+- (id)syncReportDictionaryForAttempt:(unsigned long long)arg1 withSuccess:(BOOL)arg2;
+- (id)syncReportDictionary;
+- (id)syncUserType;
+- (BOOL)_shouldReportNewUserIfCreatedChatZones:(BOOL)arg1 deletedZones:(BOOL)arg2;
+- (id)_describeErrors:(id)arg1;
+- (id)describeErrors;
+- (id)getAnalyticSyncDatesObjectForKey:(id)arg1;
+- (void)setAnalyticSyncDatesDictionaryObject:(id)arg1 forKey:(id)arg2 shouldOverrideIfExists:(BOOL)arg3;
+- (void)removeObjectFromAnalyticSyncDatesDictionaryForKey:(id)arg1;
+- (void)_removeObjectForKey:(id)arg1 forDictionary:(id)arg2;
+- (void)_setObject:(id)arg1 forKey:(id)arg2 forDictionary:(id)arg3 shouldSetBuild:(BOOL)arg4;
 - (void)_finishBatchChange;
 - (void)_startBatchChange;
 - (void)addSyncError:(id)arg1;
@@ -42,7 +54,7 @@
 @property(nonatomic) long long syncControllerRecordType; // @dynamic syncControllerRecordType;
 @property(nonatomic) long long syncControllerSyncType; // @dynamic syncControllerSyncType;
 @property(nonatomic) unsigned long long syncControllerSyncState; // @dynamic syncControllerSyncState;
-@property(copy, nonatomic) NSDate *lastCompleteSyncedDBDate; // @dynamic lastCompleteSyncedDBDate;
+@property(copy, nonatomic) NSDictionary *analyticSyncDatesDictionary; // @dynamic analyticSyncDatesDictionary;
 @property(copy, nonatomic) NSDate *lastSyncDate; // @dynamic lastSyncDate;
 @property(copy, nonatomic) NSDate *exitDate; // @dynamic exitDate;
 @property(nonatomic, getter=isStartingInitialSyncSetByCloudKitHooks) BOOL startingInitialSyncSetByCloudKitHooks; // @dynamic startingInitialSyncSetByCloudKitHooks;
@@ -56,6 +68,8 @@
 @property(nonatomic, getter=isEligibleForTruthZone) BOOL eligibleForTruthZone; // @dynamic eligibleForTruthZone;
 @property(nonatomic, getter=isSyncing) BOOL syncing; // @dynamic syncing;
 @property(nonatomic, getter=isFeatureEnabled) BOOL featureEnabled; // @dynamic featureEnabled;
+@property(nonatomic) BOOL deletedZones; // @dynamic deletedZones;
+@property(nonatomic) BOOL createdChatZone; // @dynamic createdChatZone;
 - (id)logHandle;
 - (id)init;
 - (id)initWithKeyValueCollection:(id)arg1;

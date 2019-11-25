@@ -8,6 +8,7 @@
 
 @class NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>;
 
+__attribute__((visibility("hidden")))
 @interface OITSUReadWriteQueue : NSObject
 {
     NSObject<OS_dispatch_semaphore> *mCanEnqueueReaders;

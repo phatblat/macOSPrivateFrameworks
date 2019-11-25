@@ -25,12 +25,15 @@
 - (void)cancelRequestID:(id)arg1 serviceIdentifier:(id)arg2;
 - (id)_accountOptionsDictForRenewCredentialsForService:(id)arg1 username:(id)arg2 shouldFailIfNotSilent:(BOOL)arg3;
 - (void)setHandlesForProfileID:(id)arg1 username:(id)arg2 service:(id)arg3 handles:(id)arg4;
+- (void)setAccountStatus:(id)arg1 forProfileID:(id)arg2 username:(id)arg3 service:(id)arg4;
+- (void)_updateStatus:(id)arg1 onAccount:(id)arg2;
 - (void)setAuthTokenForProfileID:(id)arg1 username:(id)arg2 service:(id)arg3 authToken:(id)arg4 selfHandle:(id)arg5 accountStatus:(id)arg6 outRequestID:(id *)arg7 completionBlock:(CDUnknownBlockType)arg8;
 - (void)removeAuthTokenAllowingGracePeriodForProfileID:(id)arg1 username:(id)arg2;
 - (double)authTokenGracePeriod;
 - (BOOL)isAuthTokenReceiptTime:(double)arg1 withinGracePeriod:(double)arg2;
 - (void)setAuthTokenForProfileID:(id)arg1 username:(id)arg2 service:(id)arg3 authToken:(id)arg4 selfHandle:(id)arg5 outRequestID:(id *)arg6 completionBlock:(CDUnknownBlockType)arg7;
 - (void)setPasswordForProfileID:(id)arg1 username:(id)arg2 service:(id)arg3 password:(id)arg4 outRequestID:(id *)arg5 completionBlock:(CDUnknownBlockType)arg6;
+- (void)_renewCredentialsIfPossibleForAccount:(id)arg1 username:(id)arg2 inServiceIdentifier:(id)arg3 originalInServiceIdentifier:(id)arg4 serviceName:(id)arg5 failIfNotSilent:(BOOL)arg6 renewHandler:(CDUnknownBlockType)arg7 shortCircuitCompletionBlock:(CDUnknownBlockType)arg8;
 - (void)requestAuthTokenForProfileID:(id)arg1 username:(id)arg2 service:(id)arg3 badPassword:(BOOL)arg4 showForgotPassword:(BOOL)arg5 failIfNotSilent:(BOOL)arg6 outRequestID:(id *)arg7 completionBlock:(CDUnknownBlockType)arg8;
 - (void)requestAuthTokenForProfileID:(id)arg1 username:(id)arg2 service:(id)arg3 badPassword:(BOOL)arg4 showForgotPassword:(BOOL)arg5 outRequestID:(id *)arg6 completionBlock:(CDUnknownBlockType)arg7;
 - (void)requestPasswordForUsername:(id)arg1 service:(id)arg2 badPassword:(BOOL)arg3 showForgotPassword:(BOOL)arg4 shouldRememberPassword:(BOOL)arg5 outRequestID:(id *)arg6 completionBlock:(CDUnknownBlockType)arg7;
@@ -39,6 +42,8 @@
 - (void)cleanUpAccountsBasedOnInUseUsernames:(id)arg1 profileIDs:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)cleanUpAccountsWithUsername:(id)arg1 orProfileID:(id)arg2 basedOnInUseUsernames:(id)arg3 profileIDs:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (void)performCleanUpWithCompletion:(CDUnknownBlockType)arg1;
+- (BOOL)_usernameHasCorrespondingIdMSAccount:(id)arg1;
+- (BOOL)_shouldForceSilentOnlyAuthForUsername:(id)arg1 serviceIdentifier:(id)arg2;
 - (void)updatePreviousUsername:(id)arg1 toNewUsername:(id)arg2;
 - (id)_accountBasedOnProfileID:(id)arg1 orUsername:(id)arg2 inStore:(id)arg3;
 - (id)_accountWithProfileIDMatchingUser:(id)arg1 inStore:(id)arg2;

@@ -6,20 +6,24 @@
 
 #import "NSViewController.h"
 
-@class NSRemoteViewControllerAuxiliary, NSString, NSXPCListenerEndpoint;
+@class NSRemoteViewControllerAuxiliary, NSString, NSUUID, NSXPCListenerEndpoint;
 
 @interface NSRemoteViewController : NSViewController
 {
     NSRemoteViewControllerAuxiliary *_aux;
 }
 
++ (BOOL)shouldLayerBackRemoteView:(id)arg1;
 + (BOOL)inhibitFirstResponder;
 + (id)exportedInterface;
 + (id)serviceViewControllerInterface;
 + (void)requestViewController:(id)arg1 fromServiceListenerEndpoint:(id)arg2 connectionHandler:(CDUnknownBlockType)arg3;
 + (void)requestViewController:(id)arg1 fromServiceWithBundleIdentifier:(id)arg2 connectionHandler:(CDUnknownBlockType)arg3;
-+ (void)requestViewController:(id)arg1 withServiceSubclassIdentifier:(id)arg2 forRemoteView:(id)arg3 connectionHandler:(CDUnknownBlockType)arg4;
-+ (void)requestViewController:(id)arg1 withServiceSubclassIdentifier:(id)arg2 connectionHandler:(CDUnknownBlockType)arg3 withBlock:(CDUnknownBlockType)arg4;
++ (void)requestViewControllerForExtensionWithIdentifier:(id)arg1 fromServiceWithBundleIdentifier:(id)arg2 connectionHandler:(CDUnknownBlockType)arg3;
++ (void)requestViewControllerForExtensionWithIdentifier:(id)arg1 fromServiceWithBundleIdentifier:(id)arg2 serviceInstanceIdentifier:(id)arg3 connectionHandler:(CDUnknownBlockType)arg4;
++ (void)requestViewController:(id)arg1 withServiceViewControllerIdentifier:(id)arg2 forRemoteView:(id)arg3 connectionHandler:(CDUnknownBlockType)arg4;
++ (void)requestViewController:(id)arg1 withServiceViewControllerIdentifier:(id)arg2 connectionHandler:(CDUnknownBlockType)arg3 withBlock:(CDUnknownBlockType)arg4;
+- (BOOL)shouldLayerBackRemoteView:(id)arg1;
 - (BOOL)inhibitFirstResponder;
 - (void)setInhibitFirstResponder:(BOOL)arg1;
 - (void)_viewDidMoveToSuperview;
@@ -36,6 +40,7 @@
 @property(readonly) CDStruct_6ad76789 serviceAuditToken;
 @property(readonly) int serviceProcessIdentifier;
 @property(readonly) NSString *serviceViewControllerClassName;
+@property(readonly) NSUUID *serviceInstanceIdentifier;
 @property(readonly) NSString *serviceBundleIdentifier;
 @property(readonly) NSString *remoteViewIdentifier;
 @property(readonly) NSXPCListenerEndpoint *serviceListenerEndpoint;

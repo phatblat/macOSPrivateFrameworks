@@ -10,6 +10,7 @@
 @class NSArray, NSString;
 
 @protocol GEOServerFormatToken <NSObject, NSCoding>
+@property(readonly, nonatomic) id <GEOServerFormatTokenCountdownValue> countdownValue;
 @property(readonly, nonatomic) NSArray *timeStampValues;
 @property(readonly, nonatomic) id <GEOTransitArtworkDataSource> artworkValue;
 @property(readonly, nonatomic) id <GEOServerFormatTokenPriceValue> priceValue;

@@ -35,6 +35,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)logIdentifier;
+- (id)assistantAccessControlModelWithRemovedAccessories:(id)arg1;
 - (void)transactionObjectRemoved:(id)arg1 message:(id)arg2;
 - (void)transactionObjectUpdated:(id)arg1 newValues:(id)arg2 message:(id)arg3;
 - (id)transactionWithObjectChangeType:(unsigned long long)arg1;
@@ -56,7 +57,9 @@
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
 - (void)dealloc;
+- (void)configure;
 - (id)initWithUser:(id)arg1;
+- (id)initWithUser:(id)arg1 accessories:(id)arg2 enabled:(BOOL)arg3;
 - (id)initWithUser:(id)arg1 model:(id)arg2;
 - (id)init;
 

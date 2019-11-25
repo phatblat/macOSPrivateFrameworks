@@ -11,6 +11,8 @@
 @interface NSServiceViewController : NSViewController
 {
     NSServiceViewControllerAuxiliary *_aux;
+    unsigned int _superLoadViewInProgress:1;
+    unsigned int _setViewIgnoredGeometry:1;
 }
 
 + (id)exportedInterface;
@@ -29,10 +31,9 @@
 + (BOOL)currentAppIsViewService;
 + (id)hostAppDescription:(int)arg1;
 + (unsigned int)_windowForContextID:(unsigned int)arg1 fromViewService:(int)arg2 error:(id *)arg3;
-+ (BOOL)canBecomeKey;
 + (unsigned int)declinedEventMask;
-- (void)_windowFrameWillChange;
-- (void)_windowFrameDidChange;
++ (BOOL)canBecomeMain;
++ (BOOL)canBecomeKey;
 - (void)_didDisassociateFromHostWindow;
 - (void)_didAssociateWithHostWindow;
 - (void)_viewDidChangeAppearance:(id)arg1;
@@ -41,6 +42,7 @@
 - (void)_setHostSDKVersion:(unsigned int)arg1;
 @property(readonly) unsigned int hostSDKVersion;
 @property NSViewServiceMarshal *marshal;
+- (id)description;
 @property(readonly) NSWindow *serviceWindow;
 - (id)initWithWindow:(id)arg1;
 - (void)_endPrivateEventLoop;
@@ -50,6 +52,10 @@
 @property(readonly) unsigned int callsToSetViewCount;
 @property(readonly) BOOL mostRecentCallToSetViewWasNonNil;
 - (void)setView:(id)arg1;
+- (BOOL)_installViewIntoWindow:(id)arg1;
+- (BOOL)_shouldRestoreTranslatesAutoresizingMaskIntoConstraints;
+- (void)loadView;
+- (BOOL)_assumeGeometryMeaningfulDuringSetView;
 - (BOOL)valid;
 @property(readonly) BOOL isValid;
 - (BOOL)invalid;
@@ -70,7 +76,9 @@
 - (struct os_unfair_lock_s *)retainReleaseLock;
 - (void)_retainMarshal;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (BOOL)respondsToAction:(SEL)arg1 forTarget:(id)arg2;
+- (BOOL)_respondsToAction:(SEL)arg1 forTarget:(id)arg2;
+- (BOOL)_validateTarget:(id)arg1 forAction:(SEL)arg2;
+- (id)_redirectTarget:(id)arg1 forSelector:(SEL)arg2;
 - (id)remoteViewControllerProxyWithErrorHandler:(CDUnknownBlockType)arg1;
 - (void)remoteViewControllerProxy:(CDUnknownBlockType)arg1;
 - (id)remoteViewControllerProxy;
@@ -84,6 +92,8 @@
 - (void)associateMouseAndMouseCursorPosition:(BOOL)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)requestResize:(struct CGSize)arg1 animation:(CDUnknownBlockType)arg2 completion:(CDUnknownBlockType)arg3;
 - (id)_requestResize:(struct CGSize)arg1 hostShouldAnimate:(BOOL)arg2 animation:(CDUnknownBlockType)arg3 completion:(CDUnknownBlockType)arg4;
+- (id)requestFrame:(struct CGRect)arg1 animation:(CDUnknownBlockType)arg2 completion:(CDUnknownBlockType)arg3;
+- (id)_requestFrame:(struct CGRect)arg1 hostShouldAnimate:(BOOL)arg2 animation:(CDUnknownBlockType)arg3 completion:(CDUnknownBlockType)arg4;
 - (BOOL)remoteViewSizeChanged:(struct CGSize)arg1 transaction:(id)arg2;
 - (BOOL)_remoteViewSizeChanged:(struct CGSize)arg1 transaction:(id)arg2;
 @property(readonly) BOOL adjustLayoutInProgress;
@@ -100,8 +110,10 @@
 - (void)errorOccurred:(id)arg1;
 - (void)deferBlockOntoMainThread:(CDUnknownBlockType)arg1;
 - (void)withHostContextInvoke:(CDUnknownBlockType)arg1;
-- (BOOL)canBecomeKey;
 - (unsigned int)declinedEventMask;
+- (BOOL)canBecomeMain;
+- (BOOL)canBecomeKey;
+- (void)declineKeyboardEventsOtherThan:(id)arg1;
 
 @end
 

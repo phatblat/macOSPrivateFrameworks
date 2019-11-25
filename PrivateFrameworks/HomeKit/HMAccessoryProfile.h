@@ -17,6 +17,8 @@
 
 @property(readonly, nonatomic) _HMAccessoryProfile *accessoryProfile; // @synthesize accessoryProfile=_accessoryProfile;
 - (void).cxx_destruct;
+- (void)handleRuntimeStateUpdate:(id)arg1;
+@property(readonly, copy, nonatomic) NSUUID *profileUniqueIdentifier; // @dynamic profileUniqueIdentifier;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)_mergeWithNewObject:(id)arg1 operations:(id)arg2;

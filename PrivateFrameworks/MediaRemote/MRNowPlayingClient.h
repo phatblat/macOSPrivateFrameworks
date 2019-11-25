@@ -8,14 +8,12 @@
 
 #import "MRNowPlayingClientState.h"
 
-@class NSArray, NSMutableArray, NSObject<OS_dispatch_queue>, _MRNowPlayingClientProtobuf, _MRNowPlayingPlayerPathProtobuf;
+@class NSArray, NSMutableArray, _MRNowPlayingClientProtobuf, _MRNowPlayingPlayerPathProtobuf, _MRNowPlayingPlayerProtobuf;
 
 @interface MRNowPlayingClient : NSObject <MRNowPlayingClientState>
 {
-    _MRNowPlayingClientProtobuf *_client;
-    NSObject<OS_dispatch_queue> *_serialQueue;
+    _MRNowPlayingPlayerProtobuf *_activePlayer;
     NSMutableArray *_playerClients;
-    _MRNowPlayingPlayerPathProtobuf *_activePlayer;
     _MRNowPlayingPlayerPathProtobuf *_playerPath;
 }
 
@@ -27,8 +25,9 @@
 @property(readonly, nonatomic) NSArray *playerClients;
 - (void)removePlayer:(id)arg1;
 - (id)nowPlayingPlayerClientForPlayerPath:(id)arg1;
-@property(retain, nonatomic) _MRNowPlayingPlayerPathProtobuf *activePlayer; // @synthesize activePlayer=_activePlayer;
-- (void)updateClient:(id)arg1;
+@property(readonly, nonatomic) _MRNowPlayingPlayerPathProtobuf *activePlayerPath;
+- (BOOL)updateActivePlayerPath:(id)arg1;
+- (void)mergeClient:(id)arg1;
 @property(retain, nonatomic) _MRNowPlayingClientProtobuf *client;
 - (id)initWithPlayerPath:(id)arg1;
 

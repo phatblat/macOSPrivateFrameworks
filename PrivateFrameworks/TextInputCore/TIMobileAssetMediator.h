@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSMutableSet, NSObject<OS_dispatch_queue>, TIMobileAssetSyncState;
+#import "TIMobileAssetMediator.h"
 
-@interface TIMobileAssetMediator : NSObject
+@class NSMutableSet, NSObject<OS_dispatch_queue>, NSString, TIMobileAssetSyncState;
+
+@interface TIMobileAssetMediator : NSObject <TIMobileAssetMediator>
 {
     BOOL _isWaitingForReachability;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
@@ -45,6 +47,8 @@
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
 - (void).cxx_destruct;
 - (void)downloadUninstalledAssetsMatching:(id)arg1 continuation:(CDUnknownBlockType)arg2;
+- (id)fetchLatestInstalledAssetsMatchingAny:(id)arg1;
+- (id)fetchLatestAssetsMatchingAny:(id)arg1;
 - (BOOL)tryToPurgeAsset:(id)arg1;
 - (id)fetchInstalledAssetInformation;
 - (void)reachabilityChanged;
@@ -57,7 +61,13 @@
 - (oneway void)downloadAssets:(id)arg1 continuation:(CDUnknownBlockType)arg2;
 - (oneway void)fetchUninstalledAssetInformationMatchingAny:(id)arg1 continuation:(CDUnknownBlockType)arg2;
 - (void)dealloc;
-- (id)initWithDispatchQueue:(id)arg1;
+- (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,6 +8,7 @@
 
 @class CXNamespace, ECColumnWidthConvertor, EDReference, EDResources, EDSheet, EDWorkbook, EXOAVState, EXOfficeArtState, NSMutableArray, NSMutableDictionary, OCPPackagePart;
 
+__attribute__((visibility("hidden")))
 @interface EXReadState : OCXReadState
 {
     unsigned int mCurrentSheetIndex;

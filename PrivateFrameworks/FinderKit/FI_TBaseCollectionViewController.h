@@ -46,6 +46,7 @@ __attribute__((visibility("hidden")))
 - (void)updateDraggingItemsForDrag:(id)arg1 dropTargetView:(id)arg2;
 - (unsigned long long)draggingUpdated:(id)arg1 dropTargetView:(id)arg2;
 - (unsigned long long)draggingEntered:(id)arg1 dropTargetView:(id)arg2;
+- (void)invalidateThumbnailForKeyNodes:(const struct TFENodeVector *)arg1;
 - (struct TFENode)thumbnailTargetNodeFromContainerNode:(const struct TFENode *)arg1;
 - (struct TFENode)thumbnailTargetNode;
 - (struct TFENode)thumbnailTargetNodeForNode:(const struct TFENode *)arg1;
@@ -64,7 +65,6 @@ __attribute__((visibility("hidden")))
 - (_Bool)handleMouseDown:(id)arg1;
 - (void)moveToBeginningOfDocument:(id)arg1;
 - (void)moveToEndOfDocument:(id)arg1;
-- (void)scrollToAdjustingForContentInsets:(struct CGPoint)arg1;
 - (struct TFENode)firstNodeToSelectFromDirection:(int)arg1;
 - (void)selectFirstIconFromDirection:(int)arg1;
 - (void)prefetchIconsForNodes:(const struct TFENodeVector *)arg1;
@@ -79,11 +79,10 @@ __attribute__((visibility("hidden")))
 - (void)performBatchUpdatesCompletionHandler:(const unordered_set_931aff12 *)arg1:(_Bool)arg2:(const unordered_map_f8b1458f *)arg3:(_Bool)arg4:(_Bool)arg5:(unsigned long long)arg6;
 - (void)dataSourceItemsDidChange:(const unordered_map_f886f0c5 *)arg1;
 - (void)dataSourceChanged:(const vector_274a36ec *)arg1;
-- (_Bool)sectionsWillBeReloaded:(const vector_274a36ec *)arg1;
-- (void)dataSourceChanged_propChanged:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2:(unordered_set_931aff12 *)arg3:(unordered_map_f886f0c5 *)arg4;
-- (void)dataSourceChanged_move:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2;
-- (void)dataSourceChanged_insert:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2:(unordered_set_931aff12 *)arg3:(_Bool *)arg4;
-- (void)dataSourceChanged_remove:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2:(unordered_set_931aff12 *)arg3:(unordered_map_f886f0c5 *)arg4:(_Bool *)arg5;
+- (void)dataSourceChanged_buildPropChanged:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2:(unordered_map_f886f0c5 *)arg3;
+- (void)dataSourceChanged_buildMove:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2:(unordered_map_c143f583 *)arg3;
+- (void)dataSourceChanged_buildInsert:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2:(map_a2752b13 *)arg3:(map_a2752b13 *)arg4;
+- (void)dataSourceChanged_buildRemove:(const struct TFENode *)arg1:(const struct TBVDSChangedPayload *)arg2:(unordered_set_931aff12 *)arg3:(unordered_map_7677f55a *)arg4:(id)arg5;
 - (id)popoverAnchorViewForNode:(const struct TFENode *)arg1;
 - (struct CGRect)frameForSection:(unsigned long long)arg1;
 - (struct CGRect)frameForNode:(const struct TFENode *)arg1;
@@ -102,7 +101,6 @@ __attribute__((visibility("hidden")))
 - (void)getVisibleNodes:(struct TFENodeVector *)arg1;
 - (unsigned long long)itemCount;
 - (int)viewStyle;
-- (id)iconImageForNode:(const struct TFENode *)arg1;
 - (id)indexPathsForNodes:(const struct TFENodeVector *)arg1 upTo:(unsigned long long)arg2;
 - (id)indexPathForNode:(const struct TFENode *)arg1;
 - (struct TFENode)nodeAtEventPoint:(id)arg1;

@@ -10,14 +10,15 @@
 #import "QLSeamlessCloserDelegate.h"
 #import "TQLPreviewWindowControllerProtocol.h"
 
-@class FI_TQLPreviewView, NSString;
+@class NSString, QLPreviewView;
 
 __attribute__((visibility("hidden")))
 @interface FI_TQLPreviewViewZoomController : NSObject <ISpawnOriginDelegateProtocol, TQLPreviewWindowControllerProtocol, QLSeamlessCloserDelegate>
 {
-    FI_TQLPreviewView *_previewView;
+    QLPreviewView *_qlPreviewView;
 }
 
+- (void).cxx_destruct;
 - (_Bool)isBackupBrowser;
 - (_Bool)quickLookHandleEvent:(id)arg1;
 - (id)seamlessCloserSourcePreviewViewForPreviewItem:(id)arg1;

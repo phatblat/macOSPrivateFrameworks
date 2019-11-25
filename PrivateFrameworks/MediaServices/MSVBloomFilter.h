@@ -32,6 +32,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)description;
 - (void)dealloc;
+- (id)initWithCapacity:(long long)arg1 falsePositiveTolerance:(float)arg2 murmurSeed:(unsigned long long)arg3;
 - (id)initWithCapacity:(long long)arg1 falsePositiveTolerance:(float)arg2;
 
 @end

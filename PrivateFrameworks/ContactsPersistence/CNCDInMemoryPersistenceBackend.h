@@ -16,6 +16,10 @@
     NSMutableArray *_containers;
 }
 
+@property(readonly, nonatomic) NSMutableArray *containers; // @synthesize containers=_containers;
+@property(readonly, nonatomic) NSPersistentStoreCoordinator *coordinator; // @synthesize coordinator=_coordinator;
+- (void).cxx_destruct;
+- (void)applyDiff:(id)arg1 toContainerWithIdentifier:(id)arg2;
 - (id)defaultContainer;
 - (id)allContainers;
 - (id)makePersistenceContextWithNotificationSource:(id)arg1;

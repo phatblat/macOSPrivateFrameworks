@@ -8,13 +8,15 @@
 
 #import "_DKStandingQuery.h"
 
-@class NSString;
+@class NSObject<OS_xpc_object>, NSString;
 
 @interface _DKDeviceActivityStandingQuery : NSObject <_DKStandingQuery>
 {
     NSString *queryIdentifier;
+    NSObject<OS_xpc_object> *activity;
 }
 
+@property(retain, nonatomic) NSObject<OS_xpc_object> *activity; // @synthesize activity;
 @property(retain, nonatomic) NSString *queryIdentifier; // @synthesize queryIdentifier;
 - (void).cxx_destruct;
 - (id)fetchResultForDayOfWeek:(long long)arg1 withStorage:(id)arg2;
@@ -29,6 +31,7 @@
 - (long long)_computeSlotForDate:(id)arg1;
 - (id)_customIdentifierForDayOfWeek:(long long)arg1;
 - (double)_deviceActivityEphemerality;
+- (BOOL)_shouldDefer;
 - (id)init;
 
 @end

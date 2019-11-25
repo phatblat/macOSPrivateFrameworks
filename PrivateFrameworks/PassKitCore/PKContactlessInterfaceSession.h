@@ -39,7 +39,7 @@
 - (void)_endFieldPropertiesLookup;
 - (void)_endLookupAndNotifyForFieldProperties:(id)arg1;
 - (void)_startLookupForFieldProperties:(id)arg1;
-- (void)loyaltyAndPaymentSession:(id)arg1 didExpressModeStateChange:(unsigned int)arg2;
+- (void)loyaltyAndPaymentSession:(id)arg1 didExpressModeStateChange:(unsigned int)arg2 withObject:(id)arg3;
 - (void)loyaltyAndPaymentSession:(id)arg1 didFelicaStateChange:(id)arg2;
 - (void)loyaltyAndPaymentSession:(id)arg1 didFailDeferredAuthorization:(BOOL)arg2;
 - (void)loyaltyAndPaymentSession:(id)arg1 didSelectValueAddedService:(BOOL)arg2;
@@ -50,7 +50,7 @@
 - (void)loyaltyAndPaymentSessionDidEndUnexpectedly:(id)arg1;
 - (void)loyaltyAndPaymentSession:(id)arg1 didExpireTransactionForApplet:(id)arg2;
 - (void)loyaltyAndPaymentSession:(id)arg1 didEndTransaction:(id)arg2;
-- (void)loyaltyAndPaymentSessionDidReceiveActivityTimeout:(id)arg1;
+- (void)loyaltyAndPaymentSessionDidReceiveActivityTimeout:(id)arg1 result:(id)arg2;
 - (void)loyaltyAndPaymentSession:(id)arg1 didStartTransaction:(id)arg2;
 - (void)loyaltyAndPaymentSessionHasPendingServerRequest:(id)arg1;
 - (void)_processEndEvent:(id)arg1 withPartialContext:(id)arg2 groupHeadIdentifier:(id)arg3 groupAppletIdentifiers:(id)arg4;

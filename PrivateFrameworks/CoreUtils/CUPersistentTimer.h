@@ -51,7 +51,6 @@
 - (void)_invalidate;
 - (void)invalidate;
 - (void)dealloc;
-- (id)init;
 - (id)initWithIdentifier:(id)arg1;
 
 @end

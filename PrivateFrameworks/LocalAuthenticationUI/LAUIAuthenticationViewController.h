@@ -11,7 +11,7 @@
 #import "LAUIPlaceHolderTextFieldDelegate.h"
 #import "LAUIUserPasswordFieldRemoteProtocol.h"
 
-@class LAContext, LAUIAuthenticationViewControllerUIDelegate, LAUIPasswordField, LAUIPlaceholderTextField, LAUIShakeAnimation, NSColor, NSImageView, NSLayoutConstraint, NSObject<OS_dispatch_queue>, NSString, NSTextField, NSTextView, NSView;
+@class LAContext, LAUIAuthenticationViewControllerUIDelegate, LAUIPasswordField, LAUIPlaceholderTextField, LAUIShakeAnimation, NSColor, NSImageView, NSLayoutConstraint, NSObject<OS_dispatch_queue>, NSRemoteViewController, NSString, NSTextField, NSTextView, NSView;
 
 @interface LAUIAuthenticationViewController : NSViewController <LAUIUserPasswordFieldRemoteProtocol, LAUIPasswordFieldDelegate, LAUIDelegate, LAUIPlaceHolderTextFieldDelegate>
 {
@@ -22,7 +22,6 @@
     LAUIShakeAnimation *_shakeAnimation;
     NSObject<OS_dispatch_queue> *_requestControllerQueue;
     BOOL _queueSuspended;
-    BOOL _touchIDActive;
     BOOL _touchIDInhibited;
     NSString *_authTitle;
     NSString *_authSubTitle;
@@ -42,8 +41,15 @@
     NSTextView *_hintTextView;
     NSLayoutConstraint *_lockImageCenterX;
     LAUIPasswordField *_appPasswordField;
+    NSRemoteViewController *_remoteViewController;
+    unsigned long long _enabledMechanisms;
+    unsigned long long _activeMechanisms;
 }
 
++ (id)_legacyModeMapping;
+@property(nonatomic) unsigned long long activeMechanisms; // @synthesize activeMechanisms=_activeMechanisms;
+@property(nonatomic) unsigned long long enabledMechanisms; // @synthesize enabledMechanisms=_enabledMechanisms;
+@property(nonatomic) __weak NSRemoteViewController *remoteViewController; // @synthesize remoteViewController=_remoteViewController;
 @property(nonatomic) __weak LAUIPasswordField *appPasswordField; // @synthesize appPasswordField=_appPasswordField;
 @property(nonatomic) __weak NSLayoutConstraint *lockImageCenterX; // @synthesize lockImageCenterX=_lockImageCenterX;
 @property(nonatomic) __weak NSTextView *hintTextView; // @synthesize hintTextView=_hintTextView;
@@ -56,7 +62,6 @@
 @property(readonly, nonatomic) unsigned long long mode; // @synthesize mode=_mode;
 @property(nonatomic) __weak id <LAUIAuthenticationViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic, getter=isTouchIDInhibited) BOOL touchIDInhibited; // @synthesize touchIDInhibited=_touchIDInhibited;
-@property(readonly, nonatomic, getter=isTouchIDActive) BOOL touchIDActive; // @synthesize touchIDActive=_touchIDActive;
 @property(retain, nonatomic) NSColor *authSubTitleColor; // @synthesize authSubTitleColor=_authSubTitleColor;
 @property(retain, nonatomic) NSColor *authTitleColor; // @synthesize authTitleColor=_authTitleColor;
 @property(retain, nonatomic) NSString *authDFRPrompt; // @synthesize authDFRPrompt=_authDFRPrompt;
@@ -84,14 +89,24 @@
 - (BOOL)isPasswordFieldFocused;
 - (void)_calcAndResizeHintTextView;
 - (void)_setHintString:(id)arg1 withColor:(id)arg2;
+- (void)_mechanism:(unsigned long long)arg1 enable:(BOOL)arg2 reply:(CDUnknownBlockType)arg3;
+- (void)disableMechanism:(unsigned long long)arg1 reply:(CDUnknownBlockType)arg2;
+- (void)enableMechanism:(unsigned long long)arg1 reply:(CDUnknownBlockType)arg2;
+- (BOOL)isMechanismActive:(unsigned long long)arg1;
+- (BOOL)isMechanismEnabled:(unsigned long long)arg1;
+- (BOOL)isMechanismAvailable:(unsigned long long)arg1;
 - (void)event:(long long)arg1 params:(id)arg2 reply:(CDUnknownBlockType)arg3;
 @property(readonly, nonatomic, getter=isTouchIDAvailable) BOOL touchIDAvailable;
+@property(readonly, nonatomic, getter=isTouchIDActive) BOOL touchIDActive;
 - (void)setTouchIDActive:(BOOL)arg1;
-- (void)_stopTouchID;
-- (void)_startTouchID;
-- (void)_startOrStopTouchIDIfNecessary;
+- (void)_stopBackgroundMechanisms;
+- (void)_startBackgroundMechanisms;
+- (long long)_policyForBackgroundMechanisms;
+- (void)_startOrStopBackgroundMechanisms;
 - (id)nibBundle;
 - (void)_updateUI;
+- (id)_subtitle;
+- (id)_imageName;
 - (void)_shakeUI:(id)arg1;
 - (void)setAppPasswordAuthenticationHandler:(CDUnknownBlockType)arg1;
 - (void)setAuthenticationResultHandler:(CDUnknownBlockType)arg1;
@@ -109,6 +124,8 @@
 - (void)viewDidLoad;
 - (void)_setAppearanceBasedOnAccessiblityDisplayOptions;
 - (void)dealloc;
+- (void)_setupMechanisms:(unsigned long long)arg1;
+- (id)initWithMechanisms:(unsigned long long)arg1;
 - (id)initWithMode:(unsigned long long)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;

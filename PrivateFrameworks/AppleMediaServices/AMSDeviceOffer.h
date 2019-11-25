@@ -6,9 +6,12 @@
 
 #import "NSObject.h"
 
+#import "AMSBagConsumer.h"
+#import "AMSBagConsumer_Project.h"
+
 @class NSNumber, NSSet, NSString;
 
-@interface AMSDeviceOffer : NSObject
+@interface AMSDeviceOffer : NSObject <AMSBagConsumer_Project, AMSBagConsumer>
 {
     BOOL _downgrading;
     BOOL _subscribed;
@@ -16,10 +19,12 @@
     NSString *_description;
     NSSet *_serialNumbers;
     NSString *_offerIdentifier;
-    unsigned long long _productType;
 }
 
-@property unsigned long long productType; // @synthesize productType=_productType;
++ (void)addRequiredBagKeysToAggregator:(id)arg1;
++ (id)bagSubProfileVersion;
++ (id)bagSubProfile;
++ (id)bagKeySet;
 @property(getter=isSubscribed) BOOL subscribed; // @synthesize subscribed=_subscribed;
 @property(copy) NSString *offerIdentifier; // @synthesize offerIdentifier=_offerIdentifier;
 @property(getter=isDowngrading) BOOL downgrading; // @synthesize downgrading=_downgrading;
@@ -29,10 +34,14 @@
 - (void).cxx_destruct;
 - (id)initWithAdamId:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 @property(readonly) unsigned long long offerType;
 - (id)initWithDictionary:(id)arg1;
 - (id)initWithOfferIdentifier:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

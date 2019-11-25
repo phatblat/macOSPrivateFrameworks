@@ -17,6 +17,7 @@
     CDUnknownBlockType _pendingCompletion;
 }
 
++ (id)sharedNotifierForCoreSpeechDaemon;
 + (id)sharedNotifier;
 @property(copy, nonatomic) CDUnknownBlockType pendingCompletion; // @synthesize pendingCompletion=_pendingCompletion;
 @property(retain, nonatomic) CSActivationEvent *pendingActivationEvent; // @synthesize pendingActivationEvent=_pendingActivationEvent;
@@ -24,6 +25,7 @@
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(nonatomic) int notifyToken; // @synthesize notifyToken=_notifyToken;
 - (void).cxx_destruct;
+- (id)_createXPCClientConnection;
 - (void)receiveTestNotificationAOPMode;
 - (void)receiveTestNotificationAPMode;
 - (void)_setupTestNotification;
@@ -34,6 +36,8 @@
 - (void)setDelegate:(id)arg1 for:(unsigned long long)arg2;
 - (void)notifyActivationEvent:(unsigned long long)arg1 deviceId:(id)arg2 activationInfo:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (BOOL)_isVoiceTriggerEvent:(id)arg1;
+- (void)_notifyActivationEvent:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)notifyActivationEventForCoreSpeechDaemon:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)notifyActivationEvent:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)stop;
 - (void)start;

@@ -40,6 +40,7 @@
 - (id)internalState;
 - (void)aggDAuthorizedQuoteWithSuccess:(BOOL)arg1 authorizedQuote:(id)arg2;
 - (void)paymentAuthorizationCoordinator:(id)arg1 didAuthorizePeerPaymentQuote:(id)arg2 handler:(CDUnknownBlockType)arg3;
+- (BOOL)_contactInfoIsValidForAuthorizedQuote:(id)arg1 errors:(id *)arg2;
 - (void)paymentAuthorizationCoordinator:(id)arg1 didAuthorizePayment:(id)arg2 handler:(CDUnknownBlockType)arg3;
 - (void)paymentAuthorizationCoordinator:(id)arg1 didSelectPaymentMethod:(id)arg2 handler:(CDUnknownBlockType)arg3;
 - (void)paymentAuthorizationCoordinatorDidFinish:(id)arg1;
@@ -58,7 +59,6 @@
 - (void)performAction:(id)arg1 withPaymentIdentifier:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)formalRequestTokenForAmount:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_updateLastUsedAlternateFundingSource;
-- (id)performQuoteOrientation;
 - (void)performQuoteWithCompletion:(CDUnknownBlockType)arg1;
 - (void)performQuote:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)_defaultAlternateFundingSourceForMode:(unsigned long long)arg1;
@@ -68,6 +68,7 @@
 - (void)quoteWithAmount:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)selectMode:(unsigned long long)arg1;
 - (void)identifyRecipientSelf;
+- (void)identifyRecipientDebitCardWithCompletion:(CDUnknownBlockType)arg1;
 - (void)identifyRecipientWithRoutingNumber:(id)arg1 accountNumber:(id)arg2 accountName:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)_refreshRecipientWithCompletion:(CDUnknownBlockType)arg1;
 - (void)identifyRecipientWithAddress:(id)arg1 senderAddress:(id)arg2 completion:(CDUnknownBlockType)arg3;

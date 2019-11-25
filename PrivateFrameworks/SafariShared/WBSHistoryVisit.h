@@ -37,7 +37,7 @@
 @property(nonatomic, getter=loadWasSuccessful) BOOL loadSuccessful; // @synthesize loadSuccessful=_loadSuccessful;
 @property(nonatomic) unsigned long long attributes; // @synthesize attributes=_attributes;
 @property(nonatomic) unsigned long long score; // @synthesize score=_score;
-@property(copy, nonatomic) NSString *title; // @synthesize title=_title;
+@property(copy) NSString *title; // @synthesize title=_title;
 @property(readonly, nonatomic) double visitTime; // @synthesize visitTime=_visitTime;
 @property(nonatomic) long long origin; // @synthesize origin=_origin;
 @property(nonatomic) __weak WBSHistoryItem *item; // @synthesize item=_item;
@@ -52,7 +52,6 @@
 @property(readonly, nonatomic) unsigned long long redirectSourceChainLength;
 @property(readonly, nonatomic) WBSHistoryVisit *endOfRedirectChain;
 - (id)initWithHistoryItem:(id)arg1 sqliteRow:(id)arg2 baseColumnIndex:(unsigned long long)arg3;
-- (id)initWithHistoryItem:(id)arg1 sqliteRow:(id)arg2;
 - (id)initWithHistoryItem:(id)arg1 visitTime:(double)arg2;
 - (id)initWithHistoryItem:(id)arg1 visitTime:(double)arg2 loadWasSuccesful:(BOOL)arg3 wasHTTPNonGet:(BOOL)arg4 origin:(long long)arg5 attributes:(unsigned long long)arg6;
 - (id)initWithHistoryItem:(id)arg1 streamedVisit:(const struct _HistoryStreamedVisit *)arg2;

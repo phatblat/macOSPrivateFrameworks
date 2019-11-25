@@ -14,22 +14,22 @@
 {
     NSHashTable *_observers;
     NSObject<OS_dispatch_queue> *_queue;
-    BOOL _isContinuousRunningMode;
 }
 
-@property(nonatomic) BOOL isContinuousRunningMode; // @synthesize isContinuousRunningMode=_isContinuousRunningMode;
 - (void).cxx_destruct;
+- (void)_notifyRaiseToSpeakTriggerEvent:(id)arg1;
+- (void)_notifySuperVector:(id)arg1;
 - (void)_notifyKeywordDetect;
-- (void)_notifyTwoShotDetectionAt:(double)arg1;
 - (void)_notifySpeakerReject:(id)arg1;
 - (void)_notifyNearMissEvent:(id)arg1;
-- (void)_notifyTriggerEvent:(id)arg1;
+- (void)_notifyTriggerEvent:(id)arg1 deviceId:(id)arg2;
 - (id)_createVoiceTriggerEventInfoString:(id)arg1;
+- (void)raiseToSpeakDetected:(id)arg1;
 - (void)keywordDetectorDidDetectKeyword;
-- (void)voiceTriggerDidDetectTwoShotAtTime:(double)arg1;
+- (void)voiceTriggerGotSuperVector:(id)arg1;
 - (void)voiceTriggerDidDetectSpeakerReject:(id)arg1;
 - (void)voiceTriggerDidDetectNearMiss:(id)arg1;
-- (void)voiceTriggerDidDetectKeyword:(id)arg1;
+- (void)voiceTriggerDidDetectKeyword:(id)arg1 deviceId:(id)arg2;
 - (void)unregisterObserver:(id)arg1;
 - (void)registerObserver:(id)arg1;
 - (id)init;

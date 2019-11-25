@@ -12,7 +12,7 @@
 #import "VCMediaStreamTransportDelegate.h"
 #import "VCSecurityEventHandler.h"
 
-@class AVCBasebandCongestionDetector, AVCStatisticsCollector, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, VCDatagramChannelIDS, VCMasterKeyIndex, VCMediaStreamConfig, VCMediaStreamTransport, VCWeakObjectHolder;
+@class AVCBasebandCongestionDetector, AVCStatisticsCollector, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, VCCallInfoBlob, VCDatagramChannelIDS, VCMasterKeyIndex, VCMediaStreamConfig, VCMediaStreamTransport, VCWeakObjectHolder;
 
 __attribute__((visibility("hidden")))
 @interface VCMediaStream : VCObject <VCMediaStreamProtocol, RTCPReportProvider, VCSecurityEventHandler, VCMediaStreamTransportDelegate, VCConnectionChangedHandler>
@@ -38,6 +38,7 @@ __attribute__((visibility("hidden")))
     double _decryptionErrorStartTime;
     unsigned int _localSSRC;
     unsigned int _transportSessionID;
+    int _clientPID;
     VCWeakObjectHolder *_notificationDelegate;
     VCWeakObjectHolder *_rtcpReportProvider;
     AVCStatisticsCollector *_statisticsCollector;
@@ -48,19 +49,25 @@ __attribute__((visibility("hidden")))
     CDUnknownFunctionPointerType _vcMediaCallback;
     struct tagVCMediaQueue *_mediaQueue;
     VCMasterKeyIndex *_lastReceivedMKI;
+    VCCallInfoBlob *_remoteEndpointInfo;
+    CDUnknownFunctionPointerType _notificationHandler;
+    CDUnknownFunctionPointerType _packetEventHandler;
+    long long _streamToken;
 }
 
 + (BOOL)isSameSRTPKey:(id)arg1 newKey:(id)arg2;
+@property(readonly, nonatomic) long long streamToken; // @synthesize streamToken=_streamToken;
 @property(nonatomic) int operatingMode; // @synthesize operatingMode=_operatingMode;
 @property(nonatomic) struct tagVCMediaQueue *mediaQueue; // @synthesize mediaQueue=_mediaQueue;
 @property(retain, nonatomic) AVCBasebandCongestionDetector *basebandCongestionDetector; // @synthesize basebandCongestionDetector=_basebandCongestionDetector;
 @property(retain, nonatomic) AVCStatisticsCollector *statisticsCollector; // @synthesize statisticsCollector=_statisticsCollector;
 @property(readonly, nonatomic) unsigned int localSSRC; // @synthesize localSSRC=_localSSRC;
 @property(readonly, nonatomic) int state; // @synthesize state=_state;
+- (int)handleMediaCallbackNotification:(int)arg1 inData:(void *)arg2 outData:(void *)arg3;
 - (void)handleActiveConnectionChange:(id)arg1;
-- (void)collectTxChannelMetrics:(CDStruct_1c8e0384 *)arg1;
-- (void)collectRxChannelMetrics:(CDStruct_1c8e0384 *)arg1;
-- (void)collectRxChannelMetrics:(CDStruct_1c8e0384 *)arg1 interval:(float)arg2;
+- (void)collectTxChannelMetrics:(CDStruct_3ab08b48 *)arg1;
+- (void)collectRxChannelMetrics:(CDStruct_3ab08b48 *)arg1;
+- (void)collectRxChannelMetrics:(CDStruct_3ab08b48 *)arg1 interval:(float)arg2;
 @property(readonly, nonatomic) double rtcpHeartbeatLeeway;
 @property(readonly, nonatomic) double lastReceivedRTCPPacketTime;
 @property(readonly, nonatomic) double lastReceivedRTPPacketTime;
@@ -117,8 +124,9 @@ __attribute__((visibility("hidden")))
 - (void)stop;
 - (void)start;
 - (BOOL)setStreamConfig:(id)arg1 withError:(id *)arg2;
+- (void)resetDecryptionTimeout;
 - (BOOL)handleEncryptionInfoChange:(id)arg1;
-- (id)createTransport;
+- (id)createTransportWithSSRC:(unsigned int)arg1;
 - (char *)streamStateToString:(int)arg1;
 - (void)unlock;
 - (void)lock;
@@ -131,7 +139,12 @@ __attribute__((visibility("hidden")))
 - (id)setupRTPWithIDSDestination:(id)arg1 error:(id *)arg2;
 - (id)setupRTPForIDS;
 - (id)setupRTPWithLocalParticipantInfo:(id)arg1 error:(id *)arg2;
-- (id)setupRTPWithSockets:(id)arg1 error:(id *)arg2;
+- (void)setupCallbacksWithNWConnectionMonitor:(struct tagVCNWConnectionMonitor *)arg1;
+- (BOOL)setupNWConnectionWithClientID:(unsigned char [16])arg1;
+- (id)setupRTPWithNWConnectionID:(id)arg1 error:(id *)arg2;
+- (void)cleanupNWInfo:(CDStruct_1f9ca619 *)arg1;
+- (void)setupRTPWithRTPSocket:(int)arg1 RTCPSocket:(int)arg2;
+- (id)setupRTPWithSocketDictionary:(id)arg1 error:(id *)arg2;
 - (void)decryptionStatusChanged:(_Bool)arg1;
 @property(readonly, nonatomic) BOOL isSendingMedia;
 @property(readonly, nonatomic) VCMediaStreamConfig *defaultStreamConfig;

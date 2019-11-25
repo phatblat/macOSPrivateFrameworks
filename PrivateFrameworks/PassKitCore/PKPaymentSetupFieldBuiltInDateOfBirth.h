@@ -6,15 +6,11 @@
 
 #import <PassKitCore/PKPaymentSetupFieldDate.h>
 
-@class NSDate;
-
 @interface PKPaymentSetupFieldBuiltInDateOfBirth : PKPaymentSetupFieldDate
 {
-    NSDate *_defaultDate;
 }
 
-- (void).cxx_destruct;
-- (id)defaultDate;
+- (BOOL)submissionStringMeetsAllRequirements;
 - (BOOL)isBuiltIn;
 - (id)initWithIdentifier:(id)arg1 type:(unsigned long long)arg2;
 

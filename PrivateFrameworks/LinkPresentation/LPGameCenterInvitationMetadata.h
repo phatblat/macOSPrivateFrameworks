@@ -6,12 +6,13 @@
 
 #import <LinkPresentation/LPSpecializationMetadata.h>
 
-#import "LPLinkMetadataPresentationTransformerAdaptor.h"
-#import "LPLinkMetadataPreviewTransformerAdaptor.h"
+#import "LPLinkMetadataBackwardCompatibility.h"
+#import "LPLinkMetadataPresentationTransformer.h"
+#import "LPLinkMetadataPreviewTransformer.h"
 
 @class LPImage, NSString;
 
-@interface LPGameCenterInvitationMetadata : LPSpecializationMetadata <LPLinkMetadataPresentationTransformerAdaptor, LPLinkMetadataPreviewTransformerAdaptor>
+@interface LPGameCenterInvitationMetadata : LPSpecializationMetadata <LPLinkMetadataPresentationTransformer, LPLinkMetadataPreviewTransformer, LPLinkMetadataBackwardCompatibility>
 {
     unsigned int _numberOfPlayers;
     unsigned int _minimumNumberOfPlayers;
@@ -21,6 +22,7 @@
     LPImage *_icon;
 }
 
++ (id)keyPathsForValuesAffecting_dummyPropertyForObservation;
 + (BOOL)supportsSecureCoding;
 @property(nonatomic) unsigned int maximumNumberOfPlayers; // @synthesize maximumNumberOfPlayers=_maximumNumberOfPlayers;
 @property(nonatomic) unsigned int minimumNumberOfPlayers; // @synthesize minimumNumberOfPlayers=_minimumNumberOfPlayers;
@@ -29,14 +31,24 @@
 @property(retain, nonatomic) LPImage *image; // @synthesize image=_image;
 @property(copy, nonatomic) NSString *game; // @synthesize game=_game;
 - (void).cxx_destruct;
+- (void)_enumerateAsynchronousFields:(CDUnknownBlockType)arg1;
+@property(readonly) unsigned long long hash;
+- (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)populateMetadataForBackwardCompatibility:(id)arg1;
 - (id)previewImageForTransformer:(id)arg1;
 - (id)previewSummaryForTransformer:(id)arg1;
+- (BOOL)canGeneratePresentationPropertiesForURL:(id)arg1;
 - (id)presentationPropertiesForTransformer:(id)arg1;
 - (id)playerCountText;
 - (id)invitationText;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

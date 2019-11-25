@@ -6,9 +6,13 @@
 
 #import "NSObject.h"
 
+#import "ISImageDescriptor.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
-@interface ISImageDescriptor : NSObject <NSCopying>
+@class NSString;
+
+@interface ISImageDescriptor : NSObject <NSSecureCoding, ISImageDescriptor, NSCopying>
 {
     struct CGSize _size;
     double _scale;
@@ -17,21 +21,35 @@
     unsigned long long _backgroundStyle;
 }
 
++ (BOOL)supportsSecureCoding;
++ (id)imageDescriptorNamed:(id)arg1;
++ (id)icnsImageDescriptors;
 @property(nonatomic) unsigned long long backgroundStyle; // @synthesize backgroundStyle=_backgroundStyle;
 @property(nonatomic) unsigned long long badgeOptions; // @synthesize badgeOptions=_badgeOptions;
 @property(nonatomic) unsigned long long variantOptions; // @synthesize variantOptions=_variantOptions;
 @property(nonatomic) double scale; // @synthesize scale=_scale;
 @property(nonatomic) struct CGSize size; // @synthesize size=_size;
+@property(readonly, copy) NSString *description;
+@property(retain) id <NSCopying> imageCacheKey; // @dynamic imageCacheKey;
 @property(readonly) double sanitizedScale;
 @property(readonly) struct CGSize sanitizedSize;
+@property(nonatomic) BOOL drawBadge;
 @property(nonatomic) BOOL drawBorder;
 @property(nonatomic) BOOL shouldApplyMask;
+@property(readonly, nonatomic) double continuousCornerRadius;
 @property(nonatomic) unsigned long long shape;
 @property(nonatomic) BOOL selectedVariant;
 @property(nonatomic) BOOL templateVariant;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithSize:(struct CGSize)arg1 scale:(double)arg2;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

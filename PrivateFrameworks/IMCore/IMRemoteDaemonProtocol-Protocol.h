@@ -6,11 +6,22 @@
 
 #import "NSObject.h"
 
-@class IMItem, IMMessageItem, NSArray, NSData, NSDate, NSDictionary, NSNumber, NSString, NSURL;
+@class IMItem, IMMessageItem, IMNickname, NSArray, NSData, NSDate, NSDictionary, NSNumber, NSSet, NSString, NSURL;
 
 @protocol IMRemoteDaemonProtocol <NSObject>
+- (void)requestScreenTimeAvailability;
 - (void)preWarm;
-- (void)simulateMessageReceive:(NSString *)arg1 serviceName:(NSString *)arg2 handles:(NSArray *)arg3 sender:(NSString *)arg4;
+- (void)simulateMessageReceive:(NSString *)arg1 serviceName:(NSString *)arg2 groupID:(NSString *)arg3 handles:(NSArray *)arg4 sender:(NSString *)arg5;
+- (void)userNicknameForRecordID:(NSString *)arg1 decryptionKey:(NSData *)arg2 requestID:(NSString *)arg3;
+- (void)setNewPersonalNickname:(IMNickname *)arg1;
+- (void)fetchPersonalNickname;
+- (void)nicknamePreferencesDidChange;
+- (void)blacklistHandleIDsForNicknameSharing:(NSSet *)arg1;
+- (void)whitelistHandleIDsForNicknameSharing:(NSSet *)arg1 onChatGUIDs:(NSArray *)arg2;
+- (void)ignorePendingNicknameUpdatesForHandleIDs:(NSArray *)arg1;
+- (void)clearPendingNicknameUpdatesForHandleIDs:(NSArray *)arg1;
+- (void)fetchHandleSharingState;
+- (void)fetchNicknames;
 - (void)simulateOneTimeCodeArriving:(NSDictionary *)arg1;
 - (void)consumeCodeWithMessageGUID:(NSString *)arg1;
 - (void)requestOneTimeCodeStatus;
@@ -21,9 +32,10 @@
 - (void)syncDeletesToCloudKit;
 - (void)printCachedRampState;
 - (void)fetchLatestRampState;
+- (void)reportMetricToCK:(NSString *)arg1 withDict:(NSDictionary *)arg2;
 - (void)writeCloudKitSyncCounts:(NSDictionary *)arg1;
 - (void)fetchSyncStateStatistics;
-- (void)fetchSyncStateStats;
+- (void)updateAttachmentFileSizes;
 - (void)metricAttachments:(long long)arg1;
 - (void)purgeAttachments:(long long)arg1;
 - (void)deleteSalt;
@@ -31,6 +43,9 @@
 - (void)fetchLatestSalt;
 - (void)fetchSecurityLevelAndUpdateMiCSwitchEligibility;
 - (void)broadcastCloudKitStateAfterClearingErrors;
+- (void)clearAnalyticDefaultsAndLocalSyncState;
+- (void)uploadDailyAnalyticstoCloudKit;
+- (void)broadcastCloudKitStateAfterFetchingAccountStatus;
 - (void)broadcastCloudKitState;
 - (void)initiateSync;
 - (void)tryToDisableAllDevices;
@@ -135,17 +150,20 @@
 - (void)autoReconnectAccount:(NSString *)arg1;
 - (void)autoLoginAccount:(NSString *)arg1;
 - (void)archiveChat:(NSString *)arg1;
-- (void)initiateCNContactBasedChatMerge:(BOOL)arg1;
 - (void)debugUpdateGroupParticipantversion:(unsigned long long)arg1 chatIdentifier:(NSString *)arg2;
 - (void)loadChatWithChatIdentifier:(NSString *)arg1;
 - (void)removeChat:(NSString *)arg1;
 - (void)silenceChat:(NSString *)arg1 untilDate:(NSDate *)arg2;
 - (void)chat:(NSString *)arg1 updateLastAddressedSIMID:(NSString *)arg2;
 - (void)chat:(NSString *)arg1 updateLastAddressHandle:(NSString *)arg2;
+- (void)chat:(NSString *)arg1 updateIsBlackholed:(BOOL)arg2;
 - (void)chat:(NSString *)arg1 updateIsFiltered:(BOOL)arg2;
 - (void)chat:(NSString *)arg1 updateDisplayName:(NSString *)arg2;
 - (void)chat:(NSString *)arg1 updateProperties:(NSDictionary *)arg2;
 - (void)cleanupAttachments;
+- (void)loadInternalPhishingBlacklist;
+- (void)fetchInternalPhishingBlacklist;
+- (void)initiateQuickSwitch;
 - (void)requestLastMessagesForChats;
 - (void)loadIsDownloadingPurgedAttachmentsForIDs:(NSArray *)arg1 style:(unsigned char)arg2 onServices:(NSArray *)arg3 chatID:(NSString *)arg4 queryID:(NSString *)arg5;
 - (void)downloadPurgedAttachmentsForIDs:(NSArray *)arg1 style:(unsigned char)arg2 onServices:(NSArray *)arg3 chatID:(NSString *)arg4;
@@ -161,6 +179,8 @@
 - (void)markPlayedForIDs:(NSArray *)arg1 style:(unsigned char)arg2 onServices:(NSArray *)arg3 message:(IMMessageItem *)arg4;
 - (void)markPlayedForMessageGUID:(NSString *)arg1;
 - (void)storeItem:(IMItem *)arg1 inChatGUID:(NSString *)arg2;
+- (void)playSendSoundForMessageGUID:(NSString *)arg1 callerOrigin:(long long)arg2;
+- (void)markReadForIDs:(NSArray *)arg1 style:(unsigned char)arg2 onServices:(NSArray *)arg3 messages:(NSArray *)arg4 clientUnreadCount:(unsigned long long)arg5 setUnreadCountToZero:(BOOL)arg6;
 - (void)markReadForIDs:(NSArray *)arg1 style:(unsigned char)arg2 onServices:(NSArray *)arg3 messages:(NSArray *)arg4 clientUnreadCount:(unsigned long long)arg5;
 - (void)markReadForMessageGUID:(NSString *)arg1 callerOrigin:(long long)arg2;
 - (void)markReadForMessageGUID:(NSString *)arg1;
@@ -188,6 +208,7 @@
 - (void)deleteFileTransferWithGUID:(NSString *)arg1;
 - (void)sendStandaloneFileTransfer:(NSString *)arg1;
 - (void)requestBuddyPicturesAndPropertiesForAccount:(NSString *)arg1;
+- (void)requestNetworkDataAvailability;
 - (void)writeAccount:(NSString *)arg1 defaults:(NSDictionary *)arg2;
 - (void)removeAccount:(NSString *)arg1;
 - (void)addAccount:(NSString *)arg1 defaults:(NSDictionary *)arg2 service:(NSString *)arg3;

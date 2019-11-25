@@ -6,12 +6,9 @@
 
 #import "NSObject.h"
 
-#import "CHLoggerProtocol.h"
-#import "CHSynchronizableProtocol.h"
-
 @class CHLogger, CHSynchronizable;
 
-@interface CHSynchronizedLoggable : NSObject <CHSynchronizableProtocol, CHLoggerProtocol>
+@interface CHSynchronizedLoggable : NSObject
 {
     CHLogger *_logger;
     CHSynchronizable *_synchronizable;

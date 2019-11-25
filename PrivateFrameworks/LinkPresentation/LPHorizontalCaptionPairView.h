@@ -9,25 +9,31 @@
 #import "LPContentInsettable.h"
 #import "LPTextStyleable.h"
 
-@class LPTextView;
+@class LPCaptionButtonPresentationProperties, LPTextView;
 
 __attribute__((visibility("hidden")))
 @interface LPHorizontalCaptionPairView : LPComponentView <LPTextStyleable, LPContentInsettable>
 {
     LPTextView *_leftView;
     LPTextView *_rightView;
+    LPCaptionButtonPresentationProperties *_buttonProperties;
     struct NSEdgeInsets _contentInset;
+    long long _balancingMode;
 }
 
 - (void).cxx_destruct;
+- (void)buttonPressed:(id)arg1;
 - (struct CGSize)_layoutCaptionPairForSize:(struct CGSize)arg1 applyingLayout:(BOOL)arg2;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (void)layoutComponentView;
+- (void)setOverrideMaximumNumberOfLines:(long long)arg1;
+- (long long)computedNumberOfLines;
 - (double)descender;
 - (double)ascender;
+- (double)lastLineDescent;
 - (double)firstLineLeading;
 - (void)setContentInset:(struct NSEdgeInsets)arg1;
-- (id)initWithLeadingText:(id)arg1 leadingStyle:(id)arg2 trailingText:(id)arg3 trailingStyle:(id)arg4;
+- (id)initWithLeadingText:(id)arg1 leadingStyle:(id)arg2 trailingText:(id)arg3 trailingStyle:(id)arg4 button:(id)arg5 balancingMode:(long long)arg6;
 - (id)init;
 
 @end

@@ -9,7 +9,7 @@
 #import "LPMediaPlayer.h"
 #import "NSGestureRecognizerDelegate.h"
 
-@class CATextLayer, LPImage, LPImageViewStyle, LPStatisticsTimingToken, LPVideo, LPVideoViewConfiguration, LPVideoViewStyle, NSImageView, NSString, NSView;
+@class CATextLayer, LPImage, LPImageViewStyle, LPVideo, LPVideoViewConfiguration, LPVideoViewStyle, NSImageView, NSString, NSView;
 
 __attribute__((visibility("hidden")))
 @interface LPVideoView : LPComponentView <NSGestureRecognizerDelegate, LPMediaPlayer>
@@ -29,20 +29,19 @@ __attribute__((visibility("hidden")))
     NSView *_containerView;
     NSView *_playbackView;
     CATextLayer *_debugIndicator;
-    LPStatisticsTimingToken *_playbackDelayTimingToken;
     BOOL _playing;
     BOOL _hasBuilt;
     BOOL _wasPlayingOrWaitingToPlayWhenUnparented;
     BOOL _wasPlayingWhenSuspended;
     BOOL _showingPlayButton;
     BOOL _waitingForPlaybackDueToAutoplay;
+    BOOL _hasEverPlayed;
     unsigned long long _lastInteractionTimestamp;
     unsigned long long _playbackWatchdogTimerID;
     unsigned int _loggingID;
     BOOL _usesSharedAudioSession;
     BOOL _waitingForPlayback;
     BOOL _fullScreen;
-    BOOL _hasEverPlayed;
     double _volume;
 }
 
@@ -55,7 +54,6 @@ __attribute__((visibility("hidden")))
 @property(nonatomic, getter=isWaitingForPlayback) BOOL waitingForPlayback; // @synthesize waitingForPlayback=_waitingForPlayback;
 @property(readonly, nonatomic) BOOL usesSharedAudioSession; // @synthesize usesSharedAudioSession=_usesSharedAudioSession;
 - (void).cxx_destruct;
-- (id)fullScreenBackgroundColor;
 @property(nonatomic, getter=isActive) BOOL active;
 - (void)_muteButtonTapRecognized:(id)arg1;
 - (void)_muteButtonHighlightLongPressRecognized:(id)arg1;
@@ -73,6 +71,7 @@ __attribute__((visibility("hidden")))
 - (void)updatePlayButtonVisibility;
 - (void)didChangeMutedState:(BOOL)arg1;
 - (void)updateMuteButtonImage;
+- (void)didEncounterPossiblyTransientPlaybackError;
 - (void)didEncounterPlaybackError;
 - (void)didChangePlayingState:(BOOL)arg1;
 - (void)removePlaceholderViews;

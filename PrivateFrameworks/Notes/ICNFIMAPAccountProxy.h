@@ -70,7 +70,6 @@
 - (id)IMAPMailboxForMailboxName:(id)arg1 createIfNeeded:(BOOL)arg2;
 - (void)setServerPathPrefix:(id)arg1 permanently:(BOOL)arg2;
 - (id)serverPathPrefix;
-@property(readonly) id <ICNFIMAPOfflineCache> offlineCache;
 @property long long gmailCapabilitiesSupport;
 @property BOOL useIDLEIfAvailable;
 - (void)presentOverQuotaAlert;

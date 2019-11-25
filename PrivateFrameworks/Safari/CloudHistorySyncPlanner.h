@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSTimer, WBSCloudHistory;
+@class NSTimer;
 
 __attribute__((visibility("hidden")))
 @interface CloudHistorySyncPlanner : NSObject
 {
-    WBSCloudHistory *_cloudHistory;
+    id <WBSCloudHistoryServiceProtocol> _cloudHistory;
+    BOOL _isCloudHistoryEnabled;
     _Bool _isMonitoringForTriggersAndSyncAttemptNotifications;
     NSTimer *_historyItemsAddedOrChangedIdleTimer;
     NSTimer *_historyItemsRemovedIdleTimer;
@@ -38,6 +39,7 @@ __attribute__((visibility("hidden")))
 - (void)_historyItemsWereRemoved:(id)arg1;
 - (void)_historyItemsWereAddedOrChangedTimerFired:(id)arg1;
 - (void)_historyItemsWereAddedOrChanged:(id)arg1;
+- (void)_fetchDateOfNextPermittedSaveChangesAttemptWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)_cloudHistorySaveAttemptDidComplete:(id)arg1;
 - (void)_sync;
 - (void)_saveChanges;
@@ -50,6 +52,7 @@ __attribute__((visibility("hidden")))
 - (void)syncOnAppStartup;
 - (void)stopTryingToDownloadRemoteConfiguration;
 @property(readonly, nonatomic, getter=isCloudHistoryEnabled) BOOL cloudHistoryEnabled;
+- (void)_cloudHistoryConfigurationChanged:(id)arg1;
 - (id)init;
 
 @end

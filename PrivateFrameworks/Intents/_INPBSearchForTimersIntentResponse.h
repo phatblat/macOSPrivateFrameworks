@@ -15,16 +15,17 @@
 @interface _INPBSearchForTimersIntentResponse : PBCodable <_INPBSearchForTimersIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
+    BOOL __encodeLegacyGloryData;
     NSArray *_matchedTimers;
     NSArray *_timers;
     NSArray *_unmatchedTimers;
-    INCodableAttribute *_associatedCodableAttribute;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)unmatchedTimersType;
 + (Class)timersType;
 + (Class)matchedTimersType;
-@property(copy, nonatomic) INCodableAttribute *associatedCodableAttribute; // @synthesize associatedCodableAttribute=_associatedCodableAttribute;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(copy, nonatomic) NSArray *unmatchedTimers; // @synthesize unmatchedTimers=_unmatchedTimers;
 @property(copy, nonatomic) NSArray *timers; // @synthesize timers=_timers;
 @property(copy, nonatomic) NSArray *matchedTimers; // @synthesize matchedTimers=_matchedTimers;
@@ -33,6 +34,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (id)unmatchedTimersAtIndex:(unsigned long long)arg1;

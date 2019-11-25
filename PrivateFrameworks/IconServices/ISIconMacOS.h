@@ -6,43 +6,39 @@
 
 #import <IconServices/ISIcon.h>
 
-@class NSMapTable, NSObject<OS_dispatch_queue>;
+@class ISImageCache, NSArray, NSData;
 
 __attribute__((visibility("hidden")))
 @interface ISIconMacOS : ISIcon
 {
     struct _LSBinding *_binding;
-    CDStruct_cbacfc36 _validationToken;
-    NSMapTable *_bitmapIDByImageDescriptor;
-    NSObject<OS_dispatch_queue> *_validationQueue;
-    struct os_unfair_lock_s _bitmapIDByImageDescriptorLock;
+    NSArray *_decorations;
+    struct os_unfair_lock_s _iconValidationTokenLock;
+    ISImageCache *_imageCache;
+    struct NSData *_iconValidationToken;
 }
 
-+ (id)sharedValidationQueue;
-+ (id)genericAppIcon;
-+ (id)genericFolderIcon;
-+ (id)genericDocumentIcon;
-+ (id)placeholderIcon;
-+ (id)notLoadedIcon;
-@property(readonly) struct os_unfair_lock_s bitmapIDByImageDescriptorLock; // @synthesize bitmapIDByImageDescriptorLock=_bitmapIDByImageDescriptorLock;
-@property(readonly) NSMapTable *bitmapIDByImageDescriptor; // @synthesize bitmapIDByImageDescriptor=_bitmapIDByImageDescriptor;
-@property CDStruct_cbacfc36 validationToken; // @synthesize validationToken=_validationToken;
+@property struct os_unfair_lock_s iconValidationTokenLock; // @synthesize iconValidationTokenLock=_iconValidationTokenLock;
+@property(retain) NSData *iconValidationToken; // @synthesize iconValidationToken=_iconValidationToken;
+@property(readonly) ISImageCache *imageCache; // @synthesize imageCache=_imageCache;
+@property(readonly, copy, nonatomic) NSArray *decorations; // @synthesize decorations=_decorations;
 @property struct _LSBinding *binding; // @synthesize binding=_binding;
 - (void).cxx_destruct;
 - (void)getCGImageForImageDescriptor:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (struct CGImage *)CGImageForImageDescriptor:(id)arg1;
 - (double)_aspectRatio;
-- (BOOL)_shouldInvalidate;
+- (BOOL)evaluateCurrentValidationToken:(struct NSData *)arg1;
+- (struct NSData *)generateIconValidationToken;
 - (void)getImageForImageDescriptor:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)imageForImageDescriptor:(id)arg1;
 - (void)prepareImagesForImageDescriptors:(id)arg1;
+- (id)_cachedImageForDescriptor:(id)arg1;
 - (id)requestForDescriptor:(id)arg1;
-- (id)noIOImageWithGenerationRequest:(id)arg1;
-- (void)updateBitmapIDForGenerationRequest:(id)arg1 forceFetch:(BOOL)arg2;
-- (void)setBitmapUUID:(id)arg1 forGenerationRequest:(id)arg2;
-- (id)bitmapUUIDForImageDescriptor:(id)arg1;
+- (void)generateImageForDescriptor:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (id)imageFromStoreForDescriptor:(id)arg1;
 - (id)placeholderImageWithImageDescriptor:(id)arg1;
-@property(readonly) NSObject<OS_dispatch_queue> *validationQueue; // @synthesize validationQueue=_validationQueue;
+- (id)resourceUUID;
+- (id)fallbackType;
 - (id)description;
 - (struct _LSBinding *)_variantBindingWithDescriptor:(id)arg1;
 - (unsigned long long)_badgeOptions;
@@ -51,7 +47,9 @@ __attribute__((visibility("hidden")))
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToIcon:(id)arg1;
 - (void)dealloc;
+- (id)initWithBinding:(struct _LSBinding *)arg1 decorations:(id)arg2;
 - (id)initWithBinding:(struct _LSBinding *)arg1;
+- (id)_initWithIcon:(id)arg1 decorations:(id)arg2;
 - (id)_init;
 - (id)initWithResourceProxy:(id)arg1;
 - (id)initWithContentOfURL:(id)arg1;
@@ -62,7 +60,9 @@ __attribute__((visibility("hidden")))
 - (id)initWithTypeCode:(unsigned int)arg1;
 - (id)initWithFileExtension:(id)arg1;
 - (id)initWithType:(id)arg1;
+- (id)initWithBundleIdentifier:(id)arg1;
 - (id)initWithURL:(id)arg1;
+- (id)_initTransparent;
 
 @end
 

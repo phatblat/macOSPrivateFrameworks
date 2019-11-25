@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class ACAccountStore, NSDictionary, NSMutableDictionary, NSMutableSet;
+@class ACAccountStore, NSDictionary, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>;
 
 @interface AXHASettings : NSObject
 {
@@ -14,10 +14,12 @@
     NSMutableSet *_registeredNotifications;
     NSMutableSet *_synchronizePreferences;
     NSMutableDictionary *_updateBlocks;
+    NSObject<OS_dispatch_queue> *_icloudInitializationQueue;
 }
 
 + (id)sharedInstance;
 + (void)initialize;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *icloudInitializationQueue; // @synthesize icloudInitializationQueue=_icloudInitializationQueue;
 @property(retain, nonatomic) NSMutableDictionary *updateBlocks; // @synthesize updateBlocks=_updateBlocks;
 @property(retain, nonatomic) NSMutableSet *synchronizePreferences; // @synthesize synchronizePreferences=_synchronizePreferences;
 @property(retain, nonatomic) NSMutableSet *registeredNotifications; // @synthesize registeredNotifications=_registeredNotifications;
@@ -25,10 +27,10 @@
 - (BOOL)isDeviceIDOnCloudBlacklist:(id)arg1;
 - (void)removeDeviceIDFromCloudBlacklist:(id)arg1;
 - (void)addDeviceIDToCloudBlacklist:(id)arg1;
+@property(nonatomic) long long complicationPreferredDisplayMode;
 @property(nonatomic) BOOL multideviceAudioEnabled;
 @property(nonatomic) BOOL multideviceSettingsEnabled;
 @property(nonatomic) BOOL exportsLiveListenToFile;
-@property(nonatomic) long long inputRoutingOption;
 @property(nonatomic) long long mediaAudioRoute;
 @property(nonatomic) long long callAudioRoute;
 @property(nonatomic) BOOL shouldStreamToRightAid;
@@ -40,12 +42,14 @@
 - (id)_valueForPreferenceKey:(id)arg1;
 - (void)_synchronizeIfNecessary:(id)arg1;
 - (void)_setValue:(id)arg1 forPreferenceKey:(id)arg2;
+- (struct __CFString *)domainNameForPreferenceKey:(id)arg1;
 - (void)registerUpdateBlock:(CDUnknownBlockType)arg1 forRetrieveSelector:(SEL)arg2 withListener:(id)arg3;
 - (void)_registerForNotification:(id)arg1;
 - (id)_preferenceKeyForSelector:(SEL)arg1;
 - (id)_notificationForPreferenceKey:(id)arg1;
 - (void)_handlePreferenceChanged:(id)arg1;
 - (void)pushLocalHearingAidsToiCloud;
+- (BOOL)shouldPushLocalAidsToiCloud;
 - (void)setLocalHearingAidsFromiCloud:(id)arg1;
 - (void)iCloudAccountDidChange:(id)arg1;
 - (void)icloudHearingSettingsDidChange:(id)arg1;
@@ -54,6 +58,7 @@
 - (BOOL)isiCloudPaired;
 - (BOOL)isPairedWithFakeHearingAids;
 - (void)dealloc;
+- (void)_initializeICloudSetup;
 - (id)init;
 
 @end

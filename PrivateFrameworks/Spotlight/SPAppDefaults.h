@@ -10,6 +10,7 @@
 {
 }
 
++ (id)dockApps;
 + (id)localizedGroupName:(id)arg1;
 + (id)localizedGroupNameDictionary;
 + (id)topHitGroupPreferences;
@@ -25,6 +26,7 @@
 + (id)groupIdToNameDictionary;
 + (id)disabledGroups;
 + (void)resetDisabledGroups;
++ (BOOL)isAppleInternalInstall;
 + (void)initialize;
 + (id)defaultList;
 - (void)reloadPrefs;

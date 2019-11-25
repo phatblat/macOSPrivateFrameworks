@@ -17,14 +17,17 @@
 + (unsigned int)supportedTechnologies;
 + (id)icefallSecureElement;
 + (id)embeddedSecureElement;
+- (BOOL)isSeshatAvailabledInRestrictedMode;
 - (unsigned int)hwType;
 - (id)manifestQueryBlob;
 - (void)_updateSecureElementInfo:(id)arg1;
 - (void)_markDirty;
+- (void)_setIsInRestrictedPerformanceMode:(BOOL)arg1;
 - (void)_setIsInRestrictedMode:(BOOL)arg1;
 - (void)_updateIfDirty;
 @property(readonly) unsigned int supportedTechnologies;
 @property(readonly) NSNumber *sequenceCounter;
+@property(readonly) unsigned long long fullOSVersion;
 @property(readonly) unsigned long long OSVersion;
 @property(readonly) BOOL isInRestrictedMode;
 @property(readonly) BOOL isProductionSigned;

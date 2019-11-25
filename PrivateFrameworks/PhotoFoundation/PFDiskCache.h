@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDate, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSString, PFCoalescer;
+@class NSArray, NSDate, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSString, PFTimeIntervalCoalescer;
 
 @interface PFDiskCache : NSObject
 {
@@ -14,13 +14,13 @@
     NSObject<OS_dispatch_queue> *_cacheManagementIOQueue;
     NSObject<OS_dispatch_queue> *_activeReaderWriterQueue;
     NSObject<OS_dispatch_queue> *_cacheExpirationQueue;
-    PFCoalescer *_cacheManagementIOCoalescer;
+    PFTimeIntervalCoalescer *_cacheManagementIOCoalescer;
     NSString *_cacheDirectoryPath;
     NSMutableDictionary *_cacheManagementData;
     NSMutableSet *_activeWritingPaths;
     NSMutableSet *_activeReadingPaths;
-    int _pendingWrites;
-    int _pendingReads;
+    // Error parsing type: Ai, name: _pendingWrites
+    // Error parsing type: Ai, name: _pendingReads
     NSArray *_expirationPolicies;
     NSDate *_lastExpirationStartTime;
     NSDate *_lastExpirationFinishTime;
@@ -29,15 +29,13 @@
     NSDate *_integrityCheckStartTime;
     NSDate *_integrityCheckFinishTime;
     BOOL _integrityCheckRunning;
-    long long _cacheHits;
-    long long _cacheRequests;
+    // Error parsing type: Aq, name: _cacheHits
+    // Error parsing type: Aq, name: _cacheRequests
     long long _cacheManagementIOSentinel;
     unsigned long long _maxPendingWrites;
 }
 
 @property(readonly) unsigned long long maxPendingWrites; // @synthesize maxPendingWrites=_maxPendingWrites;
-@property(readonly) long long cacheRequests; // @synthesize cacheRequests=_cacheRequests;
-@property(readonly) long long cacheHits; // @synthesize cacheHits=_cacheHits;
 @property(readonly) NSArray *expirationPolicies; // @synthesize expirationPolicies=_expirationPolicies;
 @property(readonly) NSString *cacheDirectoryPath; // @synthesize cacheDirectoryPath=_cacheDirectoryPath;
 - (void).cxx_destruct;
@@ -86,7 +84,7 @@
 - (id)_cacheEntriesSortedByAccessTime:(id)arg1;
 - (id)_uniqueIDForCacheEntry:(id)arg1;
 - (void)_logError:(id)arg1;
-- (void)_incrementCacheHits:(BOOL)arg1 incrementCacheRequests:(BOOL)arg2;
+- (void)_incrementCacheHits:(BOOL)arg1;
 - (BOOL)_deleteCacheFileAndEntry:(id)arg1;
 - (BOOL)_deleteCacheFileAndEntryWithoutLock:(id)arg1;
 - (id)_cacheManagementFilePath;
@@ -96,6 +94,8 @@
 - (id)_immutableCacheManagementData;
 - (id)_allCacheEntries;
 - (void)_addSpecialFilesToCacheDirectory;
+@property(readonly) long long cacheRequests;
+@property(readonly) long long cacheHits;
 
 @end
 

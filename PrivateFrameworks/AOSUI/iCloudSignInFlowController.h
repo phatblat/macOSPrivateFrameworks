@@ -40,21 +40,17 @@
 @property(retain, nonatomic) NSString *password; // @synthesize password=_password;
 @property(retain) NSWindow *setupSheet; // @synthesize setupSheet=_setupSheet;
 @property(retain, nonatomic) NSWindow *iCloudWindow; // @synthesize iCloudWindow=_iCloudWindow;
+- (void).cxx_destruct;
 - (BOOL)appleIDIsLoggedIn:(id)arg1;
 - (void)deleteAccountName:(id)arg1;
-- (void)enableDataClass:(id)arg1;
 - (BOOL)isAccountPrimary:(id)arg1;
 - (void)showAlreadySignedInSheet:(id)arg1;
-- (void)showCastleSetupSheetWithOptions:(id)arg1;
-- (void)signOutFailedMainThread:(id)arg1;
-- (void)signOutCompletedMainThread:(id)arg1;
 - (void)signInFailedMainThread:(id)arg1;
 - (void)signInFailedCompletedMainThread:(id)arg1;
 - (void)showSetupAfterCDPUI;
 - (void)completeSignInAfterCDP:(BOOL)arg1 andError:(id)arg2;
 - (void)signInCompletedMainThread:(id)arg1;
-- (void)signOutFailed:(id)arg1;
-- (void)signOutCompleted:(id)arg1;
+- (void)signInFailedCompleted:(id)arg1;
 - (void)signInFailed:(id)arg1;
 - (void)signInCompleted:(id)arg1;
 - (void)_unregisterNotifications;
@@ -72,6 +68,7 @@
 - (void)loginWithAuthResults:(id)arg1;
 - (void)showLoginUI;
 - (void)signInWithIDMSAuthenticationResults:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)callCompletionWithResult:(BOOL)arg1 account:(id)arg2 error:(id)arg3;
 - (void)dealloc;
 - (id)init;
 

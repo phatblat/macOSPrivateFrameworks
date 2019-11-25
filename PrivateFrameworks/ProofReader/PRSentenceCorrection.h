@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
 }
 
 - (BOOL)presentAsGrammarError;
+- (BOOL)presentAsAutocorrection;
 - (BOOL)presentAsSpellingError;
 - (id)corrections;
 - (id)word;
@@ -25,7 +26,7 @@ __attribute__((visibility("hidden")))
 - (int)category;
 - (id)description;
 - (void)dealloc;
-- (id)initWithCategory:(int)arg1 range:(struct _NSRange)arg2 corrections:(id)arg3;
+- (id)initWithCategory:(int)arg1 range:(struct _NSRange)arg2 word:(id)arg3 corrections:(id)arg4;
 
 @end
 

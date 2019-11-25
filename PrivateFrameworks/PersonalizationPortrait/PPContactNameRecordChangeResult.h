@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
 
 @class NSArray;
 
-@interface PPContactNameRecordChangeResult : NSObject <NSSecureCoding>
+@interface PPContactNameRecordChangeResult : NSObject <NSSecureCoding, NSCopying>
 {
     BOOL _changesTruncated;
     NSArray *_changes;

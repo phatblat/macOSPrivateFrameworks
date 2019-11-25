@@ -6,9 +6,10 @@
 
 #import "TUAudioDeviceControllerXPCServer.h"
 #import "TUCallCenterXPCServer.h"
+#import "TUCallFilterControllerXPCServer.h"
 #import "TUCallServicesClientCapabilitiesXPCServer.h"
 #import "TURouteControllerXPCServer.h"
 
-@protocol TUCallServicesXPCServer <TUCallCenterXPCServer, TUCallServicesClientCapabilitiesXPCServer, TUAudioDeviceControllerXPCServer, TURouteControllerXPCServer>
+@protocol TUCallServicesXPCServer <TUCallCenterXPCServer, TUCallServicesClientCapabilitiesXPCServer, TUAudioDeviceControllerXPCServer, TURouteControllerXPCServer, TUCallFilterControllerXPCServer>
 @end
 

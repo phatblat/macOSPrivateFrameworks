@@ -13,6 +13,7 @@
 @interface _MRAVOutputDeviceDescriptorProtobuf : PBCodable <NSCopying>
 {
     float _batteryLevel;
+    NSString *_bluetoothID;
     int _deviceSubType;
     int _deviceType;
     NSString *_firmwareVersion;
@@ -26,6 +27,7 @@
     _MRAVOutputDeviceSourceInfoProtobuf *_sourceInfo;
     NSString *_uniqueIdentifier;
     float _volume;
+    int _volumeCapabilities;
     BOOL _canAccessAppleMusic;
     BOOL _canAccessRemoteAssets;
     BOOL _canAccessiCloudMusicLibrary;
@@ -33,6 +35,7 @@
     BOOL _canPlayEncryptedProgressiveDownloadAssets;
     BOOL _canRelayCommunicationChannel;
     BOOL _groupContainsGroupLeader;
+    BOOL _isAddedToHomeKit;
     BOOL _isAirPlayReceiverSessionActive;
     BOOL _isDeviceGroupable;
     BOOL _isGroupLeader;
@@ -52,6 +55,7 @@
         unsigned int deviceSubType:1;
         unsigned int deviceType:1;
         unsigned int volume:1;
+        unsigned int volumeCapabilities:1;
         unsigned int canAccessAppleMusic:1;
         unsigned int canAccessRemoteAssets:1;
         unsigned int canAccessiCloudMusicLibrary:1;
@@ -59,6 +63,7 @@
         unsigned int canPlayEncryptedProgressiveDownloadAssets:1;
         unsigned int canRelayCommunicationChannel:1;
         unsigned int groupContainsGroupLeader:1;
+        unsigned int isAddedToHomeKit:1;
         unsigned int isAirPlayReceiverSessionActive:1;
         unsigned int isDeviceGroupable:1;
         unsigned int isGroupLeader:1;
@@ -76,6 +81,9 @@
     } _has;
 }
 
+@property(retain, nonatomic) NSString *bluetoothID; // @synthesize bluetoothID=_bluetoothID;
+@property(nonatomic) int volumeCapabilities; // @synthesize volumeCapabilities=_volumeCapabilities;
+@property(nonatomic) BOOL isAddedToHomeKit; // @synthesize isAddedToHomeKit=_isAddedToHomeKit;
 @property(nonatomic) BOOL parentGroupContainsDiscoverableLeader; // @synthesize parentGroupContainsDiscoverableLeader=_parentGroupContainsDiscoverableLeader;
 @property(retain, nonatomic) NSString *parentGroupIdentifier; // @synthesize parentGroupIdentifier=_parentGroupIdentifier;
 @property(nonatomic) BOOL isAirPlayReceiverSessionActive; // @synthesize isAirPlayReceiverSessionActive=_isAirPlayReceiverSessionActive;
@@ -119,6 +127,9 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasBluetoothID;
+@property(nonatomic) BOOL hasVolumeCapabilities;
+@property(nonatomic) BOOL hasIsAddedToHomeKit;
 @property(nonatomic) BOOL hasParentGroupContainsDiscoverableLeader;
 @property(readonly, nonatomic) BOOL hasParentGroupIdentifier;
 @property(nonatomic) BOOL hasIsAirPlayReceiverSessionActive;

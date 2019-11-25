@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import "VCBasebandCodecNotifications.h"
 
 @class NSError;
 
-@protocol VCAudioIOControllerDelegate <NSObject>
+@protocol VCAudioIOControllerDelegate <VCBasebandCodecNotifications>
+- (void)spatialAudioSourceIDChanged:(unsigned long long)arg1;
 - (void)didResume;
 - (void)didSuspend;
 - (void)controllerFormatChanged:(struct AudioStreamBasicDescription)arg1;

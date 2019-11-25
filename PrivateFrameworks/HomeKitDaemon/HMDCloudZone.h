@@ -35,6 +35,7 @@
 @property(retain, nonatomic) CKRecordZone *zone; // @synthesize zone=_zone;
 @property(nonatomic) __weak HMDCloudCache *cache; // @synthesize cache=_cache;
 - (void).cxx_destruct;
+- (void)updateServerChangeToken:(id)arg1;
 - (void)deleteZone;
 - (void)_initializeServerChangeToken:(id)arg1;
 - (void)_initializeSubscription:(id)arg1;
@@ -42,6 +43,8 @@
 @property(readonly, nonatomic) NSString *owner;
 - (id)createCloudZoneChangeTemporaryCache:(BOOL)arg1;
 - (void)deleteCloudRecord:(id)arg1;
+- (void)deleteCloudRecordNames:(id)arg1;
+- (void)updateCloudRecord:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)updateCloudRecord:(id)arg1;
 - (BOOL)isRootCloudRecord:(id)arg1;
 - (BOOL)isRootRecord:(id)arg1;
@@ -49,6 +52,7 @@
 - (void)addCloudRecord:(id)arg1 ownerID:(id)arg2;
 - (void)markMigratedObjectsAsMigrated;
 - (void)fetchMigratedObjects:(CDUnknownBlockType)arg1;
+- (void)allDescendentsCloudRecordsForParentID:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)cloudRecordsForParentID:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)cloudRecordWithObjectID:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)cloudRecordWithObjectIDs:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;

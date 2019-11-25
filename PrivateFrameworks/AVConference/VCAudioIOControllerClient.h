@@ -28,6 +28,8 @@ __attribute__((visibility("hidden")))
     BOOL _isInputMeteringEnabled;
     BOOL _isOutputMeteringEnabled;
     unsigned char _direction;
+    struct _VCAudioIOControllerClientIO _sinkIO;
+    struct _VCAudioIOControllerClientIO _sourceIO;
 }
 
 @property(nonatomic) unsigned char direction; // @synthesize direction=_direction;
@@ -43,15 +45,15 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL allowAudioRecording; // @synthesize allowAudioRecording=_allowAudioRecording;
 @property(nonatomic) int deviceRole; // @synthesize deviceRole=_deviceRole;
 @property(readonly, nonatomic) struct AudioStreamBasicDescription format; // @synthesize format=_format;
-- (void)pushAudioSamples:(struct opaqueVCAudioBufferList *)arg1 controllerTime:(const struct _VCAudioIOControllerTime *)arg2;
-- (void)pullAudioSamples:(struct opaqueVCAudioBufferList *)arg1 controllerTime:(const struct _VCAudioIOControllerTime *)arg2;
-@property(readonly, nonatomic) id <VCAudioIOControllerDelegate><VCAudioIOControllerSink><VCAudioIOControllerSource> delegate;
+@property(readonly, nonatomic) id <VCAudioIOControllerDelegate> delegate;
 - (void)setClientFormat:(struct AudioStreamBasicDescription)arg1;
 - (void)setRemoteCodecType:(unsigned int)arg1 sampleRate:(double)arg2;
 - (void)setFarEndVersionInfo:(struct VoiceIOFarEndVersionInfo)arg1;
-@property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) struct _VCAudioIOControllerClientIO *sinkIO;
+@property(readonly, nonatomic) struct _VCAudioIOControllerClientIO *sourceIO;
+- (id)description;
 - (void)dealloc;
-- (id)initWithDelegate:(id)arg1 clientPid:(int)arg2;
+- (id)initWithDelegate:(id)arg1 sourceContext:(void *)arg2 sourceProcess:(CDUnknownFunctionPointerType)arg3 sinkContext:(void *)arg4 sinkProcess:(CDUnknownFunctionPointerType)arg5 clientPid:(int)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -21,6 +21,8 @@ __attribute__((visibility("hidden")))
     int _forceVideoPayload;
     int _forceRecvVideoPayload;
     int _forceKeyFrameInterval;
+    BOOL _forceWiFiAssist;
+    BOOL _forceWiFiAssistOutOfBudget;
 }
 
 + (BOOL)booleanValueForKey:(struct __CFString *)arg1 defaultValue:(BOOL)arg2;
@@ -29,6 +31,10 @@ __attribute__((visibility("hidden")))
 + (long long)integerValueForKey:(struct __CFString *)arg1;
 + (double)getDoubleValueForKey:(struct __CFString *)arg1 defaultValue:(double)arg2;
 + (id)sharedInstance;
+@property(readonly) BOOL forceWiFiAssistOutOfBudget; // @synthesize forceWiFiAssistOutOfBudget=_forceWiFiAssistOutOfBudget;
+@property(readonly) BOOL forceWiFiAssist; // @synthesize forceWiFiAssist=_forceWiFiAssist;
+- (BOOL)forceUseInternalRTPThreadingWithDefaultValue:(BOOL)arg1;
+@property(readonly) double remoteMediaStallTimeout;
 @property(readonly) unsigned int prominenceInactiveAccumulationThreshold;
 @property(readonly) unsigned int prominenceInactiveProbabilityThreshold;
 @property(readonly) unsigned int prominenceActiveAccumulationThreshold;
@@ -39,6 +45,8 @@ __attribute__((visibility("hidden")))
 - (BOOL)shouldOverrideEffectsFramerate:(unsigned int *)arg1;
 @property(readonly) BOOL forceDisableMediaStalled;
 @property(readonly) BOOL forceDisableVideoDegraded;
+@property(readonly) BOOL forceDisableEffectsHealthCheck;
+@property(readonly) float depthFrameRateMultiplier;
 @property(readonly) BOOL forceDynamicEffectsFramerate;
 @property(readonly) BOOL forceDisableFaceZoom;
 @property(readonly) unsigned int multiwayVideoNetworkBitrateCapCellular;
@@ -53,6 +61,8 @@ __attribute__((visibility("hidden")))
 @property(readonly) unsigned char audioPriorityDecayFast;
 @property(readonly) unsigned char audioPriorityDecaySlow;
 @property(readonly) BOOL forceDisableMediaPriority;
+- (BOOL)enableAudioDumpParticipantLocal:(BOOL)arg1;
+- (BOOL)enableAudioDumpParticipantRemote:(BOOL)arg1;
 @property(readonly) BOOL forceFECRepairStream;
 @property(readonly) unsigned int forceVisibilityIndex;
 @property(readonly) unsigned int minParticipantCountSendVoiceActiveOnly;
@@ -60,26 +70,41 @@ __attribute__((visibility("hidden")))
 @property(readonly) BOOL forceEVSWideBand;
 @property(readonly) unsigned int maxActiveVideoDecoders;
 @property(readonly) unsigned int maxActiveVideoEncoders;
+@property(readonly) BOOL rearCameraVideoStablization;
 @property(readonly) BOOL dumpMediaBlob;
 @property(readonly) BOOL momentsUserPreferenceEnabled;
+- (BOOL)forceWifiAssistOutOfBudget;
+- (BOOL)forceWifiAssist;
 @property(readonly) BOOL shouldDisplayVideoInfoLayer;
 @property(readonly) float pauseHeartbeatInterval;
+@property(readonly) BOOL enableGFTStatsReceiveThread;
+@property(readonly) BOOL enableGFTStatsReporting;
 @property(readonly) int localWRMLinkType;
 @property(readonly) NSNumber *enableiRATSuggestion;
 @property(readonly) BOOL forceIPv6;
 @property(readonly) int max2GRate;
 @property(readonly) int redundancyControlForceVideoRedundancyPercentage;
+@property(readonly) int packetExpirationTime;
 @property(readonly) int rateControlForceRxRate;
 @property(readonly) int rateControlForceTxRate;
 @property(readonly) int rateControlForceRxCap;
 @property(readonly) int rateControlForceTxCap;
+@property(readonly) BOOL rateControlAllowBurstyLossRampDown;
+@property(readonly) BOOL rateControlAllowVideoStop;
 @property(readonly) BOOL rateControlLogEnabled;
 @property(readonly) BOOL rateControlDumpEnabled;
+@property(readonly) int rateControlStatisticsQueueWaitTime;
+@property(readonly) int rateControllerType;
 @property(readonly) BOOL mediaQueueDumpEnabled;
 @property(readonly) BOOL forceDisableMediaQueue;
 @property(readonly) BOOL cannedReplayEnabled;
 @property(readonly) int videoStreamRateControlAlgorithm;
 @property(readonly) BOOL videoStreamRateControlDumpEnabled;
+@property(readonly) BOOL enableHEIFAndHEVCForMoments;
+@property(readonly) int tilesPerVideoFrame;
+@property(readonly) BOOL forceVideoStreamLowLatency;
+@property(readonly) int forceVideoStreamPayload;
+@property(readonly) BOOL forceVideoStreamDisableBitrateCap;
 @property(readonly) int forceVideoStreamRxMinBitrate;
 @property(readonly) int forceVideoStreamRxMaxBitrate;
 @property(readonly) int forceVideoStreamKeyFrameInterval;
@@ -114,6 +139,8 @@ __attribute__((visibility("hidden")))
 @property(readonly) BOOL enableVPBLogging;
 @property(readonly) int enable2vuyCapture;
 @property(readonly) BOOL enableBitstreamCapture;
+- (unsigned int)forceThermalLevelFramerate:(unsigned int)arg1;
+@property(readonly) BOOL forceEnablePearlCamera;
 @property(readonly) BOOL forceMirroredCapture;
 @property(readonly) BOOL forceARCapture;
 @property(readonly) int forceKeyFrameInterval;

@@ -21,11 +21,15 @@
 @property(copy, nonatomic) NSDictionary *currentICloudAccountState; // @synthesize currentICloudAccountState=_currentICloudAccountState;
 @property(retain, nonatomic) ACAccountStore *accountStore; // @synthesize accountStore=_accountStore;
 - (void).cxx_destruct;
+- (void)performBlockInPersonaContextIfNecessary:(CDUnknownBlockType)arg1 forAccountIdentifier:(id)arg2;
 - (void)accountStoreDidChange:(id)arg1;
 - (void)invalidatePrimaryICloudACAccount;
 - (void)internalInvalidatePrimaryICloudACAccount;
 @property(readonly, nonatomic) BOOL didChooseToMigratePrimaryICloudAccount;
 @property(readonly, nonatomic) BOOL primaryICloudAccountEnabled;
+- (id)temporaryDirectoryURLForAccountIdentifier:(id)arg1;
+- (id)applicationDocumentsURLForAccountIdentifier:(id)arg1;
+- (id)iCloudACAccountWithIdentifier:(id)arg1;
 - (id)allICloudACAccounts;
 @property(readonly) ACAccount *primaryICloudACAccount; // @synthesize primaryICloudACAccount=_primaryICloudACAccount;
 - (void)updateICloudACAccountFromStore;

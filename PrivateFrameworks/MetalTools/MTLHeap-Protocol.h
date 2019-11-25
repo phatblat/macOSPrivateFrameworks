@@ -9,13 +9,18 @@
 @class MTLTextureDescriptor, NSString;
 
 @protocol MTLHeap <NSObject>
+@property(readonly) long long type;
 @property(readonly) unsigned long long currentAllocatedSize;
 @property(readonly) unsigned long long usedSize;
 @property(readonly) unsigned long long size;
+@property(readonly) unsigned long long resourceOptions;
+@property(readonly) unsigned long long hazardTrackingMode;
 @property(readonly) unsigned long long cpuCacheMode;
 @property(readonly) unsigned long long storageMode;
 @property(readonly) id <MTLDevice> device;
 @property(copy) NSString *label;
+- (id <MTLTexture>)newTextureWithDescriptor:(MTLTextureDescriptor *)arg1 offset:(unsigned long long)arg2;
+- (id <MTLBuffer>)newBufferWithLength:(unsigned long long)arg1 options:(unsigned long long)arg2 offset:(unsigned long long)arg3;
 - (unsigned long long)setPurgeableState:(unsigned long long)arg1;
 - (id <MTLTexture>)newTextureWithDescriptor:(MTLTextureDescriptor *)arg1;
 - (id <MTLBuffer>)newBufferWithLength:(unsigned long long)arg1 options:(unsigned long long)arg2;

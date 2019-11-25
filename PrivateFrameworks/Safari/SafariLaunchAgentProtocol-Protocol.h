@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "ASWebAuthenticationSessionRequestServing.h"
 #import "AuthenticationSessionCoordinating.h"
-#import "AuthenticationSessionRequestServing.h"
 
 @class NSURL;
 
-@protocol SafariLaunchAgentProtocol <AuthenticationSessionCoordinating, AuthenticationSessionRequestServing>
+@protocol SafariLaunchAgentProtocol <AuthenticationSessionCoordinating, ASWebAuthenticationSessionRequestServing>
 - (void)launchSafariToURL:(NSURL *)arg1;
 @end
 

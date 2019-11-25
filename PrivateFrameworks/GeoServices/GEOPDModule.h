@@ -8,17 +8,34 @@
 
 #import "NSCopying.h"
 
-@class PBUnknownFields;
+@class GEOPDModuleOptions, NSString, PBDataReader, PBUnknownFields;
 
 __attribute__((visibility("hidden")))
 @interface GEOPDModule : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     PBUnknownFields *_unknownFields;
+    NSString *_debugDescription;
+    GEOPDModuleOptions *_options;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     int _type;
-    CDStruct_f953fb60 _has;
+    struct {
+        unsigned int has_type:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_debugDescription:1;
+        unsigned int read_options:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_debugDescription:1;
+        unsigned int wrote_options:1;
+        unsigned int wrote_type:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 - (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
 @property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -27,12 +44,21 @@ __attribute__((visibility("hidden")))
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *debugDescription;
+@property(readonly, nonatomic) BOOL hasDebugDescription;
+- (void)_readDebugDescription;
+@property(retain, nonatomic) GEOPDModuleOptions *options;
+@property(readonly, nonatomic) BOOL hasOptions;
+- (void)_readOptions;
 - (int)StringAsType:(id)arg1;
 - (id)typeAsString:(int)arg1;
 @property(nonatomic) BOOL hasType;
-@property(nonatomic) int type; // @synthesize type=_type;
+@property(nonatomic) int type;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

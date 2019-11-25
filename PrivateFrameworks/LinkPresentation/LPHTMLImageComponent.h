@@ -14,9 +14,8 @@ __attribute__((visibility("hidden")))
 + (id)styleSet;
 + (id)ruleDictionaryForStyleWithDarkInterface:(id)arg1;
 + (id)ruleDictionaryForStyle:(id)arg1;
-+ (id)additionalRulesForStyle:(id)arg1;
 + (id)baseRules;
-- (id)initWithImage:(id)arg1 style:(id)arg2 themePath:(id)arg3 generator:(id)arg4;
+- (id)initWithImage:(id)arg1 properties:(id)arg2 style:(id)arg3 themePath:(id)arg4 generator:(id)arg5 isChildOfMultipleImageComponent:(BOOL)arg6;
 
 @end
 

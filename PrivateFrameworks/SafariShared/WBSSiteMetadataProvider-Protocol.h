@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSOperation, WBSSiteMetadataRequest, WBSSiteMetadataResponse;
+@class WBSSiteMetadataRequest, WBSSiteMetadataResponse;
 
 @protocol WBSSiteMetadataProvider <NSObject>
 @property(nonatomic) __weak id <WBSSiteMetadataProviderDelegate> providerDelegate;
@@ -20,6 +20,5 @@
 - (void)savePendingChangesBeforeTermination;
 - (void)emptyCaches;
 - (void)stopWatchingUpdatesForRequest:(WBSSiteMetadataRequest *)arg1;
-- (NSOperation *)operationForRequest:(WBSSiteMetadataRequest *)arg1;
 @end
 

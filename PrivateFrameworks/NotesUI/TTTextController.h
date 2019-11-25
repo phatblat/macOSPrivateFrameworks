@@ -13,6 +13,7 @@
 @interface TTTextController : NSObject <TTTextStorageStyler>
 {
     BOOL _keepNSTextTableAttributes;
+    BOOL _disableSingleLineA;
     double _bodyStyleFontSizeThreshold;
     double _headingStyleFontSizeThreshold;
     TTZoomController *_zoomController;
@@ -24,6 +25,7 @@
 + (double)attachmentParagraphSpacingBefore;
 + (double)attachmentParagraphSpacing;
 + (double)superscriptScaleFactor;
+@property(nonatomic) BOOL disableSingleLineA; // @synthesize disableSingleLineA=_disableSingleLineA;
 @property(nonatomic) BOOL keepNSTextTableAttributes; // @synthesize keepNSTextTableAttributes=_keepNSTextTableAttributes;
 @property(retain, nonatomic) TTZoomController *zoomController; // @synthesize zoomController=_zoomController;
 @property(nonatomic) double headingStyleFontSizeThreshold; // @synthesize headingStyleFontSizeThreshold=_headingStyleFontSizeThreshold;
@@ -50,9 +52,11 @@
 - (id)referenceAttributesForLocation:(unsigned long long)arg1 textStorage:(id)arg2 currentParagraphStart:(unsigned long long)arg3;
 - (id)copyNSParagraphStylefromAttributes:(id)arg1 toAttributes:(id)arg2;
 - (id)copyAttribute:(id)arg1 fromAttributes:(id)arg2 toAttributes:(id)arg3;
-- (id)strippedTypingAttributesForEmptyParagraph:(id)arg1 atTheEndOfDocument:(BOOL)arg2 isTyping:(BOOL)arg3;
+- (id)strippedTypingAttributesAtStartOfParagraph:(id)arg1 atTheEndOfDocument:(BOOL)arg2 isTyping:(BOOL)arg3;
 - (id)defaultTypingAttributesForEmptyDocument;
+- (id)typingAttributesForRange:(struct _NSRange)arg1 forSelectionChange:(BOOL)arg2 forSettingTextStyle:(BOOL)arg3 currentTypingAttributes:(id)arg4 inTextStorage:(id)arg5;
 - (id)typingAttributesForRange:(struct _NSRange)arg1 forSelectionChange:(BOOL)arg2 currentTypingAttributes:(id)arg3 inTextStorage:(id)arg4;
+- (id)typingAttributesForSettingTextStyleForRange:(struct _NSRange)arg1 currentTypingAttributes:(id)arg2 inTextStorage:(id)arg3;
 - (id)fixedWidthAttributesWithContentSizeCategory:(id)arg1;
 - (id)fixedWidthAttributes;
 - (id)checklistAttributesWithContentSizeCategory:(id)arg1;

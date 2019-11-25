@@ -6,20 +6,24 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSString, SFDevice, SFDeviceOperationWiFiSetup, SFSession;
+@class NSObject<OS_dispatch_queue>, NSString, SFDevice, SFDeviceOperationCDPSetup, SFDeviceOperationWiFiSetup, SFSession;
 
 @interface SFDeviceRepairSession : NSObject
 {
     BOOL _activateCalled;
     BOOL _invalidateCalled;
     unsigned long long _startTicks;
+    int _preflightWiFiEarlyState;
     int _preflightWiFiState;
     SFSession *_sfSession;
     int _sfSessionState;
     int _pairVerifyState;
     int _getProblemsState;
     unsigned long long _problemFlags;
-    BOOL _wifiSetupEnabled;
+    BOOL _cdpEnabled;
+    SFDeviceOperationCDPSetup *_cdpSetupOperation;
+    double _cdpSetupSecs;
+    int _cdpState;
     SFDeviceOperationWiFiSetup *_wifiSetupOperation;
     int _wifiSetupState;
     double _wifiSetupSecs;
@@ -40,11 +44,13 @@
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
 - (void).cxx_destruct;
 - (int)_runFinish;
+- (int)_runCDPSetup;
 - (int)_runWiFiSetup;
 - (int)_runGetProblems;
 - (int)_runPairVerify;
 - (int)_runSFSessionStart;
-- (int)_runPreflightWiFi;
+- (int)_runPreflightWiFiFull;
+- (int)_runPreflightWiFiEarly;
 - (void)_run;
 - (void)_reportError:(id)arg1;
 - (void)invalidate;

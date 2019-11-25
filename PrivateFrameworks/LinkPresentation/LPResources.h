@@ -11,23 +11,28 @@ __attribute__((visibility("hidden")))
 {
 }
 
-+ (void)preload;
++ (void)clearCachedResources;
++ (id)transportWalkIcon;
++ (id)transportTransitIcon;
++ (id)transportDriveIcon;
 + (id)indeterminateProgressSpinnerDarkInterface;
 + (id)indeterminateProgressSpinner;
-+ (id)beatsOneLogo;
-+ (id)musicPauseButton;
-+ (id)musicPlayButton;
++ (id)telephoneIcon;
++ (id)textIcon;
++ (id)fileIcon;
 + (id)unmuteButton;
 + (id)muteButton;
 + (id)pauseButton;
 + (id)playButton;
 + (id)searchGlyph;
++ (id)remindersIcon;
 + (id)iCloudDriveIcon;
 + (id)keynoteIcon;
 + (id)numbersIcon;
 + (id)notesIcon;
 + (id)pagesIcon;
 + (id)safariIcon;
++ (id)chevronLeft;
 + (id)chevron;
 + (id)metadataExtractorJS;
 

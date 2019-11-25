@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary, VCPAsset;
+@class NSDictionary, NSMutableDictionary, VCPAsset;
 
 @interface VCPMovieAnalyzer : NSObject
 {
@@ -15,23 +15,29 @@
     NSMutableDictionary *_privateResults;
     VCPAsset *_asset;
     BOOL _supportConditionalAnalysis;
-    BOOL _supportMovieCuration;
+    NSDictionary *_existingAnalysis;
+    BOOL _allowStreaming;
     long long _status;
 }
 
-+ (id)analyzerWithTypes:(unsigned long long)arg1 forAsset:(id)arg2;
++ (id)analyzerWithVCPAsset:(id)arg1 withExistingAnalysis:(id)arg2 forAnalysisTypes:(unsigned long long)arg3;
 + (BOOL)canAnalyzeUndegraded:(id)arg1 withResources:(id)arg2;
 @property(readonly) long long status; // @synthesize status=_status;
+@property(nonatomic) BOOL allowStreaming; // @synthesize allowStreaming=_allowStreaming;
 - (void).cxx_destruct;
+- (int)generateKeyFrameResource:(id)arg1;
 - (id)analyzeAsset:(CDUnknownBlockType)arg1;
 - (int)analyzeVideoTrack:(id)arg1 start:(CDStruct_1b6d18a9)arg2 cancel:(CDUnknownBlockType)arg3;
 - (int)analyzeVideoSegment:(id)arg1 timerange:(const CDStruct_e83c9415 *)arg2 cancel:(CDUnknownBlockType)arg3;
 - (id)createVideoAnalyzer:(id)arg1 withFrameStats:(id)arg2;
 - (id)createDecoderForTrack:(id)arg1 timerange:(const CDStruct_e83c9415 *)arg2;
 - (int)performMetadataAnalysisOnAsset:(id)arg1 withCancelBlock:(CDUnknownBlockType)arg2;
-- (id)initWithPHAsset:(id)arg1 existingAnalysis:(id)arg2 forAnalysisTypes:(unsigned long long)arg3;
-- (id)initWithPHAsset:(id)arg1 forAnalysisTypes:(unsigned long long)arg2;
-- (id)initWithTypes:(unsigned long long)arg1 forAsset:(id)arg2;
+- (id)processExistingAnalysisForTimeRange:(CDStruct_e83c9415)arg1 analysisTypes:(unsigned long long *)arg2;
+- (void)loadPropertiesForAsset:(id)arg1;
+- (id)privateResults;
+- (id)initWithPHAsset:(id)arg1 withExistingAnalysis:(id)arg2 forAnalysisTypes:(unsigned long long)arg3;
+- (id)initWithPHAsset:(id)arg1 withPausedAnalysis:(id)arg2 forAnalysisTypes:(unsigned long long)arg3;
+- (id)initWithVCPAsset:(id)arg1 withExistingAnalysis:(id)arg2 forAnalysisTypes:(unsigned long long)arg3;
 
 @end
 

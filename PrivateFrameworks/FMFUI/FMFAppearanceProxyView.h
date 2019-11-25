@@ -16,7 +16,7 @@ __attribute__((visibility("hidden")))
 }
 
 @property(copy, nonatomic) NSString *previousAppearanceName; // @synthesize previousAppearanceName=_previousAppearanceName;
-@property(nonatomic) id <FMFAppearanceDelegate> appearanceDelegate; // @synthesize appearanceDelegate=_appearanceDelegate;
+@property(nonatomic) __weak id <FMFAppearanceDelegate> appearanceDelegate; // @synthesize appearanceDelegate=_appearanceDelegate;
 - (void).cxx_destruct;
 - (void)updateLayer;
 - (id)initWithFrame:(struct CGRect)arg1;

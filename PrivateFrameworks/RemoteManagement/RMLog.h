@@ -10,51 +10,15 @@
 {
 }
 
-+ (id)utility;
-+ (id)usage;
-+ (id)transaction;
-+ (id)tool;
-+ (id)test;
-+ (id)screenTimeOrganizationController;
-+ (id)screentime;
-+ (id)serverConduit;
-+ (id)persistence;
-+ (id)personalTransport;
-+ (id)personalServerConduit;
-+ (id)personalOrganizationController;
-+ (id)personalClientConduit;
-+ (id)personal;
-+ (id)persistence;
-+ (id)payloadQueue;
-+ (id)payloadManager;
-+ (id)payload;
-+ (id)organizationController;
-+ (id)ohanaOrganizationController;
-+ (id)mirroring;
-+ (id)metadata;
-+ (id)idsTransport;
-+ (id)http;
-+ (id)familyUsage;
-+ (id)familyServerConduit;
-+ (id)familyOrganizationManager;
-+ (id)familyOrganizationController;
-+ (id)familyMonitor;
-+ (id)familyClientConduit;
-+ (id)familyCheckinManager;
-+ (id)family;
-+ (id)deviceOrganizationController;
-+ (id)declarationTransactionManager;
-+ (id)requestManager;
-+ (id)daemon;
-+ (id)configuration;
-+ (id)conduit;
-+ (id)cloudkit;
-+ (id)capabilities;
-+ (id)ask;
-+ (id)apns;
-+ (id)appMonitor;
-+ (id)accountMonitor;
-+ (id)logCategories;
++ (id)assetResolver;
++ (id)configurationRepository;
++ (id)configurationSubscription;
++ (id)extensionConfigurationSubscriber;
++ (id)extensionContext;
++ (id)extensionRequestHandler;
++ (id)extensionStatusPublisher;
++ (id)unresolvedDataAsset;
++ (id)unresolvedFileAsset;
 
 @end
 

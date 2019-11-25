@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSCache, NSCountedSet;
+@class NSCache, NSCountedSet, NSObject<OS_dispatch_queue>;
 
 @interface _DKActivityThrottler : NSObject
 {
     NSCountedSet *_minimumIntervalScheduledActions;
     NSCountedSet *_delayScheduledActions;
     NSCache *_cache;
+    NSObject<OS_dispatch_queue> *_storeQueue;
     id <_DKSimpleKeyValueStore> _store;
 }
 

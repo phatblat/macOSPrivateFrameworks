@@ -6,20 +6,24 @@
 
 #import "NSObject.h"
 
+#import "BSInvalidatable.h"
 #import "FBSOrientationObserverClientDelegate.h"
 
-@class FBSOrientationObserverClient, NSObject<OS_dispatch_queue>, NSString;
+@class FBSOrientationObserverClient, FBSOrientationUpdate, NSObject<OS_dispatch_queue>, NSString;
 
-@interface FBSOrientationObserver : NSObject <FBSOrientationObserverClientDelegate>
+@interface FBSOrientationObserver : NSObject <FBSOrientationObserverClientDelegate, BSInvalidatable>
 {
     FBSOrientationObserverClient *_client;
     NSObject<OS_dispatch_queue> *_queue;
     NSObject<OS_dispatch_queue> *_callback_queue;
     CDUnknownBlockType _handler;
+    FBSOrientationUpdate *_freshestUpdate;
 }
 
 - (void).cxx_destruct;
+- (void)handleOrientationResetForClient:(id)arg1;
 - (void)client:(id)arg1 handleOrientationUpdate:(id)arg2;
+- (id)_getAndSetFreshestUpdateGivenUpdate:(id)arg1;
 @property(copy, nonatomic) CDUnknownBlockType handler;
 - (void)activeInterfaceOrientationWithCompletion:(CDUnknownBlockType)arg1;
 - (long long)activeInterfaceOrientation;

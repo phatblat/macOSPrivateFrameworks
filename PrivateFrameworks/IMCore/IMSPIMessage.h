@@ -19,7 +19,7 @@
     NSArray *_recipients;
     NSDate *_date;
     NSDate *_dateRead;
-    NSDate *_lastReadDate;
+    NSDate *_dateForLastReadMessageInChat;
     IMSPIHandle *_sender;
     long long _messageID;
     NSArray *_attachments;
@@ -27,9 +27,12 @@
     BOOL _isRead;
     BOOL _isAudioMessage;
     BOOL _isGroupChat;
+    BOOL _hasDataDetectedResults;
     long long _itemType;
     NSString *_groupID;
     NSString *_chatIdentifier;
+    NSString *_body;
+    NSString *_summary;
     NSString *_displayName;
     NSString *_service;
     IMSPIMessage *_referencedMessage;
@@ -40,17 +43,20 @@
     PKCurrencyAmount *_peerPaymentAmount;
 }
 
+@property BOOL hasDataDetectedResults; // @synthesize hasDataDetectedResults=_hasDataDetectedResults;
 @property(retain) PKCurrencyAmount *peerPaymentAmount; // @synthesize peerPaymentAmount=_peerPaymentAmount;
 @property(retain) LPLinkMetadata *richLinkMetadata; // @synthesize richLinkMetadata=_richLinkMetadata;
 @property(retain) NSString *displayAppName; // @synthesize displayAppName=_displayAppName;
 @property long long messageType; // @synthesize messageType=_messageType;
 @property(retain) NSString *bundleId; // @synthesize bundleId=_bundleId;
 @property(retain) IMSPIMessage *referencedMessage; // @synthesize referencedMessage=_referencedMessage;
-@property(retain) NSDate *lastReadDate; // @synthesize lastReadDate=_lastReadDate;
+@property(retain) NSDate *dateForLastReadMessageInChat; // @synthesize dateForLastReadMessageInChat=_dateForLastReadMessageInChat;
 @property(retain) NSDate *dateRead; // @synthesize dateRead=_dateRead;
 @property(retain) NSString *service; // @synthesize service=_service;
 @property(retain) NSString *displayName; // @synthesize displayName=_displayName;
 @property(retain) NSString *effect; // @synthesize effect=_effect;
+@property(retain) NSString *summary; // @synthesize summary=_summary;
+@property(retain) NSString *body; // @synthesize body=_body;
 @property BOOL isGroupChat; // @synthesize isGroupChat=_isGroupChat;
 @property(retain) NSString *chatIdentifier; // @synthesize chatIdentifier=_chatIdentifier;
 @property(retain) NSString *groupID; // @synthesize groupID=_groupID;
@@ -69,9 +75,11 @@
 @property long long messageID; // @synthesize messageID=_messageID;
 @property(retain) NSString *guid; // @synthesize guid=_guid;
 - (void).cxx_destruct;
+@property(readonly) NSDate *lastReadDate;
 @property(readonly) NSURL *url;
 - (id)description;
 - (void)dealloc;
+@property(readonly) BOOL allowedByScreenTime;
 
 @end
 

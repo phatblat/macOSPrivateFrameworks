@@ -8,6 +8,7 @@
 
 @class NSObject<OS_dispatch_group>;
 
+__attribute__((visibility("hidden")))
 @interface _CATProxyWaitToken : NSObject
 {
     // Error parsing type: AB, name: mFinished

@@ -8,7 +8,7 @@
 
 #import "CNAccountDescription.h"
 
-@class ABCDContainer, NSString, NSURL;
+@class ABCDContainer, NSArray, NSNumber, NSString, NSURL;
 
 __attribute__((visibility("hidden")))
 @interface CNCDLocalAccountDescription : NSObject <CNAccountDescription>
@@ -16,6 +16,8 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)localAccountDescription;
+@property(readonly, copy) NSArray *childAccounts;
+@property(readonly) BOOL isChildAccount;
 @property(readonly) ABCDContainer *containerRepresentation;
 @property(readonly) NSURL *persistentStoreURL;
 @property(readonly, copy) NSURL *baseURL;
@@ -26,6 +28,7 @@ __attribute__((visibility("hidden")))
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly) NSNumber *dsid;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

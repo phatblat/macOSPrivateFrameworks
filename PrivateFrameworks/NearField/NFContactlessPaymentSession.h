@@ -27,8 +27,6 @@
 - (id)felicaAppletState:(id)arg1;
 - (BOOL)stopCardEmulation:(id *)arg1;
 - (BOOL)stopCardEmulation;
-- (BOOL)startHostCardEmulation:(id *)arg1;
-- (BOOL)startHostCardEmulation;
 - (BOOL)startDeferredCardEmulationWithAuthorization:(id)arg1 error:(id *)arg2;
 - (BOOL)startDeferredCardEmulationWithAuthorization:(id)arg1;
 - (BOOL)startCardEmulationWithAuthorization:(id)arg1 error:(id *)arg2;
@@ -42,7 +40,7 @@
 - (void)didReceiveActivityTimeout:(id)arg1;
 - (void)didReceivePendingServerRequest;
 - (void)didFailDeferredAuthorization;
-- (void)didExpressModeStateChange:(unsigned int)arg1;
+- (void)didExpressModeStateChange:(unsigned int)arg1 withObject:(id)arg2;
 - (void)didFelicaStateChange:(id)arg1;
 - (void)didExpireTransactionForApplet:(id)arg1;
 - (void)didReceiveButtonPressForApplet:(id)arg1;

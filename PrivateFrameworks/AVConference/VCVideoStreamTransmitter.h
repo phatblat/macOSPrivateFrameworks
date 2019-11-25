@@ -6,7 +6,7 @@
 
 #import <AVConference/VCVideoTransmitterBase.h>
 
-@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, VCMediaStreamStats;
+@class AVCStatisticsCollector, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, VCMediaStreamStats;
 
 __attribute__((visibility("hidden")))
 @interface VCVideoStreamTransmitter : VCVideoTransmitterBase
@@ -48,11 +48,19 @@ __attribute__((visibility("hidden")))
         struct tagHANDLE *encoderHandle;
     } _encoder;
     struct tagVCMemoryPool *_encodingArgPool;
+    BOOL _forceDisableBitrateCap;
+    AVCStatisticsCollector *_statisticsCollector;
+    unsigned int _totalPacketsSent;
+    unsigned long long _totalBytesSent;
+    unsigned int _tilesPerFrame;
+    unsigned int _totalKeyFramesSent;
+    struct __CFAllocator *_videoPacketAllocator;
 }
 
 - (void)handleActiveConnectionChange:(id)arg1;
 - (void)reportingVideoStreamEvent:(unsigned short)arg1;
 - (void)gatherRealtimeStats:(struct __CFDictionary *)arg1;
+- (void)updateSendStatisticsWithTimestamp:(unsigned int)arg1 frameSize:(unsigned int)arg2 packetsInFrame:(unsigned int)arg3;
 - (int)transmitVideoPackets:(const char *)arg1 packetSizes:(int *)arg2 startPacket:(int)arg3 packetCount:(int)arg4 lastGroup:(int)arg5 timestamp:(unsigned int)arg6 hostTime:(double)arg7 cameraStatusBits:(unsigned char)arg8 bytesSent:(int *)arg9;
 - (int)transmitFrameInGroups:(char *)arg1 numOfPackets:(int)arg2 timestamp:(unsigned int)arg3 hostTime:(double)arg4 cameraStatusBits:(unsigned char)arg5;
 - (int)transmitEncodedVideoFrame:(char *)arg1 size:(unsigned long long)arg2 timestamp:(unsigned int)arg3 hostTime:(double)arg4 cameraStatusBits:(unsigned char)arg5;
@@ -65,6 +73,7 @@ __attribute__((visibility("hidden")))
 - (void)setFECRatio:(double)arg1;
 - (void)setStreamIDs:(unsigned short *)arg1 numOfStreamIDs:(unsigned char)arg2 repairedStreamIDs:(unsigned short *)arg3 numOfRepairedStreamIDs:(unsigned char)arg4;
 - (void)setKeyFrameOnlyStreamID:(unsigned short)arg1;
+- (void)setTargetBitrate:(unsigned int)arg1;
 - (unsigned int)setTemporaryMaximumBitrate:(unsigned int)arg1;
 - (void)generateKeyFrame;
 - (BOOL)enqueueVideoFrame:(struct opaqueCMSampleBuffer *)arg1 frameTime:(CDStruct_1b6d18a9)arg2 droppedFrames:(int)arg3 cameraStatusBits:(unsigned char)arg4;

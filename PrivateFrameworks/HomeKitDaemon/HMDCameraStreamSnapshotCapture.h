@@ -10,7 +10,7 @@
 #import "HMFLogging.h"
 #import "HMFTimerDelegate.h"
 
-@class HMDCameraSessionID, HMDVideoStreamInterface, HMFTimer, NSObject<OS_dispatch_queue>, NSString;
+@class HMDCameraStreamSessionID, HMDVideoStreamInterface, HMFTimer, NSObject<OS_dispatch_queue>, NSString;
 
 @interface HMDCameraStreamSnapshotCapture : HMFObject <HMDVideoStreamLastDecodedFrameDelegate, HMFTimerDelegate, HMFLogging>
 {
@@ -20,7 +20,7 @@
     NSObject<OS_dispatch_queue> *_workQueue;
     id <HMDCameraStreamSnapshotCaptureDelegate> _delegate;
     NSObject<OS_dispatch_queue> *_delegateQueue;
-    HMDCameraSessionID *_sessionID;
+    HMDCameraStreamSessionID *_streamSessionID;
     HMFTimer *_lastDecodedFrameTimer;
 }
 
@@ -28,7 +28,7 @@
 @property(nonatomic) BOOL capturingCurrentFrame; // @synthesize capturingCurrentFrame=_capturingCurrentFrame;
 @property(nonatomic) BOOL capturingLastFrame; // @synthesize capturingLastFrame=_capturingLastFrame;
 @property(retain, nonatomic) HMFTimer *lastDecodedFrameTimer; // @synthesize lastDecodedFrameTimer=_lastDecodedFrameTimer;
-@property(readonly, nonatomic) HMDCameraSessionID *sessionID; // @synthesize sessionID=_sessionID;
+@property(readonly, nonatomic) HMDCameraStreamSessionID *streamSessionID; // @synthesize streamSessionID=_streamSessionID;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *delegateQueue; // @synthesize delegateQueue=_delegateQueue;
 @property(readonly, nonatomic) id <HMDCameraStreamSnapshotCaptureDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;

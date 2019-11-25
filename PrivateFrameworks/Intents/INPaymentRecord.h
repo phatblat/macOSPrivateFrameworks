@@ -7,12 +7,13 @@
 #import "NSObject.h"
 
 #import "INCacheableContainer.h"
+#import "INJSONSerializable.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
 @class INCurrencyAmount, INPaymentMethod, INPerson, NSString;
 
-@interface INPaymentRecord : NSObject <INCacheableContainer, NSCopying, NSSecureCoding>
+@interface INPaymentRecord : NSObject <INCacheableContainer, INJSONSerializable, NSCopying, NSSecureCoding>
 {
     INPerson *_payee;
     INPerson *_payer;
@@ -23,6 +24,7 @@
     INCurrencyAmount *_feeAmount;
 }
 
++ (id)_intents_decodeWithJSONDecoder:(id)arg1 codableDescription:(id)arg2 from:(id)arg3;
 + (BOOL)supportsSecureCoding;
 @property(readonly, copy) INCurrencyAmount *feeAmount; // @synthesize feeAmount=_feeAmount;
 @property(readonly, copy) INPaymentMethod *paymentMethod; // @synthesize paymentMethod=_paymentMethod;
@@ -35,6 +37,7 @@
 - (id)_dictionaryRepresentation;
 - (id)descriptionAtIndent:(unsigned long long)arg1;
 @property(readonly, copy) NSString *description;
+- (id)_intents_encodeWithJSONEncoder:(id)arg1 codableDescription:(id)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;

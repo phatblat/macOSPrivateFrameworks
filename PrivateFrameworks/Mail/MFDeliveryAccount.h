@@ -6,12 +6,12 @@
 
 #import <Mail/MFAccount.h>
 
-#import "EMAccount.h"
-#import "EMDeliveryAcount.h"
+#import "EDAccount.h"
+#import "EDDeliveryAccount.h"
 
-@class MFMailAccount, NSArray, NSString;
+@class ACAccount, MFMailAccount, NSArray, NSString;
 
-@interface MFDeliveryAccount : MFAccount <EMAccount, EMDeliveryAcount>
+@interface MFDeliveryAccount : MFAccount <EDAccount, EDDeliveryAccount>
 {
     unsigned long long _maximumMessageBytes;
 }
@@ -46,10 +46,15 @@
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly, copy) NSArray *emailAddressStrings;
 @property(readonly) unsigned long long hash;
-@property(copy, nonatomic) NSString *hostname;
-@property(copy, nonatomic) NSString *password;
+@property(copy) NSString *hostname;
+@property(readonly, copy) NSString *identifier;
+@property(copy) NSString *password;
+@property(readonly) BOOL primaryiCloudAccount;
+@property(readonly, copy, nonatomic) NSString *statisticsKind;
 @property(readonly) Class superclass;
+@property(readonly, copy) ACAccount *systemAccount;
 
 @end
 

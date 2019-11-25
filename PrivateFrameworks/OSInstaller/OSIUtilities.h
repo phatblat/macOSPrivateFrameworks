@@ -10,6 +10,17 @@
 {
 }
 
++ (void)takeRecoveryDiagnose;
++ (BOOL)forceAttributesOfSrcPath:(id)arg1 toDstPath:(id)arg2;
++ (void)forceNVRAMSync;
++ (BOOL)unsupportedInstallEnvironmentForGatheringDiagnosticsWithError:(id *)arg1;
++ (id)parseFirmlinkManifestForVolume:(id)arg1 withError:(id *)arg2;
++ (id)masterBOMSystemPath;
++ (id)mapMountPointToROSVPath:(id)arg1;
++ (id)mapPathToROSV:(id)arg1;
++ (void)setUseROSVPaths:(BOOL)arg1;
++ (id)systemVersionForMountPoint:(id)arg1;
++ (id)systemVersionForDisk:(id)arg1;
 + (BOOL)shouldAllowInsecureCollections;
 + (BOOL)isNetBooted;
 + (id)mountDiskImageWithPath:(id)arg1 withError:(id *)arg2;

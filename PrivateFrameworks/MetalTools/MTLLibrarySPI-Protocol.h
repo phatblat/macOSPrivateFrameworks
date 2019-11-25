@@ -6,11 +6,14 @@
 
 #import "MTLLibrary.h"
 
-@class NSArray, NSString;
+@class MTLFunctionConstantValues, NSArray, NSString;
 
 @protocol MTLLibrarySPI <MTLLibrary>
 @property(readonly) NSArray *externFunctionNames;
 @property(copy) NSString *overrideTriple;
+- (void)newFunctionWithName:(NSString *)arg1 constantValues:(MTLFunctionConstantValues *)arg2 pipelineLibrary:(id <MTLPipelineLibrary>)arg3 completionHandler:(void (^)(id <MTLFunction>, NSError *))arg4;
+- (id <MTLFunction>)newFunctionWithName:(NSString *)arg1 constantValues:(MTLFunctionConstantValues *)arg2 pipelineLibrary:(id <MTLPipelineLibrary>)arg3 error:(id *)arg4;
+- (id <MTLFunction>)newFunctionWithName:(NSString *)arg1 constantValues:(MTLFunctionConstantValues *)arg2 functionCache:(id <MTLPipelineCache>)arg3 error:(id *)arg4;
 - (id <MTLFunction>)newExternFunctionWithName:(NSString *)arg1;
 @end
 

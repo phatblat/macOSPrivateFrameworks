@@ -19,11 +19,11 @@
     PARBag *_bag;
     NSObject<OS_dispatch_queue> *_bagQueue;
     BOOL _active;
-    BOOL _enabled;
     BOOL _disableAsTypedSuggestion;
     BOOL _collectAnonymousData;
     BOOL _collectScores;
     BOOL _use2LayerRanking;
+    BOOL _bagEnabled;
     BOOL _resourceMetadataNeedsWrite;
     id <PRSSessionController> _client;
     long long _status;
@@ -54,6 +54,7 @@
 @property(nonatomic) BOOL resourceMetadataNeedsWrite; // @synthesize resourceMetadataNeedsWrite=_resourceMetadataNeedsWrite;
 @property(retain, nonatomic) NSMutableDictionary *resourceMetadata; // @synthesize resourceMetadata=_resourceMetadata;
 @property(readonly) GEOUserSessionEntity *geoUserSessionEntity; // @synthesize geoUserSessionEntity=_geoUserSessionEntity;
+@property(readonly, nonatomic, getter=isBagEnabled) BOOL bagEnabled; // @synthesize bagEnabled=_bagEnabled;
 @property(readonly, nonatomic) NSString *lookupFirstUseLearnMore; // @synthesize lookupFirstUseLearnMore=_lookupFirstUseLearnMore;
 @property(readonly, nonatomic) NSString *lookupFirstUseDescription2; // @synthesize lookupFirstUseDescription2=_lookupFirstUseDescription2;
 @property(readonly, nonatomic) NSString *lookupFirstUseDescription1; // @synthesize lookupFirstUseDescription1=_lookupFirstUseDescription1;
@@ -67,12 +68,11 @@
 @property(nonatomic) BOOL collectAnonymousData; // @synthesize collectAnonymousData=_collectAnonymousData;
 @property(nonatomic) BOOL disableAsTypedSuggestion; // @synthesize disableAsTypedSuggestion=_disableAsTypedSuggestion;
 @property(retain, nonatomic) NSArray *enabledDomains; // @synthesize enabledDomains=_enabledDomains;
-@property(nonatomic) BOOL enabled; // @synthesize enabled=_enabled;
 @property(retain, nonatomic) NSSet *appBlacklist; // @synthesize appBlacklist=_appBlacklist;
 @property(retain) PRSRankingServerKnobs *ranking_server_knobs; // @synthesize ranking_server_knobs=_ranking_server_knobs;
 @property(retain) SSPlistDataReader *cep_server_values; // @synthesize cep_server_values=_cep_server_values;
-@property(nonatomic) double suggestionsRenderTimeout; // @synthesize suggestionsRenderTimeout=_suggestionsRenderTimeout;
-@property(nonatomic) double searchRenderTimeout; // @synthesize searchRenderTimeout=_searchRenderTimeout;
+@property double suggestionsRenderTimeout; // @synthesize suggestionsRenderTimeout=_suggestionsRenderTimeout;
+@property double searchRenderTimeout; // @synthesize searchRenderTimeout=_searchRenderTimeout;
 @property(nonatomic) long long status; // @synthesize status=_status;
 @property __weak id <PRSSessionController> client; // @synthesize client=_client;
 @property(nonatomic) BOOL active; // @synthesize active=_active;

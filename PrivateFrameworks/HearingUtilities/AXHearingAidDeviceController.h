@@ -4,19 +4,19 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <HearingUtilities/HUDeviceController.h>
 
 #import "AXHADeviceControllerProtocol.h"
 #import "CBCentralManagerDelegate.h"
 
 @class AXDispatchTimer, CBCentralManager, NSLock, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
 
-@interface AXHearingAidDeviceController : NSObject <CBCentralManagerDelegate, AXHADeviceControllerProtocol>
+@interface AXHearingAidDeviceController : HUDeviceController <CBCentralManagerDelegate, AXHADeviceControllerProtocol>
 {
     CBCentralManager *_bluetoothManager;
     NSLock *_centralRequestsLock;
     BOOL _isScanning;
-    BOOL _isResetting;
+    BOOL _centralIsOn;
     NSObject<OS_dispatch_queue> *_bluetoothCentralQueue;
     NSMutableArray *_availableSearchBlocks;
     NSMutableArray *_connectedSearchBlocks;
@@ -35,8 +35,8 @@
 }
 
 + (id)sharedController;
-@property(retain, nonatomic) NSMutableArray *persistentDevices; // @synthesize persistentDevices=_persistentDevices;
 @property(nonatomic) BOOL shouldActiveScan; // @synthesize shouldActiveScan=_shouldActiveScan;
+@property(retain, nonatomic) NSMutableArray *persistentDevices; // @synthesize persistentDevices=_persistentDevices;
 @property(retain, nonatomic) NSMutableArray *updateDeviceBlocks; // @synthesize updateDeviceBlocks=_updateDeviceBlocks;
 @property(retain, nonatomic) NSMutableArray *connectedSearchBlocks; // @synthesize connectedSearchBlocks=_connectedSearchBlocks;
 @property(retain, nonatomic) NSMutableArray *availableSearchBlocks; // @synthesize availableSearchBlocks=_availableSearchBlocks;
@@ -45,12 +45,12 @@
 @property(retain) NSMutableArray *loadedDevices; // @synthesize loadedDevices=_loadedDevices;
 @property(retain, nonatomic) NSMutableArray *availablePeripherals; // @synthesize availablePeripherals=_availablePeripherals;
 - (void).cxx_destruct;
+- (BOOL)representsLocalDevices;
 - (id)valueForProperty:(unsigned long long)arg1 forDeviceID:(id)arg2;
-- (void)writeValue:(id)arg1 forProperty:(unsigned long long)arg2 forDeviceID:(id)arg3;
-- (void)updateProperty:(unsigned long long)arg1 forDeviceID:(id)arg2;
 - (void)pairedHearingAidsDidChange;
+- (void)persistPairedHearingAids;
 - (void)unpairPeripheralWithUUID:(id)arg1;
-- (BOOL)peripheralIsPaired:(id)arg1;
+- (void)checkPeripheralPaired:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)pairingAgent:(id)arg1 peerDidUnpair:(id)arg2;
 - (void)pairingAgent:(id)arg1 peerDidFailToCompletePairing:(id)arg2 error:(id)arg3;
 - (void)pairingAgent:(id)arg1 peerDidCompletePairing:(id)arg2;
@@ -65,7 +65,6 @@
 - (void)forgetDevice:(id)arg1;
 - (void)deviceDidFinishLoading:(id)arg1;
 - (void)mergeDevice:(id)arg1 withDevice:(id)arg2;
-- (void)device:(id)arg1 didUpdateProperty:(unsigned long long)arg2;
 - (void)clearConnectedDevices;
 - (void)removeConnectedDevice:(id)arg1;
 - (void)addConnectedDevice:(id)arg1;
@@ -81,10 +80,11 @@
 - (id)hearingAidForPeripheral:(id)arg1;
 - (id)hearingAidsForUUID:(id)arg1;
 - (BOOL)isConnected;
+- (BOOL)isPaired;
 - (BOOL)isPartiallyConnected;
-- (BOOL)isPartiallyPaired;
+- (void)checkPartiallyPairedWithCompletion:(CDUnknownBlockType)arg1;
+- (void)shouldRelinquishForPartialConnection:(CDUnknownBlockType)arg1;
 - (BOOL)isScanning;
-- (void)stopPropertyUpdates;
 - (void)stopSearching;
 - (BOOL)isBluetoothAvailable;
 - (void)cancelPendingConnections;
@@ -97,7 +97,6 @@
 - (void)clearMissingHearingAids;
 - (void)dealloc;
 - (id)init;
-- (void)registerForPropertyUpdates:(CDUnknownBlockType)arg1;
 - (void)searchForAvailableDevicesWithCompletion:(CDUnknownBlockType)arg1;
 
 // Remaining properties

@@ -66,19 +66,13 @@ struct RootItemObject {
 struct _BRCFrameworkOperation {
     Class _field1;
     id _field2;
-    int _field3;
-    int _field4;
-    id _field5;
-    unsigned char _field6[16];
+    unsigned char _field3[16];
 };
 
 struct _BRCOperation {
     Class _field1;
     id _field2;
-    int _field3;
-    int _field4;
-    id _field5;
-    unsigned char _field6[16];
+    unsigned char _field3[16];
 };
 
 struct _UUIDItemObject_OLD {
@@ -155,7 +149,8 @@ struct statfs {
     char f_fstypename[16];
     char f_mntonname[1024];
     char f_mntfromname[1024];
-    unsigned int f_reserved[8];
+    unsigned int f_flags_ext;
+    unsigned int f_reserved[7];
 };
 
 struct throttle_stamps {

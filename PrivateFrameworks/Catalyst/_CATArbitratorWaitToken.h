@@ -8,6 +8,7 @@
 
 @class NSMutableDictionary, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface _CATArbitratorWaitToken : NSObject
 {
     // Error parsing type: Ai, name: mState

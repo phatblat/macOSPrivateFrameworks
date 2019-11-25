@@ -13,11 +13,12 @@
 + (id)transferGUIDOfRecord:(id)arg1;
 + (long long)sizeOfAssetForRecord:(id)arg1;
 + (id)utiTypeForRecord:(id)arg1;
-+ (BOOL)_recordIsValid:(id)arg1;
++ (BOOL)_recordIsInvalid:(id)arg1;
 + (id)transferMetaDataFromRecord:(id)arg1;
 + (id)_recordType;
 - (id)_fileManager;
 - (id)initWithCKRecord:(id)arg1 writeAssetToDisk:(BOOL)arg2;
+- (void)moveTransferAssertFromRecord:(id)arg1;
 - (id)copyCKRecordRepresentationWithZoneID:(id)arg1 salt:(id)arg2 useStingRay:(BOOL)arg3;
 - (void)_setRecordPropertiesBasedOnExistingRecord:(id)arg1 useStingRay:(BOOL)arg2;
 - (BOOL)_isUsingStingRay;

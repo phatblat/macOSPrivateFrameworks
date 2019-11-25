@@ -19,7 +19,7 @@
 
 @property(readonly) NSMutableArray *errors; // @synthesize errors=_errors;
 - (void).cxx_destruct;
-- (void)cancelOperation;
+- (void)cancel;
 - (void)endOperation;
 - (void)_shutdownOperation;
 - (void)childOperation:(id)arg1 didEndWithErrors:(id)arg2;

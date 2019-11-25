@@ -8,7 +8,7 @@
 
 #import "SignpostSupportLoggingSupportArchiveEvent.h"
 
-@class NSArray, NSString, NSUUID;
+@class NSArray, NSString, NSUUID, SignpostMetrics;
 
 @interface SignpostEvent : SignpostObject <SignpostSupportLoggingSupportArchiveEvent>
 {
@@ -30,6 +30,8 @@
     NSString *_processName;
     NSString *_metadata;
     NSArray *_metadataSegments;
+    NSArray *_stackFrames;
+    SignpostMetrics *_metrics;
     unsigned long long __totalFrameCount;
     unsigned long long __machContinuousTimestamp;
 }
@@ -39,6 +41,8 @@
 @property(nonatomic) BOOL isAnimationStart; // @synthesize isAnimationStart=_isAnimationStart;
 @property(nonatomic) unsigned long long _totalFrameCount; // @synthesize _totalFrameCount=__totalFrameCount;
 @property(nonatomic) BOOL _hasTotalFrames; // @synthesize _hasTotalFrames=__hasTotalFrames;
+@property(readonly, nonatomic) SignpostMetrics *metrics; // @synthesize metrics=_metrics;
+@property(retain, nonatomic) NSArray *stackFrames; // @synthesize stackFrames=_stackFrames;
 @property(retain, nonatomic) NSArray *metadataSegments; // @synthesize metadataSegments=_metadataSegments;
 @property(retain, nonatomic) NSString *metadata; // @synthesize metadata=_metadata;
 @property(retain, nonatomic) NSString *processName; // @synthesize processName=_processName;
@@ -56,10 +60,16 @@
 @property(nonatomic) int tv_usec; // @synthesize tv_usec=_tv_usec;
 @property(nonatomic) long long tv_sec; // @synthesize tv_sec=_tv_sec;
 - (void).cxx_destruct;
+- (void)_populateMetrics;
+- (id)_dataArgumentWithName:(id)arg1;
+- (id)_numberArgumentWithName:(id)arg1;
+- (id)_stringArgumentWithName:(id)arg1;
+- (id)_argumentObjectWithName:(id)arg1 expectedClass:(Class)arg2;
+- (id)_argumentObjectWithName:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (void)_adjustEndTimeVal:(struct timeval *)arg1;
 - (void)_adjustBeginTimeVal:(struct timeval *)arg1;
-- (void)_adjustTimeStruct:(struct timeval *)arg1;
+- (void)_adjustTimeStruct:(struct timeval *)arg1 asBegin:(BOOL)arg2;
 @property(readonly, nonatomic) NSString *_key;
 @property(readonly, nonatomic) BOOL overridesEndTime;
 @property(readonly, nonatomic) BOOL overridesBeginTime;
@@ -74,13 +84,17 @@
 @property(readonly, nonatomic) unsigned long long overridingBeginNanoseconds;
 @property(readonly, nonatomic) unsigned long long timeRecordedNanoseconds;
 @property(readonly, nonatomic) unsigned long long timeRecordedMachContinuousTime;
-- (unsigned long long)_resolvedTime;
+@property(readonly, nonatomic) BOOL isSyntheticIntervalEvent;
+- (unsigned long long)_resolvedEndTime;
+- (unsigned long long)_resolvedBeginTime;
 @property(readonly, copy) NSString *debugDescription;
-- (id)descriptionStringForColumn:(unsigned long long)arg1 timeFormat:(unsigned long long)arg2;
-- (id)initWithSubsystem:(id)arg1 category:(id)arg2 timebaseRatio:(double)arg3 unixDate:(struct timeval *)arg4 unixTimeZone:(struct timezone *)arg5;
-- (BOOL)_overridesOwnTime;
+- (id)_debugDescription:(BOOL)arg1;
+- (id)_descriptionStringForColumn:(unsigned long long)arg1 timeFormat:(unsigned long long)arg2 asBegin:(BOOL)arg3;
+- (id)initWithSubsystem:(id)arg1 category:(id)arg2 timebaseRatio:(double)arg3 unixDate:(struct timeval *)arg4 unixTimeZone:(struct timezone *)arg5 stackFrames:(id)arg6;
+@property(readonly, nonatomic) BOOL _overridesOwnTime;
+@property(readonly, nonatomic) unsigned long long _resolvedEventType;
 - (id)initWithDictionary:(id)arg1;
-- (id)_dictionaryRepresentationWithIsHumanReadable:(BOOL)arg1;
+- (id)_dictionaryRepresentationWithIsHumanReadable:(BOOL)arg1 shouldRedact:(BOOL)arg2;
 - (id)humanReadableType;
 
 // Remaining properties

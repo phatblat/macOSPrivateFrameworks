@@ -27,6 +27,10 @@ struct CGSize {
     double _field2;
 };
 
+struct NSNumber {
+    Class _field1;
+};
+
 struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;
@@ -51,6 +55,10 @@ struct fsid {
     int _field1[2];
 };
 
+struct os_unfair_lock_s {
+    unsigned int _os_unfair_lock_opaque;
+};
+
 struct statfs {
     unsigned int _field1;
     int _field2;
@@ -67,12 +75,18 @@ struct statfs {
     char _field13[16];
     char _field14[1024];
     char _field15[1024];
-    unsigned int _field16[8];
+    unsigned int _field16;
+    unsigned int _field17[7];
 };
 
 #pragma mark Typedef'd Structures
 
 typedef struct {
-    unsigned int _field1[8];
-} CDStruct_6ad76789;
+    unsigned int _field1;
+    unsigned int _field2;
+} CDStruct_c0454aff;
+
+typedef struct {
+    unsigned int val[8];
+} CDStruct_4c969caf;
 

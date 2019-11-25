@@ -16,7 +16,7 @@
 - (void).cxx_destruct;
 - (void)invalidateCache;
 - (void)insertSize:(struct CGSize)arg1 forTargetSize:(struct CGSize)arg2;
-- (BOOL)getSize:(struct CGSize *)arg1 forItem:(id)arg2 targetSize:(struct CGSize)arg3;
+- (BOOL)getSize:(struct CGSize *)arg1 forTargetSize:(struct CGSize)arg2 isSizeDependentOnPerpendicularAxis:(BOOL)arg3;
 - (void)dealloc;
 - (id)initForAsynchronousAccess:(BOOL)arg1;
 

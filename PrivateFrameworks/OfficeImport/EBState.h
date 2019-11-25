@@ -8,6 +8,7 @@
 
 @class EDResources, EDWorkbook;
 
+__attribute__((visibility("hidden")))
 @interface EBState : NSObject
 {
     struct XlLinkTable *mXlLinkTable;

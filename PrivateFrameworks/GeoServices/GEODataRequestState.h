@@ -17,9 +17,9 @@
     NSData *_cachedData;
     double _timeoutInterval;
     BOOL _HTTPMethod;
-    int _kind;
+    CDStruct_d1a7ebee _kind;
     BOOL _HTTPShouldHandleCookies;
-    BOOL _allowsCellularAccess;
+    unsigned long long _constraints;
 }
 
 + (const char *)decoderType;

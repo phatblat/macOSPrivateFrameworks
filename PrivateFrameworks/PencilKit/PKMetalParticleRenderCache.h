@@ -14,17 +14,17 @@
 {
     NSMutableArray *_buffers;
     unsigned long long _totalCost;
-    struct CGRect _bounds;
+    unsigned long long _inkVersion;
 }
 
-@property(readonly, nonatomic) struct CGRect bounds; // @synthesize bounds=_bounds;
+@property(readonly, nonatomic) unsigned long long inkVersion; // @synthesize inkVersion=_inkVersion;
 - (void).cxx_destruct;
 - (BOOL)lockPurgeableResourcesAddToSet:(id)arg1;
 - (BOOL)needsCompute;
 - (unsigned long long)cacheCost;
 @property(readonly, nonatomic) NSArray *buffers; // @dynamic buffers;
 - (void)addBuffer:(id)arg1;
-- (id)initWithBounds:(struct CGRect)arg1 device:(id)arg2;
+- (id)initWithDevice:(id)arg1 inkVersion:(unsigned long long)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -9,15 +9,18 @@
 #import "NSDraggingDestination.h"
 #import "TCollectionViewItemViewProtocol.h"
 #import "TICloudBadgeButtonContainer.h"
+#import "TImageAttachmentContainer.h"
+#import "TMarkTornDown.h"
 
-@class NSColor, NSFont, NSImage, NSString;
+@class NSColor, NSFont, NSImage, NSObject<TDraggingDestinationDelegate><TSpringLoadingDestinationDelegate>, NSSet, NSString;
 
 __attribute__((visibility("hidden")))
-@interface FI_TIconView : FI_TUpdateLayerView <TCollectionViewItemViewProtocol, TICloudBadgeButtonContainer, NSDraggingDestination>
+@interface FI_TIconView : FI_TUpdateLayerView <TCollectionViewItemViewProtocol, TICloudBadgeButtonContainer, TImageAttachmentContainer, NSDraggingDestination, TMarkTornDown>
 {
     struct TNSRef<FI_TTrackingImageView, void> _iconView;
     struct TNSRef<FI_TIconSelectionView, void> _iconSelectionView;
-    struct TNSRef<FI_TBasicImageView, void> _badgeImageView;
+    TNSRef_cc605514 _badgeImageView;
+    TNSRef_cc605514 _vendorBadgeImageView;
     struct TNSRef<FI_TDesktopInlineProgressView, void> _inlineProgressView;
     struct TNSRef<FI_TDesktopTitleBubbleView, void> _titleBubbleView;
     struct TNSRef<FI_TTextField, void> _subtitleField;
@@ -28,16 +31,16 @@ __attribute__((visibility("hidden")))
     struct TString _titleStr;
     struct TNSRef<NSFont, void> _titleFont;
     struct TNSRef<NSColor, void> _titleFontColor;
-    struct TString _subtitleStr;
-    struct TString _subtitleShortStr;
+    NSSet *_subtitleStringSet;
     struct TNSRef<NSFont, void> _subtitleFont;
     struct TNSRef<NSColor, void> _subtitleFontColor;
     double _gridSpacing;
     vector_12bd641b _tagColorIndexes;
     struct TNSRef<NSImage, void> _badgeImage;
+    struct TNSRef<NSImage, void> _vendorBadgeImage;
     struct TNSRef<NSColor, void> _superViewsBackgroundColor;
-    struct TNSRef<NSColor, void> _fontSmoothingBackgroundColor;
     struct TNSRef<NSImage, void> _placeholderTagImage;
+    struct TNSRef<NSImage, void> _imageAttachment;
     _Bool _inlineProgressNeedsBaselineRefresh;
     _Bool _isTitleOnBottom;
     _Bool _isSelected;
@@ -51,13 +54,14 @@ __attribute__((visibility("hidden")))
     _Bool _isOverlappingTitle;
     _Bool _isSelectionBordered;
     _Bool _isTornDown;
-    id <TDraggingDestinationDelegate><TSpringLoadingDestinationDelegate> _delegate;
+    struct TNSWeakPtr<NSObject<TDraggingDestinationDelegate, TSpringLoadingDestinationDelegate>, void> _weakDelegate;
     struct TNSRef<NSAccessibilityCustomAction, void> _axOpenAction;
     struct TKeyValueBinder _titleBubbleViewHiddenBinder;
     struct TKeyValueBinder _titleBubbleViewSelectedBinder;
     struct TKeyValueBinder _subtitleFieldHiddenBinder;
     struct TKeyValueBinder _iconSelectionViewHiddenBinder;
     struct TKeyValueBinder _iconSelectionViewIconSizeBinder;
+    _Bool _titleDimmed;
 }
 
 + (id)keyPathsForValuesAffectingSubtitleFieldIsHidden;
@@ -65,7 +69,7 @@ __attribute__((visibility("hidden")))
 + (id)keyPathsForValuesAffectingTitleBubbleViewIsSelected;
 + (id)keyPathsForValuesAffectingIconSelectionViewIsHidden;
 + (Class)iconSelectionViewClass;
-@property(readonly, getter=isTornDown) _Bool tornDown; // @synthesize tornDown=_isTornDown;
+@property(getter=isTornDown) _Bool tornDown; // @synthesize tornDown=_isTornDown;
 @property(getter=isSpringBlinkingOff) _Bool springBlinkingOff; // @synthesize springBlinkingOff=_isSpringBlinkingOff;
 @property(getter=isEditing) _Bool editing; // @synthesize editing=_isEditing;
 - (id).cxx_construct;
@@ -83,8 +87,9 @@ __attribute__((visibility("hidden")))
 - (BOOL)isAccessibilityEnabled;
 - (id)accessibilityLabel;
 - (BOOL)isAccessibilityElement;
+- (void)layoutVendorBadgeImageView:(const struct CGRect *)arg1;
 - (void)layoutBadgeImageView:(const struct CGRect *)arg1;
-- (void)dirtyLayoutForBadgeImageViewIfNeeded;
+- (void)dirtyLayoutIfNeededWithBadge:(id)arg1 badgeImageView:(TNSRef_cc605514 *)arg2;
 - (void)layoutSubtitleField:(const struct CGRect *)arg1;
 - (void)configureSubtitleFieldBeforeLayout;
 - (void)dirtyLayoutForSubtitleBubbleViewIfNeeded;
@@ -114,6 +119,7 @@ __attribute__((visibility("hidden")))
 - (_Bool)isIconTracking:(id)arg1;
 - (void)stopIconTracking:(id)arg1;
 - (void)startIconTracking:(id)arg1 options:(unsigned long long)arg2 userInfo:(id)arg3;
+- (_Bool)isIconOrTextInRect:(const struct CGRect *)arg1;
 - (id)hitTestInIconOrText:(const struct CGPoint *)arg1;
 - (id)_hitTestInIconOrTextWithLocalPoint:(const struct CGPoint *)arg1;
 - (id)hitTestInText:(const struct CGPoint *)arg1;
@@ -153,13 +159,16 @@ __attribute__((visibility("hidden")))
 @property(getter=isOverlappingTitle) _Bool overlappingTitle; // @dynamic overlappingTitle;
 @property(getter=isSelectionBordered) _Bool selectionBordered; // @synthesize selectionBordered=_isSelectionBordered;
 @property(getter=isSelected) _Bool selected; // @synthesize selected=_isSelected;
-@property(getter=isDimmed) _Bool dimmed; // @dynamic dimmed;
+@property(getter=isTitleDimmed) _Bool titleDimmed; // @synthesize titleDimmed=_titleDimmed;
+@property(getter=isIconDimmed) _Bool iconDimmed; // @dynamic iconDimmed;
+- (_Bool)isDimmed;
 @property(getter=isSubtitleEnabled) _Bool subtitleEnabled; // @dynamic subtitleEnabled;
 @property(getter=isTitleEnabled) _Bool titleEnabled; // @dynamic titleEnabled;
 @property(getter=isTitleOnBottom) _Bool titleOnBottom; // @dynamic titleOnBottom;
 @property(getter=isIconHidden) _Bool iconHidden; // @dynamic iconHidden;
 @property double gridSpacing; // @dynamic gridSpacing;
 @property const vector_12bd641b *tagColorIndexes; // @dynamic tagColorIndexes;
+@property(copy) NSImage *vendorBadgeImage;
 @property(copy) NSImage *badgeImage; // @dynamic badgeImage;
 @property(copy) NSColor *subtitleFontColor; // @dynamic subtitleFontColor;
 - (id)_subtitleFontColor;
@@ -167,8 +176,8 @@ __attribute__((visibility("hidden")))
 - (double)subtitleFontSize;
 - (void)updateSubtitleFontForTitleFontChange;
 @property(copy) NSFont *subtitleFont;
-@property(copy) NSString *subtitleShortStr; // @dynamic subtitleShortStr;
-@property(copy) NSString *subtitleStr; // @dynamic subtitleStr;
+@property(copy) NSSet *subtitleStringSet; // @dynamic subtitleStringSet;
+- (_Bool)setImageAttachment:(id)arg1 toolTip:(const struct TString *)arg2;
 - (void)setICloudBadge:(int)arg1 toolTip:(const struct TString *)arg2 clickHandler:(const function_b1fce659 *)arg3;
 @property(copy) NSColor *titleFontColor; // @dynamic titleFontColor;
 - (id)_titleFontColor;
@@ -177,9 +186,8 @@ __attribute__((visibility("hidden")))
 @property(copy) NSString *titleStr; // @dynamic titleStr;
 @property struct CGSize iconSize; // @dynamic iconSize;
 @property(copy) NSImage *iconImage; // @dynamic iconImage;
-@property id <TDraggingDestinationDelegate><TSpringLoadingDestinationDelegate> delegate; // @dynamic delegate;
+@property __weak NSObject<TDraggingDestinationDelegate><TSpringLoadingDestinationDelegate> *delegate; // @dynamic delegate;
 - (id)popoverAnchorView;
-- (void)updateFontSmoothingBackgroundColor:(id)arg1;
 - (void)updateSuperViewsBackgroundColor:(id)arg1;
 - (void)prepareForReuse;
 - (void)aboutToTearDown;

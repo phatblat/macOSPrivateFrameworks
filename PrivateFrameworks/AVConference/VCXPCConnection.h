@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSData, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSObject<OS_os_transaction>, NSObject<OS_xpc_object>;
+@class NSData, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSObject<OS_os_transaction>, NSObject<OS_xpc_object>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface VCXPCConnection : NSObject
@@ -19,10 +19,13 @@ __attribute__((visibility("hidden")))
     BOOL _isPersistent;
     NSObject<OS_dispatch_source> *_timeoutTimer;
     NSObject<OS_dispatch_queue> *_timeoutTimerQueue;
+    struct OpaqueFigCFWeakReferenceHolder *_timeoutTimerContext;
+    NSString *_lastCalledApiName;
     BOOL _timeoutTimerStarted;
 }
 
-+ (void)selfTerminateDueToTimeout:(int)arg1;
++ (void)selfTerminateDueToTimeout:(id)arg1;
+@property(retain, nonatomic) NSString *lastCalledApiName; // @synthesize lastCalledApiName=_lastCalledApiName;
 @property(retain, nonatomic) NSData *tokenData; // @synthesize tokenData;
 @property(retain, nonatomic) id context; // @synthesize context;
 @property(retain, nonatomic) NSObject<OS_xpc_object> *connection;

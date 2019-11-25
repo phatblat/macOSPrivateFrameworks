@@ -13,11 +13,13 @@
     NSMutableDictionary *_accounts;
     MMTermsOfServiceController *_termsOfServiceController;
     NSWindow *_parentWindow;
+    struct os_unfair_lock_s _accountContextLock;
 }
 
 + (id)sharedMgr;
 + (void)showSignInError:(id)arg1 usingWindow:(id)arg2 forAccountID:(id)arg3 andPassword:(id)arg4 authenticationResults:(id)arg5;
 @property(retain, nonatomic) MMTermsOfServiceController *termsOfServiceController; // @synthesize termsOfServiceController=_termsOfServiceController;
+- (void).cxx_destruct;
 - (void)deactivateFailed:(id)arg1;
 - (void)deactivateCompleted:(id)arg1;
 - (void)serviceStatusChanged:(id)arg1;
@@ -25,9 +27,7 @@
 - (void)serviceDataChanged:(id)arg1;
 - (void)accountDataChanged:(id)arg1;
 - (void)tosDeniedFailed:(id)arg1;
-- (void)signOutFailed:(id)arg1;
 - (void)signInFailed:(id)arg1;
-- (void)signOutCompleted:(id)arg1;
 - (void)refreshCompleted:(id)arg1;
 - (void)signInCompleted:(id)arg1;
 - (void)signInAccount:(id)arg1 withPassword:(id)arg2 context:(id)arg3;
@@ -40,7 +40,6 @@
 - (void)willSelect;
 - (void)didUnselect;
 - (void)didSelect;
-- (void)finalize;
 - (void)dealloc;
 - (void)deregisterNotifications;
 - (id)init;

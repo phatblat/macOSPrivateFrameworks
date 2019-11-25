@@ -17,7 +17,7 @@
     NSString *_lastPathReceived;
 }
 
-+ (BOOL)needsDirectAccessToSendOrReceiveResult;
++ (BOOL)streamsResults;
 + (int)actionID;
 @property(retain) NSString *lastPathReceived; // @synthesize lastPathReceived=_lastPathReceived;
 @property(retain) NSURL *destinationPath; // @synthesize destinationPath=_destinationPath;

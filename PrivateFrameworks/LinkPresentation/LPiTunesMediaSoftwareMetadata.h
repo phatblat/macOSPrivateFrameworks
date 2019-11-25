@@ -6,43 +6,59 @@
 
 #import <LinkPresentation/LPSpecializationMetadata.h>
 
-#import "LPLinkMetadataPresentationTransformerAdaptor.h"
-#import "LPLinkMetadataPreviewTransformerAdaptor.h"
-#import "LPLinkMetadataStoreTransformerAdaptor.h"
+#import "LPLinkMetadataBackwardCompatibility.h"
+#import "LPLinkMetadataPresentationTransformer.h"
+#import "LPLinkMetadataPreviewTransformer.h"
+#import "LPLinkMetadataStoreTransformer.h"
 
-@class LPImage, NSArray, NSString;
+@class LPImage, LPVideo, NSArray, NSString;
 
-@interface LPiTunesMediaSoftwareMetadata : LPSpecializationMetadata <LPLinkMetadataPresentationTransformerAdaptor, LPLinkMetadataPreviewTransformerAdaptor, LPLinkMetadataStoreTransformerAdaptor>
+@interface LPiTunesMediaSoftwareMetadata : LPSpecializationMetadata <LPLinkMetadataPresentationTransformer, LPLinkMetadataPreviewTransformer, LPLinkMetadataBackwardCompatibility, LPLinkMetadataStoreTransformer>
 {
     BOOL _isMessagesOnlyApp;
     NSString *_storeFrontIdentifier;
     NSString *_storeIdentifier;
     NSString *_name;
+    NSString *_subtitle;
     NSString *_genre;
     NSString *_platform;
     LPImage *_icon;
     NSArray *_screenshots;
+    LPVideo *_previewVideo;
     LPImage *_messagesAppIcon;
 }
 
++ (id)keyPathsForValuesAffecting_dummyPropertyForObservation;
 + (BOOL)supportsSecureCoding;
 @property(retain, nonatomic) LPImage *messagesAppIcon; // @synthesize messagesAppIcon=_messagesAppIcon;
 @property(nonatomic) BOOL isMessagesOnlyApp; // @synthesize isMessagesOnlyApp=_isMessagesOnlyApp;
-@property(retain, nonatomic) NSArray *screenshots; // @synthesize screenshots=_screenshots;
+@property(retain, nonatomic) LPVideo *previewVideo; // @synthesize previewVideo=_previewVideo;
+@property(copy, nonatomic) NSArray *screenshots; // @synthesize screenshots=_screenshots;
 @property(retain, nonatomic) LPImage *icon; // @synthesize icon=_icon;
 @property(copy, nonatomic) NSString *platform; // @synthesize platform=_platform;
 @property(copy, nonatomic) NSString *genre; // @synthesize genre=_genre;
+@property(copy, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(copy, nonatomic) NSString *storeIdentifier; // @synthesize storeIdentifier=_storeIdentifier;
 @property(copy, nonatomic) NSString *storeFrontIdentifier; // @synthesize storeFrontIdentifier=_storeFrontIdentifier;
 - (void).cxx_destruct;
+- (void)_enumerateAsynchronousFields:(CDUnknownBlockType)arg1;
+@property(readonly) unsigned long long hash;
+- (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)storeIdentifierForTransformer:(id)arg1;
+- (void)populateMetadataForBackwardCompatibility:(id)arg1;
 - (id)previewImageForTransformer:(id)arg1;
 - (id)previewSummaryForTransformer:(id)arg1;
+- (BOOL)canGeneratePresentationPropertiesForURL:(id)arg1;
 - (id)presentationPropertiesForTransformer:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

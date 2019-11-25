@@ -8,7 +8,7 @@
 
 #import "GEOProtobufSessionTaskDelegate.h"
 
-@class GEOApplicationAuditToken, GEOETATrafficUpdateRequest, GEOMapServiceTraits, GEOProtobufSession, GEOProtobufSessionTask, NSString;
+@class GEOApplicationAuditToken, GEOETATrafficUpdateRequest, GEOMapServiceTraits, GEOProtobufSession, GEOProtobufSessionTask, NSObject<OS_dispatch_queue>, NSString;
 
 @interface GEOETAProvider : NSObject <GEOProtobufSessionTaskDelegate>
 {
@@ -22,6 +22,7 @@
     GEOMapServiceTraits *_traits;
     BOOL _cancelled;
     struct GEOOnce_s _didStart;
+    NSObject<OS_dispatch_queue> *_isolationQueue;
 }
 
 @property(copy, nonatomic) CDUnknownBlockType willSendRequestHandler; // @synthesize willSendRequestHandler=_willSendRequestHandler;

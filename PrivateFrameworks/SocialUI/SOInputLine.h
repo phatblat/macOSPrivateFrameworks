@@ -8,7 +8,7 @@
 
 #import "NSFilePresenter.h"
 
-@class IMPluginPayload, NSColor, NSDate, NSFont, NSMenuItem, NSNumber, NSOperationQueue, NSSet, NSString, NSURL, NSView, SOInputLineAutoSender, SOTimer, SOTimerCenter;
+@class IMPluginPayload, NSColor, NSDate, NSFont, NSMenuItem, NSNumber, NSOperationQueue, NSSet, NSString, NSURL, NSUserDefaults, NSView, SOInputLineAutoSender, SOTimer, SOTimerCenter;
 
 @interface SOInputLine : NSTextView <NSFilePresenter>
 {
@@ -28,9 +28,7 @@
     BOOL _placeholderAttributedStringNeedsUpdate;
     NSOperationQueue *_filePromiseReceivingQueue;
     BOOL _dirty;
-    BOOL _automaticEmojiSubstitutionAllowed;
-    BOOL _automaticEmojiSubstitutionEnablediMessage;
-    BOOL _automaticEmojiSubstitutionEnabledLegacy;
+    BOOL _automaticEmojiSubstitutionEnabled;
     BOOL _useBigEmoji;
     NSFont *_defaultFont;
     NSFont *_lastUsedSubstitutedFont;
@@ -41,6 +39,7 @@
     double _lastChangedTime;
     SOInputLineAutoSender *_autoSender;
     IMPluginPayload *_balloonPluginPayloadToInsert;
+    NSUserDefaults *_inputLineDefaults;
     NSURL *_dropDirectoryURL;
 }
 
@@ -48,13 +47,12 @@
 + (id)_updateCharacterSet;
 + (double)minimumFontSize;
 @property(retain) NSURL *dropDirectoryURL; // @synthesize dropDirectoryURL=_dropDirectoryURL;
+@property(retain, nonatomic) NSUserDefaults *inputLineDefaults; // @synthesize inputLineDefaults=_inputLineDefaults;
 @property(nonatomic) BOOL useBigEmoji; // @synthesize useBigEmoji=_useBigEmoji;
-@property(nonatomic) BOOL automaticEmojiSubstitutionEnabledLegacy; // @synthesize automaticEmojiSubstitutionEnabledLegacy=_automaticEmojiSubstitutionEnabledLegacy;
-@property(nonatomic) BOOL automaticEmojiSubstitutionEnablediMessage; // @synthesize automaticEmojiSubstitutionEnablediMessage=_automaticEmojiSubstitutionEnablediMessage;
 @property(retain, nonatomic) IMPluginPayload *balloonPluginPayloadToInsert; // @synthesize balloonPluginPayloadToInsert=_balloonPluginPayloadToInsert;
 @property(retain, nonatomic) SOInputLineAutoSender *autoSender; // @synthesize autoSender=_autoSender;
 @property(nonatomic) double lastChangedTime; // @synthesize lastChangedTime=_lastChangedTime;
-@property(nonatomic, getter=isAutomaticEmojiSubstitutionAllowed) BOOL automaticEmojiSubstitutionAllowed; // @synthesize automaticEmojiSubstitutionAllowed=_automaticEmojiSubstitutionAllowed;
+@property(nonatomic, getter=isAutomaticEmojiSubstitutionEnabled) BOOL automaticEmojiSubstitutionEnabled; // @synthesize automaticEmojiSubstitutionEnabled=_automaticEmojiSubstitutionEnabled;
 @property(retain, nonatomic) NSMenuItem *substituteEmojiMenuItem; // @synthesize substituteEmojiMenuItem=_substituteEmojiMenuItem;
 @property(retain) NSView *keyForwardingView; // @synthesize keyForwardingView=_keyForwardingView;
 @property(retain, nonatomic) NSNumber *forcedMinimumHeight; // @synthesize forcedMinimumHeight=_forcedMinimumHeight;
@@ -108,6 +106,7 @@
 - (BOOL)canRenderInline:(id)arg1;
 - (BOOL)canAttachFile;
 - (void)dealloc;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)insertNewline:(id)arg1;
 - (BOOL)resignFirstResponder;
 - (BOOL)becomeFirstResponder;
@@ -145,15 +144,13 @@
 - (void)_placeholderAttributedStringNeedsUpdate;
 - (void)updateAutomaticEmojiSubstitutionState;
 - (void)_updateValue:(id)arg1 forSettingsKey:(id)arg2;
-- (void)_helperDefaultsDidChange:(id)arg1;
 - (void)_settingsDidChange;
-- (void)_initializeInputLineSettings:(id)arg1;
+- (void)_initializeInputLineSettings;
 - (void)updateUseBigEmoji;
 - (void)stopTimers;
 - (BOOL)insertLinkAtSelection:(id)arg1 withText:(id)arg2;
 - (void)applyLinkToSelection:(id)arg1 withText:(id)arg2;
 - (void)addLink:(id)arg1;
-@property(nonatomic, getter=isAutomaticEmojiSubstitutionEnabled) BOOL automaticEmojiSubstitutionEnabled; // @dynamic automaticEmojiSubstitutionEnabled;
 - (void)clear;
 - (void)_fetchNextSentMessage;
 - (void)_fetchPriorSentMessage;
@@ -170,10 +167,8 @@
 @property(readonly, copy) NSURL *presentedItemURL;
 - (BOOL)performDragOperation:(id)arg1;
 - (void)updateDraggingItemsForDrag:(id)arg1;
-- (BOOL)_applyDragAndDropFormatting:(id)arg1;
 - (void)_commonSOInputLineInit;
 - (void)setToDefaultAppearance;
-- (void)setNeedsDisplay:(BOOL)arg1;
 - (void)awakeFromNib;
 - (unsigned long long)validModesForFontPanel:(id)arg1;
 @property(readonly, nonatomic) NSColor *transferBackgroundColor;

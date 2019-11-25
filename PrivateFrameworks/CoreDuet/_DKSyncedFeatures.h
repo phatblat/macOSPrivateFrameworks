@@ -9,16 +9,21 @@
 @interface _DKSyncedFeatures : NSObject
 {
     BOOL _isDigitalHealthDisabledInitialized;
-    BOOL _isDigitalHealthDisabled;
+    BOOL _isDigitalHealthDisabledPreviousResult;
+    BOOL _isSingleDevice;
+    long long _screenTimeSyncState;
 }
 
 + (id)sharedInstance;
+@property long long screenTimeSyncState; // @synthesize screenTimeSyncState=_screenTimeSyncState;
 - (id)description;
-- (BOOL)anyFeatureEnabled;
+- (id)_stateStringWithState:(long long)arg1;
 - (BOOL)isSupergreenDisabledForTransports:(long long)arg1;
 - (BOOL)isSiriPortraitDisabled;
 - (BOOL)isIDSMessageGatingDisabled;
-- (BOOL)isDigitalHealthDisabledWithIsSingleDevice:(BOOL)arg1;
+- (BOOL)isDigitalHealthDisabledWithIsSingleDevice:(BOOL)arg1 forTransports:(long long)arg2;
+- (void)_fetchScreenTimeSyncState;
+- (id)init;
 
 @end
 

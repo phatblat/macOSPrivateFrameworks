@@ -8,6 +8,7 @@
 
 @class NSData, NSError, NSString;
 
+__attribute__((visibility("hidden")))
 @interface OCDReader : NSObject
 {
     id <TCCancelDelegate> mCancelDelegate;

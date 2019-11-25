@@ -9,7 +9,7 @@
 @class HUIDCMessage, HUIDCRemoteController, NSError;
 
 @protocol HUIDCRemoteControllerDelegate <NSObject>
-@property(nonatomic) id <HUIDCManagerSecurityDelegate> securityDelegate;
+@property(nonatomic) __weak id <HUIDCManagerSecurityDelegate> securityDelegate;
 - (void)controller:(HUIDCRemoteController *)arg1 didCloseConnectionWithError:(NSError *)arg2;
 - (void)controllerDidFinishConnecting:(HUIDCRemoteController *)arg1;
 - (void)controller:(HUIDCRemoteController *)arg1 didFinishSendingData:(HUIDCMessage *)arg2;

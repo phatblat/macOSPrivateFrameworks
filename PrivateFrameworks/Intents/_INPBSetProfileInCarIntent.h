@@ -10,7 +10,7 @@
 #import "NSSecureCoding.h"
 #import "_INPBSetProfileInCarIntent.h"
 
-@class INCodableAttribute, NSString, _INPBDataString, _INPBInteger, _INPBIntentMetadata, _INPBString;
+@class NSString, _INPBDataString, _INPBInteger, _INPBIntentMetadata, _INPBString;
 
 @interface _INPBSetProfileInCarIntent : PBCodable <_INPBSetProfileInCarIntent, NSSecureCoding, NSCopying>
 {
@@ -18,12 +18,15 @@
         unsigned int defaultProfile:1;
     } _has;
     BOOL _defaultProfile;
+    BOOL __encodeLegacyGloryData;
     _INPBDataString *_carName;
     _INPBIntentMetadata *_intentMetadata;
     _INPBString *_profileName;
     _INPBInteger *_profileNumber;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(retain, nonatomic) _INPBInteger *profileNumber; // @synthesize profileNumber=_profileNumber;
 @property(retain, nonatomic) _INPBString *profileName; // @synthesize profileName=_profileName;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
@@ -34,6 +37,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(readonly, nonatomic) BOOL hasProfileNumber;

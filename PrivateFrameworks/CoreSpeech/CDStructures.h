@@ -37,11 +37,9 @@ struct BatchBeepCanceller;
 
 struct CSAudioCircularBufferImpl<float>;
 
-struct CSAudioZeroFilterImpl<float>;
+struct CSAudioCircularBufferImpl<unsigned char>;
 
-struct ComponentInstanceRecord {
-    long long _field1[1];
-};
+struct CSAudioZeroFilterImpl<float>;
 
 struct SmartSiriVolume;
 
@@ -66,6 +64,12 @@ struct unique_ptr<SmartSiriVolume, std::__1::default_delete<SmartSiriVolume>> {
 struct unique_ptr<corespeech::CSAudioCircularBufferImpl<float>, std::__1::default_delete<corespeech::CSAudioCircularBufferImpl<float>>> {
     struct __compressed_pair<corespeech::CSAudioCircularBufferImpl<float>*, std::__1::default_delete<corespeech::CSAudioCircularBufferImpl<float>>> {
         struct CSAudioCircularBufferImpl<float> *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<corespeech::CSAudioCircularBufferImpl<unsigned char>, std::__1::default_delete<corespeech::CSAudioCircularBufferImpl<unsigned char>>> {
+    struct __compressed_pair<corespeech::CSAudioCircularBufferImpl<unsigned char>*, std::__1::default_delete<corespeech::CSAudioCircularBufferImpl<unsigned char>>> {
+        struct CSAudioCircularBufferImpl<unsigned char> *__value_;
     } __ptr_;
 };
 

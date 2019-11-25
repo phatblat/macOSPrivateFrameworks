@@ -60,14 +60,15 @@
 @property(copy, nonatomic) CDUnknownBlockType secureElementSessionPrelude;
 - (BOOL)setOwnerUserUUID:(id)arg1 keybagUUID:(id)arg2;
 - (unsigned long long)ownershipStateForUserUUID:(id)arg1;
+- (void)setOwnerUserUUID:(id)arg1 keybagUUID:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
 - (void)ownershipStateForUserUUID:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (BOOL)supportsExpressModeForExpressPassType:(long long)arg1;
 - (void)unregisterObserver:(id)arg1;
 - (void)registerObserver:(id)arg1;
 - (void)peerPaymentEnrollmentDataWithAlternateDSID:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)connectToServerWithPushTopic:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (BOOL)queueConnectionToSeverForAppletIdentifiers:(id)arg1;
-- (BOOL)queueConnectionToSeverWithPushTopic:(id)arg1;
+- (BOOL)queueConnectionToServerForAppletIdentifiers:(id)arg1;
+- (BOOL)queueConnectionToServerWithPushTopic:(id)arg1;
 - (void)signedPlatformDataWithCompletion:(CDUnknownBlockType)arg1;
 - (void)stateInformationWithCompletion:(CDUnknownBlockType)arg1;
 - (void)signatureForAuthToken:(id)arg1 completion:(CDUnknownBlockType)arg2;

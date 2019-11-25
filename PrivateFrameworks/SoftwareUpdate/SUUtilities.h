@@ -10,6 +10,11 @@
 {
 }
 
++ (unsigned long long)attemptToReclaimSpaceUsingCacheDeleteWithSpaceRequired:(unsigned long long)arg1;
++ (id)daemonTempDirectoryAppendedWithPath:(id)arg1;
++ (id)daemonCacheDirectoryAppendedWithPath:(id)arg1;
++ (BOOL)systemIsAPFS;
++ (BOOL)systemIsMemberOfReadOnlySystemGroup;
 + (long long)compareVersion:(id)arg1 againstVersion:(id)arg2;
 + (id)trimBugFixFromVersion:(id)arg1;
 

@@ -16,7 +16,7 @@
 
 + (id)_ignoredParameters;
 - (id)_spotlightContentType;
-- (BOOL)configureAttributeSet:(id)arg1;
+- (BOOL)configureAttributeSet:(id)arg1 includingData:(BOOL)arg2;
 - (void)setParametersByName:(id)arg1;
 - (id)parametersByName;
 - (void)setVerb:(id)arg1;
@@ -28,6 +28,7 @@
 - (void)_redactForMissingPrivacyEntitlementOptions:(unsigned long long)arg1 containingAppBundleId:(id)arg2;
 - (id)_dictionaryRepresentation;
 @property(setter=setTTYType:) long long ttyType;
+@property long long recordTypeForRedialing;
 - (void)setContacts:(id)arg1;
 @property(readonly, copy) NSArray *contacts;
 @property long long preferredCallProvider;

@@ -13,15 +13,16 @@
 @interface RPCompanionLinkDevice : RPEndpoint <NSSecureCoding>
 {
     BOOL _personal;
-    BOOL _btPipeConnected;
     BOOL _changed;
     BOOL _daemon;
+    BOOL _uiTriggered;
     unsigned int _flags;
     int _mediaSystemRole;
     int _mediaSystemState;
     int _personalDeviceState;
     int _personalRequestsState;
     int _mediaSystemRoleEffective;
+    int _serversChangedState;
     NSString *_deviceColor;
     NSUUID *_homeKitIdentifier;
     NSString *_idsPersonalDeviceIdentifier;
@@ -30,7 +31,6 @@
     NSString *_publicIdentifier;
     NSString *_roomName;
     NSDictionary *_siriInfo;
-    NSString *_sourceVersion;
     NSString *_role;
     NSUUID *_mediaSystemIdentifierEffective;
     NSUUID *_pairingIdentifier;
@@ -38,15 +38,15 @@
 }
 
 + (BOOL)supportsSecureCoding;
+@property(nonatomic) BOOL uiTriggered; // @synthesize uiTriggered=_uiTriggered;
+@property(nonatomic) int serversChangedState; // @synthesize serversChangedState=_serversChangedState;
 @property(copy, nonatomic) NSString *password; // @synthesize password=_password;
 @property(copy, nonatomic) NSUUID *pairingIdentifier; // @synthesize pairingIdentifier=_pairingIdentifier;
 @property(nonatomic) int mediaSystemRoleEffective; // @synthesize mediaSystemRoleEffective=_mediaSystemRoleEffective;
 @property(copy, nonatomic) NSUUID *mediaSystemIdentifierEffective; // @synthesize mediaSystemIdentifierEffective=_mediaSystemIdentifierEffective;
 @property(nonatomic) BOOL daemon; // @synthesize daemon=_daemon;
 @property(nonatomic) BOOL changed; // @synthesize changed=_changed;
-@property(nonatomic) BOOL btPipeConnected; // @synthesize btPipeConnected=_btPipeConnected;
 @property(copy, nonatomic) NSString *role; // @synthesize role=_role;
-@property(copy, nonatomic) NSString *sourceVersion; // @synthesize sourceVersion=_sourceVersion;
 @property(copy, nonatomic) NSDictionary *siriInfo; // @synthesize siriInfo=_siriInfo;
 @property(copy, nonatomic) NSString *roomName; // @synthesize roomName=_roomName;
 @property(copy, nonatomic) NSString *publicIdentifier; // @synthesize publicIdentifier=_publicIdentifier;
@@ -62,6 +62,7 @@
 @property(nonatomic) unsigned int flags; // @synthesize flags=_flags;
 @property(copy, nonatomic) NSString *deviceColor; // @synthesize deviceColor=_deviceColor;
 - (void).cxx_destruct;
+- (unsigned int)updateWithSFDevice:(id)arg1;
 - (unsigned int)updateWithBonjourDevice:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *effectiveIdentifier;
 - (id)descriptionWithLevel:(int)arg1;

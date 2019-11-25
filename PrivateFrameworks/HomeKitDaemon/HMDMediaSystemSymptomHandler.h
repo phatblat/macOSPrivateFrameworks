@@ -6,13 +6,12 @@
 
 #import "HMFObject.h"
 
-#import "HMDHomeMessageReceiver.h"
 #import "HMFLogging.h"
 #import "NSSecureCoding.h"
 
 @class HMDMediaSystem, HMFMessageDispatcher, NSDictionary, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
 
-@interface HMDMediaSystemSymptomHandler : HMFObject <NSSecureCoding, HMFLogging, HMDHomeMessageReceiver>
+@interface HMDMediaSystemSymptomHandler : HMFObject <NSSecureCoding, HMFLogging>
 {
     NSUUID *_uuid;
     HMDMediaSystem *_mediaSystem;
@@ -21,12 +20,11 @@
     HMFMessageDispatcher *_msgDispatcher;
 }
 
-+ (BOOL)hasMessageReceiverChildren;
 + (BOOL)supportsSecureCoding;
 + (id)logCategory;
 @property(retain, nonatomic) HMFMessageDispatcher *msgDispatcher; // @synthesize msgDispatcher=_msgDispatcher;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
-@property(retain, nonatomic) NSDictionary *currentSymptoms; // @synthesize currentSymptoms=_currentSymptoms;
+@property(copy, nonatomic) NSDictionary *currentSymptoms; // @synthesize currentSymptoms=_currentSymptoms;
 @property(readonly, nonatomic) __weak HMDMediaSystem *mediaSystem; // @synthesize mediaSystem=_mediaSystem;
 @property(readonly, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
 - (void).cxx_destruct;
@@ -39,8 +37,6 @@
 - (void)handleNewDiscoveredSymptoms:(id)arg1 forAccessory:(id)arg2;
 - (void)_refreshCurrentDeviceSymptoms;
 - (void)refreshCurrentDeviceSymptoms;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *messageReceiveQueue;
-@property(readonly, nonatomic) NSUUID *messageTargetUUID;
 - (void)configureWithWorkQueue:(id)arg1 messageDispatcher:(id)arg2;
 - (id)logIdentifier;
 - (struct NSDictionary *)_initializePlaceholderSymptomsDict:(id)arg1;
@@ -50,7 +46,6 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly, copy) NSSet *messageReceiverChildren;
 @property(readonly) Class superclass;
 
 @end

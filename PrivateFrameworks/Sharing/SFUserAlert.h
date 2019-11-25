@@ -16,9 +16,11 @@
 {
     BOOL _invalidateCalled;
     BOOL _invalidateDone;
+    struct __CFUserNotification *_cfNotif;
     NSUserNotification *_bannerNotification;
     NSUserNotificationCenter *_notificationCenter;
     NSXPCConnection *_xpcCnx;
+    struct __CFRunLoopSource *_runLoopSrc;
     BOOL _asBanner;
     BOOL _textInput;
     BOOL _hasDefaultButton;
@@ -26,6 +28,7 @@
     CDUnknownBlockType _errorHandler;
     CDUnknownBlockType _responseHandler;
     CDUnknownBlockType _textResponseHandler;
+    CDUnknownBlockType _dictionaryResponseHandler;
     NSDictionary *_additionalInfo;
     NSURL *_iconURL;
     NSString *_message;
@@ -54,6 +57,7 @@
 @property(retain, nonatomic) NSURL *iconURL; // @synthesize iconURL=_iconURL;
 @property(nonatomic) BOOL asBanner; // @synthesize asBanner=_asBanner;
 @property(retain, nonatomic) NSDictionary *additionalInfo; // @synthesize additionalInfo=_additionalInfo;
+@property(copy, nonatomic) CDUnknownBlockType dictionaryResponseHandler; // @synthesize dictionaryResponseHandler=_dictionaryResponseHandler;
 @property(copy, nonatomic) CDUnknownBlockType textResponseHandler; // @synthesize textResponseHandler=_textResponseHandler;
 @property(copy, nonatomic) CDUnknownBlockType responseHandler; // @synthesize responseHandler=_responseHandler;
 @property(copy, nonatomic) CDUnknownBlockType errorHandler; // @synthesize errorHandler=_errorHandler;
@@ -62,6 +66,7 @@
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)userNotificationCenter:(id)arg1 didActivateNotification:(id)arg2;
+- (void)userNotificationDictionaryResponse:(id)arg1;
 - (void)userNotificationTextResponse:(id)arg1;
 - (void)userNotificationResponse:(int)arg1;
 - (void)userNotificationError:(id)arg1;
@@ -70,9 +75,13 @@
 - (void)_interrupted;
 - (void)_ensureXPCStarted;
 - (id)createNotificationBanner;
+- (void)_updateNotification;
+- (id)_mergedDict;
 - (struct __CFUserNotification *)createNotification;
+- (id)_defaultDictionary;
 - (void)_presentBanner;
 - (void)_postNotification:(struct __CFUserNotification *)arg1;
+- (void)_handleResponseForNotification:(struct __CFUserNotification *)arg1 flags:(unsigned long long)arg2;
 - (void)_present;
 - (void)present;
 - (void)invalidate;

@@ -74,7 +74,6 @@
 - (void)setStatusViewHidden:(BOOL)arg1;
 - (void)siriIdleAndQuietStatusDidChange:(BOOL)arg1;
 - (void)siriDidLaunchApplication:(id)arg1;
-- (void)siriDidLaunchApplicationOrURL;
 - (void)serviceLaunchApplicationWithBundleIdentifier:(id)arg1 withURL:(id)arg2 replyHandler:(CDUnknownBlockType)arg3;
 - (void)performUnlockDependentAction:(CDUnknownBlockType)arg1;
 - (void)askUserToUnlock;
@@ -84,7 +83,10 @@
 - (void)handleLongPressEndFromSource:(long long)arg1 atTime:(double)arg2;
 - (void)handleLongPressBeginFromSource:(long long)arg1;
 - (void)handleClickFromSource:(long long)arg1;
+- (void)handleVoiceWithOptions:(id)arg1;
+- (void)handleDoubleTapWithOptions:(id)arg1;
 - (void)handlePreheatFromSource:(long long)arg1;
+- (void)_postInvocationRequestCompletedNotification:(BOOL)arg1;
 - (void)didPresentCreateBugTemplateWithConfirm:(BOOL)arg1 values:(id)arg2;
 - (void)siriSessionDidEnd:(id)arg1;
 - (void)siriSessionWillEnd:(id)arg1;
@@ -164,6 +166,8 @@
 - (void)_handleLongPressEndedFromSource:(long long)arg1 atTime:(double)arg2;
 - (void)_handleLongPressBeganFromSource:(long long)arg1;
 - (void)_handleClickFromSource:(long long)arg1;
+- (void)_handleVoiceWithOptions:(id)arg1;
+- (void)_handleDoubleTapWithOptions:(id)arg1;
 - (void)startMyriadAdvertisingWithRequestOptions:(id)arg1;
 - (void)_handlePreheatFromSource:(long long)arg1;
 - (void)_enqueueRemoteViewControllerMessageBlock:(CDUnknownBlockType)arg1;

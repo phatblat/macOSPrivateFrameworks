@@ -10,6 +10,7 @@
 
 @class NSObject<NSSharingServiceDelegate>, NSSharingService, NSString;
 
+__attribute__((visibility("hidden")))
 @interface SHKNextTransportServiceDelegate : NSObject <NSSharingServiceDelegate>
 {
     NSObject<NSSharingServiceDelegate> *_originalDelegate;

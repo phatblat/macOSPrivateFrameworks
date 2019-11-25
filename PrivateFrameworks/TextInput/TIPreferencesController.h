@@ -16,7 +16,6 @@
     NSMutableDictionary *_configuredPreferences;
     NSMutableDictionary *_cachedMCRestrictedValue;
     NSTimer *_synchronizePreferencesTimer;
-    double _lastSynchronizePreferencesTime[5];
     BOOL isInternalInstall;
     BOOL _inhibitGlobalNotification;
     BOOL _ignoreNextSyncNotification;
@@ -30,10 +29,13 @@
 - (void).cxx_destruct;
 - (void)updateLastUsedDictationLanguages:(id)arg1;
 - (void)updateEnabledDictationLanguages:(id)arg1;
+- (void)updateEnableProKeyboard:(BOOL)arg1;
 - (void)updateDidPerformFirstReachableKeyboardInteraction;
 - (void)updateKeyboardHandBias:(id)arg1;
 - (void)updateKeyboardIsFloating:(BOOL)arg1;
 - (void)updateKeyboardIsSplit:(BOOL)arg1 locked:(BOOL)arg2;
+@property(nonatomic) unsigned long long floatingKeyboardDockedEdge;
+@property(nonatomic) struct CGPoint floatingKeyboardPosition;
 @property(nonatomic) struct CGPoint keyboardPosition;
 - (void)didUnseeHardwareKeyboard:(id)arg1;
 - (void)didSeeHardwareKeyboard:(id)arg1;

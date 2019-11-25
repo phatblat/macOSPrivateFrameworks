@@ -7,6 +7,7 @@
 #import "IDSDevice.h"
 
 @interface IDSDevice (PKIDSManager)
+- (BOOL)pk_isValidHandoffDevice;
 - (BOOL)pk_isApplePayCapable;
 - (id)pk_idsDestination;
 @end

@@ -8,13 +8,14 @@
 
 #import "StreamingUnzipProtocol.h"
 
-@class NSObject<OS_dispatch_queue>, NSXPCConnection, StreamingUnzipState;
+@class NSObject<OS_dispatch_queue>, NSObject<OS_os_transaction>, NSXPCConnection, StreamingUnzipState;
 
 @interface StreamingUnzipper : NSObject <StreamingUnzipProtocol>
 {
     long long _sandboxToken;
     void *_decompressionOutputBuffer;
     StreamingUnzipState *_currentState;
+    NSObject<OS_os_transaction> *_sessionTransaction;
     int _activeDelegateMethods;
     double _lastExtractionProgressSent;
     NSXPCConnection *xpcConnection;
@@ -39,7 +40,7 @@
 - (void)dealloc;
 - (void)setActiveDelegateMethods:(int)arg1;
 - (void)setupUnzipperWithOutputPath:(id)arg1 sandboxExtensionToken:(char *)arg2 options:(id)arg3 withReply:(CDUnknownBlockType)arg4;
-- (id)init;
+- (id)initForClient:(id)arg1;
 
 @end
 

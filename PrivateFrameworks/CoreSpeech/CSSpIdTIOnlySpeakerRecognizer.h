@@ -26,20 +26,7 @@
     NSObject<OS_dispatch_queue> *_queue;
 }
 
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
-@property(retain, nonatomic) id <CSAudioFileWriter> dbgTiUttLogger; // @synthesize dbgTiUttLogger=_dbgTiUttLogger;
-@property(retain, nonatomic) NSDictionary *lastSpeakerIdInfo; // @synthesize lastSpeakerIdInfo=_lastSpeakerIdInfo;
-@property(nonatomic) unsigned long long myriadResult; // @synthesize myriadResult=_myriadResult;
-@property(nonatomic) BOOL processingEnded; // @synthesize processingEnded=_processingEnded;
-@property(nonatomic) unsigned long long numTISamplesProcessed; // @synthesize numTISamplesProcessed=_numTISamplesProcessed;
-@property(nonatomic) unsigned long long tiEndInSampleCount; // @synthesize tiEndInSampleCount=_tiEndInSampleCount;
-@property(retain, nonatomic) CSSpIdProcessor *tiSpIdProcessor; // @synthesize tiSpIdProcessor=_tiSpIdProcessor;
-@property(nonatomic) __weak id <CSSpIdSpeakerRecognizerDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain, nonatomic) NSString *invocationStyle; // @synthesize invocationStyle=_invocationStyle;
-@property(retain, nonatomic) CSSpIdContext *spIdCtx; // @synthesize spIdCtx=_spIdCtx;
-- (void).cxx_destruct;
-- (void)speakerIdProcessorFinishedProcessing:(id)arg1 withSpeakerInfo:(id)arg2;
-- (void)speakerIdProcessor:(id)arg1 hasSpeakerIdInfo:(id)arg2;
+- (void)setCVTTriggerPhraseDetected;
 - (void)processMyriadDecision:(unsigned long long)arg1;
 - (void)_endAudioProcessing;
 - (void)recordingStoppedForReason:(long long)arg1;

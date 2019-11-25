@@ -10,53 +10,46 @@
 #import "HMFNetMonitorDelegate.h"
 #import "HMFTimerDelegate.h"
 #import "NSURLSessionDelegate.h"
-#import "_HMFNetServiceMonitorDelegate.h"
 
-@class HMFExponentialBackoffTimer, HMFNetMonitor, HMFNetService, HMFUnfairLock, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString, NSURL, NSURLSession, _HMFNetServiceMonitor;
+@class HMFExponentialBackoffTimer, HMFHTTPClientConfiguration, HMFNetMonitor, HMFNetService, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString, NSURL, NSURLSession;
 
-@interface HMFHTTPClient : HMFObject <HMFLogging, HMFNetMonitorDelegate, _HMFNetServiceMonitorDelegate, HMFTimerDelegate, NSURLSessionDelegate>
+@interface HMFHTTPClient : HMFObject <HMFLogging, HMFNetMonitorDelegate, HMFTimerDelegate, NSURLSessionDelegate>
 {
-    HMFUnfairLock *_lock;
+    id <HMFLocking> _lock;
+    NSObject<OS_dispatch_queue> *_queue;
     BOOL _reachable;
     BOOL _pinging;
     BOOL _allowAnonymousConnection;
     BOOL _active;
+    HMFHTTPClientConfiguration *_configuration;
     NSURL *_baseURL;
-    HMFNetService *_netService;
     id <HMFHTTPClientDelegate> _delegate;
-    unsigned long long _options;
-    NSObject<OS_dispatch_queue> *_clientQueue;
+    HMFNetService *_netService;
     NSURLSession *_session;
     HMFNetMonitor *_reachabilityMonitor;
     NSOperationQueue *_reachabilityProbeQueue;
-    _HMFNetServiceMonitor *_netServiceMonitor;
     HMFExponentialBackoffTimer *_delegatedPingTimer;
 }
 
 + (id)logCategory;
 + (id)baseURLWithScheme:(id)arg1 hostAddress:(id)arg2 port:(unsigned long long)arg3;
 @property(retain, nonatomic) HMFExponentialBackoffTimer *delegatedPingTimer; // @synthesize delegatedPingTimer=_delegatedPingTimer;
-@property(readonly, nonatomic) _HMFNetServiceMonitor *netServiceMonitor; // @synthesize netServiceMonitor=_netServiceMonitor;
 @property(readonly, nonatomic) NSOperationQueue *reachabilityProbeQueue; // @synthesize reachabilityProbeQueue=_reachabilityProbeQueue;
 @property(readonly, nonatomic) HMFNetMonitor *reachabilityMonitor; // @synthesize reachabilityMonitor=_reachabilityMonitor;
 @property(nonatomic, getter=isActive) BOOL active; // @synthesize active=_active;
 @property(readonly, nonatomic) NSURLSession *session; // @synthesize session=_session;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *clientQueue; // @synthesize clientQueue=_clientQueue;
 @property(nonatomic) BOOL allowAnonymousConnection; // @synthesize allowAnonymousConnection=_allowAnonymousConnection;
-@property(readonly, nonatomic) unsigned long long options; // @synthesize options=_options;
+@property(readonly, copy, nonatomic) HMFNetService *netService; // @synthesize netService=_netService;
 @property __weak id <HMFHTTPClientDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)URLSession:(id)arg1 didReceiveChallenge:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)URLSession:(id)arg1 didBecomeInvalidWithError:(id)arg2;
 - (void)timerDidFire:(id)arg1;
-- (void)monitor:(id)arg1 didUpdateReachability:(BOOL)arg2;
-- (void)monitor:(id)arg1 didUpdateNetService:(id)arg2;
 - (void)networkMonitorIsUnreachable:(id)arg1;
 - (void)networkMonitorIsReachable:(id)arg1;
 - (id)logIdentifier;
 - (void)resolveWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)setNetService:(id)arg1;
-@property(readonly, copy, nonatomic) HMFNetService *netService; // @synthesize netService=_netService;
+- (void)invalidate;
 - (void)cancelPendingRequests;
 - (void)sendRequest:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)stopDelegatedPingTimer;
@@ -66,11 +59,14 @@
 @property(nonatomic, getter=isPinging) BOOL pinging; // @synthesize pinging=_pinging;
 @property(nonatomic, getter=isReachable) BOOL reachable; // @synthesize reachable=_reachable;
 @property(readonly, copy, nonatomic) NSURL *baseURL; // @synthesize baseURL=_baseURL;
-- (BOOL)isValid;
+@property(readonly, nonatomic) unsigned long long options;
+@property(readonly, copy) HMFHTTPClientConfiguration *configuration; // @synthesize configuration=_configuration;
 - (id)attributeDescriptions;
 - (void)dealloc;
-- (void)__initializeWithOptions:(unsigned long long)arg1;
+- (void)__initializeWithConfiguration:(id)arg1;
+- (id)initWithService:(id)arg1 configuration:(id)arg2;
 - (id)initWithNetService:(id)arg1 options:(unsigned long long)arg2;
+- (id)initWithBaseURL:(id)arg1 configuration:(id)arg2;
 - (id)initWithBaseURL:(id)arg1 options:(unsigned long long)arg2;
 - (id)init;
 

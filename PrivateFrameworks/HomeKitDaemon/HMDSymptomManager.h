@@ -8,7 +8,7 @@
 
 #import "HMFLogging.h"
 
-@class HMFUnfairLock, HMFWiFiManager, NSMapTable, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSSet, NSString;
+@class HMFUnfairLock, HMFWiFiManager, NSMapTable, NSObject<OS_dispatch_queue>, NSSet, NSString;
 
 @interface HMDSymptomManager : HMFObject <HMFLogging>
 {
@@ -55,7 +55,7 @@
 - (void)_updateSymptomsForRegisteredAccessoryWithIDSIdentifier:(id)arg1;
 - (id)_registeredAccessoryWithIDSIdentifier:(id)arg1;
 - (void)_initiateFixForAccessory:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (id)_localSymptomsForAccessoryWithIDSIdentifier:(id)arg1;
+- (id)_localSymptomsForRegisteredAccessory:(id)arg1;
 - (id)_currentDeviceSymptoms;
 - (void)_stopCompanionLinkClient;
 - (void)_stopDeviceDiscovery;

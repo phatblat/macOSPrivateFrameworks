@@ -9,7 +9,7 @@
 #import "CKAccountObserver.h"
 #import "NSSecureCoding.h"
 
-@class CKStoreClient, FRJSAppleAccountStore, FRWKView, NSString;
+@class CKStoreClient, FRJSAppleAccountStore, FRJSCodeRedeemer, FRWKView, NSString;
 
 @interface FRJSRootObject : FRJSObject <CKAccountObserver, NSSecureCoding>
 {
@@ -17,15 +17,18 @@
     FRWKView *_webView;
     CKStoreClient *_storeClient;
     FRJSAppleAccountStore *_jsAccountStore;
+    FRJSCodeRedeemer *_jsCodeRedeemer;
     id _accountStoreObserverToken;
 }
 
 @property(retain, nonatomic) id accountStoreObserverToken; // @synthesize accountStoreObserverToken=_accountStoreObserverToken;
 @property(nonatomic) BOOL startedProgressSpinner; // @synthesize startedProgressSpinner=_startedProgressSpinner;
+@property(readonly, nonatomic) FRJSCodeRedeemer *jsCodeRedeemer; // @synthesize jsCodeRedeemer=_jsCodeRedeemer;
 @property(readonly, nonatomic) FRJSAppleAccountStore *jsAccountStore; // @synthesize jsAccountStore=_jsAccountStore;
 @property(retain, nonatomic) CKStoreClient *storeClient; // @synthesize storeClient=_storeClient;
 @property(readonly, nonatomic) __weak FRWKView *webView; // @synthesize webView=_webView;
 - (void).cxx_destruct;
+- (void)_triggerDownloadQueueCheck;
 - (void)_signTouchIDChallenge:(id)arg1;
 - (id)_signStorePlatformRequestData:(id)arg1;
 - (BOOL)_sendAccountCreationRequest:(id)arg1;

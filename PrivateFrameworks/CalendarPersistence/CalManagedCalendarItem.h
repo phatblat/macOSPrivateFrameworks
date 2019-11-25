@@ -166,6 +166,7 @@
 @property(retain) NSURL *dropBoxLocationOverrideBaseURL;
 @property(retain) NSDate *startDate; // @dynamic startDate;
 @property(retain) NSURL *url;
+- (id)rawTitle;
 - (void)willRefresh:(BOOL)arg1;
 - (id)contextForValidationError;
 - (id)keysOnlyRelevantToNetworkDetails;
@@ -232,7 +233,6 @@
 @property BOOL needsServerConfirmation; // @dynamic needsServerConfirmation;
 @property(retain) NSString *notes; // @dynamic notes;
 @property BOOL omitSyncRecord; // @dynamic omitSyncRecord;
-@property(readonly, retain, nonatomic) id <EKProtocolParticipant> organizer;
 @property int permission; // @dynamic permission;
 @property(readonly, nonatomic) NSDictionary *preFrozenRelationshipObjects;
 @property(retain) NSString *previousProdID; // @dynamic previousProdID;

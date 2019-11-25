@@ -8,16 +8,15 @@
 
 #import "GEORoutePreloaderSubclass.h"
 
-@class GEOMapServiceTraits, GEOTransitDecoderData, GEOTransitSuggestedRoute, NSObject<OS_os_log>, NSTimer, _GEOTransitRoutePreloaderData;
+@class GEOMapServiceTraits, GEOTransitSuggestedRoute, NSObject<OS_os_log>, NSTimer, _GEOTransitRoutePreloaderData;
 
 @interface GEOTransitRoutePreloader : GEORoutePreloader <GEORoutePreloaderSubclass>
 {
-    GEOTransitDecoderData *_decoderData;
     GEOTransitSuggestedRoute *_suggestedRoute;
     _GEOTransitRoutePreloaderData *_reserved;
     GEOMapServiceTraits *_traits;
     double _endRoutePosition;
-    long long _indexOfLastStepWithPreparedBatch;
+    unsigned long long _indexOfLastStepWithPreparedBatch;
     NSTimer *_geodCrashTimer;
     double _radialDistanceToImplicateTilesMeters;
     long long _tilesRequested;

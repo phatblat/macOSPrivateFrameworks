@@ -6,7 +6,6 @@
 
 #import "HMFMessageTransport.h"
 
-#import "HMDRemoteDeviceMonitorDelegate.h"
 #import "HMDSecureRemoteSessionDelegate.h"
 #import "HMFDumpState.h"
 #import "HMFLogging.h"
@@ -14,12 +13,11 @@
 
 @class HMDRemoteDeviceMonitor, HMDRemoteMessageNotifications, NSArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
 
-@interface HMDSecureRemoteMessageTransport : HMFMessageTransport <HMDRemoteDeviceMonitorDelegate, HMDSecureRemoteSessionDelegate, HMFLogging, HMFMessageTransportDelegate, HMFDumpState>
+@interface HMDSecureRemoteMessageTransport : HMFMessageTransport <HMDSecureRemoteSessionDelegate, HMFLogging, HMFMessageTransportDelegate, HMFDumpState>
 {
+    NSObject<OS_dispatch_queue> *_queue;
     NSArray *_transports;
     HMDRemoteDeviceMonitor *_deviceMonitor;
-    NSObject<OS_dispatch_queue> *_clientQueue;
-    NSObject<OS_dispatch_queue> *_propertyQueue;
     NSMutableSet *_secureRemoteSessions;
     HMDRemoteMessageNotifications *_sessionNotifications;
     NSMutableDictionary *_currentHomeConfigurations;
@@ -31,8 +29,6 @@
 @property(retain, nonatomic) NSMutableDictionary *currentHomeConfigurations; // @synthesize currentHomeConfigurations=_currentHomeConfigurations;
 @property(retain, nonatomic) HMDRemoteMessageNotifications *sessionNotifications; // @synthesize sessionNotifications=_sessionNotifications;
 @property(readonly, nonatomic) NSMutableSet *secureRemoteSessions; // @synthesize secureRemoteSessions=_secureRemoteSessions;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *propertyQueue; // @synthesize propertyQueue=_propertyQueue;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *clientQueue; // @synthesize clientQueue=_clientQueue;
 @property(readonly) HMDRemoteDeviceMonitor *deviceMonitor; // @synthesize deviceMonitor=_deviceMonitor;
 @property(readonly, copy) NSArray *transports; // @synthesize transports=_transports;
 - (void).cxx_destruct;

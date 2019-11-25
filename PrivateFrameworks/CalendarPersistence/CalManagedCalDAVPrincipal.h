@@ -41,6 +41,8 @@
 - (BOOL)supportsJunkReporting;
 - (BOOL)supportsLikenessPropagation;
 - (BOOL)supportsAttendeeComments;
+- (BOOL)allowsTasks;
+- (BOOL)allowsEvents;
 - (BOOL)accountSupportsCalendarCreation:(BOOL)arg1;
 - (BOOL)shouldDeepRefreshNow;
 - (void)clearCTagsAndSyncTokens;
@@ -58,6 +60,7 @@
 - (void)awakeFromFetch;
 - (BOOL)isColorEditable;
 - (BOOL)isRenameable;
+@property BOOL requiresOpeningAttachmentAsLink; // @dynamic requiresOpeningAttachmentAsLink;
 @property BOOL supportsPhoneNumbers; // @dynamic supportsPhoneNumbers;
 @property BOOL isLikenessPropagationSupported; // @dynamic isLikenessPropagationSupported;
 @property BOOL isPrivateCommentsSupported; // @dynamic isPrivateCommentsSupported;

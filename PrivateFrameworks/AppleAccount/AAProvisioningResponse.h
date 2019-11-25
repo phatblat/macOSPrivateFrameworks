@@ -14,12 +14,17 @@
 }
 
 - (void).cxx_destruct;
+@property(readonly, nonatomic, getter=isFamilyEligible) BOOL familyEligible;
 @property(readonly, nonatomic, getter=hasOptionalTerms) BOOL optionalTerms;
 @property(readonly, nonatomic, getter=isCloudDocsMigrated) BOOL cloudDocsMigrated;
 @property(readonly, nonatomic, getter=isSandboxAccount) BOOL sandboxAccount;
+@property(readonly, nonatomic, getter=isRemindersMigrated) BOOL remindersMigrated;
 @property(readonly, nonatomic, getter=isNotesMigrated) BOOL notesMigrated;
 @property(readonly, nonatomic, getter=isManagedAppleID) BOOL managedAppleID;
 @property(readonly, nonatomic) NSDictionary *regionInfo;
+@property(readonly, nonatomic) NSString *fmipAppToken;
+@property(readonly, nonatomic) NSString *keyTransparencyToken;
+@property(readonly, nonatomic) NSString *searchPartyToken;
 @property(readonly, nonatomic) NSString *fmipSiriToken;
 @property(readonly, nonatomic) NSString *fmipAuthToken;
 @property(readonly, nonatomic) NSString *iCloudAuthToken;

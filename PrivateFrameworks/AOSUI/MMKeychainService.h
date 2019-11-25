@@ -11,7 +11,7 @@
 #import "MMServicePreflightProtocol.h"
 #import "MMTermsOfServiceControllerDelegate.h"
 
-@class CDPStateUIController, MMAuthenticatingPasswordSheet, MMCSCRecoveryController, MMKeychainOptionsController, MMModalDialog, MMTermsOfServiceController, NSButton, NSImageView, NSLock, NSString, NSTextField, NSWindow;
+@class CDPStateUIController, MMAuthenticatingPasswordSheet, MMCSCRecoveryController, MMCSCSetupController, MMKeychainOptionsController, MMModalDialog, MMTermsOfServiceController, NSButton, NSImageView, NSLock, NSString, NSTextField, NSWindow;
 
 @interface MMKeychainService : MMService <MMTermsOfServiceControllerDelegate, MMCSCSetupControllerDelegate, MMCSCRecoveryControllerDelegate, MMServicePreflightProtocol>
 {
@@ -24,6 +24,11 @@
     int _notificationToken;
     BOOL _notificationSetup;
     BOOL _isPendingCached;
+    NSLock *_securityResetSheetLock;
+    MMKeychainOptionsController *optionsController;
+    CDPStateUIController *cdpStateUIController;
+    BOOL _preflightDialogIsDone;
+    BOOL _preflightShouldSignOut;
     NSWindow *_securityResetSheet;
     NSImageView *_securityResetImageView;
     NSTextField *_securityResetTitleTextField;
@@ -31,23 +36,20 @@
     NSButton *_securityResetConfirmButton;
     NSButton *_securityResetInfoButton;
     NSButton *_securityResetDisableButton;
-    NSLock *_securityResetSheetLock;
-    MMKeychainOptionsController *optionsController;
-    CDPStateUIController *cdpStateUIController;
-    BOOL _preflightDialogIsDone;
-    BOOL _preflightShouldSignOut;
+    MMCSCSetupController *_cscSetupController;
     CDUnknownBlockType _cdpDeletionCompletion;
 }
 
 @property BOOL preflightShouldSignOut; // @synthesize preflightShouldSignOut=_preflightShouldSignOut;
 @property BOOL preflightDialogIsDone; // @synthesize preflightDialogIsDone=_preflightDialogIsDone;
 @property(copy, nonatomic) CDUnknownBlockType cdpDeletionCompletion; // @synthesize cdpDeletionCompletion=_cdpDeletionCompletion;
-@property NSButton *securityResetDisableButton; // @synthesize securityResetDisableButton=_securityResetDisableButton;
-@property NSButton *securityResetInfoButton; // @synthesize securityResetInfoButton=_securityResetInfoButton;
-@property NSButton *securityResetConfirmButton; // @synthesize securityResetConfirmButton=_securityResetConfirmButton;
-@property NSTextField *securityResetMessageText; // @synthesize securityResetMessageText=_securityResetMessageText;
-@property NSTextField *securityResetTitleTextField; // @synthesize securityResetTitleTextField=_securityResetTitleTextField;
-@property NSImageView *securityResetImageView; // @synthesize securityResetImageView=_securityResetImageView;
+@property(retain) MMCSCSetupController *cscSetupController; // @synthesize cscSetupController=_cscSetupController;
+@property __weak NSButton *securityResetDisableButton; // @synthesize securityResetDisableButton=_securityResetDisableButton;
+@property __weak NSButton *securityResetInfoButton; // @synthesize securityResetInfoButton=_securityResetInfoButton;
+@property __weak NSButton *securityResetConfirmButton; // @synthesize securityResetConfirmButton=_securityResetConfirmButton;
+@property __weak NSTextField *securityResetMessageText; // @synthesize securityResetMessageText=_securityResetMessageText;
+@property __weak NSTextField *securityResetTitleTextField; // @synthesize securityResetTitleTextField=_securityResetTitleTextField;
+@property __weak NSImageView *securityResetImageView; // @synthesize securityResetImageView=_securityResetImageView;
 @property(retain) NSWindow *securityResetSheet; // @synthesize securityResetSheet=_securityResetSheet;
 @property BOOL isPendingCached; // @synthesize isPendingCached=_isPendingCached;
 @property(retain) MMCSCRecoveryController *cscRecoverController; // @synthesize cscRecoverController=_cscRecoverController;
@@ -57,6 +59,8 @@
 @property(retain) MMAuthenticatingPasswordSheet *applicantDialog; // @synthesize applicantDialog=_applicantDialog;
 @property(retain) MMModalDialog *pendingApprovalDialog; // @synthesize pendingApprovalDialog=_pendingApprovalDialog;
 @property(retain) MMTermsOfServiceController *tosController; // @synthesize tosController=_tosController;
+- (void).cxx_destruct;
+- (void)_displayErrorAlertIfNeeded:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)mmCSCRecoveryControllerDidCancel:(id)arg1;
 - (void)mmCSCRecoveryControllerDidEnd:(id)arg1 error:(id)arg2;
 - (void)mmCSCRecoveryControllerDidForget:(id)arg1;
@@ -67,8 +71,8 @@
 - (void)_handleCircleChangeNotification:(int)arg1;
 - (void)_handleCredentialVerificationIfNeeded:(id)arg1 shouldNest:(BOOL)arg2 title:(id)arg3 message:(id)arg4 authenticatedHandler:(CDUnknownBlockType)arg5 cancelHandler:(CDUnknownBlockType)arg6 errorHandler:(CDUnknownBlockType)arg7;
 - (void)_handleCredentialVerification:(id)arg1 shouldNest:(BOOL)arg2 title:(id)arg3 message:(id)arg4 authenticatedHandler:(CDUnknownBlockType)arg5 cancelHandler:(CDUnknownBlockType)arg6 errorHandler:(CDUnknownBlockType)arg7;
-- (void)handlePreflightDialogResult:(long long)arg1 withDisableDict:(id *)arg2;
-- (BOOL)preflightForSignout:(id *)arg1 withWindow:(id)arg2 andDataclassActions:(id)arg3;
+- (void)handlePreflightDialogResult:(long long)arg1;
+- (BOOL)preflightForSignoutWithWindow:(id)arg1;
 - (BOOL)hasPreflightAction;
 - (BOOL)isICDPIsEnabled;
 - (void)handleCDPDeletionResponse:(long long)arg1 successful:(BOOL)arg2 error:(id)arg3;
@@ -151,6 +155,7 @@
 - (void)showMoreInfo:(id)arg1;
 - (void)_completeEnable:(id)arg1 registerCredentials:(BOOL)arg2 usingPassword:(id)arg3 andPET:(id)arg4;
 - (void)handleEnable:(id)arg1 creating:(BOOL)arg2;
+- (void)_beginManateeUpgradeWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)setEnabled:(BOOL)arg1 creating:(BOOL)arg2 withWindow:(id)arg3;
 - (id)icon;
 - (void)dealloc;

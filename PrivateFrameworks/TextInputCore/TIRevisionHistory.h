@@ -11,6 +11,8 @@
 @interface TIRevisionHistory : NSObject
 {
     BOOL _shouldReportRevisionToDP;
+    BOOL _isDeletingBackwards;
+    BOOL _isRapidDeleteActive;
     id <TIRevisionHistoryDelegate> _delegate;
     TILRUDictionary *_recentAutocorrections;
     NSString *_documentText;
@@ -21,6 +23,9 @@
     struct _TIRevisionHistoryTokenIterator _currentTokenIterator;
 }
 
++ (id)documentStateTrimmedToSentenceForState:(id)arg1;
+@property(nonatomic) BOOL isRapidDeleteActive; // @synthesize isRapidDeleteActive=_isRapidDeleteActive;
+@property(nonatomic) BOOL isDeletingBackwards; // @synthesize isDeletingBackwards=_isDeletingBackwards;
 @property(nonatomic) BOOL shouldReportRevisionToDP; // @synthesize shouldReportRevisionToDP=_shouldReportRevisionToDP;
 @property(retain, nonatomic) TIRevisionHistoryToken *lastRejectedToken; // @synthesize lastRejectedToken=_lastRejectedToken;
 @property(readonly, nonatomic) void *tokenizer; // @synthesize tokenizer=_tokenizer;
@@ -45,7 +50,7 @@
 - (void)rejectCandidate:(id)arg1 forInput:(id)arg2;
 - (void)deleteBackward;
 - (void)insertText:(id)arg1;
-- (BOOL)deletingBackwardEqualsDocumentState:(id)arg1;
+- (struct _NSRange)deletionRangeToObtainDocumentState:(id)arg1;
 - (id)documentState;
 - (id)wordTokenContainingSelection;
 - (BOOL)isWordToken:(struct _TIRevisionHistoryTokenIterator)arg1;
@@ -72,6 +77,7 @@
 - (struct _TIRevisionHistoryTokenIterator)nextTokenIterator:(struct _TIRevisionHistoryTokenIterator)arg1;
 - (struct _NSRange)documentRangeOfTokenAtIterator:(struct _TIRevisionHistoryTokenIterator)arg1;
 - (id)tokenAtIterator:(struct _TIRevisionHistoryTokenIterator)arg1;
+- (void)collectPFLTelemetryForTokenAtIndex:(unsigned long long)arg1;
 - (void)migrateUserTypingFromDeletedTokens:(id)arg1 toInsertedTokens:(id)arg2 withUsageLearningMask:(unsigned int)arg3 usageTrackingMask:(unsigned int)arg4;
 - (void)rejectTokensInRange:(struct _NSRange)arg1 negativeLearningHint:(int)arg2 newRevision:(id)arg3;
 - (void)acceptTokensInRange:(struct _NSRange)arg1;

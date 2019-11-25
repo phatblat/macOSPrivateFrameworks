@@ -13,12 +13,16 @@
     unsigned long long _periodSeconds;
     NSString *_name;
     CDUnknownBlockType _handler;
+    double _maxRunTime;
+    double _checkInTime;
     NSObject<OS_dispatch_queue> *_queue;
     NSObject<OS_xpc_object> *_executionCriteria;
 }
 
 @property(readonly, nonatomic) NSObject<OS_xpc_object> *executionCriteria; // @synthesize executionCriteria=_executionCriteria;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
+@property(nonatomic) double checkInTime; // @synthesize checkInTime=_checkInTime;
+@property(nonatomic) double maxRunTime; // @synthesize maxRunTime=_maxRunTime;
 @property(readonly, nonatomic) CDUnknownBlockType handler; // @synthesize handler=_handler;
 @property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(readonly, nonatomic) unsigned long long periodSeconds; // @synthesize periodSeconds=_periodSeconds;

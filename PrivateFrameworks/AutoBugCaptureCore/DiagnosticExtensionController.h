@@ -8,6 +8,7 @@
 
 @class NSDateFormatter, NSObject<OS_dispatch_queue>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface DiagnosticExtensionController : NSObject
 {
     NSDateFormatter *dateFormatter;

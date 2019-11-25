@@ -22,14 +22,14 @@
     NSUUID *_uniqueIdentifier;
     NSUUID *_targetUUID;
     HMService *_service;
-    _HMContext *_context;
     NSString *_logID;
+    _HMContext *_context;
 }
 
 + (BOOL)supportsSecureCoding;
 + (id)logCategory;
-@property(readonly, copy, nonatomic) NSString *logID; // @synthesize logID=_logID;
 @property(retain, nonatomic) _HMContext *context; // @synthesize context=_context;
+@property(readonly, copy, nonatomic) NSString *logID; // @synthesize logID=_logID;
 @property(readonly, nonatomic) __weak HMService *service; // @synthesize service=_service;
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;

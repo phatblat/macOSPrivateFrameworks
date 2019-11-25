@@ -112,7 +112,8 @@ struct _VMUVMRegionData {
     unsigned int :1;
     unsigned int :1;
     unsigned int :1;
-    unsigned int :28;
+    unsigned int :1;
+    unsigned int :27;
     unsigned long long _field18;
     unsigned long long _field19;
     unsigned long long _field20;
@@ -120,6 +121,11 @@ struct _VMUVMRegionData {
     unsigned long long _field22;
     unsigned long long _field23;
     unsigned long long _field24;
+};
+
+struct _VMUVMRegionDataExtra {
+    unsigned long long _field1;
+    unsigned long long _field2;
 };
 
 struct _VMUZoneNode {
@@ -159,14 +165,6 @@ struct __sbuf {
 struct libSwiftRemoteMirrorWrapper {
     struct SwiftReflectionInteropContext *_field1;
     unsigned long long _field2;
-    unsigned long long _field3;
-    unsigned long long _field4;
-    _Bool _field5;
-    unsigned long long _field6;
-    unsigned long long _field7;
-    unsigned long long _field8;
-    unsigned char _field9;
-    unsigned char _field10;
 };
 
 struct malloc_introspection_t;
@@ -231,4 +229,8 @@ typedef struct {
     unsigned int :4;
     id _field2;
 } CDStruct_599faf0f;
+
+typedef struct {
+    unsigned long long _field1;
+} CDStruct_69d7cc99;
 

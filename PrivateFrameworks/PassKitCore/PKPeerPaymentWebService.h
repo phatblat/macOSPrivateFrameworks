@@ -8,13 +8,14 @@
 
 #import "NSURLSessionTaskDelegate.h"
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, NSURL, PKPeerPaymentService, PKPeerPaymentWebServiceContext, PKSecureElement;
+@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, NSURL, PKPaymentDevice, PKPeerPaymentService, PKPeerPaymentWebServiceContext, PKSecureElement;
 
 @interface PKPeerPaymentWebService : PKWebService <NSURLSessionTaskDelegate>
 {
     PKSecureElement *_secureElement;
     NSMutableDictionary *_prewarmedDeviceScorers;
     NSObject<OS_dispatch_queue> *_prewarmedDeviceScorersQueue;
+    PKPaymentDevice *_paymentDevice;
     BOOL _sharedService;
     PKPeerPaymentWebServiceContext *_context;
     id <PKPeerPaymentWebServiceArchiver> _archiver;
@@ -40,10 +41,12 @@
 - (void)prewarmDeviceScoreForEndpoint:(id)arg1;
 - (void)_renewAppleAccountWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (id)_appleAccountInformation;
-- (id)_deviceMetadata;
+- (void)_peerPaymentDeviceMetadataWithCompletion:(CDUnknownBlockType)arg1;
 - (void)_deviceRegistrationDataWithCompletion:(CDUnknownBlockType)arg1;
 - (id)_deviceIdentifier;
+- (unsigned long long)disbursementVoucherWithRequest:(id)arg1 certificates:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (unsigned long long)submitDeviceScoreIdentifiersWithRequest:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (unsigned long long)peerPaymentEmailTermsWithCompletion:(CDUnknownBlockType)arg1;
 - (unsigned long long)peerPaymentReOpenAccountWithCompletion:(CDUnknownBlockType)arg1;
 - (unsigned long long)peerPaymentRequestStatementWithCompletion:(CDUnknownBlockType)arg1;
 - (unsigned long long)peerPaymentBankLookupWithCountryCode:(id)arg1 query:(id)arg2 completion:(CDUnknownBlockType)arg3;

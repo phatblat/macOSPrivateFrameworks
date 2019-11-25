@@ -22,15 +22,14 @@ __attribute__((visibility("hidden")))
 
 + (id)keyPathsForValuesAffectingIsLoaded;
 + (id)qlMultiPreviewView:(const struct CGRect *)arg1;
-@property(readonly, getter=isTornDown) _Bool tornDown; // @synthesize tornDown=_isTornDown;
+@property(getter=isTornDown) _Bool tornDown; // @synthesize tornDown=_isTornDown;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)didHide;
-- (void)willHide;
 - (void)close;
 @property(readonly) BOOL isLoaded;
 - (void)flushCachedMultiIcon;
 @property(retain) id <QLPreviewItem> previewItem; // @dynamic previewItem;
+@property(readonly, nonatomic) vector_2129316b nodeToImageList;
 @property(readonly, retain) FI_TQLMultiPreviewViewImageStackController *iconController; // @dynamic iconController;
 - (void)aboutToTearDown;
 - (void)configureThumbnailer:(const struct TFENode *)arg1 iconSize:(double)arg2 scaleFactor:(double)arg3;

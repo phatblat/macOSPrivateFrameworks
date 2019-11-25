@@ -6,32 +6,19 @@
 
 #import "NSObject.h"
 
-#import "XCTElementSnapshotAttributeDataSource.h"
-#import "XCTElementSnapshotProvider.h"
+@class XCTCapabilities;
 
-@class NSString;
-
-@interface XCTElementQueryProcessor : NSObject <XCTElementSnapshotProvider, XCTElementSnapshotAttributeDataSource>
+@interface XCTElementQueryProcessor : NSObject
 {
-    id <XCTElementSnapshotProvider> _snapshotProvider;
+    id <XCTElementSnapshotProvider><XCTElementSnapshotAttributeDataSource> _dataSource;
+    XCTCapabilities *_remoteInterfaceCapabilities;
 }
 
-@property __weak id <XCTElementSnapshotProvider> snapshotProvider; // @synthesize snapshotProvider=_snapshotProvider;
+@property(retain) XCTCapabilities *remoteInterfaceCapabilities; // @synthesize remoteInterfaceCapabilities=_remoteInterfaceCapabilities;
+@property(readonly) __weak id <XCTElementSnapshotProvider><XCTElementSnapshotAttributeDataSource> dataSource; // @synthesize dataSource=_dataSource;
 - (void).cxx_destruct;
-@property(readonly) BOOL usePointTransformationsForFrameConversions;
-@property(readonly) BOOL supportsHostedViewCoordinateTransformations;
-- (id)parameterizedAttribute:(id)arg1 forElement:(id)arg2 parameter:(id)arg3 error:(id *)arg4;
-- (id)attributesForElement:(id)arg1 attributes:(id)arg2 error:(id *)arg3;
-@property(readonly) BOOL allowsRemoteAccess;
-- (id)snapshotForElement:(id)arg1 attributes:(id)arg2 parameters:(id)arg3 error:(id *)arg4;
-- (void)fetchMatchesForQuery:(id)arg1 reply:(CDUnknownBlockType)arg2;
-- (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (void)fetchMatchesForQuery:(id)arg1 clientCapabilities:(id)arg2 reply:(CDUnknownBlockType)arg3;
+- (id)initWithDataSource:(id)arg1;
 
 @end
 

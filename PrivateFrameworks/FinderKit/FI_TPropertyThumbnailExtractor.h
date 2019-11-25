@@ -12,21 +12,23 @@ __attribute__((visibility("hidden")))
 @interface FI_TPropertyThumbnailExtractor : FI_TPropertyIconExtractor
 {
     shared_ptr_0f967b3d _thumbnailController;
-    NSObject<TPropertyThumbnailExtractorDelegate> *_delegate;
+    struct TNSWeakPtr<NSObject<TPropertyThumbnailExtractorDelegate>, void> _weakDelegate;
     struct TFENode _thumbnailTargetNode;
     vector_b67dfe3a _randomAnglesForStack;
     vector_2129316b _nodeToImageList;
 }
 
 @property(readonly, nonatomic) vector_b67dfe3a randomAnglesForStack; // @synthesize randomAnglesForStack=_randomAnglesForStack;
-@property(nonatomic) NSObject<TPropertyThumbnailExtractorDelegate> *delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) struct TFENode thumbnailTargetNode; // @synthesize thumbnailTargetNode=_thumbnailTargetNode;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) vector_2129316b nodeToImageList;
 - (void)updateImageAngles:(const struct TFENodeVector *)arg1:(const struct TFENodeVector *)arg2;
 - (id)extractValueFromNodes:(const struct TFENodeVector *)arg1 partialOk:(_Bool)arg2;
 - (id)extractValueFromNodes:(const struct TFENodeVector *)arg1;
 - (void)setIconSize:(double)arg1;
 @property(nonatomic) shared_ptr_0f967b3d thumbnailController; // @dynamic thumbnailController;
+@property(nonatomic) __weak NSObject<TPropertyThumbnailExtractorDelegate> *delegate; // @dynamic delegate;
 - (id)init;
 
 @end

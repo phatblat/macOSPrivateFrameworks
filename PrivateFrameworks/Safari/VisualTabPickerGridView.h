@@ -51,9 +51,10 @@ __attribute__((visibility("hidden")))
 - (struct _NSRange)_rangeOfVisibleTiles;
 - (void)_resetGridView;
 - (double)_toolbarHeight;
+- (id)accessibilityIdentifier;
 - (id)accessibilityLabel;
 - (id)accessibilityRole;
-- (BOOL)accessibilityIsIgnored;
+- (BOOL)isAccessibilityElement;
 - (void)_dispatchMouseEventToTileContainers:(id)arg1;
 - (void)mouseMoved:(id)arg1;
 - (void)mouseExited:(id)arg1;
@@ -68,8 +69,8 @@ __attribute__((visibility("hidden")))
 - (void)visualTabPickerTileContainerViewDidClose:(id)arg1;
 - (BOOL)visualTabPickerTileContainerViewCanClose:(id)arg1;
 - (id)_destinationTileContainerView;
-- (int)_muteButtonStateForMutableMediaState:(unsigned long long)arg1 audioMuted:(BOOL)arg2 mediaCaptureMuted:(BOOL)arg3;
-- (int)muteButtonStateForVisualTabPickerTileContainerView:(id)arg1;
+- (long long)_muteButtonStateForMutableMediaState:(unsigned long long)arg1 audioMuted:(BOOL)arg2 mediaCaptureMuted:(BOOL)arg3;
+- (long long)muteButtonStateForVisualTabPickerTileContainerView:(id)arg1;
 - (BOOL)visualTabPickerTileContainerViewShouldShowMuteButton:(id)arg1;
 - (struct CGRect)visibleBoundsForVisualTabPickerTileContainerView:(id)arg1;
 - (id)tileViewForVisualTabPickerTileContainerView:(id)arg1 lowResolution:(BOOL)arg2;

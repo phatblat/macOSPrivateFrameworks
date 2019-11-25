@@ -13,9 +13,10 @@
 }
 
 + (id)properties;
++ (id)schemaHashRoot;
 
 // Remaining properties
-@property(retain, nonatomic) HMDAccountIdentifier *identifier; // @dynamic identifier;
+@property(copy, nonatomic) HMDAccountIdentifier *identifier; // @dynamic identifier;
 
 @end
 

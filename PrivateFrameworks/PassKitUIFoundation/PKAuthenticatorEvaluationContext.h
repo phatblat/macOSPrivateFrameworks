@@ -52,7 +52,6 @@
 - (BOOL)_delegateSupportsPassphrasePresentation;
 - (BOOL)_delegateSupportsPasscodeDismissal;
 - (BOOL)_delegateSupportsPasscodePresentation;
-- (BOOL)userIntentAvailable;
 - (void)_clearLiftFingerTimer;
 - (void)_handleLiftFinger;
 - (void)_setLiftFingerTimer;

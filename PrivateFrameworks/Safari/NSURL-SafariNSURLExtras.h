@@ -13,9 +13,9 @@
 + (id)safari_fileURLForNewTemporaryFile;
 + (id)safari_errorPageResourcesURL;
 + (id)safari_aboutBlankURL;
-- (id)safari_fileURLByRemovingQueryStringParametersAndFragment;
+- (BOOL)safari_isViableDisplayedTopSiteURLProhibitingLoginURL:(BOOL)arg1;
+@property(readonly, nonatomic) NSURL *safari_fileURLByRemovingQueryStringAndFragment;
 - (BOOL)safari_isCandidateForTopHitDemotion;
-- (BOOL)safari_isSubdomainOfDomain:(id)arg1;
 - (id)safari_attributedStringWithSimplificationOptions:(unsigned long long)arg1 attributes:(id)arg2 attributesForDeemphasizedText:(id)arg3 attributesForHTTPSProtocol:(id)arg4;
 - (struct _NSRange)_safari_rangeOfUserInfoInUserVisibleString;
 - (id)safari_fullySimplifiedUserVisibleString;
@@ -33,7 +33,6 @@
 - (id)safari_fileSystemPath;
 - (BOOL)safari_hasPassPathExtension;
 - (id)safari_resourceSpecifier;
-- (BOOL)safari_isSearchProviderQuery;
 - (BOOL)safari_shouldBeReflectedInUnifiedField;
 - (BOOL)safari_isUserPreferredStartPageURL;
 - (BOOL)safari_isStartPageURL;
@@ -44,6 +43,7 @@
 - (BOOL)safari_isReaderURL;
 - (BOOL)safari_isHistoryURL;
 - (BOOL)safari_isBookmarksURL;
+- (BOOL)safari_isNativeContentURL;
 - (BOOL)safari_isMailToURL;
 - (BOOL)safari_isJavaScriptURL;
 - (BOOL)safari_isErrorPageResourcesURL;

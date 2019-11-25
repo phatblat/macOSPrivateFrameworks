@@ -19,7 +19,7 @@
     NSDictionary *_nowPlayingInfo;
     MRNowPlayingArtwork *_nowPlayingArtwork;
     unsigned int _playbackState;
-    double _playbackStateSetToPlayTimestamp;
+    NSDate *_playbackStateDate;
     unsigned long long _capabilities;
     NSDate *_lastReceivedCommandDate;
     BOOL _coalescingInvalidations;
@@ -29,6 +29,7 @@
     NSMutableDictionary *_coelscingTransactionPackets;
     NSMutableArray *_transactionSources;
     NSMutableDictionary *_cachedContentItemUpdates;
+    NSMutableDictionary *_pendingPlaybackSessionMigrateEvents;
     _MRNowPlayingPlayerPathProtobuf *_playerPath;
     MRPlaybackQueueSubscriptionController *_subscriptionController;
     MRNowPlayingPlayerClientCallbacks *_clientCallbacks;
@@ -40,6 +41,10 @@
 - (void).cxx_destruct;
 - (id)debugDescription;
 - (id)description;
+- (void)_handePlaybackSessionMigrateRequest:(id)arg1 request:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)flushPendingPlaybackSessionMigrateEvents:(CDUnknownBlockType)arg1;
+- (BOOL)removePendingPlaybackSessionMigrateEvent:(id)arg1;
+- (void)addPendingPlaybackSessionMigrateEvent:(id)arg1;
 - (void)updatePlaybackQueueWithCachedUpdates:(id)arg1 forPendingRequest:(id)arg2;
 - (void)clearCachedContentItemArtworkForItems:(id)arg1;
 - (void)cacheContentItemChangesForPendingRequests:(id)arg1;
@@ -52,11 +57,11 @@
 - (void)beginSendingTransactions;
 - (void)restoreNowPlayingClientState;
 @property(readonly, nonatomic) BOOL hasReceivedCommandRecently;
-- (void)preProcessCommand:(unsigned int)arg1 options:(id)arg2;
+- (id)resolveCommandOptions:(unsigned int)arg1 options:(id)arg2;
+- (unsigned int)resolveCommand:(unsigned int)arg1;
 - (void)preProcessChangePlaybackRateCommandWithOptions:(id)arg1;
 - (void)updateCacheWithContentItems:(id)arg1;
 - (void)updateCacheWithItem:(id)arg1;
-- (id)_onQueue_nowPlayingContentItem;
 @property(readonly, nonatomic) _MRContentItemProtobuf *nowPlayingContentItem;
 @property(retain, nonatomic) _MRPlaybackQueueProtobuf *playbackQueue;
 - (void)updateCacheWithPlaybackQueue:(id)arg1;
@@ -66,11 +71,12 @@
 - (void)unsetCoalescingInvalidations;
 - (BOOL)testAndSetCoalescingInvalidations;
 - (void)updatePlayer:(id)arg1;
-@property(nonatomic) unsigned int playbackState;
-@property(nonatomic) double invalidatationTimestamp;
-@property(copy, nonatomic) NSArray *supportedCommands;
+@property(readonly, nonatomic) unsigned int playbackState;
+- (void)updatePlaybackState:(unsigned int)arg1 date:(id)arg2;
 @property(retain, nonatomic) MRNowPlayingArtwork *nowPlayingArtwork;
 @property(copy, nonatomic) NSDictionary *nowPlayingInfo;
+@property(nonatomic) double invalidatationTimestamp;
+@property(copy, nonatomic) NSArray *supportedCommands;
 - (id)initWithPlayerPath:(id)arg1;
 
 @end

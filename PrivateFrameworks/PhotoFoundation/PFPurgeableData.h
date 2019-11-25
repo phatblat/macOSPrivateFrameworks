@@ -8,7 +8,7 @@
 
 #import "PFMemoryInfo.h"
 
-@class NSObject<OS_dispatch_queue>, NSString, PFTraceBuffer;
+@class NSObject<OS_dispatch_queue>, NSString;
 
 @interface PFPurgeableData : NSMutableData <PFMemoryInfo>
 {
@@ -21,7 +21,6 @@
     BOOL _canCacheOnDisk;
     int _purgeLevel;
     NSObject<OS_dispatch_queue> *_queue;
-    PFTraceBuffer *_trace;
     BOOL _recycle;
     NSString *_memoryNote;
 }
@@ -30,8 +29,6 @@
 + (id)purgeLevelToString:(int)arg1;
 + (void)_checkVMError:(int)arg1 function:(const char *)arg2;
 + (id)allInstances;
-+ (BOOL)debugAccessCounts;
-+ (void)setDebugAccessCounts:(BOOL)arg1;
 @property BOOL recycle; // @synthesize recycle=_recycle;
 @property(retain) NSString *memoryNote; // @synthesize memoryNote=_memoryNote;
 - (void).cxx_destruct;

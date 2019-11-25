@@ -8,6 +8,7 @@
 
 #import "MFObject.h"
 
+__attribute__((visibility("hidden")))
 @interface MFBrush : NSObject <MFObject>
 {
 }

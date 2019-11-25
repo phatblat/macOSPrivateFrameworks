@@ -4,14 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <HomeKit/HMSettings.h>
 
 #import "HMFLogging.h"
 #import "HMObjectMerge.h"
 
 @class HMAccessory, HMAccessorySettingGroup, HMFUnfairLock, NSString, NSUUID, _HMContext;
 
-@interface HMAccessorySettings : NSObject <HMFLogging, HMObjectMerge>
+@interface HMAccessorySettings : HMSettings <HMFLogging, HMObjectMerge>
 {
     HMFUnfairLock *_lock;
     id <HMAccessorySettingsContainer> _settingsContainer;

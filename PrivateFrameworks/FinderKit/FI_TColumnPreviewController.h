@@ -9,7 +9,7 @@
 #import "TCoalescingNodeObserverProtocol.h"
 #import "TTrackingAreaOwnerProtocol.h"
 
-@class FI_TColumnPreviewHeaderViewController, FI_TColumnPreviewInfoViewController, FI_TColumnPreviewViewController, FI_TPreviewOptions, NSLayoutConstraint, NSStackView, NSString;
+@class FI_TColumnPreviewHeaderViewController, FI_TColumnPreviewInfoViewController, FI_TColumnPreviewViewController, FI_TContainerLayoutManager, FI_TPreviewOptions, NSLayoutConstraint, NSStackView, NSString;
 
 __attribute__((visibility("hidden")))
 @interface FI_TColumnPreviewController : FI_TViewController <TCoalescingNodeObserverProtocol, TTrackingAreaOwnerProtocol>
@@ -31,7 +31,6 @@ __attribute__((visibility("hidden")))
     struct TKeyValueObserver _contentInsetsDidChangeObserver;
     struct TNSRef<NSArray<NSLayoutConstraint *>, void> _layoutConstraints;
     struct TNSWeakPtr<NSLayoutConstraint, void> _minHeightLayoutConstraint;
-    struct TNSRef<NSTrackingArea, void> _wholeColumnTrackingArea;
     _Bool _inColumnView;
     struct TNSRef<FI_TPreviewOptions, void> _previewOptions;
 }
@@ -39,8 +38,6 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) _Bool inColumnView; // @synthesize inColumnView=_inColumnView;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)mouseExited:(id)arg1;
-- (void)mouseEntered:(id)arg1;
 @property(retain, nonatomic) FI_TPreviewOptions *previewOptions; // @dynamic previewOptions;
 - (void)setShowSmallThumbnail:(_Bool)arg1;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodeMDAttributeChanged:(const struct TFENode *)arg2 attributes:(id)arg3 isDisplayAttributes:(_Bool)arg4;
@@ -54,6 +51,9 @@ __attribute__((visibility("hidden")))
 - (struct CGRect)visibleRectForScrollView:(id)arg1;
 - (void)updateQuickActionsPocketInScrollView:(id)arg1;
 - (void)updateScrollStateForContent;
+- (double)columnViewHorizontalScrollerHeight:(id)arg1;
+- (id)browserScrollViewForScrollView:(id)arg1;
+@property(retain, nonatomic) FI_TContainerLayoutManager *containerLayoutManager;
 - (void)updateSubviewContentInsets:(struct NSEdgeInsets)arg1;
 - (void)updateMinHeightConstraintForView:(id)arg1;
 - (void)viewDidMoveToWindow;
@@ -65,7 +65,6 @@ __attribute__((visibility("hidden")))
 - (void)viewLoaded;
 - (void)aboutToTearDown;
 - (void)initCommon;
-- (id)init;
 - (id)initWithContainerLayoutManager:(id)arg1;
 
 // Remaining properties

@@ -11,8 +11,10 @@
 @interface FBSXPCMessage : NSObject
 {
     NSObject<OS_xpc_object> *_payload;
+    id <BSXPCServiceConnectionMessage> _reply;
 }
 
++ (id)messageWithBSXPCMessage:(id)arg1 ownReply:(BOOL)arg2;
 + (id)messageWithPacker:(CDUnknownBlockType)arg1;
 + (id)messageWithPayload:(id)arg1;
 + (id)message;

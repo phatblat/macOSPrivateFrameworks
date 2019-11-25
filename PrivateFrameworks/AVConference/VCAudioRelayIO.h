@@ -7,8 +7,11 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "VCBasebandCodecNotifications.h"
 
-@interface VCAudioRelayIO : NSObject <NSCopying>
+@class NSString;
+
+@interface VCAudioRelayIO : NSObject <NSCopying, VCBasebandCodecNotifications>
 {
     BOOL _usePacketThread;
     struct PacketThread_s *_packetThread;
@@ -23,11 +26,17 @@
     CDUnknownFunctionPointerType _speakerCallback;
     void *_speakerCallbackContext;
     struct opaqueVCAudioBufferList *_speakerBuffer;
+    CDUnknownFunctionPointerType _updateRemoteCodecInfoCallback;
+    void *_updateRemoteCodecInfoContext;
     float _micPowerRMS;
     float _speakerPowerRMS;
     CDUnknownBlockType _startCompletionHandler;
+    struct _VCRemoteCodecInfo _remoteCodecInfo;
+    id _relay;
 }
 
+@property void *updateRemoteCodecInfoContext; // @synthesize updateRemoteCodecInfoContext=_updateRemoteCodecInfoContext;
+@property CDUnknownFunctionPointerType updateRemoteCodecInfoCallback; // @synthesize updateRemoteCodecInfoCallback=_updateRemoteCodecInfoCallback;
 @property(readonly, nonatomic) BOOL isRunning; // @synthesize isRunning=_isRunning;
 @property float speakerPowerRMS; // @synthesize speakerPowerRMS=_speakerPowerRMS;
 @property float micPowerRMS; // @synthesize micPowerRMS=_micPowerRMS;
@@ -44,16 +53,25 @@
 @property void *micCallbackContext; // @synthesize micCallbackContext=_micCallbackContext;
 @property CDUnknownFunctionPointerType micCallback; // @synthesize micCallback=_micCallback;
 @property struct AudioStreamBasicDescription micFormat; // @synthesize micFormat=_micFormat;
+- (void)didUpdateBasebandCodec:(const struct _VCRemoteCodecInfo *)arg1;
 - (void)printStreamFormats;
 - (void)closeRecordings;
 - (void)createRecordingsWithName:(id)arg1;
 - (void)destroyPacketThread;
 - (BOOL)createPacketThreadWithIOBufferDuration:(double)arg1 name:(id)arg2 error:(id *)arg3;
 - (void)createAudioBuffersWithIOBufferDuration:(double)arg1;
+@property id <VCBasebandCodecNotifications> relay;
+@property(nonatomic) const struct _VCRemoteCodecInfo *remoteCodecInfo;
 - (void)dealloc;
 - (BOOL)isEqualToRelayIO:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isInitialized;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

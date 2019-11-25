@@ -4,20 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
-
-@class NSMapTable, NSObject<OS_dispatch_queue>;
+#import "WBSSandboxFileExtensionController.h"
 
 __attribute__((visibility("hidden")))
-@interface SandboxFileExtensionController : NSObject
+@interface SandboxFileExtensionController : WBSSandboxFileExtensionController
 {
-    id <SandboxExtensionStore> _store;
-    NSMapTable *_extensions;
-    NSObject<OS_dispatch_queue> *_queue;
 }
 
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
-- (void).cxx_destruct;
+- (void)addFileExtensionForWebBookmarkLeafIfPossible:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)removeExtensionsWithCategory:(long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)removeExtensionsOlderThanDate:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)removeExtensionWithIdentifier:(id)arg1 category:(long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
@@ -26,19 +20,12 @@ __attribute__((visibility("hidden")))
 - (void)requestExtensionWithCategories:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)requestExtensionWithIdentifier:(id)arg1 category:(long long)arg2 url:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (id)requestExtensionWithIdentifier:(id)arg1 category:(long long)arg2 url:(id)arg3 error:(id *)arg4;
-- (void)requestExtensionForURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (id)requestExtensionForURL:(id)arg1 error:(id *)arg2;
-- (id)_extensionForURL:(id)arg1 bookmarkData:(id)arg2 permissions:(long long)arg3 error:(id *)arg4;
-- (id)_resolveBookmarkData:(id)arg1 isStale:(char *)arg2 error:(id *)arg3;
-- (id)_createFileExtensionForAccessURL:(id)arg1 permissions:(long long)arg2;
-- (void)savePendingChangesBeforeTermination;
-- (void)closeWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (id)initWithStore:(id)arg1;
 - (id)initWithURL:(id)arg1;
 - (id)init;
-- (void)_createTokenWithExtensions:(id)arg1 requestURL:(id)arg2 includeRequestURL:(BOOL)arg3 isRequestURLSecurityScoped:(BOOL)arg4 completionHandler:(CDUnknownBlockType)arg5;
-- (id)_createFileExtensionForURL:(id)arg1 permissions:(long long)arg2 error:(id *)arg3;
-- (id)_createGenericExtensionForURL:(id)arg1 extension:(id)arg2 error:(id *)arg3;
+
+// Remaining properties
+@property(readonly, nonatomic) id <SandboxExtensionStore> store; // @dynamic store;
 
 @end
 

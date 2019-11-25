@@ -6,64 +6,84 @@
 
 #import "NSObject.h"
 
-@class CUMobileDeviceSession, NSMutableArray, NSObject<OS_dispatch_queue>, NSString, RPDevice;
+#import "NSSecureCoding.h"
+#import "RPAuthenticatable.h"
+#import "RPCompanionLinkXPCClientInterface.h"
+#import "RPMessageable.h"
 
-@interface RPSession : NSObject
+@class NSObject<OS_dispatch_queue>, NSString, NSXPCConnection, RPConnection, RPEndpoint;
+
+@interface RPSession : NSObject <NSSecureCoding, RPCompanionLinkXPCClientInterface, RPAuthenticatable, RPMessageable>
 {
     BOOL _activateCalled;
     BOOL _invalidateCalled;
     BOOL _invalidateDone;
-    NSMutableArray *_messageSendQueue;
-    BOOL _messagingReady;
-    int _pairVerifyState;
-    BOOL _secureReady;
-    BOOL _mdEnabled;
-    CUMobileDeviceSession *_mdSession;
-    int _mdState;
-    unsigned int _securityFlags;
+    struct LogCategory *_ucat;
+    NSXPCConnection *_xpcCnx;
+    unsigned int _pairSetupFlags;
+    unsigned int _pairVerifyFlags;
+    int _passwordType;
+    int _passwordTypeActual;
+    NSString *_password;
+    CDUnknownBlockType _authCompletionHandler;
+    CDUnknownBlockType _showPasswordHandler;
+    CDUnknownBlockType _hidePasswordHandler;
+    CDUnknownBlockType _promptForPasswordHandler;
+    unsigned long long _controlFlags;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
-    NSString *_label;
-    RPDevice *_peerDevice;
-    NSString *_serviceType;
-    CDUnknownBlockType _errorHandler;
     CDUnknownBlockType _interruptionHandler;
     CDUnknownBlockType _invalidationHandler;
-    CDUnknownBlockType _promptForPINHandler;
+    NSString *_label;
+    RPEndpoint *_peerEndpoint;
+    NSString *_serviceType;
+    RPConnection *_cnx;
+    NSString *_peerID;
+    unsigned long long _sessionID;
+    unsigned long long _startTicks;
 }
 
-@property(copy, nonatomic) CDUnknownBlockType promptForPINHandler; // @synthesize promptForPINHandler=_promptForPINHandler;
++ (BOOL)supportsSecureCoding;
+@property(nonatomic) unsigned long long startTicks; // @synthesize startTicks=_startTicks;
+@property(nonatomic) unsigned long long sessionID; // @synthesize sessionID=_sessionID;
+@property(copy, nonatomic) NSString *peerID; // @synthesize peerID=_peerID;
+@property(retain, nonatomic) RPConnection *cnx; // @synthesize cnx=_cnx;
+@property(retain, nonatomic) NSString *serviceType; // @synthesize serviceType=_serviceType;
+@property(retain, nonatomic) RPEndpoint *peerEndpoint; // @synthesize peerEndpoint=_peerEndpoint;
+@property(copy, nonatomic) NSString *label; // @synthesize label=_label;
 @property(copy, nonatomic) CDUnknownBlockType invalidationHandler; // @synthesize invalidationHandler=_invalidationHandler;
 @property(copy, nonatomic) CDUnknownBlockType interruptionHandler; // @synthesize interruptionHandler=_interruptionHandler;
-@property(copy, nonatomic) CDUnknownBlockType errorHandler; // @synthesize errorHandler=_errorHandler;
-@property(copy, nonatomic) NSString *serviceType; // @synthesize serviceType=_serviceType;
-@property(nonatomic) unsigned int securityFlags; // @synthesize securityFlags=_securityFlags;
-@property(retain, nonatomic) RPDevice *peerDevice; // @synthesize peerDevice=_peerDevice;
-@property(retain, nonatomic) NSString *label; // @synthesize label=_label;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
+@property(nonatomic) unsigned long long controlFlags; // @synthesize controlFlags=_controlFlags;
+@property(copy, nonatomic) CDUnknownBlockType promptForPasswordHandler; // @synthesize promptForPasswordHandler=_promptForPasswordHandler;
+@property(copy, nonatomic) CDUnknownBlockType hidePasswordHandler; // @synthesize hidePasswordHandler=_hidePasswordHandler;
+@property(copy, nonatomic) CDUnknownBlockType showPasswordHandler; // @synthesize showPasswordHandler=_showPasswordHandler;
+@property(copy, nonatomic) CDUnknownBlockType authCompletionHandler; // @synthesize authCompletionHandler=_authCompletionHandler;
+@property(readonly, nonatomic) int passwordTypeActual; // @synthesize passwordTypeActual=_passwordTypeActual;
+@property(nonatomic) int passwordType; // @synthesize passwordType=_passwordType;
+@property(copy, nonatomic) NSString *password; // @synthesize password=_password;
+@property(nonatomic) unsigned int pairVerifyFlags; // @synthesize pairVerifyFlags=_pairVerifyFlags;
+@property(nonatomic) unsigned int pairSetupFlags; // @synthesize pairSetupFlags=_pairSetupFlags;
 - (void).cxx_destruct;
-- (void)requestSystemInfoWithCompletion:(CDUnknownBlockType)arg1;
-- (void)_sendMessage:(id)arg1;
-- (void)_sendQueuedMessages;
-- (void)sendRequestID:(id)arg1 options:(id)arg2 request:(id)arg3 responseHandler:(CDUnknownBlockType)arg4;
+- (void)sendRequestID:(id)arg1 request:(id)arg2 destinationID:(id)arg3 options:(id)arg4 responseHandler:(CDUnknownBlockType)arg5;
+- (void)sendRequestID:(id)arg1 request:(id)arg2 options:(id)arg3 responseHandler:(CDUnknownBlockType)arg4;
+- (void)deregisterRequestID:(id)arg1;
 - (void)registerRequestID:(id)arg1 options:(id)arg2 handler:(CDUnknownBlockType)arg3;
-- (void)_unpairWithCompletion:(CDUnknownBlockType)arg1;
-- (void)unpairWithCompletion:(CDUnknownBlockType)arg1;
-- (void)_pairVerifyWithFlags:(unsigned int)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)pairVerifyWithFlags:(unsigned int)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)_pairSetupTryPIN:(id)arg1;
-- (void)pairSetupTryPIN:(id)arg1;
-- (void)_pairSetupWithFlags:(unsigned int)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)pairSetupWithFlags:(unsigned int)arg1 completion:(CDUnknownBlockType)arg2;
-- (int)_runPairVerify;
-- (int)_runMobileDeviceStart;
-- (void)_run;
+- (void)sendEventID:(id)arg1 event:(id)arg2 destinationID:(id)arg3 options:(id)arg4 completion:(CDUnknownBlockType)arg5;
+- (void)sendEventID:(id)arg1 event:(id)arg2 options:(id)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)deregisterEventID:(id)arg1;
+- (void)registerEventID:(id)arg1 options:(id)arg2 handler:(CDUnknownBlockType)arg3;
+- (void)tryPassword:(id)arg1;
 - (void)_invalidated;
-- (void)_invalidate;
 - (void)invalidate;
-- (void)_activateWithCompletion:(CDUnknownBlockType)arg1;
+- (void)_interrupted;
+- (void)_ensureXPCStarted;
+- (void)_activateWithCompletion:(CDUnknownBlockType)arg1 reactivate:(BOOL)arg2;
 - (void)activateWithCompletion:(CDUnknownBlockType)arg1;
-- (void)_cleanup;
+- (id)descriptionWithLevel:(int)arg1;
+- (id)description;
 - (void)dealloc;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)init;
 
 @end

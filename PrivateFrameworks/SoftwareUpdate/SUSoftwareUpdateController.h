@@ -44,8 +44,8 @@
 }
 
 @property BOOL didSendAuth; // @synthesize didSendAuth=_didSendAuth;
-@property NSObject<OS_dispatch_queue> *updateQueue; // @synthesize updateQueue=_updateQueue;
-@property NSXPCConnection *connection; // @synthesize connection=_connection;
+@property(retain) NSObject<OS_dispatch_queue> *updateQueue; // @synthesize updateQueue=_updateQueue;
+@property(retain) NSXPCConnection *connection; // @synthesize connection=_connection;
 @property(readonly) unsigned long long totalSize; // @synthesize totalSize=_totalSize;
 @property(readonly) unsigned long long downloadedSize; // @synthesize downloadedSize=_downloadedSize;
 @property(readonly) long long currentState; // @synthesize currentState=_currentState;
@@ -54,8 +54,9 @@
 @property(copy) NSDictionary *installedPrintersPlist; // @synthesize installedPrintersPlist=_installedPrintersPlist;
 @property(retain) NSWindow *windowForSheet; // @synthesize windowForSheet=_windowForSheet;
 @property(nonatomic) BOOL requireACPower; // @synthesize requireACPower=_requireACPower;
-@property(readonly) id <SUSoftwareUpdateControllerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly) __weak id <SUSoftwareUpdateControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain) NSDictionary *evaluationMetaInfo; // @synthesize evaluationMetaInfo=_evaluationMetaInfo;
+- (void).cxx_destruct;
 - (id)_errorWithCode:(long long)arg1 userInfo:(id)arg2 underlyingError:(id)arg3 recoveryAction:(CDUnknownBlockType)arg4;
 - (void)_closeNecessaryApplicationsWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)_checkAndInstallMatchingUpdatesWithCompletionHandler:(CDUnknownBlockType)arg1;
@@ -103,6 +104,7 @@
 - (void)catalogAndScanInfoWithReply:(CDUnknownBlockType)arg1;
 - (void)queryForAvailableUpdatesWithReply:(CDUnknownBlockType)arg1;
 - (void)initiateBackgroundScanIfNecessary:(BOOL)arg1 replyWhenDone:(CDUnknownBlockType)arg2;
+- (void)_fetchMajorOSInfoForProductKey:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)_queryForAvailableUpdatesWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)_setAvailableUpdates:(id)arg1 currentStatus:(id)arg2;
 

@@ -8,7 +8,7 @@
 
 #import "NSPopoverDelegate.h"
 
-@class CPKEmojiIMCategoryView, CPKEmojiIMContentCoverView, CPKEmojiIMEmojiListView, CPKEmojiIMPreviewWindow, CPKEmojiIMViewController, NSButton, NSDictionary, NSString;
+@class CPKEmojiIMCategoryView, CPKEmojiIMContentCoverView, CPKEmojiIMEmojiListView, CPKEmojiIMPreviewWindow, CPKEmojiIMViewController, NSDictionary, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CPKEmojiIMContentView : NSView <NSPopoverDelegate>
@@ -20,7 +20,6 @@ __attribute__((visibility("hidden")))
     id <CPKEmojiIMViewControllerDelegate><NSObject> _delegate;
     CPKEmojiIMPreviewWindow *_previewWindow;
     CDUnknownBlockType _getWindowInfoBlock;
-    NSButton *_closeButton;
     CPKEmojiIMCategoryView *_categoryView;
     CPKEmojiIMEmojiListView *_emojiListView;
     CPKEmojiIMContentCoverView *_coverView;
@@ -36,7 +35,6 @@ __attribute__((visibility("hidden")))
 @property CPKEmojiIMContentCoverView *coverView; // @synthesize coverView=_coverView;
 @property CPKEmojiIMEmojiListView *emojiListView; // @synthesize emojiListView=_emojiListView;
 @property CPKEmojiIMCategoryView *categoryView; // @synthesize categoryView=_categoryView;
-@property NSButton *closeButton; // @synthesize closeButton=_closeButton;
 @property(copy, nonatomic) CDUnknownBlockType getWindowInfoBlock; // @synthesize getWindowInfoBlock=_getWindowInfoBlock;
 @property(retain) CPKEmojiIMPreviewWindow *previewWindow; // @synthesize previewWindow=_previewWindow;
 @property id <CPKEmojiIMViewControllerDelegate><NSObject> delegate; // @synthesize delegate=_delegate;

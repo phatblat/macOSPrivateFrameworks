@@ -6,10 +6,12 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface MathUtility : NSObject
 {
 }
 
++ (unsigned int)getMegabytesSignificantFiguresHistogramBinIndexForBytes:(unsigned long long)arg1;
 + (double)computeNewVarianceFromValue:(double)arg1 currentMean:(double)arg2 currentCount:(unsigned long long)arg3 currentVariance:(double)arg4;
 + (double)computeNewMeanFromValue:(double)arg1 currentMean:(double)arg2 currentCount:(unsigned long long)arg3;
 

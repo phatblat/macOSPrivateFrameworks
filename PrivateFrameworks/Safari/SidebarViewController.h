@@ -29,6 +29,7 @@ __attribute__((visibility("hidden")))
     AnnotatedBookmarksSidebarViewController *_annotatedBookmarksSidebarViewController;
     BookmarksSidebarViewController *_bookmarksSidebarViewController;
     ReadingListSidebarViewController *_readingListSidebarViewController;
+    id <SidebarStateRestorationContext> _stateRestorationContext;
 }
 
 + (BOOL)canShowReadingListSidebar;
@@ -37,6 +38,7 @@ __attribute__((visibility("hidden")))
 + (void)registerDefaults;
 + (void)setDefaultSidebarViewMode:(id)arg1;
 @property(readonly) BOOL socialLinksSidebarIsShowing; // @synthesize socialLinksSidebarIsShowing=_socialLinksSidebarIsShowing;
+@property(nonatomic) __weak id <SidebarStateRestorationContext> stateRestorationContext; // @synthesize stateRestorationContext=_stateRestorationContext;
 @property(retain, nonatomic) ReadingListSidebarViewController *readingListSidebarViewController; // @synthesize readingListSidebarViewController=_readingListSidebarViewController;
 @property(retain, nonatomic) BookmarksSidebarViewController *bookmarksSidebarViewController; // @synthesize bookmarksSidebarViewController=_bookmarksSidebarViewController;
 @property(retain, nonatomic) AnnotatedBookmarksSidebarViewController *annotatedBookmarksSidebarViewController; // @synthesize annotatedBookmarksSidebarViewController=_annotatedBookmarksSidebarViewController;

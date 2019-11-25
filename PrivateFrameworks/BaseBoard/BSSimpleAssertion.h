@@ -9,16 +9,19 @@
 #import "BSDescriptionProviding.h"
 #import "BSInvalidatable.h"
 
-@class NSObject<OS_dispatch_queue>, NSString;
+@class BSAtomicSignal, NSObject<OS_dispatch_queue>, NSString;
 
-@interface BSSimpleAssertion : NSObject <BSDescriptionProviding, BSInvalidatable>
+@interface BSSimpleAssertion : NSObject <BSInvalidatable, BSDescriptionProviding>
 {
     NSString *_identifier;
     NSString *_reason;
+    BSAtomicSignal *_invalidated;
     NSObject<OS_dispatch_queue> *_queue;
     CDUnknownBlockType _invalidationBlock;
 }
 
+@property(readonly, copy, nonatomic) NSString *reason; // @synthesize reason=_reason;
+@property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
 - (id)descriptionWithMultilinePrefix:(id)arg1;
@@ -27,9 +30,8 @@
 @property(readonly, copy) NSString *description;
 - (void)invalidate;
 @property(readonly, nonatomic, getter=isValid) BOOL valid; // @dynamic valid;
-@property(readonly, copy, nonatomic) NSString *reason; // @dynamic reason;
-@property(readonly, copy, nonatomic) NSString *identifier; // @dynamic identifier;
 - (void)dealloc;
+- (id)initWithIdentifier:(id)arg1 forReason:(id)arg2 invalidationBlock:(CDUnknownBlockType)arg3;
 - (id)initWithIdentifier:(id)arg1 forReason:(id)arg2 queue:(id)arg3 invalidationBlock:(CDUnknownBlockType)arg4;
 
 // Remaining properties

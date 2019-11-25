@@ -8,20 +8,32 @@
 
 #import "NSCopying.h"
 
-@class GEOPDTextItemDisplayConfig, NSMutableArray, PBUnknownFields;
+@class GEOPDTextItemDisplayConfig, NSMutableArray, PBDataReader, PBUnknownFields;
 
 __attribute__((visibility("hidden")))
 @interface GEOPDTextItemContainer : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     PBUnknownFields *_unknownFields;
     GEOPDTextItemDisplayConfig *_displayConf;
     NSMutableArray *_textItems;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_displayConf:1;
+        unsigned int read_textItems:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_displayConf:1;
+        unsigned int wrote_textItems:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)textItemType;
-@property(retain, nonatomic) GEOPDTextItemDisplayConfig *displayConf; // @synthesize displayConf=_displayConf;
-@property(retain, nonatomic) NSMutableArray *textItems; // @synthesize textItems=_textItems;
 - (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
 @property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -30,13 +42,21 @@ __attribute__((visibility("hidden")))
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEOPDTextItemDisplayConfig *displayConf;
 @property(readonly, nonatomic) BOOL hasDisplayConf;
+- (void)_readDisplayConf;
 - (id)textItemAtIndex:(unsigned long long)arg1;
 - (unsigned long long)textItemsCount;
+- (void)_addNoFlagsTextItem:(id)arg1;
 - (void)addTextItem:(id)arg1;
 - (void)clearTextItems;
+@property(retain, nonatomic) NSMutableArray *textItems;
+- (void)_readTextItems;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     FI_TTextField *_appInfoTextFld;
     FI_TTextField *_explanationTextFld;
     NSButton *_upgradeButton;
+    struct TNotificationCenterObserver _backingPropertiesChangedObserver;
     struct TFENode _target;
     struct TNSRef<NSMetadataQuery, void> _boostingQuery;
     _Bool _isUpgradeToICloudUI;

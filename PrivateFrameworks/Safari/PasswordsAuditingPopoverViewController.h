@@ -6,10 +6,12 @@
 
 #import "NSViewController.h"
 
+#import "NSTextViewDelegate.h"
+
 @class ContentHuggingTextView, NSClipView, NSPopover, NSString, WBSSavedPassword;
 
 __attribute__((visibility("hidden")))
-@interface PasswordsAuditingPopoverViewController : NSViewController
+@interface PasswordsAuditingPopoverViewController : NSViewController <NSTextViewDelegate>
 {
     NSString *_duplicatedPasswordDomain;
     NSPopover *_popover;
@@ -24,11 +26,18 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) WBSSavedPassword *auditingSavedPassword; // @synthesize auditingSavedPassword=_auditingSavedPassword;
 @property(nonatomic) __weak id <PasswordsAuditingHandler> passwordAuditingHandler; // @synthesize passwordAuditingHandler=_passwordAuditingHandler;
 - (void).cxx_destruct;
+- (BOOL)textView:(id)arg1 clickedOnLink:(id)arg2 atIndex:(unsigned long long)arg3;
 - (void)closePopover;
 - (void)showPopoverWithPositioningView:(id)arg1;
 - (void)_updateWarningLabelStringValue;
 - (void)viewDidLoad;
 - (id)initWithAuditingSavedPassword:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

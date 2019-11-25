@@ -25,6 +25,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
++ (BOOL)calendar:(id)arg1 isWeekendWithIntervalToWeekdayWeekendTransition:(double *)arg2 containingOrAfterDate:(id)arg3;
 + (id)topNPredictionQueryForStream:(id)arg1 withPredicate:(id)arg2 withTopN:(long long)arg3 withMinLikelihood:(double)arg4;
 + (id)predictionQueryForStreams:(id)arg1 withPredicate:(id)arg2 withPredictionType:(unsigned long long)arg3;
 + (id)predictionQueryForStream:(id)arg1 withPredicate:(id)arg2 withPredictionType:(unsigned long long)arg3;
@@ -41,6 +42,7 @@
 @property(nonatomic) int minimumDaysOfHistory; // @synthesize minimumDaysOfHistory=_minimumDaysOfHistory;
 @property(nonatomic) int slotDuration; // @synthesize slotDuration=_slotDuration;
 - (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)handleResults:(id)arg1 error:(id)arg2;
@@ -48,7 +50,7 @@
 - (id)likelihoodForTopN:(long long)arg1 withMinLikelihood:(double)arg2 withData:(id)arg3;
 - (id)predictionOfType:(unsigned long long)arg1 withData:(id)arg2;
 - (void)addEventsToObservations:(id)arg1 startingHistogram:(id)arg2 endingHistogram:(id)arg3 withPredictionDate:(id)arg4;
-- (void)handleEventPredictionWithEventStartDate:(id)arg1 eventEndDate:(id)arg2 predictionStartDate:(id)arg3 durationSinceFirstEvent:(double)arg4 calendar:(id)arg5 observations:(id)arg6;
+- (void)handleEventPredictionWithEventStartDate:(id)arg1 eventEndDate:(id)arg2 predictionStartDate:(id)arg3 durationSinceFirstEvent:(double)arg4 calendar:(id)arg5 observations:(id)arg6 useWeights:(BOOL)arg7;
 - (void)handleImpulsePredictionWithEventStartDate:(id)arg1 predictionStartDate:(id)arg2 durationSinceFirstEvent:(double)arg3 calendar:(id)arg4 observations:(id)arg5 lastDate:(id *)arg6 lastSlot:(int *)arg7;
 - (id)constructTimelineWithObservations:(id)arg1 withFirstEventDate:(id)arg2 withHistogramInterval:(id)arg3 withPredictionStartDate:(id)arg4 durationSinceFirstEvent:(double)arg5;
 - (void)setValueForIndex:(int)arg1 forObservations:(id)arg2 withDenominator:(double)arg3;

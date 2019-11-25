@@ -6,6 +6,10 @@
 
 #import "FBSSceneAgent.h"
 
+@class FBSSceneEvent;
+
 @protocol FBSSceneHostAgent <FBSSceneAgent>
+- (void)scene:(id <FBSSceneHandle>)arg1 willInvalidateWithEvent:(FBSSceneEvent *)arg2 completion:(void (^)(void))arg3;
+- (void)scene:(id <FBSSceneHandle>)arg1 didInitializeWithEvent:(FBSSceneEvent *)arg2 completion:(void (^)(void))arg3;
 @end
 

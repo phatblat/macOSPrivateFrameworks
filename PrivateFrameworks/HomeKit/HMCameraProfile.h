@@ -6,27 +6,42 @@
 
 #import <HomeKit/HMAccessoryProfile.h>
 
-@class HMCameraAudioControl, HMCameraSettingsControl, HMCameraSnapshotControl, HMCameraStreamControl, _HMCameraProfile;
+#import "HMFLogging.h"
 
-@interface HMCameraProfile : HMAccessoryProfile
+@class HMCameraAudioControl, HMCameraClipManager, HMCameraSettingsControl, HMCameraSnapshotControl, HMCameraStreamControl, HMCameraUserSettings, NSString, _HMCameraProfile;
+
+@interface HMCameraProfile : HMAccessoryProfile <HMFLogging>
 {
     HMCameraStreamControl *_streamControl;
     HMCameraSnapshotControl *_snapshotControl;
     HMCameraSettingsControl *_settingsControl;
     HMCameraAudioControl *_speakerControl;
     HMCameraAudioControl *_microphoneControl;
+    id <HMCameraProfileUserSettingsDelegate> _userSettingsDelegate;
 }
 
++ (id)logCategory;
+@property __weak id <HMCameraProfileUserSettingsDelegate> userSettingsDelegate; // @synthesize userSettingsDelegate=_userSettingsDelegate;
 @property(retain, nonatomic) HMCameraAudioControl *microphoneControl; // @synthesize microphoneControl=_microphoneControl;
 @property(retain, nonatomic) HMCameraAudioControl *speakerControl; // @synthesize speakerControl=_speakerControl;
 @property(retain, nonatomic) HMCameraSettingsControl *settingsControl; // @synthesize settingsControl=_settingsControl;
 @property(retain, nonatomic) HMCameraSnapshotControl *snapshotControl; // @synthesize snapshotControl=_snapshotControl;
 @property(retain, nonatomic) HMCameraStreamControl *streamControl; // @synthesize streamControl=_streamControl;
 - (void).cxx_destruct;
+- (void)deleteAllClipsWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (id)logIdentifier;
 - (BOOL)_mergeWithNewObject:(id)arg1 operations:(id)arg2;
 - (id)services;
+@property(readonly) HMCameraClipManager *clipManager;
+@property(readonly) HMCameraUserSettings *userSettings;
 @property(readonly, nonatomic) _HMCameraProfile *cameraProfile;
 - (id)initWithCameraProfile:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

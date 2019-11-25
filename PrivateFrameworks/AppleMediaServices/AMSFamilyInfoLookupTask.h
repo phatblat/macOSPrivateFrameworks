@@ -6,25 +6,41 @@
 
 #import <AppleMediaServices/AMSTask.h>
 
-@class NSString;
+#import "AMSBagConsumer.h"
 
-@interface AMSFamilyInfoLookupTask : AMSTask
+@class ACAccount, NSString;
+
+@interface AMSFamilyInfoLookupTask : AMSTask <AMSBagConsumer>
 {
-    id <AMSFamilyInfoLookupBagContract> _bagContract;
+    ACAccount *_account;
+    id <AMSBagProtocol> _bag;
     NSString *_logKey;
 }
 
 + (id)_processURLResult:(id)arg1;
++ (void)addRequiredBagKeysToAggregator:(id)arg1;
++ (id)bagSubProfileVersion;
++ (id)bagSubProfile;
++ (id)bagKeySet;
 @property(retain) NSString *logKey; // @synthesize logKey=_logKey;
-@property(retain) id <AMSFamilyInfoLookupBagContract> bagContract; // @synthesize bagContract=_bagContract;
+@property(readonly) id <AMSBagProtocol> bag; // @synthesize bag=_bag;
+@property(readonly) ACAccount *account; // @synthesize account=_account;
 - (void).cxx_destruct;
+- (id)initWithBagContract:(id)arg1;
+- (id)initWithBag:(id)arg1;
 - (id)_pathForCachedFamilyInfoLookupResult;
 - (id)_currentCachedFamilyInfo;
 - (id)_cachedFamilyInfoLookupResultForAccount:(id)arg1;
 - (void)_cacheFamilyInfoLookupResult:(id)arg1 forAccount:(id)arg2;
 - (id)_performFamilyInfoRequestForAccount:(id)arg1 error:(id *)arg2;
 - (id)performFamilyInfoLookup;
-- (id)initWithBagContract:(id)arg1;
+- (id)initWithAccount:(id)arg1 bag:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

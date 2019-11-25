@@ -8,23 +8,36 @@
 
 #import "NSCopying.h"
 
-@class GEOPDVenueContainer, NSMutableArray, PBUnknownFields;
+@class GEOPDVenueContainer, NSMutableArray, PBDataReader, PBUnknownFields;
 
 __attribute__((visibility("hidden")))
 @interface GEOPDFeatureVenue : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     PBUnknownFields *_unknownFields;
     NSMutableArray *_buildings;
     NSMutableArray *_levels;
     GEOPDVenueContainer *_venueContainer;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_buildings:1;
+        unsigned int read_levels:1;
+        unsigned int read_venueContainer:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_buildings:1;
+        unsigned int wrote_levels:1;
+        unsigned int wrote_venueContainer:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)levelType;
 + (Class)buildingType;
-@property(retain, nonatomic) NSMutableArray *levels; // @synthesize levels=_levels;
-@property(retain, nonatomic) NSMutableArray *buildings; // @synthesize buildings=_buildings;
-@property(retain, nonatomic) GEOPDVenueContainer *venueContainer; // @synthesize venueContainer=_venueContainer;
 - (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
 @property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -33,17 +46,28 @@ __attribute__((visibility("hidden")))
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)levelAtIndex:(unsigned long long)arg1;
 - (unsigned long long)levelsCount;
+- (void)_addNoFlagsLevel:(id)arg1;
 - (void)addLevel:(id)arg1;
 - (void)clearLevels;
+@property(retain, nonatomic) NSMutableArray *levels;
+- (void)_readLevels;
 - (id)buildingAtIndex:(unsigned long long)arg1;
 - (unsigned long long)buildingsCount;
+- (void)_addNoFlagsBuilding:(id)arg1;
 - (void)addBuilding:(id)arg1;
 - (void)clearBuildings;
+@property(retain, nonatomic) NSMutableArray *buildings;
+- (void)_readBuildings;
+@property(retain, nonatomic) GEOPDVenueContainer *venueContainer;
 @property(readonly, nonatomic) BOOL hasVenueContainer;
+- (void)_readVenueContainer;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

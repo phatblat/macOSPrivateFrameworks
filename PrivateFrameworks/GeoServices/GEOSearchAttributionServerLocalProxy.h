@@ -9,19 +9,19 @@
 #import "GEOResourceManifestTileGroupObserver.h"
 #import "GEOSearchAttributionServerProxy.h"
 
-@class GEOSearchAttributionManifest, NSLock, NSMapTable, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
+@class GEOSearchAttributionManifest, NSMapTable, NSMutableArray, NSString, geo_isolater;
 
 __attribute__((visibility("hidden")))
 @interface GEOSearchAttributionServerLocalProxy : NSObject <GEOResourceManifestTileGroupObserver, GEOSearchAttributionServerProxy>
 {
     NSMapTable *_listeners;
-    NSLock *_listenersLock;
+    struct os_unfair_lock_s _listenersLock;
     BOOL _updatingManifest;
     NSMutableArray *_updateManifestCompletionHandlers;
     NSMutableArray *_updateManifestErrorHandlers;
     GEOSearchAttributionManifest *_attributionManifest;
-    NSLock *_attributionManifestLock;
-    NSObject<OS_dispatch_queue> *_isolationQueue;
+    struct os_unfair_lock_s _attributionManifestLock;
+    geo_isolater *_isolater;
 }
 
 - (void).cxx_destruct;

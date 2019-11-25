@@ -6,10 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSDate, NSObject<OS_dispatch_queue>, SignpostSupportObjectExtractor;
+@class NSDate, NSObject<OS_dispatch_queue>, STYAbcHelper, SignpostSupportObjectExtractor;
 
 @interface STYSignpostsMonitor : NSObject
 {
+    BOOL _autoUploadThroughAbc;
+    BOOL _seedUserMode;
     unsigned int _timeToReconnectWithDiagnosticd;
     unsigned int _eventCount;
     SignpostSupportObjectExtractor *_notificationExtractor;
@@ -17,9 +19,13 @@
     NSObject<OS_dispatch_queue> *_processingQueue;
     NSDate *_lastTailspinRequestForDelayedNotifications;
     NSDate *_lastTailspinRequest;
+    STYAbcHelper *_abcHelper;
 }
 
 + (id)sharedMonitor;
+@property(retain) STYAbcHelper *abcHelper; // @synthesize abcHelper=_abcHelper;
+@property BOOL seedUserMode; // @synthesize seedUserMode=_seedUserMode;
+@property BOOL autoUploadThroughAbc; // @synthesize autoUploadThroughAbc=_autoUploadThroughAbc;
 @property unsigned int eventCount; // @synthesize eventCount=_eventCount;
 @property unsigned int timeToReconnectWithDiagnosticd; // @synthesize timeToReconnectWithDiagnosticd=_timeToReconnectWithDiagnosticd;
 @property(retain) NSDate *lastTailspinRequest; // @synthesize lastTailspinRequest=_lastTailspinRequest;
@@ -30,13 +36,17 @@
 - (void).cxx_destruct;
 - (void)stopMonitoringSignposts;
 - (BOOL)monitorSignposts:(BOOL)arg1;
+- (BOOL)getCoinTossResult;
 - (BOOL)startListeningForNotifications;
 - (void)notificationStreamTerminated:(id)arg1 unmatchedIntervalStarts:(id)arg2;
 - (id)initPrivate;
 - (void)setupNotificationPipeline;
+- (void)processEmittedEvent:(id)arg1;
 - (void)processInterval:(id)arg1;
+- (void)reportLatencyToReceiveSignposts:(id)arg1;
 - (id)tailspinFilenamePrefixForInterval:(id)arg1;
 - (void)perfProblemDetected:(id)arg1 tailspinFilenamePrefix:(id)arg2;
+- (void)perfProblemDetectedOnMac:(id)arg1 tailspinFilenamePrefix:(id)arg2;
 
 @end
 

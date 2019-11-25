@@ -11,7 +11,6 @@
 
 @class NSCollectionView, NSMutableArray, NSString, NSView, SALocalSearchReviewList, SiriUIScrollView;
 
-__attribute__((visibility("hidden")))
 @interface SiriUIReviewsViewController : SiriUISnippetViewController <NSCollectionViewDataSource, NSCollectionViewDelegateFlowLayout>
 {
     SALocalSearchReviewList *_reviewList;
@@ -68,7 +67,6 @@ __attribute__((visibility("hidden")))
 - (double)_minCellWidth;
 - (id)_displayStringForReviewCount:(long long)arg1 providerName:(id)arg2 providerView:(id)arg3;
 - (void)updateSubtitle;
-- (void)dealloc;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 // Remaining properties

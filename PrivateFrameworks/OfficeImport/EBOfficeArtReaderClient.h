@@ -8,6 +8,7 @@
 
 #import "OABReaderClient.h"
 
+__attribute__((visibility("hidden")))
 @interface EBOfficeArtReaderClient : NSObject <OABReaderClient>
 {
 }

@@ -23,6 +23,7 @@
     NSObject<OS_dispatch_source> *_adjustActivitySource;
 }
 
++ (void)_logCallInteractions:(id)arg1;
 + (id)defaultInstance;
 + (id)sharedSingletonInstance;
 - (void).cxx_destruct;
@@ -44,10 +45,9 @@
 - (void)adjustCriteriaForCTS;
 - (void)_performProcessPendingGeocodesActivity:(id)arg1;
 - (void)_registerProcessPendingGeocodesActivity;
-- (void)_performContactDetailCacheRebuildActivity:(id)arg1;
+- (void)performContactDetailCacheRebuildActivity:(id)arg1 usingContacts:(id)arg2;
+- (void)performContactDetailCacheRebuildActivity:(id)arg1;
 - (void)_registerForContactDetailCacheRebuildActivity;
-- (void)_performPMLTrainingActivity:(id)arg1;
-- (void)_registerForPMLTrainingActivity;
 - (void)_performSendRTCActivity;
 - (void)_registerForCTSSendRTCActivity;
 - (void)_performIdentityAnalysisActivity:(id)arg1;
@@ -63,6 +63,8 @@
 - (id)accountTypeForBundle:(id)arg1;
 - (struct SGMEventICSSourceType_)accountTypeFor:(id)arg1;
 - (void)_registerForCollectWeeklyStats;
+- (void)_performMobileAssetMetadataDownloadActivity:(id)arg1;
+- (void)_registerMobileAssetMetadataDownloadActivity;
 - (void)registerForCTS;
 - (id)initWithHarvestStore:(id)arg1 xpcActivityManager:(id)arg2;
 

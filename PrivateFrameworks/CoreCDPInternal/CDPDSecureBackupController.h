@@ -19,6 +19,7 @@
     CDPDSecureBackupConfiguration *_configuration;
 }
 
++ (id)_printableAccountInfo:(id)arg1;
 + (id)_sanitizedInfoDictionary:(id)arg1;
 @property(retain, nonatomic) CDPDSecureBackupConfiguration *configuration; // @synthesize configuration=_configuration;
 @property(retain, nonatomic) id <CDPDSecureBackupProxy> secureBackupProxy; // @synthesize secureBackupProxy=_secureBackupProxy;
@@ -39,6 +40,8 @@
 - (id)_recoveryInfoDictionaryFromContext:(id)arg1;
 - (id)_recoverBackupDictionaryWithContext:(id)arg1 error:(id *)arg2;
 - (void)recoverSecureBackupWithContext:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)performEscrowRecoveryWithRecoveryContext:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (id)performEscrowRecoveryWithRecoveryContext:(id)arg1 error:(id *)arg2;
 - (id)_clientMetadataWithSecretType:(unsigned long long)arg1 length:(unsigned long long)arg2;
 - (id)_currentAnisetteData;
 - (id)stashedPRK;

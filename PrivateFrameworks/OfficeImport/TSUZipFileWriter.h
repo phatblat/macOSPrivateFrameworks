@@ -6,6 +6,7 @@
 
 #import <OfficeImport/TSUZipWriter.h>
 
+__attribute__((visibility("hidden")))
 @interface TSUZipFileWriter : TSUZipWriter
 {
     id <TSURandomWriteChannel> _writeChannel;

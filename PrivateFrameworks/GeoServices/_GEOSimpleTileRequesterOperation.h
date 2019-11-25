@@ -8,7 +8,7 @@
 
 #import "GEODataSessionTaskDelegate.h"
 
-@class GEOClientMetrics, GEODataRequest, GEODataSession, GEODataSessionTask, NSData, NSObject<OS_dispatch_queue>, NSObject<OS_os_activity>, NSString, NSURL;
+@class GEODataRequest, GEODataSession, GEODataSessionTask, NSData, NSObject<OS_dispatch_queue>, NSObject<OS_os_activity>, NSString, NSURL;
 
 __attribute__((visibility("hidden")))
 @interface _GEOSimpleTileRequesterOperation : NSObject <GEODataSessionTaskDelegate>
@@ -27,19 +27,27 @@ __attribute__((visibility("hidden")))
     NSObject<OS_os_activity> *_parentTileActivity;
     double _timeout;
     double _startTime;
-    GEOClientMetrics *_clientMetrics;
+    double _endTime;
+    GEODataSession *_dataSession;
+    unsigned long long _signpostID;
     int _attempts;
     int _checksumMethod;
     unsigned int _tileEdition;
+    // Error parsing type: AI, name: _priority
     BOOL _finished;
     BOOL _existingCachedDataCurrent;
-    // Error parsing type: AI, name: _priority
-    GEODataSession *_dataSession;
-    unsigned long long _signpostID;
+    BOOL _shouldReportAnalytics;
+    NSString *_requestingBundleId;
+    double _tileLoaderCreateTime;
+    BOOL _shouldDownloadToDisk;
+    BOOL _isRunning;
 }
 
+@property(nonatomic) double tileLoaderCreateTime; // @synthesize tileLoaderCreateTime=_tileLoaderCreateTime;
+@property(retain, nonatomic) NSString *requestingBundleId; // @synthesize requestingBundleId=_requestingBundleId;
+@property(nonatomic) BOOL shouldReportAnalytics; // @synthesize shouldReportAnalytics=_shouldReportAnalytics;
+@property(nonatomic) BOOL shouldDownloadToDisk; // @synthesize shouldDownloadToDisk=_shouldDownloadToDisk;
 @property(readonly, nonatomic, getter=isExistingCachedDataCurrent) BOOL existingCachedDataCurrent; // @synthesize existingCachedDataCurrent=_existingCachedDataCurrent;
-@property(retain, nonatomic) GEOClientMetrics *clientMetrics; // @synthesize clientMetrics=_clientMetrics;
 @property(retain, nonatomic) NSString *responseEtag; // @synthesize responseEtag=_responseEtag;
 @property(nonatomic) double timeout; // @synthesize timeout=_timeout;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *delegateQueue; // @synthesize delegateQueue=_delegateQueue;
@@ -47,21 +55,23 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) BOOL finished; // @synthesize finished=_finished;
 @property(retain, nonatomic) _GEOSimpleTileRequesterOperation *localizationTile; // @synthesize localizationTile=_localizationTile;
 @property(retain, nonatomic) _GEOSimpleTileRequesterOperation *baseTile; // @synthesize baseTile=_baseTile;
-@property unsigned int tileEdition; // @synthesize tileEdition=_tileEdition;
+@property(nonatomic) unsigned int tileEdition; // @synthesize tileEdition=_tileEdition;
 @property(retain, nonatomic) NSString *editionHeader; // @synthesize editionHeader=_editionHeader;
 @property(retain, nonatomic) GEODataSessionTask *task; // @synthesize task=_task;
 @property(retain, nonatomic) NSData *data; // @synthesize data=_data;
-@property struct _GEOTileKey key; // @synthesize key=_key;
+@property(nonatomic) struct _GEOTileKey key; // @synthesize key=_key;
 @property(retain, nonatomic) NSObject<OS_os_activity> *parentTileActivity; // @synthesize parentTileActivity=_parentTileActivity;
 @property(retain, nonatomic) NSObject<OS_os_activity> *activity; // @synthesize activity=_activity;
 @property(nonatomic) unsigned long long signpostID; // @synthesize signpostID=_signpostID;
 @property(readonly, nonatomic) GEODataRequest *request; // @synthesize request=_request;
 @property(retain, nonatomic) GEODataSession *dataSession; // @synthesize dataSession=_dataSession;
 - (void).cxx_destruct;
-- (void)_reportNetworkError:(id)arg1;
+- (void)_recordAnalyticsWithError:(id)arg1;
 - (void)taskFailed:(id)arg1 withError:(id)arg2;
 - (BOOL)validateTileIntegrityForTask:(id)arg1;
 - (void)dataSession:(id)arg1 didCompleteTask:(id)arg2;
+@property(readonly, nonatomic) NSURL *downloadedFileURL;
+- (const struct _GEOTileKey *)keyPtr;
 @property(readonly, nonatomic) BOOL responseIsCacheable;
 @property(readonly, nonatomic) long long responseSource;
 @property(readonly, nonatomic) int httpResponseStatusCode;

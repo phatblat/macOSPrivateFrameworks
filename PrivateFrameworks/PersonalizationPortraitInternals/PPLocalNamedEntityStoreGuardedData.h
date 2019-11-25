@@ -6,15 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray;
-
 @interface PPLocalNamedEntityStoreGuardedData : NSObject
 {
     BOOL _pendingNamedEntityChangeNotification;
-    NSMutableArray *_namedEntitiesForOverride;
 }
-
-- (void).cxx_destruct;
 
 @end
 

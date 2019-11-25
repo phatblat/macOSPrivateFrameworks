@@ -10,9 +10,19 @@
 {
 }
 
++ (id)fileExtensionForMIMEType:(id)arg1;
++ (id)fileExtensionForUTI:(id)arg1;
++ (id)UTIForFileExtension:(id)arg1;
++ (id)UTIForMIMEType:(id)arg1;
++ (id)MIMETypeForUTI:(id)arg1;
++ (BOOL)isNonAnimatedMultiframeImageType:(id)arg1;
++ (BOOL)isARAssetType:(id)arg1;
++ (BOOL)isHLSType:(id)arg1;
++ (BOOL)isJSONType:(id)arg1;
++ (BOOL)isMediaType:(id)arg1;
 + (BOOL)isVideoType:(id)arg1;
 + (BOOL)isImageType:(id)arg1;
-+ (BOOL)isHTMLType:(id)arg1;
++ (BOOL)isWebPageType:(id)arg1;
 
 @end
 

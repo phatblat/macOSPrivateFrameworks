@@ -8,7 +8,7 @@
 
 #import "NSProgressReporting.h"
 
-@class GEOApplicationAuditToken, GEOPowerAssertion, GEOReportedProgress, NSArray, NSMapTable, NSMutableArray, NSObject<OS_dispatch_queue>, NSProgress, NSString, NSURL;
+@class GEOApplicationAuditToken, GEOPowerAssertion, GEOReportedProgress, NSArray, NSMapTable, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_os_log>, NSProgress, NSString, NSURL;
 
 @interface GEOResourceLoader : NSObject <NSProgressReporting>
 {
@@ -16,7 +16,7 @@
     NSString *_additionalDirectoryToConsider;
     NSMutableArray *_resourcesToLoad;
     CDUnknownBlockType _completionHandler;
-    long long _numberOfDownloadsInProgress;
+    unsigned long long _numberOfDownloadsInProgress;
     long long _numberOfCopiesInProgress;
     BOOL _canceled;
     BOOL _requiresWiFi;
@@ -33,9 +33,13 @@
     NSObject<OS_dispatch_queue> *_callbackQueue;
     GEOReportedProgress *_progress;
     NSURL *_authProxyURL;
+    NSObject<OS_os_log> *_log;
+    unsigned long long _signpostID;
+    BOOL _preferDirectNetworking;
 }
 
 + (Class)resourceLoadOperationClass;
+@property(nonatomic) BOOL preferDirectNetworking; // @synthesize preferDirectNetworking=_preferDirectNetworking;
 @property(nonatomic) BOOL requiresWiFi; // @synthesize requiresWiFi=_requiresWiFi;
 @property(retain, nonatomic) GEOApplicationAuditToken *auditToken; // @synthesize auditToken=_auditToken;
 - (void).cxx_destruct;
@@ -48,7 +52,8 @@
 - (void)startWithCompletionHandler:(CDUnknownBlockType)arg1 callbackQueue:(id)arg2;
 - (void)_cleanup;
 @property(readonly) NSProgress *progress;
-- (id)initWithTargetDirectory:(id)arg1 baseURL:(id)arg2 proxyURL:(id)arg3 resources:(id)arg4 maximumConcurrentLoads:(unsigned long long)arg5 additionalDirectoryToConsider:(id)arg6;
+- (id)initWithTargetDirectory:(id)arg1 baseURL:(id)arg2 proxyURL:(id)arg3 resources:(id)arg4 maximumConcurrentLoads:(unsigned long long)arg5 additionalDirectoryToConsider:(id)arg6 log:(id)arg7 signpostID:(unsigned long long)arg8;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

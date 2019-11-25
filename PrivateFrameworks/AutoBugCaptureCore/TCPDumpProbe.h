@@ -8,6 +8,7 @@
 
 @class NSMutableArray, NSObject<OS_dispatch_source>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface TCPDumpProbe : NetDiagnosticProbe
 {
     NSMutableArray *_probeOutputFilePaths;

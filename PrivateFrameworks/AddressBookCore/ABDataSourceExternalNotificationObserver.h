@@ -40,6 +40,7 @@
 - (void)dealloc;
 - (id)initWithRepository:(id)arg1 distributedNotificationCenter:(id)arg2 localNotificationCenter:(id)arg3 preprocessingScheduler:(id)arg4;
 - (id)initWithRepository:(id)arg1;
+- (id)init;
 
 @end
 

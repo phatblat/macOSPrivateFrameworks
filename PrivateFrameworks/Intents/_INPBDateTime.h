@@ -17,12 +17,15 @@
     struct {
         unsigned int calendarSystem:1;
     } _has;
+    BOOL __encodeLegacyGloryData;
     int _calendarSystem;
     _INPBLocalDate *_date;
     _INPBLocalTime *_time;
     NSString *_timeZoneID;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(copy, nonatomic) NSString *timeZoneID; // @synthesize timeZoneID=_timeZoneID;
 @property(retain, nonatomic) _INPBLocalTime *time; // @synthesize time=_time;
 @property(retain, nonatomic) _INPBLocalDate *date; // @synthesize date=_date;
@@ -32,6 +35,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(readonly, nonatomic) BOOL hasTimeZoneID;

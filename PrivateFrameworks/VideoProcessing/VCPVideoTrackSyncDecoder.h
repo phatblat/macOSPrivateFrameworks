@@ -6,7 +6,7 @@
 
 #import <VideoProcessing/VCPVideoTrackDecoder.h>
 
-@class AVAssetReader, AVAssetReaderSampleReferenceOutput, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_semaphore>;
+@class AVAssetReader, AVAssetReaderSampleReferenceOutput, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>;
 
 @interface VCPVideoTrackSyncDecoder : VCPVideoTrackDecoder
 {
@@ -14,6 +14,7 @@
     AVAssetReaderSampleReferenceOutput *_trackReader;
     CDStruct_e83c9415 _timerange;
     BOOL _launchOnce;
+    NSObject<OS_dispatch_queue> *_queue;
     NSObject<OS_dispatch_group> *_group;
     NSObject<OS_dispatch_semaphore> *_inputSemaphore;
     NSObject<OS_dispatch_semaphore> *_outputSemaphore;

@@ -8,6 +8,7 @@
 
 @class NSString, OISFUCryptoKey;
 
+__attribute__((visibility("hidden")))
 @interface OISFUFileDataRepresentation : OISFUDataRepresentation
 {
     NSString *mPath;

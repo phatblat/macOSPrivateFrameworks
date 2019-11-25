@@ -4,9 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "PPFeedbackAccepting.h"
+
 @class NSArray, NSDictionary, NSString, PPQuickTypeQuery;
 
-@protocol PPQuickTypeServerProtocol
+@protocol PPQuickTypeServerProtocol <PPFeedbackAccepting>
 - (void)hibernateWithCompletion:(void (^)(void))arg1;
 - (void)warmUpWithCompletion:(void (^)(void))arg1;
 - (void)recentQuickTypeItemsForRecipients:(NSArray *)arg1 completion:(void (^)(NSArray *))arg2;

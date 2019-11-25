@@ -25,12 +25,14 @@
 - (id)allUUIDs;
 - (void)incrementClockForUUID:(id)arg1;
 - (long long)compareClock:(unsigned long long)arg1 subclock:(unsigned long long)arg2 forUUID:(id)arg3;
+- (void)unionClock:(unsigned long long)arg1 subclock:(unsigned long long)arg2 forUUID:(id)arg3;
 - (void)setClock:(unsigned long long)arg1 subclock:(unsigned long long)arg2 forUUID:(id)arg3;
 - (void)setClock:(unsigned long long)arg1 forUUID:(id)arg2;
 - (unsigned long long)subclockForUUID:(id)arg1;
 - (unsigned long long)clockForUUID:(id)arg1;
 - (id)clockElementForUUID:(id)arg1;
 @property(readonly) unsigned long long hash;
+- (BOOL)isEmpty;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;

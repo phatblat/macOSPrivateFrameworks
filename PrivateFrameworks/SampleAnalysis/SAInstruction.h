@@ -18,6 +18,7 @@
     SASourceInfo *_sourceInfo;
 }
 
++ (id)invalidInstruction;
 + (id)instructionWithBinary:(id)arg1 offsetIntoTextSegment:(unsigned long long)arg2;
 + (id)newInstanceWithoutReferencesFromSerializedBuffer:(const CDStruct_e7a0f457 *)arg1 bufferLength:(unsigned long long)arg2;
 + (id)classDictionaryKey;
@@ -30,7 +31,7 @@
 - (BOOL)symbolicateWithOptions:(unsigned long long)arg1 pid:(int)arg2;
 - (void)populateReferencesUsingBuffer:(const CDStruct_e7a0f457 *)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(struct NSMutableDictionary *)arg3 andDataBufferDictionary:(struct NSMutableDictionary *)arg4;
 - (void)addSelfToSerializationDictionary:(struct NSMutableDictionary *)arg1;
-- (BOOL)addSelfToBuffer:(CDStruct_e7a0f457 *)arg1 bufferLength:(unsigned long long)arg2 withCompletedSerializationDictionary:(struct NSMutableDictionary *)arg3;
+- (BOOL)addSelfToBuffer:(CDStruct_0ce2a4d3 *)arg1 bufferLength:(unsigned long long)arg2 withCompletedSerializationDictionary:(struct NSMutableDictionary *)arg3;
 - (unsigned long long)sizeInBytesForSerializedVersion;
 
 // Remaining properties

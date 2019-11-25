@@ -8,6 +8,7 @@
 
 @class ESDContainer, NSMutableArray, NSMutableDictionary;
 
+__attribute__((visibility("hidden")))
 @interface OABReaderState : NSObject
 {
     Class mClient;

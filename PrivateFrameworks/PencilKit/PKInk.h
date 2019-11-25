@@ -12,6 +12,8 @@
 
 @interface PKInk : NSObject <NSCopying>
 {
+    struct shared_ptr<PKProtobufUnknownFields> _unknownFields;
+    NSString *_type;
     NSString *_identifier;
     NSColor *_color;
     double _weight;
@@ -20,6 +22,7 @@
     NSString *_variant;
 }
 
++ (id)colorForLassoStroke;
 + (double)defaultOpacityForIdentifier:(id)arg1;
 + (double)defaultWeightForIdentifier:(id)arg1;
 + (id)inkFromInk:(id)arg1 withBehavior:(id)arg2;
@@ -28,16 +31,24 @@
 + (id)inkWithIdentifier:(id)arg1 color:(id)arg2 variant:(id)arg3;
 + (id)inkWithIdentifier:(id)arg1 color:(id)arg2 version:(unsigned long long)arg3 variant:(id)arg4;
 + (id)inkWithIdentifier:(id)arg1 color:(id)arg2;
++ (id)inkWithIdentifier:(id)arg1 properties:(id)arg2;
 + (id)inkWithIdentifier:(id)arg1 color:(id)arg2 weight:(double)arg3;
++ (id)inkWithType:(id)arg1 color:(id)arg2 weight:(double)arg3;
++ (id)identifierForInkType:(id)arg1;
 + (id)identifierForCommandType:(unsigned int)arg1 wantsObjectErase:(BOOL)arg2;
-+ (unsigned int)commandTypeForIdentifier:(id)arg1 wantsObjectErase:(BOOL)arg2;
 @property(readonly, nonatomic) NSString *variant; // @synthesize variant=_variant;
 @property(readonly, nonatomic) unsigned long long version; // @synthesize version=_version;
 @property(retain, nonatomic) PKInkBehavior *behavior; // @synthesize behavior=_behavior;
-@property(nonatomic) double weight; // @synthesize weight=_weight;
+@property(readonly, nonatomic) double weight; // @synthesize weight=_weight;
 @property(readonly, nonatomic) NSColor *color; // @synthesize color=_color;
 @property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
+@property(readonly, nonatomic) NSString *type; // @synthesize type=_type;
+- (id).cxx_construct;
 - (void).cxx_destruct;
+- (id)_dataInUnknownFields;
+- (void)_addTestDataToUnknownFields;
+@property(readonly, nonatomic) double _weight;
+- (void)setWeight:(double)arg1;
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqualInk:(id)arg1;
@@ -48,8 +59,11 @@
 - (id)initWithIdentifier:(id)arg1 color:(id)arg2 version:(unsigned long long)arg3 variant:(id)arg4 weight:(double)arg5;
 - (id)initWithIdentifier:(id)arg1 color:(id)arg2 version:(unsigned long long)arg3 variant:(id)arg4;
 - (id)init;
+- (id)properties;
+- (void)saveToV1Archive:(Ink_7b169424 *)arg1;
+- (id)initWithV1Archive:(const Ink_7b169424 *)arg1 serializationVersion:(unsigned long long)arg2;
 - (void)saveToArchive:(struct Ink *)arg1;
-- (id)initWithArchive:(const struct Ink *)arg1 serializationVersion:(unsigned long long)arg2;
+- (id)initWithArchive:(const struct Ink *)arg1;
 
 @end
 

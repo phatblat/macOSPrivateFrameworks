@@ -8,5 +8,8 @@
 
 @interface NSArray (MRAVAdditions)
 - (BOOL)mr_isEqualToOutputDevicesArray:(id)arg1;
+- (id)mr_map:(CDUnknownBlockType)arg1;
+- (id)mr_filter:(CDUnknownBlockType)arg1;
+- (BOOL)mr_containsAnyOf:(id)arg1;
 @end
 

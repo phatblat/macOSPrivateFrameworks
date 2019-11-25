@@ -10,6 +10,7 @@
 
 @class ABCAdministrator, DiagnosticExtensionController, NSObject<OS_dispatch_queue>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface DiagCollectionServiceImpl : NSObject <NSXPCListenerDelegate>
 {
     NSObject<OS_dispatch_queue> *queue;

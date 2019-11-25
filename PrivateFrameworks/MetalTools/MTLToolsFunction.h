@@ -19,14 +19,13 @@
 
 @property(readonly, nonatomic) MTLToolsPointerArray *argumentEncoders; // @synthesize argumentEncoders=_argumentEncoders;
 @property(readonly, nonatomic) MTLToolsPointerArray *indirectArgumentEncoders; // @synthesize indirectArgumentEncoders=_indirectArgumentEncoders;
+- (id)newFunctionWithPluginData:(id)arg1 bitcodeType:(unsigned char)arg2;
 - (const CDStruct_5af0f983 *)bitCodeHash;
 - (void)reflectionWithOptions:(unsigned long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (id)reflectionWithOptions:(unsigned long long)arg1;
 - (id)bitcodeData;
 - (id)newArgumentEncoderWithBufferIndex:(unsigned long long)arg1 reflection:(id *)arg2;
 - (id)newArgumentEncoderWithBufferIndex:(unsigned long long)arg1;
-- (id)newIndirectArgumentEncoderWithBufferIndex:(unsigned long long)arg1 reflection:(id *)arg2;
-- (id)newIndirectArgumentEncoderWithBufferIndex:(unsigned long long)arg1;
 @property(readonly) long long patchControlPointCount;
 @property(readonly) unsigned long long patchType;
 @property(readonly) NSDictionary *functionConstantsDictionary;

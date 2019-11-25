@@ -6,25 +6,27 @@
 
 #import "NSObject.h"
 
-@class NSURL;
+@class LPMetadataProviderSpecializationContext, NSURL;
 
 __attribute__((visibility("hidden")))
 @interface LPMetadataProviderSpecialization : NSObject
 {
     id <LPMetadataProviderSpecializationDelegate> _delegate;
-    NSURL *_URL;
+    LPMetadataProviderSpecializationContext *_context;
 }
 
-+ (id)specializedMetadataForCompleteMetadata:(id)arg1 URL:(id)arg2;
-+ (id)specializedMetadataProviderForMetadata:(id)arg1 URL:(id)arg2;
-+ (id)specializedMetadataProviderForResourceWithMIMEType:(id)arg1 URL:(id)arg2;
-+ (id)specializedMetadataProviderForURL:(id)arg1;
-@property(readonly, nonatomic) NSURL *URL; // @synthesize URL=_URL;
++ (unsigned long long)specialization;
++ (BOOL)generateSpecializedMetadataForCompleteMetadata:(id)arg1 withContext:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
++ (id)specializedMetadataProviderForMetadata:(id)arg1 withContext:(id)arg2;
++ (id)specializedMetadataProviderForResourceWithContext:(id)arg1;
++ (id)specializedMetadataProviderForURLWithContext:(id)arg1;
+@property(readonly, nonatomic) LPMetadataProviderSpecializationContext *context; // @synthesize context=_context;
 @property(nonatomic) __weak id <LPMetadataProviderSpecializationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSURL *URL;
 - (void)cancel;
 - (void)start;
-- (id)initWithURL:(id)arg1;
+- (id)initWithContext:(id)arg1;
 
 @end
 

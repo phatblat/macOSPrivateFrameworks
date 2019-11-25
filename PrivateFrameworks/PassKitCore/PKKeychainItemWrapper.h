@@ -6,15 +6,17 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary;
+@class NSMutableDictionary, NSString;
 
 @interface PKKeychainItemWrapper : NSObject
 {
     NSMutableDictionary *keychainItemData;
     NSMutableDictionary *genericPasswordQuery;
     unsigned long long type;
+    NSString *_label;
 }
 
+@property(copy, nonatomic) NSString *label; // @synthesize label=_label;
 @property(nonatomic) unsigned long long type; // @synthesize type;
 @property(retain, nonatomic) NSMutableDictionary *genericPasswordQuery; // @synthesize genericPasswordQuery;
 @property(retain, nonatomic) NSMutableDictionary *keychainItemData; // @synthesize keychainItemData;
@@ -23,6 +25,8 @@
 - (void)writeToKeychain;
 - (id)secItemFormatToDictionary:(id)arg1;
 - (id)dictionaryToSecItemFormat:(id)arg1;
+- (void)_resetKeychainItem:(BOOL)arg1;
+- (void)resetLocalKeychainItem;
 - (void)resetKeychainItem;
 - (id)objectForKey:(id)arg1;
 - (void)setObject:(id)arg1 forKey:(id)arg2;

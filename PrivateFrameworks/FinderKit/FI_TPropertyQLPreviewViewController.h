@@ -8,12 +8,11 @@
 
 #import "FIAliasResolution.h"
 #import "QLPreviewViewDelegate.h"
-#import "TMarkTornDown.h"
 
 @class NSString;
 
 __attribute__((visibility("hidden")))
-@interface FI_TPropertyQLPreviewViewController : FI_IPropertyValueController <QLPreviewViewDelegate, FIAliasResolution, TMarkTornDown>
+@interface FI_TPropertyQLPreviewViewController : FI_IPropertyValueController <QLPreviewViewDelegate, FIAliasResolution>
 {
     TNSRef_87bff19e _multiPreviewView;
     struct shared_ptr<TQLPreviewViewQTEjectHelper> _ejectHelper;
@@ -22,10 +21,8 @@ __attribute__((visibility("hidden")))
     struct shared_ptr<TDisableScreenUpdatesInWindow> _previewDrawingSynchronizer;
     struct TNotificationCenterObserver _timeMachineWillStartObserver;
     struct TKeyValueBinder _previewItemBinder;
-    _Bool _isTornDown;
 }
 
-@property(readonly, getter=isTornDown) _Bool tornDown; // @synthesize tornDown=_isTornDown;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)alias:(const struct TFENode *)arg1 resolvedAs:(const struct TFENode *)arg2 temporaryNode:(const struct TFENode *)arg3;
@@ -47,7 +44,9 @@ __attribute__((visibility("hidden")))
 - (void)handleNodesGoingAway:(const struct TFENodeVector *)arg1;
 - (void)handleBulkNodesDeleted:(const map_27534541 *)arg1 observedNodes:(const struct TFENodeVector *)arg2;
 - (void)handleBulkNodesChanged:(const map_253f12d2 *)arg1 observedNodes:(const struct TFENodeVector *)arg2;
+@property(nonatomic) struct TFENode browserTargetNode;
 - (void)setValue:(id)arg1;
+- (id)qlPreviewView;
 - (void)setView:(id)arg1;
 - (struct TFENodeVector)previewNodes;
 - (void)aboutToTearDown;

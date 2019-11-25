@@ -9,6 +9,7 @@
 #import "NSCoding.h"
 #import "NSCopying.h"
 
+__attribute__((visibility("hidden")))
 @interface OITSUBezierPath : NSObject <NSCopying, NSCoding>
 {
     long long sfr_elementCount;

@@ -8,16 +8,26 @@
 
 #import "SGJournalCalendarObserver.h"
 #import "SGJournalContactsObserver.h"
+#import "SGJournalRemindersObserver.h"
 
 @class NSArray, NSMutableArray, NSMutableDictionary, NSString;
 
-@interface SGInMemoryAdapter : NSObject <SGJournalCalendarObserver, SGJournalContactsObserver>
+@interface SGInMemoryAdapter : NSObject <SGJournalCalendarObserver, SGJournalContactsObserver, SGJournalRemindersObserver>
 {
     NSMutableArray *_events;
     NSMutableDictionary *_contacts;
+    NSMutableArray *_reminders;
 }
 
+@property(readonly, nonatomic) NSArray *reminders; // @synthesize reminders=_reminders;
 - (void).cxx_destruct;
+- (void)orphanReminder:(id)arg1;
+- (void)rejectReminderFromOtherDevice:(id)arg1;
+- (void)confirmReminderFromOtherDevice:(id)arg1;
+- (void)reminderAlarmTriggeredFromThisDevice:(id)arg1;
+- (void)rejectReminderFromThisDevice:(id)arg1;
+- (void)confirmReminderFromThisDevice:(id)arg1;
+- (void)addReminder:(id)arg1;
 - (void)removeAllStoredPseudoContacts;
 - (void)calendarDeleted;
 @property(readonly, nonatomic) NSArray *contacts;

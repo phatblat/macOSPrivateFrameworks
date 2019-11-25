@@ -6,7 +6,7 @@
 
 #import "NSView.h"
 
-@class CAMetalLayer, PKDisplayLink, PKInternalDrawingView;
+@class CAMetalLayer, PKDisplayLink;
 
 @interface PKMetalView : NSView
 {
@@ -14,7 +14,6 @@
     BOOL _isFixedPixelSize;
     BOOL _doubleBuffered;
     PKDisplayLink *_displayLink;
-    PKInternalDrawingView *_drawingView;
     struct CGSize _fixedPixelSize;
 }
 
@@ -23,13 +22,13 @@
 @property(readonly, nonatomic) struct CGSize fixedPixelSize; // @synthesize fixedPixelSize=_fixedPixelSize;
 @property(readonly, nonatomic) BOOL isFixedPixelSize; // @synthesize isFixedPixelSize=_isFixedPixelSize;
 @property(readonly, nonatomic) BOOL isWideGamut; // @synthesize isWideGamut=_isWideGamut;
-@property(nonatomic) __weak PKInternalDrawingView *drawingView; // @synthesize drawingView=_drawingView;
 @property(nonatomic) __weak PKDisplayLink *displayLink; // @synthesize displayLink=_displayLink;
 - (void).cxx_destruct;
 - (void)flushDrawables;
 - (void)resizeDrawableIfNecessary;
 - (void)setFixedPixelSize:(struct CGSize)arg1;
 @property(readonly, nonatomic) BOOL isDrawableAvailable; // @dynamic isDrawableAvailable;
+@property(readonly, nonatomic) struct CGSize drawableSize;
 @property(readonly, nonatomic) CAMetalLayer *metalLayer;
 - (id)initWithFrame:(struct CGRect)arg1 andPixelSize:(struct CGSize)arg2 isWideGamut:(BOOL)arg3;
 - (id)initWithFrame:(struct CGRect)arg1 isWideGamut:(BOOL)arg2;

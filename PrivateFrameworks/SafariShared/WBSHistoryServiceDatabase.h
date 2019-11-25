@@ -9,7 +9,7 @@
 #import "WBSHistoryServiceDatabaseProtocol.h"
 #import "WBSSQLiteDatabaseDelegate.h"
 
-@class NSDictionary, NSMapTable, NSMutableSet, NSObject<OS_dispatch_queue>, NSString, NSURL, WBSHistoryCrypto, WBSHistoryServiceURLCompletion, WBSSQLiteDatabase, WBSSQLiteStatementCache;
+@class NSDictionary, NSMapTable, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSString, NSURL, WBSHistoryCrypto, WBSHistoryServiceURLCompletion, WBSHistoryTagDatabaseController, WBSSQLiteDatabase, WBSSQLiteStatementCache;
 
 @interface WBSHistoryServiceDatabase : NSObject <WBSSQLiteDatabaseDelegate, WBSHistoryServiceDatabaseProtocol>
 {
@@ -27,8 +27,11 @@
     BOOL _hasComputedLatestVisit;
     unordered_map_fcbaed0a _temporaryIDToItem;
     unordered_map_fcbaed0a _visitForTemporaryID;
+    NSMutableArray *_pendingVisits;
     // Error parsing type: {atomic<bool>="__a_"AB}, name: _integrityCheckPending
     NSURL *_clearHistoryInProgressFileURL;
+    CDUnknownBlockType _pendingVisitsTimeout;
+    WBSHistoryTagDatabaseController *_tagController;
     NSString *_databaseID;
     NSURL *_databaseURL;
     WBSHistoryServiceURLCompletion *_urlCompletion;
@@ -39,6 +42,13 @@
 @property(readonly, copy, nonatomic) NSString *databaseID; // @synthesize databaseID=_databaseID;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (void)setTitle:(id)arg1 ofTagWithID:(long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)assignHistoryItemWithID:(long long)arg1 toTopicTagsWithIDs:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)createTagsForIdentifiers:(id)arg1 withTitles:(id)arg2 type:(unsigned long long)arg3 level:(long long)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)updateDatabaseAfterSuccessfulSyncWithGeneration:(long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)visitsAndTombstonesNeedingSyncWithVisitSyncWindow:(double)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)resetCloudHistoryDataWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)visitIdentifiersMatchingExistingVisits:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_clearWBSHistorySQLiteStoreClearHistoryKeys;
 - (void)_finishedClearingHistory;
 - (void)_startingClearHistoryOperationForStartDate:(id)arg1 endDate:(id)arg2;
@@ -52,7 +62,9 @@
 - (id)_fetchEventsForListener:(id)arg1 error:(id *)arg2;
 - (id)_updateListenerRegistration:(id)arg1 lastSeen:(double)arg2;
 - (id)_fetchListenerNamesFromDatabase:(id *)arg1;
+- (void)computeFrequentlyVisitedSites:(unsigned long long)arg1 minimalVisitCountScore:(unsigned long long)arg2 blacklist:(id)arg3 whitelist:(id)arg4 options:(unsigned long long)arg5 currentTime:(double)arg6 completionHandler:(CDUnknownBlockType)arg7;
 - (void)searchForUserTypedString:(id)arg1 options:(unsigned long long)arg2 currentTime:(double)arg3 writeHandle:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)vacuumHistoryWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)performMaintenanceWithAgeLimit:(double)arg1 itemCountLimit:(unsigned long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)_executePlan:(struct DeletionPlan *)arg1 outDeletedItemCount:(unsigned long long *)arg2 outDeletedVisitCount:(unsigned long long *)arg3;
 - (id)_collectDeletedURLsForPlan:(struct DeletionPlan *)arg1;
@@ -72,20 +84,30 @@
 - (id)_expireOldVisits:(double)arg1;
 - (double)_oldestLatestVisit;
 - (void)finishClearingHistoryIfNecessaryWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)clearHistoryItems:(id)arg1 afterDate:(id)arg2 beforeDate:(id)arg3 insertTombstone:(BOOL)arg4 completionHandler:(CDUnknownBlockType)arg5;
-- (id)_clearHistoryItems:(id)arg1 afterDate:(id)arg2 beforeDate:(id)arg3 insertTombstone:(BOOL)arg4;
-- (id)_insertTombstonesForURLs:(id)arg1 afterDate:(id)arg2 beforeDate:(id)arg3;
-- (void)clearHistoryVisitsAddedAfterDate:(id)arg1 beforeDate:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (id)_clearHistoryVisitsAddedAfterDate:(id)arg1 beforeDate:(id)arg2;
+- (void)clearHistoryItems:(id)arg1 afterDate:(id)arg2 beforeDate:(id)arg3 tombstoneMode:(unsigned long long)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (id)_clearHistoryItems:(id)arg1 afterDate:(id)arg2 beforeDate:(id)arg3 tombstoneMode:(unsigned long long)arg4;
+- (id)_insertTombstonesForURLs:(id)arg1 afterDate:(id)arg2 beforeDate:(id)arg3 tombstoneMode:(unsigned long long)arg4;
+- (void)_removeLegacyHistoryDatabaseIfNeeded;
+- (void)clearHistoryVisitsAddedAfterDate:(id)arg1 beforeDate:(id)arg2 tombstoneMode:(unsigned long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (void)_notifyExecutionOfPlan:(struct DeletionPlan *)arg1;
+- (id)_clearHistoryVisitsAddedAfterDate:(id)arg1 beforeDate:(id)arg2 tombstoneMode:(unsigned long long)arg3;
 - (id)_generateUpdatedLastVisitForPlan:(struct DeletionPlan *)arg1;
 - (id)_generateDisposedVisitsForPlan:(struct DeletionPlan *)arg1;
 - (void)clearAllHistoryInsertingTombstoneUpToDate:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)clearAllTestDriveVisitsWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (id)_clearAllHistoryInsertingTombstoneUpToDate:(id)arg1;
+- (long long)_lastSyncedGeneration;
 - (long long)_currentGeneration;
-- (void)addAutocompleteTrigger:(id)arg1 forItem:(long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (BOOL)_addAutocompleteTrigger:(id)arg1 forItem:(long long)arg2 error:(id *)arg3;
-- (void)updateWithType:(unsigned long long)arg1 deleteItems:(id)arg2 deleteVisits:(id)arg3 addOrModifyObjects:(id)arg4 updateCurrentGeneration:(id)arg5 updateLastSyncGeneration:(id)arg6 updateLastMaintenance:(id)arg7 makeTestDriveVisitsPermanent:(BOOL)arg8 completionHandler:(CDUnknownBlockType)arg9;
-- (id)_updateByDeletingItems:(id)arg1 deleteVisits:(id)arg2 addOrModifyObjects:(id)arg3 updateCurrentGeneration:(id)arg4 updateLastSyncGeneration:(id)arg5 updateLastMaintenance:(id)arg6 makeTestDriveVisitsPermanent:(BOOL)arg7;
+- (void)flushWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)_updateItem:(long long)arg1 visitCountScore:(long long)arg2 dailyVisitCounts:(id)arg3 weeklyVisitCounts:(id)arg4 shouldRecomputeDerivedVisitCounts:(BOOL)arg5;
+- (void)updateVisitWithIdentifier:(id)arg1 title:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)updateVisitWithIdentifier:(id)arg1 removeAttributes:(unsigned long long)arg2 addAttributes:(unsigned long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (void)_updateVisitWithIdentifier:(id)arg1 removeAttributes:(unsigned long long)arg2 addAttributes:(unsigned long long)arg3 pendingVisit:(id)arg4;
+- (void)recordVisitWithIdentifier:(id)arg1 sourceVisit:(id)arg2 title:(id)arg3 wasHTTPNonGet:(BOOL)arg4 loadSuccessful:(BOOL)arg5 origin:(long long)arg6 attributes:(unsigned long long)arg7 completionHandler:(CDUnknownBlockType)arg8;
+- (void)addAutocompleteTrigger:(id)arg1 forURL:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (BOOL)_addAutocompleteTrigger:(id)arg1 forURL:(id)arg2 error:(id *)arg3;
+- (void)updateWithType:(unsigned long long)arg1 addOrModifyObjects:(id)arg2 updateCurrentGeneration:(id)arg3 updateLastSyncGeneration:(id)arg4 updateLastMaintenance:(id)arg5 makeTestDriveVisitsPermanent:(BOOL)arg6 completionHandler:(CDUnknownBlockType)arg7;
+- (id)_updateByAddingOrModifyObjects:(id)arg1 updateCurrentGeneration:(id)arg2 updateLastSyncGeneration:(id)arg3 updateLastMaintenance:(id)arg4 makeTestDriveVisitsPermanent:(BOOL)arg5;
 - (void)_checkpointWriteAheadLog;
 - (id)_makePermanentAllTestDriveVisits;
 - (id)_setOrigin:(long long)arg1 forVisitsFromOrigin:(long long)arg2;
@@ -100,6 +122,14 @@
 - (id)_insertItem:(id)arg1;
 - (long long)_permanentIDsForVisitIfAvailable:(long long)arg1;
 - (long long)_permanentIDsForItemIfAvailable:(long long)arg1;
+- (BOOL)_commitPendingVisits:(id)arg1;
+- (BOOL)_commitPendingItems:(id)arg1;
+- (id)_findItemIDsForPendingVisitsWithError:(id *)arg1;
+- (void)_ensureDatabaseIsSynced;
+- (void)_commitPendingUpdates;
+- (void)_queuePendingUpdates;
+- (void)fetchAllTombstonesWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)replayAndAddTombstones:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)convertTombstoneWithGenerationToSecureFormat:(long long)arg1 lastSyncedGeneration:(long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)_convertTombstoneWithGenerationToSecureFormat:(long long)arg1 lastSyncedGeneration:(long long)arg2;
 - (void)pruneTombstonesWithEndDatePriorToDate:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
@@ -116,6 +146,8 @@
 - (void)fetchDomainExpansions:(CDUnknownBlockType)arg1;
 - (void)fetchWithOptions:(unsigned long long)arg1 predicate:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)_fetchTombstonesWithOptions:(unsigned long long)arg1 predicate:(id)arg2 writeDescriptor:(int)arg3;
+- (id)_fetchObjectToTagMappingsWithOptions:(unsigned long long)arg1 predicate:(id)arg2 writeDescriptor:(int)arg3;
+- (id)_fetchTagsWithOptions:(unsigned long long)arg1 predicate:(id)arg2 writeDescriptor:(int)arg3;
 - (id)_fetchVisitsWithOptions:(unsigned long long)arg1 predicate:(id)arg2 writeDescriptor:(int)arg3;
 - (id)_recomputeLatestVisitsForItems:(const unordered_set_da619913 *)arg1;
 - (void)ensureLatestVisitsAreComputed:(CDUnknownBlockType)arg1;
@@ -124,11 +156,13 @@
 - (void)database:(id)arg1 hadSevereError:(id)arg2;
 - (void)fetchDatabaseURL:(CDUnknownBlockType)arg1;
 - (void)close;
+- (void)_closeTagController;
 - (BOOL)isOpen;
 - (void)addDelegate:(id)arg1 listenerName:(id)arg2 forConnection:(id)arg3;
 - (long long)allocateTemporaryIDRange:(long long *)arg1;
 - (int)_migrateToCurrentSchemaVersionIfNeeded;
 - (BOOL)_reopenDatabase:(id *)arg1;
+- (void)_registerHistoryTagFrecencyScoringFunction;
 - (BOOL)_prepareDatabase:(id *)arg1;
 - (id)initWithID:(id)arg1 url:(id)arg2 options:(id)arg3 lock:(id)arg4 error:(id *)arg5;
 - (id)init;

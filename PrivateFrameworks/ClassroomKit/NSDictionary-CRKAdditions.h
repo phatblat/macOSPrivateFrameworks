@@ -6,10 +6,13 @@
 
 #import "NSDictionary.h"
 
-@interface NSDictionary (CRKAdditions)
+#import "CRKJSONRepresentable.h"
+
+@interface NSDictionary (CRKAdditions) <CRKJSONRepresentable>
 - (id)crk_dictionaryByAddingEntriesFromDictionary:(id)arg1;
-- (id)crk_mapUsingBlock:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) id crk_keyValueObservingNewObject;
 @property(readonly, nonatomic) id crk_keyValueObservingOldObject;
+- (id)crk_mapUsingBlock:(CDUnknownBlockType)arg1;
+- (id)crk_JSONRepresentationWithPrettyPrinting:(BOOL)arg1 sortKeys:(BOOL)arg2;
 @end
 

@@ -10,14 +10,14 @@
 #import "HMFMessageReceiver.h"
 #import "HMFTimerDelegate.h"
 
-@class HMDCentralMessageDispatcher, HMDHomeManager, HMDResidentMeshMeshStorage, HMFTimer, NSMutableArray, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
+@class HMDHomeManager, HMDMessageDispatcher, HMDResidentMeshMeshStorage, HMFTimer, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
 
 @interface HMDResidentMesh : HMFObject <HMFTimerDelegate, HMFMessageReceiver, HMFLogging>
 {
     NSUUID *_uuid;
     unsigned long long _broadcastRate;
     HMDHomeManager *_homeManager;
-    HMDCentralMessageDispatcher *_remoteMessageDispatcher;
+    HMDMessageDispatcher *_remoteMessageDispatcher;
     NSMutableArray *_residents;
     HMDResidentMeshMeshStorage *_resident;
     NSMutableArray *_reachableAccessories;
@@ -27,9 +27,11 @@
     HMFTimer *_devicesChangedTimer;
     NSSet *_primaryResidentForHomes;
     HMFTimer *_linkQualityMonitorTimer;
+    NSMutableDictionary *_loadMetrics;
 }
 
 + (id)logCategory;
+@property(readonly, nonatomic) NSMutableDictionary *loadMetrics; // @synthesize loadMetrics=_loadMetrics;
 @property(readonly, nonatomic) HMFTimer *linkQualityMonitorTimer; // @synthesize linkQualityMonitorTimer=_linkQualityMonitorTimer;
 @property(retain, nonatomic) NSSet *primaryResidentForHomes; // @synthesize primaryResidentForHomes=_primaryResidentForHomes;
 @property(readonly, nonatomic) HMFTimer *devicesChangedTimer; // @synthesize devicesChangedTimer=_devicesChangedTimer;
@@ -39,7 +41,7 @@
 @property(retain, nonatomic) NSMutableArray *reachableAccessories; // @synthesize reachableAccessories=_reachableAccessories;
 @property(nonatomic) __weak HMDResidentMeshMeshStorage *resident; // @synthesize resident=_resident;
 @property(retain, nonatomic) NSMutableArray *residents; // @synthesize residents=_residents;
-@property(nonatomic) __weak HMDCentralMessageDispatcher *remoteMessageDispatcher; // @synthesize remoteMessageDispatcher=_remoteMessageDispatcher;
+@property(nonatomic) __weak HMDMessageDispatcher *remoteMessageDispatcher; // @synthesize remoteMessageDispatcher=_remoteMessageDispatcher;
 @property(nonatomic) __weak HMDHomeManager *homeManager; // @synthesize homeManager=_homeManager;
 @property unsigned long long broadcastRate; // @synthesize broadcastRate=_broadcastRate;
 @property(retain, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
@@ -49,15 +51,17 @@
 - (void)_dumpDebug;
 - (id)dumpState;
 - (id)_dumpState;
+- (void)setMetricForCurrentDevice:(id)arg1 withValue:(id)arg2 isUrgent:(BOOL)arg3;
 - (void)_flushWorkQueue;
 - (id)_availableResidentsForHome:(id)arg1;
 - (id)deviceForAccessory:(id)arg1 residentOrder:(unsigned long long)arg2 reachableResidents:(unsigned long long *)arg3;
 - (id)_residentMapForAccessories:(id)arg1;
 - (id)balancedResidentMapForAccessories:(id)arg1;
+- (id)residentsForCameraAccessory:(id)arg1 excludeResident:(CDUnknownBlockType)arg2 sortedBy:(CDUnknownBlockType)arg3;
 - (id)bestResidentForAccessory:(id)arg1;
 - (void)_handleMeshUpdateMessage:(id)arg1;
 - (void)_handleMeshUpdateRequestMessage:(id)arg1;
-- (void)_sendMessage:(id)arg1 payload:(id)arg2 target:(id)arg3 responseHandler:(CDUnknownBlockType)arg4;
+- (void)_sendMessage:(id)arg1 payload:(id)arg2 target:(id)arg3 force:(BOOL)arg4 responseHandler:(CDUnknownBlockType)arg5;
 - (void)_removeConnectivityFromDeviceToAccessory:(id)arg1 activateTimer:(BOOL)arg2;
 - (void)_addConnectivityFromDeviceToAccessory:(id)arg1 activateTimer:(BOOL)arg2;
 - (BOOL)_checkReachabilityWithTimerActivation:(BOOL)arg1;

@@ -9,7 +9,7 @@
 #import "HMFLogging.h"
 #import "HMFTimerDelegate.h"
 
-@class HMFActivity, HMFTimer, HMFUnfairLock, NSDate, NSError, NSObject<OS_dispatch_queue>, NSString, NSUUID;
+@class HMFActivity, HMFTimer, HMFUnfairLock, NSDate, NSError, NSObject<OS_dispatch_queue>, NSObject<OS_voucher>, NSString, NSUUID;
 
 @interface HMFOperation : NSOperation <HMFLogging, HMFTimerDelegate>
 {
@@ -18,6 +18,7 @@
     NSError *_error;
     HMFUnfairLock *_lock;
     NSObject<OS_dispatch_queue> *_queue;
+    NSObject<OS_voucher> *_voucher;
     HMFActivity *_activity;
     NSUUID *_identifier;
     HMFTimer *_timer;
@@ -34,6 +35,7 @@
 - (void)finish;
 - (void)cancelWithError:(id)arg1;
 - (void)cancel;
+- (void)main;
 - (void)start;
 - (void)setQualityOfService:(long long)arg1;
 @property(readonly, copy) NSDate *timeoutDate;

@@ -7,10 +7,9 @@
 @class RPPerson;
 
 @protocol RPPeopleXPCClientInterface
-
-@optional
 - (void)xpcPersonChanged:(RPPerson *)arg1 changes:(unsigned int)arg2;
 - (void)xpcPersonLost:(RPPerson *)arg1;
 - (void)xpcPersonFound:(RPPerson *)arg1;
+- (void)xpcPeopleStatusChanged:(unsigned int)arg1;
 @end
 

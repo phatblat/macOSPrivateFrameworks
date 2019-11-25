@@ -10,31 +10,30 @@
 #import "FBSSceneHandle.h"
 #import "FBSSceneSnapshotRequestDelegate.h"
 
-@class FBSSceneClientSettings, FBSSceneSettings, FBSSceneSpecification, FBSSerialQueue, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
+@class FBSSceneClientSettings, FBSSceneIdentityToken, FBSSceneSettings, FBSSceneSpecification, FBSSerialQueue, NSMutableArray, NSOrderedSet, NSString;
 
 @interface FBSSceneImpl : FBSScene <FBSSceneSnapshotRequestDelegate, FBSSceneHandle, FBSSceneAgentProxy>
 {
-    id <FBSSceneDelegate> _delegate;
+    FBSSerialQueue *_callOutQueue;
     NSString *_identifier;
     FBSSceneSpecification *_specification;
-    FBSSceneSettings *_settings;
-    FBSSceneClientSettings *_clientSettings;
-    id <FBSSceneUpdater> _updater;
-    id <FBSSceneClientAgent> _agent;
-    CDUnknownBlockType _agentMessageHandler;
-    FBSSerialQueue *_callOutQueue;
-    NSObject<OS_dispatch_queue> *_queue;
-    NSMutableArray *_layers;
-    BOOL _shouldObserveLayers;
-    NSMutableArray *_agentSessions;
+    BOOL _hasAgent;
+    id <FBSSceneClientAgent> _callOutQueue_agent;
+    NSMutableArray *_callOutQueue_agentSessions;
+    CDUnknownBlockType _callOutQueue_agentMessageHandler;
+    BOOL _callOutQueue_agentInvalidateCalled;
+    struct os_unfair_lock_s _lock;
+    id <FBSSceneUpdater> _lock_updater;
+    FBSSceneSettings *_lock_settings;
+    FBSSceneClientSettings *_lock_clientSettings;
+    NSOrderedSet *_lock_layers;
+    id <FBSSceneDelegate> _lock_delegate;
+    FBSSceneIdentityToken *_identityToken;
 }
 
 - (void).cxx_destruct;
 - (BOOL)snapshotRequest:(id)arg1 performWithContext:(id)arg2;
 - (BOOL)snapshotRequestAllowSnapshot:(id)arg1;
-- (void)sceneLayerDidInvalidate:(id)arg1;
-- (void)sceneLayerDidUpdate:(id)arg1;
-- (BOOL)sceneLayerShouldObserveUpdates:(id)arg1;
 - (void)agent:(id)arg1 sendMessage:(id)arg2 withResponse:(CDUnknownBlockType)arg3;
 - (void)agent:(id)arg1 registerMessageHandler:(CDUnknownBlockType)arg2;
 - (void)closeSession:(id)arg1;
@@ -51,14 +50,16 @@
 - (void)updater:(id)arg1 didUpdateSettings:(id)arg2 withDiff:(id)arg3 transitionContext:(id)arg4 completion:(CDUnknownBlockType)arg5;
 - (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
 - (id)descriptionWithMultilinePrefix:(id)arg1;
+- (id)succinctDescriptionBuilder;
+- (id)succinctDescription;
 @property(readonly, copy) NSString *description;
-- (void)_willDestroyWithTransitionContext:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)_didCreateWithTransitionContext:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)_callOutQueue_invalidateAgent;
+- (void)_callOutQueue_agent_willDestroyWithTransitionContext:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)_callOutQueue_agent_didCreateWithTransitionContext:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (BOOL)_hasAgent;
-- (void)_queue_configureReceivedActions:(id)arg1;
-- (void)_performDelegateCallOut:(CDUnknownBlockType)arg1;
-- (void)_queue_invalidate;
-- (void)_updateLayer:(id)arg1;
+- (void)_configureReceivedActions:(id)arg1;
+- (void)_calloutQueue_comsumeLock_updateClientSettings:(id)arg1 withTransitionContext:(id)arg2;
+- (id)identityToken;
 - (BOOL)invalidateSnapshotWithContext:(id)arg1;
 - (BOOL)performSnapshotWithContext:(id)arg1;
 - (id)snapshotRequest;
@@ -78,11 +79,11 @@
 - (void)setDelegate:(id)arg1;
 - (id)delegate;
 - (id)identifier;
-- (void)dealloc;
-- (id)_initWithInternalQueue:(id)arg1 callOutQueue:(id)arg2 updater:(id)arg3 identifier:(id)arg4 specification:(id)arg5 settings:(id)arg6 clientSettings:(id)arg7;
+- (void)_callOutQueue_invalidate;
+- (id)_initWithUpdater:(id)arg1 identifier:(id)arg2 specification:(id)arg3 settings:(id)arg4 clientSettings:(id)arg5;
 - (id)initWithQueue:(id)arg1 identifier:(id)arg2 display:(id)arg3 settings:(id)arg4 clientSettings:(id)arg5;
 - (id)initWithCallOutQueue:(id)arg1 identifier:(id)arg2 parameters:(id)arg3;
-- (id)_initWithQueue:(id)arg1 callOutQueue:(id)arg2 identifier:(id)arg3 specification:(id)arg4 settings:(id)arg5 clientSettings:(id)arg6;
+- (id)_initWithCallOutQueue:(id)arg1 identifier:(id)arg2 specification:(id)arg3 settings:(id)arg4 clientSettings:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

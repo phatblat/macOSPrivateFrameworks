@@ -4,26 +4,27 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <CoreBrightness/CBModule.h>
-
-#import "CBContainerModuleProtocol.h"
-#import "CBStatusInfoProtocol.h"
+#import <CoreBrightness/CBDisplayModule.h>
 
 @class NSMutableDictionary, NSObject<OS_dispatch_source>, NSString;
 
 __attribute__((visibility("hidden")))
-@interface CBDisplayModuleMacOS : CBModule <CBContainerModuleProtocol, CBStatusInfoProtocol>
+@interface CBDisplayModuleMacOS : CBDisplayModule
 {
     _Bool _running;
     struct DSDevice *_device;
+    NSString *_containerID;
     NSObject<OS_dispatch_source> *_delayedBrightnessCommitTimer;
     NSMutableDictionary *_properties;
+    _Bool _brightnessUpdatesDisabled;
+    float _magSafeFactor;
     BOOL _builtIn;
     unsigned long long _displayID;
 }
 
 @property(readonly) BOOL builtIn; // @synthesize builtIn=_builtIn;
 @property(readonly) unsigned long long displayID; // @synthesize displayID=_displayID;
+- (void)sendDisplayBrightnessStateNotificationWithReason:(id)arg1;
 - (id)copyIdentifiers;
 - (void)handleNotificationForKey:(id)arg1 withProperty:(id)arg2;
 - (id)copyALCState;
@@ -49,12 +50,6 @@ __attribute__((visibility("hidden")))
 - (void)start;
 - (void)dealloc;
 - (id)initWithDisplayID:(unsigned long long)arg1 andQueue:(id)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

@@ -6,11 +6,13 @@
 
 #import <AppStoreDaemon/ASDBaseClient.h>
 
-@class ASDServiceBroker;
+@class ASDServiceBroker, NSObject<OS_dispatch_queue>;
 
 @interface ASDSoftwareUpdatesStore : ASDBaseClient
 {
     ASDServiceBroker *_serviceBroker;
+    NSObject<OS_dispatch_queue> *_accessQueue;
+    NSObject<OS_dispatch_queue> *_calloutQueue;
     BOOL _hasUpdatesEntitlement;
     int _storeChangedNotificationToken;
 }
@@ -19,6 +21,7 @@
 + (id)registerBadgeCountNotificationBlock:(CDUnknownBlockType)arg1;
 + (id)interface;
 - (void).cxx_destruct;
+- (void)reloadFromServerInBackgroundWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)_failedJobResultsForBundleIDs:(id)arg1;
 - (void)updateAllWithOrder:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)setAutoUpdateEnabled:(BOOL)arg1;

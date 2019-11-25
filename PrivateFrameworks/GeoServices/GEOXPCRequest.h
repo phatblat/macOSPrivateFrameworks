@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class GEOApplicationAuditToken, GEOMapServiceTraits, GEOPeer, NSError, NSObject<OS_xpc_object>, NSProgress, NSString;
+@class GEOApplicationAuditToken, GEODataRequestThrottlerToken, GEOMapServiceTraits, GEOPeer, NSError, NSObject<OS_xpc_object>, NSProgress, NSString;
 
 @interface GEOXPCRequest : NSObject <NSSecureCoding>
 {
@@ -20,12 +20,14 @@
     GEOPeer *_peer;
     GEOMapServiceTraits *_traits;
     GEOApplicationAuditToken *_auditToken;
+    GEODataRequestThrottlerToken *_throttleToken;
     NSProgress *_progressToMirrorOverXPC;
 }
 
 + (BOOL)reportsProgress;
 + (BOOL)supportsSecureCoding;
 @property(readonly, nonatomic) unsigned char flags; // @synthesize flags=_flags;
+@property(readonly, nonatomic) GEODataRequestThrottlerToken *throttleToken; // @synthesize throttleToken=_throttleToken;
 @property(retain, nonatomic) GEOApplicationAuditToken *preferredAuditToken; // @synthesize preferredAuditToken=_auditToken;
 @property(retain, nonatomic) NSProgress *progress; // @synthesize progress=_progressToMirrorOverXPC;
 @property(readonly, nonatomic) GEOMapServiceTraits *traits; // @synthesize traits=_traits;
@@ -35,6 +37,7 @@
 @property(retain, nonatomic) NSObject<OS_xpc_object> *object; // @synthesize object=_object;
 - (void).cxx_destruct;
 - (id)description;
+- (id)sendSync:(id)arg1 error:(id *)arg2;
 - (void)send:(id)arg1 withReply:(id)arg2 handler:(CDUnknownBlockType)arg3;
 - (void)send:(id)arg1;
 - (id)_prepareRequest;
@@ -42,7 +45,7 @@
 @property(readonly, nonatomic) NSObject<OS_xpc_object> *replyDictionary;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithMessage:(id)arg1 traits:(id)arg2 auditToken:(id)arg3;
+- (id)initWithMessage:(id)arg1 traits:(id)arg2 auditToken:(id)arg3 throttleToken:(id)arg4;
 - (id)init;
 
 @end

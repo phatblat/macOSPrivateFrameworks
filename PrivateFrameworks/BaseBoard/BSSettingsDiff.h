@@ -8,10 +8,11 @@
 
 #import "BSXPCCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class BSMutableSettings, NSMutableSet, NSString;
 
-@interface BSSettingsDiff : NSObject <NSCopying, BSXPCCoding>
+@interface BSSettingsDiff : NSObject <NSCopying, NSSecureCoding, BSXPCCoding>
 {
     id <BSSettingDescriptionProvider> _descriptionProvider;
     BSMutableSettings *_changes;
@@ -19,6 +20,8 @@
     NSMutableSet *_objectRemovals;
 }
 
++ (BOOL)_isValidRemovalsSet:(id)arg1;
++ (BOOL)supportsSecureCoding;
 + (id)diffFromSettings:(id)arg1 toSettings:(id)arg2;
 @property(nonatomic) __weak id <BSSettingDescriptionProvider> descriptionProvider; // @synthesize descriptionProvider=_descriptionProvider;
 - (void).cxx_destruct;
@@ -31,6 +34,8 @@
 - (void)inspectChangesWithBlock:(CDUnknownBlockType)arg1;
 - (void)applyToSettings:(id)arg1;
 @property(readonly, nonatomic) BOOL isEmpty;
+- (id)initWithCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
 - (void)encodeWithXPCDictionary:(id)arg1;
 - (id)initWithXPCDictionary:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;

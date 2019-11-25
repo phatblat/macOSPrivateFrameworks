@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class FPItem, NSArray, NSFileProviderMessageInterface, NSMutableSet, NSString, NSURL;
+@class FPItem, NSArray, NSMutableSet, NSSet, NSString, NSURL;
 
 @protocol FPFrameworkOverriding <NSObject>
 
@@ -15,10 +15,10 @@
 - (void)FPUniversalBookmarkableStringFromDocumentURL:(NSURL *)arg1 completionHandler:(void (^)(NSString *, NSError *))arg2;
 - (void)FPValuesForAttributes:(NSArray *)arg1 forItemAtURL:(NSURL *)arg2 completionHandler:(void (^)(NSDictionary *, NSError *))arg3;
 - (BOOL)FPAreUTIsImportable:(NSArray *)arg1 toFolderItem:(FPItem *)arg2;
+- (NSSet *)FPServerPackageExtensions;
 - (BOOL)FPFilterActions:(NSMutableSet *)arg1 forDroppingItems:(NSArray *)arg2 underItem:(FPItem *)arg3;
+- (void)FPFileProviderServiceEndpointCreatingForItemAtURL:(NSURL *)arg1 synchronously:(BOOL)arg2 completionHandler:(void (^)(id <NSXPCProxyCreating><NSFileProviderServiceEndpointCreating>, NSArray *, void (^)(void), NSError *))arg3;
 - (void)FPFileProviderServiceEndpointCreatingForItemAtURL:(NSURL *)arg1 completionHandler:(void (^)(id <NSXPCProxyCreating><NSFileProviderServiceEndpointCreating>, NSArray *, void (^)(void), NSError *))arg2;
-- (void)FPFetchProxyFactoryEndpointForMessageInterface:(NSFileProviderMessageInterface *)arg1 completionHandler:(void (^)(NSXPCListenerEndpoint *, void (^)(void), NSError *))arg2;
-- (void)FPMessageInterfacesForItemAtURL:(NSURL *)arg1 completionHandler:(void (^)(NSArray *, NSError *))arg2;
 - (void)FPExtendBookmarkForDocumentURL:(NSURL *)arg1 forBundleID:(NSString *)arg2 completionHandler:(void (^)(NSString *, NSError *))arg3;
 - (NSURL *)FPDocumentURLFromBookmarkableString:(NSString *)arg1 error:(id *)arg2;
 - (void)FPDocumentURLFromBookmarkableString:(NSString *)arg1 completionHandler:(void (^)(NSURL *, NSError *))arg2;

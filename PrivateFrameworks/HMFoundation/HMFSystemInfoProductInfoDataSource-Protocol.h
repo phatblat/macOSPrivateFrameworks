@@ -6,7 +6,10 @@
 
 #import "NSObject.h"
 
+@class NSString;
+
 @protocol HMFSystemInfoProductInfoDataSource <NSObject>
+@property(readonly, copy, nonatomic) NSString *modelIdentifier;
 @property(readonly, nonatomic) long long productVariant;
 @property(readonly, nonatomic) long long productClass;
 @property(readonly, nonatomic) long long productPlatform;

@@ -8,9 +8,11 @@
 
 @interface PIRedEyeAutoCalculator : NUAutoCalculator
 {
+    BOOL _force;
 }
 
-- (void)calculate:(CDUnknownBlockType)arg1;
+@property BOOL force; // @synthesize force=_force;
+- (void)submit:(CDUnknownBlockType)arg1;
 - (void)_configureRequest:(id)arg1;
 - (id)_options;
 

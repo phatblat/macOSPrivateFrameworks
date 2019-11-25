@@ -13,7 +13,7 @@
 #import "NSFastEnumeration.h"
 #import "NSSecureCoding.h"
 
-@class CNContact, HMDAccountIdentifier, NSArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
+@class CNContact, HMDAccountHandle, HMDAccountIdentifier, HMFUnfairLock, NSArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
 
 @interface HMDAccount : HMFObject <HMFLogging, HMFMerging, HMDBackingStoreObjectProtocol, HMDBackingStoreModelBackedObjectProtocol, NSFastEnumeration, NSSecureCoding>
 {
@@ -33,10 +33,12 @@
 @property(readonly, copy) HMDAccountIdentifier *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (id)modelBackedObjects;
+- (id)currentDeviceModelsWithChangeType:(unsigned long long)arg1 version:(long long)arg2;
 - (id)backingStoreObjectsWithChangeType:(unsigned long long)arg1 version:(long long)arg2;
 - (id)modelObjectWithChangeType:(unsigned long long)arg1 version:(long long)arg2;
-@property(readonly, nonatomic) NSUUID *modelParentIdentifier;
-@property(readonly, nonatomic) NSUUID *modelIdentifier;
+@property(readonly, copy, nonatomic) NSUUID *modelParentIdentifier;
+@property(readonly, copy, nonatomic) NSUUID *modelIdentifier;
+@property(readonly) Class modelClass;
 - (void)transactionObjectUpdated:(id)arg1 newValues:(id)arg2 message:(id)arg3;
 - (void)transactionObjectRemoved:(id)arg1 message:(id)arg2;
 - (void)encodeWithCoder:(id)arg1;
@@ -45,7 +47,6 @@
 - (BOOL)shouldMergeObject:(id)arg1;
 - (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
 - (id)logIdentifier;
-- (void)__notifyDelegateUpdatedDevice:(id)arg1;
 - (void)removeDevice:(id)arg1;
 - (void)addDevice:(id)arg1;
 - (id)deviceWithModelIdentifier:(id)arg1;

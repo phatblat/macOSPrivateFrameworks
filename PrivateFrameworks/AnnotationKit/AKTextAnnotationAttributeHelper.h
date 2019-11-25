@@ -23,11 +23,11 @@
 + (void)setTextAttributes:(id)arg1 ofAnnotation:(id)arg2;
 + (id)textAttributesOfEditor:(id)arg1;
 + (id)textAttributesOfAnnotations:(id)arg1;
-+ (void)setTextAlignment:(unsigned long long)arg1 ofAnnotation:(id)arg2;
++ (void)setTextAlignment:(long long)arg1 ofAnnotation:(id)arg2;
 + (void)setFont:(id)arg1 ofAnnotation:(id)arg2;
 + (id)fontsOfEditor:(id)arg1;
 + (id)fontsOfAnnotations:(id)arg1;
-+ (void)resolvedAlignmentAndDirection:(id)arg1 locale:(id)arg2 alignment:(unsigned long long *)arg3 direction:(long long *)arg4;
++ (void)resolvedAlignmentAndDirection:(id)arg1 locale:(id)arg2 alignment:(long long *)arg3 direction:(long long *)arg4;
 
 @end
 

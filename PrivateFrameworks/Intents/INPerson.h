@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 #import "INCacheableContainer.h"
+#import "INCodableAttributeRelationComparing.h"
 #import "INImageProxyInjecting.h"
 #import "INKeyImageProducing.h"
 #import "INPersonExport.h"
@@ -17,7 +18,7 @@
 
 @class INImage, INPersonHandle, NSArray, NSPersonNameComponents, NSString;
 
-@interface INPerson : NSObject <INCacheableContainer, INKeyImageProducing, INImageProxyInjecting, INSpeakable, INPersonExport, NSMutableCopying, NSCopying, NSSecureCoding>
+@interface INPerson : NSObject <INCacheableContainer, INCodableAttributeRelationComparing, INKeyImageProducing, INImageProxyInjecting, INSpeakable, INPersonExport, NSMutableCopying, NSCopying, NSSecureCoding>
 {
     NSString *_displayName;
     NSPersonNameComponents *_nameComponents;
@@ -32,10 +33,12 @@
     NSString *_contactIdentifier;
     NSString *_customIdentifier;
     NSString *_relationship;
+    NSString *_phonemeData;
 }
 
 + (id)expectedCNContactKeys;
 + (BOOL)supportsSecureCoding;
+@property(copy) NSString *phonemeData; // @synthesize phonemeData=_phonemeData;
 @property(copy) NSArray *alternatives; // @synthesize alternatives=_alternatives;
 @property BOOL isMe; // @synthesize isMe=_isMe;
 @property long long suggestionType; // @synthesize suggestionType=_suggestionType;
@@ -50,6 +53,7 @@
 @property(readonly, copy) NSArray *alternativeSiriMatches;
 - (id)_dictionaryRepresentation;
 - (id)initWithContact:(id)arg1;
+- (id)_initWithUserInput:(id)arg1 personHandle:(id)arg2 nameComponents:(id)arg3 displayName:(id)arg4 image:(id)arg5 contactIdentifier:(id)arg6 customIdentifier:(id)arg7 relationship:(id)arg8 aliases:(id)arg9 suggestionType:(long long)arg10 isMe:(BOOL)arg11 alternatives:(id)arg12 sourceAppBundleIdentifier:(id)arg13 phonemeData:(id)arg14;
 - (id)_initWithUserInput:(id)arg1 personHandle:(id)arg2 nameComponents:(id)arg3 displayName:(id)arg4 image:(id)arg5 contactIdentifier:(id)arg6 customIdentifier:(id)arg7 relationship:(id)arg8 aliases:(id)arg9 suggestionType:(long long)arg10 isMe:(BOOL)arg11 alternatives:(id)arg12 sourceAppBundleIdentifier:(id)arg13;
 - (id)_sourceAppBundleIdentifier;
 - (id)_aliases;
@@ -76,10 +80,11 @@
 @property(readonly, copy, nonatomic) NSString *firstName;
 - (void)_intents_updateContainerWithCache:(id)arg1;
 - (id)_intents_cacheableObjects;
-- (id)_intents_readableDescriptionForLanguage:(id)arg1;
+- (id)_intents_readableDescriptionForLanguage:(id)arg1 withMetadata:(id)arg2;
 - (id)descriptionAtIndent:(unsigned long long)arg1;
 @property(readonly, copy) NSString *description;
 - (id)initWithPersonHandle:(id)arg1 nameComponents:(id)arg2 displayName:(id)arg3 image:(id)arg4 contactIdentifier:(id)arg5 customIdentifier:(id)arg6 aliases:(id)arg7 suggestionType:(long long)arg8;
+- (BOOL)_intents_compareValue:(id)arg1 relation:(unsigned long long)arg2;
 - (long long)_compareSubProducerOne:(id)arg1 subProducerTwo:(id)arg2;
 @property(readonly) INImage *_keyImage;
 - (void)_injectProxiesForImages:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;

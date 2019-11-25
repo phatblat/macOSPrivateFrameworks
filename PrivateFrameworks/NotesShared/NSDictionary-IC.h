@@ -7,6 +7,9 @@
 #import "NSDictionary.h"
 
 @interface NSDictionary (IC)
+- (id)ic_md5;
+- (id)ic_objectForNonNilKey:(id)arg1;
 - (id)ic_prettyDescriptionWithTabLevel:(unsigned long long)arg1;
+- (id)stringFromQueryComponents;
 @end
 

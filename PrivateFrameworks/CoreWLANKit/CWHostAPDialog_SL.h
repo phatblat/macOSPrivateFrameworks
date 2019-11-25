@@ -30,7 +30,10 @@
     NSTextField *networkNameField;
     NSView *passwordView;
     NSSecureTextField *passwordField;
-    NSSecureTextField *confirmPasswordField;
+    NSTextField *revealedPasswordField;
+    NSView *showPasswordView;
+    NSButton *showPasswordCheckboxButton;
+    NSView *securityHintView;
     NSTextField *securityText;
     NSTextField *statusMessageLabel;
     NSButton *warningButton;
@@ -45,6 +48,7 @@
 + (id)hostAPDialogWithInterface:(id)arg1 authorization:(id)arg2;
 @property id delegate; // @synthesize delegate=delegate_;
 @property(retain) CWInterface *interface; // @synthesize interface=interface_;
+- (id)_getGeneratedDefaultPassword;
 - (BOOL)validateEntries;
 - (void)resetSecurityEntries;
 - (id)errorStringForErrorCode:(long long)arg1;
@@ -52,8 +56,10 @@
 - (void)populateHostAPChannels;
 - (void)populateSecurityTypes;
 - (id)localizedStringForKey:(id)arg1;
+- (void)_applyDefaultPassword;
 - (void)populateWiFiOptions;
 - (void)controlTextDidChange:(id)arg1;
+- (void)onShowPasswordCheckboxButton:(id)arg1;
 - (void)onSecurityTypePopupButton:(id)arg1;
 - (void)onCancelButton:(id)arg1;
 - (void)onOKButton:(id)arg1;

@@ -5,11 +5,11 @@
 //
 
 #import "NSObject.h"
+#import "RTTUIConversationCellDelegate.h"
 
-@class RTTUIUtteranceCell, TUCall;
+@class RTTUIUtteranceCell;
 
-@protocol RTTUIUtteranceCellDelegate <NSObject>
-- (TUCall *)callContainingUtterance;
+@protocol RTTUIUtteranceCellDelegate <NSObject, RTTUIConversationCellDelegate>
 - (void)utteranceCellDidUpdateContent:(RTTUIUtteranceCell *)arg1;
 @end
 

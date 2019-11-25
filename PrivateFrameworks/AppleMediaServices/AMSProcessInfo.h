@@ -6,29 +6,60 @@
 
 #import "NSObject.h"
 
-@class NSData, NSObject<OS_dispatch_queue>, NSString;
+#import "NSCopying.h"
+#import "NSSecureCoding.h"
 
-@interface AMSProcessInfo : NSObject
+@class AMSMappedBundleInfo, NSData, NSObject<OS_dispatch_queue>, NSString, NSURL;
+
+@interface AMSProcessInfo : NSObject <NSCopying, NSSecureCoding>
 {
     NSObject<OS_dispatch_queue> *_internalQueue;
     NSString *_partnerHeader;
+    NSString *_accountMediaType;
     NSData *_auditTokenData;
     NSString *_bundleIdentifier;
+    NSURL *_bundleURL;
     NSString *_clientVersion;
+    NSString *_executableName;
+    NSString *_localizedName;
     NSString *_proxyAppBundleID;
+    AMSMappedBundleInfo *_mappedBundleInfo;
 }
 
++ (id)_currentProcessBundleIdentifier;
++ (void)_accessProcessInfoCache:(CDUnknownBlockType)arg1;
++ (id)_cachedProcessInfoForIdentifier:(id)arg1;
++ (void)_cacheProcessInfo:(id)arg1;
++ (BOOL)supportsSecureCoding;
++ (void)copyPropertiesFrom:(id)arg1 to:(id)arg2;
++ (id)valueForEntitlement:(id)arg1;
++ (id)stringForEntitlement:(id)arg1;
++ (void)setDefaultMediaTypeForCurrentProcess:(id)arg1;
++ (id)bundleForIdentifier:(id)arg1;
++ (id)defaultMediaTypeForCurrentProcess;
++ (id)defaultMediaTypeAccessQueue;
 + (BOOL)boolForMachLookupAccess:(id)arg1;
 + (BOOL)boolForEntitlement:(id)arg1;
 + (BOOL)isBuddyRunning;
 + (id)currentProcess;
+@property(readonly) AMSMappedBundleInfo *mappedBundleInfo; // @synthesize mappedBundleInfo=_mappedBundleInfo;
 @property(retain) NSString *proxyAppBundleID; // @synthesize proxyAppBundleID=_proxyAppBundleID;
+@property(retain) NSString *localizedName; // @synthesize localizedName=_localizedName;
+@property(retain) NSString *executableName; // @synthesize executableName=_executableName;
 @property(retain) NSString *clientVersion; // @synthesize clientVersion=_clientVersion;
+@property(retain) NSURL *bundleURL; // @synthesize bundleURL=_bundleURL;
 @property(retain) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 @property(retain) NSData *auditTokenData; // @synthesize auditTokenData=_auditTokenData;
+@property(retain) NSString *accountMediaType; // @synthesize accountMediaType=_accountMediaType;
 - (void).cxx_destruct;
 - (id)generateConfigurationFromBagContract:(id)arg1;
+- (id)generateConfigurationFromBag:(id)arg1;
 - (id)generateConfiguration;
+- (id)initWithCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (BOOL)isEqual:(id)arg1;
+- (id)description;
 @property(retain) NSString *partnerHeader;
 - (id)initWithBundleIdentifier:(id)arg1;
 - (id)init;

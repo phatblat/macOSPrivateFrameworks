@@ -8,7 +8,8 @@
 
 @interface NSImage (LPExtras)
 + (id)_lp_createImageWithCGImage:(struct CGImage *)arg1;
-- (id)_lp_flatImageWithColor:(id)arg1;
+- (BOOL)_lp_hasTransparency;
+- (struct CGSize)_lp_pixelSize;
 - (struct CGImage *)_lp_CGImage;
 @end
 

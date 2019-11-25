@@ -7,10 +7,11 @@
 #import "HMFObject.h"
 
 #import "HMFLogging.h"
+#import "NSCopying.h"
 
 @class CKRecord, HMFVersion, NSMutableDictionary, NSSet, NSString, NSUUID;
 
-@interface HMDBackingStoreModelObject : HMFObject <HMFLogging>
+@interface HMDBackingStoreModelObject : HMFObject <HMFLogging, NSCopying>
 {
     NSMutableDictionary *_reserved;
     BOOL _bsoDataVersionOverride;
@@ -38,8 +39,9 @@
 + (id)bsoSchemaHash;
 + (id)schemaHashRoot;
 + (id)properties;
++ (Class)backedObjectClass;
 @property BOOL bsoDataVersionOverride; // @synthesize bsoDataVersionOverride=_bsoDataVersionOverride;
-@property(readonly, nonatomic) CKRecord *bsoRecord; // @synthesize bsoRecord=_bsoRecord;
+@property(retain, nonatomic) CKRecord *bsoRecord; // @synthesize bsoRecord=_bsoRecord;
 @property(nonatomic) unsigned long long objectChangeType; // @synthesize objectChangeType=_objectChangeType;
 @property(readonly, nonatomic) HMFVersion *bsoDataVersion; // @synthesize bsoDataVersion=_bsoDataVersion;
 @property(readonly) unsigned long long bsoLogRowID; // @synthesize bsoLogRowID=_bsoLogRowID;
@@ -48,6 +50,7 @@
 @property(retain, nonatomic) NSUUID *parentUUID; // @synthesize parentUUID=_parentUUID;
 @property(retain, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
 - (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)logIdentifier;
 - (void)dumpDebug;
 - (void)dumpDebug:(id)arg1;
@@ -57,6 +60,7 @@
 - (id)defaultValueForPropertyNamed:(id)arg1 isSet:(char *)arg2;
 - (void)setPropertyIfNotNil:(id)arg1 named:(id)arg2;
 - (BOOL)diff:(id)arg1 differingFields:(id *)arg2;
+- (BOOL)merge:(id)arg1 error:(id *)arg2;
 - (id)merge:(id)arg1;
 - (id)merge:(id)arg1 from:(unsigned long long)arg2;
 - (BOOL)validForStorage;
@@ -80,6 +84,9 @@
 - (id)validateType:(id)arg1 path:(id)arg2;
 - (BOOL)_validateType:(id)arg1 error:(id *)arg2;
 @property(readonly, nonatomic) NSSet *dependentUUIDs; // @dynamic dependentUUIDs;
+@property(readonly, nonatomic) BOOL bsoIgnoreModel;
+@property(retain, nonatomic) HMFVersion *bsoIgnoredBefore;
+- (id)backedObjectWithParent:(id)arg1 error:(id *)arg2;
 - (id)initWithUUID:(id)arg1 parentUUID:(id)arg2;
 - (id)initWithUUID:(id)arg1;
 - (id)initWithObjectChangeType:(unsigned long long)arg1 uuid:(id)arg2 parentUUID:(id)arg3;

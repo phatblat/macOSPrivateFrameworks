@@ -4,33 +4,36 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <Spotlight/PRSResult.h>
+#import "SFSearchResult_SpotlightExtras.h"
 
 #import "NSPasteboardWriting.h"
 
-@class CSSearchableItem, NSArray, NSNumber, NSString;
+@class CSSearchableItemAttributeSet, NSNumber, NSString;
 
-@interface SPCoreSpotlightResult : PRSResult <NSPasteboardWriting>
+@interface SPCoreSpotlightResult : SFSearchResult_SpotlightExtras <NSPasteboardWriting>
 {
-    unsigned long long _score;
+    // Error parsing type: T, name: _score
+    unsigned long long _hashValue;
     NSString *_section_header;
     NSNumber *_groupNumber;
-    NSString *_userActivityRequiredString;
-    CSSearchableItem *_item;
+    NSString *_threadId;
+    NSString *_sectionIdentifier;
+    CSSearchableItemAttributeSet *_attributeSet;
 }
 
-@property(readonly, nonatomic) CSSearchableItem *item; // @synthesize item=_item;
-@property(readonly, nonatomic) NSString *userActivityRequiredString; // @synthesize userActivityRequiredString=_userActivityRequiredString;
+@property(readonly, nonatomic) CSSearchableItemAttributeSet *attributeSet; // @synthesize attributeSet=_attributeSet;
+@property(readonly, nonatomic) NSString *sectionIdentifier; // @synthesize sectionIdentifier=_sectionIdentifier;
+@property(retain, nonatomic) NSString *threadId; // @synthesize threadId=_threadId;
 - (void).cxx_destruct;
+- (void)markAsUsed;
 - (id)quickLookItemForQueryString:(id)arg1;
-@property(readonly, nonatomic) NSArray *providerDataTypes;
-@property(readonly, nonatomic) NSArray *providerFileTypes;
-@property(readonly, nonatomic) NSString *uniqueIdentifier;
+- (id)providerDataTypes;
+- (id)providerFileTypes;
+- (id)documentIdentifier;
+- (id)uniqueIdentifier;
 - (id)valueForAttribute:(id)arg1;
-@property(readonly, nonatomic) NSArray *contentTypeTree;
-- (id)contentType;
-- (id)initWithSearchableItem:(id)arg1;
-- (id)icon;
+@property(readonly) unsigned long long hash;
+- (id)initWithAttributeSet:(id)arg1 fetchedAttributes:(id)arg2 ranker:(id)arg3 queryString:(id)arg4;
 - (id)previewItemURL;
 - (id)completion;
 - (BOOL)isFile;
@@ -39,21 +42,20 @@
 - (id)url;
 - (id)bundleID;
 - (id)category;
-- (id)iconImageForApplication;
-- (id)largeIconImage;
-- (id)iconImage;
+- (id)pathForApplicationToOpen;
+- (BOOL)isLocalApplicationResult;
 - (id)relatedIdentifier;
 - (id)section_header;
-@property(readonly, nonatomic) NSString *groupName;
+- (id)groupName;
 @property(readonly, nonatomic) NSNumber *groupNumber;
 @property(readonly, copy) NSString *description;
-- (BOOL)isDocumentQuery;
-- (unsigned long long)score;
-- (void)setScore:(unsigned long long)arg1;
+-     // Error parsing type: T16@0:8, name: score
+- (void)setScore: /* Error: Ran out of types for this method. */;
+- (id)subjectForEmailAttachment;
+- (BOOL)isBoundEmailAttachment;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

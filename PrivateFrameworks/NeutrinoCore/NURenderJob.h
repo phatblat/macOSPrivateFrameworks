@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class AVAudioMix, AVComposition, AVVideoComposition, CIImage, NSArray, NSError, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NUComposition, NUGeometrySpaceMap, NUImageGeometry, NUObservatory, NUPriority, NURenderJobStatistics, NURenderNode, NURenderPipeline, NURenderRequest;
+@class AVAudioMix, AVComposition, AVVideoComposition, CIImage, NSArray, NSError, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSString, NUComposition, NUGeometrySpaceMap, NUImageGeometry, NUObservatory, NUPriority, NURenderJobStatistics, NURenderNode, NURenderPipeline, NURenderRequest;
 
 @interface NURenderJob : NSObject
 {
@@ -16,6 +16,9 @@
     NSError *_error;
     BOOL _isAborted;
     BOOL _failed;
+    BOOL _replySynchronous;
+    BOOL _didRespond;
+    NSString *_memoizationCacheKey;
     BOOL _isExecuting;
     BOOL _isCanceled;
     BOOL _isFinished;
@@ -40,6 +43,8 @@
     CDStruct_1e2b2e48 _renderScale;
 }
 
++ (void)flushCache;
++ (void)initialize;
 @property(retain, nonatomic) AVAudioMix *outputAudioMix; // @synthesize outputAudioMix=_outputAudioMix;
 @property(retain, nonatomic) AVVideoComposition *outputVideoComposition; // @synthesize outputVideoComposition=_outputVideoComposition;
 @property(retain, nonatomic) AVComposition *outputVideo; // @synthesize outputVideo=_outputVideo;
@@ -81,6 +86,10 @@
 - (id)pipelineForComposition:(id)arg1 error:(out id *)arg2;
 - (id)validateComposition:(out id *)arg1;
 - (BOOL)prepare:(out id *)arg1;
+- (void)_memoizeResult:(id)arg1;
+- (BOOL)_checkForMemoizedResult;
+- (id)_memoizationCacheKey;
+- (id)cacheKey;
 - (void)_reply:(id)arg1;
 - (void)reply:(id)arg1;
 @property(readonly) BOOL succeeded; // @dynamic succeeded;
@@ -95,9 +104,13 @@
 - (void)abortRender;
 - (void)abortPrepare;
 - (void)abortStage:(long long)arg1;
-- (CDStruct_7ddbbeae)_atomicCancel;
-- (void)_cancelCoalescedJob;
-- (void)cancelCoalescedJob;
+- (CDStruct_550fdc95)_atomicCancel;
+- (void)_resume;
+- (void)resume;
+- (void)_pause;
+- (void)pause;
+- (BOOL)_cancelCoalescedJob;
+- (BOOL)cancelCoalescedJob;
 - (BOOL)_shouldCancelCoalescedJob;
 - (void)_cancel;
 - (void)cancel;
@@ -119,20 +132,24 @@
 @property(readonly, nonatomic) BOOL wantsOutputVideoFrame;
 @property(readonly, nonatomic) BOOL wantsOutputImage;
 @property(readonly, nonatomic) BOOL wantsOutputGeometry;
-@property(readonly, nonatomic) id <NURenderer> renderer;
+- (id)renderer:(out id *)arg1;
 @property(readonly) id <NUExtentPolicy> extentPolicy;
 @property(readonly) id <NUScalePolicy> scalePolicy;
 @property(readonly) NUPriority *priority;
+- (void)_emitSignpostEventType:(unsigned char)arg1 forStage:(long long)arg2 duration:(double)arg3;
 - (void)_run:(long long)arg1;
 - (void)run:(long long)arg1;
 - (id)description;
 @property(readonly) CDStruct_912cb5d2 imageSize;
 - (long long)resolvedSampleMode:(long long)arg1;
 - (id)newRenderPipelineStateForEvaluationMode:(long long)arg1;
+- (void)runToPrepareSynchronous;
+- (void)runSynchronous;
 - (id)initWithRequest:(id)arg1;
 - (id)init;
 - (id)renderImage:(id)arg1 into:(id)arg2 colorSpace:(id)arg3 roi:(id)arg4 imageSize:(CDStruct_912cb5d2)arg5 error:(out id *)arg6;
 - (BOOL)renderVideoFrames:(id)arg1 intoPixelBuffer:(struct __CVBuffer *)arg2 time:(CDStruct_1b6d18a9)arg3 colorSpace:(id)arg4 error:(out id *)arg5;
+@property(readonly, copy, nonatomic) NSString *additionalDebugInfo;
 
 @end
 

@@ -6,40 +6,38 @@
 
 #import "NSObject.h"
 
-@class NSMapTable, NSString;
+@class NSMapTable, NSString, PRSQueryRankingConfiguration;
 
 @interface PRSRankingItemRanker : NSObject
 {
+    PRSQueryRankingConfiguration *_rankingConfiguration;
     BOOL _isInternalDevice;
     BOOL _policyDisabled;
     BOOL _isCancelled;
     BOOL _isCJK;
+    BOOL _hasPolicyPhraseMatch;
+    BOOL _exact;
     float _lastIsSpaceFeature;
     NSString *_keyboardLanguage;
     NSString *_searchString;
+    NSString *_userQueryString;
     unsigned long long _queryTermCount;
     NSMapTable *_bundleFeatures;
     double _experimentalWeight1;
     double _experimentalWeight2;
     NSString *_meContactIdentifier;
+    double _currentTime;
 }
 
++ (id)phoneFavoritesCopy;
 + (id)importantAttributesForBundle:(id)arg1;
-+ (id)settingsBundle;
-+ (id)appsBundle;
-+ (id)musicBundle;
-+ (id)calendarBundle;
-+ (id)messagesBundle;
-+ (id)notesBundle;
-+ (id)mailBundle;
 + (void)setDockApps:(id)arg1;
-+ (CDUnknownBlockType)shouldUpdateFuncForSnippetFeature:(unsigned long long)arg1;
 + (BOOL)isCJK;
 + (void)clearState;
-+ (id)contactsBundle;
 + (id)sortedUniqueBundleFeatureValuesFromBundleFeatures:(id)arg1;
-+ (id)requiredAttributes;
-+ (void)initialize;
+@property(nonatomic) BOOL exact; // @synthesize exact=_exact;
+@property(nonatomic) BOOL hasPolicyPhraseMatch; // @synthesize hasPolicyPhraseMatch=_hasPolicyPhraseMatch;
+@property(nonatomic) double currentTime; // @synthesize currentTime=_currentTime;
 @property BOOL isCJK; // @synthesize isCJK=_isCJK;
 @property BOOL isCancelled; // @synthesize isCancelled=_isCancelled;
 @property(nonatomic) float lastIsSpaceFeature; // @synthesize lastIsSpaceFeature=_lastIsSpaceFeature;
@@ -50,9 +48,11 @@
 @property(retain, nonatomic) NSMapTable *bundleFeatures; // @synthesize bundleFeatures=_bundleFeatures;
 @property BOOL isInternalDevice; // @synthesize isInternalDevice=_isInternalDevice;
 @property unsigned long long queryTermCount; // @synthesize queryTermCount=_queryTermCount;
+@property(retain, nonatomic) NSString *userQueryString; // @synthesize userQueryString=_userQueryString;
 @property(retain, nonatomic) NSString *searchString; // @synthesize searchString=_searchString;
 @property(retain, nonatomic) NSString *keyboardLanguage; // @synthesize keyboardLanguage=_keyboardLanguage;
 - (void).cxx_destruct;
+- (void)prepareItems:(id)arg1 inRealSectionBundle:(id)arg2;
 - (void)prepareItems:(id)arg1 inBundle:(id)arg2;
 - (void)setRenderEngagementFeaturesForItem:(id)arg1 counts:(id)arg2 isRender:(BOOL)arg3 bundleDict:(id)arg4;
 - (void)setRenderEngagementFeaturesForItemAsShorts:(id)arg1 counts:(short [6])arg2 isRender:(BOOL)arg3 bundleDict:(id)arg4;
@@ -60,8 +60,9 @@
 - (CDUnknownBlockType)comparatorByJoiningComparator:(CDUnknownBlockType)arg1 withPredicate:(id)arg2;
 - (BOOL)wasItemCreatedWithinAWeek:(id)arg1;
 - (void)rerankItemsWithPolicyForBundleItems:(id)arg1 isCJK:(BOOL)arg2;
-- (void)updateScoresForPreparedItems:(id)arg1 isCJK:(BOOL)arg2;
-- (void)hackMusicResultsWithItem:(id)arg1 featureVector:(id)arg2;
+- (void)computePolicyFeaturesForBundleItems:(id)arg1 isCJK:(BOOL)arg2;
+- (void)updateScoresForPreparedItems:(id)arg1 isCJK:(BOOL)arg2 clientBundle:(id)arg3;
+- (void)updateScoresForPreparedItems:(id)arg1;
 - (float *)computeScoresForVectors:(id)arg1 withBundleFeatures:(id)arg2;
 - (void)computeRelativeFeatureForContext:(id)arg1 items:(id)arg2;
 - (void)relevantResultSetPRSL2FeaturesFromBundleFeature:(unsigned long long)arg1 absRankFeatureOut:(unsigned short *)arg2 relRankFeatureOut:(unsigned short *)arg3;
@@ -74,12 +75,15 @@
 - (void)updateResultSetContext:(struct _resultset_computation_ctx *)arg1 andUniqueScores:(id)arg2 withResultSetItems:(id)arg3;
 - (void)deactivate;
 - (void)activate;
-- (id)rankingConfigurationWithMeContact:(id)arg1 emailAddresses:(id)arg2 phoneFavorites:(id)arg3 vipList:(id)arg4 clientBundle:(id)arg5;
+- (id)rankingConfigurationWithMeContact:(id)arg1 emailAddresses:(id)arg2 phoneFavorites:(id)arg3 vipList:(id)arg4 clientBundle:(id)arg5 isScopedSearch:(BOOL)arg6 spotlightQuery:(id)arg7 userQuery:(id)arg8 whyQuery:(unsigned long long)arg9 isPeopleSearch:(BOOL)arg10;
+- (id)rankingConfigurationWithMeContact:(id)arg1 emailAddresses:(id)arg2 phoneFavorites:(id)arg3 vipList:(id)arg4 clientBundle:(id)arg5 isScopedSearch:(BOOL)arg6 spotlightQuery:(id)arg7;
 - (id)rankingConfiguration;
 - (void)dealloc;
 - (void)cancel;
-- (id)initWithSearchString:(id)arg1 language:(id)arg2 isCJK:(BOOL)arg3 experimentalWeight1:(double)arg4 experimentalWeight2:(double)arg5;
-- (id)initWithSearchString:(id)arg1 language:(id)arg2;
+- (id)initWithSearchString:(id)arg1 language:(id)arg2 isCJK:(BOOL)arg3 experimentalWeight1:(double)arg4 experimentalWeight2:(double)arg5 currentTime:(double)arg6;
+- (id)initWithSearchString:(id)arg1 userQueryString:(id)arg2 language:(id)arg3 isCJK:(BOOL)arg4 experimentalWeight1:(double)arg5 experimentalWeight2:(double)arg6 currentTime:(double)arg7;
+- (id)initWithSearchString:(id)arg1 userQueryString:(id)arg2 language:(id)arg3 currentTime:(double)arg4;
+- (id)initWithSearchString:(id)arg1 language:(id)arg2 currentTime:(double)arg3;
 - (id)init;
 
 @end

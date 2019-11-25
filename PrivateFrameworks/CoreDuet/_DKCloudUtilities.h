@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>;
+@class NSObject<OS_dispatch_queue>, _DKThrottledActivity;
 
 @interface _DKCloudUtilities : NSObject
 {
     NSObject<OS_dispatch_queue> *_fetchQueue;
+    _DKThrottledActivity *_activityThrottler;
     BOOL _supportsDeviceToDeviceEncryption;
     BOOL _isSingleDevice;
 }

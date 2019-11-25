@@ -6,13 +6,15 @@
 
 #import "NSObject.h"
 
+#import "AMSRequestPresentationDelegate.h"
 #import "NSCopying.h"
 
-@class NSImage, NSWindow;
+@class NSImage, NSString, NSURL, NSWindow;
 
-@interface CKDialogContext : NSObject <NSCopying>
+@interface CKDialogContext : NSObject <NSCopying, AMSRequestPresentationDelegate>
 {
     int _proxyPID;
+    NSURL *_proxyBundleURL;
     NSWindow *_hostWindow;
     NSImage *_icon;
 }
@@ -20,11 +22,21 @@
 @property(retain) NSImage *icon; // @synthesize icon=_icon;
 @property __weak NSWindow *hostWindow; // @synthesize hostWindow=_hostWindow;
 - (void).cxx_destruct;
+- (id)_viewController;
+- (void)handleDialogRequest:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)handleAuthenticateRequest:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)_clickedButtonForModalResponse:(long long)arg1;
 - (id)_alertForDialog:(id)arg1;
 - (void)displayDialog:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
+@property(copy) NSURL *proxyBundleURL;
 @property int proxyPID;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -22,6 +22,7 @@
     NSTimeZone *_timeZone;
     NSDictionary *_metadata;
     double _confidence;
+    long long _compatibilityVersion;
 }
 
 + (BOOL)supportsSecureCoding;
@@ -55,6 +56,7 @@
 + (id)entityName;
 + (id)keyPathForMOKeyPath:(id)arg1;
 + (id)moKeyPathForKeyPath:(id)arg1;
+@property long long compatibilityVersion; // @synthesize compatibilityVersion=_compatibilityVersion;
 @property BOOL shouldSync; // @synthesize shouldSync=_shouldSync;
 @property double confidence; // @synthesize confidence=_confidence;
 @property(copy) NSDictionary *metadata; // @synthesize metadata=_metadata;
@@ -75,7 +77,6 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithStream:(id)arg1 source:(id)arg2 startDate:(id)arg3 endDate:(id)arg4 value:(id)arg5 confidence:(double)arg6 metadata:(id)arg7;
-- (id)relevantAction;
 - (id)relevantShortcut;
 - (id)toPBCodable;
 - (void)fetchInteractionWithPopulatedKeyImage:(CDUnknownBlockType)arg1;

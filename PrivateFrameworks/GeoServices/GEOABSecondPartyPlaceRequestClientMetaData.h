@@ -8,22 +8,35 @@
 
 #import "NSCopying.h"
 
-@class GEOPDABClientDatasetMetadata, NSMutableArray, PBUnknownFields;
+@class GEOPDABClientDatasetMetadata, NSMutableArray, PBDataReader, PBUnknownFields;
 
 @interface GEOABSecondPartyPlaceRequestClientMetaData : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     PBUnknownFields *_unknownFields;
     NSMutableArray *_clientConfigs;
     GEOPDABClientDatasetMetadata *_clientDatasetMetadata;
     NSMutableArray *_serverAbAssignments;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_clientConfigs:1;
+        unsigned int read_clientDatasetMetadata:1;
+        unsigned int read_serverAbAssignments:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_clientConfigs:1;
+        unsigned int wrote_clientDatasetMetadata:1;
+        unsigned int wrote_serverAbAssignments:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)clientConfigType;
 + (Class)serverAbAssignmentType;
-@property(retain, nonatomic) GEOPDABClientDatasetMetadata *clientDatasetMetadata; // @synthesize clientDatasetMetadata=_clientDatasetMetadata;
-@property(retain, nonatomic) NSMutableArray *clientConfigs; // @synthesize clientConfigs=_clientConfigs;
-@property(retain, nonatomic) NSMutableArray *serverAbAssignments; // @synthesize serverAbAssignments=_serverAbAssignments;
 - (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
 @property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -32,17 +45,28 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEOPDABClientDatasetMetadata *clientDatasetMetadata;
 @property(readonly, nonatomic) BOOL hasClientDatasetMetadata;
+- (void)_readClientDatasetMetadata;
 - (id)clientConfigAtIndex:(unsigned long long)arg1;
 - (unsigned long long)clientConfigsCount;
+- (void)_addNoFlagsClientConfig:(id)arg1;
 - (void)addClientConfig:(id)arg1;
 - (void)clearClientConfigs;
+@property(retain, nonatomic) NSMutableArray *clientConfigs;
+- (void)_readClientConfigs;
 - (id)serverAbAssignmentAtIndex:(unsigned long long)arg1;
 - (unsigned long long)serverAbAssignmentsCount;
+- (void)_addNoFlagsServerAbAssignment:(id)arg1;
 - (void)addServerAbAssignment:(id)arg1;
 - (void)clearServerAbAssignments;
+@property(retain, nonatomic) NSMutableArray *serverAbAssignments;
+- (void)_readServerAbAssignments;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

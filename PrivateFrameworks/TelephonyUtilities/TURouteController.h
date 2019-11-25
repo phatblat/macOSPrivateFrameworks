@@ -6,11 +6,9 @@
 
 #import "NSObject.h"
 
-#import "TURouteControllerClient.h"
+@class NSArray, NSDictionary, NSHashTable, NSObject<OS_dispatch_queue>, TURoute;
 
-@class NSArray, NSDictionary, NSHashTable, NSObject<OS_dispatch_queue>, NSString, TURoute;
-
-@interface TURouteController : NSObject <TURouteControllerClient>
+@interface TURouteController : NSObject
 {
     NSObject<OS_dispatch_queue> *_queue;
     id <TURouteControllerActions> _actionsDelegate;
@@ -25,7 +23,9 @@
 - (void).cxx_destruct;
 - (void)handleServerDisconnect;
 - (void)handleServerReconnect;
-- (oneway void)handleRoutesByUniqueIdentifierUpdated:(id)arg1;
+- (void)handleRoutesByUniqueIdentifierUpdated:(id)arg1;
+- (void)requeryRoutes;
+- (void)pickRouteWhenAvailableWithUniqueIdentifier:(id)arg1;
 - (void)pickRouteWithUniqueIdentifier:(id)arg1;
 - (void)pickRoute:(id)arg1;
 - (void)removeDelegate:(id)arg1;
@@ -35,12 +35,6 @@
 @property(readonly, copy, nonatomic) TURoute *pickedRoute;
 @property(readonly, copy, nonatomic) NSArray *routes;
 - (id)initWithActionsDelegate:(id)arg1 serialQueue:(id)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

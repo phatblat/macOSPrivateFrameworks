@@ -8,18 +8,19 @@
 
 #import "GEOResourceManifestTileGroupObserver.h"
 
-@class NSCache, NSLock, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
+@class NSCache, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
 
 @interface GEOLocationShifter : NSObject <GEOResourceManifestTileGroupObserver>
 {
     BOOL _isRequestingShiftFunction;
-    NSLock *_lock;
+    struct os_unfair_lock_s _lock;
     NSMutableArray *_locationsToShift;
     NSCache *_shiftFunctionCache;
     int _resetPrivacyToken;
     NSObject<OS_dispatch_queue> *_queue;
 }
 
++ (void)flushDiskCache;
 + (BOOL)isLocationShiftEnabled;
 + (BOOL)isLocationShiftRequiredForCoordinate:(CDStruct_c3b9c2ee)arg1;
 + (unsigned int)locationShiftFunctionVersion;

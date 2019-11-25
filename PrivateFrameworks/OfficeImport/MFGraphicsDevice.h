@@ -8,6 +8,7 @@
 
 @class MFDeviceContext, MFObjectTable, NSDictionary, NSMutableArray, NSObject<MFDeviceDriver>;
 
+__attribute__((visibility("hidden")))
 @interface MFGraphicsDevice : NSObject
 {
     MFDeviceContext *m_currentDC;

@@ -12,7 +12,6 @@
 
 @class NSString, SiriUIButton, SiriUIConfiguration, SiriUIFlamesAndAuraView, SiriUIHelpButton, SiriUISiriStatusView;
 
-__attribute__((visibility("hidden")))
 @interface SiriUISiriView : NSView <SiriUISiriStatusViewDelegate, SiriUIFlamesAndAuraViewDelegate, AFUISiriRemoteViewHosting>
 {
     BOOL _disabled;
@@ -73,7 +72,6 @@ __attribute__((visibility("hidden")))
 - (void)_createCloseButtonImage;
 - (void)awakeFromNib;
 - (void)cleanupFlames;
-- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties

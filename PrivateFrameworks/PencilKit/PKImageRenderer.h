@@ -6,27 +6,35 @@
 
 #import "NSObject.h"
 
+@class PKMetalRendererController;
+
 @interface PKImageRenderer : NSObject
 {
+    BOOL _synchronous;
     double _scale;
-    id <PKRendererControllerProtocol> _rendererController;
+    PKMetalRendererController *_rendererController;
     long long _cancelCount;
     struct CGSize _size;
 }
 
 + (void)_fuzzTestUnzippedData:(id)arg1;
+@property(nonatomic) BOOL synchronous; // @synthesize synchronous=_synchronous;
 @property(nonatomic) long long cancelCount; // @synthesize cancelCount=_cancelCount;
-@property(retain, nonatomic) id <PKRendererControllerProtocol> rendererController; // @synthesize rendererController=_rendererController;
+@property(retain, nonatomic) PKMetalRendererController *rendererController; // @synthesize rendererController=_rendererController;
 @property(readonly, nonatomic) double scale; // @synthesize scale=_scale;
 @property(readonly, nonatomic) struct CGSize size; // @synthesize size=_size;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL invertColors;
 - (void)buildStrokeRenderCacheForDrawing:(id)arg1;
 - (void)resume;
 - (void)cancel;
 - (void)renderStrokes:(id)arg1 clippedToStrokeSpaceRect:(struct CGRect)arg2 scale:(double)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)renderCGStrokes:(id)arg1 clippedToStrokeSpaceRect:(struct CGRect)arg2 scale:(double)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)renderDrawing:(id)arg1 clippedToStrokeSpaceRect:(struct CGRect)arg2 scale:(double)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)renderDrawing:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)dealloc;
+- (id)initSyncWithSize:(struct CGSize)arg1 scale:(double)arg2;
+- (id)initWithSize:(struct CGSize)arg1 scale:(double)arg2 renderQueue:(id)arg3;
 - (id)initWithSize:(struct CGSize)arg1 scale:(double)arg2 useMetal:(BOOL)arg3 renderQueue:(id)arg4;
 - (id)initWithSize:(struct CGSize)arg1 scale:(double)arg2 useMetal:(BOOL)arg3;
 - (id)initWithSize:(struct CGSize)arg1 scale:(double)arg2;

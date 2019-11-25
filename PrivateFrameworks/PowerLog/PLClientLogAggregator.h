@@ -8,6 +8,7 @@
 
 @class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSObject<OS_os_log>;
 
+__attribute__((visibility("hidden")))
 @interface PLClientLogAggregator : NSObject
 {
     unsigned char _numAggregates;

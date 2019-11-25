@@ -37,7 +37,12 @@
 - (void)_encodeWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)configureWithMessageDispatcher:(id)arg1;
+- (id)findServiceWithType:(id)arg1;
+- (id)runtimeState;
+- (void)removeCloudData;
+- (void)unconfigure;
+- (void)configureWithMessageDispatcher:(id)arg1 configurationTracker:(id)arg2;
+- (void)handleInitialState;
 - (void)registerForMessages;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *messageReceiveQueue;
 @property(readonly, nonatomic) NSUUID *messageTargetUUID;
@@ -45,6 +50,7 @@
 - (id)dumpState;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
+- (id)initWithAccessory:(id)arg1 uniqueIdentifier:(id)arg2 services:(id)arg3 workQueue:(id)arg4;
 - (id)initWithAccessory:(id)arg1 uniqueIdentifier:(id)arg2 services:(id)arg3;
 @property(readonly, copy, nonatomic) NSUUID *contextSPIUniqueIdentifier;
 @property(readonly, copy, nonatomic) NSString *contextID;

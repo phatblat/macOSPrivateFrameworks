@@ -15,12 +15,15 @@
 @interface _INPBSendPaymentIntent : PBCodable <_INPBSendPaymentIntent, NSSecureCoding, NSCopying>
 {
     struct _has;
+    BOOL __encodeLegacyGloryData;
     _INPBCurrencyAmount *_currencyAmount;
     _INPBIntentMetadata *_intentMetadata;
     _INPBString *_note;
     _INPBContact *_payee;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(retain, nonatomic) _INPBContact *payee; // @synthesize payee=_payee;
 @property(retain, nonatomic) _INPBString *note; // @synthesize note=_note;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
@@ -30,6 +33,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(readonly, nonatomic) BOOL hasPayee;

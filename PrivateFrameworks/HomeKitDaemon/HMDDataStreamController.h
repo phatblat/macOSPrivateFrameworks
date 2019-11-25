@@ -9,9 +9,9 @@
 #import "HMDDataStreamDelegate.h"
 #import "HMFLogging.h"
 
-@class HMDDataStream, HMDDataStreamSetup, HMDHAPAccessory, HMDNotificationRegistration, HMDService, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
+@class HMDDataStream, HMDDataStreamSetup, HMDHAPAccessory, HMDService, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
 
-@interface HMDDataStreamController : NSObject <HMDDataStreamDelegate, HMFLogging>
+@interface HMDDataStreamController : NSObject <HMFLogging, HMDDataStreamDelegate>
 {
     BOOL _supportsDataStreamOverTCP;
     NSObject<OS_dispatch_queue> *_workQueue;
@@ -19,36 +19,44 @@
     HMDService *_transferManagementService;
     HMDDataStream *_defaultDataStream;
     NSMutableArray *_activeProtocols;
-    HMDNotificationRegistration *_notificationRegistration;
     HMDDataStreamSetup *_setupInProgress;
+    CDUnknownBlockType _dataStreamFactory;
+    NSString *_logIdentifier;
 }
 
 + (id)logCategory;
+@property(readonly) NSString *logIdentifier; // @synthesize logIdentifier=_logIdentifier;
+@property(readonly) CDUnknownBlockType dataStreamFactory; // @synthesize dataStreamFactory=_dataStreamFactory;
 @property(retain, nonatomic) HMDDataStreamSetup *setupInProgress; // @synthesize setupInProgress=_setupInProgress;
 @property(nonatomic) BOOL supportsDataStreamOverTCP; // @synthesize supportsDataStreamOverTCP=_supportsDataStreamOverTCP;
-@property(readonly, nonatomic) HMDNotificationRegistration *notificationRegistration; // @synthesize notificationRegistration=_notificationRegistration;
 @property(retain, nonatomic) NSMutableArray *activeProtocols; // @synthesize activeProtocols=_activeProtocols;
 @property(retain, nonatomic) HMDDataStream *defaultDataStream; // @synthesize defaultDataStream=_defaultDataStream;
 @property(nonatomic) __weak HMDService *transferManagementService; // @synthesize transferManagementService=_transferManagementService;
 @property(nonatomic) __weak HMDHAPAccessory *accessory; // @synthesize accessory=_accessory;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
 - (void).cxx_destruct;
+- (void)invalidate;
+- (void)startBulkSendSessionForFileType:(id)arg1 queue:(id)arg2 callback:(CDUnknownBlockType)arg3;
 - (void)dataStreamDidOpen:(id)arg1;
 - (void)dataStreamDidClose:(id)arg1;
 - (void)dataStream:(id)arg1 didFailWithError:(id)arg2;
+- (void)_resetDefaultDataStream;
 - (void)_createBulkStreamProtocol;
 - (void)_cancelStreamTransportWithError:(id)arg1;
 - (void)_finishStreamTransport;
 - (void)_continueStreamSetupWithResponse:(id)arg1;
 - (void)_generateStreamKeys;
 - (void)_initiateStreamSetup;
+- (void)sendTargetControlWhoAmIWithIdentifier:(unsigned int)arg1;
 - (void)removeBulkSendListener:(id)arg1;
 - (void)addBulkSendListener:(id)arg1 fileType:(id)arg2;
 - (BOOL)canAcceptBulkSendListeners;
 - (id)_getActiveProtocolWithClass:(Class)arg1;
 - (void)handleAccessoryIsNotReachable:(id)arg1;
+- (void)_handleAccessoryIsReachable;
 - (void)handleAccessoryIsReachable:(id)arg1;
 - (void)registerForMessages;
+- (id)initWithAccessory:(id)arg1 service:(id)arg2 workQueue:(id)arg3 dataStreamFactory:(CDUnknownBlockType)arg4;
 - (id)initWithAccessory:(id)arg1 service:(id)arg2 workQueue:(id)arg3;
 
 // Remaining properties

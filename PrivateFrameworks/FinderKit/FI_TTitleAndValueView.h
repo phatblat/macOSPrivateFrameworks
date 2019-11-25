@@ -17,10 +17,18 @@ __attribute__((visibility("hidden")))
     NSLayoutConstraint *_titleAndValueGapConstraint;
     double _titleAndValueGap;
     double _valueViewBottomInset;
+    double _valueViewTopInset;
     _Bool _loadedFromNib;
+    _Bool _allowWrappingTitle;
+    NSView *_separatorView;
+    double _maxTitleWidthPercentage;
 }
 
+@property(nonatomic) _Bool allowWrappingTitle; // @synthesize allowWrappingTitle=_allowWrappingTitle;
+@property(nonatomic) double maxTitleWidthPercentage; // @synthesize maxTitleWidthPercentage=_maxTitleWidthPercentage;
+@property(retain, nonatomic) NSView *separatorView; // @synthesize separatorView=_separatorView;
 @property(nonatomic) double valueViewBottomInset; // @synthesize valueViewBottomInset=_valueViewBottomInset;
+@property(nonatomic) double valueViewTopInset; // @synthesize valueViewTopInset=_valueViewTopInset;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)updateValueViewAXTitle;

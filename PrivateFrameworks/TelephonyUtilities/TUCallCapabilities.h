@@ -38,6 +38,7 @@
 + (void)invalidateAndRefreshThumperCallingProvisioningURL;
 + (void)invalidateAndRefreshWiFiCallingProvisioningURL;
 + (void)setThumperCallingAllowedOnDefaultPairedSecondaryDevice:(BOOL)arg1;
++ (void)setThumperCallingAllowed:(BOOL)arg1 onSecondaryDeviceWithID:(id)arg2 forSenderIdentityWithUUID:(id)arg3;
 + (void)setThumperCallingAllowed:(BOOL)arg1 onSecondaryDeviceWithID:(id)arg2;
 + (BOOL)isThumperCallingAllowedOnDefaultPairedSecondaryDevice;
 + (BOOL)isThumperCallingAllowedOnSecondaryDeviceWithID:(id)arg1;

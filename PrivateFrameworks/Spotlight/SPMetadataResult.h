@@ -4,56 +4,51 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <Spotlight/PRSResult.h>
+#import "SFSearchResult_SpotlightExtras.h"
 
-@class NSDictionary, NSImage, NSMutableDictionary, NSNumber, NSString, NSURL, PRSRankingItem;
+@class CSSearchableItem, NSDictionary, NSImage, NSMutableDictionary, NSNumber, NSOrderedSet, NSString, NSURL;
 
-@interface SPMetadataResult : PRSResult
+@interface SPMetadataResult : SFSearchResult_SpotlightExtras
 {
-    unsigned long long _rank;
-    unsigned long long _score;
+    struct __MDItem *_metadataItem;
+    // Error parsing type: T, name: _score
     NSImage *_icon;
     NSImage *_appImage;
     NSString *_filePath;
     NSURL *_fileURL;
-    NSString *_groupName;
-    NSDictionary *_cache;
+    NSDictionary *_attributes;
     NSMutableDictionary *_dynamicCache;
-    const void *_lastUsedDate;
-    PRSRankingItem *rankingItem;
-    struct __MDItem *_metadataItem;
+    NSOrderedSet *_alreadyFetchedAttributes;
+    CSSearchableItem *_csItem;
 }
 
 + (id)dictionaryForKeys:(id)arg1 keySet:(id)arg2 query:(struct __MDQuery *)arg3 group:(unsigned long long)arg4 index:(unsigned long long)arg5;
 + (id)dictionaryForKeys:(id)arg1 keySet:(id)arg2 query:(struct __MDQuery *)arg3 index:(unsigned long long)arg4;
-+ (void)setUserQueryString:(id)arg1;
 + (void)initialize;
-@property(readonly, nonatomic) struct __MDItem *metadataItem; // @synthesize metadataItem=_metadataItem;
-- (void)setRankingItem:(id)arg1;
-- (id)rankingItem;
+@property(readonly, nonatomic) CSSearchableItem *csItem; // @synthesize csItem=_csItem;
+@property(readonly, nonatomic) NSOrderedSet *alreadyFetchedAttributes; // @synthesize alreadyFetchedAttributes=_alreadyFetchedAttributes;
 - (void).cxx_destruct;
+- (id)bundleID;
 - (BOOL)isFile;
 - (BOOL)allowShowPath;
 @property(readonly, nonatomic) NSNumber *adamID;
 @property(readonly, nonatomic) NSString *copyrightString;
 - (id)fastURL;
-- (void)setScore:(unsigned long long)arg1;
-- (unsigned long long)score;
-- (void)setGroupName:(id)arg1;
-- (id)groupName;
+- (void)setScore: /* Error: Ran out of types for this method. */;
+-     // Error parsing type: T16@0:8, name: score
+- (id)sectionBundleIdentifier;
 @property(readonly, nonatomic) NSNumber *groupNumber;
 - (id)category;
 - (void)dealloc;
+- (id)groupName;
 - (id)groupId;
 - (void)_setObject:(id)arg1 forCacheSlot:(const void **)arg2;
 - (id)_objectForCacheSlot:(const void **)arg1 getterKey:(id)arg2;
-- (id)subjectForEmailAttachment;
-- (BOOL)isBoundEmailAttachment;
-- (BOOL)isInEmailAttachmentLocation;
 - (unsigned long long)resultOpenOptions;
 - (BOOL)shouldNotBeTopHit;
-- (BOOL)isTopHitCandidate;
+- (int)isTopHit;
 - (id)displayInfo;
+- (id)identifier;
 - (id)filePath;
 - (void)markAsUsed;
 - (id)lastUsedDate;
@@ -68,16 +63,19 @@
 - (unsigned long long)hash;
 - (BOOL)isEqualToMetadataResult:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-@property(nonatomic) unsigned long long rank;
 - (void)prepareIcons;
+- (id)blah;
+- (id)documentIdentifier;
+- (id)initWithResult:(id)arg1;
 - (id)initWithFilePath:(id)arg1 prefetchAttributes:(id)arg2;
-- (id)initWithMetadataItem:(struct __MDItem *)arg1;
-- (id)initWithMetadataItem:(struct __MDItem *)arg1 attributeDictionary:(id)arg2;
-- (id)initWithMetadataItem:(struct __MDItem *)arg1 attributeDictionary:(id)arg2 replacing:(id)arg3;
+- (id)initWithCSSearchableItem:(id)arg1;
+- (id)initWithCSSearchableItem:(id)arg1 attributeDictionary:(id)arg2;
+- (id)initWithCSSearchableItem:(id)arg1 attributeDictionary:(id)arg2 replacing:(id)arg3 fetchedAttributes:(id)arg4 ranker:(id)arg5 queryString:(id)arg6;
 - (BOOL)isValidObjectTypeIfDateAttribute:(id)arg1 value:(id)arg2;
 - (id)iconImageForApplication;
 - (id)iconImage;
 - (id)largeIconImage;
+- (BOOL)isLocalApplicationResult;
 
 @end
 

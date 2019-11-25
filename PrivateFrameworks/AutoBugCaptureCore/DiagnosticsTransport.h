@@ -8,6 +8,7 @@
 
 @class DiagnosticsServiceImpl, NSObject<OS_dispatch_queue>, NSXPCListener;
 
+__attribute__((visibility("hidden")))
 @interface DiagnosticsTransport : NSObject
 {
     NSXPCListener *listener;

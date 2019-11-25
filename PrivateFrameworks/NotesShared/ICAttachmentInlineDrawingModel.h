@@ -19,6 +19,10 @@
 - (id)additionalIndexableTextContentInNote;
 - (id)standaloneTitleForNote;
 - (BOOL)providesStandaloneTitleForNote;
+- (BOOL)showThumbnailInNoteList;
+- (BOOL)shouldSyncPreviewImageToCloud:(id)arg1;
+- (BOOL)preferLocalPreviewImages;
+- (BOOL)previewsSupportMultipleAppearances;
 - (BOOL)hasPreviews;
 - (BOOL)shouldShowInContentInfoText;
 

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class AKActionController, AKAttributeController, AKCursorController_Mac, AKDFRController, AKFormFeatureDetectorController, AKHighlightAnnotationController, AKLegacyDoodleController, AKMainEventHandler, AKModelController, AKPageController, AKSignatureModelController, AKStatistics, AKTextEditorController, AKToolController, AKToolbarView, AKToolbarViewController, AKUndoController, NSMapTable, NSMutableArray, NSString, NSView, NSWindow;
+@class AKActionController, AKAttributeController, AKCursorController_Mac, AKDFRController, AKFormFeatureDetectorController, AKHighlightAnnotationController, AKLegacyDoodleController, AKMainEventHandler, AKModelController, AKPageController, AKSidecarController, AKSignatureModelController, AKSparseMutableControllerArray, AKStatistics, AKTextEditorController, AKToolController, AKToolbarView, AKToolbarViewController, AKUndoController, NSMapTable, NSString, NSView, NSWindow;
 
 @interface AKController : NSObject
 {
@@ -26,13 +26,14 @@
     NSView *_toolbarView;
     unsigned long long _currentPageIndex;
     NSString *_author;
-    NSMutableArray *_pageControllers;
+    AKSparseMutableControllerArray *_pageControllers;
     NSMapTable *_pageModelControllersToPageControllers;
     AKActionController *_actionController;
     AKToolController *_toolController;
     AKToolbarViewController *_toolbarViewController;
     AKAttributeController *_attributeController;
     AKUndoController *_undoController;
+    AKSidecarController *_sidecarController;
     AKMainEventHandler *_mainEventHandler;
     AKTextEditorController *_textEditorController;
     AKLegacyDoodleController *_legacyDoodleController;
@@ -84,13 +85,14 @@
 @property(retain) AKLegacyDoodleController *legacyDoodleController; // @synthesize legacyDoodleController=_legacyDoodleController;
 @property(retain) AKTextEditorController *textEditorController; // @synthesize textEditorController=_textEditorController;
 @property(retain) AKMainEventHandler *mainEventHandler; // @synthesize mainEventHandler=_mainEventHandler;
+@property(retain) AKSidecarController *sidecarController; // @synthesize sidecarController=_sidecarController;
 @property(retain) AKUndoController *undoController; // @synthesize undoController=_undoController;
 @property(retain) AKAttributeController *attributeController; // @synthesize attributeController=_attributeController;
 @property(retain) AKToolbarViewController *toolbarViewController; // @synthesize toolbarViewController=_toolbarViewController;
 @property(retain) AKToolController *toolController; // @synthesize toolController=_toolController;
 @property(retain) AKActionController *actionController; // @synthesize actionController=_actionController;
 @property(retain) NSMapTable *pageModelControllersToPageControllers; // @synthesize pageModelControllersToPageControllers=_pageModelControllersToPageControllers;
-@property(retain) NSMutableArray *pageControllers; // @synthesize pageControllers=_pageControllers;
+@property(retain) AKSparseMutableControllerArray *pageControllers; // @synthesize pageControllers=_pageControllers;
 @property BOOL isTestingInstance; // @synthesize isTestingInstance=_isTestingInstance;
 @property(copy) NSString *author; // @synthesize author=_author;
 @property unsigned long long currentPageIndex; // @synthesize currentPageIndex=_currentPageIndex;
@@ -106,6 +108,7 @@
 - (void)endLogging;
 - (void)beginLogging:(id)arg1 documentType:(id)arg2;
 - (void)strokeAddedNotification:(id)arg1;
+- (BOOL)_isInDFRAction;
 - (BOOL)isInDFRAction;
 - (id)akTouchBar;
 - (id)groupTouchBarItemWithIdentifier:(id)arg1;
@@ -119,6 +122,7 @@
 - (BOOL)shouldDrawVariableStrokeDoodles;
 - (BOOL)_validateCutCopyDelete;
 - (BOOL)isDFRInitialized;
+@property(readonly, nonatomic) BOOL onlyDrawWithApplePencil;
 - (void)removeNoteFromAnnotation:(id)arg1;
 - (void)addPopupToAnnotation:(id)arg1 openPopup:(BOOL)arg2;
 - (void)highlightableSelectionDidEndChanging;
@@ -151,6 +155,7 @@
 - (id)signaturesMenu;
 - (void)applyCurrentCrop;
 - (void)resetToDefaultToolMode;
+- (void)setToolMode:(unsigned long long)arg1;
 - (unsigned long long)toolMode;
 - (BOOL)handleEvent:(id)arg1;
 - (struct CGRect)contentAlignedRectForRect:(struct CGRect)arg1 onPageAtIndex:(unsigned long long)arg2;
@@ -167,6 +172,7 @@
 - (void)performActionForSender:(id)arg1;
 - (BOOL)validateSender:(id)arg1;
 - (void)enclosingScrollViewDidScroll:(id)arg1;
+- (void)_setupPageModelController:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)dealloc;
 - (void)teardown;

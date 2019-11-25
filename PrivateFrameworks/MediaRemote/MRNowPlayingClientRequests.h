@@ -8,12 +8,11 @@
 
 #import "MRNowPlayingClientState.h"
 
-@class NSArray, NSMutableArray, NSObject<OS_dispatch_queue>, _MRNowPlayingClientProtobuf;
+@class NSArray, NSMutableArray, _MRNowPlayingClientProtobuf;
 
 __attribute__((visibility("hidden")))
 @interface MRNowPlayingClientRequests : NSObject <MRNowPlayingClientState>
 {
-    NSObject<OS_dispatch_queue> *_serialQueue;
     NSMutableArray *_playerClients;
     _MRNowPlayingClientProtobuf *_client;
     NSArray *_nowPlayingClients;

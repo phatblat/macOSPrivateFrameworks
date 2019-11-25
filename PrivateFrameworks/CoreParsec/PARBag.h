@@ -8,16 +8,18 @@
 
 #import "NSSecureCoding.h"
 
-@class NSArray, NSData, NSDictionary, NSNumber, NSString, NSURL;
+@class NSArray, NSData, NSDictionary, NSNumber, NSString, NSURL, NSUserDefaults;
 
 @interface PARBag : NSObject <NSSecureCoding>
 {
     NSData *_bagData;
     NSString *_userAgent;
     NSString *_clientName;
+    NSUserDefaults *_userDefaults;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(readonly, nonatomic) NSUserDefaults *userDefaults; // @synthesize userDefaults=_userDefaults;
 @property(readonly, copy, nonatomic) NSString *clientName; // @synthesize clientName=_clientName;
 @property(readonly, copy, nonatomic) NSString *userAgent; // @synthesize userAgent=_userAgent;
 - (void).cxx_destruct;
@@ -33,8 +35,9 @@
 - (id)bag_stringForKey:(id)arg1;
 - (BOOL)bag_boolForKey:(id)arg1;
 - (id)_bag_objectOfClass:(Class)arg1 forKey:(id)arg2;
+@property(readonly, nonatomic) long long protocolVersion;
 @property(readonly, nonatomic) NSDictionary *tuscanyConfiguration;
-@property(readonly, nonatomic) BOOL sendProtobuf;
+@property(readonly, copy, nonatomic) NSString *parsecFeedbackFormat;
 @property(readonly, nonatomic) BOOL disableAsTypedSuggestion;
 @property(readonly, nonatomic) NSArray *suggestionRankerModel;
 @property(readonly, nonatomic) BOOL use2LayerRanking;
@@ -58,6 +61,7 @@
 @property(readonly, nonatomic) double safariLast1week;
 @property(readonly, nonatomic) double safariLast1day;
 @property(readonly, nonatomic) double safariLast1hour;
+@property(readonly, nonatomic) NSNumber *cohortsLookbackInDays;
 @property(readonly, nonatomic) NSNumber *duetExpertCustomFeedbackSamplingPercentage;
 @property(readonly, nonatomic) double timeoutIntervalForRequest;
 @property(readonly, nonatomic) NSNumber *feedbackMaxAgeInDays;
@@ -70,8 +74,9 @@
 @property(readonly, copy, nonatomic) NSString *firstUseDescriptionText;
 @property(readonly, copy, nonatomic) NSArray *enabledDomains;
 @property(readonly, copy, nonatomic) NSArray *recentlyUsedAppIdentifierWhitelist;
-@property(readonly, nonatomic) long long maximumNumberOfFeedbackFiles;
+@property(readonly, nonatomic) BOOL imageTimingFeedbackEnabled;
 @property(readonly, nonatomic) BOOL feedbackEnabled;
+@property(readonly, nonatomic) long long abTest2WeekZoneSize;
 @property(readonly, nonatomic) unsigned long long maximumCachedQueriesToSend;
 @property(readonly, nonatomic) unsigned long long maximumCachedResultsToSend;
 @property(readonly, nonatomic) unsigned long long minimumQueryLength;
@@ -94,6 +99,7 @@
 @property(readonly, nonatomic) NSNumber *minSearchRenderTimeout;
 @property(readonly, nonatomic) NSNumber *searchRenderTimeout;
 @property(readonly, copy, nonatomic) NSDictionary *resources;
+@property(readonly, copy, nonatomic) NSString *releaseTag;
 @property(readonly, copy, nonatomic) NSString *version;
 @property(readonly, nonatomic, getter=isEnabled) BOOL enabled;
 - (double)expirationDate;
@@ -102,10 +108,13 @@
 - (id)_bag_objectOfClass:(Class)arg1 forKey:(id)arg2 override:(BOOL)arg3;
 - (id)valueForKey:(id)arg1 override:(BOOL)arg2;
 - (id)valueForKey:(id)arg1;
+- (id)initWithData:(id)arg1 userAgent:(id)arg2 userDefaults:(id)arg3;
 - (id)initWithBag:(id)arg1 userAgent:(id)arg2;
 - (id)initWithData:(id)arg1;
 - (id)initWithData:(id)arg1 userAgent:(id)arg2;
+- (id)initWithURL:(id)arg1 userAgent:(id)arg2 userDefaults:(id)arg3;
 - (id)initWithURL:(id)arg1 userAgent:(id)arg2;
+- (id)initWithURL:(id)arg1 userDefaults:(id)arg2;
 
 @end
 

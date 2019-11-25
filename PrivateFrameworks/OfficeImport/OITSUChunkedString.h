@@ -6,6 +6,7 @@
 
 #import "NSMutableString.h"
 
+__attribute__((visibility("hidden")))
 @interface OITSUChunkedString : NSMutableString
 {
     unsigned long long _length;

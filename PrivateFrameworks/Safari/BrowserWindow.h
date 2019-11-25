@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
     BookmarksUndoController *_bookmarksUndoController;
     id _mouseUpEventMonitor;
     BOOL _hasMoved;
+    BOOL _isClosing;
     BOOL _ignoresOrderFront;
     BOOL _shouldDeferSettingFirstResponderDueToScrubbing;
 }
@@ -32,7 +33,8 @@ __attribute__((visibility("hidden")))
 - (id)orderedTabViewItems;
 - (void)setCurrentTabViewItem:(id)arg1;
 - (id)currentTabViewItem;
-- (id)accessibilityAttributeValue:(id)arg1;
+- (id)accessibilityChildren;
+- (id)accessibilityTitle;
 - (void)exitFullScreenMode:(id)arg1;
 - (void)enterFullScreenMode:(id)arg1;
 - (struct CGRect)constrainFrameRect:(struct CGRect)arg1 toScreen:(id)arg2;
@@ -64,6 +66,7 @@ __attribute__((visibility("hidden")))
 - (void)_startedMoving:(id)arg1;
 - (void)setUpBrowserWindow;
 - (void)zoom:(id)arg1;
+- (void)orderWindow:(long long)arg1 relativeTo:(long long)arg2;
 
 @end
 

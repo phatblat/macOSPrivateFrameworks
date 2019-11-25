@@ -13,6 +13,8 @@
 
 @interface HMDSecureRemoteStream : HMFMessageTransport <HMFLogging, HMFObject>
 {
+    id <HMFLocking> _lock;
+    NSObject<OS_dispatch_queue> *_queue;
     BOOL _open;
     BOOL _idle;
     BOOL _supportsSharedIdentities;
@@ -22,8 +24,6 @@
     HMDDevice *_peerDevice;
     long long _role;
     NSUUID *_sessionID;
-    NSObject<OS_dispatch_queue> *_workQueue;
-    NSObject<OS_dispatch_queue> *_propertyQueue;
     HMDUser *_peer;
     HMFPairingIdentity *_peerIdentity;
     HMDSecureRemoteStreamInternal *_remoteSession;
@@ -38,8 +38,6 @@
 @property(retain, nonatomic) HMDSecureRemoteStreamInternal *remoteSession; // @synthesize remoteSession=_remoteSession;
 @property(retain, nonatomic) HMFPairingIdentity *peerIdentity; // @synthesize peerIdentity=_peerIdentity;
 @property(retain, nonatomic) HMDUser *peer; // @synthesize peer=_peer;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *propertyQueue; // @synthesize propertyQueue=_propertyQueue;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
 @property(readonly, copy, nonatomic) NSUUID *sessionID; // @synthesize sessionID=_sessionID;
 @property(readonly) long long role; // @synthesize role=_role;
 - (void).cxx_destruct;
@@ -55,7 +53,6 @@
 - (void)closedWithError:(id)arg1;
 - (void)_configureWithCompletionQueue:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)startAndInvokeOnQueue:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)notifyClientsUpdatedIdle:(BOOL)arg1;
 @property(readonly, copy) NSDate *lastActivity; // @synthesize lastActivity=_lastActivity;
 - (void)setIdle:(BOOL)arg1;
 @property(readonly, getter=isIdle) BOOL idle; // @synthesize idle=_idle;

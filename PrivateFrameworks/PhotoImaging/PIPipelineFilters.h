@@ -10,20 +10,31 @@
 {
 }
 
++ (id)spatialOvercaptureVideoSourceFilter;
++ (id)primarySourceFilter;
++ (id)overcaptureSourceFilter;
++ (id)autoloopStabilizedVideoFilter;
 + (id)applyOrientationFilter;
 + (id)stopAtTagIncludeOrientationFilter:(id)arg1;
 + (id)stopAtTagIncludeGeometryFilter:(id)arg1;
++ (id)inputToCropFilter;
 + (id)postGeometryFilter;
 + (id)preGeometryFilter;
++ (id)perspectiveStraightenWithoutCropFilter;
 + (id)noGeometryFilter;
++ (id)stripAllTimeAdjustmentsFilter;
++ (id)iosCropToolFilter;
 + (id)noCropFilter;
 + (id)noMuteFilter;
 + (id)noTrimFilter;
 + (id)noRedEyeFilter;
 + (id)sushiLevel1Filter;
-+ (id)sourceFilterIncludingOrientation:(BOOL)arg1;
++ (id)sourceFilterNoOrientation;
++ (id)rawSourceFilterIncludingOrientation;
 + (id)rawFaceBalanceFilter;
++ (id)exifOrientationAndCropStraightenOnly;
 + (id)autoCropFilter;
++ (id)socPseudoColorFilter;
 
 @end
 

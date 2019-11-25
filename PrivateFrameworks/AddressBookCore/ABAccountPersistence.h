@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class ABZeroingWeakReference, NSMutableDictionary, NSString;
+@class NSMutableDictionary, NSString;
 
 @interface ABAccountPersistence : NSObject
 {
@@ -16,10 +16,12 @@
     id <CNCancelable> _delayedApplyToken;
     BOOL _hasChanges;
     NSMutableDictionary *_persistentValues;
-    ABZeroingWeakReference *_delegate;
+    id <ABAccountPersistenceDelegate> _delegate;
 }
 
+@property __weak id <ABAccountPersistenceDelegate> delegate; // @synthesize delegate=_delegate;
 @property(getter=isInvalidated) BOOL invalidated; // @synthesize invalidated=_invalidated;
+- (void).cxx_destruct;
 - (void)_sourceShouldRefreshImmediately;
 - (unsigned long long)unsignedIntegerForKey:(id)arg1;
 - (void)setUnsignedInteger:(unsigned long long)arg1 forKey:(id)arg2;
@@ -45,9 +47,7 @@
 - (void)applyChangesAndRefresh:(BOOL)arg1;
 - (void)applyChanges:(id)arg1;
 - (id)acAccountIdentifier;
-@property __weak id <ABAccountPersistenceDelegate> delegate;
 - (id)description;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithBackend:(id)arg1 accountType:(id)arg2;
 

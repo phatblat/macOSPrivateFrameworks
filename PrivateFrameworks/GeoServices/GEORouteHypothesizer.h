@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class GEOPlannedDestination, GEORouteHypothesis, NSError, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSUUID;
+@class GEOPlannedDestination, GEORouteHypothesis, NSError, NSObject<OS_dispatch_source>, NSUUID, geo_isolater;
 
 @interface GEORouteHypothesizer : NSObject
 {
@@ -17,7 +17,7 @@
     NSError *_currentError;
     CDUnknownBlockType _updateHandler;
     NSUUID *_uuid;
-    NSObject<OS_dispatch_queue> *_serialQueue;
+    geo_isolater *_isolater;
     BOOL _wakeForDelay;
     NSObject<OS_dispatch_source> *_delayDispatchTimer;
 }
@@ -33,7 +33,6 @@
 - (void).cxx_destruct;
 - (id)description;
 - (void)dealloc;
-- (void)didDismissUINotification:(unsigned long long)arg1 dismissalType:(unsigned long long)arg2;
 - (void)didPostUINotification:(unsigned long long)arg1;
 - (void)onlyPerformLocalUpdates;
 - (void)stopHypothesizing;

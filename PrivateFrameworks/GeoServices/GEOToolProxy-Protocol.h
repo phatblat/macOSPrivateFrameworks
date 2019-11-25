@@ -7,11 +7,13 @@
 @class NSString;
 
 @protocol GEOToolProxy
+- (BOOL)notifyNetworkDefaultsChanged;
 - (void)invalidateTileCache;
 - (unsigned long long)freePurgableSpace:(unsigned long long)arg1 forUrgency:(int)arg2;
 - (unsigned long long)calculatePurgableSpaceForUrgency:(int)arg1;
 - (id)getDefault:(NSString *)arg1 source:(long long *)arg2;
 - (void)lockDBs;
 - (void)unlockDBs;
+- (NSString *)ping;
 @end
 

@@ -6,16 +6,26 @@
 
 #import "NSObject.h"
 
+@class NSMutableDictionary, NSString;
+
 @interface SGContactPipelineHelper : NSObject
 {
+    NSMutableDictionary *_lengthsCounts;
+    unsigned long long _phonesSeenInContacts;
+    NSString *_mostCommonCountryCode;
+    struct _opaque_pthread_mutex_t _helperLock;
 }
 
-+ (id)findContactFromEntity:(id)arg1 withType:(unsigned long long)arg2 detailValue:(id)arg3;
-+ (id)findContactInArray:(id)arg1 withDetailType:(unsigned long long)arg2 andValue:(id)arg3;
++ (id)normalizedDigits:(id)arg1;
 + (BOOL)contactExistsInArray:(id)arg1 withName:(id)arg2;
 + (id)findContactsForDetailType:(unsigned long long)arg1 andValue:(id)arg2;
 + (id)findContactsForPerson:(id)arg1 fetchingKeys:(id)arg2;
-+ (id)contactStore;
++ (id)sharedInstance;
+- (void).cxx_destruct;
+- (BOOL)numberMatchesContactsForm:(id)arg1 usingPredicate:(id)arg2;
+- (BOOL)numberMatchesContactsForm:(id)arg1;
+- (void)dealloc;
+- (id)init;
 
 @end
 

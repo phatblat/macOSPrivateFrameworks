@@ -8,7 +8,7 @@
 
 #import "NSURLSessionTaskDelegate.h"
 
-@class ACAccount, ACAccountStore, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString, NSURLSession, NSURLSessionConfiguration;
+@class ACAccountStore, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, NSSet, NSString, NSURLSession, NSURLSessionConfiguration;
 
 @interface PKWebService : NSObject <NSURLSessionTaskDelegate>
 {
@@ -23,11 +23,13 @@
     NSObject<OS_dispatch_queue> *_diagnosticReasonsQueue;
     NSObject<OS_dispatch_queue> *_stateQueue;
     NSObject<OS_dispatch_queue> *_sessionQueue;
+    NSSet *_sensitiveKeys;
 }
 
 + (id)_sharedCookieStorage;
-+ (id)account;
 - (void).cxx_destruct;
+- (void)_redactLogsFromJSONObject:(id)arg1;
+- (id)_redactLogsWithData:(id)arg1;
 - (void)logResponse:(id)arg1 withData:(id)arg2;
 - (void)logRequest:(id)arg1;
 - (id)logFacility;
@@ -57,8 +59,6 @@
 - (void)refreshSessionWithConfiguration:(id)arg1;
 @property(readonly) NSURLSessionConfiguration *sessionConfiguration;
 - (void)invalidate;
-@property(readonly) ACAccount *primaryAppleAccount;
-@property(readonly) ACAccount *account;
 - (void)handleAuthenticationFailureWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)handleWillPerformHTTPRedirectionWithResponse:(id)arg1 redirectHandler:(CDUnknownBlockType)arg2;
 - (BOOL)canBypassTrustExtendedValidation;

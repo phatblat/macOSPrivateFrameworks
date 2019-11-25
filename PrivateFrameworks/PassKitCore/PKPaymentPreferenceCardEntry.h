@@ -15,7 +15,6 @@
     PKPaymentPass *_pass;
     PKRemotePaymentInstrument *_remotePaymentInstrument;
     PKPaymentApplication *_paymentApplication;
-    PKRemotePaymentInstrument *_remotePaymentInstrument;
     NSString *_displayName;
     NSString *_availabilityString;
     CDUnknownBlockType _actionBlock;
@@ -26,7 +25,6 @@
 @property(nonatomic) BOOL shouldShowCardUI; // @synthesize shouldShowCardUI=_shouldShowCardUI;
 @property(copy, nonatomic) NSString *availabilityString; // @synthesize availabilityString=_availabilityString;
 @property(copy, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
-@property(retain, nonatomic) PKRemotePaymentInstrument *remotePaymentInstrument; // @synthesize remotePaymentInstrument=_remotePaymentInstrument;
 @property(retain, nonatomic) PKPaymentApplication *paymentApplication; // @synthesize paymentApplication=_paymentApplication;
 @property(retain, nonatomic) PKRemotePaymentInstrument *remotePaymentInstrument; // @synthesize remotePaymentInstrument=_remotePaymentInstrument;
 @property(retain, nonatomic) PKPaymentPass *pass; // @synthesize pass=_pass;

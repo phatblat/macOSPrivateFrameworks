@@ -19,6 +19,7 @@
         unsigned int suggestionType:1;
     } _has;
     BOOL _isMe;
+    BOOL __encodeLegacyGloryData;
     int _suggestionType;
     NSArray *_aliases;
     _INPBContactHandle *_contactHandle;
@@ -32,6 +33,7 @@
     NSString *_namePrefix;
     NSString *_nameSuffix;
     NSString *_nickName;
+    NSString *_phonemeData;
     NSString *_phoneticFirstName;
     NSString *_phoneticLastName;
     NSString *_phoneticMiddleName;
@@ -41,7 +43,9 @@
     _INPBValueMetadata *_valueMetadata;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)aliasesType;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(retain, nonatomic) _INPBValueMetadata *valueMetadata; // @synthesize valueMetadata=_valueMetadata;
 @property(nonatomic) int suggestionType; // @synthesize suggestionType=_suggestionType;
 @property(copy, nonatomic) NSString *relationship; // @synthesize relationship=_relationship;
@@ -50,6 +54,7 @@
 @property(copy, nonatomic) NSString *phoneticMiddleName; // @synthesize phoneticMiddleName=_phoneticMiddleName;
 @property(copy, nonatomic) NSString *phoneticLastName; // @synthesize phoneticLastName=_phoneticLastName;
 @property(copy, nonatomic) NSString *phoneticFirstName; // @synthesize phoneticFirstName=_phoneticFirstName;
+@property(copy, nonatomic) NSString *phonemeData; // @synthesize phonemeData=_phonemeData;
 @property(copy, nonatomic) NSString *nickName; // @synthesize nickName=_nickName;
 @property(copy, nonatomic) NSString *nameSuffix; // @synthesize nameSuffix=_nameSuffix;
 @property(copy, nonatomic) NSString *namePrefix; // @synthesize namePrefix=_namePrefix;
@@ -68,6 +73,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(readonly, nonatomic) BOOL hasValueMetadata;
@@ -80,6 +87,7 @@
 @property(readonly, nonatomic) BOOL hasPhoneticMiddleName;
 @property(readonly, nonatomic) BOOL hasPhoneticLastName;
 @property(readonly, nonatomic) BOOL hasPhoneticFirstName;
+@property(readonly, nonatomic) BOOL hasPhonemeData;
 @property(readonly, nonatomic) BOOL hasNickName;
 @property(readonly, nonatomic) BOOL hasNameSuffix;
 @property(readonly, nonatomic) BOOL hasNamePrefix;

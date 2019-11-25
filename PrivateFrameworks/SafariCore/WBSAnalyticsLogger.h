@@ -18,6 +18,21 @@
 + (id)sharedLogger;
 @property(readonly, nonatomic) AWDServerConnection *awdServer; // @synthesize awdServer=_awdServer;
 - (void).cxx_destruct;
+- (void)_sendEvent:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
+- (void)didRetrieveNumberOfFrequentlyVisitedSites:(unsigned long long)arg1;
+- (void)didRetrieveNumberOfFavorites:(unsigned long long)arg1;
+- (void)didToggleShowLessButtonForSection:(long long)arg1;
+- (void)didToggleShowMoreButtonForSection:(long long)arg1;
+- (void)didOpenRecommendationWithMetadata:(id)arg1 withPosition:(long long)arg2;
+- (void)didRetrieveNumberOfRecommendations:(unsigned long long)arg1 numberOfTopics:(unsigned long long)arg2;
+- (void)didBanWebsiteWithMetadata:(id)arg1;
+- (void)didDownvoteDataSourceWithMetadata:(id)arg1;
+- (void)didSetDownloadFolderToProviderWithIdentifier:(id)arg1 isDefaultFolder:(BOOL)arg2;
+- (void)didMoveToBackgroundWithNumberOfOnGoingDownloads:(unsigned long long)arg1;
+- (void)didRevealDownloadWithMIMEType:(id)arg1 uti:(id)arg2 result:(long long)arg3;
+- (void)didModifyPerSitePreferenceWithIdentifier:(id)arg1 modificationLevel:(long long)arg2 type:(long long)arg3 method:(long long)arg4;
+- (void)reportWeakPasswordWarningEvent:(long long)arg1;
+- (void)recordSearchResultPageImpressionWithDefaultSearchProviderIdentifier:(id)arg1 searchProviderIdentifier:(id)arg2 isReferredByUnifiedField:(BOOL)arg3;
 - (void)userDidReceiveSharedPasswordWithOutcome:(int)arg1;
 - (void)userDidSharePasswordWithOutcome:(int)arg1;
 - (void)submitVersioningMetricWithVersion:(id)arg1 variant:(int)arg2;
@@ -39,12 +54,11 @@
 - (void)didSelectContactAutoFillSet:(int)arg1 hasPreviouslyCustomizedSet:(BOOL)arg2;
 - (void)didShowContactAutoFillSetsWithMeCardSets:(BOOL)arg1 showingPreviouslyCustomizedSet:(BOOL)arg2;
 - (void)didAutoFillCustomContactSetShowingMeCard:(BOOL)arg1;
-- (void)safeBrowsingUserActionAfterSeeingWarning:(int)arg1;
-- (void)safeBrowsingWarningPageShown:(int)arg1;
 - (void)didReceiveInvalidMessageFromWebProcess:(id)arg1;
 - (void)pageLoadCompleted:(unsigned long long)arg1 withErrorCode:(long long)arg2;
 - (void)pageLoadStarted:(unsigned long long)arg1;
 - (void)pageLoadCompleted:(unsigned long long)arg1;
+- (void)performOnAnalyticsQueueWithDelay:(long long)arg1 block:(CDUnknownBlockType)arg2;
 - (void)registerQueriableMetric:(unsigned int)arg1 callback:(CDUnknownBlockType)arg2;
 - (id)initWithQueue:(id)arg1;
 

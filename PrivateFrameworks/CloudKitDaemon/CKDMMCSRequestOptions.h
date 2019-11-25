@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-@class CKOperationMMCSRequestOptions, NSArray, NSData, NSDictionary, NSString;
+@class C2MetricOptions, CKOperationMMCSRequestOptions, NSArray, NSData, NSDictionary, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CKDMMCSRequestOptions : NSObject
 {
     BOOL _allowsCellularAccess;
     BOOL _allowsPowerNapScheduling;
-    BOOL _automaticallyRetryNetworkFailures;
+    BOOL _resolvedAutomaticallyRetryNetworkFailures;
     long long _databaseScope;
     long long _containerEnvironment;
     NSString *_topmostParentOperationID;
@@ -26,15 +26,21 @@ __attribute__((visibility("hidden")))
     NSData *_authPutResponse;
     NSDictionary *_authPutResponseHeaders;
     long long _qualityOfService;
-    unsigned long long _discretionaryNetworkBehavior;
+    long long _queuePriority;
+    unsigned long long _resolvedDiscretionaryNetworkBehavior;
+    unsigned long long _duetPreClearedMode;
+    C2MetricOptions *_metricOptions;
     unsigned long long _networkServiceType;
     CKOperationMMCSRequestOptions *_MMCSRequestOptions;
 }
 
 @property(retain, nonatomic) CKOperationMMCSRequestOptions *MMCSRequestOptions; // @synthesize MMCSRequestOptions=_MMCSRequestOptions;
 @property(nonatomic) unsigned long long networkServiceType; // @synthesize networkServiceType=_networkServiceType;
-@property(nonatomic) unsigned long long discretionaryNetworkBehavior; // @synthesize discretionaryNetworkBehavior=_discretionaryNetworkBehavior;
-@property(nonatomic) BOOL automaticallyRetryNetworkFailures; // @synthesize automaticallyRetryNetworkFailures=_automaticallyRetryNetworkFailures;
+@property(retain, nonatomic) C2MetricOptions *metricOptions; // @synthesize metricOptions=_metricOptions;
+@property(nonatomic) unsigned long long duetPreClearedMode; // @synthesize duetPreClearedMode=_duetPreClearedMode;
+@property(nonatomic) unsigned long long resolvedDiscretionaryNetworkBehavior; // @synthesize resolvedDiscretionaryNetworkBehavior=_resolvedDiscretionaryNetworkBehavior;
+@property(nonatomic) BOOL resolvedAutomaticallyRetryNetworkFailures; // @synthesize resolvedAutomaticallyRetryNetworkFailures=_resolvedAutomaticallyRetryNetworkFailures;
+@property(nonatomic) long long queuePriority; // @synthesize queuePriority=_queuePriority;
 @property(nonatomic) long long qualityOfService; // @synthesize qualityOfService=_qualityOfService;
 @property(nonatomic) BOOL allowsPowerNapScheduling; // @synthesize allowsPowerNapScheduling=_allowsPowerNapScheduling;
 @property(nonatomic) BOOL allowsCellularAccess; // @synthesize allowsCellularAccess=_allowsCellularAccess;

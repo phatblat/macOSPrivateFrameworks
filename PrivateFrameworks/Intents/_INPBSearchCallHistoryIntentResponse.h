@@ -15,13 +15,16 @@
 @interface _INPBSearchCallHistoryIntentResponse : PBCodable <_INPBSearchCallHistoryIntentResponse, NSSecureCoding, NSCopying>
 {
     struct _has;
+    BOOL __encodeLegacyGloryData;
     NSArray *_callRecords;
     NSString *_dateCreated;
     NSString *_status;
     NSString *_targetContact;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)callRecordsType;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(copy, nonatomic) NSString *targetContact; // @synthesize targetContact=_targetContact;
 @property(copy, nonatomic) NSString *status; // @synthesize status=_status;
 @property(copy, nonatomic) NSString *dateCreated; // @synthesize dateCreated=_dateCreated;
@@ -31,6 +34,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(readonly, nonatomic) BOOL hasTargetContact;

@@ -8,5 +8,9 @@
 
 @interface INStartAudioCallIntent (_CDSpotlightRecorderAdditions)
 - (BOOL)cd_saveToPeopleStore;
+- (id)cd_groupName;
+- (long long)cd_interactionMechanism;
+- (id)cd_sender;
+- (id)cd_recipients;
 @end
 

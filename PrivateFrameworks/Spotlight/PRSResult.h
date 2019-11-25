@@ -7,15 +7,13 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
-#import "NSPasteboardWriting.h"
 #import "PRSBaseResult.h"
 #import "QLSeamlessOpenerDelegate.h"
 
-@class LSApplicationProxy, NSArray, NSDate, NSDictionary, NSImage, NSNumber, NSString, NSURL, PRSRankingItem, SFPunchout, SFSearchResult;
+@class LSApplicationProxy, NSArray, NSDate, NSDictionary, NSImage, NSString, NSURL, PRSRankingItem, SFPunchout, SFSearchResult;
 
-@interface PRSResult : NSObject <QLSeamlessOpenerDelegate, NSPasteboardWriting, NSCopying, PRSBaseResult>
+@interface PRSResult : NSObject <QLSeamlessOpenerDelegate, NSCopying, PRSBaseResult>
 {
-    long long _retainCount;
     unsigned long long _matchBits;
     BOOL doesContentMatch;
     BOOL resultLocationInteresting;
@@ -58,6 +56,9 @@
     NSString *_contentType;
     NSString *_displayName;
     NSURL *_fastLaunchURL;
+    NSArray *_otherTypes;
+    NSArray *_otherNames;
+    NSDate *_lastUsedDate;
     NSString *_distinguishPathString;
     unsigned long long _rank;
     NSURL *_altPath;
@@ -83,6 +84,9 @@
 @property(nonatomic) unsigned long long rank; // @synthesize rank=_rank;
 @property(retain) NSString *distinguishPathString; // @synthesize distinguishPathString=_distinguishPathString;
 @property BOOL isFolderQuery; // @synthesize isFolderQuery=_isFolderQuery;
+@property(readonly) NSDate *lastUsedDate; // @synthesize lastUsedDate=_lastUsedDate;
+@property(readonly) NSArray *otherNames; // @synthesize otherNames=_otherNames;
+@property(readonly) NSArray *otherTypes; // @synthesize otherTypes=_otherTypes;
 @property(nonatomic) BOOL isSynthetic; // @synthesize isSynthetic=_isSynthetic;
 @property(nonatomic) BOOL isShowAllInFinder; // @synthesize isShowAllInFinder=_isShowAllInFinder;
 @property(nonatomic) BOOL isAnyTopHit; // @synthesize isAnyTopHit=_isAnyTopHit;
@@ -133,99 +137,25 @@
 - (unsigned long long)matchQuality;
 - (BOOL)isExactMatch;
 - (BOOL)isPrefixMatch;
-@property(retain, nonatomic) NSString *groupName;
-@property(readonly) NSDate *lastUsedDate;
-@property(readonly) NSURL *URL;
 - (void)updateRenderOrEngagementCountsForKey:(id)arg1 date:(id)arg2;
-@property(readonly) NSArray *otherNames;
-@property(readonly) NSArray *otherTypes;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqualToResult:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly, copy) NSString *description;
 @property(readonly) BOOL allowsCPRecording;
 - (void)prepare;
-- (id)initWithFastLaunchURL:(id)arg1 displayName:(id)arg2 contentType:(id)arg3;
+- (id)initWithFastLaunchURL:(id)arg1 contentType:(id)arg2 displayName:(id)arg3;
 - (id)initWithContentType:(id)arg1 displayName:(id)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly, nonatomic) id <NSPasteboardWriting> pasteboardObject;
-@property(readonly) NSURL *fastURL;
+- (id)fastURL;
 @property(readonly) NSString *filePath;
 @property(readonly) LSApplicationProxy *appProxy;
 - (void)cacheImage:(id)arg1 forKey:(id)arg2;
 - (id)cachedImageForKey:(id)arg1;
-- (id)quickLookItemForQueryString:(id)arg1;
-@property(readonly) BOOL isPhotoImageOrMovie;
-- (BOOL)isMovie;
-- (BOOL)isImage;
-@property(readonly) NSString *targetString;
-- (BOOL)allowShowPath;
-- (int)qlPreviewMode;
-- (id)previewItemURL;
-- (id)sharedCustomPreviewController;
-- (id)seamlessOpener:(id)arg1 sourcePreviewViewForPreviewItem:(id)arg2;
-- (id)unknownImage;
-- (id)safariDocumentImage;
-- (id)prefPaneImage;
-- (id)contactImage;
-@property(readonly) NSNumber *groupId;
-@property(retain, nonatomic) NSString *title_note;
-@property(readonly) NSString *displayInfo;
-@property(readonly) NSImage *iconImageForApplication;
-@property(readonly) NSImage *iconImage;
-@property(readonly) NSImage *largeIconImage;
-@property(readonly) NSString *fastPath;
-@property(readonly) NSString *parentPath;
-- (BOOL)isPrefixMatchWithName:(id)arg1;
-- (BOOL)isExactMatchWithName:(id)arg1;
-- (BOOL)isSomewhatRecentlyUsed;
-- (BOOL)isRecentlyUsed;
-- (BOOL)isVeryRecentlyUsed;
-- (BOOL)isUsedWithinDays:(double)arg1;
-- (id)customOpenSearchString;
-- (unsigned long long)resultOpenOptions;
-- (BOOL)isShortcutAllowed;
-- (BOOL)shouldNotBeTopHit;
-- (BOOL)isTopHitCandidate;
-- (BOOL)isLocalResult;
-- (BOOL)isCalculation;
-- (BOOL)isSafariHistory;
-- (BOOL)isEmail;
-- (BOOL)isCalendarEvent;
-- (BOOL)isFolder;
-- (BOOL)isContact;
-- (BOOL)isPrefPane;
-- (BOOL)isVideo;
-- (BOOL)isMusic;
-- (BOOL)isApplicationQueryResult;
-- (BOOL)isApplication;
-- (BOOL)isIndexingProgress;
-- (BOOL)isGroupHeading;
-- (BOOL)isFile;
-- (BOOL)isSelectable;
-- (void)addAdamID:(id)arg1;
-- (id)adamID;
-- (BOOL)utiTypeConformsTo:(id)arg1;
-- (void)setMatchName:(id)arg1;
-- (unsigned long long)writingOptionsForType:(id)arg1 pasteboard:(id)arg2;
-- (id)pasteboardPropertyListForType:(id)arg1;
-- (id)writableTypesForPasteboard:(id)arg1;
-- (id)previewController;
-- (BOOL)isCompatibleWithPreviewController:(id)arg1;
-- (BOOL)isApplicationManaged;
-- (id)subjectForEmailAttachment;
-- (BOOL)isBoundEmailAttachment;
-- (BOOL)isInEmailAttachmentLocation;
-- (id)emailURLForAttachment;
-- (void)markAsEngaged;
-- (void)markAsUsed;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 // Remaining properties
+@property(readonly) NSURL *URL;
 @property(nonatomic) long long adam_id;
 @property(retain, nonatomic) NSString *bundle_id;
 @property(retain, nonatomic) NSString *completion;
@@ -234,6 +164,7 @@
 @property(retain, nonatomic) NSDictionary *featuresSet;
 @property(retain, nonatomic) NSString *geoUserSessionIDString;
 @property(nonatomic) double geoUserSessionStartTime;
+@property(retain, nonatomic) NSString *groupName;
 @property(retain, nonatomic) NSImage *icon;
 @property BOOL isQuickGlance;
 @property(nonatomic) BOOL isStreaming;
@@ -250,6 +181,7 @@
 @property(retain, nonatomic) NSURL *section_header_more_url;
 @property(readonly) Class superclass;
 @property(retain, nonatomic) NSString *templateName;
+@property(retain, nonatomic) NSString *title_note;
 @property int title_note_size;
 @property long long topHitScore;
 

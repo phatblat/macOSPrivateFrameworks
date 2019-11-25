@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSDictionary, NSMutableDictionary, NSNumber, NSString, PKPackage, PKPackageRequirements;
+@class NSData, NSDictionary, NSMutableDictionary, NSNumber, NSString, PKPackage, PKPackageRequirements;
 
 @interface PKPackageSpecifier : NSObject <NSSecureCoding, NSCopying>
 {
@@ -24,6 +24,7 @@
     NSMutableDictionary *_userPathByComponentIdent;
     NSDictionary *_resolvedPathByComponentIdent;
     NSDictionary *_installPathByComponentIdent;
+    NSData *_validatedDigest;
     NSString *_packageUniqueHash;
     PKPackage *_package;
     PKPackageRequirements *_requirements;

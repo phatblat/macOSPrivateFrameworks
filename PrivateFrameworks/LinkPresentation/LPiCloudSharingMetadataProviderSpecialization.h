@@ -19,9 +19,10 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)applicationNameMap;
-+ (id)specializedMetadataProviderForURL:(id)arg1;
++ (id)specializedMetadataProviderForURLWithContext:(id)arg1;
 + (id)extractTitleFromURL:(id)arg1;
 + (id)extractApplicationFromURL:(id)arg1;
++ (unsigned long long)specialization;
 - (void).cxx_destruct;
 - (void)cancel;
 - (void)fail;
@@ -30,7 +31,7 @@ __attribute__((visibility("hidden")))
 - (void)start;
 - (id)iconFromShare:(id)arg1;
 - (id)applicationFromBundleIdentifiers:(id)arg1 containerIdentifier:(id)arg2;
-- (id)initWithURL:(id)arg1 applicationFromURL:(id)arg2 titleFromURL:(id)arg3;
+- (id)initWithContext:(id)arg1 applicationFromURL:(id)arg2 titleFromURL:(id)arg3;
 - (BOOL)canUseCloudKit;
 - (id)entitlementForKey:(id)arg1;
 

@@ -10,7 +10,7 @@
 #import "NSSecureCoding.h"
 #import "_INPBSetClimateSettingsInCarIntent.h"
 
-@class INCodableAttribute, NSString, _INPBDataString, _INPBDouble, _INPBInteger, _INPBIntentMetadata, _INPBTemperature;
+@class NSString, _INPBDataString, _INPBDouble, _INPBInteger, _INPBIntentMetadata, _INPBTemperature;
 
 @interface _INPBSetClimateSettingsInCarIntent : PBCodable <_INPBSetClimateSettingsInCarIntent, NSSecureCoding, NSCopying>
 {
@@ -28,6 +28,7 @@
     BOOL _enableAutoMode;
     BOOL _enableClimateControl;
     BOOL _enableFan;
+    BOOL __encodeLegacyGloryData;
     int _airCirculationMode;
     int _climateZone;
     int _relativeFanSpeedSetting;
@@ -39,6 +40,8 @@
     _INPBTemperature *_temperature;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(retain, nonatomic) _INPBTemperature *temperature; // @synthesize temperature=_temperature;
 @property(nonatomic) int relativeTemperatureSetting; // @synthesize relativeTemperatureSetting=_relativeTemperatureSetting;
 @property(nonatomic) int relativeFanSpeedSetting; // @synthesize relativeFanSpeedSetting=_relativeFanSpeedSetting;
@@ -57,6 +60,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(readonly, nonatomic) BOOL hasTemperature;

@@ -6,26 +6,28 @@
 
 #import "NSObject.h"
 
-#import "AuthenticationSessionRequestServerDelegate.h"
 #import "SafariLaunchAgentProtocol.h"
+#import "_ASWebAuthenticationSessionRequestServerDelegate.h"
 
-@class AuthenticationSessionRequestServer, NSString;
+@class NSString, NSURL, _ASWebAuthenticationSessionRequestServer;
 
 __attribute__((visibility("hidden")))
-@interface SafariLaunchAgent : NSObject <AuthenticationSessionRequestServerDelegate, SafariLaunchAgentProtocol>
+@interface SafariLaunchAgent : NSObject <_ASWebAuthenticationSessionRequestServerDelegate, SafariLaunchAgentProtocol>
 {
-    AuthenticationSessionRequestServer *_authenticationSessionRequestServer;
+    _ASWebAuthenticationSessionRequestServer *_authenticationSessionRequestServer;
     unsigned long long _requestsWaitingToBeEnqueued;
+    NSURL *_cachedBrowserURL;
 }
 
 - (void).cxx_destruct;
-- (void)_tellSafariAuthenticationSessionRequestsAreAvailable;
+- (id)_iconURLForBrowserAtURL:(id)arg1;
+- (void)_sendAlertForPendingAuthenticationRequestsToBrowserAtURL:(id)arg1;
 - (void)authenticationSessionRequestServerDidFinishAllRequests:(id)arg1;
 - (void)authenticationSessionRequestServerNeedsClientToReconnect:(id)arg1;
 - (void)didFulfillAuthenticationSessionRequest:(id)arg1 withCallbackURL:(id)arg2 error:(id)arg3;
 - (void)connectToAuthenticationSessionRequestClientWithEndpoint:(id)arg1;
-- (void)askSafariToCancelAuthenticationSessionWithUUID:(id)arg1;
-- (void)askSafariToBeginAuthenticationSessionWithUUID:(id)arg1 url:(id)arg2 callbackURLScheme:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (void)askDefaultBrowserToCancelAuthenticationSessionWithUUID:(id)arg1;
+- (void)askDefaultBrowserToBeginAuthenticationSessionWithUUID:(id)arg1 url:(id)arg2 callbackURLScheme:(id)arg3 usingEphemeralSession:(BOOL)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)launchSafariToURL:(id)arg1;
 
 // Remaining properties

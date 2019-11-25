@@ -6,25 +6,39 @@
 
 #import <LinkPresentation/LPComponentView.h>
 
-@class LPImage, LPImageViewStyle, NSView;
+@class LPImage, LPImagePresentationProperties, LPImageViewStyle, NSImageView, NSView;
 
 __attribute__((visibility("hidden")))
 @interface LPImageView : LPComponentView
 {
     LPImage *_image;
+    LPImagePresentationProperties *_properties;
     LPImageViewStyle *_style;
-    NSView *_imageView;
+    LPImageViewStyle *_originalStyle;
+    long long _currentScalingMode;
+    long long _platterReason;
+    NSImageView *_imageView;
     NSView *_overlayView;
+    NSView *_backgroundView;
 }
 
 - (void).cxx_destruct;
+- (void)_setImageViewScalingMode:(long long)arg1;
 - (id)_createImageViewWithImage:(id)arg1;
+- (void)_updateScalingMode;
 - (id)_createOverlayViewWithOpacity:(double)arg1;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
+- (struct CGSize)imageSizeThatFits:(struct CGSize)arg1 scalingMode:(long long)arg2;
 - (struct CGSize)imageSizeThatFits:(struct CGSize)arg1;
+- (long long)scalingModeForSize:(struct CGSize)arg1;
+- (void)installDarkeningView;
+- (BOOL)shouldApplyBackground;
 - (void)layoutComponentView;
+- (void)updateShadowPath;
+- (void)setCornerRadius:(double)arg1 continuous:(BOOL)arg2;
 - (void)componentViewDidMoveToWindow;
-- (id)initWithImage:(id)arg1 style:(id)arg2;
+- (long long)_filter;
+- (id)initWithImage:(id)arg1 properties:(id)arg2 style:(id)arg3;
 - (id)init;
 
 @end

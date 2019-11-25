@@ -8,17 +8,20 @@
 
 #import "MRNowPlayingClientState.h"
 
-@class MRPlaybackQueueSubscriptionController, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, _MRNowPlayingPlayerPathProtobuf, _MRPlaybackQueueProtobuf;
+@class MRPlaybackQueueSubscriptionController, NSArray, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, _MRNowPlayingPlayerPathProtobuf, _MRPlaybackQueueProtobuf;
 
 __attribute__((visibility("hidden")))
 @interface MRNowPlayingPlayerClientRequests : NSObject <MRNowPlayingClientState>
 {
     _MRPlaybackQueueProtobuf *_playbackQueue;
     unsigned int _playbackState;
+    NSArray *_supportedCommands;
     NSObject<OS_dispatch_queue> *_serialQueue;
     NSObject<OS_dispatch_queue> *_responseQueue;
-    NSMutableDictionary *_transactionCallbacks;
     NSMutableDictionary *_playbackQueueCompletions;
+    NSMutableArray *_supportedCommandsCompletions;
+    NSMutableArray *_playbackStateCompletions;
+    NSMutableDictionary *_transactionCallbacks;
     NSMutableDictionary *_transactions;
     NSOperationQueue *_enquedNowPlayingInfoRequests;
     NSOperationQueue *_enquedNowPlayingInfoAssetRequests;
@@ -34,16 +37,19 @@ __attribute__((visibility("hidden")))
 - (id)_transactionDestintationForName:(unsigned long long)arg1;
 - (void)receiveTransaction:(unsigned long long)arg1 fromMessage:(id)arg2;
 - (void)restoreNowPlayingClientState;
+- (void)handlePlaybackStateRequestWithCompletion:(CDUnknownBlockType)arg1;
+- (void)handleSupportedCommandsRequestWithCompletion:(CDUnknownBlockType)arg1;
 - (void)_handleEnqueuedPlaybackQueueRequest:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)enqueuePlaybackQueueRequest:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)removePlaybackQueueCompletionForRequest:(id)arg1;
 - (void)addPlaybackQueueCompletion:(CDUnknownBlockType)arg1 forRequest:(id)arg2;
 - (id)transactionCallbacksForName:(unsigned long long)arg1;
 - (void)addTransactionCallback:(CDUnknownBlockType)arg1 forName:(unsigned long long)arg2;
-@property(retain, nonatomic) _MRPlaybackQueueProtobuf *playbackQueue;
 - (void)updatePlaybackQueue:(id)arg1;
 - (void)updateContentItemArtwork:(id)arg1;
 - (void)updateContentItems:(id)arg1;
+@property(copy, nonatomic) _MRPlaybackQueueProtobuf *playbackQueue;
+@property(retain, nonatomic) NSArray *supportedCommands;
 @property(nonatomic) unsigned int playbackState;
 - (id)debugDescription;
 - (void)dealloc;

@@ -6,12 +6,13 @@
 
 #import <LinkPresentation/LPSpecializationMetadata.h>
 
-#import "LPLinkMetadataPresentationTransformerAdaptor.h"
-#import "LPLinkMetadataPreviewTransformerAdaptor.h"
+#import "LPLinkMetadataBackwardCompatibility.h"
+#import "LPLinkMetadataPresentationTransformer.h"
+#import "LPLinkMetadataPreviewTransformer.h"
 
 @class LPImage, NSString;
 
-@interface LPiCloudSharingMetadata : LPSpecializationMetadata <LPLinkMetadataPresentationTransformerAdaptor, LPLinkMetadataPreviewTransformerAdaptor>
+@interface LPiCloudSharingMetadata : LPSpecializationMetadata <LPLinkMetadataPresentationTransformer, LPLinkMetadataPreviewTransformer, LPLinkMetadataBackwardCompatibility>
 {
     NSString *_applicationBundleIdenfier;
     NSString *_application;
@@ -19,20 +20,34 @@
     LPImage *_icon;
 }
 
++ (id)keyPathsForValuesAffecting_dummyPropertyForObservation;
 + (BOOL)supportsSecureCoding;
++ (id)_bundleIdentifierMap;
 @property(retain, nonatomic) LPImage *icon; // @synthesize icon=_icon;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 @property(copy, nonatomic) NSString *application; // @synthesize application=_application;
 @property(copy, nonatomic) NSString *applicationBundleIdenfier; // @synthesize applicationBundleIdenfier=_applicationBundleIdenfier;
 - (void).cxx_destruct;
+- (void)_enumerateAsynchronousFields:(CDUnknownBlockType)arg1;
+@property(readonly) unsigned long long hash;
+- (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)populateMetadataForBackwardCompatibility:(id)arg1;
 - (id)previewImageForTransformer:(id)arg1;
 - (id)previewSummaryForTransformer:(id)arg1;
+- (BOOL)canGeneratePresentationPropertiesForURL:(id)arg1;
 - (id)presentationPropertiesForTransformer:(id)arg1;
-- (id)computeLocalizedApplicationName;
+- (id)_bottomCaptionStringWithApplicationName:(id)arg1;
+- (id)_topCaptionStringWithApplicationName:(id)arg1;
+- (id)localizedApplicationName;
 - (id)computeIcon;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

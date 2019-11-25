@@ -18,6 +18,7 @@
     IMChatItem *_nextStaleChatItem;
 }
 
++ (BOOL)testShouldAppendNumberChanged:(id)arg1 previousItem:(id)arg2 showAllChanges:(BOOL)arg3;
 + (BOOL)testShouldShowSMSSpamForChat:(id)arg1 items:(id)arg2;
 + (BOOL)testShouldShowReportSpamForChat:(id)arg1 items:(id)arg2;
 - (void).cxx_destruct;

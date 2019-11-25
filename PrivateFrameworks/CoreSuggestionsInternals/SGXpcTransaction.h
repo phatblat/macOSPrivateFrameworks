@@ -6,16 +6,19 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_os_transaction>;
+@class NSObject<OS_dispatch_source>, NSObject<OS_os_transaction>;
 
 @interface SGXpcTransaction : NSObject
 {
     NSObject<OS_os_transaction> *_transaction;
     // Error parsing type: {atomic_flag="_Value"AB}, name: _done
+    NSObject<OS_dispatch_source> *_timeoutTimer;
 }
 
 + (id)transactionWithName:(const void *)arg1;
 - (void).cxx_destruct;
+- (void)dealloc;
+- (BOOL)doneReturningWasDone;
 - (void)done;
 - (void)setTimeout:(double)arg1;
 - (id)initWithName:(const void *)arg1;

@@ -18,7 +18,11 @@
     unsigned long long _hosttime;
 }
 
++ (id)mediaserverdLaunchedEvent:(unsigned long long)arg1;
++ (id)jarvisVoiceTriggerEvent:(id)arg1 activationInfo:(id)arg2 hostTime:(unsigned long long)arg3;
 + (id)builtInMicVoiceTriggerEvent:(id)arg1 hostTime:(unsigned long long)arg2;
++ (id)remoteMicVADEvent:(id)arg1 vadScore:(float)arg2 hostTime:(unsigned long long)arg3;
++ (id)remoteMicVoiceTriggerEvent:(id)arg1 activationInfo:(id)arg2 hostTime:(unsigned long long)arg3;
 @property(nonatomic) float vadScore; // @synthesize vadScore=_vadScore;
 @property(nonatomic) unsigned long long hosttime; // @synthesize hosttime=_hosttime;
 @property(retain, nonatomic) NSDictionary *activationInfo; // @synthesize activationInfo=_activationInfo;
@@ -28,6 +32,8 @@
 - (void).cxx_destruct;
 - (id)_activationTypeString;
 @property(readonly, nonatomic) NSString *localizedDescription;
+- (id)xpcObject;
+- (id)initWithXPCObject:(id)arg1;
 - (id)initWithType:(unsigned long long)arg1 deviceId:(id)arg2 activationInfo:(id)arg3 hosttime:(unsigned long long)arg4;
 - (id)initWithType:(unsigned long long)arg1 deviceId:(id)arg2 activationInfo:(id)arg3 vadScore:(float)arg4 hosttime:(unsigned long long)arg5;
 

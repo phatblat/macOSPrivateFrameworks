@@ -11,14 +11,18 @@
 #import "PKPaymentServiceDelegate.h"
 #import "PKPostalAddressEditorViewControllerDelegate.h"
 
-@class NSArray, NSButton, NSImage, NSNumberFormatter, NSPopUpButton, NSString, NSTableView, NSTextField, NSView, NSWindow, PKPassLibrary, PKPaymentCardVerificationViewController, PKPaymentOptionsDefaults, PKPaymentPass, PKPaymentPreferenceContact, PKPaymentService;
+@class NSArray, NSButton, NSImage, NSNumberFormatter, NSPopUpButton, NSProgressIndicator, NSString, NSTabView, NSTabViewItem, NSTableView, NSTextField, NSView, NSWindow, PKInAppPaymentService, PKPassLibrary, PKPaymentCardVerificationViewController, PKPaymentOptionsDefaults, PKPaymentPass, PKPaymentPreferenceContact, PKPaymentService;
 
 @interface PKCardInfoViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource, PKPaymentServiceDelegate, PKPostalAddressEditorViewControllerDelegate>
 {
+    BOOL _isUpdatingContentView;
     PKPaymentPass *_card;
     NSView *_healthyCardView;
+    NSTabView *_healthyCardTabView;
+    NSTabViewItem *_healthyCardTransactionsTabViewItem;
     NSView *_invalidCardView;
     NSView *_lostModeCardView;
+    NSView *_securityConfigurationView;
     PKPassLibrary *_passLibrary;
     PKPaymentService *_paymentService;
     NSButton *_transactionsCheckbox;
@@ -34,6 +38,7 @@
     NSButton *_automaticallySelectCheckbox;
     NSTextField *_automaticallySelectLabel;
     NSButton *_termsAndConditionsButton;
+    NSProgressIndicator *_termsAndConditionsProgressIndicator;
     NSButton *_privacyPolicyButton;
     NSArray *_transactions;
     NSNumberFormatter *_numberFormatter;
@@ -45,8 +50,13 @@
     PKPaymentCardVerificationViewController *_verificationVC;
     NSWindow *_sheet;
     PKPaymentPreferenceContact *_addressPreference;
+    PKInAppPaymentService *_inAppPaymentService;
+    unsigned long long _hasValidSecurityConfiguration;
 }
 
+@property(nonatomic) BOOL isUpdatingContentView; // @synthesize isUpdatingContentView=_isUpdatingContentView;
+@property unsigned long long hasValidSecurityConfiguration; // @synthesize hasValidSecurityConfiguration=_hasValidSecurityConfiguration;
+@property(retain) PKInAppPaymentService *inAppPaymentService; // @synthesize inAppPaymentService=_inAppPaymentService;
 @property(retain) PKPaymentPreferenceContact *addressPreference; // @synthesize addressPreference=_addressPreference;
 @property(retain) NSWindow *sheet; // @synthesize sheet=_sheet;
 @property(retain) PKPaymentCardVerificationViewController *verificationVC; // @synthesize verificationVC=_verificationVC;
@@ -58,6 +68,7 @@
 @property(retain) NSNumberFormatter *numberFormatter; // @synthesize numberFormatter=_numberFormatter;
 @property(retain) NSArray *transactions; // @synthesize transactions=_transactions;
 @property __weak NSButton *privacyPolicyButton; // @synthesize privacyPolicyButton=_privacyPolicyButton;
+@property __weak NSProgressIndicator *termsAndConditionsProgressIndicator; // @synthesize termsAndConditionsProgressIndicator=_termsAndConditionsProgressIndicator;
 @property __weak NSButton *termsAndConditionsButton; // @synthesize termsAndConditionsButton=_termsAndConditionsButton;
 @property(retain) NSTextField *automaticallySelectLabel; // @synthesize automaticallySelectLabel=_automaticallySelectLabel;
 @property(retain) NSButton *automaticallySelectCheckbox; // @synthesize automaticallySelectCheckbox=_automaticallySelectCheckbox;
@@ -73,8 +84,11 @@
 @property(retain) NSButton *transactionsCheckbox; // @synthesize transactionsCheckbox=_transactionsCheckbox;
 @property(retain) PKPaymentService *paymentService; // @synthesize paymentService=_paymentService;
 @property(retain) PKPassLibrary *passLibrary; // @synthesize passLibrary=_passLibrary;
+@property(retain) NSView *securityConfigurationView; // @synthesize securityConfigurationView=_securityConfigurationView;
 @property(retain) NSView *lostModeCardView; // @synthesize lostModeCardView=_lostModeCardView;
 @property(retain) NSView *invalidCardView; // @synthesize invalidCardView=_invalidCardView;
+@property(retain) NSTabViewItem *healthyCardTransactionsTabViewItem; // @synthesize healthyCardTransactionsTabViewItem=_healthyCardTransactionsTabViewItem;
+@property(retain) NSTabView *healthyCardTabView; // @synthesize healthyCardTabView=_healthyCardTabView;
 @property(retain) NSView *healthyCardView; // @synthesize healthyCardView=_healthyCardView;
 @property(retain) PKPaymentPass *card; // @synthesize card=_card;
 - (void).cxx_destruct;
@@ -87,6 +101,7 @@
 - (id)_primaryTextFromTransaction:(id)arg1;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
+- (void)didClickSecurityConfigurationLearnMoreButton:(id)arg1;
 - (void)didClickEnterPasswordButton:(id)arg1;
 - (void)privacyPolicyAction:(id)arg1;
 - (BOOL)_showPrivacyPolicyButton;
@@ -99,6 +114,8 @@
 - (id)nibBundle;
 - (void)_fetchTransactions;
 - (void)_configureContentView;
+- (void)_updateContentView;
+- (void)preferencePaneWillSelect:(id)arg1;
 - (void)viewWillAppear;
 - (void)viewDidLoad;
 - (void)_updateForStoreDemoIfNecessary;

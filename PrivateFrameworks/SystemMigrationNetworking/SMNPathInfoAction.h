@@ -6,11 +6,10 @@
 
 #import <SystemMigrationNetworking/SMNAction.h>
 
-@class NSArray, NSDictionary, NSSet;
+@class NSArray, NSSet;
 
 @interface SMNPathInfoAction : SMNAction
 {
-    NSDictionary *_result;
     NSArray *_paths;
     NSSet *_keys;
 }
@@ -19,11 +18,11 @@
 + (int)actionID;
 @property(retain) NSSet *keys; // @synthesize keys=_keys;
 @property(retain) NSArray *paths; // @synthesize paths=_paths;
-@property(retain) NSDictionary *result; // @synthesize result=_result;
 - (void).cxx_destruct;
+- (id)setOfClassesToDecodeInTheResult;
 - (BOOL)success;
 - (BOOL)returnsData;
-- (BOOL)setResultFromData:(id)arg1;
+- (BOOL)setResultFromDict:(id)arg1;
 - (id)resultData;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;

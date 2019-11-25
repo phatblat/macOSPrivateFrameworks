@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSData, NSFileHandle, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSPipe;
+@class NSData, NSFileHandle, NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSPipe;
 
 @interface MSVFileBufferedPipe : NSObject
 {
@@ -22,6 +22,8 @@
     NSData *_dataPendingWrite;
     unsigned int _dataPendingOffset;
     NSObject<OS_dispatch_queue> *_queue;
+    NSMutableSet *_uniqueWriteErrors;
+    long long _writeSourceState;
     NSFileHandle *_fileHandleForReading;
     NSFileHandle *_fileHandleForWriting;
 }

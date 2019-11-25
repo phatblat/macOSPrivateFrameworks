@@ -8,7 +8,6 @@
 
 @class AKController;
 
-__attribute__((visibility("hidden")))
 @interface MUContentViewController : NSViewController
 {
     id <MUContentViewControllerDelegate> _delegate;

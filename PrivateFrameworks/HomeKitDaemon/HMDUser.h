@@ -7,14 +7,19 @@
 #import "HMFObject.h"
 
 #import "HMDBackingStoreObjectProtocol.h"
+#import "HMDCloudShareTrustManagerDataSource.h"
+#import "HMDCloudShareTrustManagerDelegate.h"
 #import "HMDHomeMessageReceiver.h"
+#import "HMDSettingsControllerDelegate.h"
+#import "HMDUserDataControllerDelegate.h"
+#import "HMDUserSettingsBackingStoreControllerDelegate.h"
 #import "HMFDumpState.h"
 #import "HMFLogging.h"
 #import "NSSecureCoding.h"
 
-@class AVOutputDeviceAuthorizedPeer, HAPPairingIdentity, HMDAccountHandle, HMDAccountIdentifier, HMDAssistantAccessControl, HMDHome, HMUserPresenceAuthorization, NSMutableArray, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
+@class AVOutputDeviceAuthorizedPeer, HAPPairingIdentity, HMBShareUserID, HMDAccountHandle, HMDAccountIdentifier, HMDAssistantAccessControl, HMDCloudShareMessenger, HMDCloudShareTrustManager, HMDHome, HMDSettingsControllerDependency, HMDUserDataController, HMDUserSettingsBackingStoreController, HMUserPresenceAuthorization, NAFuture, NSMutableArray, NSNumber, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
 
-@interface HMDUser : HMFObject <HMFLogging, HMFDumpState, HMDBackingStoreObjectProtocol, HMDHomeMessageReceiver, NSSecureCoding>
+@interface HMDUser : HMFObject <HMDSettingsControllerDelegate, HMDCloudShareTrustManagerDataSource, HMDCloudShareTrustManagerDelegate, HMDUserDataControllerDelegate, HMDUserSettingsBackingStoreControllerDelegate, HMFLogging, HMFDumpState, HMDBackingStoreObjectProtocol, HMDHomeMessageReceiver, NSSecureCoding>
 {
     NSUUID *_uuid;
     BOOL _remoteAccessAllowed;
@@ -26,11 +31,21 @@
     NSString *_userID;
     HMUserPresenceAuthorization *_presenceAuthStatus;
     NSString *_relayIdentifier;
+    NSNumber *_camerasAccessLevelValue;
     HAPPairingIdentity *_pairingIdentity;
     NSString *_displayName;
     HMDAssistantAccessControl *_assistantAccessControl;
+    HMBShareUserID *_cloudShareID;
+    NAFuture *_cloudShareIDFuture;
     NSObject<OS_dispatch_queue> *_clientQueue;
     NSObject<OS_dispatch_queue> *_propertyQueue;
+    HMDSettingsControllerDependency *_sharedSettingsControllerDependency;
+    HMDUserSettingsBackingStoreController *_sharedBackingStoreController;
+    HMDCloudShareMessenger *_shareMessenger;
+    HMDSettingsControllerDependency *_privateSettingsControllerDependency;
+    HMDUserSettingsBackingStoreController *_privateBackingStoreController;
+    HMDUserDataController *_userDataController;
+    HMDCloudShareTrustManager *_cloudShareTrustManager;
 }
 
 + (id)userWithDictionary:(id)arg1 forHome:(id)arg2;
@@ -41,15 +56,53 @@
 + (id)userIDForAccountHandle:(id)arg1;
 + (id)ownerWithUserID:(id)arg1 home:(id)arg2 pairingIdentity:(id)arg3 homeManager:(id)arg4;
 + (id)currentUserWithPrivilege:(unsigned long long)arg1 forHome:(id)arg2;
+@property(retain) HMDCloudShareTrustManager *cloudShareTrustManager; // @synthesize cloudShareTrustManager=_cloudShareTrustManager;
+@property(retain) HMDUserDataController *userDataController; // @synthesize userDataController=_userDataController;
+@property(retain) HMDUserSettingsBackingStoreController *privateBackingStoreController; // @synthesize privateBackingStoreController=_privateBackingStoreController;
+@property(retain) HMDSettingsControllerDependency *privateSettingsControllerDependency; // @synthesize privateSettingsControllerDependency=_privateSettingsControllerDependency;
+@property(retain) HMDCloudShareMessenger *shareMessenger; // @synthesize shareMessenger=_shareMessenger;
+@property(retain) HMDUserSettingsBackingStoreController *sharedBackingStoreController; // @synthesize sharedBackingStoreController=_sharedBackingStoreController;
+@property(retain) HMDSettingsControllerDependency *sharedSettingsControllerDependency; // @synthesize sharedSettingsControllerDependency=_sharedSettingsControllerDependency;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *propertyQueue; // @synthesize propertyQueue=_propertyQueue;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *clientQueue; // @synthesize clientQueue=_clientQueue;
+@property(readonly) NAFuture *cloudShareIDFuture; // @synthesize cloudShareIDFuture=_cloudShareIDFuture;
+@property(retain) HMBShareUserID *cloudShareID; // @synthesize cloudShareID=_cloudShareID;
 @property(copy, setter=setUUID:) NSUUID *uuid; // @synthesize uuid=_uuid;
 - (void).cxx_destruct;
+- (void)cloudShareTrustManager:(id)arg1 didRemoveUserWithUUID:(id)arg2;
+- (void)didRemoveTrustZoneInCloudShareTrustManager:(id)arg1;
+- (void)didFinishConfiguringForCloudShareTrustManager:(id)arg1;
+- (void)cloudShareTrustManager:(id)arg1 didFetchOwnerCloudShareID:(id)arg2;
+- (BOOL)isOwnerCapableForTrustManager:(id)arg1;
+- (id)homeForCloudShareTrustManager:(id)arg1;
+- (id)ownerForCloudShareTrustManager:(id)arg1;
+- (id)zoneNameForCloudShareTrustManager:(id)arg1;
+- (BOOL)cloudShareTrustManager:(id)arg1 shouldShareTrustWithUser:(id)arg2;
+- (void)configureCloudShareTrustManager;
+- (id)trustTargetUUID;
+- (void)updateCloudShareID:(id)arg1;
+- (void)removeCloudShareID;
+@property(readonly) BOOL isUserSettingsPrefEnabled;
+- (id)privateZoneControllerForUserDataController:(id)arg1;
+- (id)sharedZoneControllerForUserDataController:(id)arg1;
+- (id)userDataController:(id)arg1 participantManagerForCloudZone:(id)arg2;
+- (void)userDataControllerDidUpdateMediaContentProfile:(id)arg1;
+- (void)userDataControllerDidUpdateAssistantAccessControl:(id)arg1;
+- (BOOL)userDataController:(id)arg1 isMediaContentProfileCapableAccessoryID:(id)arg2;
+- (BOOL)userDataController:(id)arg1 isPersonalRequestCapableAccessoryID:(id)arg2;
+- (id)ownerForUserSettingsBackingStoreController:(id)arg1;
+- (id)backingStoreController:(id)arg1 createParticipantManagerForCloudZone:(id)arg2;
+- (void)didStopBackingStoreController:(id)arg1;
+- (void)didStartBackingStoreController:(id)arg1;
+@property(readonly) NSUUID *userUUID;
+@property(readonly) BOOL isRunningOnHomeOwnersDevice;
+- (id)settingsController:(id)arg1 willUpdateSettingAtKeyPath:(id)arg2 withValue:(id)arg3;
+- (void)settingsController:(id)arg1 didUpdateWithCompletion:(CDUnknownBlockType)arg2;
 - (id)dictionaryEncoding;
+- (void)removeCloudData;
 - (id)modelObjectWithChangeType:(unsigned long long)arg1 version:(long long)arg2;
 - (id)modelObjectWithChangeType:(unsigned long long)arg1;
 - (id)backingStoreObjects:(long long)arg1;
-- (void)migrateAfterCloudMerge:(CDUnknownBlockType)arg1;
 - (void)migrateCloudZone:(id)arg1 migrationQueue:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)_migrateRelayAccessTokensCloudZone:(id)arg1 migrationQueue:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)_fixupRelayAccessTokens;
@@ -76,14 +129,19 @@
 - (id)relayAccessTokens;
 - (void)updateRelayIdentifier:(id)arg1;
 @property(copy) NSString *relayIdentifier; // @synthesize relayIdentifier=_relayIdentifier;
+- (void)handleRemovedAccessory:(id)arg1;
 - (void)removeAccessoriesFromAssistantAccessControlList:(id)arg1;
+- (void)_handleMediaContentProfileAccessControlUpdate:(id)arg1;
+- (void)handleMediaContentProfileAccessControlUpdate:(id)arg1;
 - (void)_handleAssistantAccessControlUpdate:(id)arg1;
 - (void)handleAssistantAccessControlUpdate:(id)arg1;
 - (BOOL)isCurrentUserAndOwner;
 @property(retain) HMDAssistantAccessControl *assistantAccessControl; // @synthesize assistantAccessControl=_assistantAccessControl;
+@property(readonly) NSUUID *assistantAccessControlModelUUID;
 @property(readonly, getter=isValid) BOOL valid;
 @property(readonly, getter=isRemoteGateway) BOOL remoteGateway;
-- (BOOL)updateRemoteAccessAllowed:(BOOL)arg1;
+- (unsigned long long)camerasAccessLevel;
+@property(retain, nonatomic) NSNumber *camerasAccessLevelValue; // @synthesize camerasAccessLevelValue=_camerasAccessLevelValue;
 @property(getter=isRemoteAccessAllowed) BOOL remoteAccessAllowed; // @synthesize remoteAccessAllowed=_remoteAccessAllowed;
 - (BOOL)refreshDisplayName;
 - (void)setDisplayName:(id)arg1;
@@ -93,6 +151,9 @@
 - (void)__handleAddedAccount:(id)arg1;
 - (BOOL)requiresMakoSupport;
 - (id)account;
+- (void)_sendSecureShareClientPayloadToMostEligibleDevice:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)_handleShareClientPayloadRequest:(id)arg1;
+- (void)_handleShareLookupInfoRequest:(id)arg1;
 - (void)_handlePairingIdentityRequest:(id)arg1;
 - (void)deregisterIdentity;
 - (void)registerIdentity;
@@ -100,15 +161,21 @@
 @property(copy) HMDAccountIdentifier *accountIdentifier;
 - (void)setAccountHandle:(id)arg1;
 - (id)accountHandle;
-@property(readonly, getter=isCurrentUser) BOOL currentUser;
+@property(readonly) BOOL isCurrentUser;
 - (BOOL)updateAdministrator:(BOOL)arg1;
 @property unsigned long long privilege; // @synthesize privilege=_privilege;
 @property(readonly, getter=isOwner) BOOL owner;
 @property(readonly, getter=isAdministrator) BOOL administrator;
 - (unsigned long long)_compatiblePrivilege;
 @property __weak HMDHome *home; // @synthesize home=_home;
+- (void)deregisterForMessages;
 - (void)registerForMessages;
 - (id)messageDispatcher;
+- (void)unconfigure;
+- (void)recoverTrustManagerDueToUUIDChange;
+- (void)recoverUserSettingsDueToUUIDChange;
+- (void)recoverUserCloudDataDueToUUIDChange;
+- (void)initializeUserSettingsWithHome:(id)arg1;
 - (void)configureWithHome:(id)arg1;
 - (id)dumpState;
 - (id)attributeDescriptions;
@@ -118,9 +185,12 @@
 - (void)dealloc;
 - (id)initWithAccountHandle:(id)arg1 home:(id)arg2 pairingIdentity:(id)arg3 privilege:(unsigned long long)arg4;
 - (id)initWithModelObject:(id)arg1;
+- (id)privateSettingValuesByKeyPathForAWD;
+- (id)sharedSettingValuesByKeyPathForAWD;
 @property(readonly, copy) AVOutputDeviceAuthorizedPeer *av_authorizedPeer;
 
 // Remaining properties
+@property(readonly, getter=isCurrentUser) BOOL currentUser;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly, copy) NSSet *messageReceiverChildren;

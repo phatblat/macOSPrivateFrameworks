@@ -53,7 +53,6 @@
 - (void)_performCleanup;
 - (void)cleanup;
 @property(retain, nonatomic) _KSTextReplacementManager *textReplacementManager; // @synthesize textReplacementManager=_textReplacementManager;
-- (void)requestPeriodicSync;
 - (void)scheduleSyncTask;
 - (void)reachabilityDidChange:(id)arg1;
 - (BOOL)isSetupAssistantRunning;

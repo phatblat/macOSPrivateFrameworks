@@ -14,6 +14,7 @@
     id <CNFuture> _currentFuture;
 }
 
+- (void).cxx_destruct;
 - (id)description;
 - (void)nts_setCurrentFuture:(id)arg1;
 - (id)nts_currentFuture;

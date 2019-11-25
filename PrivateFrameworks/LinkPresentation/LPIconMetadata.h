@@ -7,11 +7,10 @@
 #import "NSObject.h"
 
 #import "NSSecureCoding.h"
-#import "_LPResolvable.h"
 
 @class NSString, NSURL;
 
-@interface LPIconMetadata : NSObject <_LPResolvable, NSSecureCoding>
+@interface LPIconMetadata : NSObject <NSSecureCoding>
 {
     unsigned int _version;
     NSURL *_URL;
@@ -23,18 +22,12 @@
 @property(copy, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 @property(readonly, nonatomic) unsigned int version; // @synthesize version=_version;
 - (void).cxx_destruct;
-- (long long)maximumBytes;
-- (BOOL)isValidMIMEType:(id)arg1;
-- (id)tryToResolveWithWebViewForProcessSharing:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)_initWithURL:(id)arg1;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)init;
 
 @end
 

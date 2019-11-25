@@ -21,7 +21,7 @@
 - (void).cxx_destruct;
 - (void)_writeIdentifierStore;
 - (void)_readIdentifierStore;
-- (id)identifierForRecordType:(id)arg1;
+- (id)identifierForBundleId:(id)arg1;
 - (id)initWithStoreURL:(id)arg1;
 
 @end

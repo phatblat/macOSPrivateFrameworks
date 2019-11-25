@@ -14,7 +14,6 @@ __attribute__((visibility("hidden")))
 @interface CKDPAssetUploadTokenRetrieveRequest : PBRequest <NSCopying>
 {
     NSMutableArray *_assets;
-    NSData *_authCopyRequest;
     NSData *_authPutRequest;
     int _authPutType;
     NSMutableArray *_contentRequestHeaders;

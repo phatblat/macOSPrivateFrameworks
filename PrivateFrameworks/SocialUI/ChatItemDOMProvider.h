@@ -33,7 +33,7 @@
 - (void)deselectChatItem:(id)arg1;
 - (void)selectChatItem:(id)arg1;
 - (id)parseMessageText:(id)arg1 chatItem:(id)arg2 messageElement:(id)arg3;
-- (BOOL)_appendBigEmojiDivIfNeeded:(id)arg1 chatItem:(id)arg2 messageTextElement:(id)arg3;
+- (BOOL)_appendBigEmojiDivIfNeededForText:(id)arg1 chatItem:(id)arg2 messageTextElement:(id)arg3;
 - (id)parseMessageSubject:(id)arg1;
 - (id)errorElementForMessageGuid:(id)arg1;
 - (void)_appendFaceTimeCallMessageItem:(id)arg1 toElement:(id)arg2 withChat:(id)arg3;
@@ -75,7 +75,10 @@
 - (void)refreshBusinessHeader:(id)arg1;
 - (id)_parseMessageStatus:(id)arg1;
 - (id)parseChatItem:(id)arg1 chat:(id)arg2;
+- (id)addRTLSpacingIfNeeded:(id)arg1;
 - (void)setTextDirection:(id)arg1;
+- (BOOL)_shouldHandlePhishingAttempts;
+- (id)_createPhishingMessageDOMElement;
 @property(readonly, nonatomic) PluginStatusDOMProvider *pluginStatusDOMProvider; // @synthesize pluginStatusDOMProvider=_pluginStatusDOMProvider;
 @property(readonly, nonatomic) BalloonPluginDOMProvider *balloonPluginDOMProvider; // @synthesize balloonPluginDOMProvider=_balloonPluginDOMProvider;
 @property(readonly, nonatomic) CollectiveAssociatedMessagesDOMProvider *associatedMessagesDOMProvider; // @synthesize associatedMessagesDOMProvider=_associatedMessagesDOMProvider;

@@ -27,6 +27,7 @@
     BOOL _allowZoomTransitions;
     BOOL _allowPinchTransitions;
     BOOL _purgeOnMemoryWarning;
+    BOOL _useCuratedLibraryLayout;
     BOOL _editorialLayoutEdit;
     BOOL _editorialLayoutAvoidSmallestTile;
     BOOL _allowEditorialLayoutStressTest;
@@ -37,11 +38,11 @@
     double _defaultPriorityWidgetsLoadingDelay;
     long long _detailViewsToKeepLoaded;
     long long _curationAlgorithm;
-    long long _layoutWeight;
     long long _editorialLayoutColumns;
     long long _editorialLayoutTargetRowsForChunk;
     long long _editorialLayoutActivityFeedItemCountThreshold;
     double _assetsWidgetPlaceholderAspectRatio;
+    long long _debugBadgeInfoType;
     long long _peopleWidgetMaximumNumberOfPeople;
     double _addToTabOpacity;
     double _addToTabDuration;
@@ -50,10 +51,11 @@
     double _addToTabRotationDelay;
     double _addToTabFadeOutDelay;
     double _addToTabEndRotation;
-    struct PXAssetBadgeInfo _debugBadgeInfo;
 }
 
++ (id)transientProperties;
 + (id)sharedInstance;
++ (id)settingsControllerModule;
 @property(nonatomic) double addToTabEndRotation; // @synthesize addToTabEndRotation=_addToTabEndRotation;
 @property(nonatomic) double addToTabFadeOutDelay; // @synthesize addToTabFadeOutDelay=_addToTabFadeOutDelay;
 @property(nonatomic) double addToTabRotationDelay; // @synthesize addToTabRotationDelay=_addToTabRotationDelay;
@@ -65,7 +67,7 @@
 @property(nonatomic) long long peopleWidgetMaximumNumberOfPeople; // @synthesize peopleWidgetMaximumNumberOfPeople=_peopleWidgetMaximumNumberOfPeople;
 @property(nonatomic) BOOL peopleWidgetDisableSocialGroup; // @synthesize peopleWidgetDisableSocialGroup=_peopleWidgetDisableSocialGroup;
 @property(nonatomic) BOOL placesWidgetShowOnlyPlaceholder; // @synthesize placesWidgetShowOnlyPlaceholder=_placesWidgetShowOnlyPlaceholder;
-@property(nonatomic) struct PXAssetBadgeInfo debugBadgeInfo; // @synthesize debugBadgeInfo=_debugBadgeInfo;
+@property(nonatomic) long long debugBadgeInfoType; // @synthesize debugBadgeInfoType=_debugBadgeInfoType;
 @property(nonatomic) BOOL enableDebugCurationBadge; // @synthesize enableDebugCurationBadge=_enableDebugCurationBadge;
 @property(nonatomic) BOOL allowEditorialLayoutStressTest; // @synthesize allowEditorialLayoutStressTest=_allowEditorialLayoutStressTest;
 @property(nonatomic) double assetsWidgetPlaceholderAspectRatio; // @synthesize assetsWidgetPlaceholderAspectRatio=_assetsWidgetPlaceholderAspectRatio;
@@ -74,7 +76,7 @@
 @property(nonatomic) long long editorialLayoutTargetRowsForChunk; // @synthesize editorialLayoutTargetRowsForChunk=_editorialLayoutTargetRowsForChunk;
 @property(nonatomic) long long editorialLayoutColumns; // @synthesize editorialLayoutColumns=_editorialLayoutColumns;
 @property(nonatomic) BOOL editorialLayoutEdit; // @synthesize editorialLayoutEdit=_editorialLayoutEdit;
-@property(nonatomic) long long layoutWeight; // @synthesize layoutWeight=_layoutWeight;
+@property(nonatomic) BOOL useCuratedLibraryLayout; // @synthesize useCuratedLibraryLayout=_useCuratedLibraryLayout;
 @property(nonatomic) long long curationAlgorithm; // @synthesize curationAlgorithm=_curationAlgorithm;
 @property(nonatomic) long long detailViewsToKeepLoaded; // @synthesize detailViewsToKeepLoaded=_detailViewsToKeepLoaded;
 @property(nonatomic) BOOL purgeOnMemoryWarning; // @synthesize purgeOnMemoryWarning=_purgeOnMemoryWarning;
@@ -97,6 +99,7 @@
 @property(nonatomic) BOOL showDemoTilingViewWidget; // @synthesize showDemoTilingViewWidget=_showDemoTilingViewWidget;
 @property(nonatomic) BOOL showAssetsWidget; // @synthesize showAssetsWidget=_showAssetsWidget;
 @property(nonatomic) BOOL showHeaderWidget; // @synthesize showHeaderWidget=_showHeaderWidget;
+- (struct PXAssetBadgeInfo)debugBadgeInfo;
 - (void)setDefaultValues;
 - (id)parentSettings;
 

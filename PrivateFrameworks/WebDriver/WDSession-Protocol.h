@@ -9,14 +9,13 @@
 @class NSArray, NSDictionary, NSSet, NSString, WDBrowsingContext, WDHTTPCookie, WDRemoteElement, WDSessionNotificationManager, WDToplevelBrowsingContext;
 
 @protocol WDSession <NSObject>
+@property(nonatomic) BOOL usesStrictFileInteractabilityChecks;
 @property(nonatomic) long long userPromptHandlerStrategy;
 @property(nonatomic) long long pageLoadStrategy;
 @property(nonatomic) unsigned long long asynchronousScriptTimeout;
 @property(nonatomic) unsigned long long elementSearchTimeout;
 @property(nonatomic) unsigned long long pageLoadTimeout;
-@property(readonly, nonatomic) long long currentPressedWDKeyModifiers;
-@property(readonly, nonatomic) long long currentPressedMouseButtons;
-@property(readonly, nonatomic) struct CGPoint currentMouseCursorPosition;
+@property(readonly, nonatomic) long long currentPressedKeyModifiers;
 @property(readonly, copy, nonatomic) WDBrowsingContext *currentBrowsingContext;
 @property(readonly, copy, nonatomic) WDToplevelBrowsingContext *currentToplevelBrowsingContext;
 @property(readonly, copy, nonatomic) NSString *sessionIdentifier;
@@ -34,7 +33,6 @@
 - (void)cancelInteractionsWithCompletionHandler:(void (^)(NSError *))arg1;
 - (void)performInteractions:(NSArray *)arg1 withInputSources:(NSSet *)arg2 completionHandler:(void (^)(NSError *))arg3;
 - (void)performKeyboardInteractions:(NSArray *)arg1 completionHandler:(void (^)(NSError *))arg2;
-- (void)performMouseInteraction:(long long)arg1 atPosition:(struct CGPoint)arg2 usingButton:(long long)arg3 completionHandler:(void (^)(NSError *))arg4;
 - (void)fetchSelectedFilesForFileInputElement:(WDRemoteElement *)arg1 completionHandler:(void (^)(NSError *, NSArray *))arg2;
 - (void)chooseFiles:(NSArray *)arg1 forFileInputElement:(WDRemoteElement *)arg2 completionHandler:(void (^)(NSError *))arg3;
 - (void)setUserInput:(NSString *)arg1 forCurrentJavaScriptPromptWithCompletionHandler:(void (^)(NSError *))arg2;
@@ -72,6 +70,6 @@
 - (void)resolveChildBrowsingContextWithName:(NSString *)arg1 completionHandler:(void (^)(NSError *, WDBrowsingContext *))arg2;
 - (void)fetchPropertiesForToplevelBrowsingContext:(WDBrowsingContext *)arg1 completionHandler:(void (^)(NSError *, WDBrowsingContextProperties *))arg2;
 - (void)fetchPropertiesForAllToplevelBrowsingContextsWithCompletionHandler:(void (^)(NSError *, NSArray *))arg1;
-- (void)createToplevelBrowsingContextWithOptions:(unsigned long long)arg1 completionHandler:(void (^)(NSError *, WDToplevelBrowsingContext *))arg2;
+- (void)createToplevelBrowsingContextWithOptions:(unsigned long long)arg1 completionHandler:(void (^)(NSError *, WDToplevelBrowsingContext *, long long))arg2;
 @end
 

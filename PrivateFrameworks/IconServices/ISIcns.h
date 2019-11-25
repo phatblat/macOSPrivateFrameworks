@@ -6,24 +6,34 @@
 
 #import "NSObject.h"
 
+#import "ISScalableCompositorResource.h"
 #import "NSCopying.h"
 #import "NSMutableCopying.h"
 
-@class NSArray, NSData, NSDictionary, NSMutableDictionary, NSString;
+@class NSArray, NSData, NSDictionary, NSMutableDictionary, NSString, NSURL;
 
-@interface ISIcns : NSObject <NSCopying, NSMutableCopying>
+@interface ISIcns : NSObject <ISScalableCompositorResource, NSCopying, NSMutableCopying>
 {
     unsigned int _type;
     NSData *_data;
     id _elements;
     BOOL _dirty;
+    NSURL *_url;
 }
 
 + (BOOL)createEmptyIconsetFolderWithURL:(id)arg1 error:(id *)arg2;
 + (id)icnsWithIconFamilyHandle:(struct IconFamilyResource **)arg1;
 + (id)icnsWithContentsOfURL:(id)arg1;
 + (id)icnsWithResourceFile:(id)arg1;
++ (id)icnsWithIcon:(id)arg1 imageDescriptors:(id)arg2;
++ (id)icnsWithType:(unsigned int)arg1 images:(id)arg2;
++ (id)genericAppIconResource;
++ (id)genericFolderIconResource;
++ (id)genericDocumentIconResource;
++ (id)placeholderIconResource;
++ (id)notLoadedIconResource;
 + (id)systemIconNamed:(id)arg1;
+@property(retain) NSURL *url; // @synthesize url=_url;
 @property BOOL dirty; // @synthesize dirty=_dirty;
 @property(readonly) NSMutableDictionary *elements; // @synthesize elements=_elements;
 @property unsigned int type; // @synthesize type=_type;
@@ -35,8 +45,8 @@
 - (void)removeValueAtIndex:(int)arg1;
 - (void)setData:(id)arg1 atIndex:(int)arg2;
 @property(readonly) NSData *data; // @synthesize data=_data;
-- (id)debugDescription;
-- (id)description;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) NSArray *variants; // @dynamic variants;
 - (BOOL)isVariantElementType:(unsigned int)arg1;
 - (void)enumerateElementsUsingBlock:(CDUnknownBlockType)arg1;
@@ -47,6 +57,7 @@
 - (struct CGSize)sizeAtIndex:(int)arg1;
 - (id)dataAtIndex:(int)arg1;
 - (id)variantNamed:(id)arg1;
+@property(readonly) BOOL containsTemplateVariant;
 - (unsigned int)typeForVariantName:(id)arg1;
 @property(retain) NSString *name; // @dynamic name;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
@@ -58,12 +69,20 @@
 - (id)init;
 - (BOOL)writeAsIconsetToURL:(id)arg1;
 - (BOOL)writeIconsetImagesToURL:(id)arg1 variantName:(id)arg2 selected:(BOOL)arg3;
+- (id)imageForSize:(struct CGSize)arg1 scale:(double)arg2;
 - (short)copyTypeData:(unsigned int)arg1 toHandle:(char **)arg2;
+- (id)assetCatalogResource;
+- (id)assetCatalogIconName;
+- (id)assetCatalogFilePath;
 - (struct CGImage *)copyCGImageForSize:(struct CGSize)arg1 scale:(unsigned int)arg2;
 - (int)iconIndexForSize:(struct CGSize)arg1 scale:(unsigned int)arg2;
 - (struct CGImage *)copyCGImageWithIndex:(int)arg1;
 - (struct CGImage *)CGImageWithData:(id)arg1 iconIndexInfo:(const CDStruct_2eae0794 *)arg2;
 - (int)findMaskIndex:(int)arg1;
+
+// Remaining properties
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

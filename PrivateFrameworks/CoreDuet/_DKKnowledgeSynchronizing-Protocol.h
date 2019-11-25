@@ -4,9 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSObject<OS_dispatch_queue>, NSString, _DKObject;
+@class NSObject<OS_dispatch_queue>, NSString, NSUUID, _DKObject;
 
 @protocol _DKKnowledgeSynchronizing
+- (NSUUID *)deviceUUID;
 - (NSString *)sourceDeviceIdentityWithError:(id *)arg1;
 - (NSString *)sourceDeviceIdentityFromObject:(_DKObject *)arg1 error:(id *)arg2;
 - (BOOL)deleteRemoteState:(id *)arg1;

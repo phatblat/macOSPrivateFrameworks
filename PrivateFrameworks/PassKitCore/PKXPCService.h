@@ -25,7 +25,7 @@
     id <PKForegroundActiveArbiter> _foregroundActiveArbiter;
     id <NSObject> _foregroundListener;
     id <NSObject> _backgroundListener;
-    int _serviceResumedToken;
+    id <PKInvalidatable> _serviceResumedListenerInvalidater;
     id <PKXPCServiceDelegate> _delegate;
     NSString *_machServiceName;
     unsigned long long _options;

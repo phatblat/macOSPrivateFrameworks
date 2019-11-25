@@ -21,10 +21,13 @@
     BOOL _isCancelled;
     NSError *_error;
     NSMutableDictionary *_trackingHistory;
+    id <PKInstallOperationControllerDelegate><NSObject> _delegate;
 }
 
 + (BOOL)_verboseMode;
+@property(readonly) __weak id <PKInstallOperationControllerDelegate><NSObject> delegate; // @synthesize delegate=_delegate;
 @property(retain) NSError *error; // @synthesize error=_error;
+- (void).cxx_destruct;
 - (void)_markEndOfCancellableOperations;
 - (BOOL)_isCancelled;
 - (id)_currentOperation;
@@ -44,6 +47,7 @@
 - (void)addPrepareOperationsIntoSandbox:(id)arg1;
 - (id)description;
 - (void)dealloc;
+- (id)initWithRequest:(id)arg1 analyzer:(id)arg2 delegate:(id)arg3;
 - (id)initWithRequest:(id)arg1 analyzer:(id)arg2;
 
 @end

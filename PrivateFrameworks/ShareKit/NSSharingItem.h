@@ -41,7 +41,8 @@
 - (id)shareItemString;
 - (id)shareItemURL;
 - (id)description;
-- (BOOL)isPromiseURL;
+- (void)coordinatedURLWithCompletion:(CDUnknownBlockType)arg1;
+- (id)coordinatedURLWithError:(id *)arg1;
 @property(retain, nonatomic) NSURL *url; // @synthesize url=_url;
 @property(retain) NSImage *image; // @dynamic image;
 - (void)encodeWithCoder:(id)arg1;

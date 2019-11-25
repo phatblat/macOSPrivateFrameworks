@@ -8,6 +8,7 @@
 
 @class NSDictionary, NSMutableDictionary;
 
+__attribute__((visibility("hidden")))
 @interface TSUAssetColorMap : NSObject
 {
     NSMutableDictionary *mAssetPathToColorMap;

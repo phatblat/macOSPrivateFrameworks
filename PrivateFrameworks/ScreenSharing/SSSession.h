@@ -78,6 +78,7 @@
         unsigned short _field3;
         char _field4[0];
     } *mUnverifiedServerHostKey;
+    NSObject<OS_dispatch_semaphore> *mScaleFactorSemaphore;
     BOOL hasUnfulfilledPasteboardPromises;
     BOOL _assistModeEnabled;
     BOOL _assistModeWasEnabled;
@@ -92,27 +93,27 @@
     unsigned int _assistModeFlags;
     unsigned int _AVConferenceVideoWidth;
     unsigned int _AVConferenceVideoHeight;
-    MessageTracerInfo *messageTracerInfo;
     NWConnectionManager *_datagramConnectionManager;
     NSString *_mUnverifiedServerHostLabel;
+    MessageTracerInfo *_messageTracerInfo;
     double _connectTimeout;
     long long _displayInfo2Version;
     NSDate *_lastContactDate;
     NSTimer *_udpLivenessTimer;
-    NSObject<OS_dispatch_semaphore> *_scaleFactorSemaphore;
+    struct CGPoint mLastCursorPercent;
 }
 
 + (id)qualityEncodingsForMode:(long long)arg1;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 + (void)registerForDisplayChanges;
 @property BOOL scaleFactorEnqueued; // @synthesize scaleFactorEnqueued=_scaleFactorEnqueued;
-@property NSObject<OS_dispatch_semaphore> *scaleFactorSemaphore; // @synthesize scaleFactorSemaphore=_scaleFactorSemaphore;
 @property unsigned short lastY; // @synthesize lastY=_lastY;
 @property unsigned short lastX; // @synthesize lastX=_lastX;
 @property(retain) NSTimer *udpLivenessTimer; // @synthesize udpLivenessTimer=_udpLivenessTimer;
 @property(retain) NSDate *lastContactDate; // @synthesize lastContactDate=_lastContactDate;
 @property long long displayInfo2Version; // @synthesize displayInfo2Version=_displayInfo2Version;
 @property double connectTimeout; // @synthesize connectTimeout=_connectTimeout;
+@property(retain) MessageTracerInfo *messageTracerInfo; // @synthesize messageTracerInfo=_messageTracerInfo;
 @property BOOL mUnverifiedServerMessageDisplayed; // @synthesize mUnverifiedServerMessageDisplayed=_mUnverifiedServerMessageDisplayed;
 @property(retain) NSString *mUnverifiedServerHostLabel; // @synthesize mUnverifiedServerHostLabel=_mUnverifiedServerHostLabel;
 @property BOOL encodingsWereSet; // @synthesize encodingsWereSet=_encodingsWereSet;
@@ -124,7 +125,6 @@
 @property BOOL canToggleCurtainMode; // @synthesize canToggleCurtainMode=_canToggleCurtainMode;
 @property BOOL assistModeWasEnabled; // @synthesize assistModeWasEnabled=_assistModeWasEnabled;
 @property BOOL hasUnfulfilledPasteboardPromises; // @synthesize hasUnfulfilledPasteboardPromises;
-@property(retain) MessageTracerInfo *messageTracerInfo; // @synthesize messageTracerInfo;
 @property(copy) NSArray *localFilePaths; // @synthesize localFilePaths=mLocalFilePaths;
 @property(retain) NSObject<SSDragDelegate> *dragDelegate; // @synthesize dragDelegate=mDragDelegate;
 @property(copy) NSImage *remoteDragImage; // @synthesize remoteDragImage=mRemoteDragImage;
@@ -137,6 +137,7 @@
 @property unsigned int viewerAppMajorVersion; // @synthesize viewerAppMajorVersion=mViewerAppMajorVersion;
 @property unsigned int viewerApp; // @synthesize viewerApp=mViewerApp;
 @property BOOL isUsingSSHTunnel; // @synthesize isUsingSSHTunnel=mIsUsingSSHTunnel;
+@property struct CGPoint lastCursorPercent; // @synthesize lastCursorPercent=mLastCursorPercent;
 @property struct SSPoint lastCursorCoodinates; // @synthesize lastCursorCoodinates=mLastCursorCoordinates;
 @property(copy) NSSet *pseudoEncodings; // @synthesize pseudoEncodings=mPseudoEncodings;
 @property int cursorMode; // @synthesize cursorMode=mCursorMode;
@@ -164,6 +165,8 @@
 - (void)delegateSessionRequestToOpenURLResult:(int)arg1;
 - (void)dtDelegateSessionRequestToResumeResult:(id)arg1;
 - (void)delegateSessionRequestToResumeResult:(int)arg1;
+- (void)dtDelegateSessionDidSetLocalWindowUIResolution:(id)arg1;
+- (void)delegateSessionDidSetLocalWindowUIResolution:(id)arg1;
 - (void)dtDelegateSessionAllowsControl:(id)arg1;
 - (void)delegateSessionAllowsControl:(BOOL)arg1;
 - (void)dtDelegateDisplaysDidSleep;
@@ -203,6 +206,8 @@
 - (void)dtDelegateOnConsoleChanged;
 - (void)delegateOnConsoleChanged;
 - (void)dtDelegateVirtualDisplayStateChanged;
+- (void)dtDelegateTouchEvent:(id)arg1;
+- (void)delegateTouchEvent:(id)arg1;
 - (void)delegateVirtualDisplayStateChanged;
 - (void)dtDelegateUserPictureChanged;
 - (void)delegateUserPictureChanged;
@@ -224,6 +229,7 @@
 - (BOOL)recordRemotePasteboardData:(id)arg1 toLocalPasteboard:(id)arg2 uncompressedSize:(unsigned int)arg3;
 - (BOOL)validateAndAdjustMouseCoordinatesForServer:(struct SSPoint)arg1 withXOut:(unsigned short *)arg2 withYOut:(unsigned short *)arg3;
 - (void)setFrameBuffer:(id)arg1;
+- (void)handleTouchEvent:(CDStruct_13724557 *)arg1;
 - (void)handleUserRequestResponse:(CDStruct_250aeff3 *)arg1;
 - (void)handleFileTransferResultInfo:(CDStruct_c0c3f3c9 *)arg1;
 - (void)handleFileTransferProgressInfo:(CDStruct_e4886f83 *)arg1;
@@ -286,11 +292,11 @@
 - (void)stSendMouseMoveEvent:(id)arg1;
 - (void)repostMouseEvent;
 - (void)stCommonRepostMouseEvent;
-- (void)stCommonPostMouseEventWithX:(unsigned short)arg1 withY:(unsigned short)arg2 withButtonMask:(unsigned char)arg3 withFrameBufferCoords:(struct SSPoint)arg4 withClickCount:(long long)arg5;
-- (void)stCommonPostMouseEventWithX:(unsigned short)arg1 withY:(unsigned short)arg2 withButtonMask:(unsigned char)arg3 withFrameBufferCoords:(struct SSPoint)arg4;
-- (void)stCorePostMouseEventWithX:(unsigned short)arg1 withY:(unsigned short)arg2 withButtonMask:(unsigned char)arg3 withFrameBufferCoords:(struct SSPoint)arg4 withClickCount:(long long)arg5 active:(BOOL)arg6;
+- (void)stCommonPostMouseEventWithX:(unsigned short)arg1 withY:(unsigned short)arg2 withButtonMask:(unsigned char)arg3 withFrameBufferCoords:(struct SSPoint)arg4 withClickCount:(long long)arg5 framePercent:(struct CGPoint)arg6;
+- (void)stCommonPostMouseEvent:(id)arg1 withX:(unsigned short)arg2 withY:(unsigned short)arg3 withButtonMask:(unsigned char)arg4 withClickCount:(long long)arg5;
+- (void)stCorePostMouseEventWithX:(unsigned short)arg1 withY:(unsigned short)arg2 withButtonMask:(unsigned char)arg3 withFrameBufferCoords:(struct SSPoint)arg4 withClickCount:(long long)arg5 active:(BOOL)arg6 framePercent:(struct CGPoint)arg7;
 - (void)turnAssistModeOff:(BOOL)arg1;
-- (void)turnAssistModeOnWithX:(unsigned short)arg1 Y:(unsigned short)arg2 andFlags:(unsigned int)arg3;
+- (void)turnAssistModeOnWithX:(unsigned short)arg1 Y:(unsigned short)arg2 flags:(unsigned int)arg3 info:(struct RFBAssistCursorV2Info *)arg4;
 - (int)assistPointerColor;
 - (void)setAssistPointerColor:(int)arg1;
 - (int)assistPointerKind;
@@ -339,7 +345,7 @@
 - (void)resumeFileCopy:(id)arg1;
 - (void)pauseFileCopy:(id)arg1;
 - (id)activeFileCopies;
-- (id)fileCopyRemotePath:(id)arg1 toLocalPath:(id)arg2;
+- (id)fileCopyRemotePath:(id)arg1 toLocalPath:(id)arg2 withFileName:(id)arg3;
 - (id)fileCopyLocalPath:(id)arg1 toRemotePath:(id)arg2;
 - (void)requestSystemInfo:(int)arg1 args:(id)arg2;
 - (void)requestSystemInfo:(int)arg1 args:(id)arg2 senderToken:(unsigned int)arg3;

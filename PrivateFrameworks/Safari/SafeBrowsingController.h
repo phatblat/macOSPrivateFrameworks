@@ -11,10 +11,9 @@ __attribute__((visibility("hidden")))
 {
 }
 
-+ (void)lookUpURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 + (void)setSafeBrowsingEnabled:(BOOL)arg1;
++ (id)_safeBrowsingPreferencesPlistURL;
 + (BOOL)isSafeBrowsingEnabled;
-+ (BOOL)isSafeBrowsingAvailable;
 
 @end
 

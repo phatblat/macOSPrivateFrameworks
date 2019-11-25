@@ -17,11 +17,14 @@
     CDStruct_be739ab4 _has;
     BOOL _overwrite;
     BOOL _success;
+    BOOL __encodeLegacyGloryData;
     int _entityType;
     _INPBString *_destinationName;
     _INPBString *_entityName;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(nonatomic) BOOL success; // @synthesize success=_success;
 @property(nonatomic) BOOL overwrite; // @synthesize overwrite=_overwrite;
 @property(nonatomic) int entityType; // @synthesize entityType=_entityType;
@@ -32,6 +35,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(nonatomic) BOOL hasSuccess;

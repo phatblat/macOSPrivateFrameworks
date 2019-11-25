@@ -123,6 +123,17 @@ typedef struct {
 } CDStruct_c688133d;
 
 typedef struct {
+    double X;
+    double Y;
+    double Z;
+} CDStruct_6f955ef8;
+
+typedef struct {
+    double x;
+    double y;
+} CDStruct_34734122;
+
+typedef struct {
     float minCCT;
     float maxCCT;
     float midCCT;
@@ -151,23 +162,30 @@ typedef struct {
         float _field1;
         float _field2;
     } _field5;
-} CDStruct_7bd4ac66;
+    int _field6;
+    double _field7;
+} CDStruct_0384f68a;
 
 typedef struct {
     CDStruct_c688133d _field1;
     CDStruct_c688133d _field2;
+    struct {
+        double _field1[46];
+        int _field2;
+        unsigned long long _field3;
+    } _field3;
     struct {
         double _field1;
         double _field2;
         double _field3;
         _Bool _field4;
         float _field5;
-    } _field3;
+    } _field4;
     struct {
         double _field1[10];
         int _field2;
         double _field3;
-    } _field4;
+    } _field5;
     struct {
         double _field1;
         double _field2;
@@ -175,9 +193,9 @@ typedef struct {
         double _field4;
         float _field5;
         float _field6;
-    } _field5;
-    int _field6;
-} CDStruct_b1cf45a1;
+    } _field6;
+    int _field7;
+} CDStruct_97eeab40;
 
 typedef struct {
     CDStruct_46614362 minPoint;
@@ -197,7 +215,19 @@ typedef struct {
     int mode;
     CDStruct_6cee55f3 schedule;
     unsigned long long disableFlags;
-} CDStruct_768fa5c4;
+    char available;
+} CDStruct_d991f265;
+
+// Ambiguous groups
+typedef struct {
+    float _field1;
+    float _field2;
+} CDStruct_b2fbf00d;
+
+typedef struct {
+    float lux;
+    float factor;
+} CDStruct_46614362;
 
 // Ambiguous groups
 typedef struct {

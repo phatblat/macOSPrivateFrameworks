@@ -9,6 +9,7 @@
 @class NSManagedObjectContext, NSManagedObjectID, NSSet, NSString;
 
 @protocol ICLegacyFolder <NSObject>
+- (BOOL)isDeletedOrInTrash;
 - (NSManagedObjectContext *)managedObjectContext;
 - (NSManagedObjectID *)objectID;
 - (void)addNotesObject:(id <ICLegacyNote>)arg1;

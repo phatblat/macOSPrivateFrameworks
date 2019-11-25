@@ -6,12 +6,13 @@
 
 #import "NSResponder.h"
 
+#import "IMChatTranscriptItemVending.h"
 #import "NSSecureCoding.h"
 #import "NSTextStorageDelegate.h"
 
-@class IMAccount, IMChat, NSArray, NSAttributedString, NSDictionary, NSMutableDictionary, NSOrderedSet, NSString, NSTextStorage, NSUndoManager;
+@class IMAccount, IMChat, NSArray, NSAttributedString, NSDate, NSDictionary, NSMutableDictionary, NSOrderedSet, NSString, NSTextStorage, NSUndoManager;
 
-@interface SOChatDisplayController : NSResponder <NSSecureCoding, NSTextStorageDelegate>
+@interface SOChatDisplayController : NSResponder <IMChatTranscriptItemVending, NSSecureCoding, NSTextStorageDelegate>
 {
     BOOL _isShowingSendingText;
     BOOL _hasHitBoundsLimit;
@@ -23,6 +24,7 @@
     NSString *_persistentGUID;
     NSString *_summary;
     NSDictionary *_bizIntent;
+    NSDate *_dateLastViewed;
     IMChat *_chat;
     IMAccount *_sendingAccount;
     NSTextStorage *_inputLineTextStorage;
@@ -34,8 +36,10 @@
 }
 
 + (BOOL)pinnedConversationsEnabled;
++ (id)inputLineTextStorableClasses;
 + (BOOL)supportsSecureCoding;
 + (id)allowedSecureArchivingClasses_so;
++ (id)chatDisplayController;
 @property(retain) NSMutableDictionary *viewConfigurationStorage; // @synthesize viewConfigurationStorage=_viewConfigurationStorage;
 @property(readonly, nonatomic, getter=isJoiningInvitation) _Bool joiningInvitation; // @synthesize joiningInvitation=_joiningInvitation;
 @property(nonatomic) BOOL sendingMessage; // @synthesize sendingMessage=_sendingMessage;
@@ -48,6 +52,7 @@
 @property(nonatomic, setter=setShowingSendingText:) BOOL isShowingSendingText; // @synthesize isShowingSendingText=_isShowingSendingText;
 @property(retain, nonatomic) IMAccount *sendingAccount; // @synthesize sendingAccount=_sendingAccount;
 @property(retain, nonatomic) IMChat *chat; // @synthesize chat=_chat;
+@property(nonatomic) NSDate *dateLastViewed; // @synthesize dateLastViewed=_dateLastViewed;
 @property(retain, nonatomic) NSDictionary *bizIntent; // @synthesize bizIntent=_bizIntent;
 @property(readonly, nonatomic) NSString *summary; // @synthesize summary=_summary;
 @property(retain, nonatomic) NSString *persistentGUID; // @synthesize persistentGUID=_persistentGUID;
@@ -63,12 +68,17 @@
 - (id)init;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+@property(readonly, copy, nonatomic) id <NSFastEnumeration> chatTranscriptItems;
+- (id)chatTranscriptItemAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long numberOfChatTranscriptItems;
 - (void)textStorageWillProcessEditing:(id)arg1;
+- (void)resortMessagesIfNecessary;
 - (void)_updateRecipientHandles;
 - (void)_chatDisplayNameDidChange:(id)arg1;
 - (void)_addressBookPreferencesChanged:(id)arg1;
 - (void)_handleInfoChanged:(id)arg1;
 - (void)chatItemsDidChange;
+- (void)_chatAllowedByScreenTimeDidChange:(id)arg1;
 - (void)_chatRecipientsDidChange:(id)arg1;
 - (void)chatDisplayNameDidChange;
 - (void)chatRecipientsDidChange;

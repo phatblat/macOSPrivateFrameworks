@@ -8,6 +8,7 @@
 
 @class NSObject<OS_dispatch_group>;
 
+__attribute__((visibility("hidden")))
 @interface TSUZipFileDescriptorWrapper : NSObject
 {
     NSObject<OS_dispatch_group> *_accessGroup;

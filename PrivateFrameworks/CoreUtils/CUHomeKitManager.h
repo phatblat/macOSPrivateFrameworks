@@ -14,7 +14,7 @@
 #import "HMMediaSystemDelegate.h"
 #import "HMUserDelegatePrivate.h"
 
-@class HMAccessory, HMHomeManager, HMMediaSystem, HMMediaSystemRole, HMUser, NSDictionary, NSObject<OS_dispatch_queue>, NSString, NSUUID;
+@class HMAccessory, HMHomeManager, HMMediaSystem, HMMediaSystemRole, HMUser, NSArray, NSDictionary, NSObject<OS_dispatch_queue>, NSString, NSUUID;
 
 @interface CUHomeKitManager : NSObject <HMAccessoryDelegatePrivate, HMHomeDelegate, HMHomeDelegatePrivate, HMHomeManagerDelegate, HMHomeManagerDelegatePrivate, HMMediaSystemDelegate, HMUserDelegatePrivate>
 {
@@ -22,6 +22,7 @@
     HMHomeManager *_homeManager;
     BOOL _homeManagerDidUpdateHomes;
     struct NSMutableDictionary *_homes;
+    struct NSMutableDictionary *_resolvableAccessoriesMap;
     NSDictionary *_selfAccessoryAppData;
     BOOL _selfAccessoryEnabled;
     NSUUID *_selfAccessoryRoomID;
@@ -42,6 +43,8 @@
     CDUnknownBlockType _interruptionHandler;
     CDUnknownBlockType _invalidationHandler;
     CDUnknownBlockType _stateChangedHandler;
+    NSArray *_resolvableAccessories;
+    CDUnknownBlockType _resolvableAccessoriesChangedHandler;
     HMAccessory *_selfAccessory;
     CDUnknownBlockType _selfAccessoryAppDataChangedHandler;
     CDUnknownBlockType _selfAccessoryUpdatedHandler;
@@ -69,6 +72,8 @@
 @property(copy, nonatomic) CDUnknownBlockType selfAccessoryAppDataChangedHandler; // @synthesize selfAccessoryAppDataChangedHandler=_selfAccessoryAppDataChangedHandler;
 @property(readonly, copy, nonatomic) NSDictionary *selfAccessoryAppData; // @synthesize selfAccessoryAppData=_selfAccessoryAppData;
 @property(readonly, nonatomic) HMAccessory *selfAccessory; // @synthesize selfAccessory=_selfAccessory;
+@property(copy, nonatomic) CDUnknownBlockType resolvableAccessoriesChangedHandler; // @synthesize resolvableAccessoriesChangedHandler=_resolvableAccessoriesChangedHandler;
+@property(readonly, copy, nonatomic) NSArray *resolvableAccessories; // @synthesize resolvableAccessories=_resolvableAccessories;
 @property(copy, nonatomic) CDUnknownBlockType stateChangedHandler; // @synthesize stateChangedHandler=_stateChangedHandler;
 @property(readonly, nonatomic) unsigned int state; // @synthesize state=_state;
 @property(copy, nonatomic) CDUnknownBlockType invalidationHandler; // @synthesize invalidationHandler=_invalidationHandler;
@@ -99,6 +104,8 @@
 - (BOOL)_isOwnerOfHome:(id)arg1;
 - (id)_cuPairingIdentityWithHMFPairingIdentity:(id)arg1 options:(unsigned long long)arg2 error:(id *)arg3;
 - (id)_bestUserAndLabel:(id *)arg1;
+- (void)_findPairedPeerWithContext:(id)arg1 label:(id)arg2 pairingIdentity:(id)arg3 error:(id)arg4;
+- (void)_findPairedPeerWithContext:(id)arg1;
 - (void)_findPairedPeer:(id)arg1 options:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)findPairedPeer:(id)arg1 options:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)_getPairingIdentityCompleted:(id)arg1 options:(unsigned long long)arg2 error:(id)arg3 label:(id)arg4 completion:(CDUnknownBlockType)arg5;
@@ -112,6 +119,7 @@
 - (void)_updateSelfAccessoryMediaAccess;
 - (void)_updateSelfAccessoryIfNeeded;
 - (void)_updateHomes;
+- (void)_updateAccessories;
 - (void)_invalidated;
 - (void)invalidate;
 - (void)_interrupted;

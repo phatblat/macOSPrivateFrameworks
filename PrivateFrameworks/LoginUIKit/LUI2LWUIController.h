@@ -43,11 +43,13 @@
 - (id)init;
 @property(readonly) LUI2BackgroundViewController *backgroundViewController;
 @property(getter=isEnabled) BOOL enabled; // @dynamic enabled;
+- (void)showPopover:(id)arg1 relativeToView:(id)arg2;
 - (void)showPopover:(id)arg1;
 - (void)shakePopover;
 - (void)hidePopover;
 - (id)currentPopover;
 - (id)_viewForPopover:(int)arg1;
+- (void)_updateKeyViews:(id)arg1;
 - (void)_setupLWUIControllerWithAuthorizationPluginView:(id)arg1;
 
 @end

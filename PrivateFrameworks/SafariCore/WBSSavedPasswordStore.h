@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSSet, WBSAutoFillQuirksManager, WBSKeychainCredentialNotificationMonitor;
+@class NSArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSSet, WBSKeychainCredentialNotificationMonitor;
 
 @interface WBSSavedPasswordStore : NSObject
 {
@@ -14,7 +14,6 @@
     NSArray *_savedPasswords;
     WBSKeychainCredentialNotificationMonitor *_keychainMonitor;
     id _keychainNotificationRegistrationToken;
-    WBSAutoFillQuirksManager *_autoFillQuirksManager;
     NSObject<OS_dispatch_queue> *_queue;
     BOOL _hasPasswordsEligibleForAutoFill;
 }
@@ -23,6 +22,7 @@
 + (id)sharedStore;
 @property(readonly, nonatomic) BOOL hasPasswordsEligibleForAutoFill; // @synthesize hasPasswordsEligibleForAutoFill=_hasPasswordsEligibleForAutoFill;
 - (void).cxx_destruct;
+- (id)persistentIdentifierForCredential:(id)arg1 protectionSpace:(id)arg2;
 - (void)_ensureDomainsToUsersExists;
 - (void)_cleanUpRedundantCredentialsWithoutUsernames;
 - (void)reset;
@@ -31,19 +31,17 @@
 - (BOOL)canSaveUser:(id)arg1 password:(id)arg2 forProtectionSpace:(id)arg3 highLevelDomain:(id)arg4;
 - (BOOL)changeSavedPassword:(id)arg1 toUser:(id)arg2 password:(id)arg3;
 - (BOOL)canChangeSavedPassword:(id)arg1 toUser:(id)arg2 password:(id)arg3;
-- (void)removeSite:(id)arg1 fromPassword:(id)arg2;
+- (void)removeSite:(id)arg1 fromPassword:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
 - (void)removePassword:(id)arg1;
 - (void)_removePassword:(id)arg1;
 - (id)_savedPasswords;
 @property(readonly, nonatomic) NSArray *savedPasswords;
+@property(readonly, nonatomic) NSSet *highLevelDomainsOfAllSavedPasswordsExcludingNeverSaveMarkerPasswords;
 @property(readonly, nonatomic) NSArray *savedPasswordsExcludingNeverSaveMarkerPasswords;
 - (id)_allInternetPasswordEntriesFromKeychain;
 - (id)savedPasswordForURL:(id)arg1 user:(id)arg2 password:(id)arg3;
 - (void)dealloc;
-- (id)initUsingAutoFillQuirksManager:(BOOL)arg1;
-@property(readonly, nonatomic) BOOL hasDuplicatedPasswords;
-- (BOOL)savedPasswordHasReusedPassword:(id)arg1;
-- (id)savedPasswordsWithDuplicatedPassword:(id)arg1;
+- (id)init;
 
 @end
 

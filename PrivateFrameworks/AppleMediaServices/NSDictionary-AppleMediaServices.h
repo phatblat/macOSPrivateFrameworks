@@ -6,11 +6,31 @@
 
 #import "NSDictionary.h"
 
-@interface NSDictionary (AppleMediaServices)
+#import "AMSHashable.h"
+
+@class NSDate, NSString;
+
+@interface NSDictionary (AppleMediaServices) <AMSHashable>
++ (id)ams_dictionaryWithEncryptionResult:(CDStruct_0f015c83)arg1;
 - (id)ams_objectForKey:(id)arg1 defaultValue:(id)arg2;
 - (id)ams_objectForCaseInsensitiveKey:(id)arg1;
+- (id)ams_mapWithTransform:(CDUnknownBlockType)arg1;
+- (id)ams_firstObjectPassingTest:(CDUnknownBlockType)arg1;
+- (id)ams_firstKeyObjectPassingTest:(CDUnknownBlockType)arg1;
+- (id)ams_firstKeyPassingTest:(CDUnknownBlockType)arg1;
 - (id)ams_filterUsingTest:(CDUnknownBlockType)arg1;
 - (id)ams_dictionaryByAddingEntriesFromDictionary:(id)arg1;
+- (id)ams_componentsJoinedByString:(id)arg1;
 - (id)ams_arrayUsingTransform:(CDUnknownBlockType)arg1;
+@property(readonly) NSString *hashedDescription;
+- (CDStruct_0f015c83)ams_encryptionResult;
+@property(readonly, getter=ams_isExpired) BOOL ams_expired;
+@property(readonly) NSDate *ams_expirationDate;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

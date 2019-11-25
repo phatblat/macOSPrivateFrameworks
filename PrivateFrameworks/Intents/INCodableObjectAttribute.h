@@ -8,23 +8,32 @@
 
 #import "NSSecureCoding.h"
 
-@class NSString;
+@class NSString, NSValueTransformer;
 
 @interface INCodableObjectAttribute : INCodableAttribute <NSSecureCoding>
 {
-    NSString *_className;
+    NSString *_originalTypeName;
+    NSString *_typeName;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(copy, nonatomic) NSString *className; // @synthesize className=_className;
+@property(copy, nonatomic) NSString *typeName; // @synthesize typeName=_typeName;
+@property(copy, nonatomic, setter=_setOriginalTypeName:) NSString *_originalTypeName; // @synthesize _originalTypeName;
 - (void).cxx_destruct;
+- (void)setClassName:(id)arg1;
+@property(readonly, copy, nonatomic) NSString *className;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)_dictionaryRepresentation;
+- (id)dictionaryRepresentationForLanguage:(id)arg1;
+- (void)updateWithDictionary:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
-- (id)valueTransformer;
+- (long long)valueType;
+- (Class)_relationshipValueTransformerClass;
+@property(readonly, nonatomic) NSValueTransformer *valueTransformer;
+- (Class)resolutionResultClass;
+- (Class)objectClass;
 
 @end
 

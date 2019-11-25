@@ -15,7 +15,11 @@
 + (void)__setSingleton__im:(id)arg1;
 + (id)__singleton__im;
 - (BOOL)mocAccountsMatch;
+- (void)reportMetricToCK:(id)arg1 withDict:(id)arg2;
+- (void)reportMetricToCK:(id)arg1 withSuccess:(BOOL)arg2;
+- (void)reportMetricToCK:(id)arg1;
 - (void)broadcastCloudKitStateAfterClearingErrors;
+- (void)broadcastCloudKitStateAfterFetchingAccountStatus;
 - (void)broadcastCloudKitState;
 - (void)tryToAutoCollectLogsWithErrorString:(id)arg1 sendLogsTo:(id)arg2;
 - (void)fetchCloudKitSyncStateDebuggingInfo:(id)arg1;
@@ -25,6 +29,7 @@
 - (void)fetchLatestRampState;
 - (void)writeCloudKitSyncCounts:(id)arg1;
 - (void)fetchSyncStateStatistics;
+- (void)updateAttachmentFileSizes;
 - (void)purgeAttachments:(long long)arg1;
 - (void)metricAttachments:(long long)arg1;
 - (void)deleteSalt;
@@ -81,6 +86,8 @@
 - (void)writeDirtyChats;
 - (void)createChatZone;
 - (void)setupIMCloudKitHooks;
+- (void)clearAnalyticDefaultsAndLocalSyncState;
+- (void)uploadDailyAnalyticstoCloudKit;
 - (id)init;
 - (id)logHandle;
 

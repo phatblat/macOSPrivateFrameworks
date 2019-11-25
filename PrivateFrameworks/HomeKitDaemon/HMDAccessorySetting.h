@@ -52,6 +52,7 @@
 @property(readonly, copy) NSUUID *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
+- (BOOL)shouldEncodeForCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)_fixupMergeStrategyConstraints;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *messageReceiveQueue;
@@ -68,6 +69,8 @@
 @property(nonatomic) unsigned long long configurationVersion; // @synthesize configurationVersion=_configurationVersion;
 - (id)valueUpdateNotificationWithMessage:(id)arg1;
 - (void)settingUpdate:(id)arg1 didCompleteWithError:(id)arg2;
+- (BOOL)_shouldTurnOffPersonalRequestsOnLanguageChangeFrom:(id)arg1 toValue:(id)arg2;
+- (BOOL)_shouldBlockSettingUpdateMessage:(id)arg1;
 - (void)_handleUpdateValue:(id)arg1;
 - (void)handleUpdateValue:(id)arg1;
 - (void)setValue:(id)arg1;
@@ -108,7 +111,7 @@
 @property(readonly) unsigned long long hash;
 - (void)description:(id)arg1 indent:(id)arg2;
 @property(readonly, copy) NSString *description;
-- (id)__init;
+- (id)initWithIdentifier:(id)arg1 name:(id)arg2;
 - (id)initWithModel:(id)arg1;
 - (id)init;
 - (void)_fixupAccessorySetting;

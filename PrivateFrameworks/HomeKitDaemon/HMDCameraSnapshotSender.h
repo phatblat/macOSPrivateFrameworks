@@ -6,17 +6,16 @@
 
 #import "HMFObject.h"
 
-#import "HMDCameraPowerAssertionProtocol.h"
 #import "HMFLogging.h"
 
-@class HMDAccessory, HMDCameraSessionID, HMDDevice, NSObject<OS_dispatch_queue>, NSString, NSUUID;
+@class HMDAccessory, HMDCameraSnapshotSessionID, HMDDevice, NSObject<OS_dispatch_queue>, NSString, NSUUID;
 
-@interface HMDCameraSnapshotSender : HMFObject <HMFLogging, HMDCameraPowerAssertionProtocol>
+@interface HMDCameraSnapshotSender : HMFObject <HMFLogging>
 {
     NSUUID *_uniqueIdentifier;
     HMDDevice *_device;
     HMDAccessory *_accessory;
-    HMDCameraSessionID *_sessionID;
+    HMDCameraSnapshotSessionID *_sessionID;
     NSObject<OS_dispatch_queue> *_workQueue;
     NSObject<OS_dispatch_queue> *_delegateQueue;
 }
@@ -24,7 +23,7 @@
 + (id)logCategory;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *delegateQueue; // @synthesize delegateQueue=_delegateQueue;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
-@property(readonly, nonatomic) HMDCameraSessionID *sessionID; // @synthesize sessionID=_sessionID;
+@property(readonly, nonatomic) HMDCameraSnapshotSessionID *sessionID; // @synthesize sessionID=_sessionID;
 @property(readonly, nonatomic) __weak HMDAccessory *accessory; // @synthesize accessory=_accessory;
 @property(readonly, nonatomic) HMDDevice *device; // @synthesize device=_device;
 @property(readonly, nonatomic) NSUUID *uniqueIdentifier; // @synthesize uniqueIdentifier=_uniqueIdentifier;

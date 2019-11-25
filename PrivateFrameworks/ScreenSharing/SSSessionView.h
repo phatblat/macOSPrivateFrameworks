@@ -8,6 +8,7 @@
 
 #import "AVCRemoteVideoClientDelegate.h"
 #import "AVConferenceDelegate.h"
+#import "CALayerDelegate.h"
 #import "IDSSessionDelegate.h"
 #import "NSWindowDelegate.h"
 #import "NSWindowRestoration.h"
@@ -16,13 +17,14 @@
 #import "SSConnectionPromptObserver.h"
 #import "SSCredentialsRequester.h"
 #import "SSCurtainMessageViewControllerDelegate.h"
+#import "SSFadeViewDelegate.h"
 #import "SSFrameBufferViewDelegate.h"
 #import "SSSessionDelegate.h"
 #import "SSSessionSelectViewControllerDelegate.h"
 
-@class AVCRemoteVideoClient, AVConference, CALayer, IDSSession, NSArray, NSCursor, NSDate, NSDictionary, NSImage, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSNumber, NSObject<OS_dispatch_semaphore>, NSOrderedSet, NSShadow, NSString, NSTimer, NSTrackingArea, NSXPCConnection, NWConnectionManager, NWDatagramConnection, NotificationOverlayViewController, SSBorderView, SSConnectionAddressViewController, SSConnectionAuthenticationViewController, SSConnectionProgressViewController, SSConnectionWindowController, SSCredentials, SSCurtainMessageViewController, SSFadeView, SSFrameBufferView, SSPanningScrollView, SSScreenInfo, SSSession, SSSessionSelectViewController;
+@class AVCRemoteVideoClient, AVConference, CALayer, IDSSession, NSArray, NSCursor, NSDate, NSDictionary, NSImage, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSNumber, NSObject<OS_dispatch_semaphore>, NSOrderedSet, NSShadow, NSString, NSTimer, NSTrackingArea, NSXPCConnection, NWConnectionManager, NWDatagramConnection, SSBorderView, SSConnectionAddressViewController, SSConnectionAuthenticationViewController, SSConnectionProgressViewController, SSConnectionWindowController, SSCredentials, SSCurtainMessageViewController, SSFadeView, SSFrameBufferView, SSNotificationOverlayViewController, SSPanningScrollView, SSScreenInfo, SSSession, SSSessionSelectViewController;
 
-@interface SSSessionView : NSView <IDSSessionDelegate, SSConnectionProgressViewControllerDelegate, SSSessionSelectViewControllerDelegate, SSCurtainMessageViewControllerDelegate, SSConnectionPromptObserver, AVConferenceDelegate, AVCRemoteVideoClientDelegate, SSSessionDelegate, SSFrameBufferViewDelegate, SSAddressResolutionObserver, SSCredentialsRequester, NSWindowDelegate, NSWindowRestoration>
+@interface SSSessionView : NSView <IDSSessionDelegate, SSConnectionProgressViewControllerDelegate, SSSessionSelectViewControllerDelegate, SSCurtainMessageViewControllerDelegate, SSConnectionPromptObserver, AVConferenceDelegate, AVCRemoteVideoClientDelegate, CALayerDelegate, SSSessionDelegate, SSFrameBufferViewDelegate, SSAddressResolutionObserver, SSCredentialsRequester, SSFadeViewDelegate, NSWindowDelegate, NSWindowRestoration>
 {
     NSOrderedSet *_preferredURLs;
     long long _callID;
@@ -39,6 +41,7 @@
     BOOL quarantined;
     BOOL _fillsWindow;
     BOOL _shouldSharePasteboard;
+    BOOL _shouldAllowSendPasteboard;
     BOOL _allowsFileTransferToRemote;
     BOOL _allowsFileTransferFromRemote;
     BOOL allowsSSHTunnelForLegacyVNC;
@@ -73,12 +76,14 @@
     BOOL _shouldNotifyOfVirtualDisplayStateChange;
     BOOL _shouldNotifyOfAllowsControlStateChange;
     BOOL _shouldSuppressFirstControlStateOverlay;
+    BOOL _deferredRequestUpdates;
     BOOL _shouldSkipAddressWindow;
     BOOL _stoppingSession;
     BOOL _AppleIDInviteWasAcceptedOrDeclined;
     BOOL _audioCanBeEnabled;
+    BOOL _sessionPaused;
     int sessionState;
-    unsigned int _currentViewRotation;
+    unsigned int _desiredLayerRotation;
     long long _controlMode;
     NSCursor *_observeCursor;
     NSCursor *_hilightCursor;
@@ -115,6 +120,7 @@
     IDSSession *_idsSession;
     IDSSession *_idsSessionOSX_QR;
     IDSSession *_idsSessionThatWasAccepted;
+    IDSSession *_idsSessionThatWasDeclined;
     id <SSSessionViewDelegate> _delegate;
     NSArray *_screens;
     NSImage *_userPicture;
@@ -126,7 +132,7 @@
     SSScreenInfo *__selectedScreen;
     SSBorderView *__borderView;
     SSCurtainMessageViewController *_curtainMessageViewController;
-    NotificationOverlayViewController *_overlayNotificationViewController;
+    SSNotificationOverlayViewController *_overlayNotificationViewController;
     NSXPCConnection *_xpcConnection;
     NSString *_curtainMessage;
     NSMutableOrderedSet *_attemptedURLs;
@@ -143,6 +149,7 @@
     NSString *_osType;
     double _occlusionScaleFactor;
     struct CGRect _screenFrame;
+    struct CGRect _deferredRequestFrameRect;
     struct CGRect _occlusionFrame;
     struct SSOrientationDetails savedScreenOrientation;
 }
@@ -177,8 +184,10 @@
 + (id)keyPathsForValuesAffectingShouldScaleScreen;
 + (BOOL)isRedwoodApp;
 + (id)connectionOptionsWithOptions:(id)arg1 urlOptions:(id)arg2;
+@property BOOL sessionPaused; // @synthesize sessionPaused=_sessionPaused;
 @property double occlusionScaleFactor; // @synthesize occlusionScaleFactor=_occlusionScaleFactor;
 @property struct CGRect occlusionFrame; // @synthesize occlusionFrame=_occlusionFrame;
+@property unsigned int desiredLayerRotation; // @synthesize desiredLayerRotation=_desiredLayerRotation;
 @property(retain) NSString *osType; // @synthesize osType=_osType;
 @property(retain) NSNumber *osVersion; // @synthesize osVersion=_osVersion;
 @property BOOL audioCanBeEnabled; // @synthesize audioCanBeEnabled=_audioCanBeEnabled;
@@ -196,6 +205,8 @@
 @property(retain) NSMutableOrderedSet *attemptedURLs; // @synthesize attemptedURLs=_attemptedURLs;
 @property(copy) NSString *curtainMessage; // @synthesize curtainMessage=_curtainMessage;
 @property BOOL shouldSkipAddressWindow; // @synthesize shouldSkipAddressWindow=_shouldSkipAddressWindow;
+@property struct CGRect deferredRequestFrameRect; // @synthesize deferredRequestFrameRect=_deferredRequestFrameRect;
+@property BOOL deferredRequestUpdates; // @synthesize deferredRequestUpdates=_deferredRequestUpdates;
 @property BOOL shouldSuppressFirstControlStateOverlay; // @synthesize shouldSuppressFirstControlStateOverlay=_shouldSuppressFirstControlStateOverlay;
 @property BOOL shouldNotifyOfAllowsControlStateChange; // @synthesize shouldNotifyOfAllowsControlStateChange=_shouldNotifyOfAllowsControlStateChange;
 @property BOOL shouldNotifyOfVirtualDisplayStateChange; // @synthesize shouldNotifyOfVirtualDisplayStateChange=_shouldNotifyOfVirtualDisplayStateChange;
@@ -203,11 +214,10 @@
 @property BOOL requestedControl; // @synthesize requestedControl=_requestedControl;
 @property BOOL sessionAllowsControl; // @synthesize sessionAllowsControl=_sessionAllowsControl;
 @property(retain) NSXPCConnection *xpcConnection; // @synthesize xpcConnection=_xpcConnection;
-@property(retain) NotificationOverlayViewController *overlayNotificationViewController; // @synthesize overlayNotificationViewController=_overlayNotificationViewController;
+@property(retain) SSNotificationOverlayViewController *overlayNotificationViewController; // @synthesize overlayNotificationViewController=_overlayNotificationViewController;
 @property(retain) SSCurtainMessageViewController *curtainMessageViewController; // @synthesize curtainMessageViewController=_curtainMessageViewController;
 @property(retain) SSBorderView *_borderView; // @synthesize _borderView=__borderView;
 @property(retain) SSScreenInfo *_selectedScreen; // @synthesize _selectedScreen=__selectedScreen;
-@property unsigned int currentViewRotation; // @synthesize currentViewRotation=_currentViewRotation;
 @property BOOL AVConferenceVideoAtttributesSet; // @synthesize AVConferenceVideoAtttributesSet=_AVConferenceVideoAtttributesSet;
 @property(retain) AVCRemoteVideoClient *remoteVideoClient; // @synthesize remoteVideoClient=_remoteVideoClient;
 @property(retain) AVConference *avConference; // @synthesize avConference=_avConference;
@@ -221,6 +231,7 @@
 @property(copy) NSArray *screens; // @synthesize screens=_screens;
 @property BOOL useAVConference; // @synthesize useAVConference=_useAVConference;
 @property id <SSSessionViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain) IDSSession *idsSessionThatWasDeclined; // @synthesize idsSessionThatWasDeclined=_idsSessionThatWasDeclined;
 @property(readonly) BOOL idsInviteAcceptedWithScreenSharingQRService; // @synthesize idsInviteAcceptedWithScreenSharingQRService=_idsInviteAcceptedWithScreenSharingQRService;
 @property(retain) IDSSession *idsSessionThatWasAccepted; // @synthesize idsSessionThatWasAccepted=_idsSessionThatWasAccepted;
 @property(retain) IDSSession *idsSessionOSX_QR; // @synthesize idsSessionOSX_QR=_idsSessionOSX_QR;
@@ -278,6 +289,7 @@
 @property id <SSSessionFileTransferDelegate> _fileTransferDelegate; // @synthesize _fileTransferDelegate;
 @property BOOL _allowsFileTransferFromRemote; // @synthesize _allowsFileTransferFromRemote;
 @property BOOL _allowsFileTransferToRemote; // @synthesize _allowsFileTransferToRemote;
+@property BOOL _shouldAllowSendPasteboard; // @synthesize _shouldAllowSendPasteboard;
 @property BOOL _shouldSharePasteboard; // @synthesize _shouldSharePasteboard;
 @property BOOL _fillsWindow; // @synthesize _fillsWindow;
 @property(retain) NSCursor *_controlCursor; // @synthesize _controlCursor;
@@ -290,6 +302,7 @@
 - (struct CGImage *)CGImageFromRemoteScreen;
 - (void)propagateMouseDown:(id)arg1;
 - (void)setSwitchedDisplayWithNumber:(id)arg1;
+@property(readonly) BOOL supportsAssistModeAnnotation;
 @property(readonly) BOOL supportsFileTransfer;
 @property(readonly) BOOL supportsAskToOpenURL;
 @property(readonly) BOOL supportsAskToPutTextIntoClipboard;
@@ -320,6 +333,7 @@
 @property(nonatomic) int assistPointerKind;
 @property(nonatomic) BOOL assistModeActive;
 @property BOOL assistModeEnabled;
+@property BOOL shouldAllowSendPasteboard;
 @property BOOL shouldSharePasteboard;
 @property(retain) NSCursor *controlCursor;
 @property(retain) NSCursor *hilightCursor;
@@ -358,6 +372,7 @@
 - (void)runClosedConnectionSheetWithLocalizedMessage:(id)arg1;
 - (void)runUserClosedConnectionSheet;
 - (void)fadeDidEnd;
+- (void)endReconnectOverlayQuickReplacement;
 - (void)endReconnectOverlay:(BOOL)arg1;
 - (void)showReconnectOverlayView:(BOOL)arg1 andMaxAlpha:(float)arg2;
 - (void)showReconnectOverlayView:(BOOL)arg1;
@@ -383,7 +398,7 @@
 - (void)showConnectionAddressWindow;
 - (void)clearAllViewControllers;
 - (void)fillConnectionWindowWithViewFromController:(id)arg1;
-- (void)showConnectionWindowWithViewFromController:(id)arg1;
+- (void)showConnectionWindowWithViewFromController:(id)arg1 ignoreOtherApps:(BOOL)arg2;
 - (void)updateAutoLayoutContraintsForView:(id)arg1;
 - (BOOL)isConnectionProgressViewVisible;
 - (void)showConnectionProgressViewWithLabel:(id)arg1 identity:(id)arg2;
@@ -404,6 +419,7 @@
 - (void)showCouldNotControlWarning;
 - (void)showAuthenticationNoMechWarning;
 - (void)showAuthenticationFailedWarning;
+- (void)showInvalidAddressWarning;
 - (void)showIDSIsNotWorkingWarning;
 - (void)showAppleIDIsUnresolvableWarning;
 - (void)showAppleIDIsBlockedLocallyWarning;
@@ -432,7 +448,6 @@
 - (BOOL)perceivedScalingFactorHasChanged;
 - (BOOL)resetScalingFactorIfNeeded:(double)arg1 forced:(BOOL)arg2;
 - (void)fullScreenUsableRectChanged;
-- (double)menuBarAndToolBarHeight;
 - (BOOL)isFullScreenToolbarAutohidingEnabled;
 - (BOOL)windowIsFullScreen:(id)arg1;
 - (BOOL)fullScreenWindowNeedsShrinkingForFrame:(struct CGRect)arg1;
@@ -486,6 +501,7 @@
 @property(copy) NSOrderedSet *preferredURLs;
 - (id)localCursor;
 - (id)cursorForViewMode;
+- (id)assistPointerColor;
 - (void)curtainPromptConfirmedWithMessage:(id)arg1;
 - (void)curtainPromptCanceled;
 - (void)clearCredentialsAndConnect;
@@ -493,13 +509,16 @@
 - (id)displayNameForDialogs;
 - (void)guestAccessRequestCancelled;
 - (void)gatheredCredentials:(id)arg1 withStatus:(int)arg2;
+- (void)IDSServiceMessageReceived:(id)arg1 context:(id)arg2;
 - (void)resolvedBonjourName:(id)arg1;
 - (void)startedBonjourResolveAtTimestamp:(id)arg1;
 - (void)resolvedAddresses:(id)arg1 withStatus:(int)arg2;
 - (void)logAddressResolutionToMessageTracerWithStatus:(int)arg1;
 - (void)teardownForNewConnectionPrompt;
 - (void)handleSessionEnded:(id)arg1 fromID:(id)arg2 withInfo:(id)arg3;
+- (void)session:(id)arg1 didReceiveData:(id)arg2;
 - (void)sessionEnded:(id)arg1 withReason:(unsigned int)arg2 error:(id)arg3;
+- (void)activeSessionEndedWithReason:(unsigned int)arg1 error:(id)arg2;
 - (void)session:(id)arg1 receivedSessionEndFromID:(id)arg2 withData:(id)arg3;
 - (void)session:(id)arg1 receivedSessionMessageFromID:(id)arg2 withData:(id)arg3;
 - (void)session:(id)arg1 receivedInvitationCancelFromID:(id)arg2 withData:(id)arg3;
@@ -522,14 +541,14 @@
 - (void)conference:(id)arg1 didStopWithCallID:(long long)arg2 error:(id)arg3;
 - (void)conference:(id)arg1 didStartSession:(BOOL)arg2 withUserInfo:(id)arg3;
 - (void)conference:(id)arg1 withCallID:(long long)arg2 remoteMediaStalled:(BOOL)arg3;
+- (int)orientationForCurrentAngle;
 - (void)setOrientationForConference:(id)arg1 videoAttributes:(id)arg2 callID:(long long)arg3;
 - (int)J99HackForScreenOrientation:(int)arg1 videoOrientation:(int)arg2;
-- (id)inviteDictionaryForRemoteInviteDictionary:(id)arg1;
+- (id)copyInviteDictionaryForRemoteInviteDictionary:(id)arg1;
 - (void)startAudioAVConferenceCallWithRemoteDictionary:(id)arg1;
 - (void)initAudioAVConference;
 - (void)startAVConferenceCallWithRemoteDictionary:(id)arg1;
 - (void)initAVConference;
-- (void)adjustAVConferenceLayer;
 - (void)credentialsEntered;
 - (void)addressEntered:(id)arg1;
 - (void)setViewControllersConnectingState:(BOOL)arg1;
@@ -539,7 +558,8 @@
 - (void)selectCancelled:(id)arg1;
 - (void)selectVirtualDisplay:(id)arg1;
 - (void)selectMainDisplay:(id)arg1;
-- (void)ssFrameBufferView:(id)arg1 didDropRemotePaths:(id)arg2 atLocalDropDestination:(id)arg3;
+- (void)didFinishDroppingRemotePaths;
+- (void)ssFrameBufferView:(id)arg1 didDropRemotePath:(id)arg2 atLocalDropDestination:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)ssSessionDisplaysDidWake:(id)arg1;
 - (void)ssSessionDisplaysDidSleep:(id)arg1;
 - (void)ssSessionRequestToAddTextToPasteboard:(id)arg1 result:(int)arg2;
@@ -547,9 +567,11 @@
 - (void)ssSessionRequestToResume:(id)arg1 result:(int)arg2;
 - (void)ssSessionResumed:(id)arg1;
 - (void)ssSessionPaused:(id)arg1;
+- (void)ssSession:(id)arg1 didSetLocalWindowUIResolution:(id)arg2;
 - (void)ssSession:(id)arg1 allowsControl:(BOOL)arg2;
 - (void)ssSession:(id)arg1 canToggleCurtainModeChanged:(BOOL)arg2;
 - (void)ssSession:(id)arg1 onConsoleChanged:(BOOL)arg2;
+- (void)ssSession:(id)arg1 touchEvent:(id)arg2;
 - (void)ssSession:(id)arg1 virtualDisplayStateChanged:(BOOL)arg2;
 - (void)ssSessionUserClosedConnection:(id)arg1;
 - (void)ssSessionBeeped:(id)arg1;
@@ -561,7 +583,9 @@
 - (void)ssSession:(id)arg1 cursorPositionChanged:(struct SSPoint)arg2;
 - (void)ssSession:(id)arg1 fullScreenUpdateProgress:(double)arg2;
 - (void)ssSession:(id)arg1 sizeChanged:(struct SSSize)arg2;
+- (void)finishSizeChangedWithFrame:(struct CGRect)arg1;
 - (void)ssSessionReady:(id)arg1;
+- (BOOL)aspectRatio:(struct CGSize)arg1 matches:(struct CGSize)arg2;
 - (void)ssSession:(id)arg1 sessionSelectionResult:(int)arg2;
 - (void)ssSession:(id)arg1 wantsSessionSelection:(id)arg2 consoleUser:(id)arg3;
 - (void)ssSession:(id)arg1 authenticationResult:(int)arg2;
@@ -570,7 +594,7 @@
 - (void)fetchCredentialsPassword:(id)arg1;
 - (id)loadCredentialsFromKeychain:(id)arg1 forAuthType:(id)arg2;
 - (int)removeCredentialsFromKeychainWithAuthType:(id)arg1 accountName:(id)arg2;
-- (struct OpaqueSecKeychainItemRef *)findCredentialInKeychainForAuthType:(id)arg1 inRequestedAccountName:(id)arg2 outAccountName:(id *)arg3;
+- (struct __SecKeychainItem *)findCredentialInKeychainForAuthType:(id)arg1 inRequestedAccountName:(id)arg2 outAccountName:(id *)arg3;
 - (id)standardizedKeychainIdentityWithPort:(id *)arg1;
 - (id)standardizedUserInputString:(id)arg1 port:(id *)arg2;
 - (void)ssSession:(id)arg1 wantsCredentialsForAuthenticationTypes:(id)arg2;
@@ -595,11 +619,13 @@
 - (void)unlockMenuBar;
 - (void)lockMenuBar;
 - (void)menuBarUnlockTimer:(id)arg1;
+- (short)fullScreenToolbarHeight;
 - (void)updateTrackingAreas;
 - (void)addCursorTrackingArea;
 - (void)cursorUpdate:(id)arg1;
 - (void)cursorUpdateCore;
 - (void)addMenuBarTrackingArea;
+- (short)menuBarHeight;
 - (struct CGSize)window:(id)arg1 willUseFullScreenContentSize:(struct CGSize)arg2;
 - (void)setMenuBarDelay:(double)arg1;
 - (void)lockMenuBar:(BOOL)arg1;
@@ -641,7 +667,10 @@
 - (void)connectToURL:(id)arg1 withPreferredCredentials:(id)arg2 options:(id)arg3;
 - (void)connectToURL:(id)arg1 withOptions:(id)arg2;
 - (void)connectWithOptions:(id)arg1;
+- (struct CGPoint)translateInBounds:(struct CGRect)arg1 xPercent:(double)arg2 yPercent:(double)arg3 enclosingRect:(struct CGRect)arg4;
+- (struct CGPoint)translatePoint:(struct CGPoint)arg1 enclosingRect:(struct CGRect)arg2;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)resetToUnscruntchedFullScreenMode;
 @property(readonly, copy) NSString *description;
 - (void)dealloc;
 - (void)setupFrameBufferView;

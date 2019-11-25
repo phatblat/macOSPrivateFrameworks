@@ -8,7 +8,7 @@
 
 #import "GEOCompletionItemPrivate.h"
 
-@class GEODirectionIntent, GEOMapItemIdentifier, GEOMapServiceTraits, GEOPDAutocompleteEntry, GEOResolvedItem, GEORetainedSearchMetadata, GEOSearchCategory, NSArray, NSData, NSString;
+@class GEODirectionIntent, GEOMapItemIdentifier, GEOMapServiceTraits, GEOPDAutocompleteEntry, GEOResolvedItem, GEORetainedSearchMetadata, GEOSearchCategory, GEOServerResultScoreMetadata, NSArray, NSData, NSString;
 
 __attribute__((visibility("hidden")))
 @interface _GEOPlaceSearchCompletionItem : NSObject <GEOCompletionItemPrivate>
@@ -38,6 +38,13 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSData *entryMetadata;
 - (void)sendFeedback;
 - (BOOL)getCoordinate:(CDStruct_c3b9c2ee *)arg1;
+@property(readonly, nonatomic) NSString *queryAcceleratorCompletionString;
+@property(readonly, nonatomic) BOOL hasQueryAcceleratorAffordanceEnabled;
+@property(readonly, nonatomic) GEOServerResultScoreMetadata *serverResultScoreMetadata;
+@property(readonly, nonatomic) long long autocompleteCellType;
+@property(readonly, nonatomic) long long entryTapBehavior;
+@property(readonly, nonatomic) long long sortPriority;
+@property(readonly, nonatomic) BOOL hasSortPriority;
 @property(readonly, nonatomic) GEORetainedSearchMetadata *retainedSearchMetadata;
 @property(readonly, nonatomic) GEODirectionIntent *directionIntent;
 @property(readonly, nonatomic) GEOResolvedItem *clientResolved;

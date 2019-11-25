@@ -8,24 +8,25 @@
 
 #import "AMSBagDataSourceProtocol.h"
 
-@class AMSURLSession, AMSUniqueExecutionQueue, NSDate, NSDictionary, NSObject<OS_dispatch_queue>, NSString;
+@class AMSProcessInfo, AMSURLSession, AMSUniqueExecutionQueue, NSDate, NSDictionary, NSObject<OS_dispatch_queue>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface AMSBagNetworkDataSource : NSObject <AMSBagDataSourceProtocol>
 {
     CDUnknownBlockType _dataSourceChangedHandler;
-    NSString *_logKey;
+    CDUnknownBlockType _dataSourceDataInvalidatedHandler;
     NSString *_profile;
     NSString *_profileVersion;
     NSDictionary *_cachedData;
     NSObject<OS_dispatch_queue> *_cachedDataAccessQueue;
+    NSString *_cachedStorefront;
+    NSObject<OS_dispatch_queue> *_cachedStorefrontAccessQueue;
     AMSUniqueExecutionQueue *_loadDataQueue;
+    NSObject<OS_dispatch_queue> *_processAccountStoreDidChangeNotificationQueue;
+    AMSProcessInfo *_processInfo;
     AMSURLSession *_URLSession;
-    NSString *_storefront;
 }
 
-+ (id)_OSVersionString;
-+ (id)_OSString;
 + (id)_OSBuildTypeString;
 + (id)_deviceString;
 + (BOOL)_shouldReloadDataForSetStorefront:(id)arg1 bagData:(id)arg2;
@@ -35,27 +36,32 @@ __attribute__((visibility("hidden")))
 + (BOOL)_shouldReloadDataForOriginalCookies:(id)arg1 newCookies:(id)arg2;
 + (void)_setURLCookieNames:(id)arg1 forProfile:(id)arg2;
 + (id)_defaultURLCookieNames;
-+ (id)_cookiesForNames:(id)arg1;
++ (BOOL)_shouldProcessAccountStoreDidChangeNotification:(id)arg1 withMediaType:(id)arg2;
 + (BOOL)_isDataDictionary:(id)arg1 equalToDataDictionary:(id)arg2;
-+ (id)_account;
-@property(retain) NSString *storefront; // @synthesize storefront=_storefront;
++ (id)_currentStorefrontForAccountMediaType:(id)arg1;
++ (id)_accountForAccountMediaType:(id)arg1;
 @property(retain) AMSURLSession *URLSession; // @synthesize URLSession=_URLSession;
+@property(retain) AMSProcessInfo *processInfo; // @synthesize processInfo=_processInfo;
+@property(retain) NSObject<OS_dispatch_queue> *processAccountStoreDidChangeNotificationQueue; // @synthesize processAccountStoreDidChangeNotificationQueue=_processAccountStoreDidChangeNotificationQueue;
 @property(retain) AMSUniqueExecutionQueue *loadDataQueue; // @synthesize loadDataQueue=_loadDataQueue;
+@property(retain) NSObject<OS_dispatch_queue> *cachedStorefrontAccessQueue; // @synthesize cachedStorefrontAccessQueue=_cachedStorefrontAccessQueue;
+@property(retain) NSString *cachedStorefront; // @synthesize cachedStorefront=_cachedStorefront;
 @property(retain) NSObject<OS_dispatch_queue> *cachedDataAccessQueue; // @synthesize cachedDataAccessQueue=_cachedDataAccessQueue;
 @property(retain) NSDictionary *cachedData; // @synthesize cachedData=_cachedData;
 @property(readonly, copy) NSString *profileVersion; // @synthesize profileVersion=_profileVersion;
 @property(readonly, copy) NSString *profile; // @synthesize profile=_profile;
-@property(readonly) NSString *logKey; // @synthesize logKey=_logKey;
+@property(copy) CDUnknownBlockType dataSourceDataInvalidatedHandler; // @synthesize dataSourceDataInvalidatedHandler=_dataSourceDataInvalidatedHandler;
 @property(copy) CDUnknownBlockType dataSourceChangedHandler; // @synthesize dataSourceChangedHandler=_dataSourceChangedHandler;
 - (void).cxx_destruct;
 - (id)_createURLWithCookieNames:(id)arg1 storefront:(id)arg2;
 - (void)_updateStorefrontSuffixIfNecessaryWithBagData:(id)arg1;
-- (BOOL)_isExpired;
+- (id)_cookiesForNames:(id)arg1;
 - (void)_updateCachedData:(id)arg1;
 - (id)_loadDataWithAttempt:(unsigned long long)arg1 error:(id *)arg2;
 - (id)_processLoadDataResult:(id)arg1;
-- (id)_expirationDate;
+- (void)_invalidateCacheNotification:(id)arg1;
 - (id)_createRequestWithCookieNames:(id)arg1 storefront:(id)arg2;
+- (id)_baseURLString;
 - (void)_accountStoreDidChange:(id)arg1;
 - (id)valueForURLVariable:(id)arg1;
 - (void)loadWithCompletion:(CDUnknownBlockType)arg1;
@@ -64,7 +70,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, getter=isLoaded) BOOL loaded;
 @property(readonly) NSDate *expirationDate;
 - (void)dealloc;
-- (id)initWithProfile:(id)arg1 profileVersion:(id)arg2 logKey:(id)arg3;
+- (id)initWithProfile:(id)arg1 profileVersion:(id)arg2 processInfo:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

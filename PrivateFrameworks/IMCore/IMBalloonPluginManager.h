@@ -10,8 +10,10 @@
 
 @interface IMBalloonPluginManager : NSObject
 {
+    Class _richLinksDataSourceClass;
     NSMutableDictionary *_pluginsMap;
     id _extensionMatchingContext;
+    id _highMemoryExtensionMatchingContext;
     NSString *_pluginMetaDataFolder;
     NSMutableDictionary *_pluginIDToMetadataCache;
     NSMutableSet *_pluginsToRemoveAfterExtensionsUpdate;
@@ -21,11 +23,14 @@
 + (void)setIsRunningPPT:(BOOL)arg1;
 + (id)_extensionBlacklist;
 + (id)sharedInstance;
++ (void)disableExtensionDiscovery;
 @property(retain, nonatomic) NSMutableSet *pluginsToRemoveAfterExtensionsUpdate; // @synthesize pluginsToRemoveAfterExtensionsUpdate=_pluginsToRemoveAfterExtensionsUpdate;
 @property(retain, nonatomic) NSMutableDictionary *pluginIDToMetadataCache; // @synthesize pluginIDToMetadataCache=_pluginIDToMetadataCache;
 @property(retain, nonatomic) NSString *pluginMetaDataFolder; // @synthesize pluginMetaDataFolder=_pluginMetaDataFolder;
+@property(retain, nonatomic) id highMemoryExtensionMatchingContext; // @synthesize highMemoryExtensionMatchingContext=_highMemoryExtensionMatchingContext;
 @property(retain, nonatomic) id extensionMatchingContext; // @synthesize extensionMatchingContext=_extensionMatchingContext;
 @property(retain, nonatomic) NSMutableDictionary *pluginsMap; // @synthesize pluginsMap=_pluginsMap;
+@property(readonly, retain, nonatomic) Class richLinksDataSourceClass; // @synthesize richLinksDataSourceClass=_richLinksDataSourceClass;
 - (void).cxx_destruct;
 - (id)balloonPluginForBundleID:(id)arg1;
 - (id)allPlugins;
@@ -46,11 +51,15 @@
 - (void)removePluginWithBundleID:(id)arg1;
 - (id)_insertPluginForExtension:(id)arg1 balloonProviderBundle:(id)arg2 andTimingCollection:(id)arg3;
 - (id)_insertPluginForAppBundle:(id)arg1 balloonProviderBundle:(id)arg2;
-- (void)_updatePluginsForExtensions:(id)arg1;
+- (void)_updatePluginsForExtensions:(id)arg1 extensionPoint:(id)arg2;
 - (void)_updatePluginsForBundles:(id)arg1;
 - (void)_setPluginsToRemoveAndCallSelectorWithDelay:(id)arg1;
 - (id)_appProxyBundleIdentifiersForAppPlugins;
 - (void)_loadAppBundleDataSources;
+- (id)_loadAppExtensionDataSourcesForExtensionPoint:(id)arg1;
+- (id)_extensionWithIdentifier:(id)arg1;
+- (void)loadExtensionWithIdentifierIfNeeded:(id)arg1;
+- (id)_currentlyInstalledExtensionsExcludingExtensionPoint:(id)arg1;
 - (void)_loadAppExtensionDataSources;
 - (void)_clearPluginMetadataForUninstalledApps;
 - (void)_deleteMetaDataForPlugins:(id)arg1;

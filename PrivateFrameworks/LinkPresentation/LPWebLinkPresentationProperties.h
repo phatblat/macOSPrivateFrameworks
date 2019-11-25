@@ -8,7 +8,7 @@
 
 #import "LPLinkPresentationPropertyProvider.h"
 
-@class LPCaptionBarPresentationProperties, LPImage, LPVideo, LPiTunesPlaybackInformation, NSColor, NSNumber, NSString;
+@class LPAudio, LPCaptionBarPresentationProperties, LPImage, LPImagePresentationProperties, LPInlineMediaPlaybackInformation, LPVideo, NSArray, NSColor, NSNumber, NSString;
 
 @interface LPWebLinkPresentationProperties : NSObject <LPLinkPresentationPropertyProvider>
 {
@@ -19,16 +19,22 @@
     LPCaptionBarPresentationProperties *_mediaBottomCaptionBar;
     NSString *_quotedText;
     LPImage *_image;
+    LPImagePresentationProperties *_imageProperties;
+    NSArray *_alternateImages;
     LPVideo *_video;
+    LPAudio *_audio;
     NSColor *_backgroundColor;
     NSNumber *_minimumHeight;
-    LPiTunesPlaybackInformation *_iTunesPlaybackInformation;
+    LPInlineMediaPlaybackInformation *_inlinePlaybackInformation;
 }
 
-@property(retain, nonatomic) LPiTunesPlaybackInformation *iTunesPlaybackInformation; // @synthesize iTunesPlaybackInformation=_iTunesPlaybackInformation;
+@property(retain, nonatomic) LPInlineMediaPlaybackInformation *inlinePlaybackInformation; // @synthesize inlinePlaybackInformation=_inlinePlaybackInformation;
 @property(retain, nonatomic) NSNumber *minimumHeight; // @synthesize minimumHeight=_minimumHeight;
 @property(retain, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+@property(retain, nonatomic) LPAudio *audio; // @synthesize audio=_audio;
 @property(retain, nonatomic) LPVideo *video; // @synthesize video=_video;
+@property(retain, nonatomic) NSArray *alternateImages; // @synthesize alternateImages=_alternateImages;
+@property(retain, nonatomic) LPImagePresentationProperties *imageProperties; // @synthesize imageProperties=_imageProperties;
 @property(retain, nonatomic) LPImage *image; // @synthesize image=_image;
 @property(copy, nonatomic) NSString *quotedText; // @synthesize quotedText=_quotedText;
 @property(retain, nonatomic) LPCaptionBarPresentationProperties *mediaBottomCaptionBar; // @synthesize mediaBottomCaptionBar=_mediaBottomCaptionBar;

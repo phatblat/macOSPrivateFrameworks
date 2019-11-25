@@ -12,6 +12,8 @@
 @property(copy, nonatomic) NSDictionary *selectionAttributes;
 @property(copy, nonatomic) NSDictionary *emphasizedAttributes;
 @property(copy, nonatomic) NSDictionary *defaultAttributes;
+@property(nonatomic) BOOL shouldShowLocationNames;
+@property(nonatomic) BOOL shouldUseAbbreviatedDates;
 @property(nonatomic) BOOL shouldUseNavigationTitle;
 @property(nonatomic) BOOL shouldUseSubtitles;
 - (void)invalidateFilteringContainerContent;

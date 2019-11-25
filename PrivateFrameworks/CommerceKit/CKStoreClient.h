@@ -27,6 +27,7 @@
 + (id)sharedInstance;
 + (id)_serviceProxy;
 + (BOOL)supportsSecureCoding;
++ (id)_storeClientForAccountMediaType:(id)arg1;
 + (id)_storeClientFromLegacyStoreClient:(id)arg1;
 + (id)_sharedClient;
 + (void)_configureSharedClientWithIdentifier:(id)arg1 serverType:(long long)arg2;
@@ -39,10 +40,12 @@
 @property(readonly, nonatomic) long long serverType; // @synthesize serverType=_serverType;
 @property(readonly, nonatomic) NSString *clientIdentifier; // @synthesize clientIdentifier=_clientIdentifier;
 - (void).cxx_destruct;
+- (id)_acAccount;
 - (unsigned long long)hash;
 - (id)description;
 - (BOOL)isEqual:(id)arg1;
 - (id)_bagDictionary;
+- (id)_ams_createBagContract;
 - (void)bagValuesForKeys:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)bagValueForKey:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)bagURLForKey:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
@@ -61,6 +64,7 @@
 @property(readonly, nonatomic) NSString *storefrontIdentifier;
 - (id)_legacyStoreClient;
 - (id)nonpersonalizedStoreClient;
+@property(readonly, nonatomic) NSString *accountMediaType;
 - (id)initWithClientIdentifier:(id)arg1 serverType:(long long)arg2;
 - (id)initWithClientIdentifier:(id)arg1;
 - (id)initWithAccount:(id)arg1;

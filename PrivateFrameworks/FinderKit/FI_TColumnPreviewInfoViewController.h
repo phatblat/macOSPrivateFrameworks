@@ -20,22 +20,20 @@ __attribute__((visibility("hidden")))
     FI_TColumnPreviewPropertyTaggingTokenFieldController *_taggingController;
     NSStackView *_stackView;
     FI_TButton *_expandButton;
-    _Bool _mouseInside;
     struct TNSRef<FI_TPreviewOptions, void> _previewOptions;
     _Bool _isRetargeting;
     struct TKeyValueObserver _activeOptionsObserver;
     struct TKeyValueObserver _filteredDeltaDidChange;
+    struct TKeyValueObserver _arrangedMetadataViewDidChange;
     struct TriStateBool _wasCollapsedBeforeEditing;
     struct TKeyValueObserver _editingOptionsObserver;
 }
 
-@property(nonatomic, getter=isMouseInside) _Bool mouseInside; // @synthesize mouseInside=_mouseInside;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)expandToggle:(id)arg1;
 - (id)addConstraintsToAvoidOverlapsInStackViewAnimations;
 - (void)configureExpandingButton;
-- (void)updateExpandButtonStateWithMouseEntered:(_Bool)arg1;
 - (_Bool)canShowMoreOrLess;
 - (long long)possibleHiddenAttributes;
 - (void)updateExpandButtonState;
@@ -50,6 +48,8 @@ __attribute__((visibility("hidden")))
 - (void)applyPreviewOptions;
 - (void)configureMinRowCount:(double)arg1 maxRowCount:(double)arg2;
 - (unsigned int)notificationOptionsForNodes:(const struct TFENodeVector *)arg1;
+- (void)updateSeparatorsInStackViews;
+@property(readonly, nonatomic) _Bool shouldBeVisible;
 - (void)aboutToTearDown;
 - (void)loadValueControllers;
 - (void)viewLoaded;

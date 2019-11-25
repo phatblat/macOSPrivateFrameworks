@@ -20,6 +20,7 @@
     BOOL _allowRouting;
     BOOL _allowExpiredDNSBehavior;
     BOOL __allowsRetryForBackgroundDataTasks;
+    BOOL _redactRemoteEndpointFromNetworkMetrics;
     BOOL _outOfProcessDiscretionary;
     BOOL _metricRequest;
     long long _qualityOfService;
@@ -30,6 +31,7 @@
     NSString *__sourceApplicationSecondaryIdentifier;
     NSString *__appleIDContextSessionIdentifier;
     unsigned long long _discretionaryNetworkBehavior;
+    unsigned long long _duetPreClearedMode;
     NSString *_identifier;
     NSDictionary *_resolvedEndpointsWithHostname;
     C2MetricOptions *_metricOptions;
@@ -43,20 +45,23 @@
 
 + (BOOL)supportsSecureCoding;
 + (BOOL)triesteMetricsEnabled;
++ (id)stringForDuetPreClearedMode:(unsigned long long)arg1;
 + (id)stringForDiscretionaryNetworkBehavior:(unsigned long long)arg1;
 + (id)stringForQualityOfService:(long long)arg1;
 @property(copy, nonatomic) CDUnknownBlockType testBehavior_sessionGroupCreated; // @synthesize testBehavior_sessionGroupCreated=_testBehavior_sessionGroupCreated;
-@property(retain, nonatomic) NSURL *invokedURL; // @synthesize invokedURL=_invokedURL;
+@property(copy, nonatomic) NSURL *invokedURL; // @synthesize invokedURL=_invokedURL;
 @property(nonatomic) BOOL metricRequest; // @synthesize metricRequest=_metricRequest;
-@property(retain, nonatomic) NSString *originalHost; // @synthesize originalHost=_originalHost;
+@property(copy, nonatomic) NSString *originalHost; // @synthesize originalHost=_originalHost;
 @property(nonatomic) unsigned long long c2MetricsReportFrequencyBase; // @synthesize c2MetricsReportFrequencyBase=_c2MetricsReportFrequencyBase;
 @property(nonatomic) unsigned long long c2MetricsReportFrequency; // @synthesize c2MetricsReportFrequency=_c2MetricsReportFrequency;
 @property(copy, nonatomic) NSURL *c2MetricsEndpoint; // @synthesize c2MetricsEndpoint=_c2MetricsEndpoint;
 @property(nonatomic) BOOL outOfProcessDiscretionary; // @synthesize outOfProcessDiscretionary=_outOfProcessDiscretionary;
-@property(retain, nonatomic) C2MetricOptions *metricOptions; // @synthesize metricOptions=_metricOptions;
-@property(retain, nonatomic) NSDictionary *resolvedEndpointsWithHostname; // @synthesize resolvedEndpointsWithHostname=_resolvedEndpointsWithHostname;
+@property(nonatomic) BOOL redactRemoteEndpointFromNetworkMetrics; // @synthesize redactRemoteEndpointFromNetworkMetrics=_redactRemoteEndpointFromNetworkMetrics;
+@property(copy, nonatomic) C2MetricOptions *metricOptions; // @synthesize metricOptions=_metricOptions;
+@property(copy, nonatomic) NSDictionary *resolvedEndpointsWithHostname; // @synthesize resolvedEndpointsWithHostname=_resolvedEndpointsWithHostname;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(nonatomic) BOOL _allowsRetryForBackgroundDataTasks; // @synthesize _allowsRetryForBackgroundDataTasks=__allowsRetryForBackgroundDataTasks;
+@property(nonatomic) unsigned long long duetPreClearedMode; // @synthesize duetPreClearedMode=_duetPreClearedMode;
 @property(nonatomic) unsigned long long discretionaryNetworkBehavior; // @synthesize discretionaryNetworkBehavior=_discretionaryNetworkBehavior;
 @property(nonatomic) BOOL allowExpiredDNSBehavior; // @synthesize allowExpiredDNSBehavior=_allowExpiredDNSBehavior;
 @property(nonatomic) BOOL allowRouting; // @synthesize allowRouting=_allowRouting;
@@ -74,6 +79,8 @@
 - (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
 @property(readonly, nonatomic) double emptySessionExpiryInSeconds;
 - (id)decorateTask:(id)arg1;
 - (id)copyAndDecorateRequest:(id)arg1;

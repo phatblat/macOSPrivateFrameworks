@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDate, NSError, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_os_activity>, NSURL, SUScan;
+@class NSArray, NSDate, NSError, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_os_activity>, NSURL, SUScan;
 
 @interface SUScanController : NSObject
 {
     NSObject<OS_os_activity> *_activity;
     NSMutableArray *_availableProducts;
+    NSMutableSet *_productsIneligibleForCleanup;
     NSMutableDictionary *_productByKey;
     NSURL *_catalogURLFromPrefs;
     NSURL *_appleCatalogURLFromPrefs;
@@ -37,10 +38,10 @@
 - (void)_handleDeferredInstallSettingsDidChangeNotification:(id)arg1;
 - (void)populateTagCache:(CDUnknownBlockType)arg1;
 - (void)removeInapplicableLocalProducts;
+- (void)setProductIneligibleForCleanup:(id)arg1;
 - (void)clearAllHidden;
 - (void)setScanDisabled:(BOOL)arg1;
 - (void)setHidden:(BOOL)arg1 forProductKeys:(id)arg2;
-- (void)markFirmwareProductKeysAsWaiting:(id)arg1;
 - (BOOL)checkForChangeInCatalogURL;
 - (void)markRampedUpdatesAsSeen;
 - (void)_clearCriticalUpdateNotificationDateIfAppropriate;

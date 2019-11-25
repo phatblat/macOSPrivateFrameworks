@@ -10,6 +10,7 @@
 
 @class NSProgress, NSString;
 
+__attribute__((visibility("hidden")))
 @interface TSUProgressReporter : NSObject <NSProgressReporting>
 {
     NSProgress *_progress;

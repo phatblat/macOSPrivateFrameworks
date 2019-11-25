@@ -20,18 +20,21 @@
 - (void)retrieveSegmentDataFromiTunes:(CDUnknownBlockType)arg1;
 - (BOOL)isActiveRecord;
 - (void)reconcileIDFAandLAT;
-- (void)resetiAdIDs:(CDUnknownBlockType)arg1;
+- (void)resetiAdIDsAndDPID:(CDUnknownBlockType)arg1;
+- (void)resetiAdIDs;
 - (void)ensureiAdIDs;
 - (void)removeIDForClientType:(long long)arg1;
 - (BOOL)hasIDForClientType:(long long)arg1;
 
 // Remaining properties
 @property(retain, nonatomic) NSString *IDFA; // @dynamic IDFA;
+@property(nonatomic) BOOL accountAgeUnknown; // @dynamic accountAgeUnknown;
 @property(nonatomic) BOOL accountIsT13; // @dynamic accountIsT13;
 @property(nonatomic) BOOL accountIsU13; // @dynamic accountIsU13;
 @property(nonatomic) BOOL accountIsU18; // @dynamic accountIsU18;
 @property(retain, nonatomic) NSString *iAdIDBeforeReset; // @dynamic iAdIDBeforeReset;
 @property(retain, nonatomic) NSString *iCloudDSID; // @dynamic iCloudDSID;
+@property(nonatomic) BOOL isDPIDManatee; // @dynamic isDPIDManatee;
 @property(nonatomic) int lastSegmentServedTimestamp; // @dynamic lastSegmentServedTimestamp;
 @property(nonatomic) int lastSentSegmentDataTimestamp; // @dynamic lastSentSegmentDataTimestamp;
 @property(nonatomic) int limitAdTrackingTimestamp; // @dynamic limitAdTrackingTimestamp;

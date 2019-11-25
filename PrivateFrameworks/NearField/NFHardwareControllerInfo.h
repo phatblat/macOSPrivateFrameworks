@@ -17,6 +17,9 @@
     BOOL _hasExpressFelicaTransitMode;
     BOOL _hasExpressECPAccessMode;
     BOOL _hasExpressGenericAMode;
+    BOOL _hasLPCDSupport;
+    BOOL _hasHLMSupport;
+    BOOL _hasLPEMSupport;
     unsigned long long _siliconVersion;
     unsigned long long _siliconName;
     unsigned long long _ROMVersion;
@@ -26,6 +29,9 @@
 }
 
 + (BOOL)supportsSecureCoding;
+@property(readonly, nonatomic) BOOL hasLPEMSupport; // @synthesize hasLPEMSupport=_hasLPEMSupport;
+@property(readonly, nonatomic) BOOL hasHLMSupport; // @synthesize hasHLMSupport=_hasHLMSupport;
+@property(readonly, nonatomic) BOOL hasLPCDSupport; // @synthesize hasLPCDSupport=_hasLPCDSupport;
 @property(readonly, nonatomic) BOOL hasExpressGenericAMode; // @synthesize hasExpressGenericAMode=_hasExpressGenericAMode;
 @property(readonly, nonatomic) BOOL hasExpressECPAccessMode; // @synthesize hasExpressECPAccessMode=_hasExpressECPAccessMode;
 @property(readonly, nonatomic) BOOL hasExpressFelicaTransitMode; // @synthesize hasExpressFelicaTransitMode=_hasExpressFelicaTransitMode;

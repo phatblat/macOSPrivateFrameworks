@@ -11,13 +11,15 @@
 #import "HMObjectMerge.h"
 #import "NSSecureCoding.h"
 
-@class HMAccessory, HMApplicationData, HMBulletinBoardNotification, HMFUnfairLock, HMMutableArray, NSArray, NSNumber, NSString, NSURL, NSUUID, _HMContext;
+@class HMAccessory, HMApplicationData, HMBulletinBoardNotification, HMFUnfairLock, HMMutableArray, NSArray, NSDictionary, NSNumber, NSString, NSURL, NSUUID, _HMContext;
 
 @interface HMService : NSObject <HMFLogging, NSSecureCoding, HMObjectMerge, HMMutableApplicationData>
 {
     HMFUnfairLock *_lock;
+    BOOL _nameModifiable;
     BOOL _userInteractive;
     BOOL _primaryService;
+    BOOL _mediaSourceDisplayOrderModifiable;
     NSUUID *_uniqueIdentifier;
     HMAccessory *_accessory;
     NSString *_serviceType;
@@ -30,11 +32,14 @@
     HMApplicationData *_applicationData;
     HMBulletinBoardNotification *_bulletinBoardNotificationInternal;
     NSURL *_homeObjectURLInternal;
+    NSNumber *_mediaSourceIdentifier;
     _HMContext *_context;
     NSNumber *_instanceID;
-    NSArray *_linkedServiceInstanceIDs;
     HMMutableArray *_currentCharacteristics;
+    NSNumber *_lastKnownDiscoveryMode;
     NSUUID *_uuid;
+    NSArray *_linkedServiceInstanceIDs;
+    NSArray *_mediaSourceDisplayOrder;
 }
 
 + (id)__localizedDescriptionForServiceType:(id)arg1;
@@ -44,13 +49,22 @@
 + (long long)_mapToServiceConfigurationStateFromIsConfiguredValue:(id)arg1;
 + (BOOL)supportsSecureCoding;
 + (id)logCategory;
-@property(copy, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
-@property(copy, nonatomic) HMMutableArray *currentCharacteristics; // @synthesize currentCharacteristics=_currentCharacteristics;
++ (id)characteristicBlacklistForShortcutConditions;
++ (id)defaultCharacteristicByServiceDictionary;
++ (void)initializeCharacteristicDictionaries;
++ (id)serviceWithServiceReference:(id)arg1 home:(id)arg2;
++ (id)serviceWithSerializedDictionaryRepresentation:(id)arg1 home:(id)arg2;
+@property(nonatomic) BOOL mediaSourceDisplayOrderModifiable; // @synthesize mediaSourceDisplayOrderModifiable=_mediaSourceDisplayOrderModifiable;
+@property(retain, nonatomic) NSArray *mediaSourceDisplayOrder; // @synthesize mediaSourceDisplayOrder=_mediaSourceDisplayOrder;
 @property(readonly, copy, nonatomic) NSArray *linkedServiceInstanceIDs; // @synthesize linkedServiceInstanceIDs=_linkedServiceInstanceIDs;
+@property(copy, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
+@property(copy, nonatomic) NSNumber *lastKnownDiscoveryMode; // @synthesize lastKnownDiscoveryMode=_lastKnownDiscoveryMode;
+@property(copy, nonatomic) HMMutableArray *currentCharacteristics; // @synthesize currentCharacteristics=_currentCharacteristics;
 @property(readonly, nonatomic) NSNumber *instanceID; // @synthesize instanceID=_instanceID;
 @property(retain, nonatomic) _HMContext *context; // @synthesize context=_context;
 @property(readonly, nonatomic, getter=isPrimaryService) BOOL primaryService; // @synthesize primaryService=_primaryService;
 @property(readonly, nonatomic, getter=isUserInteractive) BOOL userInteractive; // @synthesize userInteractive=_userInteractive;
+@property BOOL nameModifiable; // @synthesize nameModifiable=_nameModifiable;
 - (void).cxx_destruct;
 - (BOOL)_hasCharacteristicOfType:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *localizedDescription;
@@ -58,19 +72,23 @@
 - (void)_addCharacteristic:(id)arg1;
 - (void)_removeCharacteristic:(id)arg1;
 - (BOOL)_hasCharacteristic:(id)arg1;
+- (void)_handleMediaSourceIdentifierUpdated:(id)arg1;
 - (void)_handleUpdateConfigurationState:(long long)arg1;
 - (void)_handleUpdateServiceSubtype:(id)arg1;
 - (void)_handleUpdateAssociatedServiceType:(id)arg1;
 - (void)_handleUpdateDefaultName:(id)arg1;
-- (void)_handleUpdateConfiguredName:(id)arg1;
 - (void)_handleUpdateName:(id)arg1;
 - (void)_handleMarkServiceInteractive:(id)arg1;
+- (void)_handleUpdateServicePrimary:(id)arg1;
 - (void)updateApplicationData:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)_addLastKnownSleepDiscoveryModeDidUpdateDelegateCallbackToOperations:(id)arg1;
 - (BOOL)_mergeWithNewObject:(id)arg1 operations:(id)arg2;
+- (id)_findCharacteristicWithUniqueIdentifier:(id)arg1;
 - (id)_findCharacteristic:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)logIdentifier;
+@property(readonly, copy) NSUUID *applicationDataIdentifier;
 - (void)_updateConfigurationState:(long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)updateConfigurationState:(long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_updateAssociatedServiceType:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
@@ -84,13 +102,19 @@
 @property(readonly, nonatomic) HMBulletinBoardNotification *bulletinBoardNotificationInternal; // @synthesize bulletinBoardNotificationInternal=_bulletinBoardNotificationInternal;
 - (void)setApplicationData:(id)arg1;
 @property(readonly, nonatomic) HMApplicationData *applicationData;
+- (BOOL)isNameModifiable;
+@property(retain, nonatomic) NSNumber *mediaSourceIdentifier; // @synthesize mediaSourceIdentifier=_mediaSourceIdentifier;
+- (long long)lastKnownSleepDiscoveryMode;
+- (BOOL)hasSleepDiscoveryMode;
 @property(readonly, copy, nonatomic) NSUUID *uniqueIdentifier; // @synthesize uniqueIdentifier=_uniqueIdentifier;
+- (id)characteristicsSupportedForShortcutConditions;
+- (id)defaultCharacteristic;
 @property(readonly, copy, nonatomic) NSArray *characteristics;
 @property(nonatomic) long long configurationState; // @synthesize configurationState=_configurationState;
 @property(copy, nonatomic) NSString *serviceSubtype; // @synthesize serviceSubtype=_serviceSubtype;
 @property(copy, nonatomic) NSString *associatedServiceType; // @synthesize associatedServiceType=_associatedServiceType;
 @property(retain, nonatomic) NSString *defaultName; // @synthesize defaultName=_defaultName;
-@property(retain, nonatomic) NSString *configuredName; // @synthesize configuredName=_configuredName;
+@property(copy, nonatomic) NSString *configuredName; // @synthesize configuredName=_configuredName;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(copy, nonatomic) NSString *serviceType; // @synthesize serviceType=_serviceType;
 @property(nonatomic) __weak HMAccessory *accessory; // @synthesize accessory=_accessory;
@@ -99,6 +123,7 @@
 @property(readonly) unsigned long long hash;
 @property(readonly, copy) NSString *description;
 - (id)init;
+@property(readonly, copy) NSDictionary *serializedDictionaryRepresentation;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -8,6 +8,7 @@
 
 @class NSData, NSMutableDictionary, NSString, OISFUCryptoKey, OISFUDataRepresentation<SFUZipArchiveDataRepresentation>;
 
+__attribute__((visibility("hidden")))
 @interface OISFUZipArchive : NSObject
 {
     NSMutableDictionary *mEntries;

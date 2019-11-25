@@ -15,11 +15,14 @@
 @interface _INPBUncompressFileIntent : PBCodable <_INPBUncompressFileIntent, NSSecureCoding, NSCopying>
 {
     CDStruct_032f6352 _has;
+    BOOL __encodeLegacyGloryData;
     int _entityType;
     _INPBString *_entityName;
     _INPBIntentMetadata *_intentMetadata;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
 @property(nonatomic) int entityType; // @synthesize entityType=_entityType;
 @property(retain, nonatomic) _INPBString *entityName; // @synthesize entityName=_entityName;
@@ -28,6 +31,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(readonly, nonatomic) BOOL hasIntentMetadata;

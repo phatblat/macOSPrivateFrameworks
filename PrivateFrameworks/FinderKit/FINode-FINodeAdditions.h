@@ -6,25 +6,12 @@
 
 #import "FINode.h"
 
-#import "IKImageBrowserDatasourceItemPrivate.h"
 #import "QLPreviewItem.h"
 #import "QLPreviewItemPrivate.h"
 
 @class NSString, NSURL;
 
-@interface FINode (FINodeAdditions) <QLPreviewItem, QLPreviewItemPrivate, IKImageBrowserDatasourceItemPrivate>
-- (id)copyImageRepresentation:(id *)arg1 options:(id)arg2;
-- (id)IKImageRepresentationWithType:(id)arg1;
-- (struct OpaqueIconRef *)createAlternativeIconRepresentationWithOptions:(id)arg1;
-- (_Bool)isDimmed;
-- (struct __CFDictionary *)quickLookThumbnailOptions;
-- (id)imageTitle;
-- (id)imageRepresentationType;
-- (id)imageUID;
-- (id)imageUIDForViewIdentifierPrefix:(id)arg1;
-- (id)imageRepresentationTypeForViewIdentifierPrefix:(const struct TString *)arg1;
-- (_Bool)isInIconView;
-- (id)viewIdentifierPrefix;
+@interface FINode (FINodeAdditions) <QLPreviewItem, QLPreviewItemPrivate>
 - (struct CGImage *)createImageForMaximumSize:(struct CGSize)arg1 options:(struct __CFDictionary *)arg2;
 @property(readonly) NSString *previewItemLocalizedDescription;
 @property(readonly) NSString *previewItemDisplayName;

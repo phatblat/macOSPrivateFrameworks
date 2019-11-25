@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "CRKCloudStoringSubItem.h"
+#import "NSSecureCoding.h"
 
 @class NSData, NSDate, NSString;
 
-@interface CRKPrivateIdentity : NSObject <CRKCloudStoringSubItem>
+@interface CRKPrivateIdentity : NSObject <CRKCloudStoringSubItem, NSSecureCoding>
 {
     NSData *_identityPersistentId;
     NSData *_stagedIdentityPersistentId;
@@ -20,15 +21,15 @@
 }
 
 + (id)instanceWithParentObject:(id)arg1 keyValue:(id)arg2;
++ (id)addIdentityToKeychainFromCertificateData:(id)arg1 privateKeyData:(id)arg2;
 + (id)instanceWithRecord:(id)arg1;
 + (id)skeletonInstance;
 + (BOOL)supportsSecureCoding;
 + (id)recordType;
 + (id)keychainGroup;
 + (id)commonNameWithPrefix:(id)arg1;
-+ (id)createIdentityWithCommonName:(id)arg1;
++ (id)makeIdentityWithCommonName:(id)arg1;
 + (id)freshPrivateIdentityWithCommonNamePrefix:(id)arg1;
-+ (id)new;
 @property(retain, nonatomic) NSDate *stagedIdentityExpirationDate; // @synthesize stagedIdentityExpirationDate=_stagedIdentityExpirationDate;
 @property(retain, nonatomic) NSDate *identityExpirationDate; // @synthesize identityExpirationDate=_identityExpirationDate;
 @property(copy, nonatomic) NSString *commonNamePrefix; // @synthesize commonNamePrefix=_commonNamePrefix;
@@ -46,7 +47,6 @@
 - (id)initWithDictionary:(id)arg1;
 - (BOOL)refreshIdentities;
 - (id)initWithIdentityPersistentId:(id)arg1 stagedIdentityPersistentId:(id)arg2 commonNamePrefix:(id)arg3;
-- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,18 +6,19 @@
 
 #import "NSObject.h"
 
-#import "INApplicationContextProviding.h"
 #import "INIntentHandlerProvidingPrivate.h"
 #import "NSExtensionRequestHandling.h"
 
-@class NSString;
+@class INExtensionContext, NSString;
 
-@interface _INExtension : NSObject <NSExtensionRequestHandling, INIntentHandlerProvidingPrivate, INApplicationContextProviding>
+@interface _INExtension : NSObject <NSExtensionRequestHandling, INIntentHandlerProvidingPrivate>
 {
+    INExtensionContext *_extensionContext;
 }
 
 + (void)initialize;
-- (id)currentApplicationContext;
+@property(readonly, nonatomic) INExtensionContext *_extensionContext; // @synthesize _extensionContext;
+- (void).cxx_destruct;
 - (id)handlerForIntent:(id)arg1;
 - (void)beginRequestWithExtensionContext:(id)arg1;
 

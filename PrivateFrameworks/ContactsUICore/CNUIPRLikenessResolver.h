@@ -8,7 +8,7 @@
 
 #import "CNUIPRLikenessResolver.h"
 
-@class CNCache, CNContactStore, CNQueue, CNSchedulerProvider, NSObject<OS_dispatch_source>, NSString, PRPersonaStore;
+@class CNCache, CNContactStore, CNQueue, CNSchedulerProvider, NSObject<OS_dispatch_source>, NSString;
 
 @interface CNUIPRLikenessResolver : NSObject <CNUIPRLikenessResolver>
 {
@@ -29,19 +29,21 @@
 @property(retain, nonatomic) CNCache *likenessCache; // @synthesize likenessCache=_likenessCache;
 @property(retain, nonatomic) id <CNUIPRLikenessResolver> likenessResolver; // @synthesize likenessResolver=_likenessResolver;
 - (void).cxx_destruct;
-- (id)initWithContactStore:(id)arg1 personaStore:(id)arg2 scheduler:(id)arg3 meMonitor:(id)arg4;
-- (id)initWithContactStore:(id)arg1 personaStore:(id)arg2 scheduler:(id)arg3;
+- (id)initWithContactStore:(id)arg1 scheduler:(id)arg2 meMonitor:(id)arg3;
+- (id)initWithContactStore:(id)arg1 scheduler:(id)arg2;
 @property(readonly, nonatomic) CNSchedulerProvider *schedulerProvider;
-@property(readonly, nonatomic) PRPersonaStore *personaStore;
 @property(readonly, nonatomic) CNContactStore *contactStore;
 @property(nonatomic) long long prohibitedSources;
 - (id)likenessLookup;
-- (id)basicMonogramObservableFromString:(id)arg1;
+- (id)basicMonogramObservableFromString:(id)arg1 color:(id)arg2;
 - (void)refreshCacheKey:(id)arg1;
-- (id)likenessesForContact:(id)arg1;
-- (id)resolveLikenessesForContacts:(id)arg1 withContentHandler:(CDUnknownBlockType)arg2;
+- (id)likenessesForContact:(id)arg1 options:(id)arg2 workScheduler:(id)arg3;
+- (id)likenessesForContact:(id)arg1 workScheduler:(id)arg2;
+- (id)resolveLikenessesForContacts:(id)arg1 workScheduler:(id)arg2 withContentHandler:(CDUnknownBlockType)arg3;
 - (void)emptyCache:(id)arg1;
 - (void)dealloc;
+- (id)initWithLikenessResolver:(id)arg1 capacity:(unsigned long long)arg2 schedulerProvider:(id)arg3;
+- (id)initWithLikenessResolver:(id)arg1 capacity:(unsigned long long)arg2;
 - (id)initWithLikenessResolver:(id)arg1;
 
 // Remaining properties

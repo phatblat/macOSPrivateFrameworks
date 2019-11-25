@@ -6,13 +6,12 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
 @class NSColor;
 
-@interface NSTextBlock : NSObject <NSSecureCoding, NSCoding, NSCopying>
+@interface NSTextBlock : NSObject <NSSecureCoding, NSCopying>
 {
     void *_propVals;
     unsigned long long _propMask;

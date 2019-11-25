@@ -8,19 +8,31 @@
 
 #import "NSCopying.h"
 
-@class NSString, PBUnknownFields;
+@class NSString, PBDataReader, PBUnknownFields;
 
 __attribute__((visibility("hidden")))
 @interface GEOAttributeKeyValue : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     PBUnknownFields *_unknownFields;
     NSString *_attributeKey;
     NSString *_attributeValue;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_attributeKey:1;
+        unsigned int read_attributeValue:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_attributeKey:1;
+        unsigned int wrote_attributeValue:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *attributeValue; // @synthesize attributeValue=_attributeValue;
-@property(retain, nonatomic) NSString *attributeKey; // @synthesize attributeKey=_attributeKey;
++ (BOOL)isValid:(id)arg1;
 - (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
 @property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -29,8 +41,15 @@ __attribute__((visibility("hidden")))
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *attributeValue;
+- (void)_readAttributeValue;
+@property(retain, nonatomic) NSString *attributeKey;
+- (void)_readAttributeKey;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

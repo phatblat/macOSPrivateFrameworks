@@ -25,6 +25,7 @@
 + (id)defaultsForMangledID:(id)arg1;
 + (id)_userDefaultsManager;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL shouldReportAllPerItemFailures;
 @property(readonly, nonatomic) double eventMetricTimeout;
 @property(readonly, nonatomic) unsigned long long computeEvictableBatchSize;
 @property(readonly, nonatomic) unsigned long long applyCountToSignalFaultsLive;
@@ -84,6 +85,7 @@
 @property(readonly, nonatomic) double cacheDeleteRecomputeInterval;
 @property(readonly, nonatomic) long long dbReclaimableSpaceThreshold;
 @property(readonly, nonatomic) double purgePacerInterval;
+@property(readonly, nonatomic) double minFetchQuotaInterval;
 @property(readonly, nonatomic) double graveyardAgeDeltaInMedUrgency;
 @property(readonly, nonatomic) double graveyardAgeDeltaInLowUrgency;
 @property(readonly, nonatomic) double defaultOnDiskAccessTimeDefaultForEviction;

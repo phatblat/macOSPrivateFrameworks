@@ -11,7 +11,7 @@
 #import "HMObjectMerge.h"
 #import "NSSecureCoding.h"
 
-@class HMApplicationData, HMFUnfairLock, HMHome, HMMutableArray, NSDate, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID, _HMContext;
+@class HMApplicationData, HMFUnfairLock, HMHome, HMMutableArray, NSDate, NSDictionary, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID, _HMContext;
 
 @interface HMActionSet : NSObject <HMFMessageReceiver, NSSecureCoding, HMObjectMerge, HMMutableApplicationData>
 {
@@ -28,18 +28,23 @@
     NSUUID *_uuid;
 }
 
++ (id)actionSetFromProtoBuf:(id)arg1 home:(id)arg2;
++ (id)allowedActionClasses;
 + (BOOL)supportsSecureCoding;
++ (id)shortcutsComponentActionSet;
 @property(readonly, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
 @property(retain, nonatomic) HMMutableArray *currentActions; // @synthesize currentActions=_currentActions;
 @property(retain, nonatomic) _HMContext *context; // @synthesize context=_context;
 @property(readonly, copy, nonatomic) NSString *actionSetType; // @synthesize actionSetType=_actionSetType;
 @property(nonatomic) BOOL executionInProgress; // @synthesize executionInProgress=_executionInProgress;
 - (void).cxx_destruct;
+- (id)encodeAsProtoBuf;
 - (BOOL)_mergeWithNewObject:(id)arg1 operations:(id)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *messageReceiveQueue;
 @property(readonly, nonatomic) NSUUID *messageTargetUUID;
+@property(readonly, copy) NSUUID *applicationDataIdentifier;
 - (void)_registerNotificationHandlers;
 - (void)_handleActionSetExecutedNotification:(id)arg1;
 - (void)_handleActionSetStartExecutionNotification:(id)arg1;
@@ -47,19 +52,21 @@
 - (void)_handleActionSetRenamedNotification:(id)arg1;
 - (void)_handleActionUpdatedNotification:(id)arg1;
 - (void)_handleActionRemovedNotification:(id)arg1;
+- (void)_doRemoveActionWithUUID:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_handleActionAddedNotification:(id)arg1;
+- (void)_doAddAction:(id)arg1 uuid:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)_updateAction:(id)arg1 changes:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)_removeAction:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)removeAction:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_addAction:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)addAction:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (id)_lookupActionWithInfo:(id)arg1;
 - (void)_updateName:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)updateName:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)setApplicationData:(id)arg1;
 @property(readonly, nonatomic) HMApplicationData *applicationData;
 @property(nonatomic) __weak HMHome *home; // @synthesize home=_home;
 @property(readonly, copy, nonatomic) NSUUID *uniqueIdentifier; // @synthesize uniqueIdentifier=_uniqueIdentifier;
+- (BOOL)requiresDeviceUnlock;
 @property(readonly, nonatomic, getter=isExecuting) BOOL executing;
 @property(readonly, copy, nonatomic) NSSet *actions;
 - (void)setLastExecutionDate:(id)arg1;
@@ -71,6 +78,8 @@
 - (void)dealloc;
 - (id)initWithName:(id)arg1 type:(id)arg2 uuid:(id)arg3;
 - (id)init;
+- (id)initWithShortcutsDictionaryRepresentation:(id)arg1 home:(id)arg2;
+@property(readonly, copy) NSDictionary *shortcutsDictionaryRepresentation;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

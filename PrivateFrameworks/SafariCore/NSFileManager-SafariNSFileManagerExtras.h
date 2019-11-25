@@ -7,6 +7,7 @@
 #import "NSFileManager.h"
 
 @interface NSFileManager (SafariNSFileManagerExtras)
+- (id)safari_frameworksDirectoryURLs;
 - (id)safari_pathWithUniqueFilenameForPath:(id)arg1;
 - (BOOL)safari_removeFileAtURL:(id)arg1 error:(id *)arg2;
 - (BOOL)safari_moveDownloadedFileAtURL:(id)arg1 toURL:(id)arg2;
@@ -14,6 +15,7 @@
 - (id)safari_autoFillQuirksDownloadDirectoryURL;
 - (id)safari_productionSafariSettingsDirectory;
 - (id)safari_containerSettingsDirectory;
+- (id)safari_nonContaineredSettingsDirectoryURL;
 - (id)safari_settingsDirectoryURL;
 - (id)safari_settingsDirectoryForHomeDirectory:(id)arg1;
 - (id)safari_settingsDirectoryForLibraryDirectory:(id)arg1;

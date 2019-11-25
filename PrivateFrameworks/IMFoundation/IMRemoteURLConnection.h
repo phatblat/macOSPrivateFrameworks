@@ -17,7 +17,6 @@
     BOOL _cancelled;
     BOOL _loading;
     BOOL _forceCellularIfPossible;
-    BOOL _alwaysForceCellular;
     BOOL _requireIDSHost;
     int _retries;
     BOOL _shouldUsePipelining;
@@ -29,7 +28,6 @@
 }
 
 @property BOOL shouldReturnTimingData; // @synthesize shouldReturnTimingData=_shouldReturnTimingData;
-@property BOOL alwaysForceCellular; // @synthesize alwaysForceCellular=_alwaysForceCellular;
 @property(copy) CDUnknownBlockType block; // @synthesize block=_block;
 @property(retain) NSURLRequest *request; // @synthesize request=_request;
 @property int keepAliveCell; // @synthesize keepAliveCell=_keepAliveCell;

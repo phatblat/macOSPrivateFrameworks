@@ -14,7 +14,7 @@
 #import "SiriUIPresentationDelegate.h"
 #import "SiriUISiriLanguageDelegate.h"
 
-@class AFConversationStore, AFManagedStorageConnection, AFUISiriViewController, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_source>, NSString, NSTimer, SVSAceCommandRecords, SiriUIRequestOptions, SiriUISiriLanguage;
+@class AFConversationStore, AFManagedStorageConnection, AFUISiriViewController, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_source>, NSString, NSTimer, SAUISayIt, SVSAceCommandRecords, SiriUIRequestOptions, SiriUISiriLanguage;
 
 __attribute__((visibility("hidden")))
 @interface SVSSiriViewController : NSViewController <SiriUIDomainObjectStore, SVSAceCommandRecordsDelegate, SiriUISiriLanguageDelegate, AFConversationDelegate, SiriUIPresentationDataSource, SiriUIPresentationDelegate, SVSSiriViewControllerServing>
@@ -25,6 +25,7 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *_synthesisPreparationDictionary;
     NSMutableDictionary *_synthesisAnimationDictionary;
     NSObject<OS_dispatch_source> *_connectionErrorDismissalTimer;
+    SAUISayIt *_repeatableAudioSayit;
     BOOL _supportsSpeechSynthesis;
     BOOL __speechIdleTimerEnabled;
     BOOL __idleTimerEnabled;
@@ -81,7 +82,7 @@ __attribute__((visibility("hidden")))
 - (id)_punchoutMetricsAceCommandIdForItemWithIdentifier:(id)arg1;
 - (void)_listenAfterSpeakingWithResult:(long long)arg1 recordedRequestCount:(unsigned long long)arg2;
 - (void)_audioSessionRouteDidChange:(id)arg1;
-- (void)_addErrorUtterance:(id)arg1;
+- (void)_addErrorUtterance:(id)arg1 dialogIdentifier:(id)arg2;
 - (void)_displayNotReadyError;
 - (void)_clearConnectionErrorDismissalTimer;
 - (void)_handleRequestError:(id)arg1;
@@ -96,9 +97,9 @@ __attribute__((visibility("hidden")))
 - (void)_performAppPunchOutCommand:(id)arg1 conversationItemIdentifier:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)_performAppPunchOutCommand:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_cancelCurrentTTS:(id)arg1;
+- (void)_performSayItCommand:(id)arg1;
 - (void)_performGenericAceCommand:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)_dialogPhaseForItemAtIndexPath:(id)arg1;
-- (void)_updateLanguageCode;
 - (id)_presentationViewController;
 - (void)_setPresentation:(id)arg1;
 - (id)view;
@@ -191,6 +192,7 @@ __attribute__((visibility("hidden")))
 - (void)siriSessionSpeechRecordingDidCancel;
 - (void)siriSessionSpeechRecordingDidEnd;
 - (void)siriSessionSpeechRecordingDidChangeAVRecordRoute:(id)arg1;
+- (void)siriSessionDidReceiveShowNextCardCommand:(id)arg1 completion:(id)arg2;
 - (void)siriSessionDidReceiveGuideUpdateCommand:(id)arg1;
 - (void)siriSessionDidReceiveHideSiriOverlayCommand:(id)arg1;
 - (void)siriSessionDidReceiveListenForPronunciationCommand:(id)arg1;
@@ -217,6 +219,7 @@ __attribute__((visibility("hidden")))
 - (void)siriSessionDidChangeNetworkAvailability;
 - (void)siriSessionGetRequestContextWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)siriSessionDidTransitionFromState:(long long)arg1 toState:(long long)arg2 event:(long long)arg3;
+- (int)_mapState:(long long)arg1;
 - (void)siriSessionDidFinishRequestWithError:(id)arg1;
 - (void)siriSessionAudioRecordingDidChangePowerLevel:(float)arg1;
 - (void)siriSessionWillCancelRequest;
@@ -226,10 +229,11 @@ __attribute__((visibility("hidden")))
 - (void)aceCommandRecords:(id)arg1 didChangeResultForCommand:(id)arg2;
 - (void)setDomainObject:(id)arg1 forIdentifier:(id)arg2;
 - (id)domainObjectForIdentifier:(id)arg1;
-- (void)speechSynthesisDidStopSpeakingQueueIsEmpty:(BOOL)arg1;
-- (void)speechSynthesisDidStartSpeaking;
+- (void)speechSynthesisDidStopSpeakingWithIdentifier:(id)arg1 queueIsEmpty:(BOOL)arg2;
+- (void)speechSynthesisDidStartSpeakingWithIdentifier:(id)arg1;
 - (void)speechSynthesisExecuteAnimationForIdentifier:(id)arg1;
 - (void)speechSynthesisGetPreparedTextForIdentifier:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (id)_speechIdentifierForConversationItem:(id)arg1;
 - (void)setSpeechSynthesis:(id)arg1;
 - (BOOL)_isSpeechSynthesisSpeaking;
 - (void)_cancelSpeechSynthesis;
@@ -238,7 +242,8 @@ __attribute__((visibility("hidden")))
 - (void)_synthesizePhoneticText:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_synthesizeSpeechWithText:(id)arg1 isPhonetic:(BOOL)arg2 provisionally:(BOOL)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)_didCompleteActionForAceCommand:(id)arg1;
-- (void)_speakText:(id)arg1 provisionally:(BOOL)arg2 eligibleAfterDuration:(double)arg3 speakableUtteranceParser:(id)arg4 preparation:(CDUnknownBlockType)arg5 completion:(CDUnknownBlockType)arg6 animationBlock:(CDUnknownBlockType)arg7;
+- (void)_speakText:(id)arg1 audioData:(id)arg2 ignoreMuteSwitch:(BOOL)arg3 identifier:(id)arg4 provisionally:(BOOL)arg5 eligibleAfterDuration:(double)arg6 speakableUtteranceParser:(id)arg7 preparation:(CDUnknownBlockType)arg8 completion:(CDUnknownBlockType)arg9 animationBlock:(CDUnknownBlockType)arg10;
+- (void)_speakText:(id)arg1 identifier:(id)arg2 provisionally:(BOOL)arg3 eligibleAfterDuration:(double)arg4 speakableUtteranceParser:(id)arg5 preparation:(CDUnknownBlockType)arg6 completion:(CDUnknownBlockType)arg7 animationBlock:(CDUnknownBlockType)arg8;
 - (id)_aceCommandWithIdentifier:(id)arg1;
 - (void)_didStartActionForItemAtIndexPath:(id)arg1 inConversation:(id)arg2;
 - (void)_didStartActionForAceCommand:(id)arg1;

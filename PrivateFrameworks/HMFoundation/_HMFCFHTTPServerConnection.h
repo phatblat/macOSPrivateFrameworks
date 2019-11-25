@@ -10,6 +10,7 @@
 
 @class HMFNetAddress, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface _HMFCFHTTPServerConnection : HMFObject <HMFLogging>
 {
     id <_HMFCFHTTPServerConnectionDelegate> _delegate;
@@ -36,7 +37,7 @@
 - (void)handleRequest:(id)arg1 bodyReadStream:(struct __CFReadStream *)arg2 eventType:(unsigned long long)arg3;
 - (void)_stopReadBody:(id)arg1;
 - (void)_handleCompletedReceivedRequest:(id)arg1 error:(id)arg2;
-- (void)_handleRecievedRequestRef:(struct _CFHTTPServerRequest *)arg1;
+- (void)_handleReceivedRequestRef:(struct _CFHTTPServerRequest *)arg1;
 - (void)close;
 - (BOOL)open;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;

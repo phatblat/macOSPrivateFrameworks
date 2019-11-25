@@ -17,6 +17,9 @@
     _DKDataProtectionStateMonitor *_dataProtectionMonitor;
     NSFileManager *_fm;
     NSCloudKitMirroringDelegate *_mirroringDelegate;
+    BOOL _isManagedDatabase;
+    BOOL _isDatabaseManager;
+    BOOL _maintenanceRunning;
     BOOL _readOnly;
     BOOL _localOnly;
     BOOL _sync;
@@ -55,6 +58,7 @@
 - (BOOL)_deleteDatabaseFiles:(id)arg1;
 - (BOOL)confirmDatabaseConnectionFor:(id)arg1;
 - (BOOL)isManagedObjectContextFor:(id)arg1 equalToManagedObjectContext:(id)arg2;
+- (id)privateManagedObjectContextFor:(id)arg1;
 - (id)managedObjectContextFor:(id)arg1;
 - (void)removeManagedObjectContextForKey:(id)arg1;
 - (id)managedObjectContextForKey:(id)arg1;
@@ -81,7 +85,13 @@
 - (void)removePersistentStoresInCoordinator:(id)arg1;
 - (void)invalidateManagedObjectContextAndPersistentStoreCoordinatorFor:(id)arg1;
 - (void)handleDataProtectionChangeFor:(id)arg1 willBeAvailable:(BOOL)arg2;
-- (BOOL)isDatabaseOwner;
+- (struct __CFString *)clientNeedsHelpNotification;
+- (void)handleClientCallForHelp;
+- (id)databaseManagerName;
+- (BOOL)isDataVaulted;
+- (void)_unregisterForClientHelpNotifications;
+- (void)_registerForClientHelpNotifications;
+- (void)dealloc;
 - (id)initWithDirectory:(id)arg1 databaseName:(id)arg2 modelURL:(id)arg3 readOnly:(BOOL)arg4 localOnly:(BOOL)arg5 sync:(BOOL)arg6;
 - (id)initWithDirectory:(id)arg1 databaseName:(id)arg2 modelURL:(id)arg3 sync:(BOOL)arg4;
 - (id)initWithDirectory:(id)arg1 databaseName:(id)arg2 modelURL:(id)arg3 readOnly:(BOOL)arg4 localOnly:(BOOL)arg5;

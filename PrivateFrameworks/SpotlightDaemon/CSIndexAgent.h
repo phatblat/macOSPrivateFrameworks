@@ -14,8 +14,8 @@
     NSMutableDictionary *_indexConnections;
 }
 
-+ (id)indexAgent;
-+ (void)initialize;
++ (id)indexDelegateAgent;
++ (id)indexAgent:(BOOL)arg1;
 @property(retain, nonatomic) NSMutableDictionary *indexConnections; // @synthesize indexConnections=_indexConnections;
 @property(retain, nonatomic) id <MDIndexer> indexer; // @synthesize indexer=_indexer;
 - (void).cxx_destruct;

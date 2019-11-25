@@ -49,6 +49,7 @@
 - (id)initWithPairedHostDeviceProviders;
 - (id)initWithLocalProviders;
 - (id)init;
+- (id)dialRequestForRecentCall:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *description;

@@ -19,7 +19,7 @@
     id <SMNWindowsCopyActionDelegate> delegate;
 }
 
-+ (BOOL)needsDirectAccessToSendOrReceiveResult;
++ (BOOL)streamsResults;
 + (int)actionID;
 @property id <SMNWindowsCopyActionDelegate> delegate; // @synthesize delegate;
 @property unsigned long long totalWrittenLength; // @synthesize totalWrittenLength;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CUNetLinkManager, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
+@class CUBonjourAdvertiser, CUNetLinkManager, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
 
 @interface CUTCPServer : NSObject
 {
@@ -20,6 +20,8 @@
     unsigned int _maxConnectionCount;
     int _tcpListenPort;
     int _tcpListeningPort;
+    CUBonjourAdvertiser *_bonjourAdvertiser;
+    CDUnknownBlockType _connectionAcceptHandler;
     CDUnknownBlockType _connectionStartedHandler;
     CDUnknownBlockType _connectionEndedHandler;
     CDUnknownBlockType _connectionPrepareHandler;
@@ -27,6 +29,7 @@
     CDUnknownBlockType _invalidationHandler;
     NSString *_label;
     CUNetLinkManager *_netLinkManager;
+    CDUnion_fab80606 _interfaceAddress;
 }
 
 @property(nonatomic) int tcpListeningPort; // @synthesize tcpListeningPort=_tcpListeningPort;
@@ -35,11 +38,14 @@
 @property(nonatomic) unsigned int maxConnectionCount; // @synthesize maxConnectionCount=_maxConnectionCount;
 @property(copy, nonatomic) NSString *label; // @synthesize label=_label;
 @property(copy, nonatomic) CDUnknownBlockType invalidationHandler; // @synthesize invalidationHandler=_invalidationHandler;
+@property(nonatomic) CDUnion_fab80606 interfaceAddress; // @synthesize interfaceAddress=_interfaceAddress;
 @property(nonatomic) unsigned int flags; // @synthesize flags=_flags;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
 @property(copy, nonatomic) CDUnknownBlockType connectionPrepareHandler; // @synthesize connectionPrepareHandler=_connectionPrepareHandler;
 @property(copy, nonatomic) CDUnknownBlockType connectionEndedHandler; // @synthesize connectionEndedHandler=_connectionEndedHandler;
 @property(copy, nonatomic) CDUnknownBlockType connectionStartedHandler; // @synthesize connectionStartedHandler=_connectionStartedHandler;
+@property(copy, nonatomic) CDUnknownBlockType connectionAcceptHandler; // @synthesize connectionAcceptHandler=_connectionAcceptHandler;
+@property(retain, nonatomic) CUBonjourAdvertiser *bonjourAdvertiser; // @synthesize bonjourAdvertiser=_bonjourAdvertiser;
 - (void).cxx_destruct;
 - (void)_handleConnectionInvalidated:(id)arg1 addr:(const CDUnion_fab80606 *)arg2;
 - (void)_handleConnectionAccept:(int)arg1;

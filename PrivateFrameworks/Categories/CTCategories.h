@@ -17,9 +17,11 @@
 + (id)systemHiddenBundleIdentifiers;
 + (id)systemUnblockableBundleIdentifiers;
 + (id)systemBlockableBundleIdentifiers;
++ (long long)currentIOSDevice;
++ (id)systemHiddenBundleIdentifiersForDeviceFamily:(long long)arg1;
++ (id)systemUnblockableBundleIdentifiersForDeviceFamily:(long long)arg1;
++ (id)systemBlockableBundleIdentifiersForDeviceFamily:(long long)arg1;
 + (id)sharedCategories;
-+ (id)_newXpcConnection;
-+ (id)_xpcConnection;
 + (void)initialize;
 - (void).cxx_destruct;
 - (void)categoriesForDomainURLs:(id)arg1 responseWithError:(CDUnknownBlockType)arg2;
@@ -34,13 +36,19 @@
 - (void)categoryForDomainName:(id)arg1 response:(CDUnknownBlockType)arg2;
 - (void)categoryForBundleID:(id)arg1 response:(CDUnknownBlockType)arg2;
 - (void)categoryForBundleID:(id)arg1 responseWithError:(CDUnknownBlockType)arg2;
+- (void)unCategorizedDomainsFromDomains:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)categoriesForDomainURLs:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)categoriesForDomainNames:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)categoriesForBundleIDs:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)categoryForDomainURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)categoryForDomainName:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)categoriesForBundleIDs:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)categoriesForBundleIDs:(id)arg1 platform:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)categoryForBundleID:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)categoryForBundleID:(id)arg1 platform:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 @property(readonly, copy) NSArray *availableCategoryIDs;
+- (void)_emptySharedCache:(id)arg1;
+- (void)dealloc;
+- (id)init;
 
 @end
 

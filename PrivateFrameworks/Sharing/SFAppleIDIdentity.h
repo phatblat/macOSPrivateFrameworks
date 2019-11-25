@@ -13,12 +13,14 @@
 @interface SFAppleIDIdentity : NSObject <NSSecureCoding>
 {
     NSString *_encDSID;
+    NSString *_intermediateCertificateSerialNumber;
     BOOL _linkedToCurrentUser;
     NSString *_accountIdentifier;
     NSString *_altDSID;
     NSString *_appleID;
     NSDate *_certificateExpirationDate;
     NSData *_certificatePersistentReference;
+    NSDate *_intermediateCertificateExpirationDate;
     NSData *_intermediateCertificatePersistentReference;
     NSDate *_lastValidationAttemptDate;
     NSDate *_lastValidationDate;
@@ -35,6 +37,7 @@
 @property(retain, nonatomic) NSDate *lastValidationDate; // @synthesize lastValidationDate=_lastValidationDate;
 @property(retain, nonatomic) NSDate *lastValidationAttemptDate; // @synthesize lastValidationAttemptDate=_lastValidationAttemptDate;
 @property(retain, nonatomic) NSData *intermediateCertificatePersistentReference; // @synthesize intermediateCertificatePersistentReference=_intermediateCertificatePersistentReference;
+@property(retain, nonatomic) NSDate *intermediateCertificateExpirationDate; // @synthesize intermediateCertificateExpirationDate=_intermediateCertificateExpirationDate;
 @property(retain, nonatomic) NSData *certificatePersistentReference; // @synthesize certificatePersistentReference=_certificatePersistentReference;
 @property(retain, nonatomic) NSDate *certificateExpirationDate; // @synthesize certificateExpirationDate=_certificateExpirationDate;
 @property(readonly, nonatomic) NSString *appleID; // @synthesize appleID=_appleID;
@@ -43,14 +46,17 @@
 - (void).cxx_destruct;
 - (int)verifyKeys;
 - (void)removeFromKeychain;
-- (struct OpaqueSecIdentityRef *)copyIdentity;
+- (struct __SecIdentity *)copyIdentity;
 @property(readonly, nonatomic) BOOL needsRenewal;
 @property(readonly, nonatomic) BOOL isInvalid;
+@property(readonly, nonatomic) BOOL intermediateCertificateExpired;
+@property(readonly, nonatomic) NSString *intermediateCertificateSerialNumber;
 @property(readonly, nonatomic) BOOL certificateExpired;
-- (struct OpaqueSecKeyRef *)copyPrivateKey;
-- (struct OpaqueSecCertificateRef *)copyIntermediateCertificate;
-- (struct OpaqueSecCertificateRef *)copyCertificateWithType:(long long)arg1;
-- (struct OpaqueSecCertificateRef *)copyCertificate;
+- (BOOL)isDateInThePast:(id)arg1;
+-     // Error parsing type: ^{__SecKey={__CFRuntimeBase=QAQ}^{__SecKeyDescriptor}^v}16@0:8, name: copyPrivateKey
+- (struct __SecCertificate *)copyIntermediateCertificate;
+- (struct __SecCertificate *)copyCertificateWithType:(long long)arg1;
+- (struct __SecCertificate *)copyCertificate;
 - (id)description;
 - (id)initWithDictionary:(id)arg1;
 - (id)initWithAppleID:(id)arg1 altDSID:(id)arg2;

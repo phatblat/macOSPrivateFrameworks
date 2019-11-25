@@ -8,7 +8,7 @@
 
 #import "CNUIUserActionContext.h"
 
-@class NSString;
+@class BSServiceConnectionEndpoint, NSString;
 
 @interface CNUIUserActionContext : NSObject <CNUIUserActionContext>
 {
@@ -17,11 +17,13 @@
     id <CNUIUserActionDialRequestOpener> _dialRequestOpener;
     id <CNUIUserActionRecorder> _actionRecorder;
     id <CNUIUserActionCurator> _actionCurator;
+    BSServiceConnectionEndpoint *_connectionEndpoint;
 }
 
 + (id)makeDefaultContext;
 + (id)contextWithExtensionContext:(id)arg1;
 + (id)defaultContext;
+@property(copy, nonatomic) BSServiceConnectionEndpoint *connectionEndpoint; // @synthesize connectionEndpoint=_connectionEndpoint;
 @property(retain, nonatomic) id <CNUIUserActionCurator> actionCurator; // @synthesize actionCurator=_actionCurator;
 @property(retain, nonatomic) id <CNUIUserActionRecorder> actionRecorder; // @synthesize actionRecorder=_actionRecorder;
 @property(retain, nonatomic) id <CNUIUserActionDialRequestOpener> dialRequestOpener; // @synthesize dialRequestOpener=_dialRequestOpener;

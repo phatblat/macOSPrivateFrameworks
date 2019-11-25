@@ -16,7 +16,7 @@
 
 + (id)_ignoredParameters;
 - (id)_spotlightContentType;
-- (BOOL)configureAttributeSet:(id)arg1;
+- (BOOL)configureAttributeSet:(id)arg1 includingData:(BOOL)arg2;
 - (void)setParametersByName:(id)arg1;
 - (id)parametersByName;
 - (void)setVerb:(id)arg1;
@@ -29,7 +29,9 @@
 - (void)_redactForMissingPrivacyEntitlementOptions:(unsigned long long)arg1 containingAppBundleId:(id)arg2;
 - (id)_dictionaryRepresentation;
 - (id)_redactedDictionaryRepresentation;
+@property long long messageType;
 @property(copy) NSArray *attachments;
+@property long long effect;
 - (void)setSender:(id)arg1;
 @property(readonly, copy) INPerson *sender;
 - (void)setServiceName:(id)arg1;
@@ -43,6 +45,7 @@
 - (void)setRecipients:(id)arg1;
 @property(readonly, copy) NSArray *recipients;
 - (id)initWithRecipients:(id)arg1 content:(id)arg2 speakableGroupName:(id)arg3 conversationIdentifier:(id)arg4 serviceName:(id)arg5 sender:(id)arg6;
+- (long long)_preferredInteractionDirection;
 - (id)_categoryVerb;
 - (long long)_intentCategory;
 - (void)_setMetadata:(id)arg1;

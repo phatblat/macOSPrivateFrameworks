@@ -8,7 +8,7 @@
 
 #import "DOMEventListener.h"
 
-@class DOMElement, DOMHTMLIFrameElement, DOMHTMLVideoElement, LPVideo, NSString, WebScriptObject;
+@class DOMDocument, DOMElement, DOMHTMLIFrameElement, DOMHTMLVideoElement, LPCSSResolver, LPVideo, NSString, WebScriptObject;
 
 __attribute__((visibility("hidden")))
 @interface LPHTMLVideoComponent : LPHTMLComponent <DOMEventListener>
@@ -24,8 +24,11 @@ __attribute__((visibility("hidden")))
     BOOL _isVisible;
     BOOL _wasPlayingWhenHidden;
     WebScriptObject *_isVisibleFunction;
+    LPCSSResolver *_CSSResolver;
+    DOMDocument *_document;
 }
 
++ (id)additionalGlobalOutOfLineStyleDeclarations;
 + (id)styleSet;
 + (id)ruleDictionaryForStyle:(id)arg1;
 - (void).cxx_destruct;

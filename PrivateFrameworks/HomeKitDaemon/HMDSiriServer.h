@@ -24,6 +24,7 @@
 
 + (id)logCategory;
 + (id)sharedSiriServer;
+@property(nonatomic) unsigned int targetControlIdentifier; // @synthesize targetControlIdentifier=_targetControlIdentifier;
 @property(retain, nonatomic) HMDSiriSession *siriUISession; // @synthesize siriUISession=_siriUISession;
 @property(retain, nonatomic) HMDSiriAccessoryMonitor *siriAccessoryMonitor; // @synthesize siriAccessoryMonitor=_siriAccessoryMonitor;
 @property(retain, nonatomic) HMDSiriRemoteInputServer *siriInputServer; // @synthesize siriInputServer=_siriInputServer;

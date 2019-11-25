@@ -7,6 +7,8 @@
 #import "NSObject.h"
 
 @protocol PXAnonymousViewController <NSObject>
+@property(readonly, nonatomic) BOOL px_isVisible;
+@property(readonly, nonatomic) struct CGSize px_referenceSize;
 @property(readonly, nonatomic) struct NSEdgeInsets px_layoutMargins;
 @property(readonly, nonatomic) struct NSEdgeInsets px_safeAreaInsets;
 @end

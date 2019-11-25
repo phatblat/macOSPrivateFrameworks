@@ -9,35 +9,45 @@
 #import "LPEmailCompatibleCaptionBarItemChild.h"
 #import "NSCopying.h"
 
-@class LPPadding, LPPointUnit, LPSize, NSColor;
+@class LPPadding, LPPointUnit, LPShadowStyle, LPSize, NSColor;
 
 __attribute__((visibility("hidden")))
 @interface LPImageViewStyle : NSObject <LPEmailCompatibleCaptionBarItemChild, NSCopying>
 {
-    LPSize *_size;
+    BOOL _requireFixedSize;
+    BOOL _allowsPlatterPresentation;
+    LPSize *_fixedSize;
+    LPSize *_minimumSize;
+    LPPointUnit *_fixedFallbackImageSize;
     LPPadding *_margin;
     LPPadding *_padding;
+    long long _scalingMode;
     long long _filter;
     long long _verticalAlignment;
+    LPShadowStyle *_shadow;
+    NSColor *_maskColor;
     NSColor *_backgroundColor;
     LPPointUnit *_backgroundInset;
-    double _foregroundOpacity;
     LPPointUnit *_cornerRadius;
     double _darkeningAmount;
-    NSColor *_maskColor;
 }
 
-@property(retain, nonatomic) NSColor *maskColor; // @synthesize maskColor=_maskColor;
 @property(nonatomic) double darkeningAmount; // @synthesize darkeningAmount=_darkeningAmount;
 @property(retain, nonatomic) LPPointUnit *cornerRadius; // @synthesize cornerRadius=_cornerRadius;
-@property(nonatomic) double foregroundOpacity; // @synthesize foregroundOpacity=_foregroundOpacity;
 @property(retain, nonatomic) LPPointUnit *backgroundInset; // @synthesize backgroundInset=_backgroundInset;
 @property(retain, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+@property(nonatomic) BOOL allowsPlatterPresentation; // @synthesize allowsPlatterPresentation=_allowsPlatterPresentation;
+@property(retain, nonatomic) NSColor *maskColor; // @synthesize maskColor=_maskColor;
+@property(retain, nonatomic) LPShadowStyle *shadow; // @synthesize shadow=_shadow;
 @property(nonatomic) long long verticalAlignment; // @synthesize verticalAlignment=_verticalAlignment;
 @property(nonatomic) long long filter; // @synthesize filter=_filter;
+@property(nonatomic) long long scalingMode; // @synthesize scalingMode=_scalingMode;
 @property(readonly, retain, nonatomic) LPPadding *padding; // @synthesize padding=_padding;
 @property(readonly, retain, nonatomic) LPPadding *margin; // @synthesize margin=_margin;
-@property(retain, nonatomic) LPSize *size; // @synthesize size=_size;
+@property(retain, nonatomic) LPPointUnit *fixedFallbackImageSize; // @synthesize fixedFallbackImageSize=_fixedFallbackImageSize;
+@property(retain, nonatomic) LPSize *minimumSize; // @synthesize minimumSize=_minimumSize;
+@property(nonatomic) BOOL requireFixedSize; // @synthesize requireFixedSize=_requireFixedSize;
+@property(retain, nonatomic) LPSize *fixedSize; // @synthesize fixedSize=_fixedSize;
 - (void).cxx_destruct;
 - (id)emailCompatibleMargin;
 - (id)copyWithZone:(struct _NSZone *)arg1;

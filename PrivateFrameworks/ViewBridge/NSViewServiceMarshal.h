@@ -9,14 +9,14 @@
 #import "AuxiliaryCallsService.h"
 #import "NSVBXPCConnectionClient.h"
 #import "NSViewServiceMarshal.h"
-#import "NSXPCConnectionDelegate.h"
 #import "NSXPCListenerDelegate.h"
 
-@class NSAccessibilityRemoteUIElement, NSArray, NSCFRunLoopObserver, NSColor, NSDictionary, NSLayoutConstraint, NSMutableArray, NSResponder, NSServiceViewController, NSString, NSVB_ViewServiceBehaviorProxy, NSViewBridge, NSWindow, NSXPCConnection, NSXPCInterface;
+@class NSAccessibilityRemoteUIElement, NSArray, NSCFRunLoopObserver, NSDictionary, NSLayoutConstraint, NSMutableArray, NSResponder, NSServiceViewController, NSString, NSVB_ViewServiceBehaviorProxy, NSViewBridge, NSWindow, NSXPCConnection, NSXPCInterface;
 
 __attribute__((visibility("hidden")))
-@interface NSViewServiceMarshal : NSView <NSXPCListenerDelegate, NSVBXPCConnectionClient, AuxiliaryCallsService, NSViewServiceMarshal, NSXPCConnectionDelegate>
+@interface NSViewServiceMarshal : NSView <NSXPCListenerDelegate, AuxiliaryCallsService, NSViewServiceMarshal, NSVBXPCConnectionClient>
 {
+    NSString *_extensionIdentifier;
     struct NSEdgeInsets _alignmentRectInsets;
     struct CGSize _mostRecentlyReportedContentMinSize;
     struct CGSize _mostRecentlyReportedContentMaxSize;
@@ -26,7 +26,6 @@ __attribute__((visibility("hidden")))
     NSResponder *_suspendedFirstResponder;
     unsigned long long _clientRequestedStyleMask;
     unsigned long long _windowIsOrdering;
-    NSColor *_fontSmoothingBackgroundColor;
     struct CGSRegionObject *_windowResizingRegion;
     struct CGSRegionObject *_visibleRegion;
     NSXPCInterface *_clientExportedInterface;
@@ -46,6 +45,7 @@ __attribute__((visibility("hidden")))
     NSXPCConnection *_auxiliaryServiceConnection;
     NSXPCConnection *_remoteViewMarshalConnection;
     unsigned char _bridgePhase;
+    unsigned long long _advanceBeyondRunPhaseCount;
     unsigned long long _reportControllerWindow;
     CDUnknownBlockType _hostWindowKeynessReactionPending;
     CDUnknownBlockType _remoteViewFirstResponderReactionPending;
@@ -56,6 +56,7 @@ __attribute__((visibility("hidden")))
     struct os_unfair_lock_s _retainReleaseLock;
     unsigned int _accessoryViewContainsFirstResponder:1;
     unsigned int _didConfigForRemoteViewControllerInterface:1;
+    unsigned int _deferResizeRequestsUntilAfterRunPhase:1;
     unsigned int _didSetView:1;
     unsigned int _hadAccessibilityParent:1;
     unsigned int _hasActivatedTSM:1;
@@ -66,13 +67,13 @@ __attribute__((visibility("hidden")))
     unsigned int _notificationsRegistered:1;
     unsigned int _remoteAccessoryViewCanBecomeKeyView:1;
     unsigned int _remoteFirstResponderChangeInProgress:1;
-    unsigned int _remoteViewDidMoveInProgress:1;
     unsigned int _remoteViewGeometryChangeInProgress:1;
     unsigned int _remoteViewIsContentView:1;
     unsigned int _remoteViewIsFirstResponder:1;
     unsigned int _reportedLackOfAccessibilityParent:1;
     unsigned int _resizeRequestCompletionInProgress:1;
     unsigned int _setStyleMaskInProgress:1;
+    unsigned int _setWindowFrameInProgress:1;
     unsigned int _shouldOrderWindowOut:1;
     unsigned int _shouldReportConstraintsOfWindowMinMaxSize:1;
     unsigned int _transactionBegun:1;
@@ -81,6 +82,8 @@ __attribute__((visibility("hidden")))
     unsigned int _hostWindowIsFunctionRow:1;
     NSArray *_mostRecentlySentTouchBarsDescription;
     NSCFRunLoopObserver *_touchBarsObserver;
+    NSWindow *_sheetOrderingFront;
+    BOOL _remoteViewDidMoveInProgress;
 }
 
 + (BOOL)allowSetObjectForKey:(id)arg1 bridge:(id)arg2 bridgePhase:(unsigned char)arg3 withReply:(CDUnknownBlockType)arg4;
@@ -90,7 +93,6 @@ __attribute__((visibility("hidden")))
 + (void)windowDidOrderOnScreenAndFinishAnimating:(id)arg1;
 + (BOOL)considerWindowForRendezvous:(id)arg1;
 + (BOOL)beginFreeWindowRendezvous:(id)arg1;
-+ (BOOL)isSettingStyleMaskOfWindow:(id)arg1;
 + (int)hostProcessIdentifier;
 + (id)auxiliaryProxyFor:(const char *)arg1;
 + (void)choseNotToRendezvous:(id)arg1 because:(const char *)arg2;
@@ -106,6 +108,7 @@ __attribute__((visibility("hidden")))
 + (id)serviceMarshalForAppModalSession:(int)arg1;
 + (void)informHostsOfConnectionToService:(int)arg1;
 + (id)semaphoreForViewBridgePrivateMode;
+@property(readonly) BOOL remoteViewDidMoveInProgress; // @synthesize remoteViewDidMoveInProgress=_remoteViewDidMoveInProgress;
 @property(retain) NSArray *mostRecentlySentTouchBarsDescription; // @synthesize mostRecentlySentTouchBarsDescription=_mostRecentlySentTouchBarsDescription;
 @property(readonly) NSServiceViewController *viewController; // @synthesize viewController=_viewController;
 @property(retain) NSVB_ViewServiceBehaviorProxy *uiBehaviorProxy; // @synthesize uiBehaviorProxy=_uiBehaviorProxy;
@@ -126,9 +129,10 @@ __attribute__((visibility("hidden")))
 - (void)hideTouchBarPopover:(id)arg1;
 - (void)remoteViewCaresAboutTouchBars:(BOOL)arg1;
 - (void)remoteViewDidChangeState:(unsigned char)arg1 ofPopoverBar:(id)arg2 forItem:(id)arg3;
+- (void)whileOrderingSheetFront:(id)arg1 withParent:(id)arg2 performActions:(CDUnknownBlockType)arg3;
+@property(readonly) NSString *extensionIdentifier;
 - (void)remoteViewBackingScaleFactorDidChange:(double)arg1;
 - (void)withHostWindowFrameAnimationInProgress:(BOOL)arg1 perform:(CDUnknownBlockType)arg2;
-@property(readonly) BOOL remoteViewDidMoveInProgress;
 @property(readonly) BOOL hostWindowFrameAnimationInProgress;
 - (void)refreshAccessoryViewBitmap:(id)arg1;
 - (struct CGRect)serviceWindowFrameForRemoteViewFrame;
@@ -148,9 +152,8 @@ __attribute__((visibility("hidden")))
 - (void)setRemoteViewEffectiveAppearance:(id)arg1;
 - (void)setViewVibrantBlendingStyle:(unsigned long long)arg1;
 - (void)remoteViewContainingWindowOcclusionStateDidChange:(unsigned long long)arg1;
-- (void)remoteViewDidMove:(struct CGPoint)arg1;
 - (void)hostWindowLevelDidChange:(long long)arg1;
-- (void)requestResize:(struct CGSize)arg1 transaction:(id)arg2 animate:(BOOL)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)requestFrame:(struct CGRect)arg1 transaction:(id)arg2 animate:(BOOL)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)_invokeBlockOnCurrentFenceIfAny:(CDUnknownBlockType)arg1;
 - (void)invokeBlockOnCurrentFenceIfAny:(CDUnknownBlockType)arg1;
 - (void)connection:(id)arg1 handleInvocation:(id)arg2 isReply:(BOOL)arg3;
@@ -162,9 +165,6 @@ __attribute__((visibility("hidden")))
 - (id)accessibilityTokenForFocusedUIElement;
 - (BOOL)eventResizingRegionContainsPoint:(struct CGPoint)arg1;
 - (void)retreatToConfigPhase;
-- (void)setFontSmoothingBackgroundColor:(id)arg1;
-- (void)setFontSmoothingBackgroundColorIfNeeded:(id)arg1;
-- (void)setFontSmoothingBackgroundColorIfNeeded;
 - (void)sendMinMaxWindowSizesToHostIfNeeded:(id)arg1 now:(BOOL)arg2;
 - (void)sendMinMaxWindowSizesToHostIfNeeded:(id)arg1;
 - (BOOL)hostWindowIsKey:(id)arg1;
@@ -178,7 +178,7 @@ __attribute__((visibility("hidden")))
 - (void)hostWindowReceivedEventType:(unsigned long long)arg1;
 - (void)hierarchyDidChangeInView:(id)arg1;
 - (void)endHostModalSession:(id)arg1;
-- (void)beginHostModalSession:(id)arg1 title:(id)arg2 size:(struct CGSize)arg3 withReply:(CDUnknownBlockType)arg4;
+- (void)beginHostAppModalSession:(id)arg1 parameters:(const CDStruct_9fbe0e86 *)arg2 title:(id)arg3 style:(unsigned long long)arg4 size:(struct CGSize)arg5 withReply:(CDUnknownBlockType)arg6;
 - (void)serviceAccessoryViewBecameFirstResponder:(BOOL)arg1;
 - (void)setAccessoryViewSize:(struct CGSize)arg1 alignmentRectInsets:(struct NSEdgeInsets)arg2;
 - (BOOL)accessoryViewCanBecomeKeyView;
@@ -216,9 +216,9 @@ __attribute__((visibility("hidden")))
 - (void)wrap:(id)arg1 sendEvent:(id)arg2;
 - (void)cancelActionHitRemoteView:(CDUnknownBlockType)arg1;
 - (BOOL)cancelActionHitRemoteView;
-- (void)bootstrap:(CDStruct_e2fa5527)arg1 withReply:(CDUnknownBlockType)arg2;
+- (void)bootstrap:(CDStruct_4172db96)arg1 withReply:(CDUnknownBlockType)arg2;
 - (id)concretizedWindowBackgroundColor;
-- (id)_bootstrap:(CDStruct_e2fa5527)arg1 replyData:(CDStruct_4e11500c *)arg2;
+- (void)_bootstrap:(const CDStruct_4172db96 *)arg1 replyData:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)connectToAuxiliaryService:(id)arg1 window:(unsigned int)arg2;
 @property(readonly) struct CGSize sizeHint;
 - (void)didSetView;
@@ -229,7 +229,7 @@ __attribute__((visibility("hidden")))
 - (void)remoteViewResignedFirstResponderInActiveApp:(BOOL)arg1 inFavorOf:(unsigned char)arg2;
 - (void)remoteViewChangedFirstResponder:(CDUnknownBlockType)arg1;
 - (void)remoteViewResignedFirstResponderInFavorOfAccessoryView:(BOOL)arg1;
-- (unsigned char)remoteViewBecameFirstResponder:(unsigned long long)arg1 ignoreDirection:(BOOL)arg2 forWindowWithKey:(BOOL)arg3 inVisibleWindow:(BOOL)arg4;
+- (unsigned char)remoteViewBecameFirstResponder:(unsigned long long)arg1 forWindowWithKey:(BOOL)arg2 inVisibleWindow:(BOOL)arg3;
 - (void)remoteViewBecameFirstResponder:(unsigned long long)arg1 forWindowWithKey:(BOOL)arg2 inActiveApp:(BOOL)arg3 inVisibleWindow:(BOOL)arg4 reply:(CDUnknownBlockType)arg5;
 - (void)obtainFirstResponderState:(CDUnknownBlockType)arg1;
 - (unsigned char)setFirstResponderForRemoteView:(unsigned long long)arg1;
@@ -243,7 +243,7 @@ __attribute__((visibility("hidden")))
 - (void)remoteViewWillStartLiveResizeWithReply:(CDUnknownBlockType)arg1;
 - (void)remoteViewGeometryDidChange:(struct CGRect)arg1 transaction:(id)arg2 withReply:(CDUnknownBlockType)arg3;
 - (struct CGRect)_remoteViewGeometryDidChange:(id)arg1 serviceWindowSize:(struct CGSize *)arg2;
-- (struct CGRect)remoteViewGeometryDidChangeInProgress:(id)arg1 serviceWindowSize:(struct CGSize *)arg2;
+- (struct CGRect)remoteViewGeometryDidChangeDueToTransaction:(id)arg1 serviceWindowSize:(struct CGSize *)arg2;
 - (void)updateWindow:(id)arg1 frameAnimationStatusAfterActions:(CDUnknownBlockType)arg2;
 - (BOOL)shouldAllowAnimationForDefaultResizeBehavior;
 - (struct CGRect)accessoryViewFrameRelativeToWindow:(id)arg1;
@@ -283,6 +283,7 @@ __attribute__((visibility("hidden")))
 - (id)window;
 @property(readonly) NSWindow *viewControllerWindow;
 - (void)serviceWindowWouldActivate;
+- (void)declineKeyboardEventsOtherThan:(id)arg1;
 - (void)setWindow:(id)arg1 styleMask:(unsigned long long)arg2;
 - (id)orderedDrawerAndWindowKeyLoopGroupingViews:(id)arg1;
 - (void)setEventMaskBasedOnWindow:(id)arg1;
@@ -330,12 +331,11 @@ __attribute__((visibility("hidden")))
 - (void)__vbWithLockPerform:(CDUnknownBlockType)arg1;
 - (struct os_unfair_lock_s *)retainReleaseLock;
 @property(readonly) BOOL isValid;
-@property(readonly) NSString *_debuggingHint;
+@property(readonly, copy) NSString *description;
 - (void)_remoteViewDidChangeState:(unsigned char)arg1 ofPopoverBar:(id)arg2 forItem:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

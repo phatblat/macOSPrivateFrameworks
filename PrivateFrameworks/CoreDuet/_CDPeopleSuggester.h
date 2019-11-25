@@ -14,6 +14,7 @@
     NSObject<OS_dispatch_queue> *_queue;
     _CDCachedPeopleSuggestion *_cache;
     _CDInteractionStoreNotificationReceiver *_receiver;
+    int _settingsNotifyToken;
     BOOL _enableCaching;
     _CDPeopleSuggesterContext *_context;
     _CDPeopleSuggesterSettings *_settings;
@@ -32,6 +33,7 @@
 - (void).cxx_destruct;
 - (id)suggestPeopleWithError:(id *)arg1;
 - (void)suggestPeopleWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)updateSettings;
 @property BOOL enableCaching; // @synthesize enableCaching=_enableCaching;
 - (void)invalidateCache;
 - (id)initWithAdvisor:(id)arg1;

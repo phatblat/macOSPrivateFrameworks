@@ -6,9 +6,11 @@
 
 #import "NSView.h"
 
+#import "WKNavigationDelegate.h"
+
 @class LPYouTubePlayerScriptMessageHandler, NSMutableArray, NSString, WKWebView;
 
-@interface LPYouTubePlayerView : NSView
+@interface LPYouTubePlayerView : NSView <WKNavigationDelegate>
 {
     WKWebView *_webView;
     NSString *_videoID;
@@ -33,6 +35,9 @@
 - (void).cxx_destruct;
 - (void)didReceiveScriptMessage:(id)arg1;
 - (void)layout;
+- (void)_webView:(id)arg1 navigation:(id)arg2 didFailProvisionalLoadInSubframe:(id)arg3 withError:(id)arg4;
+- (void)webView:(id)arg1 didFailProvisionalNavigation:(id)arg2 withError:(id)arg3;
+- (void)webView:(id)arg1 didFailNavigation:(id)arg2 withError:(id)arg3;
 - (void)createVideoPlayerView;
 - (id)_parameterScript;
 - (void)exitFullScreen;
@@ -40,13 +45,19 @@
 - (void)seekTo:(double)arg1;
 - (void)pause;
 - (void)play;
-- (void)evaluatePlayerCommand:(id)arg1;
+- (void)_evaluatePlayerCommand:(id)arg1;
 - (void)dealloc;
 - (void)loadVideoWithID:(id)arg1;
 - (void)loadVideoWithEmbedURL:(id)arg1;
 - (void)loadVideoWithURL:(id)arg1;
-- (void)dispatchErrorForInvalidURL;
+- (void)dispatchErrorWithCode:(long long)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

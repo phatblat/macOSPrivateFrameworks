@@ -8,6 +8,7 @@
 
 @class NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface TCMessageContext : NSObject
 {
     NSMutableSet *m_warnings;

@@ -8,34 +8,36 @@
 
 #import "NSWindowDelegate.h"
 
-@class NSAttributedString, NSString;
+@class NSAttributedString, NSString, SCRCUserDefaults;
 
 __attribute__((visibility("hidden")))
 @interface SCRVisualsBrailleWindow : NSObject <NSWindowDelegate>
 {
     BOOL _brailleDeviceConnected;
     BOOL _temporarilyHidden;
-    int __enabled;
     NSAttributedString *_brailleWithAttributes;
     id <AXVABrailleWindowInterface> __brailleAgent;
+    long long __enabled;
+    SCRCUserDefaults *__userDefaults;
+    id __enabledObserver;
 }
 
-@property(nonatomic, setter=_setEnabled:) int _enabled; // @synthesize _enabled=__enabled;
+@property(retain, nonatomic, setter=_setEnabledObserver:) id _enabledObserver; // @synthesize _enabledObserver=__enabledObserver;
+@property(retain, nonatomic, setter=_setUserDefaults:) SCRCUserDefaults *_userDefaults; // @synthesize _userDefaults=__userDefaults;
+@property(nonatomic, setter=_setEnabled:) long long _enabled; // @synthesize _enabled=__enabled;
 @property(retain, nonatomic, setter=_setBrailleAgent:) id <AXVABrailleWindowInterface> _brailleAgent; // @synthesize _brailleAgent=__brailleAgent;
 @property(nonatomic) BOOL temporarilyHidden; // @synthesize temporarilyHidden=_temporarilyHidden;
 @property(copy, nonatomic) NSAttributedString *brailleWithAttributes; // @synthesize brailleWithAttributes=_brailleWithAttributes;
 @property(nonatomic) BOOL brailleDeviceConnected; // @synthesize brailleDeviceConnected=_brailleDeviceConnected;
 - (void).cxx_destruct;
-- (void)_preferencesChangedForKeyPath:(id)arg1 value:(id)arg2;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)setEnabledAndAnnounceChange:(int)arg1;
+- (void)setEnabledAndAnnounceChange:(long long)arg1;
 - (void)showBrailleWindow;
 - (void)_brailleWindowNeedsDisplay;
 - (void)setFontSize:(double)arg1;
 - (id)_createBrailleInfoFromAttributes:(id)arg1;
-@property(nonatomic) int enabled;
-- (void)dealloc;
-- (id)initWithBrailleAgent:(id)arg1;
+@property(nonatomic) long long enabled;
+- (void)setEnabledValue:(id)arg1;
+- (id)initWithBrailleAgent:(id)arg1 userDefaults:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

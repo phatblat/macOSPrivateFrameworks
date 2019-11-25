@@ -6,11 +6,11 @@
 
 #import <MetalTools/MTLToolsResource.h>
 
-#import "MTLHeap.h"
+#import "MTLHeapSPI.h"
 
 @class MTLToolsPointerArray, NSString;
 
-@interface MTLToolsHeap : MTLToolsResource <MTLHeap>
+@interface MTLToolsHeap : MTLToolsResource <MTLHeapSPI>
 {
     MTLToolsPointerArray *_buffers;
     MTLToolsPointerArray *_textures;
@@ -18,13 +18,22 @@
 
 @property(readonly, nonatomic) MTLToolsPointerArray *textures; // @synthesize textures=_textures;
 @property(readonly, nonatomic) MTLToolsPointerArray *buffers; // @synthesize buffers=_buffers;
+- (id)newTextureWithDescriptor:(id)arg1 offset:(unsigned long long)arg2;
+- (id)newTextureWithDescriptor:(id)arg1;
+- (id)newBufferWithLength:(unsigned long long)arg1 options:(unsigned long long)arg2 offset:(unsigned long long)arg3;
+- (id)newBufferWithLength:(unsigned long long)arg1 options:(unsigned long long)arg2;
+- (id)_wrapTexture:(id)arg1;
+- (id)_wrapBuffer:(id)arg1;
+@property(readonly) long long type;
 @property(readonly) unsigned long long currentAllocatedSize;
 - (unsigned long long)setPurgeableState:(unsigned long long)arg1;
-- (id)newTextureWithDescriptor:(id)arg1;
-- (id)newBufferWithLength:(unsigned long long)arg1 options:(unsigned long long)arg2;
 - (unsigned long long)maxAvailableSizeWithAlignment:(unsigned long long)arg1;
 @property(readonly) unsigned long long usedSize;
+- (id)formattedDescription:(unsigned long long)arg1;
 @property(readonly) unsigned long long size;
+@property(readonly) unsigned long long unfilteredResourceOptions;
+@property(readonly) unsigned long long resourceOptions;
+@property(readonly) unsigned long long hazardTrackingMode;
 @property(readonly) unsigned long long storageMode;
 @property(readonly) unsigned long long cpuCacheMode;
 @property(copy) NSString *label;

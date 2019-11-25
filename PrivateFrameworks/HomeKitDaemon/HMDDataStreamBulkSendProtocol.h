@@ -8,10 +8,11 @@
 
 #import "HMDDataStreamProtocol.h"
 #import "HMFLogging.h"
+#import "HMFTimerDelegate.h"
 
-@class NSMapTable, NSObject<OS_dispatch_queue>, NSString;
+@class NSMapTable, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
 
-@interface HMDDataStreamBulkSendProtocol : NSObject <HMFLogging, HMDDataStreamProtocol>
+@interface HMDDataStreamBulkSendProtocol : NSObject <HMFLogging, HMDDataStreamProtocol, HMFTimerDelegate>
 {
     BOOL _isConnected;
     unsigned int _nextSessionIdentifier;
@@ -19,19 +20,28 @@
     NSObject<OS_dispatch_queue> *_queue;
     id _accessory;
     NSMapTable *_listeners;
+    NSString *_logIdentifier;
     NSMapTable *_activeBulkSendSessions;
+    NSMutableDictionary *_pendingBulkSendSessionContextBySessionIdentifier;
+    CDUnknownBlockType _bulkSendSessionContextFactory;
 }
 
 + (id)logCategory;
 + (id)protocolName;
-@property(nonatomic) unsigned int nextSessionIdentifier; // @synthesize nextSessionIdentifier=_nextSessionIdentifier;
+@property(readonly) CDUnknownBlockType bulkSendSessionContextFactory; // @synthesize bulkSendSessionContextFactory=_bulkSendSessionContextFactory;
+@property(readonly) NSMutableDictionary *pendingBulkSendSessionContextBySessionIdentifier; // @synthesize pendingBulkSendSessionContextBySessionIdentifier=_pendingBulkSendSessionContextBySessionIdentifier;
+@property(readonly) NSMapTable *activeBulkSendSessions; // @synthesize activeBulkSendSessions=_activeBulkSendSessions;
+@property unsigned int nextSessionIdentifier; // @synthesize nextSessionIdentifier=_nextSessionIdentifier;
+@property(readonly, copy, nonatomic) NSString *logIdentifier; // @synthesize logIdentifier=_logIdentifier;
 @property(nonatomic) BOOL isConnected; // @synthesize isConnected=_isConnected;
-@property(retain, nonatomic) NSMapTable *activeBulkSendSessions; // @synthesize activeBulkSendSessions=_activeBulkSendSessions;
 @property(retain, nonatomic) NSMapTable *listeners; // @synthesize listeners=_listeners;
 @property(nonatomic) __weak id accessory; // @synthesize accessory=_accessory;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(nonatomic) __weak id <HMDDataStreamProtocolDelegate> dataStream; // @synthesize dataStream=_dataStream;
 - (void).cxx_destruct;
+- (void)timerDidFire:(id)arg1;
+- (void)_startSessionForFileType:(id)arg1 queue:(id)arg2 callback:(CDUnknownBlockType)arg3;
+- (void)startSessionForFileType:(id)arg1 queue:(id)arg2 callback:(CDUnknownBlockType)arg3;
 - (void)_sendAckMessageWithIdentifier:(id)arg1;
 - (void)_sendCloseMessageWithIdentifier:(id)arg1 reason:(unsigned short)arg2;
 - (void)_cancelSessionWithIdentifier:(id)arg1 reason:(unsigned short)arg2 hadReceivedEof:(BOOL)arg3;
@@ -42,7 +52,7 @@
 - (void)_handleOpenWithRequestHeader:(id)arg1 payload:(id)arg2;
 - (void)_removeBulkSendSessionForSessionIdentifier:(id)arg1;
 - (id)_getBulkSendSessionForSessionIdentifier:(id)arg1;
-- (void)_rejectSessionCandidate:(id)arg1 reason:(unsigned short)arg2;
+- (void)_rejectSessionCandidate:(id)arg1 status:(unsigned short)arg2;
 - (void)_startSessionCandidate:(id)arg1 queue:(id)arg2 callback:(CDUnknownBlockType)arg3;
 - (id)_createSessionIdentifier;
 - (void)_sendOpenResponseWithRequestHeader:(id)arg1 status:(unsigned short)arg2;
@@ -51,7 +61,7 @@
 - (id)_createSessionFromCandidate:(id)arg1 queue:(id)arg2;
 - (id)_createSessionCandidateWithRequestHeader:(id)arg1;
 - (void)asyncBulkSendSessionDidCancelSessionWithIdentifier:(id)arg1 reason:(unsigned short)arg2 hadReceivedEof:(BOOL)arg3;
-- (void)asyncBulkSendSessionCandidate:(id)arg1 didRejectWithReason:(unsigned short)arg2;
+- (void)asyncBulkSendSessionCandidate:(id)arg1 didRejectWithStatus:(unsigned short)arg2;
 - (void)asyncBulkSendSessionCandidate:(id)arg1 didAcceptOnQueue:(id)arg2 callback:(CDUnknownBlockType)arg3;
 - (void)dataStream:(id)arg1 didReceiveResponse:(id)arg2 header:(id)arg3 payload:(id)arg4;
 - (void)dataStream:(id)arg1 didReceiveRequest:(id)arg2 header:(id)arg3 payload:(id)arg4;
@@ -62,7 +72,8 @@
 - (void)_closeAllSessionsWithError:(id)arg1;
 - (void)removeListener:(id)arg1;
 - (void)addListener:(id)arg1 fileType:(id)arg2;
-- (id)initWithQueue:(id)arg1 accessory:(id)arg2;
+- (id)initWithQueue:(id)arg1 accessory:(id)arg2 logIdentifier:(id)arg3 bulkSendSessionContextFactory:(CDUnknownBlockType)arg4;
+- (id)initWithQueue:(id)arg1 accessory:(id)arg2 logIdentifier:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

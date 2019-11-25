@@ -9,23 +9,30 @@
 #import "LPMetadataProviderSpecializationDelegate.h"
 #import "WKNavigationDelegate.h"
 
-@class LPLinkMetadata, LPMetadataProviderSpecialization, LPStatisticsTimingToken, NSMutableArray, NSString, NSURL, WKWebView;
+@class LPAnimatedImageTranscoder, LPFetcherGroup, LPLinkMetadata, LPMetadataProviderSpecialization, NSMutableArray, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_semaphore>, NSString, NSTimer, NSURL, WKWebView;
 
 @interface LPMetadataProvider : NSObject <WKNavigationDelegate, LPMetadataProviderSpecializationDelegate>
 {
     unsigned int _loggingID;
     WKWebView *_webView;
     NSURL *_URL;
+    NSURL *_originalURL;
+    NSTimer *_watchdog;
+    NSObject<OS_dispatch_semaphore> *_completionSemaphore;
     LPLinkMetadata *_metadata;
     BOOL _complete;
     BOOL _fetchingFromExistingWebView;
     BOOL _hasStartedFetching;
-    NSMutableArray *_pendingResolvers;
+    BOOL _hasEverStartedFetchingMetadataFromWebView;
+    BOOL _useSpecializedProviders;
+    unsigned long long _allowedSpecializedProviders;
+    NSObject<OS_dispatch_group> *_subresourceFetchGroup;
+    LPFetcherGroup *_iconFetcherGroup;
+    LPAnimatedImageTranscoder *_imageTranscoder;
+    NSMutableArray *_pendingFetchers;
     long long _specializationState;
     LPMetadataProviderSpecialization *_specializedMetadataProvider;
-    LPStatisticsTimingToken *_fetchTimingToken;
-    BOOL _useSpecializedProviders;
-    BOOL _fetchSubresources;
+    BOOL _shouldFetchSubresources;
     BOOL _cancelled;
     double _timeout;
     CDUnknownBlockType _completionHandler;
@@ -37,22 +44,25 @@
 + (id)requestMetadataForURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 + (id)_incompleteMetadataRequests;
 + (id)_callbackQueue;
+@property(nonatomic) BOOL useSpecializedProviders; // @synthesize useSpecializedProviders=_useSpecializedProviders;
 @property BOOL cancelled; // @synthesize cancelled=_cancelled;
 @property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 @property(nonatomic) double timeout; // @synthesize timeout=_timeout;
-@property(nonatomic) BOOL fetchSubresources; // @synthesize fetchSubresources=_fetchSubresources;
-@property(nonatomic) BOOL useSpecializedProviders; // @synthesize useSpecializedProviders=_useSpecializedProviders;
+@property(nonatomic) BOOL shouldFetchSubresources; // @synthesize shouldFetchSubresources=_shouldFetchSubresources;
+@property(nonatomic) unsigned long long allowedSpecializedProviders; // @synthesize allowedSpecializedProviders=_allowedSpecializedProviders;
 - (void).cxx_destruct;
-- (void)metadataProviderSpecialization:(id)arg1 didFailWithError:(id)arg2;
+- (void)metadataProviderSpecializationDidFail:(id)arg1;
 - (void)metadataProviderSpecialization:(id)arg1 didCompleteWithMetadata:(id)arg2;
-- (void)_completedWithResolvedMetadata:(id)arg1 error:(id)arg2;
-- (void)_completedWithMainResourceImageData:(id)arg1 MIMEType:(id)arg2 URL:(id)arg3;
+- (void)metadataProviderSpecialization:(id)arg1 didFetchPreliminaryMetadata:(id)arg2;
+- (void)_postProcessResolvedMetadataWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)_completedWithError:(id)arg1;
 - (void)_failedWithErrorCode:(long long)arg1 underlyingError:(id)arg2;
-- (void)_fetchNextSuccessfulItem:(id)arg1 currentIndex:(unsigned int)arg2 group:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (void)_fetchFirstSuccessfulItem:(id)arg1 group:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (void)_fetchResolvableItems:(id)arg1 group:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)_simplifyTitle;
 - (void)_redistinguishImagesAndIcons;
 - (void)_fetchSubresources;
+@property(nonatomic) BOOL fetchSubresources;
+- (void)_fetchImplicitIcons;
+- (id)subresourceFetcherConfiguration;
 - (void)_fetchedMetadata:(id)arg1;
 - (void)webViewWebContentProcessDidTerminate:(id)arg1;
 - (void)webView:(id)arg1 didFailProvisionalNavigation:(id)arg2 withError:(id)arg3;
@@ -62,15 +72,21 @@
 - (void)webView:(id)arg1 decidePolicyForNavigationAction:(id)arg2 decisionHandler:(CDUnknownBlockType)arg3;
 - (void)_cancelDueToTimeout;
 - (void)cancel;
-- (void)_generateSpecializationIfPossibleForCompleteMetadata:(id)arg1 URL:(id)arg2;
+- (void)_generateSpecializationIfPossibleForCompleteMetadata:(id)arg1 URL:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (BOOL)_switchToSpecializationIfPossibleForURL:(id)arg1;
 - (BOOL)_switchToSpecializationIfPossibleForMetadata:(id)arg1 URL:(id)arg2;
-- (BOOL)_switchToSpecializationIfPossibleForMIMEType:(id)arg1 URL:(id)arg2;
+- (BOOL)_switchToSpecializationIfPossibleForMIMEType:(id)arg1 URL:(id)arg2 hasLoadedResource:(BOOL)arg3;
 - (void)_fetchMetadataFromWebView;
-- (id)_createFetcherWebView;
+- (void)_setMetadata:(id)arg1 onlyUpgradeFields:(BOOL)arg2;
+- (void)_stopWatchdogTimer;
 - (void)_startWatchdogTimer;
 - (void)startFetchingSubresourcesForPartialMetadata:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (id)_startFetchingMetadataForWebView:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)startFetchingMetadataForWebView:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (id)_startFetchingMetadataForURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)_internalStartFetchingMetadataFromURL;
 - (void)startFetchingMetadataForURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)_willStartFetchingMetadata;
 - (void)dealloc;
 - (id)init;
 

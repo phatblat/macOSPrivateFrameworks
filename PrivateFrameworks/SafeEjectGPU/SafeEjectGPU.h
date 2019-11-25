@@ -33,6 +33,8 @@
 - (void)zDrainLimbo;
 - (id)newSessionWithGPUID:(unsigned long long)arg1;
 - (id)gpus;
+- (void)updateGPUNumberAtLocation;
+- (unsigned long long)getPCIAddr:(unsigned long long)arg1;
 - (void)dealloc;
 - (id)init;
 - (id)initWithDispatchQueue:(id)arg1 andChangeHandler:(CDUnknownBlockType)arg2;

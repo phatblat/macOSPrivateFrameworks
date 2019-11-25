@@ -22,15 +22,16 @@
 @property BOOL includeLocalAccount; // @synthesize includeLocalAccount=_includeLocalAccount;
 @property(copy) NSURL *baseURL; // @synthesize baseURL=_baseURL;
 @property(copy) NSArray *allAccounts; // @synthesize allAccounts=_allAccounts;
+- (void).cxx_destruct;
 - (BOOL)_URLIsSourceSpecific:(id)arg1;
 - (id)_readAccountsAtURL:(id)arg1;
 - (id)_baseURLForSourceSpecificURL:(id)arg1;
 - (id)accountWithIdentifier:(id)arg1;
 @property(readonly, copy) NSArray *persistentAccounts;
+@property(readonly) CNObservable *enabledPersistentAccountsObservable;
 @property(readonly) CNObservable *enabledAccountsObservable;
 @property(readonly, copy) NSArray *enabledAccounts;
 @property(readonly) id <CNAccountDescription> defaultAccount;
-- (void)dealloc;
 - (id)initWithBaseURL:(id)arg1;
 
 // Remaining properties

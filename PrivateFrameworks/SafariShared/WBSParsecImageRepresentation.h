@@ -6,7 +6,7 @@
 
 #import <SafariShared/WBSParsecModel.h>
 
-@class NSImage, NSNumber, NSObject<OS_dispatch_group>, NSString;
+@class NSImage, NSNumber, NSObject<OS_dispatch_group>, NSString, SFImage;
 
 @interface WBSParsecImageRepresentation : WBSParsecModel
 {
@@ -16,6 +16,7 @@
     NSImage *_image;
     BOOL _template;
     NSObject<OS_dispatch_group> *_downloadGroup;
+    SFImage *_sfImage;
     NSNumber *_baselineOffset;
     NSNumber *_roundCornerRadius;
 }
@@ -37,6 +38,7 @@
 - (unsigned long long)hash;
 - (id)imageWithScaleFactor:(double)arg1;
 - (id)imageWithSession:(id)arg1;
+- (id)initWithSFImage:(id)arg1;
 - (id)initWithJSONObject:(id)arg1;
 
 @end

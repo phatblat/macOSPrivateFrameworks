@@ -6,6 +6,7 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface STPropVariant : NSObject
 {
     struct _SsrwPropVariant mProp;

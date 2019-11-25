@@ -10,6 +10,7 @@
 
 @class NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface _HMFCFHTTPServer : HMFObject <HMFLogging>
 {
     id <_HMFCFHTTPServerDelegate> _delegate;

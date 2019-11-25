@@ -7,7 +7,10 @@
 #import "NSString.h"
 
 @interface NSString (LPInternal)
+- (float)_lp_similarityToString:(id)arg1;
+- (id)_lp_directionallyIsolatedString;
 - (BOOL)_lp_isEqualToAnyIgnoringCase:(id)arg1;
 - (BOOL)_lp_isEqualIgnoringCase:(id)arg1;
+- (BOOL)_lp_isEqualToAny:(id)arg1;
 @end
 

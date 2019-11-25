@@ -87,6 +87,10 @@ typedef struct {
 } CDStruct_669c4a63;
 
 typedef struct {
+    unsigned int errorCode:1;
+} CDStruct_70a7dc3e;
+
+typedef struct {
     unsigned int state:1;
 } CDStruct_5accba53;
 

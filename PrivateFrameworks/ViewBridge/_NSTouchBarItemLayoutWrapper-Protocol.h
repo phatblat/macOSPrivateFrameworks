@@ -12,11 +12,13 @@
 @property(readonly) struct CGSize minSize;
 
 @optional
+@property(readonly) BOOL participatesInOverflow;
 @property(readonly) double preferredTrailingPosition;
 @property(readonly) double preferredZOrder;
 @property(readonly) unsigned long long itemPosition;
 @property(readonly) long long priorityIndex;
 @property(readonly) struct CGSize contentClippingSize;
 @property(readonly) struct CGSize preferredSize;
+- (struct CGSize)sizeThatFitsProposedLayoutSize:(struct CGSize)arg1;
 @end
 

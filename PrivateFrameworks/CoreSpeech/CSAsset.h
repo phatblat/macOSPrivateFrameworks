@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSString;
+@class NSArray, NSDictionary, NSString;
 
 @interface CSAsset : NSObject
 {
@@ -17,6 +17,7 @@
 }
 
 + (id)defaultFallBackAssetForVoiceTrigger;
++ (id)defaultFallBackAssetForHearst;
 + (id)defaultFallBackAssetForSmartSiriVolume;
 + (id)fallBackAssetResourcePath;
 + (id)assetForAssetType:(unsigned long long)arg1 resourcePath:(id)arg2 configVersion:(id)arg3;
@@ -28,6 +29,7 @@
 - (BOOL)isEqualAsset:(id)arg1;
 - (id)description;
 @property(readonly, nonatomic) NSString *hashFromResourcePath;
+- (BOOL)containsCategory:(id)arg1;
 - (BOOL)containsKey:(id)arg1 category:(id)arg2;
 - (id)getStringForKey:(id)arg1 category:(id)arg2 default:(id)arg3;
 - (BOOL)getBoolForKey:(id)arg1 category:(id)arg2 default:(BOOL)arg3;
@@ -62,31 +64,52 @@
 @property(readonly, nonatomic) unsigned int SSVEnergyBufferSize;
 @property(readonly, nonatomic) unsigned long long SSVLKFSChannelBitset;
 @property(readonly, nonatomic) unsigned long long SSVNoiseLevelChannelBitset;
+- (id)configFilepathForDictationOrigin:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long VTFirstPassProcessingChannelsBitset;
+@property(readonly, nonatomic) float VTFirstPassProcessingChunkSeconds;
+@property(readonly, nonatomic) float VTFirstPassMasterChannelScoreBoost;
+@property(readonly, nonatomic) float VTFirstPassDelaySecondsForChannelSelection;
+@property(readonly, nonatomic) float VTFirstPassThreshold;
+@property(readonly, nonatomic) NSString *VTFirstPassConfigPathNDAPI;
 - (id)_sha256:(id)arg1;
 - (id)_sha1:(id)arg1;
-- (id)RTModel;
-@property(readonly, nonatomic) float VTSecondPassTwoShotFeedbackDelay;
-@property(readonly, nonatomic) float VTSecondPassRecognizerWaitTime;
-@property(readonly, nonatomic) NSString *VTSecondPassRecognizerToken;
-@property(readonly, nonatomic) float VTSecondPassRecognizerScoreScaleFactor;
-@property(readonly, nonatomic) float VTSecondPassRecognizerThresholdOffset;
-@property(readonly, nonatomic) BOOL VTSecondPassUseKeywordSpotting;
-@property(readonly, nonatomic) NSString *VTSecondPassConfigPathRecognizer;
-@property(readonly, nonatomic) BOOL VTSecondPassConfigPathRecognizerExist;
-@property(readonly, nonatomic) NSString *VTSecondPassConfigPathNDAPI;
-@property(readonly, nonatomic) float VTSecondPassAnalyzerTrailingAudioTime;
-@property(readonly, nonatomic) float VTSecondPassAnalyzerPrependingAudioTime;
-@property(readonly, nonatomic) float VTSecondPassPreTriggerAudioTime;
-@property(readonly, nonatomic) float VTSecondPassLoggingThreshold;
-@property(readonly, nonatomic) float VTSecondPass2ndChanceThreshold;
-@property(readonly, nonatomic) float VTSecondPassThreshold;
+- (id)hearstRTModelLocaleMap;
+- (id)hearstRTModelWithMajorVersion:(unsigned long long)arg1 minorVersion:(unsigned long long)arg2 locale:(id)arg3;
+- (id)latestHearstRTModelForLocale:(id)arg1;
+- (id)RTModelWithFallbackLanguage:(id)arg1;
+- (id)createRTModelWithLocale:(id)arg1;
+- (float)VTSecondPassRejectLoggingThresholdFrom:(id)arg1;
+- (float)VTSecondPassMinimumPhraseLengthForVADGating:(id)arg1;
+- (float)VTSecondPassRemoteVADMyriadThresholdFrom:(id)arg1;
+- (float)VTSecondPassRemoteVADThresholdFrom:(id)arg1;
+- (float)VTSecondPassTwoShotFeedbackDelayFrom:(id)arg1;
+- (float)VTSecondPassRecognizerWaitTimeFrom:(id)arg1;
+- (id)VTSecondPassRecognizerTokenFrom:(id)arg1;
+- (float)VTSecondPassRecognizerScoreScaleFactorFrom:(id)arg1;
+- (float)VTSecondPassRecognizerThresholdOffsetFrom:(id)arg1;
+- (BOOL)VTSecondPassUseKeywordSpottingFrom:(id)arg1;
+- (id)VTSecondPassConfigPathRecognizerFrom:(id)arg1;
+- (BOOL)VTSecondPassConfigPathRecognizerExistFrom:(id)arg1;
+- (id)VTSecondPassConfigPathNDAPIFrom:(id)arg1;
+- (float)VTSecondPassAnalyzerTrailingAudioTimeFrom:(id)arg1;
+- (float)VTSecondPassAnalyzerPrependingAudioTimeFrom:(id)arg1;
+- (float)VTSecondPassPreTriggerAudioTimeFrom:(id)arg1;
+- (float)VTSecondPassLoggingThresholdFrom:(id)arg1;
+- (float)VTSecondPass2ndChanceThresholdFrom:(id)arg1;
+- (float)VTSecondPassThresholdFrom:(id)arg1;
+- (id)VTSecondPassCategoryForFirstPassSource:(unsigned long long)arg1;
 @property(readonly, nonatomic) float keywordDetectorWaitTimeSinceVT;
 @property(readonly, nonatomic) NSString *keywordDetectorConfigPathRecognizer;
 @property(readonly, nonatomic) float keywordDetectorThreshold;
 @property(readonly, nonatomic) unsigned long long maxSpeakerVectorsToPersist;
 @property(readonly, nonatomic) float speakerDetectorRetrainTriggerThreshold;
 @property(readonly, nonatomic) float speakerDetectorThreshold;
+@property(readonly, nonatomic) BOOL speakerDetectorThresholdAvailable;
 @property(readonly, nonatomic) NSString *speakerDetectorNDAPIConfigPath;
+@property(readonly, nonatomic) NSString *spgConfigFile;
+@property(readonly, nonatomic) NSString *startOfSpeechDetectorConfigFile;
+@property(readonly, nonatomic) NSString *languageDetectorConfigFile;
+@property(readonly, nonatomic) NSArray *languageDetectorSupportedLocale;
 @property(readonly, nonatomic) float CVTTwoShotDecisionWaitTime;
 @property(readonly, nonatomic) float CVTTwoShotThreshold;
 @property(readonly, nonatomic) float CVTThreshold;

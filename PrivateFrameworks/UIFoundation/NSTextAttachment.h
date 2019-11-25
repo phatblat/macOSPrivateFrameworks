@@ -6,22 +6,13 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSSecureCoding.h"
 #import "NSTextAttachmentContainer.h"
 
 @class NSData, NSFileWrapper, NSImage, NSString, NSTextAttachmentView;
 
-@interface NSTextAttachment : NSObject <NSSecureCoding, NSTextAttachmentContainer, NSCoding>
+@interface NSTextAttachment : NSObject <NSTextAttachmentContainer, NSSecureCoding>
 {
-    NSFileWrapper *_fileWrapper;
-    id <NSTextAttachmentCell> _cell;
-    struct {
-        unsigned int cellWasExplicitlySet:1;
-        unsigned int ignoresOrientation:1;
-        unsigned int allowsEditingContents:1;
-        unsigned int :29;
-    } _flags;
     NSData *_data;
     NSString *_uti;
     NSString *_cacheKey;
@@ -31,9 +22,18 @@
         unsigned int _allowsTextAttachmentView:1;
         unsigned int _embeddingType:4;
         unsigned int _standaloneAlignment:3;
+        unsigned int _allocatesTextContainer:1;
     } _taFlags;
     NSImage *_image;
     NSTextAttachmentView *_wrapperView;
+    NSFileWrapper *_fileWrapper;
+    id <NSTextAttachmentCell> _cell;
+    struct {
+        unsigned int cellWasExplicitlySet:1;
+        unsigned int ignoresOrientation:1;
+        unsigned int allowsEditingContents:1;
+        unsigned int :29;
+    } _flags;
 }
 
 + (void)registerTextAttachmentClass:(Class)arg1 forFileType:(id)arg2;
@@ -79,8 +79,12 @@
 - (id)initWithFileWrapper:(id)arg1;
 - (id)init;
 - (id)initWithData:(id)arg1 ofType:(id)arg2;
+- (void)_setAllocatesTextContainer:(BOOL)arg1;
+- (BOOL)_allocatesTextContainer;
 - (id)_image;
 - (id)_cacheKey;
+- (id)_imageForUTI_iOS:(id)arg1;
+- (id)_imageForUTI_macOS:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

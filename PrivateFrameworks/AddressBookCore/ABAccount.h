@@ -8,13 +8,17 @@
 
 #import "ABAccountPermissions.h"
 
-@class ABAccountDirectory, NSString, NSURL;
+@class ABAccountDirectory, NSArray, NSNumber, NSString, NSURL;
 
 @interface ABAccount : NSObject <ABAccountPermissions>
 {
     NSString *_identifier;
     NSURL *_baseURL;
     NSURL *_persistentStoreURL;
+    ABAccount *_parentAccount;
+    NSArray *_childAccounts;
+    NSNumber *_dsid;
+    NSString *_altDSID;
     id _futureSource;
     id _customizationPolicy;
     id _config;
@@ -26,6 +30,7 @@
     NSString *_directoryLabel;
     long long _sortOrder;
     BOOL _isMainAccount;
+    BOOL _isChildDelegateAccount;
     BOOL _groupsCanRemoveMembers;
     BOOL _canBecomeDefaultAccount;
     BOOL _canReimportFromMetadata;
@@ -38,7 +43,9 @@
 + (id)builderWithIdentifier:(id)arg1;
 + (CDUnknownBlockType)userInterfaceComparator;
 + (CDUnknownBlockType)defaultAccountComparator;
++ (id)os_log;
 + (long long)coreDataContainerTypeFromAccountType:(id)arg1;
+@property(readonly) ABAccount *parentAccount; // @synthesize parentAccount=_parentAccount;
 @property(readonly, retain) id <ABAccountSearchPolicy> searchPolicy; // @synthesize searchPolicy=_searchPolicy;
 @property(readonly, retain) id <ABAccountCustomizationPolicy> customizationPolicy; // @synthesize customizationPolicy=_customizationPolicy;
 @property BOOL usesSyncServices; // @synthesize usesSyncServices=_usesSyncServices;
@@ -46,14 +53,17 @@
 @property BOOL showAllContactsIfOnlyOneGroup; // @synthesize showAllContactsIfOnlyOneGroup=_showAllContactsIfOnlyOneGroup;
 @property BOOL canReimportFromMetadata; // @synthesize canReimportFromMetadata=_canReimportFromMetadata;
 @property BOOL canBecomeDefaultAccount; // @synthesize canBecomeDefaultAccount=_canBecomeDefaultAccount;
+@property(readonly) BOOL isChildDelegateAccount; // @synthesize isChildDelegateAccount=_isChildDelegateAccount;
 @property(readonly) BOOL isMainAccount; // @synthesize isMainAccount=_isMainAccount;
 @property(readonly) Class sourceClass; // @synthesize sourceClass=_sourceClass;
 @property(readonly) long long sortOrder; // @synthesize sortOrder=_sortOrder;
 @property(copy) NSString *directoryLabel; // @synthesize directoryLabel=_directoryLabel;
 @property(copy) NSString *allContactsLabel; // @synthesize allContactsLabel=_allContactsLabel;
 @property(copy) NSString *name; // @synthesize name=_name;
+@property(copy) NSArray *childAccounts; // @synthesize childAccounts=_childAccounts;
 @property(readonly, copy) NSURL *baseURL; // @synthesize baseURL=_baseURL;
 @property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
+- (void).cxx_destruct;
 - (void)unloadSource;
 - (id)accountOrParentAccountTypeIdentifier;
 - (id)accountTypeIdentifier;
@@ -69,6 +79,7 @@
 @property(readonly, getter=isInitialSyncComplete) BOOL initialSyncComplete;
 - (id)aListPluginIdentifier;
 - (BOOL)requiresSeparateBirthdayCalendar;
+@property(getter=isGuardianRestricted) BOOL guardianRestricted;
 - (long long)sortOrderForGroup:(id)arg1;
 - (BOOL)groupsCanRemoveMembers;
 - (BOOL)canRemoveGroup:(id)arg1;
@@ -105,6 +116,7 @@
 - (void)dealloc;
 - (id)initWithIdentifier:(id)arg1 baseURL:(id)arg2;
 - (id)initWithBuilder:(id)arg1;
+- (void)applyChangesFromABCDContainerDiff:(id)arg1;
 - (long long)coreDataContainerType;
 - (id)containerRepresentation;
 - (id)initWithRemoteAccount:(id)arg1 baseURL:(id)arg2;

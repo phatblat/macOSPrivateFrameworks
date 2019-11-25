@@ -21,11 +21,14 @@
     NSMutableData *_memStore;
 }
 
++ (id)fullNameForEncodedContact:(id)arg1;
++ (id)encodedStringForFullName:(id)arg1;
 + (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)description;
+- (void)deleteValueByRecordIdSet:(id)arg1;
 - (void)deleteValueByRecordId:(id)arg1;
 - (void)setValueIfNotPresent:(id)arg1 forKey:(id)arg2 fromRecordId:(id)arg3;
 - (void)setValue:(id)arg1 forKey:(id)arg2 fromRecordId:(id)arg3;

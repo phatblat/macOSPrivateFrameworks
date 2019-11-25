@@ -6,14 +6,13 @@
 
 #import <HomeKitDaemon/HMDCameraIDSSessionHandler.h>
 
-#import "HMDCameraPowerAssertionProtocol.h"
 #import "HMDCameraRemoteStreamSenderProtocol.h"
 #import "IDSServiceDelegate.h"
 #import "IDSSessionDelegate.h"
 
-@class AVCPacketRelay, HMDCameraNetworkConfig, HMDCameraSessionID, HMDDevice, HMFOSTransaction, NSNumber, NSObject<OS_dispatch_queue>, NSString;
+@class AVCPacketRelay, HMDCameraNetworkConfig, HMDDevice, HMFOSTransaction, NSNumber, NSObject<OS_dispatch_queue>, NSString;
 
-@interface HMDCameraIDSSessionInitiator : HMDCameraIDSSessionHandler <IDSServiceDelegate, IDSSessionDelegate, HMDCameraRemoteStreamSenderProtocol, HMDCameraPowerAssertionProtocol>
+@interface HMDCameraIDSSessionInitiator : HMDCameraIDSSessionHandler <IDSServiceDelegate, IDSSessionDelegate, HMDCameraRemoteStreamSenderProtocol>
 {
     id <HMDCameraIDSSessionInitiatorDelegate> _delegate;
     NSObject<OS_dispatch_queue> *_delegateQueue;
@@ -51,7 +50,6 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly, nonatomic) HMDCameraSessionID *sessionID;
 @property(readonly) Class superclass;
 
 @end

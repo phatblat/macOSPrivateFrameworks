@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class _CDPeriodicSchedulerJob;
+#import "NSSecureCoding.h"
 
-@interface _DKSyncType : NSObject
+@class NSObject<OS_xpc_object>;
+
+@interface _DKSyncType : NSObject <NSSecureCoding>
 {
     BOOL _isSingleDevice;
     BOOL _forceSync;
@@ -21,10 +23,13 @@
     BOOL _didDeleteSyncedEvents;
     BOOL _didSetMediumUrgency;
     unsigned long long _urgency;
-    _CDPeriodicSchedulerJob *_periodicJob;
+    double _periodicSyncInterval;
+    NSObject<OS_xpc_object> *_xpcActivity;
 }
 
-@property(retain, nonatomic) _CDPeriodicSchedulerJob *periodicJob; // @synthesize periodicJob=_periodicJob;
++ (BOOL)supportsSecureCoding;
+@property(retain, nonatomic) NSObject<OS_xpc_object> *xpcActivity; // @synthesize xpcActivity=_xpcActivity;
+@property(nonatomic) double periodicSyncInterval; // @synthesize periodicSyncInterval=_periodicSyncInterval;
 @property(nonatomic) BOOL didDeleteSyncedEvents; // @synthesize didDeleteSyncedEvents=_didDeleteSyncedEvents;
 @property(nonatomic) BOOL didAddSyncedEvents; // @synthesize didAddSyncedEvents=_didAddSyncedEvents;
 @property(nonatomic) BOOL didReceivePush; // @synthesize didReceivePush=_didReceivePush;
@@ -36,8 +41,11 @@
 @property(nonatomic) BOOL forceSync; // @synthesize forceSync=_forceSync;
 @property(readonly, nonatomic) BOOL isSingleDevice; // @synthesize isSingleDevice=_isSingleDevice;
 - (void).cxx_destruct;
+- (BOOL)isEqualToSyncType:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
 - (id)description;
-- (void)unionType:(id)arg1;
+- (void)mergeType:(id)arg1;
 - (id)initWithIsSingleDevice:(BOOL)arg1;
 
 @end

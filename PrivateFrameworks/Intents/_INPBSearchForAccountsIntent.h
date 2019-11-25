@@ -18,6 +18,7 @@
         unsigned int accountType:1;
         unsigned int requestedBalanceType:1;
     } _has;
+    BOOL __encodeLegacyGloryData;
     int _accountType;
     int _requestedBalanceType;
     _INPBDataString *_accountNickname;
@@ -25,6 +26,8 @@
     _INPBDataString *_organizationName;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(nonatomic) int requestedBalanceType; // @synthesize requestedBalanceType=_requestedBalanceType;
 @property(retain, nonatomic) _INPBDataString *organizationName; // @synthesize organizationName=_organizationName;
 @property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
@@ -35,6 +38,8 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (int)StringAsRequestedBalanceType:(id)arg1;

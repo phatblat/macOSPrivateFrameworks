@@ -11,7 +11,8 @@ __attribute__((visibility("hidden")))
 {
 }
 
-+ (id)specializedMetadataForCompleteMetadata:(id)arg1 URL:(id)arg2;
++ (BOOL)generateSpecializedMetadataForCompleteMetadata:(id)arg1 withContext:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
++ (unsigned long long)specialization;
 
 @end
 

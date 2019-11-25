@@ -20,6 +20,9 @@
     NSArray *_activeTokenSets;
 }
 
++ (id)returnDelimiterData;
++ (id)utf16Tokens;
++ (id)singleByteTokens;
 - (void).cxx_destruct;
 - (BOOL)advancedPastToken:(int)arg1;
 - (BOOL)atEOF;
@@ -45,7 +48,7 @@
 - (unsigned short)charAtPosition:(unsigned long long)arg1 withOffset:(long long)arg2;
 - (int)tokenAtCursor;
 - (id)nextStringInEncoding:(unsigned long long)arg1 quotedPrintable:(BOOL)arg2 stopTokens:(int)arg3 trim:(BOOL)arg4 maximumValueLength:(unsigned long long)arg5;
-- (void)_applyNextStringInEncoding:(unsigned long long)arg1 quotedPrintable:(BOOL)arg2 stopTokens:(int)arg3 trim:(BOOL)arg4 maximumValueLength:(unsigned long long)arg5 intoString:(id)arg6;
+- (BOOL)_applyNextStringInEncoding:(unsigned long long)arg1 quotedPrintable:(BOOL)arg2 stopTokens:(int)arg3 trim:(BOOL)arg4 maximumValueLength:(unsigned long long)arg5 intoString:(id)arg6;
 - (void)unicodeSkipToStopTokens:(int)arg1;
 - (id)nextUnicodeStringStopTokens:(int)arg1 quotedPrintable:(BOOL)arg2 trim:(BOOL)arg3 maximumValueLength:(unsigned long long)arg4;
 - (struct _NSRange)expandRange:(struct _NSRange)arg1 untilNextByteIs:(id)arg2;
@@ -55,6 +58,7 @@
 - (id)trimData:(id)arg1 withPrefixLength:(unsigned long long)arg2 suffixLength:(unsigned long long)arg3;
 - (id)stringFromData:(id)arg1 encoding:(unsigned long long)arg2 prefixLength:(unsigned long long)arg3 suffixLength:(unsigned long long)arg4;
 - (id)unicodeStringByRoundingData:(id)arg1 toNextWholeCharacterUsingEncoding:(unsigned long long)arg2 prefixLength:(unsigned long long)arg3 suffixLength:(unsigned long long)arg4 maximumValueLength:(unsigned long long)arg5;
+- (id)clipAtGraphemeClusters:(id)arg1 maximumValueLength:(unsigned long long)arg2 addEllipsisIfClipped:(BOOL)arg3;
 - (id)stringByRoundingData:(id)arg1 toNextWholeCharacterUsingEncoding:(unsigned long long)arg2 prefixLength:(unsigned long long)arg3 suffixLength:(unsigned long long)arg4 maximumValueLength:(unsigned long long)arg5;
 - (struct _NSRange)emptyRangeStartingAtCursor;
 - (void)appendNextEscapedCharacterToData:(id)arg1;
@@ -74,6 +78,7 @@
 - (long long)errorCount;
 - (unsigned long long)cursor;
 - (id)initWithData:(id)arg1;
+- (id)os_log;
 
 @end
 

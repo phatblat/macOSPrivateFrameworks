@@ -8,6 +8,7 @@
 
 @class CXNamespace, NSMutableArray, NSMutableDictionary, OAXDrawingState, OCPPackagePart, OITSUNoCopyDictionary, WDCharacterRun, WDDocument, WXOAVReadState;
 
+__attribute__((visibility("hidden")))
 @interface WXReadState : OCXReadState
 {
     WDDocument *mDocument;

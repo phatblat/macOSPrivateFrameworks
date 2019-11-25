@@ -9,10 +9,14 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class LPIconMetadata, LPImage, LPImageMetadata, LPSpecializationMetadata, LPVideo, LPVideoMetadata, NSArray, NSString, NSURL;
+@class LPAudio, LPAudioMetadata, LPIconMetadata, LPImage, LPImageMetadata, LPSpecializationMetadata, LPVideo, LPVideoMetadata, NSArray, NSItemProvider, NSMutableArray, NSObject<OS_dispatch_group>, NSString, NSURL;
 
-@interface LPLinkMetadata : NSObject <NSSecureCoding, NSCopying>
+@interface LPLinkMetadata : NSObject <NSCopying, NSSecureCoding>
 {
+    NSObject<OS_dispatch_group> *_asynchronousLoadGroup;
+    unsigned long long _asynchronousLoadDeferralTokenCount;
+    BOOL _wasCopiedFromIncompleteMetadata;
+    NSMutableArray *_pendingAsynchronousLoadUpdateHandlers;
     unsigned int _version;
     NSURL *_originalURL;
     NSURL *_URL;
@@ -30,9 +34,12 @@
     LPImage *_icon;
     LPIconMetadata *_iconMetadata;
     LPImage *_image;
+    NSArray *_alternateImages;
     LPImageMetadata *_imageMetadata;
     LPVideo *_video;
     LPVideoMetadata *_videoMetadata;
+    LPAudio *_audio;
+    LPAudioMetadata *_audioMetadata;
     NSArray *_icons;
     NSArray *_images;
     NSArray *_videos;
@@ -41,6 +48,7 @@
     LPSpecializationMetadata *_specialization;
 }
 
++ (id)keyPathsForValuesAffecting_dummyPropertyForObservation;
 + (id)metadataWithDataRepresentation:(id)arg1;
 + (BOOL)supportsSecureCoding;
 @property(copy, nonatomic) LPSpecializationMetadata *specialization; // @synthesize specialization=_specialization;
@@ -49,9 +57,12 @@
 @property(copy, nonatomic) NSArray *videos; // @synthesize videos=_videos;
 @property(copy, nonatomic) NSArray *images; // @synthesize images=_images;
 @property(copy, nonatomic) NSArray *icons; // @synthesize icons=_icons;
+@property(retain, nonatomic) LPAudioMetadata *audioMetadata; // @synthesize audioMetadata=_audioMetadata;
+@property(retain, nonatomic) LPAudio *audio; // @synthesize audio=_audio;
 @property(retain, nonatomic) LPVideoMetadata *videoMetadata; // @synthesize videoMetadata=_videoMetadata;
 @property(retain, nonatomic) LPVideo *video; // @synthesize video=_video;
 @property(retain, nonatomic) LPImageMetadata *imageMetadata; // @synthesize imageMetadata=_imageMetadata;
+@property(copy, nonatomic) NSArray *alternateImages; // @synthesize alternateImages=_alternateImages;
 @property(retain, nonatomic) LPImage *image; // @synthesize image=_image;
 @property(retain, nonatomic) LPIconMetadata *iconMetadata; // @synthesize iconMetadata=_iconMetadata;
 @property(retain, nonatomic) LPImage *icon; // @synthesize icon=_icon;
@@ -65,15 +76,34 @@
 @property(copy, nonatomic) NSString *siteName; // @synthesize siteName=_siteName;
 @property(copy, nonatomic) NSString *selectedText; // @synthesize selectedText=_selectedText;
 @property(copy, nonatomic) NSString *summary; // @synthesize summary=_summary;
-@property(copy, nonatomic) NSString *title; // @synthesize title=_title;
-@property(copy, nonatomic) NSURL *URL; // @synthesize URL=_URL;
-@property(copy, nonatomic) NSURL *originalURL; // @synthesize originalURL=_originalURL;
 @property(readonly, nonatomic) unsigned int version; // @synthesize version=_version;
+@property(copy, nonatomic) NSString *title; // @synthesize title=_title;
+@property(retain, nonatomic) NSURL *URL; // @synthesize URL=_URL;
+@property(retain, nonatomic) NSURL *originalURL; // @synthesize originalURL=_originalURL;
 - (void).cxx_destruct;
+- (void)_decodeAllImagesWithMaximumSize:(struct CGSize)arg1;
+- (void)_populateMetadataForBackwardCompatibility;
+- (void)_enumerateAsynchronousFields:(CDUnknownBlockType)arg1;
+- (BOOL)_loadAsynchronousFieldsWithLoadGroup:(id)arg1;
+- (void)_invokePendingAsynchronousLoadUpdateHandlers;
+- (CDUnknownBlockType)_createAsynchronousLoadDeferralToken;
+- (void)_loadAsynchronousFieldsWithUpdateHandler:(CDUnknownBlockType)arg1;
+- (BOOL)_hasAnyAsynchronousFields;
+- (BOOL)_wasCopiedFromIncompleteMetadata;
+- (BOOL)_isDeferringAsynchronousLoads;
+- (BOOL)_isLoadingAsynchronousFields;
+@property(retain, nonatomic) NSURL *remoteVideoURL;
+@property(retain, nonatomic) NSItemProvider *videoProvider;
+@property(retain, nonatomic) NSItemProvider *imageProvider;
+@property(retain, nonatomic) NSItemProvider *iconProvider;
 - (void)_reduceSizeByDroppingResourcesIfNeeded;
 @property(readonly, nonatomic) unsigned long long _encodedSize;
 - (id)dataRepresentation;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (void)_copyPropertiesFrom:(id)arg1 onlyUpgradeFields:(BOOL)arg2;
+- (void)_copyPropertiesOnlyUpgradingFieldsFrom:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)_initWithDictionary:(id)arg1;

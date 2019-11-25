@@ -11,6 +11,8 @@
 @interface CacheDeleteVolume : NSObject
 {
     BOOL _isRoot;
+    int _dev;
+    unsigned int _block_size;
     NSString *_fsType;
     NSString *_mountPoint;
     unsigned long long _initialFreespace;
@@ -19,8 +21,11 @@
 + (long long)stateForPath:(id)arg1;
 + (id)validateVolumeAtPath:(id)arg1;
 + (id)rootVolume;
++ (id)mountPointForUUID:(id)arg1;
 + (id)volumeWithMountpoint:(id)arg1;
 + (id)volumeWithPath:(id)arg1;
+@property(readonly) unsigned int block_size; // @synthesize block_size=_block_size;
+@property(readonly) int dev; // @synthesize dev=_dev;
 @property(readonly) unsigned long long initialFreespace; // @synthesize initialFreespace=_initialFreespace;
 @property(readonly, nonatomic) NSString *mountPoint; // @synthesize mountPoint=_mountPoint;
 @property(readonly, nonatomic) NSString *fsType; // @synthesize fsType=_fsType;
@@ -31,6 +36,8 @@
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)description;
+- (id)FSEventsUUID;
+- (id)uuid;
 - (id)initWithPath:(id)arg1;
 - (BOOL)validate;
 @property(readonly, nonatomic) long long state; // @dynamic state;

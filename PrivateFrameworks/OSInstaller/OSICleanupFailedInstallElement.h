@@ -16,7 +16,9 @@
 @property double timeToComplete; // @synthesize timeToComplete=_timeToComplete;
 @property double timeSoFar; // @synthesize timeSoFar=_timeSoFar;
 - (void)_pullFakeProgressTimer:(id)arg1;
+- (void)_cleanupOSInstallSandboxForMountPoint:(id)arg1;
 - (void)_cleanUpOSInstallSandbox;
+- (id)operationName;
 - (void)_cleanupPartialInstall;
 - (double)estimatedTimeToComplete;
 - (BOOL)runReturningError:(id *)arg1;

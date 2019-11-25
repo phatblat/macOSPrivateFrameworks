@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class ISIconCache, NSHashTable, NSObject<OS_dispatch_queue>;
+@class NSHashTable, NSObject<OS_dispatch_queue>;
 
 @interface ISIconManager : NSObject
 {
@@ -15,20 +15,14 @@
     id _iconRegistry;
     id _observers;
     id _internalQueue;
-    id _notificationIconsInvalidatedToken;
 }
 
 + (id)sharedInstance;
-@property(retain) id notificationIconsInvalidatedToken; // @synthesize notificationIconsInvalidatedToken=_notificationIconsInvalidatedToken;
 @property(retain) NSObject<OS_dispatch_queue> *internalQueue; // @synthesize internalQueue=_internalQueue;
 @property(retain) NSHashTable *observers; // @synthesize observers=_observers;
 @property(retain) NSHashTable *iconRegistry; // @synthesize iconRegistry=_iconRegistry;
-@property(readonly) ISIconCache *iconCache; // @synthesize iconCache=_iconCache;
+@property(readonly) id <ISIconCache> iconCache; // @synthesize iconCache=_iconCache;
 - (void).cxx_destruct;
-- (void)_notifyObserversDidInvalidateIcons:(id)arg1;
-- (void)_validateIcons:(id)arg1;
-- (void)_handleIconsInvalidatedNotification:(id)arg1;
-- (void)invalidateIcons:(id)arg1;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (id)findOrRegisterIcon:(id)arg1;

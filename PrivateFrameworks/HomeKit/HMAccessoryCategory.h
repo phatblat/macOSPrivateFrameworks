@@ -22,6 +22,8 @@
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(copy, nonatomic) NSString *categoryType; // @synthesize categoryType=_categoryType;
 - (void).cxx_destruct;
+@property(readonly) BOOL isWiFiRouterAccessoryCategory;
+@property(readonly) BOOL isTelevisionAccessoryCategory;
 @property(readonly, nonatomic) NSUUID *uniqueIdentifier;
 - (BOOL)_mergeWithNewObject:(id)arg1 operations:(id)arg2;
 - (void)encodeWithCoder:(id)arg1;

@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
 }
 
 - (void).cxx_destruct;
+- (CDStruct_d1a7ebee)dataRequestKind;
 - (id)resultSectionHeader;
 - (void)applyToPlaceInfo:(id)arg1;
 - (void)applyToCorrectedSearch:(id)arg1;
@@ -27,6 +28,7 @@ __attribute__((visibility("hidden")))
 - (id)description;
 - (id)initWithRequest:(id)arg1 traits:(id)arg2 mapItemToRefine:(id)arg3;
 - (id)initWithRequest:(id)arg1 traits:(id)arg2;
+- (id)initWithTraits:(id)arg1;
 
 @end
 

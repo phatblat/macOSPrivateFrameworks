@@ -23,6 +23,7 @@
         unsigned int unseen:1;
     } _has;
     BOOL _unseen;
+    BOOL __encodeLegacyGloryData;
     int _callType;
     int _preferredCallProvider;
     _INPBDateTimeRange *_dateCreated;
@@ -31,6 +32,8 @@
     _INPBContact *_targetContact;
 }
 
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(nonatomic) BOOL unseen; // @synthesize unseen=_unseen;
 @property(retain, nonatomic) _INPBContact *targetContact; // @synthesize targetContact=_targetContact;
 @property(retain, nonatomic) _INPBContact *recipient; // @synthesize recipient=_recipient;
@@ -43,6 +46,9 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (void)dealloc;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 @property(nonatomic) BOOL hasUnseen;

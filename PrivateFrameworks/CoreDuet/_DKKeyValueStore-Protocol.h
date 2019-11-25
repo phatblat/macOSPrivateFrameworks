@@ -6,11 +6,11 @@
 
 #import "_DKSimpleKeyValueStore.h"
 
-@class NSArray, NSData, NSDate, NSDictionary, NSNumber, NSObject, NSObject<NSCoding>, NSString;
+@class NSArray, NSData, NSDate, NSDictionary, NSNumber, NSObject, NSObject<NSSecureCoding>, NSString;
 
 @protocol _DKKeyValueStore <_DKSimpleKeyValueStore>
 - (void)removeObjectForKey:(NSString *)arg1;
-- (void)setObject:(NSObject<NSCoding> *)arg1 forKey:(NSString *)arg2;
+- (void)setObject:(NSObject<NSSecureCoding> *)arg1 forKey:(NSString *)arg2;
 - (NSObject *)objectForKey:(NSString *)arg1 havingClass:(Class)arg2;
 - (void)setString:(NSString *)arg1 forKey:(NSString *)arg2;
 - (NSString *)stringForKey:(NSString *)arg1;

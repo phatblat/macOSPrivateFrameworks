@@ -18,10 +18,12 @@
     CKRecordZoneID *_recordZoneID;
     CKRecordZone *_recordZone;
     WBSCloudHistoryConfiguration *_configuration;
+    BOOL _useManateeContainer;
 }
 
 - (void).cxx_destruct;
 - (void)fetchNumberOfDevicesInSyncCircleWithCompletion:(CDUnknownBlockType)arg1;
+- (void)deleteHistoryZoneWithCompletion:(CDUnknownBlockType)arg1;
 - (void)_resetRecordZone;
 - (void)_prepareRecordZoneWithCompletion:(CDUnknownBlockType)arg1;
 - (id)_dictionaryForRecordData:(id)arg1;
@@ -42,7 +44,7 @@
 - (void)saveCloudHistoryVisits:(id)arg1 tombstones:(id)arg2 longLivedOperationPersistenceCompletion:(CDUnknownBlockType)arg3 completion:(CDUnknownBlockType)arg4;
 - (BOOL)_shouldTryToResetRecordZoneForError:(id)arg1;
 - (void)initializePushNotifications:(CDUnknownBlockType)arg1;
-- (id)initWithConfiguration:(id)arg1;
+- (id)initWithConfiguration:(id)arg1 useManateeContainer:(BOOL)arg2;
 
 @end
 

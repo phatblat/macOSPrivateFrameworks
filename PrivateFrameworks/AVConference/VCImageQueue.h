@@ -15,14 +15,19 @@ __attribute__((visibility("hidden")))
     unsigned int _slot;
     unsigned int _frameRate;
     BOOL _imageQueueProtected;
+    BOOL _isLowLatencyEnabled;
     long long _streamToken;
+    unsigned int _enqueuedFrameCount;
 }
 
 + (id)drawingContext;
+@property(nonatomic, getter=isLowLatencyEnabled) BOOL lowLatencyEnabled; // @synthesize lowLatencyEnabled=_isLowLatencyEnabled;
 @property long long streamToken; // @synthesize streamToken=_streamToken;
 @property unsigned int frameRate; // @synthesize frameRate=_frameRate;
 @property BOOL imageQueueProtected;
 - (BOOL)enqueueFrame:(struct __CVBuffer *)arg1 atTime:(CDStruct_1b6d18a9)arg2;
+- (void)createAndCopyLatencyStatsDictionary:(const struct __CFDictionary **)arg1;
+- (void)copyPerformanceDictionary:(const struct __CFDictionary **)arg1;
 - (void)pause;
 - (void)stop;
 - (void)start;

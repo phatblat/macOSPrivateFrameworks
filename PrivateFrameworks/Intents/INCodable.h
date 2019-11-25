@@ -12,11 +12,13 @@
 
 @interface INCodable : PBCodable <NSCopying>
 {
+    BOOL __encodeLegacyGloryData;
     INCodableDescription *_objectDescription;
     NSMutableDictionary *_customValueForKeyDictionary;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
 @property(retain, nonatomic) NSMutableDictionary *customValueForKeyDictionary; // @synthesize customValueForKeyDictionary=_customValueForKeyDictionary;
 @property(retain, nonatomic, setter=_setObjectDescription:) INCodableDescription *_objectDescription; // @synthesize _objectDescription;
 - (void).cxx_destruct;
@@ -39,9 +41,11 @@
 - (void)_setValue:(void *)arg1 forAttribute:(id)arg2;
 - (void)_setObject:(id)arg1 forAttribute:(id)arg2;
 - (id)_copyWithZone:(struct _NSZone *)arg1 error:(id *)arg2;
+- (void)_setEmptyArrayForNonNilRepeatedAttributes:(id)arg1;
 - (id)_dataWithError:(id *)arg1;
-- (void)_writeTo:(id)arg1 error:(id *)arg2;
+- (BOOL)_writeTo:(id)arg1 error:(id *)arg2;
 - (BOOL)_readFrom:(id)arg1 error:(id *)arg2;
+- (id)_nonNilRepeatedAttributes;
 - (id)_nonNilAttributes;
 - (BOOL)_isStringAttribute:(id)arg1 equalTo:(id)arg2;
 - (BOOL)_isAttribute:(id)arg1 equalTo:(id)arg2;

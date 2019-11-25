@@ -8,6 +8,7 @@
 
 #import "NSCopying.h"
 
+__attribute__((visibility("hidden")))
 @interface AWDCallHistoryNilUuid : PBCodable <NSCopying>
 {
     unsigned long long _timestamp;

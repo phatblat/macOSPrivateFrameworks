@@ -8,12 +8,13 @@
 
 #import "AXIDCControllerBrowserDelegateProtocol.h"
 
-@class HCXPCMessage, NSDictionary, NSString;
+@class HCXPCMessage, NSDictionary, NSObject<OS_os_transaction>, NSString;
 
 @interface AXHAController : NSObject <AXIDCControllerBrowserDelegateProtocol>
 {
     BOOL _isListening;
     NSString *_pairedDeviceUUID;
+    NSObject<OS_os_transaction> *_transaction;
     NSDictionary *_availableDevicesDescription;
     HCXPCMessage *_liveListenMessage;
 }
@@ -21,12 +22,14 @@
 + (id)sharedController;
 @property(retain, nonatomic) HCXPCMessage *liveListenMessage; // @synthesize liveListenMessage=_liveListenMessage;
 @property(retain, nonatomic) NSDictionary *availableDevicesDescription; // @synthesize availableDevicesDescription=_availableDevicesDescription;
+@property(retain, nonatomic) NSObject<OS_os_transaction> *transaction; // @synthesize transaction=_transaction;
 @property(retain, nonatomic) NSString *pairedDeviceUUID; // @synthesize pairedDeviceUUID=_pairedDeviceUUID;
 - (void).cxx_destruct;
 - (id)disconnectAndForceSlave:(id)arg1;
 - (id)connectToControllerWithID:(id)arg1;
 - (id)readAvailableControllers:(id)arg1;
 - (id)readAvailableDevices:(id)arg1;
+- (void)updateNearbyDeviceAvailability;
 - (id)writeDeviceProperty:(id)arg1;
 - (void)sendUpdatesForProperties:(id)arg1 excludingClient:(id)arg2;
 - (id)readDeviceProperty:(id)arg1;

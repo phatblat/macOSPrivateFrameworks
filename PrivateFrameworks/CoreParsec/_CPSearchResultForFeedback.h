@@ -38,8 +38,19 @@
     NSString *_userInput;
     unsigned long long _blockId;
     unsigned long long _hashedIdentifier;
+    NSString *_resultBundleId;
+    NSString *_sectionBundleIdentifier;
+    NSString *_applicationBundleIdentifier;
+    NSData *_entityData;
+    unsigned long long _whichResultbundleidentifier;
+    unsigned long long _whichSectionbundleid;
+    unsigned long long _whichApplicationbundleid;
 }
 
+@property(readonly, nonatomic) unsigned long long whichApplicationbundleid; // @synthesize whichApplicationbundleid=_whichApplicationbundleid;
+@property(readonly, nonatomic) unsigned long long whichSectionbundleid; // @synthesize whichSectionbundleid=_whichSectionbundleid;
+@property(readonly, nonatomic) unsigned long long whichResultbundleidentifier; // @synthesize whichResultbundleidentifier=_whichResultbundleidentifier;
+@property(copy, nonatomic) NSData *entityData; // @synthesize entityData=_entityData;
 @property(nonatomic) unsigned long long hashedIdentifier; // @synthesize hashedIdentifier=_hashedIdentifier;
 @property(nonatomic) unsigned long long blockId; // @synthesize blockId=_blockId;
 @property(nonatomic) BOOL doNotFold; // @synthesize doNotFold=_doNotFold;
@@ -77,6 +88,9 @@
 @property(copy, nonatomic) NSString *sectionBundleIdentifier; // @synthesize sectionBundleIdentifier=_sectionBundleIdentifier;
 @property(nonatomic) int knownResultBundleId; // @synthesize knownResultBundleId=_knownResultBundleId;
 @property(copy, nonatomic) NSString *resultBundleId; // @synthesize resultBundleId=_resultBundleId;
+- (void)clearApplicationbundleid;
+- (void)clearSectionbundleid;
+- (void)clearResultbundleidentifier;
 - (id)initWithFacade:(id)arg1;
 - (id)feedbackJSON;
 @property(readonly, copy, nonatomic) NSString *jsonApplicationBundleIdentifier;

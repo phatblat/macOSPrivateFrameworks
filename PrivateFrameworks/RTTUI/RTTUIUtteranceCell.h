@@ -20,12 +20,13 @@
 }
 
 + (double)heightForUtterance:(id)arg1 andWidth:(double)arg2;
-@property(nonatomic) id <RTTUIUtteranceCellDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <RTTUIUtteranceCellDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic, getter=isEditingUtterance) BOOL editingUtterance; // @synthesize editingUtterance=_editingUtterance;
 @property(retain, nonatomic) RTTUtterance *utterance; // @synthesize utterance=_utterance;
 - (void).cxx_destruct;
 - (id)accessibilityLabel;
 - (BOOL)isAccessibilityElement;
+- (id)accessibilityRole;
 - (void)updateLayout;
 - (void)viewDidMoveToSuperview;
 - (void)viewDidEndLiveResize;
@@ -36,6 +37,7 @@
 - (void)dealloc;
 - (void)setSendProgressIndex:(unsigned long long)arg1;
 - (void)updateUtterance:(id)arg1;
+- (void)updateUtterance:(id)arg1 postNotifications:(BOOL)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

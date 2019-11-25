@@ -6,18 +6,18 @@
 
 #import "CKSQLite.h"
 
-@class NSMapTable, NSObject<OS_dispatch_queue>;
+@class NSMutableDictionary, NSObject<OS_dispatch_queue>;
 
 @interface CKDOperationInfoCache : CKSQLite
 {
     NSObject<OS_dispatch_queue> *_cacheQueue;
     NSObject<OS_dispatch_queue> *_cacheDelegateQueue;
-    NSMapTable *_delegatesByOperationID;
+    NSMutableDictionary *_delegateWrappersByOperationID;
 }
 
 + (id)dbFileName;
 + (id)sharedCache;
-@property(retain, nonatomic) NSMapTable *delegatesByOperationID; // @synthesize delegatesByOperationID=_delegatesByOperationID;
+@property(retain, nonatomic) NSMutableDictionary *delegateWrappersByOperationID; // @synthesize delegateWrappersByOperationID=_delegateWrappersByOperationID;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *cacheDelegateQueue; // @synthesize cacheDelegateQueue=_cacheDelegateQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *cacheQueue; // @synthesize cacheQueue=_cacheQueue;
 - (void).cxx_destruct;
@@ -27,11 +27,11 @@
 - (void)setOperationResult:(id)arg1 forOperationID:(id)arg2;
 - (void)_lockedSetOperationResult:(id)arg1 forOperationID:(id)arg2;
 - (void)setProgressCallbackArguments:(id)arg1 forOperationID:(id)arg2;
-- (void)setOperationInfo:(id)arg1 forOperationID:(id)arg2 appContainerTuple:(id)arg3;
-- (void)_lockedSetOperationInfo:(id)arg1 forOperationID:(id)arg2 appContainerTuple:(id)arg3;
+- (void)setOperationInfo:(id)arg1 forOperationID:(id)arg2 appContainerTuple:(id)arg3 accountID:(id)arg4;
+- (void)_lockedSetOperationInfo:(id)arg1 forOperationID:(id)arg2 appContainerTuple:(id)arg3 accountID:(id)arg4;
 - (void)deleteAllInfoForOperationWithID:(id)arg1;
-- (void)expungeWithCurrentAccountIdentifier:(id)arg1 forceRemove:(BOOL)arg2;
-- (id)allOutstandingOperationIDsForAppContainerTuple:(id)arg1;
+- (void)expungeOperationInfoForDeletedAccountID:(id)arg1;
+- (id)allOutstandingOperationIDsForAppContainerTuple:(id)arg1 accountID:(id)arg2;
 - (id)outstandingOperationInfosForIDs:(id)arg1;
 - (id)resumableOperationInfosByAppContainerTuplesWithProgressPurged:(BOOL)arg1;
 - (void)enumerateCallbackArgumentsForOperationWithID:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
@@ -39,10 +39,10 @@
 - (id)_lockedResultForOperationWithID:(id)arg1;
 - (id)resultForOperationWithID:(id)arg1;
 - (id)operationInfoMetadataForOperationWithID:(id)arg1;
-- (void)registerOperationAndSetResult:(id)arg1 forOperationInfo:(id)arg2 appContainerTuple:(id)arg3;
+- (void)registerOperationAndSetResult:(id)arg1 forOperationInfo:(id)arg2 appContainerTuple:(id)arg3 accountID:(id)arg4;
 - (void)unregisterDelegate:(id)arg1 forOperationWithID:(id)arg2;
 - (void)registerDelegate:(id)arg1 forOperationWithID:(id)arg2;
-- (id)init;
+- (id)_initWithCacheDir:(id)arg1;
 
 @end
 
