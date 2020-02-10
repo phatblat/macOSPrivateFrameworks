@@ -26,6 +26,18 @@ plugins {
     id("at.phatbl.shellexec") version "1.1.3"
 }
 
+/* -------------------------------------------------------------------------- */
+// 🐘 Gradle Wrapper
+/* -------------------------------------------------------------------------- */
+
+val wrapper = tasks.getByName("wrapper") as Wrapper
+wrapper.gradleVersion = "6.1.1"
+wrapper.distributionType = Wrapper.DistributionType.ALL
+
+/* -------------------------------------------------------------------------- */
+// ☑️ Tasks
+/* -------------------------------------------------------------------------- */
+
 val taskGroup by extra("🍎🕵🏻‍♂️ Private Frameworks")
 val destinationFolder = file("PrivateFrameworks")
 val privateFrameworksFolder = file("/System/Library/PrivateFrameworks")
@@ -77,7 +89,9 @@ tasks {
     }
 }
 
-// Task classes
+/* -------------------------------------------------------------------------- */
+// 🎓 Task Classes
+/* -------------------------------------------------------------------------- */
 
 class Dumper @Inject constructor(
         var sourceFolder: File,
