@@ -1,4 +1,4 @@
- # 🍎🕵🏻‍♂️ macOS Private Frameworks
+# 🍎🕵🏻‍♂️ macOS Private Frameworks
 
 This repo contains headers extracted from private frameworks that are included in various macOS releases.
 These have been generated using [class-dump](http://stevenygard.com/projects/class-dump/), which appears
@@ -45,6 +45,6 @@ The class dump command can be found in [`build.gradle.kts`](https://github.com/p
 - `dumpHeaders` - Extracts headers from all private frameworks on the current macOS system into the local project `PrivateFrameworks` folder (takes several minutes to run on ~500 frameworks).
 - `dumpHeaders<FrameworkName>` - Extracts headers for a single framework. This is a task rule and will fail if `FrameworkName` does not exist. (example: `./gradlew dumpHeadersCoreUI`)
 
-# 📄 License
+## 📄 License
 
 This repo is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for rights and limitations.
