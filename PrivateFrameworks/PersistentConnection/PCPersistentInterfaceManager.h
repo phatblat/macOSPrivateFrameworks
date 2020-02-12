@@ -20,7 +20,6 @@
     struct __CFSet *_wakeOnWiFiDelegates;
     PCSimpleTimer *_wakeOnWiFiDisableTimer;
     void *_interfaceAssertion;
-    int _WWANContextIdentifier;
     NSString *_WWANInterfaceName;
     BOOL _isWWANInterfaceUp;
     NSTimer *_inCallWWANOverrideTimer;
@@ -35,13 +34,13 @@
     BOOL _isInCall;
     BOOL _isWakeOnWiFiSupported;
     BOOL _isWakeOnWiFiEnabled;
-    BOOL _shouldOverrideOnCallBehavior;
     CoreTelephonyClient *_ctClient;
     CTXPCServiceSubscriptionContext *_currentDataSimContext;
     void *_ctServerConnection;
 }
 
 + (id)sharedInstance;
+@property(readonly) BOOL hasWWANStatusIndicator; // @synthesize hasWWANStatusIndicator=_hasWWANStatusIndicator;
 - (void).cxx_destruct;
 - (id)urlConnectionBoundToWWANInterfaceWithRequest:(id)arg1 delegate:(id)arg2 usesCache:(BOOL)arg3 maxContentLength:(long long)arg4 startImmediately:(BOOL)arg5 connectionProperties:(id)arg6;
 - (id)urlConnectionBoundToWWANInterface:(BOOL)arg1 withRequest:(id)arg2 delegate:(id)arg3 usesCache:(BOOL)arg4 maxContentLength:(long long)arg5 startImmediately:(BOOL)arg6 connectionProperties:(id)arg7;

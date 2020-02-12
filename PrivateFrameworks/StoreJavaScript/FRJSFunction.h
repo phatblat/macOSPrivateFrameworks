@@ -16,12 +16,14 @@
     struct OpaqueJSValue *_jsFunction;
     struct OpaqueJSContext *_jsContext;
     NSUUID *_functionID;
+    id <FRJSMessagingDelegate> _messagingDelegate;
 }
 
 + (BOOL)supportsSecureCoding;
 + (void)addFunctionToGlobalCache:(id)arg1;
 + (id)functionForJSFunction:(struct OpaqueJSValue *)arg1 inContext:(struct OpaqueJSContext *)arg2;
 + (id)functionForIdentifier:(id)arg1;
+@property(nonatomic) __weak id <FRJSMessagingDelegate> messagingDelegate; // @synthesize messagingDelegate=_messagingDelegate;
 @property(nonatomic) BOOL capture; // @synthesize capture=_capture;
 @property(readonly, nonatomic) NSUUID *functionID; // @synthesize functionID=_functionID;
 @property(readonly, nonatomic) struct OpaqueJSContext *jsContext; // @synthesize jsContext=_jsContext;

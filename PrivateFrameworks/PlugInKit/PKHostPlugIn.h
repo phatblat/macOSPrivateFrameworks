@@ -55,7 +55,7 @@
 @property(retain) NSDictionary *discoveryExtensions; // @synthesize discoveryExtensions=_discoveryExtensions;
 @property(retain) NSString *serviceExtension; // @synthesize serviceExtension=_serviceExtension;
 @property(retain) NSUUID *multipleInstanceUUID; // @synthesize multipleInstanceUUID=_multipleInstanceUUID;
-@property(retain) id <PKPlugIn> supersededBy; // @synthesize supersededBy=_supersededBy;
+@property __weak id <PKPlugIn> supersededBy; // @synthesize supersededBy=_supersededBy;
 @property(retain) NSUUID *supersedingUUID; // @synthesize supersedingUUID=_supersedingUUID;
 @property(retain) id <PKCorePlugInProtocol> syncService; // @synthesize syncService=_syncService;
 @property(retain) id <PKCorePlugInProtocol> service; // @synthesize service=_service;
@@ -68,15 +68,19 @@
 - (void)changeState:(unsigned long long)arg1;
 - (void)messageTraceUsage;
 - (void)unwind:(unsigned long long)arg1 force:(BOOL)arg2;
+- (BOOL)endUsingWithError:(id *)arg1;
 - (void)endUsing:(CDUnknownBlockType)arg1;
 - (BOOL)useBundle:(id)arg1 error:(id *)arg2;
+- (BOOL)isSandboxed;
 - (_Bool)loadExtensions:(id)arg1 error:(id *)arg2;
 - (id)prepareEmbeddedCode:(id *)arg1;
 - (BOOL)loadEmbeddedCode:(id *)arg1;
-- (void)setBootstrap;
+- (void)setBootstrapWithSubsystemOptions:(id)arg1;
 - (void)preparePlugInUsingService:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)startPlugInSynchronously:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)startPlugInSynchronously:(_Bool)arg1 subsystemOptions:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (BOOL)beginUsingWithSubsystemOptions:(id)arg1 error:(id *)arg2;
 - (BOOL)beginUsingWithError:(id *)arg1;
+- (void)beginUsingWithSubsystemOptions:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)beginUsing:(CDUnknownBlockType)arg1;
 @property(readonly) NSUUID *effectiveUUID;
 - (id)createInstanceWithUUID:(id)arg1;
@@ -87,6 +91,7 @@
 @property(readonly) _Bool active;
 - (void)resume;
 - (void)suspend;
+- (void)updateFromForm:(id)arg1;
 @property(retain) NSDictionary *extensionState;
 @property long long userElection;
 @property(readonly) NSUserDefaults *defaults; // @synthesize defaults=_defaults;

@@ -8,6 +8,7 @@
 
 @class NSView<NSTextInputClient>;
 
+__attribute__((visibility("hidden")))
 @interface LUTextInputClientTextAccessor : LUTextAccessor
 {
     NSView<NSTextInputClient> *_textInputClientView;

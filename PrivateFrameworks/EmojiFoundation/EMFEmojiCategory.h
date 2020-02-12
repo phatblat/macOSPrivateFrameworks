@@ -14,21 +14,25 @@
 }
 
 + (id)NewlyAddedEmoji;
++ (id)MultiPersonFamilySkinToneEmoji;
++ (id)CoupleMultiSkinToneEmoji;
++ (id)ProfessionWithoutSkinToneEmoji;
 + (id)ProfessionEmoji;
 + (id)GenderEmoji;
 + (id)SkinToneEmoji;
 + (id)NoneVariantEmoji;
 + (id)DingbatsVariantEmoji;
 + (BOOL)_isNewlyAddedEmoji:(id)arg1;
++ (BOOL)_isMultiPersonFamilySkinToneEmoji:(id)arg1;
++ (BOOL)_isComposedCoupleMultiSkinToneEmoji:(id)arg1;
++ (BOOL)_isCoupleMultiSkinToneEmoji:(id)arg1;
 + (BOOL)_isFlagEmoji:(id)arg1;
 + (BOOL)_isProfessionEmoji:(id)arg1;
 + (BOOL)_isGenderEmoji:(id)arg1;
 + (BOOL)_isSkinToneEmoji:(id)arg1;
 + (BOOL)_isNoneVariantEmoji:(id)arg1;
 + (BOOL)_isDingbatsVariantEmoji:(id)arg1;
-+ (id)localizedSkinToneEmojiDescriptionForLocale:(id)arg1;
 + (id)localizedSkinToneEmojiDescription;
-+ (id)localizedRecentsDescriptionForLocale:(id)arg1;
 + (id)localizedRecentsDescription;
 + (id)computeEmojiFlagsSortedByLanguage;
 + (id)insertionFlagsForCountryCodes:(id)arg1 inSortedCountryCodes:(id)arg2;
@@ -53,8 +57,6 @@
 @property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (id)emojiTokensForLocaleData:(id)arg1;
-- (id)shortLocalizedNameForLocale:(id)arg1;
-- (id)localizedNameForLocale:(id)arg1;
 @property(readonly, nonatomic) NSString *shortLocalizedName;
 @property(readonly, nonatomic) NSString *localizedName;
 - (void)dealloc;

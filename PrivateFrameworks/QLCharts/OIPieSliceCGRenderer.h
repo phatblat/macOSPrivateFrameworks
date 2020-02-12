@@ -8,6 +8,7 @@
 
 #import "OIPieSliceRenderer.h"
 
+__attribute__((visibility("hidden")))
 @interface OIPieSliceCGRenderer : NSObject <OIPieSliceRenderer>
 {
     struct __OIChart *_chart;

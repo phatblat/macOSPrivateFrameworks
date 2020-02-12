@@ -15,9 +15,10 @@
 {
     id <TTSSpeechService> _service;
     BOOL _isDefault;
+    BOOL _isFallbackDefault;
+    BOOL _excludeInAvailableVoiceList;
     BOOL _canBeDownloaded;
     BOOL _isCombinedFootprint;
-    BOOL _useVoiceBooster;
     NSString *_name;
     NSString *_language;
     NSString *_identifier;
@@ -29,11 +30,12 @@
 
 + (BOOL)supportsSecureCoding;
 @property(retain, nonatomic) NSString *serviceIdentifier; // @synthesize serviceIdentifier=_serviceIdentifier;
-@property(nonatomic) BOOL useVoiceBooster; // @synthesize useVoiceBooster=_useVoiceBooster;
 @property(retain, nonatomic) NSString *nonCombinedVoiceId; // @synthesize nonCombinedVoiceId=_nonCombinedVoiceId;
 @property(readonly, nonatomic) BOOL isCombinedFootprint; // @synthesize isCombinedFootprint=_isCombinedFootprint;
 @property(nonatomic) BOOL canBeDownloaded; // @synthesize canBeDownloaded=_canBeDownloaded;
 @property(nonatomic) long long gender; // @synthesize gender=_gender;
+@property(readonly, nonatomic) BOOL excludeInAvailableVoiceList; // @synthesize excludeInAvailableVoiceList=_excludeInAvailableVoiceList;
+@property(readonly, nonatomic) BOOL isFallbackDefault; // @synthesize isFallbackDefault=_isFallbackDefault;
 @property(readonly, nonatomic) BOOL isDefault; // @synthesize isDefault=_isDefault;
 @property(nonatomic) long long footprint; // @synthesize footprint=_footprint;
 @property(retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
@@ -45,10 +47,8 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
 - (BOOL)isEqual:(id)arg1;
-- (void)_initializeVoiceBooster;
 - (void)setService:(id)arg1;
 - (id)service;
-- (void)_routeChange:(id)arg1;
 - (id)init;
 
 @end

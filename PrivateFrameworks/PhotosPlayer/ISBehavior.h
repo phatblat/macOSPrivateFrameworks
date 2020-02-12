@@ -8,6 +8,7 @@
 
 @class ISPlayerState;
 
+__attribute__((visibility("hidden")))
 @interface ISBehavior : NSObject
 {
     BOOL _active;
@@ -19,6 +20,7 @@
 @property(readonly, nonatomic) ISPlayerState *initialLayoutInfo; // @synthesize initialLayoutInfo=_initialLayoutInfo;
 @property(nonatomic) __weak id <ISBehaviorDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)videoReadyForDisplayDidChange;
 - (void)videoWillPlayToEnd;
 - (void)videoWillPlayToPhoto;
 - (void)videoDidPlayToEnd;

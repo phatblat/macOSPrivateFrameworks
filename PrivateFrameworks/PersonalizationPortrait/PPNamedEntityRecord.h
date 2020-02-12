@@ -9,10 +9,11 @@
 #import "NSCopying.h"
 #import "NSMutableCopying.h"
 #import "NSSecureCoding.h"
+#import "PPRecord.h"
 
 @class NSString, PPNamedEntity, PPNamedEntityMetadata, PPSource;
 
-@interface PPNamedEntityRecord : _PASZonedObject <NSCopying, NSMutableCopying, NSSecureCoding>
+@interface PPNamedEntityRecord : _PASZonedObject <PPRecord, NSCopying, NSMutableCopying, NSSecureCoding>
 {
     PPNamedEntity *_entity;
     PPSource *_source;

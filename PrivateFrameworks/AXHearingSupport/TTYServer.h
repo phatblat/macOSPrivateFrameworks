@@ -8,7 +8,7 @@
 
 @class NSLock, NSMutableDictionary, NSObject<OS_dispatch_queue>;
 
-@interface TTYServer : HCServer
+@interface TTYServer : AXHeardServer
 {
     NSLock *_dataResponseBlocksLock;
     NSMutableDictionary *_databaseResponseBlocks;

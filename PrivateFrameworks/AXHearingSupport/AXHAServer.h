@@ -10,7 +10,7 @@
 
 @class NSArray, NSMutableDictionary, NSString;
 
-@interface AXHAServer : HCServer <AXHARemoteUpdateProtocol>
+@interface AXHAServer : AXHeardServer <AXHARemoteUpdateProtocol>
 {
     NSMutableDictionary *_responseBlocks;
     BOOL _hearingAidReachableForAudioTransfer;

@@ -7,7 +7,7 @@
 #import "NSObject.h"
 
 #import "INCacheableContainer.h"
-#import "INFileEnumerable.h"
+#import "INEnumerable.h"
 #import "INGenericIntentResponse.h"
 #import "INImageProxyInjecting.h"
 #import "INIntentResponseExport.h"
@@ -19,7 +19,7 @@
 
 @class INCodableDescription, INImage, INIntentResponseCodableCode, INIntentResponseDescription, NSDictionary, NSString, NSUserActivity, PBCodable, _INPBIntentResponse;
 
-@interface INIntentResponse : NSObject <INImageProxyInjecting, INIntentSlotComposing, INCacheableContainer, INFileEnumerable, INKeyImageProducing, INIntentResponseExport, INGenericIntentResponse, INRuntimeObject, NSCopying, NSSecureCoding>
+@interface INIntentResponse : NSObject <INImageProxyInjecting, INIntentSlotComposing, INCacheableContainer, INEnumerable, INKeyImageProducing, INIntentResponseExport, INGenericIntentResponse, INRuntimeObject, NSCopying, NSSecureCoding>
 {
     BOOL __userConfirmationRequired;
     long long _code;
@@ -91,7 +91,6 @@
 - (void)_injectProxiesForImages:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)localizeValueOfSlotDescription:(id)arg1 forLanguage:(id)arg2;
 - (id)intentSlotDescriptions;
-- (void)_enumerateFileURLsWithMutatingBlock:(CDUnknownBlockType)arg1;
 @property(readonly) long long _intents_toggleState;
 - (id)_renderedResponseForLanguage:(id)arg1 requiresSiriCompatibility:(BOOL)arg2;
 - (id)_propertiesByNameForLanguage:(id)arg1;
@@ -101,9 +100,8 @@
 - (id)_originatingBundleIdentifier;
 - (void)_intents_updateContainerWithCache:(id)arg1;
 - (id)_intents_cacheableObjects;
-- (void)_enumerateWithValueProcessingBlock:(CDUnknownBlockType)arg1 mutate:(BOOL)arg2;
-- (void)_intents_enumerateFileURLsWithBlock:(CDUnknownBlockType)arg1 mutate:(BOOL)arg2;
-- (void)_intents_enumerateFilesWithBlock:(CDUnknownBlockType)arg1 mutate:(BOOL)arg2;
+- (BOOL)_enumerateWithValueProcessingBlock:(CDUnknownBlockType)arg1;
+- (BOOL)_intents_enumerateObjectsOfClass:(Class)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (long long)_compareSubProducerOne:(id)arg1 subProducerTwo:(id)arg2;
 @property(readonly) INImage *_keyImage;
 

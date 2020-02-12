@@ -8,15 +8,10 @@
 
 #import "CSSpIdSpeakerRecognizer.h"
 
-@class CSPlainAudioFileWriter, CSSpIdContext, NSDictionary, NSObject<OS_dispatch_queue>, NSString;
+@class NSDictionary, NSString;
 
 @interface CSSpIdTrainingParallelRecorder : NSObject <CSSpIdSpeakerRecognizer>
 {
-    CSSpIdContext *_spIdCtx;
-    NSString *_invocationStyle;
-    CSPlainAudioFileWriter *_parallelRecordingUttLogger;
-    NSObject<OS_dispatch_queue> *_queue;
-    NSDictionary *_lastSpeakerIdInfo;
 }
 
 - (void)setCVTTriggerPhraseDetected;
@@ -24,7 +19,6 @@
 @property(readonly, nonatomic) NSDictionary *lastSpeakerIdInfo;
 - (void)recordingStoppedForReason:(long long)arg1;
 - (void)processAudioChunk:(id)arg1;
-- (void)dealloc;
 - (id)initWithContext:(id)arg1 delegate:(id)arg2;
 
 // Remaining properties

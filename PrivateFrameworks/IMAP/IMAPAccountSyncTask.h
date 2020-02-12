@@ -6,11 +6,12 @@
 
 #import <IMAP/IMAPTask.h>
 
+#import "EFSignpostable.h"
 #import "IMAPFetchMailboxStatusOperationDelegate.h"
 
 @class IMAPTaskManager, NSMutableArray, NSMutableSet, NSProgress, NSString;
 
-@interface IMAPAccountSyncTask : IMAPTask <IMAPFetchMailboxStatusOperationDelegate>
+@interface IMAPAccountSyncTask : IMAPTask <EFSignpostable, IMAPFetchMailboxStatusOperationDelegate>
 {
     NSMutableArray *_mailboxesNeedingStatus;
     NSMutableSet *_missedMailboxes;
@@ -25,7 +26,6 @@
 @property(readonly) IMAPTaskManager *taskManager; // @synthesize taskManager=_taskManager;
 @property(readonly) id <IMAPAccount> account; // @synthesize account=_account;
 - (void).cxx_destruct;
-@property(readonly) unsigned long long signpostID;
 - (void)fetchMailboxStatusOperation:(id)arg1 missedMailboxes:(id)arg2;
 - (void)fetchMailboxStatusOperation:(id)arg1 fetchedStatusesForMailboxNames:(id)arg2;
 - (void)end;
@@ -38,6 +38,7 @@
 - (id)mailboxNameWithoutPII;
 - (id)initWithMailboxName:(id)arg1;
 - (id)initWithAccount:(id)arg1 taskManager:(id)arg2;
+@property(readonly) unsigned long long signpostID;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

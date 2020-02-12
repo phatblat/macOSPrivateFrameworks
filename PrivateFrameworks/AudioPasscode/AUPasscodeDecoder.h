@@ -6,7 +6,7 @@
 
 #import "AUAudioUnit.h"
 
-@class AUAudioUnitBus, AUAudioUnitBusArray, AUPasscodeCodecConfiguration, NSMutableData, NSObject<OS_dispatch_queue>;
+@class APCListenerResultData, AUAudioUnitBus, AUAudioUnitBusArray, AUPasscodeCodecConfiguration, NSMutableData, NSObject<OS_dispatch_queue>;
 
 __attribute__((visibility("hidden")))
 @interface AUPasscodeDecoder : AUAudioUnit
@@ -24,14 +24,17 @@ __attribute__((visibility("hidden")))
     unsigned int _actualChannelCount;
     NSMutableData *_incomingPayload;
     BOOL _deliverDataSerially;
+    struct mutex _ctMutex;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     CDUnknownBlockType _dataHandler;
     AUPasscodeCodecConfiguration *_codecConfig;
+    APCListenerResultData *_resultData;
 }
 
 + (id)supportedDecoders;
 + (void)registerAU;
 + (struct AudioComponentDescription)getAUDesc;
+@property(retain, nonatomic) APCListenerResultData *resultData; // @synthesize resultData=_resultData;
 @property(retain, nonatomic) AUPasscodeCodecConfiguration *codecConfig; // @synthesize codecConfig=_codecConfig;
 @property(copy, nonatomic) CDUnknownBlockType dataHandler; // @synthesize dataHandler=_dataHandler;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;

@@ -6,11 +6,7 @@
 
 #import "NSObject.h"
 
-#import "EARPSRAudioProcessorDelegate.h"
-
-@class EARPSRAudioProcessor, NSObject<OS_dispatch_queue>, NSString;
-
-@interface CSSpIdSpeakerVectorGenerator : NSObject <EARPSRAudioProcessorDelegate>
+@interface CSSpIdSpeakerVectorGenerator : NSObject
 {
     unsigned long long _spIdType;
 }

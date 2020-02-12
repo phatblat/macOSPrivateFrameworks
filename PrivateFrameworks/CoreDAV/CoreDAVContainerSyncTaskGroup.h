@@ -8,11 +8,12 @@
 
 #import "CoreDAVDeleteTaskDelegate.h"
 #import "CoreDAVGetTaskDelegate.h"
+#import "CoreDAVPropPatchTaskDelegate.h"
 #import "CoreDAVPutTaskDelegate.h"
 
 @class NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, NSURL;
 
-@interface CoreDAVContainerSyncTaskGroup : CoreDAVTaskGroup <CoreDAVDeleteTaskDelegate, CoreDAVPutTaskDelegate, CoreDAVGetTaskDelegate>
+@interface CoreDAVContainerSyncTaskGroup : CoreDAVTaskGroup <CoreDAVDeleteTaskDelegate, CoreDAVPutTaskDelegate, CoreDAVGetTaskDelegate, CoreDAVPropPatchTaskDelegate>
 {
     int _phase;
     NSURL *_folderURL;
@@ -55,6 +56,7 @@
 @property(nonatomic) unsigned long long multiGetBatchSize; // @synthesize multiGetBatchSize=_multiGetBatchSize;
 @property(retain, nonatomic) NSURL *addMemberURL; // @synthesize addMemberURL=_addMemberURL;
 - (void).cxx_destruct;
+- (void)propPatchTask:(id)arg1 parsedResponses:(id)arg2 error:(id)arg3;
 - (void)_getTask:(id)arg1 finishedWithParsedContents:(id)arg2 deletedItems:(id)arg3 error:(id)arg4;
 - (void)getTask:(id)arg1 data:(id)arg2 error:(id)arg3;
 - (void)propFindTask:(id)arg1 parsedResponses:(id)arg2 error:(id)arg3;

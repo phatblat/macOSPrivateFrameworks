@@ -10,7 +10,7 @@
 #import "NSSecureCoding.h"
 #import "SFStockChartCardSection.h"
 
-@class NSArray, NSData, NSDictionary, NSString, NSURL, SFCard, SFColor;
+@class NSArray, NSData, NSDictionary, NSString, NSURL, SFCard, SFColor, SFUserReportRequest;
 
 @interface SFStockChartCardSection : SFCardSection <SFStockChartCardSection, NSSecureCoding, NSCopying>
 {
@@ -63,6 +63,7 @@
 @property(copy, nonatomic) NSArray *parameterKeyPaths;
 @property(copy, nonatomic) NSString *resultIdentifier;
 @property(readonly) Class superclass;
+@property(retain, nonatomic) SFUserReportRequest *userReportRequest;
 
 @end
 

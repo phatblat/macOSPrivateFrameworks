@@ -7,6 +7,7 @@
 @class NSArray, NSData, NSDictionary, NSNumber, NSString, NSURL, SFActionItem, SFCard, SFCustom, SFImage, SFMoreResults, SFPunchout, SFText;
 
 @protocol SFSearchResult
+@property(retain, nonatomic) NSData *entityData;
 @property(nonatomic) unsigned long long blockId;
 @property(nonatomic) BOOL doNotFold;
 @property(copy, nonatomic) NSString *srf;
@@ -24,6 +25,7 @@
 @property(copy, nonatomic) NSString *completedQuery;
 @property(copy, nonatomic) NSString *correctedQuery;
 @property(copy, nonatomic) NSString *intendedQuery;
+@property(copy, nonatomic) NSDictionary *serverFeatures;
 @property(copy, nonatomic) NSDictionary *localFeatures;
 @property(nonatomic) BOOL isStaticCorrection;
 @property(retain, nonatomic) SFImage *icon;

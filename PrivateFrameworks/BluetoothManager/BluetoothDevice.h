@@ -16,9 +16,11 @@
     unsigned int _connectingServiceMask;
 }
 
+- (int)getLowSecurityStatus;
 - (unsigned int)getConnectingServiceMask;
 - (void)setConnectingServicemask:(unsigned int)arg1;
 - (BOOL)setUserName:(id)arg1;
+- (BOOL)isProController;
 - (BOOL)supportsHS;
 - (BOOL)isAppleAudioDevice;
 - (void)setSyncGroup:(int)arg1 enabled:(BOOL)arg2;
@@ -39,6 +41,14 @@
 - (BOOL)isAccessory;
 - (BOOL)magicPairedDeviceNameUpdated;
 - (int)accessorySettingFeatureBitMask;
+- (BOOL)setClickHoldMode:(int)arg1 rightMode:(int)arg2;
+- (unsigned int)clickHoldMode:(int *)arg1 rightAction:(int *)arg2;
+- (BOOL)setDoubleClickMode:(int)arg1;
+- (int)doubleClickMode;
+- (BOOL)setSingleClickMode:(int)arg1;
+- (int)singleClickMode;
+- (BOOL)setListeningModeConfigs:(unsigned int)arg1;
+- (unsigned int)listeningModeConfigs;
 - (BOOL)setListeningMode:(unsigned int)arg1;
 - (unsigned int)listeningMode;
 - (BOOL)setDoubleTapActionEx:(unsigned int)arg1 rightAction:(unsigned int)arg2;
@@ -49,18 +59,22 @@
 - (unsigned int)doubleTapAction;
 - (BOOL)setMicMode:(unsigned int)arg1;
 - (unsigned int)micMode;
+- (unsigned int)SendSetupCommand:(unsigned char)arg1;
+- (BOOL)inEarStatusPrimary:(int *)arg1 secondary:(int *)arg2;
 - (BOOL)setInEarDetectEnabled:(BOOL)arg1;
 - (BOOL)inEarDetectEnabled;
 - (int)batteryLevel;
 - (BOOL)supportsBatteryLevel;
 - (unsigned long long)connectedServicesCount;
 - (unsigned long long)connectedServices;
+- (BOOL)isTemporaryPaired;
 - (BOOL)connected;
 - (BOOL)magicPaired;
 - (BOOL)cloudPaired;
 - (BOOL)paired;
 - (unsigned int)productId;
 - (unsigned int)vendorId;
+- (id)aclUID;
 - (id)scoUID;
 - (id)description;
 - (unsigned int)minorClass;

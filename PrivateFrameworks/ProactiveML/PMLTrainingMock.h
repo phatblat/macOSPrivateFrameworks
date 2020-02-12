@@ -8,22 +8,24 @@
 
 #import "PMLTrainingProtocol.h"
 
-@class NSArray, NSMutableArray, NSString;
+@class NSArray, NSMutableArray, NSMutableDictionary, NSString;
 
 @interface PMLTrainingMock : NSObject <PMLTrainingProtocol>
 {
     NSMutableArray *_internalCollectedSessions;
+    NSMutableDictionary *_lastTrainingFeaturizations;
     NSArray *_collectedSessions;
 }
 
 @property(readonly) NSArray *collectedSessions; // @synthesize collectedSessions=_collectedSessions;
 - (void).cxx_destruct;
 - (void)clearCollectedSessions;
+- (void)setSourceRecoverer:(CDUnknownBlockType)arg1;
+- (void)updateLastTrainingFeaturizationForModel:(id)arg1 andData:(id)arg2;
+- (id)lastTrainingFeaturizationForModelName:(id)arg1 andLocale:(id)arg2;
 - (void)updateSessionsAndLabelForModel:(id)arg1 block:(CDUnknownBlockType)arg2;
 - (id)planReceivedWithPayload:(id)arg1 error:(id *)arg2;
-- (BOOL)modelServerUpdateWithPayload:(id)arg1 error:(id *)arg2;
 - (void)trimDb;
-- (void)trainWhile:(CDUnknownBlockType)arg1;
 - (void)deleteSessionsWithBundleID:(id)arg1;
 - (void)deleteSessionsWithDomainIdentifiers:(id)arg1 bundleID:(id)arg2;
 - (void)deleteSessionsWithIdentifiers:(id)arg1 bundleID:(id)arg2;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CNContactStore, NSArray, NSSet, NSUserDefaults, _CDInteractionCache, _CDInteractionStore, _PSHeuristics, _PSInteractionAndContactMonitor, _PSKNNModel, _PSRuleMiningModel;
+@class CNContactStore, NSArray, NSDictionary, NSSet, NSString, NSUserDefaults, _CDInteractionCache, _CDInteractionStore, _PSHeuristics, _PSInteractionAndContactMonitor, _PSKNNModel, _PSRuleMiningModel;
 
 @interface _PSEnsembleModel : NSObject
 {
@@ -18,6 +18,7 @@
     NSUserDefaults *_peopleSuggesterDefaults;
     CNContactStore *_contactStore;
     NSArray *_defaultContactKeysToFetch;
+    NSString *_trialID;
     _PSRuleMiningModel *_ruleMiningModel;
     _PSKNNModel *_knnModel;
     _PSKNNModel *_knnMapsModel;
@@ -26,8 +27,10 @@
     _PSHeuristics *_heuristics;
     _PSInteractionAndContactMonitor *_contactMonitor;
     NSSet *_cachedSupportedBundleIDs;
+    NSDictionary *_psConfig;
 }
 
+@property(retain) NSDictionary *psConfig; // @synthesize psConfig=_psConfig;
 @property(retain, nonatomic) NSSet *cachedSupportedBundleIDs; // @synthesize cachedSupportedBundleIDs=_cachedSupportedBundleIDs;
 @property(retain, nonatomic) _PSInteractionAndContactMonitor *contactMonitor; // @synthesize contactMonitor=_contactMonitor;
 @property(retain, nonatomic) _PSHeuristics *heuristics; // @synthesize heuristics=_heuristics;
@@ -36,6 +39,7 @@
 @property(retain, nonatomic) _PSKNNModel *knnMapsModel; // @synthesize knnMapsModel=_knnMapsModel;
 @property(retain, nonatomic) _PSKNNModel *knnModel; // @synthesize knnModel=_knnModel;
 @property(retain, nonatomic) _PSRuleMiningModel *ruleMiningModel; // @synthesize ruleMiningModel=_ruleMiningModel;
+@property(retain, nonatomic) NSString *trialID; // @synthesize trialID=_trialID;
 @property(retain, nonatomic) NSArray *defaultContactKeysToFetch; // @synthesize defaultContactKeysToFetch=_defaultContactKeysToFetch;
 @property(retain, nonatomic) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
 @property(retain, nonatomic) NSUserDefaults *peopleSuggesterDefaults; // @synthesize peopleSuggesterDefaults=_peopleSuggesterDefaults;
@@ -57,6 +61,9 @@
 - (void)populateCachesWithSupportedBundleIDs:(id)arg1;
 - (void)populateCaches;
 - (id)fetchShareSheetSupportedBundleIDs;
+- (void)updateTrialID:(id)arg1;
+- (BOOL)loadPSConfig:(id)arg1;
+- (void)loadDefaultPSConfig;
 - (id)init;
 
 @end

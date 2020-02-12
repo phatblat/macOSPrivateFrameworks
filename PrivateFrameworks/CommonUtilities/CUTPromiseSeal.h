@@ -6,16 +6,14 @@
 
 #import "NSObject.h"
 
-@class CUTPromise, NSObject<OS_dispatch_queue>;
+@class CUTPromise;
 
 @interface CUTPromiseSeal : NSObject
 {
-    NSObject<OS_dispatch_queue> *_queue;
     CUTPromise *_promise;
 }
 
 @property(retain, nonatomic) CUTPromise *promise; // @synthesize promise=_promise;
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 - (void).cxx_destruct;
 - (void)failWithError:(id)arg1;
 - (void)fulfillWithValue:(id)arg1;

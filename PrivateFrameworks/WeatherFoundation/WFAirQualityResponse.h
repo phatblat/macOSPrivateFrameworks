@@ -20,7 +20,7 @@
 + (BOOL)supportsSecureCoding;
 @property(retain, nonatomic) NSData *rawAPIData; // @synthesize rawAPIData=_rawAPIData;
 @property(nonatomic) BOOL responseWasFromCache; // @synthesize responseWasFromCache=_responseWasFromCache;
-@property(retain) WFAirQualityConditions *airQualityConditions; // @synthesize airQualityConditions=_airQualityConditions;
+@property(retain, nonatomic) WFAirQualityConditions *airQualityConditions; // @synthesize airQualityConditions=_airQualityConditions;
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

@@ -9,10 +9,11 @@
 #import "NSCopying.h"
 #import "NSMutableCopying.h"
 #import "NSSecureCoding.h"
+#import "PPRecord.h"
 
 @class NSArray, NSString, NSUUID, PPLocation, PPSource;
 
-@interface PPLocationRecord : NSObject <NSCopying, NSMutableCopying, NSSecureCoding>
+@interface PPLocationRecord : NSObject <PPRecord, NSCopying, NSMutableCopying, NSSecureCoding>
 {
     NSUUID *_uuid;
     PPLocation *_location;

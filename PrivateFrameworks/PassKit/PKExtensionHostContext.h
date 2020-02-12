@@ -19,11 +19,14 @@
 @property(retain, nonatomic) NSObject<OS_dispatch_group> *delayCallbacksGroup; // @synthesize delayCallbacksGroup=_delayCallbacksGroup;
 @property(nonatomic) __weak id <PKPaymentAuthorizationHostProtocol> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)authorizationDidUpdateAccountServicePaymentMethod:(id)arg1;
+- (void)authorizationDidAuthorizeApplePayTrustSignature:(id)arg1;
 - (void)didEncounterAuthorizationEvent:(unsigned long long)arg1;
 - (void)authorizationDidPresent;
 - (void)authorizationDidSelectPaymentMethod:(id)arg1;
 - (void)authorizationDidSelectShippingAddress:(id)arg1;
 - (void)authorizationDidSelectShippingMethod:(id)arg1;
+- (void)authorizationDidAuthorizeDisbursement:(id)arg1;
 - (void)authorizationDidAuthorizePeerPaymentQuote:(id)arg1;
 - (void)authorizationDidAuthorizePurchase:(id)arg1;
 - (void)authorizationDidAuthorizePayment:(id)arg1;

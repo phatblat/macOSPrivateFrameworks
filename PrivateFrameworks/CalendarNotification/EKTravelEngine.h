@@ -27,14 +27,17 @@
     CDUnknownBlockType _adviceBlock;
     CDUnknownBlockType _authorizationChangedBlock;
     CDUnknownBlockType _eventSignificantlyChangedBlock;
+    id <CALNRouteHypothesizerProvider> _routeHypothesizerProvider;
 }
 
 + (double)_periodicRefreshInterval;
 + (double)_travelAgendaTimeWindowInterval;
 + (id)travelEligibleEvents:(id)arg1 fromStartDate:(id)arg2 untilEndDate:(id)arg3;
++ (id)travelEligibleEventsInEventStore:(id)arg1;
 + (double)requestRefreshTimeInterval;
 + (id)requestedDarwinNotifications;
 @property(nonatomic) BOOL authorizedInternal; // @synthesize authorizedInternal=_authorizedInternal;
+@property(readonly, nonatomic) id <CALNRouteHypothesizerProvider> routeHypothesizerProvider; // @synthesize routeHypothesizerProvider=_routeHypothesizerProvider;
 @property(copy, nonatomic) CDUnknownBlockType eventSignificantlyChangedBlock; // @synthesize eventSignificantlyChangedBlock=_eventSignificantlyChangedBlock;
 @property(copy, nonatomic) CDUnknownBlockType authorizationChangedBlock; // @synthesize authorizationChangedBlock=_authorizationChangedBlock;
 @property(copy, nonatomic) CDUnknownBlockType adviceBlock; // @synthesize adviceBlock=_adviceBlock;
@@ -77,7 +80,7 @@
 - (void)stop;
 - (void)start;
 - (void)dealloc;
-- (id)init;
+- (id)initWithRouteHypothesizerProvider:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

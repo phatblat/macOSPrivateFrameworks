@@ -31,7 +31,7 @@
 + (id)sharedInstance;
 + (void)setSharedInstanceQueue:(id)arg1;
 - (void)enableTestMode;
-- (struct BTDeviceImpl *)deviceFromIdentifier:(id)arg1;
+- (id)deviceFromIdentifier:(id)arg1;
 - (BOOL)isServiceSupported:(unsigned int)arg1;
 - (id)connectedDeviceNamesThatMayBeBlacklisted;
 - (void)_updateBluetoothState;
@@ -58,6 +58,7 @@
 - (void)_pairedStatusChanged;
 - (void)acceptSSP:(long long)arg1 forDevice:(id)arg2;
 - (void)setPincode:(id)arg1 forDevice:(id)arg2;
+- (id)pairedNonAppleHAEDevices;
 - (id)pairedDevices;
 - (void)unpairDevice:(id)arg1;
 - (void)cancelPairing;
@@ -81,6 +82,7 @@
 - (id)addDeviceIfNeeded:(struct BTDeviceImpl *)arg1;
 - (BOOL)isAnyoneAdvertising;
 - (BOOL)isAnyoneScanning;
+- (void)_notifyFirstDeviceUnlockCompleted;
 - (void)_updateBlacklistMode;
 - (void)_updateAirplaneModeStatus;
 - (void)_powerChanged;

@@ -8,7 +8,7 @@
 
 #import "IMAPMessage.h"
 
-@class NSDate, NSString;
+@class ECSubject, NSDate, NSString;
 
 @interface IMAPMessage : MCRemoteMessage <IMAPMessage>
 {
@@ -21,7 +21,6 @@
 - (void)setDataSource:(id)arg1;
 @property(readonly) id <IMAPMessageDataSource> dataSource;
 @property(readonly, nonatomic) id <IMAPAccount> account;
-@property(readonly, copy) NSString *subject;
 - (id)remoteMailboxURLString;
 - (id)remoteID;
 @property(readonly, copy, nonatomic) NSString *mailboxName;
@@ -40,6 +39,7 @@
 @property(readonly) unsigned long long messageSize;
 @property BOOL partsHaveBeenCached;
 @property(readonly, nonatomic) BOOL shouldDeferBodyDownload;
+@property(readonly, copy) ECSubject *subject;
 @property(readonly) Class superclass;
 
 @end

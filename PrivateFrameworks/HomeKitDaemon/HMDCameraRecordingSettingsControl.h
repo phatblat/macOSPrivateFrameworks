@@ -72,6 +72,7 @@
 - (void)_readCameraRecordingSettings;
 - (void)_selectedConfigurationDidUpdateTo:(id)arg1;
 - (void)_configureCameraRecordingSettings;
+- (void)handleAccessoryIsNotConfiguredError;
 - (void)configureCameraRecordingSettings;
 - (void)triggerABCForConfigure;
 - (void)dealloc;

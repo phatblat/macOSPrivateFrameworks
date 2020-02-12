@@ -25,8 +25,8 @@
 + (id)_cnui_skypeVideoURLFutureWithHandle:(id)arg1;
 + (id)_cnui_skypeVoiceURLFutureWithHandle:(id)arg1;
 + (id)_cnui_skypeTextURLFutureWithHandle:(id)arg1;
-+ (id)_cnui_ttyRelayURLFutureWithHandle:(id)arg1 contact:(id)arg2 senderIdentity:(id)arg3;
-+ (id)_cnui_ttyURLFutureWithHandle:(id)arg1 contact:(id)arg2 senderIdentity:(id)arg3;
++ (id)_cnui_ttyRelayURLFutureWithHandle:(id)arg1 contact:(id)arg2;
++ (id)_cnui_ttyURLFutureWithHandle:(id)arg1 contact:(id)arg2;
 + (id)_cnui_faceTimeVideoURLFutureWithHandle:(id)arg1 contact:(id)arg2;
 + (id)_cnui_faceTimeAudioURLFutureWithHandle:(id)arg1 contact:(id)arg2;
 + (id)_cnui_telephonyURLFutureWithHandle:(id)arg1 contact:(id)arg2;

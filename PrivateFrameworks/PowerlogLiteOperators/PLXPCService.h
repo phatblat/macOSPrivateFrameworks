@@ -6,7 +6,7 @@
 
 #import "PLService.h"
 
-@class NSArray, NSDictionary, NSMutableDictionary, NSObject<OS_xpc_object>, PLNSNotificationOperatorComposition, PLSemaphore, PLTimer, PLXPCResponderOperatorComposition;
+@class NSArray, NSDictionary, NSMutableDictionary, NSObject<OS_xpc_object>, PLNSNotificationOperatorComposition, PLSemaphore, PLTimer;
 
 @interface PLXPCService : PLService
 {
@@ -21,9 +21,9 @@
     PLTimer *_resetPermissionsForClientsTimer;
     PLNSNotificationOperatorComposition *_dailyTaskNotification;
     PLSemaphore *_satelliteProcessSemaphore;
-    PLXPCResponderOperatorComposition *_presubmissionTestResponder;
 }
 
++ (BOOL)allowQueryFromPeer:(id)arg1;
 + (id)defaults;
 + (id)entryAggregateDefinitionXPCEvent;
 + (id)entryAggregateDefinitions;
@@ -33,7 +33,6 @@
 + (id)entryEventPointDefinitionClientLoggingDrops;
 + (id)entryEventPointDefinitions;
 + (void)load;
-@property(retain) PLXPCResponderOperatorComposition *presubmissionTestResponder; // @synthesize presubmissionTestResponder=_presubmissionTestResponder;
 @property unsigned int responderWaitTime; // @synthesize responderWaitTime=_responderWaitTime;
 @property(retain) PLSemaphore *satelliteProcessSemaphore; // @synthesize satelliteProcessSemaphore=_satelliteProcessSemaphore;
 @property(retain) PLNSNotificationOperatorComposition *dailyTaskNotification; // @synthesize dailyTaskNotification=_dailyTaskNotification;
@@ -62,7 +61,6 @@
 - (void)dailyTasks;
 - (void)initSatelliteProcessSemaphore;
 - (void)initOperatorDependancies;
-- (id)presubmissionTest_testEPLMode:(id)arg1 withParam:(id)arg2;
 - (id)init;
 
 @end

@@ -33,6 +33,8 @@
 - (CDUnknownBlockType)willDoReadInputBlock;
 - (CDUnknownBlockType)getZeroTimestampBlock;
 - (int)performStopIO;
+- (unsigned int)outputLatency;
+- (unsigned int)inputLatency;
 - (BOOL)clockIsStable;
 - (unsigned int)clockAlgorithm;
 - (unsigned int)clockDomain;

@@ -51,7 +51,6 @@
 - (struct CGSize)textInsetForMe:(BOOL)arg1;
 - (long long)textAlignmentForMe:(BOOL)arg1;
 - (id)ttyMeContact;
-- (id)contactPathForCall:(id)arg1;
 - (id)myPhoneNumber;
 - (id)init;
 - (unsigned long long)currentPreferredTransportMethod;

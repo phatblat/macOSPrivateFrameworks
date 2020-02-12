@@ -7,12 +7,11 @@
 #import "NSViewController.h"
 
 #import "GKDialogControllerSizing.h"
-#import "GKRestrictedViewController.h"
 #import "GKViewController.h"
 
 @class NSMutableDictionary, NSString;
 
-@interface GKFriendRequestComposeViewController : NSViewController <GKDialogControllerSizing, GKRestrictedViewController, GKViewController>
+@interface GKFriendRequestComposeViewController : NSViewController <GKDialogControllerSizing, GKViewController>
 {
     id _remoteViewController;
     id <GKFriendRequestComposeViewControllerDelegate> _composeViewDelegateWeak;

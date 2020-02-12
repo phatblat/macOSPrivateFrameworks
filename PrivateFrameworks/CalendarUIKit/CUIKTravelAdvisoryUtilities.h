@@ -10,7 +10,7 @@
 {
 }
 
-+ (BOOL)doesHypothesisSatisfyMinimumAllowableTravelTime:(id)arg1;
++ (BOOL)doesHypothesisSatisfyMinimumAllowableTravelTime:(id)arg1 minimumAllowableTravelTime:(double)arg2;
 
 @end
 

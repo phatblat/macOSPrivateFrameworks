@@ -65,6 +65,7 @@
 - (id)saltForOrigin:(id)arg1 topLevelOrigin:(id)arg2 frameIdentifier:(unsigned long long)arg3;
 - (void)setPermission:(unsigned long long)arg1 expirationPolicy:(unsigned long long)arg2 forOrigin:(id)arg3 topLevelOrigin:(id)arg4;
 - (void)setPermission:(unsigned long long)arg1 expirationPolicy:(unsigned long long)arg2 forPolicyEntry:(id)arg3;
+- (unsigned long long)permissionForNonHTTPSOriginFromPermission:(unsigned long long)arg1;
 - (id)_policyForOrigin:(id)arg1 topLevelOrigin:(id)arg2;
 - (unsigned long long)_defaultUserMediaPermission;
 - (unsigned long long)_permissionForOrigin:(id)arg1 topLevelOrigin:(id)arg2;

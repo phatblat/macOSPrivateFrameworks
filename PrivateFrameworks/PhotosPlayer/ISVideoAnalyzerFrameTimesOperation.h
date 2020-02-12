@@ -8,6 +8,7 @@
 
 @class AVAsset, AVAssetReader, AVAssetReaderSampleReferenceOutput, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface ISVideoAnalyzerFrameTimesOperation : NSOperation
 {
     AVAssetReader *_assetReader;

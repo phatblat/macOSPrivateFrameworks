@@ -8,15 +8,19 @@
 
 #import "NSCopying.h"
 
-@class NSData, NSDictionary, NSString;
+@class NSData, NSDate, NSDictionary, NSString;
 
 @interface PFAssetAdjustments : NSObject <NSCopying>
 {
+    NSDate *_adjustmentTimestamp;
     NSDictionary *_propertyListDictionary;
 }
 
 + (id)fingerprintWithAssetAdjustmentFingerprintData:(id)arg1;
 + (id)fingerPrintForData:(id)arg1 error:(id *)arg2;
++ (BOOL)writeReassembleAdjustmentsPropertyListAtURL:(id)arg1 toURL:(id)arg2 error:(id *)arg3;
++ (id)dataForOverflowDataReassembledAdjustmentsPropertyListAtURL:(id)arg1 error:(id *)arg2;
++ (BOOL)adjustmentsPropertyListFileRequiresOverflowDataReassemblyAtURL:(id)arg1 predictedSize:(long long *)arg2;
 @property(retain, nonatomic) NSDictionary *propertyListDictionary; // @synthesize propertyListDictionary=_propertyListDictionary;
 - (void).cxx_destruct;
 - (id)description;
@@ -24,6 +28,7 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithPropertyListDictionary:(id)arg1;
 - (id)initWithURL:(id)arg1;
+@property(nonatomic) NSDate *adjustmentTimestamp;
 @property(readonly, nonatomic) unsigned int adjustmentRenderTypes;
 @property(readonly, copy, nonatomic) NSString *editorBundleID;
 @property(readonly, nonatomic) long long adjustmentBaseVersion;

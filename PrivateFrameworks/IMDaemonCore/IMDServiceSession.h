@@ -86,6 +86,7 @@
 - (id)broadcasterForACConferenceListeners;
 - (id)broadcasterForAVConferenceListeners;
 - (id)broadcasterForChatObserverListeners;
+- (id)broadcasterForBlackholeStatus:(BOOL)arg1;
 - (id)broadcasterForChatListeners;
 - (id)broadcaster;
 - (void)refreshServiceCapabilities;

@@ -8,11 +8,11 @@
 
 @interface EMAccountAuthentication : NSObject
 {
-    id <EMAccountFactory> _accountFactory;
+    id <EDAccountFactory> _accountFactory;
 }
 
 + (id)log;
-@property(readonly, nonatomic) id <EMAccountFactory> accountFactory; // @synthesize accountFactory=_accountFactory;
+@property(readonly, nonatomic) id <EDAccountFactory> accountFactory; // @synthesize accountFactory=_accountFactory;
 - (void).cxx_destruct;
 - (BOOL)_hostnamesHaveSameTopLevelDomain:(id)arg1 deliveryAccount:(id)arg2;
 - (BOOL)_shouldAutoUpdateDeliveryAccount:(id)arg1 forChangedReceivingAccount:(id)arg2;

@@ -6,8 +6,6 @@
 
 #import <CoreHandwriting/CHPointFIFO.h>
 
-@class NSView;
-
 @interface CHQuadCurvePointFIFO : CHPointFIFO
 {
     BOOL _emitInterpolatedPoints;
@@ -16,7 +14,6 @@
     struct CGPath *_path;
     double _lineWidth;
     id <CHPointFIFODrawingTarget> _drawingTarget;
-    NSView *_view;
     // Error parsing type: , name: _lastPoint
     vector_74a7c1d0 _prevPoints;
     vector_74a7c1d0 _points;
@@ -24,7 +21,6 @@
 }
 
 +     // Error parsing type: 68@0:8163248f64, name: interpolateFromPoint:toPoint:controlPoint:time:
-@property(retain, nonatomic) NSView *view; // @synthesize view=_view;
 @property(retain, nonatomic) id <CHPointFIFODrawingTarget> drawingTarget; // @synthesize drawingTarget=_drawingTarget;
 // Error parsing type for property lastPoint:
 // Property attributes: T,N,V_lastPoint
@@ -44,7 +40,6 @@
 - (void)addPoint: /* Error: Ran out of types for this method. */;
 - (void)setUnitScaleForViewSize:(struct CGSize)arg1 normalizedSize:(struct CGSize)arg2 contentScaleFactor:(double)arg3;
 - (void)dealloc;
-- (id)initWithFIFO:(id)arg1 strokeView:(id)arg2;
 - (id)initWithFIFO:(id)arg1 drawingTarget:(id)arg2;
 - (id)initWithFIFO:(id)arg1;
 

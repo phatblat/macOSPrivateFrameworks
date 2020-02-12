@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
     NSArray *_results;
     int _tag;
     int _failuresCount;
+    long long _jobIdentifier;
 }
 
 @property int failuresCount; // @synthesize failuresCount=_failuresCount;

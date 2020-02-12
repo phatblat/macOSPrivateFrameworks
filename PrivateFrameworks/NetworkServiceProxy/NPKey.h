@@ -11,12 +11,16 @@
 @interface NPKey : NSObject
 {
     unsigned int _session_counter;
+    int _error;
+    unsigned int _flags;
     NSData *_info;
     NSUUID *_uuid;
 }
 
+@property unsigned int flags; // @synthesize flags=_flags;
 @property(retain) NSUUID *uuid; // @synthesize uuid=_uuid;
 @property(retain) NSData *info; // @synthesize info=_info;
+@property int error; // @synthesize error=_error;
 @property unsigned int session_counter; // @synthesize session_counter=_session_counter;
 - (void).cxx_destruct;
 @property(readonly) NSPNetworkAgent *agentForKey;

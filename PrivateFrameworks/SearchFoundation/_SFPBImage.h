@@ -9,7 +9,7 @@
 #import "NSSecureCoding.h"
 #import "_SFPBImage.h"
 
-@class NSData, NSString, _SFPBAppIconImage, _SFPBContactImage, _SFPBGraphicalFloat, _SFPBLocalImage, _SFPBMonogramImage, _SFPBPointSize, _SFPBURLImage;
+@class NSData, NSString, _SFPBAppIconImage, _SFPBCalendarImage, _SFPBContactImage, _SFPBGraphicalFloat, _SFPBLocalImage, _SFPBMediaArtworkImage, _SFPBMonogramImage, _SFPBPointSize, _SFPBURLImage;
 
 @interface _SFPBImage : PBCodable <_SFPBImage, NSSecureCoding>
 {
@@ -29,8 +29,12 @@
     _SFPBMonogramImage *_monogramImage;
     _SFPBLocalImage *_localImage;
     _SFPBAppIconImage *_appIconImage;
+    _SFPBMediaArtworkImage *_mediaArtworkImage;
+    _SFPBCalendarImage *_calendarImage;
 }
 
+@property(retain, nonatomic) _SFPBCalendarImage *calendarImage; // @synthesize calendarImage=_calendarImage;
+@property(retain, nonatomic) _SFPBMediaArtworkImage *mediaArtworkImage; // @synthesize mediaArtworkImage=_mediaArtworkImage;
 @property(retain, nonatomic) _SFPBAppIconImage *appIconImage; // @synthesize appIconImage=_appIconImage;
 @property(retain, nonatomic) _SFPBLocalImage *localImage; // @synthesize localImage=_localImage;
 @property(retain, nonatomic) _SFPBMonogramImage *monogramImage; // @synthesize monogramImage=_monogramImage;
@@ -57,7 +61,6 @@
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (id)initWithFacade:(id)arg1;
-- (id)initWithSFImage:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

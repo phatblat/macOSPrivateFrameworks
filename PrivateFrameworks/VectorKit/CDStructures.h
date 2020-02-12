@@ -2396,16 +2396,6 @@ struct optional<gm::Matrix<float, 2, 1>> {
     } _value;
 };
 
-struct optional<gss::IconStyle> {
-    _Bool _hasValue;
-    ValueUnion_42b55164 _value;
-};
-
-struct optional<gss::MapZoomLevel> {
-    _Bool _hasValue;
-    ValueUnion_42b55164 _value;
-};
-
 struct optional<md::MeshSet<ggl::BuildingFlatStroke::BuildingFlatStrokeMesh, ggl::BuildingFlatStroke::DefaultVbo>> {
     _Bool _hasValue;
     union ValueUnion {

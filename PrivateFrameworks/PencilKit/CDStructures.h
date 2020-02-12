@@ -562,10 +562,6 @@ struct __wrap_iter<const _PKStrokePoint *> {
     struct _PKStrokePoint *_field1;
 };
 
-struct __wrap_iter<const _PKStrokePoint *> {
-    struct _PKStrokePoint *_field1;
-};
-
 struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>;
 
 struct os_unfair_lock_s {

@@ -6,12 +6,12 @@
 
 #import <DTXConnectionServices/DTXFileDescriptorTransport.h>
 
-@class NSArray, NSObject<OS_dispatch_semaphore>, NSObject<OS_dispatch_source>;
+@class NSArray, NSObject<OS_dispatch_semaphore>;
 
 @interface DTXSocketTransport : DTXFileDescriptorTransport
 {
     NSObject<OS_dispatch_semaphore> *_socketAcceptedSem;
-    NSObject<OS_dispatch_source> *_acceptSource;
+    // Error parsing type: Ai, name: _socketSemProtector
     NSArray *_addresses;
     int _port;
 }
@@ -27,9 +27,9 @@
 - (id)initWithRemoteAddress:(id)arg1;
 - (id)initWithLocalPort:(int)arg1;
 - (id)initWithConnectedSocket:(int)arg1 disconnectAction:(CDUnknownBlockType)arg2;
+- (void)_signalSocketAccepted;
 - (void)_commonSocketTransportInit;
 - (void)_setupChannelWithConnectedSocket:(int)arg1 assumingOwnership:(BOOL)arg2 orDisconnectBlock:(CDUnknownBlockType)arg3;
-- (id)initWithLocalAddress:(id)arg1;
 - (void)_setupWithLocalPort:(int)arg1;
 
 @end

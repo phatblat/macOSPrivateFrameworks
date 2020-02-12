@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "_DKMonitor.h"
+#import "_DKMonitoring.h"
 
 @class NSDate;
 
-@protocol _DKHistoricalMonitor <_DKMonitor>
+@protocol _DKHistoricalMonitor <_DKMonitoring>
 @property(readonly, nonatomic) NSDate *lastUpdate;
 @property(copy, nonatomic) CDUnknownBlockType shutdownHandler;
 @property(copy, nonatomic) CDUnknownBlockType historicalHandler;

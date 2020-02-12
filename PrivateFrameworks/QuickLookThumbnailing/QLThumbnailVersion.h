@@ -38,7 +38,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithFPItem:(id)arg1 automaticallyGenerated:(BOOL)arg2;
 - (id)initWithFileURL:(id)arg1 automaticallyGenerated:(BOOL)arg2;
-- (void)getGeneratorID:(id *)arg1 version:(id *)arg2 forContentType:(id)arg3;
+- (void)getGeneratorID:(id *)arg1 version:(id *)arg2;
 - (id)initWithFPItem:(id)arg1 generatorID:(id)arg2 generatorVersion:(id)arg3;
 - (id)initWithFileURL:(id)arg1 generatorID:(id)arg2 generatorVersion:(id)arg3;
 - (id)initWithModificationDate:(id)arg1 fileSize:(unsigned long long)arg2 versionIdentifier:(id)arg3 generatorID:(id)arg4 generatorVersion:(id)arg5;

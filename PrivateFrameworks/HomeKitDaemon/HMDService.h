@@ -12,7 +12,7 @@
 #import "HMFDumpState.h"
 #import "NSSecureCoding.h"
 
-@class HMDApplicationData, HMDBulletinBoardNotification, HMDHAPAccessory, HMDHome, HMFMessageDispatcher, NSArray, NSMutableDictionary, NSNumber, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
+@class HMDApplicationData, HMDBulletinBoardNotification, HMDHAPAccessory, HMFMessageDispatcher, NSArray, NSMutableDictionary, NSNumber, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
 
 @interface HMDService : HMFObject <HMDBulletinIdentifiers, NSSecureCoding, HMFDumpState, HMDBackingStoreObjectProtocol, HMDHomeMessageReceiver>
 {
@@ -145,7 +145,7 @@
 - (void)_handleSetAppData:(id)arg1;
 @property(retain, nonatomic) HMDApplicationData *appData; // @synthesize appData=_appData;
 - (id)logIdentifier;
-@property(readonly, nonatomic) HMDHome *home;
+- (id)home;
 @property(readonly, copy, nonatomic) NSString *serviceIdentifier;
 @property(readonly, copy, nonatomic) NSString *type;
 - (id)dumpState;

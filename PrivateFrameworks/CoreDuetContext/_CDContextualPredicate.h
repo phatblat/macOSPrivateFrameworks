@@ -9,14 +9,17 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSPredicate, NSSet;
+@class NSOrderedSet, NSPredicate, NSSet;
 
 @interface _CDContextualPredicate : NSObject <NSCopying, NSSecureCoding>
 {
+    BOOL _evaluateOnEveryKeyPathUpdate;
     NSSet *_keyPaths;
     NSPredicate *_predicate;
     NSPredicate *_predicateForPreviousState;
     double _minimumDurationInPreviousState;
+    NSOrderedSet *_timeBasedPredicateEvaluationIntervals;
+    NSSet *_circularLocationRegions;
 }
 
 + (BOOL)supportsSecureCoding;
@@ -32,6 +35,9 @@
 + (id)predicateForKeyPath:(id)arg1 equalToValue:(id)arg2;
 + (id)predicateForChangeAtKeyPaths:(id)arg1;
 + (id)predicateForChangeAtKeyPath:(id)arg1;
+@property(retain, nonatomic) NSSet *circularLocationRegions; // @synthesize circularLocationRegions=_circularLocationRegions;
+@property(retain, nonatomic) NSOrderedSet *timeBasedPredicateEvaluationIntervals; // @synthesize timeBasedPredicateEvaluationIntervals=_timeBasedPredicateEvaluationIntervals;
+@property(nonatomic) BOOL evaluateOnEveryKeyPathUpdate; // @synthesize evaluateOnEveryKeyPathUpdate=_evaluateOnEveryKeyPathUpdate;
 @property(nonatomic) double minimumDurationInPreviousState; // @synthesize minimumDurationInPreviousState=_minimumDurationInPreviousState;
 @property(retain, nonatomic) NSPredicate *predicateForPreviousState; // @synthesize predicateForPreviousState=_predicateForPreviousState;
 @property(retain, nonatomic) NSPredicate *predicate; // @synthesize predicate=_predicate;
@@ -45,6 +51,9 @@
 - (void)encodeWithCoder:(id)arg1;
 - (BOOL)evaluateWithObject:(id)arg1;
 @property(readonly, nonatomic) BOOL firesOnAnyChange;
+- (id)initForChangeAtKeyPath:(id)arg1 equalToValue:(id)arg2;
+- (id)initForChangeAtKeyPaths:(id)arg1;
+- (id)initForChangeAtKeyPath:(id)arg1;
 
 @end
 

@@ -8,6 +8,7 @@
 
 @class ACAccount, NSData, NSDictionary, NSError, NSMutableDictionary, NSObject<NSSecureCoding>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface ACRemoteDeviceMessage : NSObject
 {
     NSMutableDictionary *_payload;

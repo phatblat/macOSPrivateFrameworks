@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+#import "_ICFeedbackAccepting.h"
 #import "_ICPredictionSourcing.h"
 
 @class NSCondition, NSMutableArray, PPQuickTypeBroker;
 
-@interface _ICPortraitPredictionSource : NSObject <_ICPredictionSourcing>
+@interface _ICPortraitPredictionSource : NSObject <_ICPredictionSourcing, _ICFeedbackAccepting>
 {
     NSMutableArray *_contacts;
     NSCondition *_ppBrokerLoadedCondition;
@@ -19,6 +20,7 @@
 
 @property(retain) PPQuickTypeBroker *ppBroker; // @synthesize ppBroker=_ppBroker;
 - (void).cxx_destruct;
+- (void)provideFeedbackForString:(id)arg1 type:(unsigned char)arg2 style:(unsigned char)arg3;
 - (void)hibernate;
 - (void)warmUp;
 - (void)searchForMeCardEmailAddressesWithTimeout:(unsigned long long)arg1 handler:(CDUnknownBlockType)arg2;
@@ -28,6 +30,7 @@
 - (id)_quickTypeQueryWithQuery:(id)arg1 limit:(unsigned long long)arg2 timeoutInMilliseconds:(unsigned long long)arg3;
 - (BOOL)_populateError:(id *)arg1 withExplanations:(id)arg2;
 - (id)getPPBroker;
+- (id)_makePPQuickTypeBroker;
 - (id)init;
 
 @end

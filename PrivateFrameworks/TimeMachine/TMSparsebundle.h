@@ -13,13 +13,14 @@
     NSURL *_sparsebundleURL;
 }
 
-+ (id)createSparsebundleWithPassword:(id)arg1 inDirectory:(id)arg2;
++ (id)createSparsebundleOnVolume:(id)arg1 usingSystemKeychainAccount:(id)arg2;
 + (unsigned long long)sizeLimitForSparsebundleInDirectory:(id)arg1;
 + (id)_fileSystemPersonalityForNewSparsebundles;
 + (id)_tmpNameForCreation;
 + (id)_canonicalVolumeName;
 + (id)purgeableSparsebundlesInDirectory:(id)arg1;
 + (id)sparsebundleMatchingThisComputerInDirectory:(id)arg1;
++ (id)_sparsebundleWithExtension:(id)arg1 matchingHostUUIDs:(id)arg2 orMACAddresses:(id)arg3 inDirectory:(id)arg4;
 + (id)sparsebundleMatchingHostUUIDs:(id)arg1 orMACAddresses:(id)arg2 inDirectory:(id)arg3;
 @property(copy) NSURL *sparsebundleURL; // @synthesize sparsebundleURL=_sparsebundleURL;
 - (id)healthCheckDate;
@@ -29,19 +30,26 @@
 - (BOOL)setHealthCheckState:(int)arg1 extendedSkipInterval:(BOOL)arg2;
 - (int)healthCheckState;
 - (BOOL)delete:(id *)arg1;
+- (void)_unmountDeviceNames:(id)arg1 force:(BOOL)arg2;
 - (void)unmountForce:(BOOL)arg1;
+- (void)_ejectDeviceNames:(id)arg1;
 - (void)eject;
 - (int)attachWithMountSpec:(id)arg1;
+- (unsigned int)encryptionState;
+- (unsigned int)_encryptionStateForDrive:(unsigned int)arg1;
+- (BOOL)backupDiskIsAPFS;
+- (BOOL)backupDiskIsHFS;
 - (BOOL)backupDiskIsMountable;
 - (BOOL)backupDiskIsWritable;
 - (id)backupDiskMountPoint;
-- (id)backupDiskMediaContent;
-- (id)backupDiskVolumeKind;
 - (id)backupDiskDevicePath;
 - (id)_backupDiskDescription;
+- (void)_detachOrphanSparsebundles;
 - (id)_deviceNames;
-- (id)_deviceNamesForDrive:(unsigned int)arg1;
-- (BOOL)writeSnapshotHistory:(id)arg1;
+- (id)_imagePathForDrive:(unsigned int)arg1;
+- (id)_bsdNameForMedia:(unsigned int)arg1;
+- (void)_iterate:(unsigned int)arg1 options:(BOOL)arg2 usingBlock:(CDUnknownBlockType)arg3;
+- (BOOL)writeBackupHistory:(id)arg1;
 - (BOOL)writeBackupResultDictionary:(id)arg1;
 - (id)updateAndRenameForThisComputer;
 - (BOOL)_hideExtension;
@@ -52,10 +60,9 @@
 - (id)readTimeMachineInfo;
 - (BOOL)setImmutable:(BOOL)arg1;
 - (BOOL)isImmutable;
-- (BOOL)_canBeProbed;
 - (BOOL)_isPurgeable;
 - (BOOL)_isPartiallyCreated;
-- (id)_snapshotHistoryURL;
+- (id)_backupHistoryURL;
 - (id)_resultsURL;
 - (id)_timeMachineInfoBackupURL;
 - (id)_timeMachineInfoURL;

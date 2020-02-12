@@ -50,7 +50,7 @@
 - (void)_cacheDates;
 @property(readonly, nonatomic) double libraryTimespan;
 - (void)pv_addMergeCandidatePersons:(id)arg1;
-@property(readonly, nonatomic) NSString *name;
+@property(readonly, nonatomic) NSString *anonymizedName;
 @property(readonly, nonatomic) BOOL hidden;
 @property(readonly, nonatomic) BOOL favorite;
 @property(readonly, nonatomic) unsigned long long faceCount;

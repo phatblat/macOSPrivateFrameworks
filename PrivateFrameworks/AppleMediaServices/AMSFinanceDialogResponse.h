@@ -6,10 +6,12 @@
 
 #import "NSObject.h"
 
+#import "AMSFinancePerformable.h"
+
 @class ACAccount, AMSDialogRequest, AMSProcessInfo, NSDictionary, NSString;
 
 __attribute__((visibility("hidden")))
-@interface AMSFinanceDialogResponse : NSObject
+@interface AMSFinanceDialogResponse : NSObject <AMSFinancePerformable>
 {
     BOOL _containsCommerceUIURL;
     NSDictionary *_dialogDictionary;
@@ -39,6 +41,12 @@ __attribute__((visibility("hidden")))
 - (id)performWithTaskInfo:(id)arg1;
 - (id)initWithDialogRequest:(id)arg1 account:(id)arg2 clientInfo:(id)arg3 bag:(id)arg4;
 - (id)initWithDialogDictionary:(id)arg1 kind:(long long)arg2 account:(id)arg3 clientInfo:(id)arg4 bag:(id)arg5;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

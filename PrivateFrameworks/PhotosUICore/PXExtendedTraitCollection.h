@@ -46,7 +46,6 @@
     struct NSEdgeInsets _layoutMargins;
 }
 
-+ (id)extendedTraitCollectionFromExtendedTraitCollection:(id)arg1 withUserInterfaceStyle:(long long)arg2;
 @property(nonatomic, getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
 @property(readonly, nonatomic) __weak NSObject<PXAnonymousViewController> *viewController; // @synthesize viewController=_viewController;
 @property(nonatomic, setter=_setPendingViewTransitionSize:) struct CGSize _pendingViewTransitionSize; // @synthesize _pendingViewTransitionSize=__pendingViewTransitionSize;
@@ -107,7 +106,6 @@
 - (void)viewControllerTraitCollectionDidChange;
 - (void)viewControllerViewWillTransitionToSize:(struct CGSize)arg1;
 - (void)_viewWillLayoutSubviews;
-- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)viewControllerViewWillLayoutSubviews;
 - (void)viewControllerViewDidAppear;
 - (void)viewControllerViewWillAppear;

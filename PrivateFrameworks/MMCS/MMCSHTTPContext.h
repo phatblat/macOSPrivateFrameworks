@@ -14,7 +14,7 @@
 #import "NSURLSessionTaskDelegate.h"
 #import "NSURLSessionTaskDelegatePrivate.h"
 
-@class MMCSBoundedQueue, NSDictionary, NSInputStream, NSOutputStream, NSString, NSURLSession, NSURLSessionDataTask;
+@class NSDictionary, NSInputStream, NSOutputStream, NSString, NSURLSession, NSURLSessionDataTask;
 
 __attribute__((visibility("hidden")))
 @interface MMCSHTTPContext : NSObject <C2RequestDelegate, NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate, NSURLSessionTaskDelegatePrivate, NSURLSessionDataDelegatePrivate, NSStreamDelegate>
@@ -24,12 +24,11 @@ __attribute__((visibility("hidden")))
     BOOL _isTaskDone;
     BOOL _requestIsStreamed;
     BOOL _isHandlingError;
-    // Error parsing type: ^{mmcs_http_context={_C3Base={__CFRuntimeBase=QAQ}}i{_Metricsinfo__HTTPMetricsInfo={_ProtobufCMessage=^{_ProtobufCMessageDescriptor}I^{_ProtobufCMessageUnknownField}}*iiiiidididddqqiqQQidiqiqI^{_Chunkserver__ErrorResponse}idid}^{__CFString}qddCCCCCi^{__CFUUID}dd^{__CFError}^{__CFHTTPMessage}CQ^{_mmcs_http_request_options}dd^{__CFHTTPMessage}C^{__CFData}C^{__sFILE}^{__sFILE}{_Metricsinfo__SocketInfo={_ProtobufCMessage=^{_ProtobufCMessageDescriptor}I^{_ProtobufCMessageUnknownField}}**Ii}^{mmcs_metrics_http_info}^?^?^?^?^?^?^?^?^v^v^{os_activity_s}^{voucher_s}^{mmcs_read_stream_pool}^{__CFRunLoop}^{__CFArray}^{__CFData}(?=^{mmcs_cfnetwork_http_context}^{mmcs_nsurlsession_http_context}^{mmcs_curl_http_context}^v)}, name: _hc
+    // Error parsing type: ^{mmcs_http_context={_C3Base={__CFRuntimeBase=QAQ}}i{_Metricsinfo__HTTPMetricsInfo={_ProtobufCMessage=^{_ProtobufCMessageDescriptor}I^{_ProtobufCMessageUnknownField}}*iiiiidididddqqiqQQidiqiqI^{_Chunkserver__ErrorResponse}idid}^{__CFString}qddCCCCCCi^{__CFUUID}dd^{__CFError}^{__CFHTTPMessage}CQ^{_mmcs_http_request_options}dd^{__CFHTTPMessage}C^{__CFData}C^{__sFILE}^{__sFILE}{_Metricsinfo__SocketInfo={_ProtobufCMessage=^{_ProtobufCMessageDescriptor}I^{_ProtobufCMessageUnknownField}}**Ii}^{mmcs_metrics_http_info}^?^?^?^?^?^?^?^?^?^v^v^{os_activity_s}^{voucher_s}^{mmcs_read_stream_pool}^{__CFRunLoop}^{__CFArray}^{__CFData}(?=^{mmcs_cfnetwork_http_context}^{mmcs_nsurlsession_http_context}^{mmcs_curl_http_context}^v)}, name: _hc
     NSURLSession *_urlSession;
     NSInputStream *_inputStream;
     NSOutputStream *_outputStream;
     NSURLSessionDataTask *_dataTask;
-    MMCSBoundedQueue *_boundedQueue;
     NSDictionary *_timingData;
     struct os_activity_s *_activityMarker;
 }
@@ -41,13 +40,12 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL isValid; // @synthesize isValid=_isValid;
 @property(nonatomic) BOOL didOpen; // @synthesize didOpen=_didOpen;
 @property(retain, nonatomic) NSDictionary *timingData; // @synthesize timingData=_timingData;
-@property(retain, nonatomic) MMCSBoundedQueue *boundedQueue; // @synthesize boundedQueue=_boundedQueue;
 @property(retain, nonatomic) NSURLSessionDataTask *dataTask; // @synthesize dataTask=_dataTask;
 @property(retain, nonatomic) NSOutputStream *outputStream; // @synthesize outputStream=_outputStream;
 @property(retain, nonatomic) NSInputStream *inputStream; // @synthesize inputStream=_inputStream;
 @property(retain, nonatomic) NSURLSession *urlSession; // @synthesize urlSession=_urlSession;
 // Error parsing type for property hc:
-// Property attributes: T^{mmcs_http_context={_C3Base={__CFRuntimeBase=QAQ}}i{_Metricsinfo__HTTPMetricsInfo={_ProtobufCMessage=^{_ProtobufCMessageDescriptor}I^{_ProtobufCMessageUnknownField}}*iiiiidididddqqiqQQidiqiqI^{_Chunkserver__ErrorResponse}idid}^{__CFString}qddCCCCCi^{__CFUUID}dd^{__CFError}^{__CFHTTPMessage}CQ^{_mmcs_http_request_options}dd^{__CFHTTPMessage}C^{__CFData}C^{__sFILE}^{__sFILE}{_Metricsinfo__SocketInfo={_ProtobufCMessage=^{_ProtobufCMessageDescriptor}I^{_ProtobufCMessageUnknownField}}**Ii}^{mmcs_metrics_http_info}^?^?^?^?^?^?^?^?^v^v^{os_activity_s}^{voucher_s}^{mmcs_read_stream_pool}^{__CFRunLoop}^{__CFArray}^{__CFData}(?=^{mmcs_cfnetwork_http_context}^{mmcs_nsurlsession_http_context}^{mmcs_curl_http_context}^v)},N,V_hc
+// Property attributes: T^{mmcs_http_context={_C3Base={__CFRuntimeBase=QAQ}}i{_Metricsinfo__HTTPMetricsInfo={_ProtobufCMessage=^{_ProtobufCMessageDescriptor}I^{_ProtobufCMessageUnknownField}}*iiiiidididddqqiqQQidiqiqI^{_Chunkserver__ErrorResponse}idid}^{__CFString}qddCCCCCCi^{__CFUUID}dd^{__CFError}^{__CFHTTPMessage}CQ^{_mmcs_http_request_options}dd^{__CFHTTPMessage}C^{__CFData}C^{__sFILE}^{__sFILE}{_Metricsinfo__SocketInfo={_ProtobufCMessage=^{_ProtobufCMessageDescriptor}I^{_ProtobufCMessageUnknownField}}**Ii}^{mmcs_metrics_http_info}^?^?^?^?^?^?^?^?^?^v^v^{os_activity_s}^{voucher_s}^{mmcs_read_stream_pool}^{__CFRunLoop}^{__CFArray}^{__CFData}(?=^{mmcs_cfnetwork_http_context}^{mmcs_nsurlsession_http_context}^{mmcs_curl_http_context}^v)},N,V_hc
 
 - (void).cxx_destruct;
 - (void)URLSession:(id)arg1 _willRetryBackgroundDataTask:(id)arg2 withError:(id)arg3;
@@ -65,7 +63,7 @@ __attribute__((visibility("hidden")))
 - (void)cleanupRequest;
 - (void)dealloc;
 - (BOOL)send;
--     // Error parsing type: @40@0:8^{mmcs_http_context={_C3Base={__CFRuntimeBase=QAQ}}i{_Metricsinfo__HTTPMetricsInfo={_ProtobufCMessage=^{_ProtobufCMessageDescriptor}I^{_ProtobufCMessageUnknownField}}*iiiiidididddqqiqQQidiqiqI^{_Chunkserver__ErrorResponse}idid}^{__CFString}qddCCCCCi^{__CFUUID}dd^{__CFError}^{__CFHTTPMessage}CQ^{_mmcs_http_request_options}dd^{__CFHTTPMessage}C^{__CFData}C^{__sFILE}^{__sFILE}{_Metricsinfo__SocketInfo={_ProtobufCMessage=^{_ProtobufCMessageDescriptor}I^{_ProtobufCMessageUnknownField}}**Ii}^{mmcs_metrics_http_info}^?^?^?^?^?^?^?^?^v^v^{os_activity_s}^{voucher_s}^{mmcs_read_stream_pool}^{__CFRunLoop}^{__CFArray}^{__CFData}(?=^{mmcs_cfnetwork_http_context}^{mmcs_nsurlsession_http_context}^{mmcs_curl_http_context}^v)}16r^{mmcs_http_context_options=^{__CFString}^{__CFHTTPMessage}^{_mmcs_http_request_options}ddQ^?^?^?^?^?^?^v^?^vCd^{os_activity_s}}24^{os_activity_s=}32, name: initWithContext:options:activityMarker:
+-     // Error parsing type: @40@0:8^{mmcs_http_context={_C3Base={__CFRuntimeBase=QAQ}}i{_Metricsinfo__HTTPMetricsInfo={_ProtobufCMessage=^{_ProtobufCMessageDescriptor}I^{_ProtobufCMessageUnknownField}}*iiiiidididddqqiqQQidiqiqI^{_Chunkserver__ErrorResponse}idid}^{__CFString}qddCCCCCCi^{__CFUUID}dd^{__CFError}^{__CFHTTPMessage}CQ^{_mmcs_http_request_options}dd^{__CFHTTPMessage}C^{__CFData}C^{__sFILE}^{__sFILE}{_Metricsinfo__SocketInfo={_ProtobufCMessage=^{_ProtobufCMessageDescriptor}I^{_ProtobufCMessageUnknownField}}**Ii}^{mmcs_metrics_http_info}^?^?^?^?^?^?^?^?^?^v^v^{os_activity_s}^{voucher_s}^{mmcs_read_stream_pool}^{__CFRunLoop}^{__CFArray}^{__CFData}(?=^{mmcs_cfnetwork_http_context}^{mmcs_nsurlsession_http_context}^{mmcs_curl_http_context}^v)}16r^{mmcs_http_context_options=^{__CFString}^{__CFHTTPMessage}^{_mmcs_http_request_options}ddQ^?^?^?^?^?^?^?^v^?^vCd^{os_activity_s}}24^{os_activity_s=}32, name: initWithContext:options:activityMarker:
 - (BOOL)createNewRequestBodyInputStream;
 - (long long)countOfRequestBodyBytesSent;
 - (BOOL)requestBodyCanAcceptData;

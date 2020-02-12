@@ -32,7 +32,6 @@
 @property(copy) NSString *description; // @synthesize description=_description;
 @property(copy) NSNumber *adamId; // @synthesize adamId=_adamId;
 - (void).cxx_destruct;
-- (id)initWithAdamId:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
 @property(readonly) unsigned long long offerType;

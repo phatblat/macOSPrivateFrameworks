@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+@class NSXPCConnection;
+
 @interface BTMAgentConnection : NSObject
 {
-    id _connection;
+    NSXPCConnection *_connection;
 }
 
 + (id)serviceName;

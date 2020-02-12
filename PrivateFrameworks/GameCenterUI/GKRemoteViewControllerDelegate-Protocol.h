@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class GKRemoteViewController, NSDictionary;
+@class NSDictionary;
 
 @protocol GKRemoteViewControllerDelegate <NSObject>
 
 @optional
-- (BOOL)remoteViewControllerRequestingDismiss:(GKRemoteViewController *)arg1;
-- (void)remoteViewController:(GKRemoteViewController *)arg1 receivedMessageFromService:(NSDictionary *)arg2;
+- (BOOL)remoteViewControllerRequestingDismiss:(id <GKRemoteViewController>)arg1;
+- (void)remoteViewController:(id <GKRemoteViewController>)arg1 receivedMessageFromService:(NSDictionary *)arg2;
 @end
 

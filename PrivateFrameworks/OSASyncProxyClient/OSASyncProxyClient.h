@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSXPCConnection;
+#import "OSASyncProxyServices.h"
 
-@interface OSASyncProxyClient : NSObject
+@class NSString, NSXPCConnection;
+
+@interface OSASyncProxyClient : NSObject <OSASyncProxyServices>
 {
     NSXPCConnection *_connection;
     id <OSASyncProxyServices> _synchRemoteObjectProxy;
@@ -19,11 +21,20 @@
 - (void)synchronize:(id)arg1 withOptions:(id)arg2 onComplete:(CDUnknownBlockType)arg3;
 - (void)deliver:(id)arg1 tasking:(id)arg2 taskId:(id)arg3 fromBlob:(id)arg4;
 - (void)requestProxyMetadata:(id)arg1 onComplete:(CDUnknownBlockType)arg2;
-- (void)request:(id)arg1 logListWithOptions:(id)arg2 onComplete:(CDUnknownBlockType)arg3;
 - (void)request:(id)arg1 logList:(CDUnknownBlockType)arg2;
+- (void)request:(id)arg1 logListWithOptions:(id)arg2 onComplete:(CDUnknownBlockType)arg3;
 - (void)request:(id)arg1 transferLog:(id)arg2 onComplete:(CDUnknownBlockType)arg3;
+- (void)request:(id)arg1 transferLog:(id)arg2 withOptions:(id)arg3 onComplete:(CDUnknownBlockType)arg4;
 - (void)request:(id)arg1 transferGroupWithOptions:(id)arg2 onComplete:(CDUnknownBlockType)arg3;
+- (void)dealloc;
 - (id)init;
+- (id)initWithErrorHandler:(CDUnknownBlockType)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

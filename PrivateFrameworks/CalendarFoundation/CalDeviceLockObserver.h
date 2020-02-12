@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class CalDarwinNotificationListener, NSObject<OS_dispatch_queue>;
+#import "CalDeviceLockObservable.h"
 
-@interface CalDeviceLockObserver : NSObject
+@class CalDarwinNotificationListener, NSObject<OS_dispatch_queue>, NSString;
+
+@interface CalDeviceLockObserver : NSObject <CalDeviceLockObservable>
 {
     BOOL _internalHasBeenUnlockedSinceBoot;
     NSObject<OS_dispatch_queue> *_workQueue;
@@ -18,7 +20,7 @@
 }
 
 + (id)stateChangedNotificationName;
-+ (BOOL)_latestKeyBagValueForHasBeenUnlockedSinceBoot;
++ (BOOL)hasBeenUnlockedSinceBoot;
 @property(nonatomic) BOOL internalHasBeenUnlockedSinceBoot; // @synthesize internalHasBeenUnlockedSinceBoot=_internalHasBeenUnlockedSinceBoot;
 @property(copy, nonatomic) CDUnknownBlockType stateChangedCallback; // @synthesize stateChangedCallback=_stateChangedCallback;
 @property(retain, nonatomic) CalDarwinNotificationListener *notificationListener; // @synthesize notificationListener=_notificationListener;
@@ -29,6 +31,12 @@
 - (void)_notificationReceived;
 - (id)initWithStateChangedCallback:(CDUnknownBlockType)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

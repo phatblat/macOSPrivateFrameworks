@@ -62,11 +62,9 @@
                 unsigned long long signpost_id;
                 unsigned int signpost_name_offset;
                 char *signpost_name;
-                struct os_trace_context_data_s *ctxdata;
-                unsigned long long ctxdata_sz;
+                _Bool has_context_data;
             } log_message;
             struct {
-                char *action;
                 _Bool persisted;
             } useraction;
             struct {
@@ -166,6 +164,7 @@
 - (void)_setFallbackTimezone;
 - (void)_setUUIDDBFileDescriptor:(int)arg1;
 - (void)_setTimesyncDatabase:(struct _os_timesync_db_s *)arg1;
+- (BOOL)_shouldIncludeSensitive;
 - (void)_setIncludeSensitive:(BOOL)arg1;
 - (void)_setThreadCrumb;
 - (void)_assertBalanced;

@@ -49,7 +49,6 @@
 @property(nonatomic) double maxGroupedCallbackEventIdleInterval; // @synthesize maxGroupedCallbackEventIdleInterval=_maxGroupedCallbackEventIdleInterval;
 @property(nonatomic) double maxGroupedCallbackEventStaleness; // @synthesize maxGroupedCallbackEventStaleness=_maxGroupedCallbackEventStaleness;
 @property(nonatomic) int maxGroupedCallbackEventBatchCount; // @synthesize maxGroupedCallbackEventBatchCount=_maxGroupedCallbackEventBatchCount;
-- (void)dealloc;
 - (id)init;
 
 @end

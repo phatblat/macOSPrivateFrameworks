@@ -10,7 +10,6 @@
 
 @interface MDSObject : NSObject
 {
-    long long _retainCount;
     BOOL _deferShutdown;
     _Bool _shutDown;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
@@ -57,11 +56,6 @@
 - (id)targetQueue;
 - (const char *)queueDescription;
 - (_Bool)blocksShutdown;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 @end
 

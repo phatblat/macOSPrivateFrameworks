@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSURL, TUDialRequest;
+@class NSDictionary, NSString, NSURL, TUDialRequest;
 
 @protocol TUCallProviderManagerDataSource <NSObject>
 @property(nonatomic) __weak id <TUCallProviderManagerDataSourceDelegate> delegate;
@@ -17,6 +17,7 @@
 - (void)invalidate;
 - (void)blockUntilInitialStateReceived;
 - (void)launchAppForDialRequest:(TUDialRequest *)arg1 completion:(void (^)(NSError *))arg2;
+- (void)donateUserIntentForProviderWithIdentifier:(NSString *)arg1;
 - (BOOL)openURL:(NSURL *)arg1 isSensitive:(BOOL)arg2 error:(id *)arg3;
 @end
 

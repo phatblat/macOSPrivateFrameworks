@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+#import "_ICFeedbackAccepting.h"
 #import "_ICPredictionManaging.h"
 
 @class NSArray, NSString, _ICResultCache;
 
-@interface _ICPredictionManager : NSObject <_ICPredictionManaging>
+@interface _ICPredictionManager : NSObject <_ICPredictionManaging, _ICFeedbackAccepting>
 {
     NSArray *_predictionSources;
     _ICResultCache *_cache;
@@ -18,6 +19,7 @@
 
 @property(retain) _ICResultCache *cache; // @synthesize cache=_cache;
 - (void).cxx_destruct;
+- (void)provideFeedbackForString:(id)arg1 type:(unsigned char)arg2 style:(unsigned char)arg3;
 - (void)hibernate;
 - (void)warmUp;
 - (id)workLocation;

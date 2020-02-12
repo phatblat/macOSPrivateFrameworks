@@ -42,7 +42,7 @@
 - (BOOL)eligibleForExecution;
 - (void)prepare;
 - (void)start;
-- (void)setErrorWithCode:(int)arg1;
+- (void)setErrorWithCode:(long long)arg1;
 - (id)description;
 - (id)init;
 

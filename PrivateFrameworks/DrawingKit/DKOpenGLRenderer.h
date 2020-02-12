@@ -29,6 +29,8 @@ __attribute__((visibility("hidden")))
     unsigned int mWetPaintBufferFBO;
     unsigned int mWetPaintBufferT;
     // Error parsing type: , name: mWetPaintBufferSize
+    BOOL mSharedContext;
+    BOOL mPaperTexIsShared;
     unsigned int mPaperTex;
     // Error parsing type: , name: mWinSize
     // Error parsing type: , name: mCanvasSize
@@ -38,6 +40,7 @@ __attribute__((visibility("hidden")))
     float mParticleLifespan;
     struct CGRect mDirtyCanvasRegion;
     int mCompositeProgViewportUniformLocation;
+    int mCompositeColorUniformLocation;
     int mWetPaintProgTimeUniformLocation;
     int mWetPaintProgSubtractEndPointsOnlyUniformLocation;
     int mWetPaintProgLifespanUniformLocation;
@@ -108,7 +111,7 @@ __attribute__((visibility("hidden")))
 - (void)dealloc;
 - (id)init;
 - (id)initWithBounds:(struct CGRect)arg1 scale:(double)arg2;
-- (id)initWithBounds:(struct CGRect)arg1 scale:(double)arg2 bufferSize:(int)arg3;
+- (id)initWithBounds:(struct CGRect)arg1 scale:(double)arg2 bufferSize:(int)arg3 sharedContext:(BOOL)arg4;
 
 @end
 

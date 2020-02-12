@@ -7,10 +7,11 @@
 #import <PhotoAnalysis/PHAWorker.h>
 
 #import "PHAVisionServiceAssetsAnalyzingOperationDelegate.h"
+#import "PVVisionIntegrating.h"
 
 @class NSMapTable, NSMutableDictionary, NSNumber, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString;
 
-@interface PHAVisionServiceWorker : PHAWorker <PHAVisionServiceAssetsAnalyzingOperationDelegate>
+@interface PHAVisionServiceWorker : PHAWorker <PHAVisionServiceAssetsAnalyzingOperationDelegate, PVVisionIntegrating>
 {
     NSOperationQueue *_assetAnalysisOperationQueue;
     NSObject<OS_dispatch_queue> *_commandDispatchQueue;
@@ -20,25 +21,31 @@
     NSNumber *_lastRecordedDarkWakeState;
     // Error parsing type: AQ, name: _lastPerformedJobScenario
     BOOL _analysisJobCancelled;
+    unsigned int _visionAlgorithmUmbrellaVersion;
 }
 
 + (CDUnknownBlockType)assetResourceSmallestToLargestComparator;
 + (CDUnknownBlockType)assetResourceLargestToSmallestComparator;
++ (id)preferredAssetResourcesForAnalyzingAsset:(id)arg1;
++ (void)disableANEForRequest:(id)arg1;
++ (id)defaultImageCreationOptions;
++ (id)analysisLog;
 + (void)initialize;
 @property BOOL analysisJobCancelled; // @synthesize analysisJobCancelled=_analysisJobCancelled;
+@property(nonatomic) unsigned int visionAlgorithmUmbrellaVersion; // @synthesize visionAlgorithmUmbrellaVersion=_visionAlgorithmUmbrellaVersion;
 - (void).cxx_destruct;
+- (void)performVisionForcedCleanup;
+- (void)performVisionForcedCleanupWithOptions:(id)arg1;
+- (void)configureRequest:(id)arg1 algorithmUmbrellaVersion:(unsigned int)arg2;
 - (void)insidePhotoLibraryTransactionPersistResultsDictionary:(id)arg1 forAsset:(id)arg2;
 - (void)coalesceResultsDictionary:(id)arg1 forAssetLocalIdentifier:(id)arg2;
 - (void)coalesceJobResult:(unsigned long long)arg1 forAssetLocalIdentifier:(id)arg2;
 - (BOOL)supportsCoalescingResults;
-- (BOOL)stopAcknowledgeDeletionsJob:(id)arg1 error:(id *)arg2;
-- (BOOL)startAcknowledgeDeletionsJob:(id)arg1 error:(id *)arg2;
 - (BOOL)stopAnalysisJob:(id)arg1 error:(id *)arg2;
 - (BOOL)startAnalysisJob:(id)arg1 error:(id *)arg2;
 - (void)shutdown;
 - (void)startup;
 - (void)visionServiceAssetsProcessingOperation:(id)arg1 didExecuteToCompletion:(BOOL)arg2;
-- (id)defaultImageCreationOptions;
 - (struct CGImage *)createCGImageFromImageFileURL:(id)arg1 imageOptions:(id)arg2 orientation:(unsigned long long *)arg3 error:(id *)arg4;
 - (struct CGImage *)createCGImageForAssetResource:(id)arg1 imageOptions:(id)arg2 orientation:(unsigned long long *)arg3 error:(id *)arg4;
 - (id)imageDataForAssetResource:(id)arg1 error:(id *)arg2;
@@ -46,7 +53,6 @@
 - (id)assetResourcesForAsset:(id)arg1 fromDesiredTypes:(const long long *)arg2 count:(unsigned long long)arg3;
 - (BOOL)processAsset:(id)arg1 error:(id *)arg2;
 - (BOOL)getLocallyAvailableAssetResource:(id *)arg1 forAnalyzingAsset:(id)arg2 error:(id *)arg3;
-- (id)preferredAssetResourcesForAnalyzingAsset:(id)arg1;
 - (id)assetWithLocalIdentifier:(id)arg1 error:(id *)arg2;
 - (struct CGImage *)_createCGImageFromImageSource:(struct CGImageSource *)arg1 imageOptions:(id)arg2 orientation:(unsigned long long *)arg3 error:(id *)arg4;
 - (unsigned long long)analyzeAssetResourceFileAtURL:(id)arg1 forAsset:(id)arg2 withAttributes:(id)arg3 error:(id *)arg4;
@@ -62,9 +68,6 @@
 - (BOOL)isExecutingDuringDarkWake;
 - (void)_checkForDarkWakeStateTransition;
 - (id)initWithPhotoAnalysisManager:(id)arg1 dataLoader:(id)arg2;
-- (id)newCVMLRequestOptions;
-- (void)performCVMLForcedCleanup;
-- (void)performCVMLForcedCleanupWithOptions:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

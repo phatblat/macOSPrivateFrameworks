@@ -77,7 +77,6 @@
 @property(readonly) XCElementSnapshot *menuItem;
 @property(readonly) XCElementSnapshot *menu;
 @property(readonly) XCElementSnapshot *scrollView;
-@property(readonly) XCElementSnapshot *scrollableContainer;
 - (id)nearestSharedAncestorOfElement:(id)arg1 matchingType:(long long)arg2;
 - (id)_nearestAncestorMatchingAnyOfTypes:(id)arg1;
 - (id)nearestAncestorMatchingType:(long long)arg1;
@@ -117,8 +116,6 @@
 @property long long horizontalSizeClass; // @synthesize horizontalSizeClass=_horizontalSizeClass;
 @property unsigned long long traits; // @synthesize traits=_traits;
 @property BOOL isMainWindow; // @synthesize isMainWindow=_isMainWindow;
-@property int bridgedProcessID; // @synthesize bridgedProcessID=_bridgedProcessID;
-@property(readonly, getter=isBridged) BOOL bridged;
 @property(getter=isSelected) BOOL selected; // @synthesize selected=_selected;
 @property(getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
 @property BOOL hasFocus; // @synthesize hasFocus=_hasFocus;

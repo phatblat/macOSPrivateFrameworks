@@ -6,24 +6,14 @@
 
 #import "NSObject.h"
 
-#import "CSSpIdSpeakerVectorGeneratorDelegate.h"
+@class NSString;
 
-@class CSSpIdSpeakerVectorGenerator, NSArray, NSString;
-
-@interface CSSpIdProcessor : NSObject <CSSpIdSpeakerVectorGeneratorDelegate>
+@interface CSSpIdProcessor : NSObject
 {
-    unsigned long long _spIdType;
-    NSString *_spIdTypeStr;
-    id <CSSpIdProcessorDelegate> _delegate;
-    CSSpIdSpeakerVectorGenerator *_spIdSvg;
-    NSArray *_satAnalyzers;
+    NSString *_sysConfigFilepath;
 }
 
-@property(retain, nonatomic) NSArray *satAnalyzers; // @synthesize satAnalyzers=_satAnalyzers;
-@property(retain, nonatomic) CSSpIdSpeakerVectorGenerator *spIdSvg; // @synthesize spIdSvg=_spIdSvg;
-@property(nonatomic) __weak id <CSSpIdProcessorDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain, nonatomic) NSString *spIdTypeStr; // @synthesize spIdTypeStr=_spIdTypeStr;
-@property(nonatomic) unsigned long long spIdType; // @synthesize spIdType=_spIdType;
+@property(readonly, nonatomic) NSString *sysConfigFilepath; // @synthesize sysConfigFilepath=_sysConfigFilepath;
 - (void).cxx_destruct;
 - (void)logUtteranceUnderDirectory:(id)arg1 withScores:(id)arg2 withWinner:(id)arg3;
 - (void)rejectUtterance;
@@ -31,7 +21,6 @@
 - (void)setCVTTriggerPhraseDetected;
 - (void)endProcessing;
 - (void)processAudioData:(id)arg1;
-@property(readonly, nonatomic) NSString *sysConfigFilepath;
 @property(readonly, nonatomic) float satScoreThreshold;
 @property(readonly, nonatomic) unsigned long long spIdType;
 - (id)initWithSpIdContext:(id)arg1 forSpIdType:(unsigned long long)arg2 delegate:(id)arg3;

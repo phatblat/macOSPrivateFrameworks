@@ -20,6 +20,7 @@
 }
 
 + (BOOL)_isPathMatchIdle:(const CDStruct_177058d5 *)arg1;
++ (BOOL)_shouldForceApplyForItem:(id)arg1;
 @property(readonly, nonatomic) BRCAccountSession *session; // @synthesize session=_session;
 @property(readonly, nonatomic) brc_task_tracker *taskTracker; // @synthesize taskTracker=_taskTracker;
 @property(readonly, nonatomic) BOOL isCancelled; // @synthesize isCancelled=_isCancelled;
@@ -35,6 +36,7 @@
 - (void)_writeUnderCoordinationFromURL:(id)arg1 toURL:(id)arg2 canDelete:(BOOL)arg3;
 - (void)applyChangesForServerItem:(id)arg1 localItem:(id)arg2 rank:(long long)arg3 zone:(id)arg4 activity:(id)arg5 hasFinished:(char *)arg6;
 - (void)_applyChangesForServerAlias:(id)arg1 localAlias:(id)arg2 jobID:(long long)arg3 zone:(id)arg4 diffs:(unsigned long long)arg5;
+- (BOOL)applyLocalEditIfNecessaryToURL:(id)arg1 forItem:(id)arg2 forDelete:(BOOL)arg3 error:(id *)arg4;
 - (void)_stageCreationOfSymlink:(id)arg1;
 - (void)_stageCreationOfDirectory:(id)arg1;
 - (id)bouncePath:(id)arg1 forItemConflictingWithAnFSRoot:(id)arg2;

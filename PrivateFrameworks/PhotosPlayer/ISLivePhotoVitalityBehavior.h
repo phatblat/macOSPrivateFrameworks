@@ -6,6 +6,7 @@
 
 #import <PhotosPlayer/ISBehavior.h>
 
+__attribute__((visibility("hidden")))
 @interface ISLivePhotoVitalityBehavior : ISBehavior
 {
     id _easeOutObserver;
@@ -19,7 +20,7 @@
     float _playRate;
     double _photoTransitionDuration;
     unsigned long long _assetOptions;
-    CDStruct_1b6d18a9 _photoTime;
+    CDStruct_1b6d18a9 _playbackEndTime;
     CDStruct_1b6d18a9 _playDuration;
 }
 
@@ -33,7 +34,7 @@
 @property(readonly, nonatomic) BOOL pauseDuringTransition; // @synthesize pauseDuringTransition=_pauseDuringTransition;
 @property(readonly, nonatomic) double photoTransitionDuration; // @synthesize photoTransitionDuration=_photoTransitionDuration;
 @property(readonly, nonatomic) CDStruct_1b6d18a9 playDuration; // @synthesize playDuration=_playDuration;
-@property(readonly, nonatomic) CDStruct_1b6d18a9 photoTime; // @synthesize photoTime=_photoTime;
+@property(readonly, nonatomic) CDStruct_1b6d18a9 playbackEndTime; // @synthesize playbackEndTime=_playbackEndTime;
 - (void).cxx_destruct;
 - (void)cancelSettleToPhoto;
 - (void)_didReachTransitionToPhotoTime;
@@ -47,7 +48,7 @@
 - (void)_startObservingVideo;
 - (void)prepareForVitality;
 - (void)activeDidChange;
-- (id)initWithInitialLayoutInfo:(id)arg1 photoTime:(CDStruct_1b6d18a9)arg2 playDuration:(CDStruct_1b6d18a9)arg3 playRate:(float)arg4 photoTransitionDuration:(double)arg5 pauseDuringTransition:(BOOL)arg6 assetOptions:(unsigned long long)arg7;
+- (id)initWithInitialLayoutInfo:(id)arg1 playbackEndTime:(CDStruct_1b6d18a9)arg2 playDuration:(CDStruct_1b6d18a9)arg3 playRate:(float)arg4 photoTransitionDuration:(double)arg5 pauseDuringTransition:(BOOL)arg6 assetOptions:(unsigned long long)arg7;
 - (void)dealloc;
 
 // Remaining properties

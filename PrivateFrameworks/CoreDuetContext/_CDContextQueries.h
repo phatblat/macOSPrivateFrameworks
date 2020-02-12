@@ -10,6 +10,8 @@
 {
 }
 
++ (id)keyPathForDefaultPairedDeviceCellQuality;
++ (id)keyPathForDefaultPairedDeviceWiFiWiredQuality;
 + (id)keyPathForActiveComplications;
 + (id)keyPathForDefaultPairedDeviceForegroundApp;
 + (id)keyPathForWatchForegroundApp;
@@ -24,6 +26,7 @@
 + (id)keyPathForWatchNearbyStatus;
 + (id)keyPathForNetworkingBudgetRemainingStatus;
 + (id)keyPathForEnergyBudgetRemainingStatus;
++ (id)keyPathForNearbyLOIIdentifiers;
 + (id)keyPathForCPUUsageLevel;
 + (id)keyPathForThermalPressureLevel;
 + (id)predicateForPluginStatus:(BOOL)arg1;
@@ -31,7 +34,12 @@
 + (id)predicateForBatteryLevel:(id)arg1;
 + (id)keyPathForBatteryLevel;
 + (id)keyPathForLowBattery;
++ (id)predicateForSystemTime:(id)arg1 gracePeriod:(double)arg2;
++ (id)predicateForSystemTime:(id)arg1;
++ (id)predicateForSystemTimeInInterval:(id)arg1;
++ (id)keyPathForSystemTime;
 + (id)keyPathForMotionState;
++ (id)keyPathForWorkoutStatus;
 + (id)keyPathForCarplayConnectedStatus;
 + (id)predicateForCellConnectionAvailability:(BOOL)arg1;
 + (id)keyPathForCellConnectionQuality;
@@ -39,10 +47,12 @@
 + (id)keyPathForWiFiConnectionQuality;
 + (id)predicateForWiredConnectionAvailability:(BOOL)arg1;
 + (id)keyPathForWiredConnectionQuality;
++ (id)keyPathForWiFiConnectionSSID;
 + (id)keyPathForAirplaneModeStatus;
 + (id)predicateForDoNotDisturbStatus:(BOOL)arg1;
 + (id)keyPathForDoNotDisturbStatus;
 + (id)keyPathForLowPowerModeStatus;
++ (id)keyPathForDeviceID;
 + (id)keyPathForDeviceName;
 + (id)keyPathForSiriActiveStatus;
 + (id)keyPathForCarConnectedStatus;
@@ -67,6 +77,25 @@
 + (id)actionSetUUID;
 + (id)sceneHomeUUID;
 + (id)keyPathForHomeKitSceneDataDictionary;
++ (id)conversationIdentifierKey;
++ (id)contentKey;
++ (id)recipientContactIDsKey;
++ (id)senderContactIDKey;
++ (id)senderHandlesKey;
++ (id)incomingKey;
++ (id)accountIdentifierKey;
++ (id)identifierKey;
++ (id)hasAttachmentsKey;
++ (id)subjectKey;
++ (id)recipientsKey;
++ (id)senderKey;
++ (id)keyPathForRecentMessages;
++ (id)keyPathForRecentEmails;
++ (id)timestampKey;
++ (id)altitudeKey;
++ (id)longitudeKey;
++ (id)latitudeKey;
++ (id)keyPathForLocationCoordinates;
 + (id)appUsageType;
 + (id)appUsageStartDate;
 + (id)appUsageBundleID;
@@ -80,6 +109,7 @@
 + (id)batteryIsChargingKey;
 + (id)batteryFullyChargedKey;
 + (id)batteryAdapterTypeKey;
++ (id)batteryExternalConnectedChangeDateKey;
 + (id)batteryExternalConnectedKey;
 + (id)batteryTemperatureKey;
 + (id)batteryVoltageKey;
@@ -92,8 +122,15 @@
 + (id)intentClassKey;
 + (id)intentSourceItemIDKey;
 + (id)intentSourceBundleIDKey;
++ (id)intentDirectionKey;
 + (id)intentTypeKey;
 + (id)keyPathForIntentsDataDictionary;
++ (id)changeDateKey;
++ (id)regionStateKey;
++ (id)regionIdentifierKey;
++ (id)predicateForCircularLocationRegion:(id)arg1 state:(long long)arg2;
++ (id)predicateForCircularLocationRegion:(id)arg1;
++ (id)keyPathForCircularLocationRegions;
 + (id)accessoryClientName;
 + (id)characteristicType;
 + (id)serviceType;
@@ -105,7 +142,16 @@
 + (id)appLaunchReasonKey;
 + (id)appBundleIdKey;
 + (id)keyPathForAppDataDictionary;
++ (id)transitionWithinTimeIntervalKey;
++ (id)locationOfInterestTypeKey;
++ (id)locationOfInterestUUIDKey;
++ (id)keyPathForPredictedLocationOfInterestTransitions;
++ (id)bundleIDKey;
++ (id)calleeHandleKey;
++ (id)calleeContactIDKey;
++ (id)keyPathForActiveCall;
 + (id)nowPlayingCreationDateKey;
++ (id)nowPlayingOutputDeviceIDsKey;
 + (id)nowPlayingTrackKey;
 + (id)nowPlayingBundleIdKey;
 + (id)nowPlayingStatusKey;
@@ -119,6 +165,12 @@
 + (id)keyPathForAudioOutputDataDictionary;
 + (id)keyPathForDefaultPairedServicesAppearingForeground;
 + (id)keyPathForServicesAppearingForeground;
++ (id)sessionState;
++ (id)sessionIdentifier;
++ (id)workoutActivityType;
++ (id)bundleId;
++ (id)isFirstPartyWorkout;
++ (id)keyPathForWorkoutDataDictionary;
 + (id)viewInformation;
 + (id)viewName;
 + (id)viewUUID;
@@ -148,6 +200,29 @@
 + (id)eligibility;
 + (id)userActivityUUID;
 + (id)keyPathForUserActivityDataDictionary;
++ (id)keyPathForNFCTagIdentifiers;
++ (BOOL)isMDCSKeyPath:(id)arg1;
++ (id)keyPathForMDCSDeviceIDsWithProxySourceDeviceUUID:(id)arg1;
++ (id)keyPathForMDCSDevicesWithProxySourceDeviceUUID:(id)arg1;
++ (id)keyPathForMDCSUserIDWithProxySourceDeviceUUID:(id)arg1;
++ (id)keyPathForMDCSProxySourceDeviceUUIDWithUserID:(id)arg1;
++ (id)keyPathForMDCSProxyTokenWithUserID:(id)arg1;
++ (id)keyPathForMDCSProxies;
++ (id)modifiedDateKey;
++ (id)stateKey;
++ (id)alarmIDKey;
++ (id)timerIDKey;
++ (id)keyPathForCurrentTimers;
++ (id)keyPathForCurrentAlarms;
++ (id)commandKey;
++ (id)domainKey;
++ (id)keyPathForSiriServiceDataDictionary;
++ (id)activeDateInterval;
++ (id)modeIdentifier;
++ (id)doNotDisturbStateMetadataArray;
++ (id)doNotDisturbState;
++ (id)doNotDisturbUpdateReason;
++ (id)keyPathForDoNotDisturbStatusDataDictionary;
 
 @end
 

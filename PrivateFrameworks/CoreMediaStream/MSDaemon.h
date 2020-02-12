@@ -36,7 +36,6 @@
 - (BOOL)isBusy;
 - (void)releaseBusy;
 - (void)retainBusy;
-- (void)dealloc;
 - (id)init;
 
 @end

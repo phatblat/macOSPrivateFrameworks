@@ -14,10 +14,11 @@
 #import "EDProtectedDataReconciliationHookResponder.h"
 #import "EDThreadScopeManagerDataSource.h"
 #import "EFLoggable.h"
+#import "EFSignpostable.h"
 
 @class EDMessagePersistence, EDPersistenceDatabase, EDPersistenceHookRegistry, EDThreadScopeManager, EFDebouncer, EMBlockedSenderManager, NSMutableArray, NSMutableSet, NSString;
 
-@interface EDThreadPersistence : NSObject <EDDatabaseChangeHookResponder, EDAccountChangeHookResponder, EDMailboxChangeHookResponder, EDMessageChangeHookResponder, EDProtectedDataReconciliationHookResponder, EDThreadScopeManagerDataSource, EDPersistenceDatabaseSchemaProvider, EFLoggable>
+@interface EDThreadPersistence : NSObject <EDDatabaseChangeHookResponder, EDAccountChangeHookResponder, EDMailboxChangeHookResponder, EDMessageChangeHookResponder, EDProtectedDataReconciliationHookResponder, EDThreadScopeManagerDataSource, EFSignpostable, EDPersistenceDatabaseSchemaProvider, EFLoggable>
 {
     NSMutableSet *_threadObjectIDsToRecompute;
     struct os_unfair_lock_s _threadRecomputationLock;
@@ -40,6 +41,7 @@
 + (id)threadsTableSchema;
 + (id)threadScopesTableSchema;
 + (id)tablesAndForeignKeysToResolve:(id *)arg1 associationsToResolve:(id *)arg2;
++ (id)signpostLog;
 + (id)log;
 @property(retain, nonatomic) EFDebouncer *threadRecomputationDebouncer; // @synthesize threadRecomputationDebouncer=_threadRecomputationDebouncer;
 @property(retain, nonatomic) id <EFScheduler> threadRecomputationScheduler; // @synthesize threadRecomputationScheduler=_threadRecomputationScheduler;
@@ -120,8 +122,13 @@
 - (BOOL)_addThreadScopeToDatabase:(id)arg1 withMailboxDatabaseID:(long long)arg2 needsUpdate:(BOOL)arg3 connection:(id)arg4;
 - (void)persistenceIsAddingMailboxWithDatabaseID:(long long)arg1 objectID:(id)arg2 generationWindow:(id)arg3;
 - (id)_inactiveMailboxDatabaseIDsForMailboxScope:(id)arg1 forThreadScopeDatabaseID:(id)arg2;
-- (void)accountBecameInactive:(id)arg1;
-- (void)accountBecameActive:(id)arg1;
+- (void)_getIndividualMailboxScopes:(id *)arg1 unifiedMailboxThreadScopes:(id *)arg2 forAccount:(id)arg3;
+- (id)resetThreadScopesForDeactivatedAccount:(id)arg1;
+- (id)_addedMailboxObjectIDsForActivatedAccount:(id)arg1;
+- (CDUnknownBlockType)threadScopeMatcherForActivatedAccount:(id)arg1;
+- (id)_threadScopedToResetForActivatedAccount:(id)arg1;
+- (void)resetThreadScopedForActivatedAccount:(id)arg1;
+- (void)setNeedsUpdateForThreadScope:(id)arg1;
 - (BOOL)_addThreadScopeToDatabaseWithMailboxType:(id)arg1 needsUpdate:(BOOL)arg2 lastViewedDate:(id)arg3 connection:(id)arg4;
 - (void)persistenceIsInitializingDatabaseWithConnection:(id)arg1;
 - (id)_persistedMessagesForMailboxScope:(id)arg1 messageExpression:(id)arg2;
@@ -155,7 +162,9 @@
 - (void)updateLastViewedDateForThreadScope:(id)arg1;
 - (BOOL)_isThreadScopePrecomputed:(id)arg1 shouldMigrate:(char *)arg2;
 - (unsigned long long)persistenceStateForThreadScope:(id)arg1;
+- (void)_enumerateThreadScopesUsingBlock:(CDUnknownBlockType)arg1;
 - (id)initWithMessagePersistence:(id)arg1 database:(id)arg2 hookRegistry:(id)arg3 vipManager:(id)arg4 blockedSenderManager:(id)arg5;
+@property(readonly) unsigned long long signpostID;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

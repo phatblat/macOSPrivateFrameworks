@@ -6,9 +6,9 @@
 
 #import "NSObject.h"
 
-@class CHRecognizer, NSLocale;
+@class NSLocale;
 
 @protocol CHRecognitionSessionTaskDelegate <NSObject>
-- (CHRecognizer *)recognizerForLocale:(NSLocale *)arg1;
+- (id <CHRecognizing>)recognizerForLocale:(NSLocale *)arg1;
 @end
 

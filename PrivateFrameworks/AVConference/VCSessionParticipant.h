@@ -74,7 +74,6 @@ __attribute__((visibility("hidden")))
     VCRedundancyControllerAudio *_audioRedundancyController;
     VCRedundancyControllerVideo *_videoRedundancyController;
     id _reportingAgentWeak;
-    unsigned int _pullAudioSamplesCount;
 }
 
 @property(readonly, nonatomic) unsigned long long spatialAudioSourceID; // @synthesize spatialAudioSourceID=_spatialAudioSourceID;

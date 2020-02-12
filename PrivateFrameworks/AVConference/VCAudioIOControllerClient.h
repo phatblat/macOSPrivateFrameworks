@@ -6,13 +6,8 @@
 
 #import "NSObject.h"
 
-#import "VCAudioIOControllerSink.h"
-#import "VCAudioIOControllerSource.h"
-
-@class NSString;
-
 __attribute__((visibility("hidden")))
-@interface VCAudioIOControllerClient : NSObject <VCAudioIOControllerSource, VCAudioIOControllerSink>
+@interface VCAudioIOControllerClient : NSObject
 {
     id _delegate;
     struct AudioStreamBasicDescription _format;
@@ -54,11 +49,6 @@ __attribute__((visibility("hidden")))
 - (id)description;
 - (void)dealloc;
 - (id)initWithDelegate:(id)arg1 sourceContext:(void *)arg2 sourceProcess:(CDUnknownFunctionPointerType)arg3 sinkContext:(void *)arg4 sinkProcess:(CDUnknownFunctionPointerType)arg5 clientPid:(int)arg6;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

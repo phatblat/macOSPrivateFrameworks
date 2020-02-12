@@ -86,6 +86,7 @@
 @property(copy, nonatomic) NSArray *workflowTypes;
 @property(retain, nonatomic) WFWorkflowQuarantine *workflowQuarantine;
 @property(retain, nonatomic) WFWorkflowIcon *workflowIcon;
+@property(readonly, nonatomic) unsigned long long estimatedSize;
 - (void)coordinatePropertyUpdatesForRecord:(id)arg1 duringBlock:(CDUnknownBlockType)arg2;
 - (id)recordPropertyMap;
 - (id)descriptor;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSNumber, NSString, NSURL;
+@class NSArray, NSDictionary, NSNumber, NSString, NSURL;
 
 @interface TMDisk : NSObject
 {
@@ -17,28 +17,45 @@
     NSDictionary *_diskArbDescription;
     unsigned long long _knownTraits;
     unsigned long long _traits;
+    NSString *_volumeUUID;
+    long long _lastSnapshotXIDSum;
+    long long _lastSnapshotCount;
+    long long _lastSnapshotDatalessCount;
 }
 
 + (void)enumerateMountedDisksUsingBlock:(CDUnknownBlockType)arg1;
 + (id)diskForMountPoint:(id)arg1 error:(id *)arg2;
 + (id)diskForMountPoint:(id)arg1;
-@property(readonly) short volumeRefNum; // @synthesize volumeRefNum=_volumeRefNum;
++ (id)dataDiskForVolumeGroupUUID:(id)arg1;
++ (id)systemDiskForVolumeGroupUUID:(id)arg1;
++ (id)diskForVolumeUUID:(id)arg1;
 @property(readonly) struct statfs statfs; // @synthesize statfs=_stfs;
 @property(readonly) NSURL *mountPointURL; // @synthesize mountPointURL=_mountPointURL;
+@property(readonly) BOOL isROSPDataVolume;
+@property(readonly) BOOL isROSPSystemVolume;
+@property(readonly) NSNumber *apfsVolumeRole;
+@property(readonly) NSString *apfsVolumeGroupUUID;
+@property(readonly) NSArray *mountedDisksInVolumeGroup;
+- (id)privateSizeOfAPFSSnapshotsFromStartXID:(unsigned long long)arg1 to:(unsigned long long)arg2 error:(id *)arg3;
 - (id)privateSizeOfAPFSSnapshotsFrom:(id)arg1 to:(id)arg2 error:(id *)arg3;
 - (BOOL)mountAPFSSnapshot:(id)arg1 atMountPoint:(id)arg2 error:(id *)arg3;
 - (BOOL)makeDatalessAPFSSnapshot:(id)arg1 error:(id *)arg2;
 - (BOOL)waitForSnapshotDeletionUntil:(id)arg1 error:(id *)arg2;
+- (BOOL)renameAPFSSnapshot:(id)arg1 to:(id)arg2 error:(id *)arg3;
 - (BOOL)deleteAPFSSnapshot:(id)arg1 error:(id *)arg2;
 - (BOOL)createAPFSSnapshot:(id)arg1 error:(id *)arg2;
-- (id)apfsDatalessSnapshots:(id *)arg1;
+- (id)apfsDatalessSnapshotNames:(id *)arg1;
+- (id)apfsSnapshotNames:(id *)arg1;
 - (id)apfsSnapshots:(id *)arg1;
-- (id)_apfsSnapshotAttributes:(id *)arg1;
+- (id)apfsSnapshotsByName:(id *)arg1;
+- (BOOL)configureNetworkVolumeOptionsAndDisablePrimaryReconnect:(BOOL)arg1;
 - (BOOL)configureReconnectTimeoutsAndQOSForBackup;
 - (BOOL)_supportsBackupDiskImages;
 @property(readonly) BOOL supportsBackupDiskImages;
 - (BOOL)_supportsBackupStores;
 @property(readonly) BOOL supportsBackupStores;
+- (BOOL)_isRecoveryVolume;
+@property(readonly) BOOL isRecoveryVolume;
 - (BOOL)_isAppleBootPartition;
 @property(readonly) BOOL isAppleBootPartition;
 - (BOOL)_backedByDiskImage;
@@ -48,10 +65,11 @@
 - (BOOL)_eligibleForBackup;
 @property(readonly) BOOL eligibleForBackup;
 - (BOOL)_answerForTrait:(unsigned long long)arg1 question:(CDUnknownBlockType)arg2;
+- (id)calculateLiveVolumeBytesUsed;
 @property(readonly) NSNumber *bytesUsed;
 @property(readonly) NSNumber *bytesFree;
 @property(readonly) NSNumber *capacity;
-@property(readonly) TMDisk *apfsSnapshotMainDisk;
+@property(readonly) struct __DADisk *liveDiskRef;
 @property(readonly) NSString *apfsSnapshotName;
 @property(readonly) BOOL isAPFSSnapshot;
 @property(readonly) BOOL isAPFS;
@@ -62,6 +80,8 @@
 @property(readonly) BOOL isFAT;
 @property(readonly) BOOL isEXFAT;
 @property(readonly) BOOL isXSAN;
+- (BOOL)_isCaseSensitive;
+@property(readonly) BOOL isCaseSensitive;
 @property(readonly) BOOL isHFSExtended;
 @property(readonly) BOOL isHFS;
 - (long long)fileSystemType;
@@ -79,6 +99,7 @@
 @property(readonly) NSString *volumeUUID;
 @property(readonly) NSString *deviceNode;
 @property(readonly) int device;
+@property(readonly) short volumeRefNum; // @synthesize volumeRefNum=_volumeRefNum;
 @property(readonly) NSDictionary *diskArbDescription;
 @property(readonly) struct __DADisk *diskRef;
 @property(readonly) NSString *mountPoint;

@@ -9,6 +9,7 @@
 @class NSArray, _CDContextualPredicate;
 
 @protocol _CDUserContext <_CDLocalContext>
+- (struct NSDictionary *)valuesForKeyPaths:(NSArray *)arg1;
 - (NSArray *)valuesForKeyPaths:(NSArray *)arg1 inContextsMatchingPredicate:(_CDContextualPredicate *)arg2;
 - (id <_CDLocalContext>)localContext;
 @end

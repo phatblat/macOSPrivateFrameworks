@@ -12,6 +12,7 @@
 {
     BOOL _shouldDeleteDestinationURLOnDeallocation;
     BOOL _needsCurrentEncodingBitRateUpdate;
+    BOOL _maximizePowerEfficiency;
     NSString *_identifier;
     unsigned long long _targetOutputFileSize;
     NSProgress *_progress;
@@ -41,6 +42,7 @@
     long long _currentEncodingBitRate;
 }
 
+@property BOOL maximizePowerEfficiency; // @synthesize maximizePowerEfficiency=_maximizePowerEfficiency;
 @property BOOL needsCurrentEncodingBitRateUpdate; // @synthesize needsCurrentEncodingBitRateUpdate=_needsCurrentEncodingBitRateUpdate;
 @property long long currentEncodingBitRate; // @synthesize currentEncodingBitRate=_currentEncodingBitRate;
 @property struct OpaqueVTCompressionSession *compressionSession; // @synthesize compressionSession=_compressionSession;
@@ -71,6 +73,7 @@
 @property(nonatomic) unsigned long long targetOutputFileSize; // @synthesize targetOutputFileSize=_targetOutputFileSize;
 @property(retain) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
+- (double)inputAssetDuration;
 - (void)_cancel;
 - (id)bitRateControllerForTargetEncodingBitRate:(long long)arg1;
 - (void)notifyDataAvailableToHandler:(CDUnknownBlockType)arg1 ignoreMinimumChunkLength:(BOOL)arg2;
@@ -78,6 +81,7 @@
 - (void)processCompressedSampleBuffer:(struct opaqueCMSampleBuffer *)arg1 presentationTimeStamp:(CDStruct_1b6d18a9)arg2;
 - (void)startReadingInputAssetWithOutputAvailableHandler:(CDUnknownBlockType)arg1;
 - (long long)estimatedOutputBitRate;
+- (void)configureDroppableFrameRateForCompressionSession:(struct OpaqueVTCompressionSession *)arg1 inputWidth:(int)arg2 inputHeight:(int)arg3;
 - (BOOL)setupConversionWithError:(id *)arg1;
 - (id)outputDataInRange:(struct _NSRange)arg1 waitUntilAvailableWithTimeout:(unsigned long long)arg2 error:(id *)arg3;
 - (BOOL)startConversionWithError:(id *)arg1 outputAvailableHandler:(CDUnknownBlockType)arg2;

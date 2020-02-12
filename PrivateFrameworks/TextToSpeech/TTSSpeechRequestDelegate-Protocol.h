@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSError, NSString, TTSSpeechRequest;
+@class NSError, NSString, NSURL, TTSSpeechRequest;
 
 @protocol TTSSpeechRequestDelegate <NSObject>
+- (oneway void)speechRequest:(TTSSpeechRequest *)arg1 didSynthesizeSilentlyToURL:(NSURL *)arg2;
 - (oneway void)speechRequest:(TTSSpeechRequest *)arg1 didStopWithSuccess:(BOOL)arg2 phonemesSpoken:(NSString *)arg3 forService:(id <TTSSpeechService>)arg4 error:(NSError *)arg5;
 - (oneway void)speechRequest:(TTSSpeechRequest *)arg1 withMark:(long long)arg2 didStartForRange:(struct _NSRange)arg3 forService:(id <TTSSpeechService>)arg4;
 - (oneway void)speechRequestDidContinue:(TTSSpeechRequest *)arg1 forService:(id <TTSSpeechService>)arg2;

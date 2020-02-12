@@ -28,6 +28,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) __weak id <FPSpotlightDataSourceDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) BOOL hasMoreIncoming; // @synthesize hasMoreIncoming=_hasMoreIncoming;
 - (void).cxx_destruct;
+@property(readonly, copy) NSString *description;
 - (void)enumerationMightHaveResumed;
 - (void)invalidate;
 - (void)_invalidate;
@@ -44,7 +45,6 @@ __attribute__((visibility("hidden")))
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

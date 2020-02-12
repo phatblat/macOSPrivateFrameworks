@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CLLocation, CalGeocoder, EKTravelEngineHypothesis, EKTravelEngineOriginalEvent, EKTravelEngineThrottle, GEORouteHypothesizer, NSData, NSObject<OS_dispatch_queue>, NSString;
+@class CLLocation, CalGeocoder, EKTravelEngineHypothesis, EKTravelEngineOriginalEvent, EKTravelEngineThrottle, NSData, NSObject<OS_dispatch_queue>, NSString;
 
 @interface EKTravelEngineAgendaEntry : NSObject
 {
@@ -20,7 +20,8 @@
     EKTravelEngineOriginalEvent *_originalEventInternal;
     EKTravelEngineThrottle *_throttle;
     CalGeocoder *_geocoder;
-    GEORouteHypothesizer *_hypothesizer;
+    id <CALNRouteHypothesizerProvider> _hypothesizerProvider;
+    id <CALNRouteHypothesizer> _hypothesizer;
     EKTravelEngineHypothesis *_latestHypothesis;
     CLLocation *_geoLocation;
     NSData *_mapKitHandle;
@@ -43,7 +44,8 @@
 @property(retain, nonatomic) NSData *mapKitHandle; // @synthesize mapKitHandle=_mapKitHandle;
 @property(retain, nonatomic) CLLocation *geoLocation; // @synthesize geoLocation=_geoLocation;
 @property(retain, nonatomic) EKTravelEngineHypothesis *latestHypothesis; // @synthesize latestHypothesis=_latestHypothesis;
-@property(retain, nonatomic) GEORouteHypothesizer *hypothesizer; // @synthesize hypothesizer=_hypothesizer;
+@property(retain, nonatomic) id <CALNRouteHypothesizer> hypothesizer; // @synthesize hypothesizer=_hypothesizer;
+@property(readonly, nonatomic) id <CALNRouteHypothesizerProvider> hypothesizerProvider; // @synthesize hypothesizerProvider=_hypothesizerProvider;
 @property(retain, nonatomic) CalGeocoder *geocoder; // @synthesize geocoder=_geocoder;
 @property(retain, nonatomic) EKTravelEngineThrottle *throttle; // @synthesize throttle=_throttle;
 @property(retain, nonatomic) EKTravelEngineOriginalEvent *originalEventInternal; // @synthesize originalEventInternal=_originalEventInternal;
@@ -88,7 +90,7 @@
 - (void)_hypothesisRefreshTimerFired;
 - (void)updateWithOriginalEvent:(id)arg1;
 - (void)dealloc;
-- (id)init;
+- (id)initWithRouteHypothesizerProvider:(id)arg1;
 
 @end
 

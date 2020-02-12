@@ -10,7 +10,7 @@
 #import "NSSecureCoding.h"
 #import "SFSuggestionCardSection.h"
 
-@class NSArray, NSData, NSDictionary, NSString, SFCard, SFColor, SFRichText;
+@class NSArray, NSData, NSDictionary, NSString, SFCard, SFColor, SFRichText, SFUserReportRequest;
 
 @interface SFSuggestionCardSection : SFCardSection <SFSuggestionCardSection, NSSecureCoding, NSCopying>
 {
@@ -20,12 +20,14 @@
         unsigned int hasBottomPadding:1;
         unsigned int separatorStyle:1;
         unsigned int isContact:1;
+        unsigned int suggestionType:1;
     } _has;
     BOOL _canBeHidden;
     BOOL _hasTopPadding;
     BOOL _hasBottomPadding;
     BOOL _isContact;
     int _separatorStyle;
+    int _suggestionType;
     NSArray *_punchoutOptions;
     NSString *_punchoutPickerTitle;
     NSString *_punchoutPickerDismissText;
@@ -36,6 +38,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+@property(nonatomic) int suggestionType; // @synthesize suggestionType=_suggestionType;
 @property(copy, nonatomic) NSString *scopedSearchSectionBundleIdentifier; // @synthesize scopedSearchSectionBundleIdentifier=_scopedSearchSectionBundleIdentifier;
 @property(nonatomic) BOOL isContact; // @synthesize isContact=_isContact;
 @property(retain, nonatomic) SFRichText *suggestionText; // @synthesize suggestionText=_suggestionText;
@@ -54,6 +57,7 @@
 @property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)hasSuggestionType;
 - (BOOL)hasIsContact;
 - (BOOL)hasSeparatorStyle;
 - (BOOL)hasHasBottomPadding;
@@ -72,6 +76,7 @@
 @property(copy, nonatomic) NSArray *parameterKeyPaths;
 @property(copy, nonatomic) NSString *resultIdentifier;
 @property(readonly) Class superclass;
+@property(retain, nonatomic) SFUserReportRequest *userReportRequest;
 
 @end
 

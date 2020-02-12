@@ -11,7 +11,6 @@
 @interface PXPlacesImageCache : NSObject
 {
     NSCache *_cache;
-    id <NSObject> _memoryWarningObserver;
 }
 
 - (void).cxx_destruct;
@@ -19,7 +18,6 @@
 - (id)cachedRenderedImageForGeotaggble:(id)arg1 andKey:(id)arg2;
 - (void)removeCachedRenderedImageForGeotaggble:(id)arg1 andKey:(id)arg2;
 - (void)removeAllObjects;
-- (void)dealloc;
 - (id)init;
 
 @end

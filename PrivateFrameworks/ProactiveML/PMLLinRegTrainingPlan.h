@@ -20,7 +20,6 @@
     PMLSessionDescriptor *_sessionDescriptor;
     unsigned long long _maxSessionsLimit;
     unsigned long long _sessionsInBatch;
-    BOOL _isSynchronous;
     BOOL _useOnlyAppleInternalSessions;
     struct NSString *_planId;
 }
@@ -32,7 +31,6 @@
 @property(readonly, nonatomic) PMLSessionDescriptor *sessionDescriptor; // @synthesize sessionDescriptor=_sessionDescriptor;
 @property(readonly, nonatomic) id <PMLLinRegTrackerProtocol> tracker; // @synthesize tracker=_tracker;
 @property(readonly, nonatomic) PMLTrainingStore *store; // @synthesize store=_store;
-@property(readonly, nonatomic) BOOL isSynchronous; // @synthesize isSynchronous=_isSynchronous;
 @property(readonly, nonatomic) NSString *planId; // @synthesize planId=_planId;
 - (void).cxx_destruct;
 - (void)runUntilDoneForTesting;
@@ -41,9 +39,9 @@
 - (id)initWithPlist:(id)arg1 chunks:(id)arg2 context:(id)arg3;
 - (id)toPlistWithChunks:(id)arg1;
 - (id)normalizeRegressor:(id)arg1;
-- (void)loadSessionsSince:(double)arg1 block:(CDUnknownBlockType)arg2;
+- (void)loadSessionsWithBlock:(CDUnknownBlockType)arg1;
 - (BOOL)train;
-- (id)initWithStore:(id)arg1 tracker:(id)arg2 noiseStrategy:(id)arg3 planId:(struct NSString *)arg4 isSynchronous:(BOOL)arg5 positiveLabel:(unsigned long long)arg6 skew:(double)arg7 sessionDescriptor:(id)arg8 maxSessionsLimit:(unsigned long long)arg9 sessionsInBatch:(unsigned long long)arg10 useOnlyAppleInternalSessions:(BOOL)arg11;
+- (id)initWithStore:(id)arg1 tracker:(id)arg2 noiseStrategy:(id)arg3 planId:(struct NSString *)arg4 positiveLabel:(unsigned long long)arg5 skew:(double)arg6 sessionDescriptor:(id)arg7 maxSessionsLimit:(unsigned long long)arg8 sessionsInBatch:(unsigned long long)arg9 useOnlyAppleInternalSessions:(BOOL)arg10;
 - (id)init;
 
 // Remaining properties

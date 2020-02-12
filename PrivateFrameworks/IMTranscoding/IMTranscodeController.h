@@ -6,14 +6,20 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_xpc_object>;
+#import "IMGifFileWriter.h"
 
-@interface IMTranscodeController : NSObject
+@class NSObject<OS_xpc_object>, NSString;
+
+@interface IMTranscodeController : NSObject <IMGifFileWriter>
 {
     NSObject<OS_xpc_object> *_connection;
 }
 
 + (id)sharedInstance;
+- (BOOL)copyGifFileFromSourcePath:(id)arg1 toDestinationPath:(id)arg2 error:(id *)arg3;
+- (void)copyGifFileFromSourcePath:(id)arg1 toDestinationPath:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)sizePreview:(id)arg1 constraints:(struct IMPreviewConstraints)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)_generatePreview:(id)arg1 previewURL:(id)arg2 constraints:(struct IMPreviewConstraints)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)generatePreview:(id)arg1 previewURL:(id)arg2 constraints:(struct IMPreviewConstraints)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)generateSnapshotForMessageGUID:(id)arg1 payloadURL:(id)arg2 balloonBundleID:(id)arg3 isFromMe:(BOOL)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (void)transcodeLocalTransferPayloadData:(id)arg1 balloonBundleID:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
@@ -30,6 +36,12 @@
 - (void)_disconnected;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

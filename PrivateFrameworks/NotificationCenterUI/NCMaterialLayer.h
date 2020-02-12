@@ -14,7 +14,6 @@ __attribute__((visibility("hidden")))
     NSString *_groupName;
     CALayer *_backdropLayer;
     CALayer *_tintLayer;
-    CALayer *_rtLayer;
     unsigned char _materialStyle;
     unsigned long long _material;
 }

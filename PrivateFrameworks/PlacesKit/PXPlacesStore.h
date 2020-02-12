@@ -13,7 +13,7 @@
 @interface PXPlacesStore : NSObject <PXPlacesGeotaggedItemDataSource>
 {
     struct _PXQuadTreeStoreNode *_rootNode;
-    int _updateCount;
+    // Error parsing type: Ai, name: _updateCount
     struct _opaque_pthread_rwlock_t {
         long long __sig;
         char __opaque[192];
@@ -28,6 +28,8 @@
     CDStruct_02837cd9 _rect;
 }
 
++ (id)traceStoreQueryLog;
++ (id)traceStoreLog;
 @property(retain) NSMutableSet *itemsToRemove; // @synthesize itemsToRemove=_itemsToRemove;
 @property(retain) NSMutableArray *itemsToAddArray; // @synthesize itemsToAddArray=_itemsToAddArray;
 @property(retain) NSMutableSet *itemsToAdd; // @synthesize itemsToAdd=_itemsToAdd;

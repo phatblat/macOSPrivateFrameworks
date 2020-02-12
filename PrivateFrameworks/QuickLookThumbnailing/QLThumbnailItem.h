@@ -8,29 +8,38 @@
 
 #import "NSSecureCoding.h"
 
-@class NSData, NSString, NSURL;
+@class FPSandboxingURLWrapper, NSData, NSString, NSURL;
 
 @interface QLThumbnailItem : NSObject <NSSecureCoding>
 {
     NSString *_fileExtensionToken;
     long long _fileExtensionHandle;
     NSURL *_url;
+    FPSandboxingURLWrapper *_urlWrapperForExtension;
     NSData *_data;
-    NSString *_contentType;
+    NSString *_overriddenContentType;
+    NSString *_computedContentType;
+    unsigned long long _downloadStatus;
+    BOOL _needsAccessToExternalResources;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(readonly, nonatomic) NSString *contentType; // @synthesize contentType=_contentType;
+@property BOOL needsAccessToExternalResources; // @synthesize needsAccessToExternalResources=_needsAccessToExternalResources;
+@property unsigned long long downloadStatus; // @synthesize downloadStatus=_downloadStatus;
+@property(copy) NSString *computedContentType; // @synthesize computedContentType=_computedContentType;
+@property(copy, nonatomic) NSString *overriddenContentType; // @synthesize overriddenContentType=_overriddenContentType;
 @property(readonly) NSData *data; // @synthesize data=_data;
+@property(readonly) FPSandboxingURLWrapper *urlWrapperForExtension; // @synthesize urlWrapperForExtension=_urlWrapperForExtension;
 @property(readonly) NSURL *url; // @synthesize url=_url;
 - (void).cxx_destruct;
+- (BOOL)needsDownload;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
-- (id)_issueFileExtensionForURL:(id)arg1;
 - (void)consumeFileExtension;
 - (void)issueFileExtension;
 - (void)dealloc;
 - (id)initWithData:(id)arg1 contentType:(id)arg2;
+- (id)initWithURL:(id)arg1 URLWrapperForExtension:(id)arg2;
 - (id)initWithURL:(id)arg1;
 
 @end

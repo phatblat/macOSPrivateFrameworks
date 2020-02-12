@@ -21,6 +21,7 @@
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)_detachFromRecognizer;
+- (void)_setUnderlyingBuffer:(shared_ptr_809f9c31)arg1;
 - (void)cancelRecognition;
 - (void)triggerServerSideEndPointer;
 - (void)endAudio;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class BRCAccountSession, BRCMetricEndpoint, NSMutableDictionary, NSObject<OS_dispatch_queue>;
+@class BRCAccountSession, BRCMetricEndpoint, BRCSyncHealthReport, NSMutableDictionary, NSObject<OS_dispatch_queue>;
 
 __attribute__((visibility("hidden")))
 @interface BRCAnalyticsReporter : NSObject
@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     NSObject<OS_dispatch_queue> *_queue;
     BRCMetricEndpoint *_metricEndpoint;
     NSMutableDictionary *_eventsByKind;
+    BRCSyncHealthReport *_syncHealthReport;
 }
 
 - (void).cxx_destruct;

@@ -8,7 +8,7 @@
 
 #import "PMLPlanProtocol.h"
 
-@class NSString, PMLModelWeights, PMLSessionDescriptor, PMLTrainingStore;
+@class NSArray, NSString, PMLModelWeights, PMLSessionDescriptor, PMLTrainingStore;
 
 @interface PMLLogRegTrainingPlan : NSObject <PMLPlanProtocol>
 {
@@ -29,20 +29,19 @@
     double _threshold;
     BOOL _isMultiLabel;
     unsigned long long _positiveLabel;
-    long long _beforeNoiseScaling;
-    float _constantScaleFactor;
     unsigned long long _evaluationLevel;
     BOOL _reportScale;
-    BOOL _isSynchronous;
+    id <PMLTransformerProtocol> _transformer;
+    NSArray *_refeaturizationDescriptors;
     BOOL _intercept;
     struct NSString *_planId;
 }
 
 + (id)planWithStore:(id)arg1 tracker:(id)arg2 sessionDescriptor:(id)arg3 arguments:(id)arg4;
+@property(readonly, nonatomic) NSArray *refeaturizationDescriptors; // @synthesize refeaturizationDescriptors=_refeaturizationDescriptors;
+@property(readonly, nonatomic) id <PMLTransformerProtocol> transformer; // @synthesize transformer=_transformer;
 @property(readonly, nonatomic) BOOL reportScale; // @synthesize reportScale=_reportScale;
 @property(readonly, nonatomic) unsigned long long evaluationLevel; // @synthesize evaluationLevel=_evaluationLevel;
-@property(readonly, nonatomic) float constantScaleFactor; // @synthesize constantScaleFactor=_constantScaleFactor;
-@property(readonly, nonatomic) long long beforeNoiseScaling; // @synthesize beforeNoiseScaling=_beforeNoiseScaling;
 @property(readonly, nonatomic) BOOL intercept; // @synthesize intercept=_intercept;
 @property(readonly, nonatomic) unsigned long long positiveLabel; // @synthesize positiveLabel=_positiveLabel;
 @property(readonly, nonatomic) BOOL isMultiLabel; // @synthesize isMultiLabel=_isMultiLabel;
@@ -57,7 +56,6 @@
 @property(readonly, nonatomic) unsigned long long currentServerIteration; // @synthesize currentServerIteration=_currentServerIteration;
 @property(readonly, nonatomic) id <PMLLogRegTrackerProtocol> tracker; // @synthesize tracker=_tracker;
 @property(readonly, nonatomic) PMLTrainingStore *store; // @synthesize store=_store;
-@property(readonly, nonatomic) BOOL isSynchronous; // @synthesize isSynchronous=_isSynchronous;
 @property(readonly, nonatomic) NSString *planId; // @synthesize planId=_planId;
 - (void).cxx_destruct;
 - (void)runUntilDoneForTesting;
@@ -66,11 +64,10 @@
 - (id)runWhile:(CDUnknownBlockType)arg1 didFinish:(char *)arg2;
 @property(readonly, copy) NSString *description;
 - (id)normalizeRegressor:(id)arg1;
-- (void)loadSessionsSince:(double)arg1 block:(CDUnknownBlockType)arg2;
+- (void)loadSessionsWithBlock:(CDUnknownBlockType)arg1;
 - (id)evaluationMetricsForPredictions:(id)arg1 objectives:(id)arg2 predicate:(CDUnknownBlockType)arg3 start:(id)arg4;
 - (id)train;
-- (float)scaleFactorFor:(id)arg1;
-- (id)initWithStore:(id)arg1 tracker:(id)arg2 noiseStrategy:(id)arg3 planId:(struct NSString *)arg4 isSynchronous:(BOOL)arg5 sessionDescriptor:(id)arg6 maxSessionsLimit:(unsigned long long)arg7 sessionsInBatch:(unsigned long long)arg8 currentServerIteration:(unsigned long long)arg9 currentModelWeights:(id)arg10 localLearningRate:(float)arg11 stoppingThreshold:(float)arg12 localMinimumIterations:(unsigned long long)arg13 localGradientIterations:(unsigned long long)arg14 useOnlyAppleInternalSessions:(BOOL)arg15 skew:(double)arg16 threshold:(double)arg17 isMultiLabel:(BOOL)arg18 intercept:(BOOL)arg19 positiveLabel:(unsigned long long)arg20 beforeNoiseScaling:(long long)arg21 constantScaleFactor:(float)arg22 evaluationLevel:(unsigned long long)arg23 reportScale:(BOOL)arg24;
+- (id)initWithStore:(id)arg1 tracker:(id)arg2 noiseStrategy:(id)arg3 planId:(struct NSString *)arg4 sessionDescriptor:(id)arg5 maxSessionsLimit:(unsigned long long)arg6 sessionsInBatch:(unsigned long long)arg7 currentServerIteration:(unsigned long long)arg8 currentModelWeights:(id)arg9 localLearningRate:(float)arg10 stoppingThreshold:(float)arg11 localMinimumIterations:(unsigned long long)arg12 localGradientIterations:(unsigned long long)arg13 useOnlyAppleInternalSessions:(BOOL)arg14 skew:(double)arg15 threshold:(double)arg16 isMultiLabel:(BOOL)arg17 intercept:(BOOL)arg18 positiveLabel:(unsigned long long)arg19 evaluationLevel:(unsigned long long)arg20 reportScale:(BOOL)arg21 transformer:(id)arg22 refeaturizationDescriptors:(id)arg23;
 - (id)init;
 
 // Remaining properties

@@ -12,23 +12,19 @@
 
 @interface NSPServerClient : NSObject <NSPServerCommands>
 {
+    struct os_unfair_lock_s lock;
     NSObject<OS_dispatch_queue> *_queue;
     NSObject<OS_xpc_object> *_connection;
 }
 
-@property(retain) NSObject<OS_xpc_object> *connection; // @synthesize connection=_connection;
+@property(retain, nonatomic) NSObject<OS_xpc_object> *connection; // @synthesize connection=_connection;
 @property(readonly) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 - (void).cxx_destruct;
 - (void)setTestLatencyMap:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)fetchStateForClient:(id)arg1 withPeerEndpoint:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)setCurrentLatitude:(double)arg1 longitude:(double)arg2 timestamp:(id)arg3 forClient:(id)arg4;
-- (void)addConnectionMetrics:(id)arg1;
-- (void)addRequestMetrics:(id)arg1;
-- (void)updateKeyBagData:(id)arg1 usageData:(id)arg2 fromClient:(id)arg3;
+- (void)reportUsage:(id)arg1 fromClient:(id)arg2;
 - (void)refreshWaldoNowWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)reportMetricsNowWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)resetCurrentMetricsWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)fetchCurrentMetricsWithCompletionHandler:(BOOL)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)establishTrustWithEdgeSetForIdentifier:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)setAppRule:(id)arg1 forLabel:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)fetchAppRuleForLabel:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;

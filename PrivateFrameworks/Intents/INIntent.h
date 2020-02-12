@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-#import "INFileEnumerable.h"
+#import "INEnumerable.h"
 #import "INGenericIntent.h"
 #import "INImageProxyInjecting.h"
 #import "INIntentExport.h"
@@ -18,7 +18,7 @@
 
 @class INImage, INIntentCodableDescription, INIntentKeyParameter, INParameterContexts, NSArray, NSDictionary, NSMutableDictionary, NSNumber, NSOrderedSet, NSString, NSUUID, PBCodable, _INPBIntentMetadata;
 
-@interface INIntent : NSObject <INImageProxyInjecting, INIntentSlotComposing, INKeyImageProducing, INFileEnumerable, INIntentExport, INGenericIntent, INRuntimeObject, NSCopying, NSSecureCoding>
+@interface INIntent : NSObject <INImageProxyInjecting, INIntentSlotComposing, INKeyImageProducing, INEnumerable, INIntentExport, INGenericIntent, INRuntimeObject, NSCopying, NSSecureCoding>
 {
     NSMutableDictionary *_intentInstanceDescriptionMapping;
     NSArray *_parameterImages;
@@ -169,13 +169,11 @@
 - (id)_intents_bundleIdForLaunching;
 - (id)_intents_bestBundleIdentifier;
 - (id)_intents_launchIdForCurrentPlatform;
-- (void)_enumerateFileURLsWithMutatingBlock:(CDUnknownBlockType)arg1;
 - (long long)_compareSubProducerOne:(id)arg1 subProducerTwo:(id)arg2;
 @property(readonly) INImage *_keyImage;
 - (id)_keyImageWithIntentDescriptionStrategy;
-- (void)_enumerateWithValueProcessingBlock:(CDUnknownBlockType)arg1 mutate:(BOOL)arg2;
-- (void)_intents_enumerateFileURLsWithBlock:(CDUnknownBlockType)arg1 mutate:(BOOL)arg2;
-- (void)_intents_enumerateFilesWithBlock:(CDUnknownBlockType)arg1 mutate:(BOOL)arg2;
+- (BOOL)_enumerateWithValueProcessingBlock:(CDUnknownBlockType)arg1;
+- (BOOL)_intents_enumerateObjectsOfClass:(Class)arg1 withBlock:(CDUnknownBlockType)arg2;
 
 // Remaining properties
 @property(readonly) Class superclass;

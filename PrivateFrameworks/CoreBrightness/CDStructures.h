@@ -229,14 +229,3 @@ typedef struct {
     float factor;
 } CDStruct_46614362;
 
-// Ambiguous groups
-typedef struct {
-    float _field1;
-    float _field2;
-} CDStruct_b2fbf00d;
-
-typedef struct {
-    float lux;
-    float factor;
-} CDStruct_46614362;
-

@@ -14,6 +14,7 @@
 
 @interface MFUnreadCountQueryProcessor : NSObject <EFLoggable, MFSearchableIndexQueryResultProcessor, MFMessageConsumer>
 {
+    struct os_unfair_lock_s _logPrefixStringLock;
     BOOL _useTotalCount;
     BOOL _cancelled;
     id <MFSearchableIndexQueryResultProcessorDelegate> _delegate;

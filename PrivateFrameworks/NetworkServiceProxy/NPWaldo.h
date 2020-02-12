@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NPLocation, NPTuscanyEdge, NPWaldoLocationManager, NSArray, NSData, NSDate, NSDictionary, NSMutableDictionary, NSNumber, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSPNetworkAgent, NSString, NSURL, NSUUID, NWNetworkAgentRegistration;
+@class NPKeyBag, NPLocation, NPTuscanyEdge, NPWaldoLocationManager, NSArray, NSData, NSDate, NSDictionary, NSMutableDictionary, NSNumber, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSPNetworkAgent, NSString, NSURL, NSUUID, NWNetworkAgentRegistration;
 
 @interface NPWaldo : NSObject <NSSecureCoding, NSCopying>
 {
@@ -74,6 +74,7 @@
     NSDate *_locationExpiration;
     NPWaldo *_defaults;
     NSPNetworkAgent *_agent;
+    NPKeyBag *_keybag;
     NPWaldoLocationManager *_locationManager;
     NSMutableDictionary *_networkInformation;
     NSArray *_currentEdges;
@@ -100,6 +101,7 @@
 @property(retain) NSMutableDictionary *networkInformation; // @synthesize networkInformation=_networkInformation;
 @property BOOL reprocessPending; // @synthesize reprocessPending=_reprocessPending;
 @property(retain) NPWaldoLocationManager *locationManager; // @synthesize locationManager=_locationManager;
+@property(retain) NPKeyBag *keybag; // @synthesize keybag=_keybag;
 @property(retain) NSPNetworkAgent *agent; // @synthesize agent=_agent;
 @property(retain) NPWaldo *defaults; // @synthesize defaults=_defaults;
 @property(retain) NSDate *locationExpiration; // @synthesize locationExpiration=_locationExpiration;
@@ -155,6 +157,7 @@
 @property(readonly) long long source; // @synthesize source=_source;
 @property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
+- (void)incrementSessionCounters;
 - (void)cleanupStaleKeys;
 @property(readonly) CDUnknownBlockType latencyComparator;
 - (id)onRampForIndex:(id)arg1;
@@ -184,7 +187,7 @@
 - (void)logEdgeList:(id)arg1 debug:(BOOL)arg2 toStdout:(BOOL)arg3;
 - (void)startProbingEdges:(id)arg1 atIndex:(unsigned long long)arg2 doneCount:(unsigned long long)arg3 sampleCount:(unsigned long long)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (BOOL)reprocessWithNewRTT:(unsigned long long)arg1 reProbe:(char *)arg2;
-- (unsigned int)getFailureReasonForLatencies:(id)arg1;
+- (long long)getFallbackReasonForLatencies:(id)arg1;
 - (void)reprocessLatencies:(id)arg1 sampleCount:(unsigned long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)createEdgeLatenciesToProbeWithEdgeIndex:(unsigned long long)arg1 startSampleCount:(unsigned long long *)arg2;
 - (BOOL)isEndpointProbed:(id)arg1 parameters:(struct networkParameters *)arg2 latencies:(id)arg3 checkSampleSize:(BOOL)arg4 incompleteLatency:(id *)arg5;
@@ -203,19 +206,20 @@
 @property(readonly) long long dayPassFetchCount;
 - (long long)indexOfBestEdge;
 - (void)updateMetaDataNeedProbe:(BOOL)arg1 refresh:(BOOL)arg2 push:(BOOL)arg3 minRTT:(unsigned long long)arg4;
-- (void)handleKeyUsageUpdate:(id)arg1 appData:(id)arg2;
+- (void)handleUsageReport:(id)arg1;
 - (BOOL)isLatenciesCompleteForNetwork:(id)arg1;
-- (void)updateWithAppData:(id)arg1;
 - (void)ageOutLatencyMap;
 - (void)removeDayPassesFromKernel;
-- (BOOL)pushCurrentDayPassesToKernelUpdateGeneration:(BOOL)arg1;
+- (void)pushKeybagToKernelCanReuse:(BOOL)arg1;
+- (void)pushKeybagToKernel;
+- (void)pushKeybagToKernelUpdateGeneration:(BOOL)arg1;
 - (void)establishTrustWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)removeFromKeychain;
 - (void)saveToKeychain;
 - (id)initFromKeychainWithIdentifier:(id)arg1;
 - (id)description;
 - (void)teardownNetworkAgent;
-- (BOOL)updateNetworkAgentWithKeybagData:(id)arg1;
+- (void)updateNetworkAgentWithKeybag:(id)arg1 networkInfo:(id)arg2;
 @property(retain) NSArray *allOnRamps;
 @property(copy) NSArray *edges;
 - (void)merge:(id)arg1 missingSettingsOnly:(BOOL)arg2;

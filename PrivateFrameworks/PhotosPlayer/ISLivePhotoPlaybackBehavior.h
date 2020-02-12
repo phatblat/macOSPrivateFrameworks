@@ -6,6 +6,7 @@
 
 #import <PhotosPlayer/ISBehavior.h>
 
+__attribute__((visibility("hidden")))
 @interface ISLivePhotoPlaybackBehavior : ISBehavior
 {
     struct {
@@ -13,6 +14,8 @@
         char respondsToDidBeginPlaying;
     } _delegateFlags;
     BOOL _immediatelyShowsPhotoWhenPlaybackEnds;
+    BOOL _hasBlurryTransition;
+    BOOL _isTransitioningToPhoto;
     BOOL __videoReadyToPlay;
     BOOL __preparing;
     double _photoTransitionDuration;
@@ -26,6 +29,8 @@
 @property(nonatomic, getter=_isVideoReadyToPlay, setter=_setVideoReadyToPlay:) BOOL _videoReadyToPlay; // @synthesize _videoReadyToPlay=__videoReadyToPlay;
 @property(nonatomic, setter=_setReadyToPlayPlaybackID:) long long _readyToPlayPlaybackID; // @synthesize _readyToPlayPlaybackID=__readyToPlayPlaybackID;
 @property(nonatomic, setter=_setCurrentPlaybackID:) long long _currentPlaybackID; // @synthesize _currentPlaybackID=__currentPlaybackID;
+@property(readonly, nonatomic) BOOL isTransitioningToPhoto; // @synthesize isTransitioningToPhoto=_isTransitioningToPhoto;
+@property(readonly, nonatomic) BOOL hasBlurryTransition; // @synthesize hasBlurryTransition=_hasBlurryTransition;
 @property(readonly, nonatomic) BOOL immediatelyShowsPhotoWhenPlaybackEnds; // @synthesize immediatelyShowsPhotoWhenPlaybackEnds=_immediatelyShowsPhotoWhenPlaybackEnds;
 @property(readonly, nonatomic) double photoTransitionDuration; // @synthesize photoTransitionDuration=_photoTransitionDuration;
 @property(readonly, nonatomic) CDStruct_e83c9415 playbackTimeRange; // @synthesize playbackTimeRange=_playbackTimeRange;
@@ -41,10 +46,11 @@
 - (void)startPlayback;
 - (void)activeDidChange;
 - (void)videoDidPlayToEnd;
+- (void)_handleDidFinish;
 - (void)videoWillPlayToEnd;
 - (long long)behaviorType;
 @property(nonatomic) __weak id <ISLivePhotoPlaybackBehaviorDelegate> delegate; // @dynamic delegate;
-- (id)initWithInitialLayoutInfo:(id)arg1 keyTime:(CDStruct_1b6d18a9)arg2 playbackTimeRange:(CDStruct_e83c9415)arg3 photoTransitionDuration:(double)arg4 immediatelyShowsPhotoWhenPlaybackEnds:(BOOL)arg5;
+- (id)initWithInitialLayoutInfo:(id)arg1 keyTime:(CDStruct_1b6d18a9)arg2 playbackTimeRange:(CDStruct_e83c9415)arg3 photoTransitionDuration:(double)arg4 immediatelyShowsPhotoWhenPlaybackEnds:(BOOL)arg5 hasBlurryTransition:(BOOL)arg6;
 
 @end
 

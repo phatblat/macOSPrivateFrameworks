@@ -6,12 +6,9 @@
 
 #import "PBCodable.h"
 
-#import "NSSecureCoding.h"
-#import "SISchemaViewContainer.h"
-
 @class NSData, NSString;
 
-@interface SISchemaViewContainer : PBCodable <SISchemaViewContainer, NSSecureCoding>
+@interface SISchemaViewContainer : PBCodable
 {
     NSString *_viewID;
     NSString *_snippetClass;
@@ -28,15 +25,10 @@
 - (id)initWithJSON:(id)arg1;
 @property(readonly, nonatomic) NSData *jsonData;
 - (id)dictionaryRepresentation;
-@property(readonly) unsigned long long hash;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) Class superclass;
 
 @end
 

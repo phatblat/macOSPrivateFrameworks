@@ -153,13 +153,6 @@
 + (struct AudioStreamBasicDescription)opusASBD;
 + (struct AudioStreamBasicDescription)lpcmInt16NarrowBandASBD;
 + (struct AudioStreamBasicDescription)lpcmInt16ASBD;
-+ (unsigned long long)macHostTimeFromBridgeHostTime:(unsigned long long)arg1;
-+ (unsigned long long)sampleCountFromHostTime:(unsigned long long)arg1 anchorHostTime:(unsigned long long)arg2 anchorSampleCount:(unsigned long long)arg3;
-+ (unsigned long long)hostTimeFromSampleCount:(unsigned long long)arg1 anchorHostTime:(unsigned long long)arg2 anchorSampleCount:(unsigned long long)arg3;
-+ (double)getHostClockFrequency;
-+ (double)hostTimeToTimeInterval:(unsigned long long)arg1;
-+ (float)hostTimeToSeconds:(unsigned long long)arg1;
-+ (unsigned long long)secondsToHostTime:(float)arg1;
 + (BOOL)readAudioChunksFrom:(id)arg1 block:(CDUnknownBlockType)arg2;
 + (void)iterateBitset:(unsigned long long)arg1 block:(CDUnknownBlockType)arg2;
 + (unsigned int)getNumElementInBitset:(unsigned long long)arg1;

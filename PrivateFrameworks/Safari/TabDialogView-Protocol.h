@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 @protocol TabDialogView <NSObject>
+- (void)updateWithNewConfiguration:(id <TabDialogConfiguration>)arg1;
 - (void)fadeOutWithCompletionHandler:(void (^)(void))arg1;
 - (void)fadeInWithCompletionHandler:(void (^)(void))arg1;
 @end

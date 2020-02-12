@@ -21,7 +21,6 @@
     BOOL _didReceivePush;
     BOOL _didAddSyncedEvents;
     BOOL _didDeleteSyncedEvents;
-    BOOL _didSetMediumUrgency;
     unsigned long long _urgency;
     double _periodicSyncInterval;
     NSObject<OS_xpc_object> *_xpcActivity;

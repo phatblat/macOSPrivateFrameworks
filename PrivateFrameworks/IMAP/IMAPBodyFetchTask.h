@@ -6,6 +6,7 @@
 
 #import <IMAP/IMAPTask.h>
 
+#import "EFSignpostable.h"
 #import "IMAPGetAttachmentsDownloadsOperationDelegate.h"
 #import "IMAPGetMessagesOperationDelegate.h"
 #import "IMAPPersistBodiesOperationDelegate.h"
@@ -14,7 +15,7 @@
 
 @class IMAPDownloadCache, IMAPSyncBodiesOperation, NSMutableArray, NSMutableDictionary, NSMutableIndexSet, NSMutableOrderedSet, NSMutableSet, NSString;
 
-@interface IMAPBodyFetchTask : IMAPTask <IMAPGetMessagesOperationDelegate, IMAPSyncBodiesOperationDelegate, IMAPPersistBodiesOperationDelegate, IMAPGetAttachmentsDownloadsOperationDelegate, IMAPSyncAttachmentsOperationDelegate>
+@interface IMAPBodyFetchTask : IMAPTask <EFSignpostable, IMAPGetMessagesOperationDelegate, IMAPSyncBodiesOperationDelegate, IMAPPersistBodiesOperationDelegate, IMAPGetAttachmentsDownloadsOperationDelegate, IMAPSyncAttachmentsOperationDelegate>
 {
     NSMutableIndexSet *_mandatoryUIDsToFetch;
     NSMutableIndexSet *_discretionaryUIDsToFetch;
@@ -54,7 +55,6 @@
 @property(nonatomic) unsigned int uidNext; // @synthesize uidNext=_uidNext;
 @property(readonly, nonatomic) id <IMAPMessageDataSource> dataSource; // @synthesize dataSource=_dataSource;
 - (void).cxx_destruct;
-@property(readonly) unsigned long long signpostID;
 - (void)syncAttachmentsOperation:(id)arg1 syncedAttachmentsForDownloads:(id)arg2;
 - (void)getAttachmentsDownloadsOperation:(id)arg1 gotDownloads:(id)arg2 missedMessages:(id)arg3;
 - (void)persistBodiesOperation:(id)arg1 persistedDownloads:(id)arg2;
@@ -82,6 +82,7 @@
 - (id)mailboxNameWithoutPII;
 - (id)initWithMailboxName:(id)arg1;
 - (id)initWithDataSource:(id)arg1;
+@property(readonly) unsigned long long signpostID;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

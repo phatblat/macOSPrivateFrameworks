@@ -12,7 +12,10 @@
 
 @interface PHAWorkerJob : NSObject <NSCopying>
 {
+    BOOL _didTimeout;
     BOOL _disableReactionCheck;
+    BOOL _producedAssetMetadataChanges;
+    BOOL _isGraphUpdateJob;
     BOOL _ignoreFurtherResults;
     BOOL _treatMissingResultsAsFailures;
     BOOL _isReactionJob;
@@ -31,7 +34,10 @@
 @property(nonatomic) unsigned long long countOfFailedStarts; // @synthesize countOfFailedStarts=_countOfFailedStarts;
 @property(retain, nonatomic) PHPhotoLibrary *photoLibrary; // @synthesize photoLibrary=_photoLibrary;
 @property(nonatomic) BOOL ignoreFurtherResults; // @synthesize ignoreFurtherResults=_ignoreFurtherResults;
+@property BOOL isGraphUpdateJob; // @synthesize isGraphUpdateJob=_isGraphUpdateJob;
+@property BOOL producedAssetMetadataChanges; // @synthesize producedAssetMetadataChanges=_producedAssetMetadataChanges;
 @property(nonatomic) BOOL disableReactionCheck; // @synthesize disableReactionCheck=_disableReactionCheck;
+@property(nonatomic) BOOL didTimeout; // @synthesize didTimeout=_didTimeout;
 @property(readonly, nonatomic) short workerType; // @synthesize workerType=_workerType;
 @property(readonly, nonatomic) unsigned long long scenario; // @synthesize scenario=_scenario;
 - (void).cxx_destruct;
@@ -43,6 +49,7 @@
 - (void)finish;
 - (void)prepare;
 @property(readonly) double intervalSinceLastReport; // @dynamic intervalSinceLastReport;
+- (void)extendTimeoutOrUpdateStopIfNeeded:(char *)arg1;
 - (void)extendTimeout;
 - (void)stopAcceptingResults;
 - (BOOL)isEqualToWorkerJob:(id)arg1;

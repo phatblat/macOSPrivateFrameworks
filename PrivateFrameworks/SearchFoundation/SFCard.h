@@ -73,6 +73,8 @@
 - (BOOL)hasType;
 - (void)loadCardSectionsWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)loadCardSectionsWithCompletionAndErrorHandler:(CDUnknownBlockType)arg1;
+- (BOOL)isEqual:(id)arg1;
+- (void)recursiveSetQueryId:(unsigned long long)arg1;
 - (id)initWithProtobuf:(id)arg1;
 
 // Remaining properties

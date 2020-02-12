@@ -10,7 +10,7 @@
 #import "NSSecureCoding.h"
 #import "SFButtonCardSection.h"
 
-@class NSArray, NSData, NSDictionary, NSString, SFCard, SFColor, SFRichText;
+@class NSArray, NSData, NSDictionary, NSString, SFCard, SFColor, SFImage, SFRichText, SFUserReportRequest;
 
 @interface SFButtonCardSection : SFCardSection <SFButtonCardSection, NSSecureCoding, NSCopying>
 {
@@ -25,9 +25,11 @@
     NSString *_type;
     SFColor *_backgroundColor;
     SFRichText *_title;
+    SFImage *_thumbnail;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(retain, nonatomic) SFImage *thumbnail; // @synthesize thumbnail=_thumbnail;
 @property(retain, nonatomic) SFRichText *title; // @synthesize title=_title;
 @property(retain, nonatomic) SFColor *backgroundColor;
 @property(nonatomic) int separatorStyle;
@@ -61,6 +63,7 @@
 @property(copy, nonatomic) NSArray *parameterKeyPaths;
 @property(copy, nonatomic) NSString *resultIdentifier;
 @property(readonly) Class superclass;
+@property(retain, nonatomic) SFUserReportRequest *userReportRequest;
 
 @end
 

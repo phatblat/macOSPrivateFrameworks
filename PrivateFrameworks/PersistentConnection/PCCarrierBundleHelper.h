@@ -9,7 +9,7 @@
 #import "CoreTelephonyClientCarrierBundleDelegate.h"
 #import "CoreTelephonyClientDataDelegate.h"
 
-@class CTBundle, CTXPCServiceSubscriptionContext, CoreTelephonyClient, NSHashTable, NSObject<OS_dispatch_queue>, NSString;
+@class CTBundle, CTXPCServiceSubscriptionContext, CoreTelephonyClient, NSDictionary, NSHashTable, NSObject<OS_dispatch_queue>, NSString;
 
 @interface PCCarrierBundleHelper : NSObject <CoreTelephonyClientDataDelegate, CoreTelephonyClientCarrierBundleDelegate>
 {
@@ -18,9 +18,11 @@
     CTXPCServiceSubscriptionContext *_currentDataContext;
     NSHashTable *_delegates;
     CTBundle *_bundle;
+    NSDictionary *_cachedPushSettings;
 }
 
 + (id)helper;
+@property(copy, nonatomic) NSDictionary *cachedPushSettings; // @synthesize cachedPushSettings=_cachedPushSettings;
 - (void).cxx_destruct;
 - (void)currentDataSimChanged:(id)arg1;
 - (void)operatorBundleChange:(id)arg1;

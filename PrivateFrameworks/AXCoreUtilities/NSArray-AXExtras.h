@@ -9,6 +9,7 @@
 @interface NSArray (AXExtras)
 - (id)ax_flatMappedArrayUsingBlock:(CDUnknownBlockType)arg1;
 - (id)ax_mappedArrayUsingBlock:(CDUnknownBlockType)arg1;
+- (BOOL)ax_containsObjectUsingBlock:(CDUnknownBlockType)arg1;
 - (id)ax_filteredArrayUsingBlock:(CDUnknownBlockType)arg1;
 @end
 

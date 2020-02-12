@@ -6,33 +6,19 @@
 
 #import "NSObject.h"
 
-#import "CSSpIdProcessorDelegate.h"
 #import "CSSpIdSpeakerRecognizer.h"
 
-@class CSSpIdContext, CSSpIdProcessor, NSDictionary, NSObject<OS_dispatch_queue>, NSString;
+@class NSDictionary, NSString;
 
-@interface CSSpIdTIOnlySpeakerRecognizer : NSObject <CSSpIdProcessorDelegate, CSSpIdSpeakerRecognizer>
+@interface CSSpIdTIOnlySpeakerRecognizer : NSObject <CSSpIdSpeakerRecognizer>
 {
-    BOOL _processingEnded;
-    CSSpIdContext *_spIdCtx;
-    NSString *_invocationStyle;
-    id <CSSpIdSpeakerRecognizerDelegate> _delegate;
-    CSSpIdProcessor *_tiSpIdProcessor;
-    unsigned long long _tiEndInSampleCount;
-    unsigned long long _numTISamplesProcessed;
-    unsigned long long _myriadResult;
-    NSDictionary *_lastSpeakerIdInfo;
-    id <CSAudioFileWriter> _dbgTiUttLogger;
-    NSObject<OS_dispatch_queue> *_queue;
 }
 
 - (void)setCVTTriggerPhraseDetected;
 - (void)processMyriadDecision:(unsigned long long)arg1;
-- (void)_endAudioProcessing;
+@property(readonly, nonatomic) NSDictionary *lastSpeakerIdInfo;
 - (void)recordingStoppedForReason:(long long)arg1;
-- (void)_processAudioData:(id)arg1 numSamples:(unsigned long long)arg2;
 - (void)processAudioChunk:(id)arg1;
-- (void)dealloc;
 - (id)initWithContext:(id)arg1 delegate:(id)arg2;
 
 // Remaining properties

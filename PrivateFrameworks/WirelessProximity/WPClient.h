@@ -10,7 +10,7 @@
 #import "WPXPCClientProtocol.h"
 #import "WPXPCDaemonProtocol.h"
 
-@class NSLock, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString, NSXPCConnection, NSXPCListener;
+@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString, NSXPCConnection, NSXPCListener;
 
 @interface WPClient : NSObject <NSXPCListenerDelegate, WPXPCClientProtocol, WPXPCDaemonProtocol>
 {
@@ -30,7 +30,6 @@
     NSObject<OS_dispatch_semaphore> *_daemonRegisteredSemaphore;
     NSString *_machName;
     NSXPCConnection *_xpcConnection;
-    NSLock *_connectionLock;
     NSXPCListener *_xpcListener;
 }
 
@@ -43,31 +42,31 @@
 @property BOOL registering; // @synthesize registering=_registering;
 @property BOOL needsToRegister; // @synthesize needsToRegister=_needsToRegister;
 @property BOOL peerTrackingSlotsAvailable; // @synthesize peerTrackingSlotsAvailable=_peerTrackingSlotsAvailable;
-@property(retain, nonatomic) NSLock *connectionLock; // @synthesize connectionLock=_connectionLock;
 @property(retain, nonatomic) NSXPCConnection *xpcConnection; // @synthesize xpcConnection=_xpcConnection;
 @property(retain, nonatomic) NSString *machName; // @synthesize machName=_machName;
 @property(retain, nonatomic) NSObject<OS_dispatch_semaphore> *daemonRegisteredSemaphore; // @synthesize daemonRegisteredSemaphore=_daemonRegisteredSemaphore;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *daemonDeliveryQueue; // @synthesize daemonDeliveryQueue=_daemonDeliveryQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *clientQueue; // @synthesize clientQueue=_clientQueue;
-@property(readonly) BOOL isBubbleTestClient; // @synthesize isBubbleTestClient=_isBubbleTestClient;
-@property(readonly) BOOL isTestClient; // @synthesize isTestClient=_isTestClient;
+@property BOOL isBubbleTestClient; // @synthesize isBubbleTestClient=_isBubbleTestClient;
+@property BOOL isTestClient; // @synthesize isTestClient=_isTestClient;
 @property unsigned char type; // @synthesize type=_type;
-@property long long pipeState; // @synthesize pipeState=_pipeState;
+@property(readonly) long long pipeState; // @synthesize pipeState=_pipeState;
 @property long long scannerState; // @synthesize scannerState=_scannerState;
 @property long long advertiserState; // @synthesize advertiserState=_advertiserState;
 @property long long state; // @synthesize state=_state;
 - (void).cxx_destruct;
+- (void)sendTestRequest:(id)arg1;
 - (void)disableScanning;
 - (void)dumpDaemonState;
 - (void)getPowerLogStats:(CDUnknownBlockType)arg1;
 - (void)enableBubbleTestMode;
 - (void)enableTestMode;
 - (void)checkAllowDuplicates:(CDUnknownBlockType)arg1;
-- (void)pipeStateDidChange:(long long)arg1;
-- (void)scannerStateDidChange:(long long)arg1;
-- (void)advertiserStateDidChange:(long long)arg1;
+- (void)receivedTestResponse:(id)arg1;
 - (void)stateDidChange:(long long)arg1;
 - (void)listenToBandwidthNotifications;
+- (void)isRangingEnabledReply:(CDUnknownBlockType)arg1;
+- (void)enableRanging:(BOOL)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)getAllTrackedZones;
 - (void)stopTrackingAllZones;
 - (void)stopTrackingZones:(id)arg1;
@@ -75,7 +74,6 @@
 - (void)sendDataToCharacteristic:(id)arg1 inService:(id)arg2 forPeer:(id)arg3;
 - (void)shouldSubscribe:(BOOL)arg1 toPeer:(id)arg2 withCharacteristic:(id)arg3 inService:(id)arg4;
 - (void)discoverCharacteristicsAndServices:(id)arg1 forPeripheral:(id)arg2;
-- (void)disconnectFromLEPipePeer:(id)arg1;
 - (void)disconnectFromPeer:(id)arg1;
 - (void)connectToPeer:(id)arg1 withOptions:(id)arg2;
 - (void)connectToPeer:(id)arg1;
@@ -85,7 +83,7 @@
 - (void)startTrackingPeerWithRequest:(id)arg1;
 - (void)sendDatatoLePipe:(id)arg1 forPeer:(id)arg2;
 - (void)unregisterEndpoint:(id)arg1;
-- (void)registerEndpoint:(id)arg1;
+- (void)registerEndpoint:(id)arg1 requireAck:(BOOL)arg2 requireEncryption:(BOOL)arg3;
 - (void)startScanning:(id)arg1 andAdvertising:(id)arg2;
 - (void)updateScanningRequest:(id)arg1 withUpdate:(CDUnknownBlockType)arg2;
 - (void)stopScanning:(id)arg1;

@@ -12,6 +12,11 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct _NSRange {
+    unsigned long long _field1;
+    unsigned long long _field2;
+};
+
 struct _PASDeviceStateSystemCallbacks {
     CDUnknownFunctionPointerType _field1;
     CDUnknownFunctionPointerType _field2;
@@ -20,11 +25,42 @@ struct _PASDeviceStateSystemCallbacks {
     CDUnknownFunctionPointerType _field5;
     CDUnknownFunctionPointerType _field6;
     CDUnknownFunctionPointerType _field7;
-    CDUnknownFunctionPointerType _field8;
+};
+
+struct _PASLPHeader {
+    char _field1[3];
+    unsigned char _field2;
+    unsigned int _field3;
+    unsigned int _field4;
+    unsigned int _field5;
+};
+
+struct _PASLPObjectGraphStats {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    unsigned long long _field4;
+    unsigned long long _field5;
+    unsigned long long _field6;
+    unsigned long long _field7;
+    unsigned long long _field8;
+    unsigned long long _field9;
+    unsigned long long _field10;
+    unsigned long long _field11;
+    unsigned long long _field12;
+    unsigned long long _field13;
+    unsigned long long _field14;
+    unsigned long long _field15;
+    unsigned long long _field16;
 };
 
 struct _PASTuple2 {
     Class _field1;
+};
+
+struct __sbuf {
+    char *_field1;
+    int _field2;
 };
 
 struct _malloc_zone_t {
@@ -55,7 +91,36 @@ struct _opaque_pthread_mutex_t {
 
 struct malloc_introspection_t;
 
+struct vector<float, std::__1::allocator<float>> {
+    float *_field1;
+    float *_field2;
+    struct __compressed_pair<float *, std::__1::allocator<float>> {
+        float *_field1;
+    } _field3;
+};
+
 #pragma mark Typedef'd Structures
+
+typedef struct {
+    unsigned int _field1;
+    unsigned int _field2;
+} CDStruct_c0454aff;
+
+typedef struct {
+    unsigned long long _field1;
+    id *_field2;
+    unsigned long long *_field3;
+    unsigned long long _field4[5];
+} CDStruct_70511ce9;
+
+typedef struct {
+    unsigned int _field1[8];
+} CDStruct_6ad76789;
+
+typedef struct {
+    void *mmapBase;
+    unsigned long long mmapSize;
+} CDStruct_601793be;
 
 typedef struct {
     unsigned int :1;
@@ -65,4 +130,12 @@ typedef struct {
     unsigned int :1;
     unsigned int :1;
 } CDStruct_d3566df9;
+
+typedef struct {
+    void *_field1;
+    void *_field2;
+    struct __CFSet *_field3;
+    void *_field4;
+    struct _PASLPObjectGraphStats *_field5;
+} CDStruct_4a2af2ac;
 

@@ -6,10 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSDictionary, NSString;
 
 @protocol _CDUserContextServerMonitoring <NSObject>
 - (void)handleRegistrationCompleted:(NSString *)arg1 handler:(void (^)(BOOL))arg2;
-- (void)handleContextualChange:(NSString *)arg1 handler:(void (^)(BOOL))arg2;
+- (void)handleContextualChange:(NSString *)arg1 info:(NSDictionary *)arg2 handler:(void (^)(BOOL))arg3;
 @end
 

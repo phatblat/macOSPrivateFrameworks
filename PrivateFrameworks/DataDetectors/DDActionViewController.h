@@ -8,7 +8,7 @@
 
 #import "NSRemoteViewDelegate.h"
 
-@class DDActionContext, DDButtonBar, DDDataDetectorsViewHost, NSMapTable, NSRemoteView, NSURL;
+@class DDActionContext, DDButtonBar, DDDataDetectorsViewHost, NSMapTable, NSProgressIndicator, NSRemoteView, NSURL;
 
 @interface DDActionViewController : NSViewController <NSRemoteViewDelegate>
 {
@@ -24,16 +24,17 @@
     NSMapTable *_localBridge;
     DDActionContext *_actionContext;
     DDButtonBar *_buttonBar;
-    BOOL _editedContent;
-    BOOL _editionMode;
     id <DDActionViewPresenter> _presenter;
+    BOOL _editionMode;
+    BOOL _editedContent;
+    NSProgressIndicator *_spinner;
 }
 
 + (unsigned long long)typeForUrl:(id)arg1;
 + (unsigned long long)typeForResult:(struct __DDResult *)arg1;
-@property BOOL editionMode; // @synthesize editionMode=_editionMode;
 @property BOOL editedContent; // @synthesize editedContent=_editedContent;
 @property __weak id <DDActionViewPresenter> presenter; // @synthesize presenter=_presenter;
+@property BOOL editionMode; // @synthesize editionMode=_editionMode;
 @property(retain) NSRemoteView *remoteView; // @synthesize remoteView=_remoteView;
 - (void).cxx_destruct;
 - (BOOL)viewShouldDragOldestAncestorWindow:(id)arg1;
@@ -61,7 +62,7 @@
 - (id)initWithType:(unsigned long long)arg1 url:(id)arg2 context:(id)arg3;
 - (id)initWithType:(unsigned long long)arg1 result:(struct __DDResult *)arg2 context:(id)arg3;
 - (void)cleanAndSetContext:(id)arg1;
-- (struct CGSize)defaultSize;
+- (struct CGSize)preferredContentSize;
 @property BOOL local;
 
 // Remaining properties

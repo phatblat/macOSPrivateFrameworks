@@ -20,10 +20,14 @@
     NSObject<OS_os_activity> *_retrievalActivity;
     NSObject<OS_os_activity> *_generationActivity;
     QLThumbnailAddition *_addition;
-    struct __QLThumbnail *_thumbnailRequest;
+    id <QLThumbnailGenerationRequest><NSXPCProxyCreating> _thumbnailRequest;
+    NSURL *_destinationURL;
 }
 
 + (BOOL)canMostRecentClientsGenerateThumbnailsForUTI:(id)arg1;
+@property(retain) NSURL *destinationURL; // @synthesize destinationURL=_destinationURL;
+@property(retain) NSURL *documentURL; // @synthesize documentURL=_documentURL;
+@property(retain) id <QLThumbnailGenerationRequest><NSXPCProxyCreating> thumbnailRequest; // @synthesize thumbnailRequest=_thumbnailRequest;
 @property(readonly) QLThumbnailAddition *addition; // @synthesize addition=_addition;
 @property(readonly) BOOL thumbnailWasJustAutomaticallyGenerated; // @synthesize thumbnailWasJustAutomaticallyGenerated=_thumbnailWasJustAutomaticallyGenerated;
 @property BOOL generateThumbnailsAtBackgroundPriority; // @synthesize generateThumbnailsAtBackgroundPriority=_generateThumbnailsAtBackgroundPriority;
@@ -40,10 +44,11 @@
 - (void)afterThumbnailIsPutInGenstore;
 - (void)_afterThumbnailIsGenerated;
 - (void)main;
+- (void)_afterDeterminingWhetherWeCanGenerate:(BOOL)arg1;
 - (void)_generateThumbnail;
 - (void)start;
 - (void)_finishBecauseGenerationFailedWithUnderlyingError:(id)arg1;
-- (BOOL)_finishIfCancelled;
+- (BOOL)_finishIfNeeded;
 - (void)cancel;
 - (id)description;
 - (id)initWithDocumentAtURL:(id)arg1;

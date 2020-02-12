@@ -16,6 +16,7 @@
 - (void)faceClusteringInformation:(unsigned long long)arg1 withContext:(NSDictionary *)arg2 reply:(void (^)(NSDictionary *, NSError *))arg3;
 - (void)processPersonsWithContext:(NSDictionary *)arg1 reply:(void (^)(BOOL, NSError *))arg2;
 - (void)reclusterFacesWithContext:(NSDictionary *)arg1 reply:(void (^)(BOOL, NSError *))arg2;
+- (void)resetFaceClassificationModelWithContext:(NSDictionary *)arg1 reply:(void (^)(BOOL, NSError *))arg2;
 - (void)resetPeopleWithContext:(NSDictionary *)arg1 reply:(void (^)(BOOL, NSError *))arg2;
 - (void)resetFaceClusteringStateWithContext:(NSDictionary *)arg1 reply:(void (^)(BOOL, NSError *))arg2;
 - (void)updateKeyFacesOfPersonsWithLocalIdentifiers:(NSArray *)arg1 forceUpdate:(BOOL)arg2 context:(NSDictionary *)arg3 reply:(void (^)(BOOL, NSError *))arg4;

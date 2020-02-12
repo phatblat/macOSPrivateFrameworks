@@ -109,7 +109,7 @@
 - (void)setNextActivityDate:(id)arg1 forPersonID:(id)arg2;
 - (void)pollForSubscriptionUpdatesTriggeredByPushNotificationForPersonID:(id)arg1;
 - (id)personIDsListeningToPushNotification;
-- (void)deleteAlbumWithGUID:(id)arg1;
+- (void)deleteAlbumWithGUID:(id)arg1 inviterAddress:(id)arg2;
 - (void)addAlbum:(id)arg1;
 - (void)cancelActivitiesForPersonID:(id)arg1;
 - (void)stopAssetDownloadsForPersonID:(id)arg1;
@@ -134,7 +134,6 @@
 - (void)mapQueueShutDownStateMachineInMap:(id)arg1 personIDs:(id)arg2 index:(unsigned long long)arg3 forDestruction:(BOOL)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (void)shutDown;
 - (void)start;
-- (void)dealloc;
 - (id)init;
 
 @end

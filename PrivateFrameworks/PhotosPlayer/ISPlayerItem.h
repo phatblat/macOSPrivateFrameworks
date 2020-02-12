@@ -20,8 +20,7 @@
     BOOL _ivarQueue_aggressivelyCacheVideoFrames;
     BOOL _ivarQueue_reversesMoreVideoFramesInMemory;
     BOOL _ivarQueue_decodesAllFramesDuringOrdinaryPlayback;
-    CDStruct_1b6d18a9 _ivarQueue_prePhotoTime;
-    CDStruct_1b6d18a9 _ivarQueue_postPhotoTime;
+    BOOL _ivarQueue_contentSupportsVitality;
     CDStruct_1b6d18a9 _ivarQueue_playerItemPhotoTime;
     CDStruct_1b6d18a9 _ivarQueue_playerItemDuration;
     ISPlayerContent *_ivarQueue_playerContent;
@@ -36,6 +35,7 @@
         char content;
         char minimumClientVersion;
         char playbackStyleIdentifier;
+        char contentSupportsVitality;
     } _ivarQueue_isValid;
     AVAssetImageGenerator *_workQueue_imageGenerator;
     BOOL _workQueue_isGeneratingOffsetImage;
@@ -65,11 +65,15 @@
 - (BOOL)_isPlayerContentValid;
 - (void)_invalidatePlayerContent;
 - (id)_videoPlayerItem;
-- (void)_setVideoPlayerItem:(id)arg1 prePhotoTime:(CDStruct_1b6d18a9)arg2 postPhotoTime:(CDStruct_1b6d18a9)arg3 videoDuration:(CDStruct_1b6d18a9)arg4;
-- (void)_handleVideoPlayerItemLoadResultWithSuccess:(BOOL)arg1 playerItem:(id)arg2 prePhotoTime:(CDStruct_1b6d18a9)arg3 postPhotoTime:(CDStruct_1b6d18a9)arg4 videoDuration:(CDStruct_1b6d18a9)arg5 error:(id)arg6;
+- (void)_setVideoPlayerItem:(id)arg1 videoDuration:(CDStruct_1b6d18a9)arg2;
+- (void)_handleVideoPlayerItemLoadResultWithSuccess:(BOOL)arg1 playerItem:(id)arg2 videoDuration:(CDStruct_1b6d18a9)arg3 error:(id)arg4;
 - (void)_updateVideoPlayerItemIfNeeded;
 - (BOOL)_isVideoPlayerItemValid;
 - (void)_invalidateVideoPlayerItem;
+@property(nonatomic) BOOL contentSupportsVitality;
+- (void)_updateContentSupportsVitalityIfNeeded;
+- (void)_invalidateContentSupportsVitality;
+- (BOOL)_isContentSupportsVitalityValid;
 @property(retain, nonatomic, setter=_setVariationIdentifier:) NSNumber *_variationIdentifier;
 - (void)_updatePlaybackStyleIdentifierIfNeeded;
 - (BOOL)_isPlaybackStyleIdentifierValid;
@@ -83,8 +87,7 @@
 @property(nonatomic, setter=_setStatus:) long long status;
 @property(retain, nonatomic, setter=_setPlayerContent:) ISPlayerContent *playerContent;
 @property(retain, nonatomic, setter=_setError:) NSError *error;
-- (BOOL)decodesAllFramesDuringOrdinaryPlayback;
-- (void)setDecodesAllFramesDuringOrdinaryPlayback:(BOOL)arg1;
+@property(nonatomic) BOOL decodesAllFramesDuringOrdinaryPlayback;
 @property(nonatomic) BOOL reversesMoreVideoFramesInMemory;
 @property(nonatomic) BOOL aggressivelyCacheVideoFrames;
 - (void)_reloadAllContent;

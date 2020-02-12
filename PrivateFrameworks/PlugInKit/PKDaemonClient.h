@@ -28,11 +28,11 @@
 - (id)request:(const char *)arg1 paths:(id)arg2;
 - (id)request:(const char *)arg1;
 - (void)copyReceipt:(CDUnknownBlockType)arg1;
-- (void)releaseHold:(id)arg1 reply:(CDUnknownBlockType)arg2;
+- (void)releaseHold:(id)arg1 flags:(unsigned long long)arg2 reply:(CDUnknownBlockType)arg3;
 - (void)holdPlugins:(id)arg1 flags:(unsigned long long)arg2 reply:(CDUnknownBlockType)arg3;
 - (void)bulkSetPluginAnnotations:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)setPluginAnnotations:(id)arg1 annotations:(id)arg2 reply:(CDUnknownBlockType)arg3;
-- (void)matchPlugIns:(id)arg1 flags:(unsigned long long)arg2 reply:(CDUnknownBlockType)arg3;
+- (void)matchPlugIns:(id)arg1 flags:(unsigned long long)arg2 uuid:(id)arg3 reply:(CDUnknownBlockType)arg4;
 - (void)findPlugInByPathURL:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)findPlugInByUUID:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)accessPlugIns:(id)arg1 synchronously:(_Bool)arg2 flags:(unsigned long long)arg3 reply:(CDUnknownBlockType)arg4;
@@ -41,6 +41,7 @@
 - (void)removePlugIns:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)addPlugIns:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (id)errorInReply:(id)arg1;
+- (id)initWithServiceName:(const char *)arg1 user:(unsigned int)arg2;
 - (id)initWithServiceName:(const char *)arg1;
 
 @end

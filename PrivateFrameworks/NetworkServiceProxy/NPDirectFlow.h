@@ -6,11 +6,9 @@
 
 #import "NSObject.h"
 
-#import "NSPConnectionInfoSource.h"
-
 @class NSDate, NSNumber, NSPConnectionInfo;
 
-@interface NPDirectFlow : NSObject <NSPConnectionInfoSource>
+@interface NPDirectFlow : NSObject
 {
     struct nw_protocol _protocol;
     NSNumber *_identifier;
@@ -29,7 +27,6 @@
 - (void).cxx_destruct;
 - (void)createConnectionInfo;
 - (void)handleDetachedFromProtocol;
-- (void)copyConnectionInfoWithCompletionHandler:(CDUnknownBlockType)arg1;
 @property(readonly) struct nw_protocol *protocol;
 - (id)initWithParameters:(id)arg1;
 

@@ -26,8 +26,6 @@
 @property(copy, nonatomic) NSString *path; // @synthesize path=_path;
 @property(copy, nonatomic) NSString *storeName; // @synthesize storeName=_storeName;
 - (void).cxx_destruct;
-- (void)systemDidLeaveMemoryPressure;
-- (void)systemDidEnterMemoryPressure;
 - (void)_onIvarQueue_performBlock:(CDUnknownBlockType)arg1 initializeStore:(BOOL)arg2 waitUntilDone:(BOOL)arg3;
 - (void)_onIvarQueue_performBlock:(CDUnknownBlockType)arg1 initializeStore:(BOOL)arg2;
 - (void)deleteDatabase;
@@ -37,15 +35,16 @@
 - (void)__closeDatabaseOnIvarQueue;
 - (void)_performInitialHousekeepingOnIvarQueue;
 - (BOOL)deleteBatchWithContext:(id)arg1 error:(id *)arg2;
+- (BOOL)deleteEntriesBeforeDate:(id)arg1 afterDate:(id)arg2 error:(id *)arg3;
 - (id)datasUpToLimit:(unsigned long long)arg1 deleteContext:(id *)arg2 error:(id *)arg3;
 - (id)dataForKey:(id)arg1 error:(id *)arg2;
 - (BOOL)persistData:(id)arg1 forKey:(id)arg2 error:(id *)arg3;
 - (void)_onIvarQueue_deleteSerializedValueForKey:(id)arg1 valueType:(BOOL)arg2;
+- (void)_onIvarQueue_deleteDatesBefore:(id)arg1 after:(id)arg2;
 - (void)_onIvarQueue_deleteUpToRowID:(unsigned long long)arg1 valueType:(BOOL)arg2;
 - (id)_onIvarQueue_serializedValuesUpToLimit:(unsigned long long)arg1 valueType:(BOOL)arg2 deleteContext:(id *)arg3;
 - (id)_onIvarQueue_serializedValueForKey:(id)arg1 valueType:(BOOL)arg2;
 - (void)_onIvarQueue_persistSerializedValue:(id)arg1 forKey:(id)arg2 valueType:(BOOL)arg3;
-- (void)dealloc;
 - (id)initWithPath:(id)arg1 storeName:(id)arg2 dataProtectionClass:(unsigned int)arg3;
 
 @end

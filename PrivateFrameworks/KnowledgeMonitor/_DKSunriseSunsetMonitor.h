@@ -51,6 +51,7 @@
 - (void)handleAuthorizationStatusChangeOnStartup;
 - (BOOL)getAuthorizationStatus;
 - (BOOL)getAuthorizationStatusFromFile;
+- (void)deactivate;
 - (void)stop;
 - (void)start;
 - (id)loadState;

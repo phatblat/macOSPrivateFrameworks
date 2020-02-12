@@ -24,7 +24,6 @@ __attribute__((visibility("hidden")))
     _Bool _toolbarImageIsTemplate;
     struct TFENodeVector _interestedRoots;
     struct vector<TNSRef<NSURL, void>, std::__1::allocator<TNSRef<NSURL, void>>> _unresolvedRoots;
-    _Bool _pendingAddPrimaryRootToSidebar;
     struct unordered_map<TFENode, TString, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TString>>> _nodeToBadgeIDMap;
     _Bool _fetchedContainingAppIcon;
     struct TIconRef _containingAppIcon;

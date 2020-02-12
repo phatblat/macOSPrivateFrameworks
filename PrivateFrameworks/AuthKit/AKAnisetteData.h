@@ -7,8 +7,6 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
-#import "NSObjectROCKDeserializable.h"
-#import "NSObjectROCKSerializable.h"
 #import "NSSecureCoding.h"
 
 @class NSString;
@@ -20,22 +18,15 @@
     unsigned long long _routingInfo;
 }
 
-+ (id)rockDecodeWithXPCObject:(id)arg1 sessionManager:(id)arg2 error:(id *)arg3;
 + (BOOL)supportsSecureCoding;
 @property(nonatomic) unsigned long long routingInfo; // @synthesize routingInfo=_routingInfo;
 @property(copy, nonatomic) NSString *oneTimePassword; // @synthesize oneTimePassword=_oneTimePassword;
 @property(copy, nonatomic) NSString *machineID; // @synthesize machineID=_machineID;
 - (void).cxx_destruct;
-- (id)rockEncodeWithSessionManager:(id)arg1 error:(id *)arg2;
-@property(readonly, copy) NSString *description;
+- (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

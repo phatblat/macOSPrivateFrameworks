@@ -8,7 +8,7 @@
 
 #import "SignpostCARenderServerFrameMetadata.h"
 
-@class NSDictionary, NSSet, SignpostContextInfo, SignpostFrameLatencyInterval, SignpostHIDLatencyInterval, SignpostRenderServerRenderInterval;
+@class NSArray, NSDictionary, NSNumber, NSSet, SignpostContextInfo, SignpostFrameLatencyInterval, SignpostHIDLatencyInterval, SignpostRenderServerRenderInterval;
 
 @interface SignpostFrameLifetimeInterval : SignpostAnimationSubInterval <SignpostCARenderServerFrameMetadata>
 {
@@ -20,6 +20,7 @@
     NSDictionary *_pidToContextInfoArrayDict;
     SignpostHIDLatencyInterval *_hidLatencyInterval;
     SignpostRenderServerRenderInterval *_renderInterval;
+    NSArray *_skippedRenders;
     SignpostFrameLatencyInterval *_frameLatencyInterval;
     SignpostContextInfo *_earliestTimeContextInfo;
     SignpostContextInfo *_contextInfoForHIDInput;
@@ -29,6 +30,7 @@
 @property(readonly, nonatomic) SignpostContextInfo *contextInfoForHIDInput; // @synthesize contextInfoForHIDInput=_contextInfoForHIDInput;
 @property(readonly, nonatomic) SignpostContextInfo *earliestTimeContextInfo; // @synthesize earliestTimeContextInfo=_earliestTimeContextInfo;
 @property(readonly, nonatomic) SignpostFrameLatencyInterval *frameLatencyInterval; // @synthesize frameLatencyInterval=_frameLatencyInterval;
+@property(readonly, nonatomic) NSArray *skippedRenders; // @synthesize skippedRenders=_skippedRenders;
 @property(readonly, nonatomic) SignpostRenderServerRenderInterval *renderInterval; // @synthesize renderInterval=_renderInterval;
 @property(readonly, nonatomic) SignpostHIDLatencyInterval *hidLatencyInterval; // @synthesize hidLatencyInterval=_hidLatencyInterval;
 @property(readonly, nonatomic) NSDictionary *pidToContextInfoArrayDict; // @synthesize pidToContextInfoArrayDict=_pidToContextInfoArrayDict;
@@ -45,6 +47,8 @@
 @property(readonly, nonatomic) id <SignpostSupportTimeInterval> frameOverrunInterval;
 - (unsigned long long)_overrunBeginMCT;
 @property(readonly, nonatomic) unsigned long long missedVBLCount;
+@property(readonly, nonatomic) NSNumber *displayIDNum;
+- (BOOL)_hasDisplayID;
 @property(readonly, nonatomic) unsigned int displayID;
 @property(readonly, nonatomic) NSSet *contributingPIDs;
 @property(readonly, nonatomic) BOOL mayBeFirstFrame;
@@ -52,8 +56,8 @@
 @property(readonly, nonatomic) BOOL renderIntervalIsLong;
 @property(readonly, nonatomic) BOOL hidLatencyIsLong;
 - (BOOL)_isLongMCT:(unsigned long long)arg1 expectedFrameLatency:(unsigned char)arg2;
-- (id)initWithInterval:(id)arg1 contextArray:(id)arg2 renderInterval:(id)arg3;
-- (id)initWithInterval:(id)arg1 contextArray:(id)arg2 hidLatencyInterval:(id)arg3 renderInterval:(id)arg4 frameLatencyInterval:(id)arg5;
+- (id)initWithInterval:(id)arg1 contextArray:(id)arg2 renderInterval:(id)arg3 frameSeedToSkippedRenderIntervals:(id)arg4;
+- (id)initWithInterval:(id)arg1 contextArray:(id)arg2 hidLatencyInterval:(id)arg3 renderInterval:(id)arg4 frameLatencyInterval:(id)arg5 frameSeedToSkippedRenderIntervals:(id)arg6;
 
 @end
 

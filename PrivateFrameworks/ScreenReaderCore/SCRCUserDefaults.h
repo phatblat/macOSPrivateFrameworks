@@ -11,17 +11,15 @@
 @interface SCRCUserDefaults : SCRCUserDefaultsBase
 {
     NSLock *_lock;
-    int _familyMember;
+    long long _familyMember;
     NSString *_familyMemberString;
     BOOL _useMainThreadForCallbacks;
-    struct __CFDictionary *_transaction;
     SCRCTargetSelectorTimer *_syncTimer;
     SCRCTargetSelectorTimer *_syncTimerLocal;
     SCRCTargetSelectorTimer *_syncTimerCommon;
     SCRCTargetSelectorTimer *_syncTimerCustom;
     NSString *_domain;
     NSString *_pdomain;
-    SCRCUserDefaultsRegistry *_registry;
     BOOL _disableValueForKey;
     id _commonProxy;
     id _localProxy;
@@ -37,13 +35,13 @@
     NSString *_currentPortableIdentifier;
     id <SCRCUserDefaultsDiskArbDelegate> _diskArbDelegate;
     BOOL _remote;
-    BOOL _docked;
-    BOOL _portablePreferencesEnabled;
     BOOL _remoteHasChanges;
     BOOL _localPrefsTouched;
-    long long _cursorTrackingEnabledCommand;
     NSString *_preferencesFolder;
     SCRCThreadKey *_threadKey;
+    SCRCUserDefaultsRegistry *_registry;
+    unsigned char _cursorTrackingEnabledCommand;
+    id _outputManager;
 }
 
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
@@ -85,9 +83,9 @@
 - (void)_synchronizeLocal;
 - (void)_synchronize:(BOOL)arg1;
 - (void)_synchronize;
-- (int)familyMember;
+- (long long)familyMember;
 - (void)_globalDefaultsLaunch:(id)arg1;
-- (void)setFamilyMember:(int)arg1;
+- (void)setFamilyMember:(long long)arg1;
 - (BOOL)useMainThreadForCallbacks;
 - (void)setUseMainThreadForCallbacks:(BOOL)arg1;
 - (id)domainWithName:(id)arg1;
@@ -124,7 +122,7 @@
 - (void)setName:(id)arg1 forProfile:(id)arg2;
 - (void)removeProfile:(id)arg1;
 - (void)removeAllProfiles;
-- (void)resetProfile:(id)arg1 type:(int)arg2;
+- (void)resetProfile:(id)arg1 type:(long long)arg2;
 - (id)_createProfileAfterIndex:(unsigned long long)arg1 withName:(id)arg2 createType:(int)arg3;
 - (id)_addProfile:(id)arg1;
 - (void)addProfileAfterIndex:(unsigned long long)arg1 withName:(id)arg2;
@@ -188,27 +186,29 @@
 - (id)mobileMeUsername;
 - (BOOL)isIDiskConnected;
 - (id)iDiskVolumePath;
-- (id)_prunedKeys:(id)arg1 archiveType:(int)arg2;
-- (id)customFilePrefixesForArchiveType:(int)arg1;
+- (id)_prunedKeys:(id)arg1 archiveType:(unsigned long long)arg2;
+- (id)customFilePrefixesForArchiveType:(unsigned long long)arg1;
 - (void)_threadedGlobalDefaultsReset;
 - (void)_globalDefaultsReset:(id)arg1;
 - (void)postResetNotification;
-- (BOOL)exportToPath:(id)arg1 archiveType:(int)arg2 profileKeys:(id)arg3;
+- (BOOL)exportToPath:(id)arg1 archiveType:(unsigned long long)arg2 profileKeys:(id)arg3;
 - (void)_replaceDictionary:(id)arg1 forProxy:(id)arg2;
 - (void)_mergeElementDictionary:(id)arg1;
 - (unsigned long long)_indexOfLabel:(id)arg1 inLabels:(id)arg2;
 - (void)_mergeWebspotDictionary:(id)arg1;
 - (unsigned long long)_doesWebSpotExist:(id)arg1 inWebSpots:(id)arg2;
 - (void)_insertWebSpot:(id)arg1 inWebSpots:(id)arg2;
-- (void)_importFromDictionary:(id)arg1 archiveType:(int)arg2 mergeItems:(int)arg3;
-- (BOOL)importFromPath:(id)arg1 mergeItems:(int)arg2 error:(id *)arg3;
-- (int)mergeMaskForFileAtPath:(id)arg1;
-- (int)archiveTypeOfFileAtPath:(id)arg1;
-- (int)_getArchiveTypeFromDictionary:(id)arg1;
+- (void)_importFromDictionary:(id)arg1 archiveType:(unsigned long long)arg2 mergeItems:(unsigned long long)arg3;
+- (BOOL)importFromPath:(id)arg1 mergeItems:(unsigned long long)arg2 error:(id *)arg3;
+- (unsigned long long)mergeMaskForFileAtPath:(id)arg1;
+- (unsigned long long)archiveTypeOfFileAtPath:(id)arg1;
+- (unsigned long long)_getArchiveTypeFromDictionary:(id)arg1;
 - (void)addPronunciation:(id)arg1 forKey:(id)arg2;
+- (void)initializePronunciationsFromSharedUserDefaults;
 - (id)_generatePrimaryKey;
 - (void)resetNonCustomPreferences;
 - (void)resetAllPreferences;
+- (void)_clearPreferencesForDomain:(id)arg1;
 - (void)resetPreferencesForDomain:(id)arg1;
 - (id)preferenceDomains;
 

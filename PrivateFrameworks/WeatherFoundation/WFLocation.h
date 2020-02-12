@@ -52,8 +52,8 @@
 - (id)cloudDictionaryRepresentation;
 - (id)initWithLocalDataRepresentation:(id)arg1;
 - (id)localDataRepresentation;
-@property(readonly, nonatomic) BOOL shouldQueryForAirQualityData;
 - (id)countriesSupportAQI;
+@property(readonly, nonatomic) BOOL shouldQueryForAirQualityData;
 - (id)sunsetForDate:(id)arg1;
 - (id)sunriseForDate:(id)arg1;
 - (BOOL)isDayForDate:(id)arg1;
@@ -67,9 +67,10 @@
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)initWithPlacemark:(id)arg1;
+- (id)initWithMapItem:(id)arg1 isCurrentLocation:(BOOL)arg2;
 - (id)initWithMapItem:(id)arg1;
 - (id)initWithSearchResponse:(id)arg1;
-- (id)init;
+@property(readonly, nonatomic) NSString *wf_weatherChannelGeocodeValue;
 
 @end
 

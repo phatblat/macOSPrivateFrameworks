@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "_DKMonitor.h"
+#import "_DKMonitoring.h"
 
 @class _DKEvent;
 
-@protocol _DKInstantMonitor <_DKMonitor>
+@protocol _DKInstantMonitor <_DKMonitoring>
 @property(readonly, nonatomic) _DKEvent *currentEvent;
 @property(copy, nonatomic) CDUnknownBlockType instantHandler;
 - (void)synchronouslyReflectCurrentValue;

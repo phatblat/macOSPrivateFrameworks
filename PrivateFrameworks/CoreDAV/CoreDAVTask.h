@@ -8,7 +8,7 @@
 
 #import "CoreDAVSubmittable.h"
 
-@class CoreDAVErrorItem, CoreDAVRequestLogger, NSData, NSDate, NSDictionary, NSError, NSHTTPURLResponse, NSMutableArray, NSMutableDictionary, NSString, NSURL, NSURLConnection, NSURLRequest;
+@class CoreDAVErrorItem, CoreDAVRequestLogger, NSData, NSDate, NSDictionary, NSError, NSHTTPURLResponse, NSMutableArray, NSMutableDictionary, NSRunLoop, NSString, NSURL, NSURLConnection, NSURLRequest;
 
 @interface CoreDAVTask : NSObject <CoreDAVSubmittable>
 {
@@ -56,10 +56,14 @@
     BOOL _haveParsedFakeResponseData;
     CoreDAVErrorItem *_forbiddenErrorItem;
     NSString *_uniqueID;
+    BOOL _ignoresGuardianRestrictions;
+    BOOL _totalBytesWasProcessedAsAbnormallyLarge;
 }
 
 + (id)stringFromDepth:(int)arg1;
 + (unsigned int)uniqueQueryID;
+@property BOOL totalBytesWasProcessedAsAbnormallyLarge; // @synthesize totalBytesWasProcessedAsAbnormallyLarge=_totalBytesWasProcessedAsAbnormallyLarge;
+@property(nonatomic) BOOL ignoresGuardianRestrictions; // @synthesize ignoresGuardianRestrictions=_ignoresGuardianRestrictions;
 @property(retain, nonatomic) NSDictionary *requestProperties; // @synthesize requestProperties=_requestProperties;
 @property(nonatomic) BOOL allowAutomaticRedirects; // @synthesize allowAutomaticRedirects=_allowAutomaticRedirects;
 @property(nonatomic) unsigned long long totalBytesReceived; // @synthesize totalBytesReceived=_totalBytesReceived;
@@ -128,7 +132,8 @@
 - (id)requestBodyStream;
 - (BOOL)_includeGeneralHeaders;
 - (id)httpMethod;
-- (id)_osLogDescription;
+@property(readonly, nonatomic) NSRunLoop *workRunLoop;
+- (id)redactedDescription;
 @property(readonly, copy) NSString *description;
 - (void)dealloc;
 - (id)initWithURL:(id)arg1;

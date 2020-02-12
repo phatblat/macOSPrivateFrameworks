@@ -10,7 +10,7 @@
 #import "MKMapViewDelegate.h"
 #import "PXPlacesGeotaggedItemDataSourceDelegate.h"
 
-@class CLLocationManager, NSMapTable, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSSet, NSString, PXPlacesImageCache, PXPlacesMapPipelineExecutionContext, PXPlacesMapView;
+@class CLLocationManager, NSMapTable, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSOrderedSet, NSSet, NSString, PXPlacesImageCache, PXPlacesMapPipelineExecutionContext, PXPlacesMapView;
 
 @interface PXPlacesMapController : NSObject <MKMapViewDelegate, CLLocationManagerDelegate, PXPlacesGeotaggedItemDataSourceDelegate>
 {
@@ -41,6 +41,7 @@
     CDStruct_02837cd9 _signalFocusMapRect;
 }
 
++ (void)launchMapsAtCoordinate:(struct CLLocationCoordinate2D)arg1 withTitle:(id)arg2;
 @property(retain, nonatomic) NSMutableDictionary *showDebugMapRectColors; // @synthesize showDebugMapRectColors=_showDebugMapRectColors;
 @property(retain, nonatomic) CLLocationManager *locationManager; // @synthesize locationManager=_locationManager;
 @property(retain) PXPlacesImageCache *cache; // @synthesize cache=_cache;
@@ -72,6 +73,7 @@
 - (id)mapView:(id)arg1 viewForAnnotation:(id)arg2;
 - (void)mapView:(id)arg1 regionDidChangeAnimated:(BOOL)arg2;
 - (void)dataSource:(id)arg1 didChange:(id)arg2;
+@property(readonly, nonatomic) NSOrderedSet *currentSelectedGeotaggables;
 - (double)_zPositionForAnnotationIndex:(long long)arg1;
 - (void)_executeUpdatePlanResults:(id)arg1;
 - (double)_fadeOutAnimationDuration;
@@ -99,7 +101,6 @@
 - (void)removePipeline:(id)arg1;
 - (void)removeDataSource:(id)arg1;
 - (void)addPipeline:(id)arg1;
-- (void)launchMapsAtCoordinate:(struct CLLocationCoordinate2D)arg1 withTitle:(id)arg2;
 - (void)loadView;
 - (void)dealloc;
 - (id)init;

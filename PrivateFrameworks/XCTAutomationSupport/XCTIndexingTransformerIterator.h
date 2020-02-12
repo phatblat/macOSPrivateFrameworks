@@ -8,7 +8,7 @@
 
 #import "XCTMatchingElementIterator.h"
 
-@class NSSet, NSString, XCElementSnapshot, XCTElementIndexingTransformer;
+@class NSMutableSet, NSSet, NSString, XCElementSnapshot, XCTElementIndexingTransformer;
 
 __attribute__((visibility("hidden")))
 @interface XCTIndexingTransformerIterator : NSObject <XCTMatchingElementIterator>
@@ -19,8 +19,10 @@ __attribute__((visibility("hidden")))
     XCElementSnapshot *_currentMatch;
     XCTElementIndexingTransformer *_indexingTransformer;
     unsigned long long _count;
+    NSMutableSet *_mutableRelatedElements;
 }
 
+@property(readonly) NSMutableSet *mutableRelatedElements; // @synthesize mutableRelatedElements=_mutableRelatedElements;
 @property(readonly) BOOL hasMatched; // @synthesize hasMatched=_hasMatched;
 @property unsigned long long count; // @synthesize count=_count;
 @property(readonly) XCTElementIndexingTransformer *indexingTransformer; // @synthesize indexingTransformer=_indexingTransformer;
